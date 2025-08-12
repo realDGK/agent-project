@@ -71,40 +71,30 @@ class DatabaseManager:
             raise
     
     async def ensure_tables(self):
-        """Ensure basic tables exist"""
+        """Ensure database schema exists - use existing comprehensive schema"""
         if not self.pool:
             await self.connect()
             
+        # Simply verify connection - don't create tables
         async with self.pool.acquire() as conn:
-            # Basic documents table
-            await conn.execute("""
-                CREATE TABLE IF NOT EXISTS documents (
-                    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-                    filename VARCHAR(255) NOT NULL,
-                    content TEXT,
-                    file_size INTEGER,
-                    mime_type VARCHAR(100),
-                    created_at TIMESTAMPTZ DEFAULT NOW(),
-                    updated_at TIMESTAMPTZ DEFAULT NOW()
-                );
+            # Check if documents table exists (either comprehensive or basic)
+            table_exists = await conn.fetchval("""
+                SELECT COUNT(*) FROM information_schema.tables 
+                WHERE table_name = 'documents' AND table_schema = 'public'
             """)
             
-            # Analysis results table
-            await conn.execute("""
-                CREATE TABLE IF NOT EXISTS document_analysis (
-                    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-                    document_id UUID REFERENCES documents(id) ON DELETE CASCADE,
-                    extracted_metadata JSONB NOT NULL,
-                    confidence_score DECIMAL(3,2) DEFAULT 0.0,
-                    processing_method VARCHAR(100),
-                    processing_time DECIMAL(6,2),
-                    requires_human_review BOOLEAN DEFAULT FALSE,
-                    analysis_timestamp TIMESTAMPTZ DEFAULT NOW(),
-                    created_at TIMESTAMPTZ DEFAULT NOW()
-                );
-            """)
+            if table_exists > 0:
+                logger.info("Documents table exists - API ready")
+                # Check which schema we have
+                has_title = await conn.fetchval("""
+                    SELECT COUNT(*) FROM information_schema.columns 
+                    WHERE table_name = 'documents' AND column_name = 'title'
+                """)
+                logger.info(f"Using {'comprehensive' if has_title else 'basic'} schema")
+            else:
+                logger.warning("No documents table found - database may not be initialized")
             
-            logger.info("Database tables ensured")
+            logger.info("Database connection verified")
     
     async def store_document(self, filename: str, content: str, file_size: int, mime_type: str) -> str:
         """Store document and return ID"""
@@ -112,36 +102,55 @@ class DatabaseManager:
             await self.connect()
             
         async with self.pool.acquire() as conn:
-            document_id = await conn.fetchval("""
-                INSERT INTO documents (filename, content, file_size, mime_type)
-                VALUES ($1, $2, $3, $4)
-                RETURNING id
-            """, filename, content, file_size, mime_type)
+            # Check if comprehensive schema exists
+            has_title_column = await conn.fetchval("""
+                SELECT COUNT(*) FROM information_schema.columns 
+                WHERE table_name = 'documents' AND column_name = 'title'
+            """)
+            
+            if has_title_column:
+                # Use title column (comprehensive schema)
+                document_id = await conn.fetchval("""
+                    INSERT INTO documents (title, content, file_size, mime_type, metadata)
+                    VALUES ($1, $2, $3, $4, $5)
+                    RETURNING id
+                """, filename, content, file_size, mime_type, json.dumps({"source": "api_upload"}))
+            else:
+                # Use filename column (basic schema)
+                document_id = await conn.fetchval("""
+                    INSERT INTO documents (filename, content, file_size, mime_type)
+                    VALUES ($1, $2, $3, $4)
+                    RETURNING id
+                """, filename, content, file_size, mime_type)
             
             return str(document_id)
     
     async def store_analysis(self, document_id: str, analysis_result: Dict[str, Any]) -> str:
-        """Store analysis result and return analysis ID"""
+        """Store analysis result - update document metadata instead of separate table"""
         if not self.pool:
             await self.connect()
             
         async with self.pool.acquire() as conn:
-            analysis_id = await conn.fetchval("""
-                INSERT INTO document_analysis (
-                    document_id, extracted_metadata, confidence_score, 
-                    processing_method, processing_time, requires_human_review
-                ) VALUES ($1, $2, $3, $4, $5, $6)
-                RETURNING id
+            # Update the document with analysis metadata
+            await conn.execute("""
+                UPDATE documents 
+                SET 
+                    metadata = $2,
+                    updated_at = NOW()
+                WHERE id = $1
             """, 
                 uuid.UUID(document_id),
-                json.dumps(analysis_result['extracted_metadata']),
-                analysis_result['confidence_score'],
-                analysis_result['processing_method'],
-                analysis_result['processing_time'],
-                analysis_result['requires_human_review']
+                json.dumps({
+                    "analysis_result": analysis_result['extracted_metadata'],
+                    "confidence_score": analysis_result['confidence_score'],
+                    "processing_method": analysis_result['processing_method'],
+                    "processing_time": analysis_result['processing_time'],
+                    "requires_human_review": analysis_result['requires_human_review'],
+                    "analysis_timestamp": datetime.now().isoformat()
+                })
             )
             
-            return str(analysis_id)
+            return document_id  # Return document_id as analysis_id
     
     async def get_recent_documents(self, limit: int = 20) -> List[Dict[str, Any]]:
         """Get recent documents with analysis"""
@@ -149,19 +158,40 @@ class DatabaseManager:
             await self.connect()
             
         async with self.pool.acquire() as conn:
-            rows = await conn.fetch("""
-                SELECT 
-                    d.id as document_id,
-                    d.filename,
-                    d.created_at,
-                    da.confidence_score,
-                    da.requires_human_review,
-                    da.processing_method
-                FROM documents d
-                LEFT JOIN document_analysis da ON d.id = da.document_id
-                ORDER BY d.created_at DESC
-                LIMIT $1
-            """, limit)
+            # Check which column name to use
+            has_title_column = await conn.fetchval("""
+                SELECT COUNT(*) FROM information_schema.columns 
+                WHERE table_name = 'documents' AND column_name = 'title'
+            """)
+            
+            if has_title_column:
+                # Use title column
+                rows = await conn.fetch("""
+                    SELECT 
+                        d.id as document_id,
+                        d.title as filename,
+                        d.created_at,
+                        COALESCE((d.metadata->>'confidence_score')::decimal, 0.0) as confidence_score,
+                        COALESCE((d.metadata->>'requires_human_review')::boolean, false) as requires_human_review,
+                        COALESCE(d.metadata->>'processing_method', 'unknown') as processing_method
+                    FROM documents d
+                    ORDER BY d.created_at DESC
+                    LIMIT $1
+                """, limit)
+            else:
+                # Use filename column
+                rows = await conn.fetch("""
+                    SELECT 
+                        d.id as document_id,
+                        d.filename,
+                        d.created_at,
+                        COALESCE((d.metadata->>'confidence_score')::decimal, 0.0) as confidence_score,
+                        COALESCE((d.metadata->>'requires_human_review')::boolean, false) as requires_human_review,
+                        COALESCE(d.metadata->>'processing_method', 'unknown') as processing_method
+                    FROM documents d
+                    ORDER BY d.created_at DESC
+                    LIMIT $1
+                """, limit)
             
             return [dict(row) for row in rows]
 

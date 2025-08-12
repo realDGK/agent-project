@@ -38,4 +38,4 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
 # Command to run the application
 # This is also part of the fix. The entry point for the app is now correctly
 # set to the main.py file in the /app directory.
-CMD ["python", "main.py"]
+CMD ["python", "main_simple.py"]
