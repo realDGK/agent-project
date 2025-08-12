@@ -4,10 +4,14 @@ FROM python:3.11-slim
 # Set working directory in the container
 WORKDIR /app
 
-# Install system dependencies for database connectors and build tools
+# Install system dependencies for database connectors, OCR, and build tools
 RUN apt-get update && apt-get install -y \
     gcc \
     libpq-dev \
+    tesseract-ocr \
+    tesseract-ocr-eng \
+    poppler-utils \
+    libgl1-mesa-glx \
     # Clean up to reduce image size
     && rm -rf /var/lib/apt/lists/*
 
