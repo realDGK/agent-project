@@ -1,0 +1,506 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Real Estate Development Document Schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "document_id": {
+        "type": "string",
+        "format": "uuid",
+        "description": "Primary ID of this document record."
+      },
+      "provenance": {
+        "type": "object",
+        "description": "Origin and chain-of-custody for the document content.",
+        "properties": {
+          "source_uri": { "type": "string" },
+          "source_system": { "type": "string" },
+          "ingestion_time": { "type": "string", "format": "date-time" },
+          "ingested_by": { "type": "string" },
+          "sha256_hash": { "type": "string" },
+          "file_size_bytes": { "type": "integer" },
+          "mime_type": { "type": "string" },
+          "page_count": { "type": "integer" },
+          "text_extraction_method": { "type": "string" },
+          "ocr_confidence": { "type": "number" },
+          "parser_version": { "type": "string" }
+        },
+        "required": ["source_uri", "ingestion_time", "sha256_hash"]
+      },
+      "document_version": { "type": "integer" },
+      "supersedes_document_id": { "type": "string", "format": "uuid" },
+      "superseded_by_document_id": { "type": "string", "format": "uuid" },
+      "document_state": {
+        "type": "string",
+        "enum": ["active", "amended", "void", "draft"]
+      },
+      "security": {
+        "type": "object",
+        "properties": {
+          "confidentiality": { "type": "string", "enum": ["public", "internal", "privileged"] },
+          "legal_hold": { "type": "boolean" },
+          "privacy_flags": { "type": "array", "items": { "type": "string" } },
+          "acl": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "subject": { "type": "string" },
+                "permission": { "type": "string", "enum": ["read", "write", "admin"] }
+              },
+              "required": ["subject", "permission"]
+            }
+          }
+        }
+      },
+      "project_ids": {
+        "type": "array",
+        "items": { "type": "string", "format": "uuid" }
+      },
+      "contract_type": {
+        "type": "string",
+        "enum": [
+          "Lease Agreement",
+          "NDA",
+          "Contractor Agreement",
+          "Purchase Agreement",
+          "Development Agreement",
+          "Letter of Intent",
+          "Amendment",
+          "Escrow Instructions",
+          "Resolution",
+          "Budget",
+          "Settlement Statement",
+          "Trustee's Deed Upon Sale",
+          "Disbursement of Proceeds",
+          "Substitution of Trustee and Deed of Reconveyance",
+          "Email",
+          "Conditional Use Permit",
+          "Site Plan Review",
+          "Deed of Trust",
+          "Grant Deed",
+          "Quitclaim",
+          "Easement",
+          "CC&Rs",
+          "SNDA",
+          "Estoppel",
+          "Guaranty",
+          "Indemnity",
+          "Option Agreement",
+          "Assignment & Assumption",
+          "Notice of Default",
+          "Notice of Sale",
+          "Lis Pendens",
+          "Preliminary Title Report",
+          "Title Policy",
+          "ALTA Survey",
+          "Performance/Payment Bond",
+          "Change Order",
+          "Pay App",
+          "Mechanics Lien",
+          "Lien Release",
+          "Will-Serve Letter",
+          "Building Permit",
+          "Grading Permit",
+          "Encroachment Permit",
+          "Certificate of Occupancy",
+          "CEQA"
+        ]
+      },
+      "ceqa_document_type": {
+        "type": "string",
+        "enum": ["EIR", "MND", "NOD", "NOE", "Initial Study", "Addendum", "Other"]
+      },
+      "contract_name": { "type": "string" },
+      "execution_date": { "type": "string", "format": "date" },
+      "effective_date": { "type": "string", "format": "date" },
+      "expiration_date": { "type": "string", "format": "date" },
+      "closing_date": { "type": "string", "format": "date" },
+      "parties": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "party_id": { "type": "string", "format": "uuid" },
+            "name": { "type": "string" },
+            "role": { "type": "string" },
+            "address": { "type": "string" },
+            "phone": { "type": "string" },
+            "email": { "type": "string" },
+            "title": { "type": "string" }
+          },
+          "required": ["name", "role"]
+        }
+      },
+      "related_documents": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "related_document_id": { "type": "string", "format": "uuid" },
+            "relation_type": {
+              "type": "string",
+              "enum": ["amends", "replaces", "exhibit", "attachment", "references", "recorded_against", "implements", "evidence_of"]
+            },
+            "description": { "type": "string" }
+          },
+          "required": ["related_document_id", "relation_type"]
+        }
+      },
+      "parcels": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "parcel_id": { "type": "string", "format": "uuid" },
+            "apn": { "type": "string" },
+            "county_fips": { "type": "string" },
+            "geocode": {
+              "type": "object",
+              "properties": {
+                "lat": { "type": "number" },
+                "lon": { "type": "number" }
+              }
+            },
+            "state": { "type": "string" },
+            "legal_description": { "type": "string" },
+            "acres": { "type": "number" },
+            "lot_number": { "type": "string" }
+          },
+          "required": ["apn"]
+        }
+      },
+      "files": {
+        "type": "array",
+        "description": "Binary/file pointers for the canonical document and any normalized attachments (non-email specific).",
+        "items": {
+          "type": "object",
+          "properties": {
+            "filename": { "type": "string" },
+            "mime_type": { "type": "string" },
+            "size_bytes": { "type": "integer" },
+            "sha256": { "type": "string" },
+            "storage_uri": { "type": "string" }
+          },
+          "required": ["filename", "sha256", "storage_uri"]
+        }
+      },
+      "financial_terms": {
+        "type": "object",
+        "properties": {
+          "currency": { "type": "string", "default": "USD" },
+          "rent_amount": { "type": "number" },
+          "purchase_price": { "type": "number" },
+          "security_deposit": { "type": "number" },
+          "payment_terms": { "type": "string" },
+          "loan_details": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "loan_amount": { "type": "number" },
+                "loan_type": { "type": "string" },
+                "lender": { "type": "string" }
+              }
+            }
+          },
+          "interest_reserve": { "type": "number" },
+          "itemized_costs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "item": { "type": "string" },
+                "amount": { "type": "number" },
+                "unit": { "type": "string" },
+                "unit_price": { "type": "number" },
+                "cost_code": { "type": "string" },
+                "committed_vendor": { "type": "string" },
+                "retention_pct": { "type": "number" }
+              }
+            }
+          },
+          "draw_requests": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "draw_no": { "type": "string" },
+                "period_start": { "type": "string", "format": "date" },
+                "period_end": { "type": "string", "format": "date" },
+                "amount_requested": { "type": "number" },
+                "amount_approved": { "type": "number" },
+                "lien_releases": { "type": "array", "items": { "type": "string" } }
+              }
+            }
+          },
+          "total_contract_value": { "type": "number" }
+        }
+      },
+      "key_clauses": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "clause_name": { "type": "string" },
+            "clause_text": { "type": "string" }
+          },
+          "required": ["clause_name", "clause_text"]
+        }
+      },
+      "obligations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "obligation_id": { "type": "string", "format": "uuid" },
+            "party_name": { "type": "string" },
+            "obligation_type": { "type": "string" },
+            "trigger_event": { "type": "string" },
+            "due_date": { "type": "string", "format": "date" },
+            "status": { "type": "string", "enum": ["open", "in_progress", "satisfied", "waived", "past_due"] },
+            "evidence_document_id": { "type": "string", "format": "uuid" },
+            "penalty": { "type": "string" }
+          },
+          "required": ["obligation_id", "party_name", "obligation_type", "status"]
+        }
+      },
+      "water_and_sewer_details": {
+        "type": "object",
+        "properties": {
+          "sewer_capacity_gpd": { "type": "number" },
+          "reimbursement_amount": { "type": "number" },
+          "pond_release_payment": { "type": "number" },
+          "water_well_capacity": { "type": "string" },
+          "allocation_source": { "type": "string" },
+          "transferable": { "type": "boolean" },
+          "meter_id": { "type": "string" },
+          "capacity_bank_ledger": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "entry_id": { "type": "string", "format": "uuid" },
+                "action": { "type": "string", "enum": ["debit", "credit"] },
+                "amount": { "type": "number" },
+                "unit": { "type": "string", "enum": ["GPD", "AFY"] },
+                "as_of_date": { "type": "string", "format": "date" },
+                "reason": { "type": "string" },
+                "source_document_id": { "type": "string", "format": "uuid" }
+              },
+              "required": ["entry_id", "action", "amount", "unit", "as_of_date"]
+            }
+          }
+        }
+      },
+      "fees_ledger": {
+        "type": "array",
+        "description": "Assessments, payments, and credits tied to this document/project/parcel.",
+        "items": {
+          "type": "object",
+          "properties": {
+            "entry_id": { "type": "string", "format": "uuid" },
+            "scope": { "type": "string", "enum": ["project", "parcel", "document"] },
+            "apn": { "type": "string" },
+            "fee_type": { "type": "string" },
+            "assessed_amount": { "type": "number" },
+            "paid_amount": { "type": "number" },
+            "credit_applied": { "type": "number" },
+            "balance": { "type": "number" },
+            "currency": { "type": "string", "default": "USD" },
+            "as_of_date": { "type": "string", "format": "date" },
+            "evidence_document_id": { "type": "string", "format": "uuid" }
+          },
+          "required": ["entry_id", "fee_type", "as_of_date"]
+        }
+      },
+      "email_metadata": {
+        "type": "object",
+        "properties": {
+          "message_id": { "type": "string" },
+          "thread_id": { "type": "string" },
+          "in_reply_to": { "type": "string" },
+          "references": { "type": "array", "items": { "type": "string" } },
+          "from": { "type": "string" },
+          "to": { "type": "array", "items": { "type": "string" } },
+          "cc": { "type": "array", "items": { "type": "string" } },
+          "bcc": { "type": "array", "items": { "type": "string" } },
+          "received_date": { "type": "string", "format": "date-time" },
+          "mailbox": { "type": "string" },
+          "pst_file_path": { "type": "string" },
+          "pst_entry_id": { "type": "string" },
+          "delivery_headers_sha256": { "type": "string" },
+          "attachments": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "filename": { "type": "string" },
+                "mime_type": { "type": "string" },
+                "size_bytes": { "type": "integer" },
+                "sha256": { "type": "string" },
+                "storage_uri": { "type": "string" }
+              },
+              "required": ["filename", "sha256", "storage_uri"]
+            }
+          }
+        },
+        "required": ["message_id", "received_date"]
+      },
+      "legal_recording_details": {
+        "type": "object",
+        "properties": {
+          "instrument_type": { "type": "string" },
+          "instrument_number": { "type": "string" },
+          "book": { "type": "string" },
+          "page": { "type": "string" },
+          "recording_date": { "type": "string", "format": "date" },
+          "execution_date": { "type": "string", "format": "date" },
+          "county": { "type": "string" },
+          "county_fips": { "type": "string" },
+          "grantor": { "type": "array", "items": { "type": "string" } },
+          "grantee": { "type": "array", "items": { "type": "string" } },
+          "notary": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "commission_no": { "type": "string" },
+              "expires": { "type": "string", "format": "date" }
+            }
+          },
+          "cross_reference_instruments": { "type": "array", "items": { "type": "string" } }
+        }
+      },
+      "permits_and_approvals": {
+        "type": "object",
+        "properties": {
+          "permit_numbers": { "type": "array", "items": { "type": "string" } },
+          "issuing_agency": { "type": "string" },
+          "resolution_numbers": { "type": "array", "items": { "type": "string" } },
+          "conditions_of_approval": { "type": "array", "items": { "type": "string" } },
+          "status": { "type": "string" },
+          "issue_date": { "type": "string", "format": "date" },
+          "expiry_date": { "type": "string", "format": "date" },
+          "bond_number": { "type": "string" },
+          "bond_amount": { "type": "number" },
+          "inspection_history": { "type": "array", "items": { "type": "string" } }
+        }
+      },
+      "service_details": {
+        "type": "object",
+        "properties": {
+          "service_provider": { "type": "string" },
+          "scope_of_work": { "type": "string" },
+          "service_term": { "type": "string" },
+          "rate": { "type": "string" }
+        }
+      },
+      "lease_terms": {
+        "type": "object",
+        "properties": {
+          "lease_term_years": { "type": "number" },
+          "base_rent_schedule": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "start": { "type": "string", "format": "date" },
+                "end": { "type": "string", "format": "date" },
+                "amount": { "type": "number" },
+                "currency": { "type": "string", "default": "USD" }
+              },
+              "required": ["start", "end", "amount"]
+            }
+          },
+          "base_year": { "type": "integer" },
+          "cpi_cap_pct": { "type": "number" },
+          "ti_allowance": { "type": "number" },
+          "option_windows": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "notice_open": { "type": "string", "format": "date" },
+                "notice_close": { "type": "string", "format": "date" },
+                "term_years": { "type": "number" }
+              }
+            }
+          },
+          "permitted_uses": { "type": "array", "items": { "type": "string" } },
+          "maintenance_responsibilities": { "type": "string" }
+        }
+      },
+      "development_details": {
+        "type": "object",
+        "properties": {
+          "development_plan": { "type": "string" },
+          "approved_uses": { "type": "array", "items": { "type": "string" } },
+          "infrastructure_obligations": { "type": "string" },
+          "entitlements": { "type": "string" },
+          "density": { "type": "string" }
+        }
+      },
+      "vector_embedding": {
+        "type": "array",
+        "items": { "type": "number" }
+      },
+      "embedding_metadata": {
+        "type": "object",
+        "properties": {
+          "embedding_model": { "type": "string" },
+          "embedding_dim": { "type": "integer" },
+          "created_at": { "type": "string", "format": "date-time" }
+        }
+      },
+      "embedding_chunks": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "chunk_id": { "type": "string", "format": "uuid" },
+            "chunk_index": { "type": "integer" },
+            "text_offset_start": { "type": "integer" },
+            "text_offset_end": { "type": "integer" },
+            "embedding": { "type": "array", "items": { "type": "number" } },
+            "embedding_model": { "type": "string" },
+            "embedding_dim": { "type": "integer" },
+            "created_at": { "type": "string", "format": "date-time" }
+          },
+          "required": ["chunk_id", "chunk_index", "embedding"]
+        }
+      }
+    },
+    "required": ["document_id", "provenance", "contract_type", "effective_date"],
+    "allOf": [
+      {
+        "if": { "properties": { "contract_type": { "const": "Lease Agreement" } } },
+        "then": { "required": ["lease_terms"] }
+      },
+      {
+        "if": { "properties": { "contract_type": { "const": "Development Agreement" } } },
+        "then": { "required": ["development_details"] }
+      },
+      {
+        "if": { "required": ["email_metadata"] },
+        "then": {
+          "properties": {
+            "email_metadata": {
+              "required": ["message_id", "received_date"]
+            }
+          }
+        }
+      },
+      {
+        "if": { "required": ["legal_recording_details"] },
+        "then": {
+          "properties": {
+            "legal_recording_details": {
+              "required": ["recording_date", "county"]
+            }
+          }
+        }
+      }
+    ]
+  }
+}

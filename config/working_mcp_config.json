@@ -1,0 +1,53 @@
+{
+  "mcpServers": {
+    "cognee-dev": {
+      "command": "docker",
+      "args": [
+        "exec",
+        "-i",
+        "cognee-dev-orchestrator",
+        "python",
+        "-c",
+        "exec(open('/tmp/cognee_mcp.py').read())"
+      ],
+      "env": {},
+      "disabled": false,
+      "description": "Cognee development/orchestrator memory - MCP connection to running container"
+    },
+    "cognee-business": {
+      "command": "docker", 
+      "args": [
+        "exec",
+        "-i",
+        "cognee-business-contracts",
+        "python",
+        "-c", 
+        "exec(open('/tmp/cognee_mcp.py').read())"
+      ],
+      "env": {},
+      "disabled": false,
+      "description": "Cognee business intelligence - MCP connection to running container"
+    }
+  },
+  "_configuration": {
+    "status": "ACTIVE - Working MCP configuration",
+    "containers": {
+      "cognee-dev-orchestrator": "Development memory, port 8000",
+      "cognee-business-contracts": "Business processing, port 8002"
+    },
+    "embedding_model": "gemini-embedding-001",
+    "volumes": [
+      "scott_cognee_dev_data",
+      "scott_cognee_dev_database", 
+      "scott_cognee_dev_logs",
+      "scott_cognee_dev_cache",
+      "scott_cognee_business_data",
+      "scott_cognee_business_database",
+      "scott_cognee_business_logs",
+      "scott_cognee_business_cache"
+    ],
+    "last_updated": "2025-08-09",
+    "mcp_server": "/tmp/cognee_mcp.py (containerized)",
+    "verified_working": "Yes - tested with Goose knowledge storage"
+  }
+}

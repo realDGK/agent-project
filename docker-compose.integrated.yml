@@ -1,5 +1,4 @@
-# Integrated Agent System - Goose + Agent API
-# This is the recommended setup for full orchestration capabilities
+version: '3.8'
 
 services:
   # Agent Document Processing API (Primary)
@@ -26,7 +25,7 @@ services:
 
   # PostgreSQL Database for document storage and analysis
   postgres:
-    image: postgres:15-alpine
+    image: postgres:15
     container_name: agent-postgres
     environment:
       - POSTGRES_DB=agent_orchestration
@@ -73,9 +72,78 @@ services:
       timeout: 10s
       retries: 3
 
+  # Cognee Development Memory Database (Goose conversational memory)
+  cognee-dev-orchestrator:
+    image: cognee/cognee:latest
+    container_name: cognee-dev-orchestrator
+    ports:
+      - "8001:8000"
+    environment:
+      - GOOGLE_API_KEY=${GOOGLE_API_KEY}
+      - EMBEDDING_MODEL=gemini-embedding-001
+      - COGNEE_ENV=development
+    volumes:
+      - scott_cognee_dev_data:/app/data
+      - scott_cognee_dev_database:/app/database
+      - scott_cognee_dev_logs:/app/logs
+      - scott_cognee_dev_cache:/app/cache
+      - ./config/cognee_mcp_robust.py:/tmp/cognee_mcp.py:ro
+    networks:
+      - agent-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import requests; requests.get('http://localhost:8000/health', timeout=5)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Cognee Business Intelligence Memory Database
+  cognee-business-contracts:
+    image: cognee/cognee:latest
+    container_name: cognee-business-contracts
+    ports:
+      - "8002:8000"
+    environment:
+      - GOOGLE_API_KEY=${GOOGLE_API_KEY}
+      - EMBEDDING_MODEL=gemini-embedding-001
+      - COGNEE_ENV=business
+    volumes:
+      - scott_cognee_business_data:/app/data
+      - scott_cognee_business_database:/app/database
+      - scott_cognee_business_logs:/app/logs
+      - scott_cognee_business_cache:/app/cache
+      - ./config/cognee_mcp_robust.py:/tmp/cognee_mcp.py:ro
+    networks:
+      - agent-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import requests; requests.get('http://localhost:8000/health', timeout=5)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
 volumes:
   postgres_data:
   redis_data:
+  # Cognee Memory Database Volumes
+  scott_cognee_dev_data:
+    external: true
+  scott_cognee_dev_database:
+    external: true
+  scott_cognee_dev_logs:
+    external: true
+  scott_cognee_dev_cache:
+    external: true
+  scott_cognee_business_data:
+    external: true
+  scott_cognee_business_database:
+    external: true
+  scott_cognee_business_logs:
+    external: true
+  scott_cognee_business_cache:
+    external: true
 
 networks:
   agent-network:

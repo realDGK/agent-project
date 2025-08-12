@@ -3,16 +3,16 @@ OLLAMA_CONTEXT_LENGTH: 32768
 OLLAMA_HOST: http://localhost:11434/
 GOOSE_PROVIDER: google
 extensions:
-  agent_system:
+  router_agent:
     args: []
     bundled: null
-    cmd: python
-    cmdline: /home/scott/agent-project/config/agent_mcp_server.py
-    description: Agent Document Processing System with LegalBERT
+    cmd: python3
+    cmdline: /home/scott/agent-project/config/router_agent.py
+    description: Intelligent Query Router - Routes between Cognee Memory and Agent API
     enabled: true
     env_keys: []
     envs: {}
-    name: Agent System
+    name: Router Agent
     timeout: 300
     type: stdio
   computercontroller:
