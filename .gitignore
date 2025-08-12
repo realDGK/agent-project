@@ -33,9 +33,8 @@ venv.bak/
 # Docker
 .dockerignore
 
-# Database
-volumes/postgres_data/
-volumes/cognee_data/
+# Database and Docker volumes
+volumes/
 *.sqlite3
 *.db
 
@@ -74,4 +73,4 @@ config/secrets/
 htmlcov/
 
 # Documentation builds
-docs/_build/volumes/
+docs/_build/
