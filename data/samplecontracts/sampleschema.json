@@ -1,0 +1,19 @@
+{
+  "contract_schema": {
+    "properties": {
+      "document_id": { "type": "string", "description": "Unique identifier for the contract." },
+      "document_type": { "type": "string", "description": "The type of contract (e.g., 'Lease', 'NDA')." },
+      "effective_date": { "type": "string", "description": "The date the contract becomes active." },
+      "parties": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "role": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}
