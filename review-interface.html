@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Human Review Interface</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 20px 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2em;
+            font-weight: 300;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 350px 1fr; /* Sidebar and main review panel */
+            gap: 20px;
+            padding: 20px;
+            min-height: 80vh;
+        }
+
+        .document-list-panel {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .document-list-panel h2 {
+            font-size: 1.3em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        #documentList {
+            list-style-type: none;
+        }
+
+        .document-item {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            border: 1px solid #e0e0e0;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .document-item .filename {
+            font-weight: 500;
+        }
+
+        .confidence-score {
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+        }
+
+        .score-high { background-color: #d4edda; color: #155724; }
+        .score-medium { background-color: #fff3cd; color: #856404; }
+        .score-low { background-color: #f8d7da; color: #721c24; }
+
+        .document-item:hover {
+            background: #ebf3fd;
+            border-color: #3498db;
+        }
+
+        .document-item.selected {
+            background: #d5eafd;
+            border-left: 5px solid #2980b9;
+            font-weight: 600;
+        }
+
+        .review-panel {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .document-viewer, .data-editor {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        h3 {
+            font-size: 1.2em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        #documentImageContainer {
+            width: 100%;
+            height: calc(100% - 100px);
+            background: #e0e0e0;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #7f8c8d;
+        }
+
+        #documentImageContainer img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        #dataEditorForm .form-group {
+            margin-bottom: 15px;
+        }
+
+        #dataEditorForm label {
+            display: block;
+            font-weight: 500;
+            color: #34495e;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+        }
+
+        #dataEditorForm input,
+        #dataEditorForm textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #bdc3c7;
+            border-radius: 6px;
+            font-size: 1em;
+        }
+
+        #dataEditorForm textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            border-top: 1px solid #e0e0e0;
+            padding-top: 20px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        #approveBtn {
+            background: linear-gradient(135deg, #2ecc71 0%, #28b485 100%);
+            color: white;
+        }
+
+        #rejectBtn {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+        }
+
+        #saveBtn {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            margin-left: auto; /* Pushes save to the right */
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Human Review Interface</h1>
+            <p>Review and correct OCR-extracted data</p>
+        </div>
+
+        <div class="main-content">
+            <!-- Document List Panel -->
+            <div class="document-list-panel">
+                <h2>Documents for Review</h2>
+                <ul id="documentList">
+                    <!-- Document items will be populated by JavaScript -->
+                </ul>
+            </div>
+
+            <!-- Review Panel -->
+            <div class="review-panel">
+                <div class="document-viewer">
+                    <h3>Document Viewer</h3>
+                    <div id="documentImageContainer">
+                        <!-- Document image will be loaded here -->
+                        <p>Select a document to view its image.</p>
+                    </div>
+                </div>
+
+                <div class="data-editor">
+                    <h3>Extracted Data</h3>
+                    <form id="dataEditorForm">
+                        <!-- Data fields will be populated by JavaScript -->
+                        <p>Select a document to view and edit its data.</p>
+                    </form>
+                    <div class="controls">
+                        <button id="approveBtn">Approve</button>
+                        <button id="rejectBtn">Reject</button>
+                        <button id="saveBtn">Save Changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- MOCK DATA ---
+            const mockDocuments = [
+                {
+                    id: 1,
+                    filename: '00-architecture-overview.md',
+                    status: 'pending_review',
+                    imageUrl: 'https://via.placeholder.com/800x1100.png?text=Document+Page+1',
+                    confidence_score: 0.92,
+                    full_ocr_text: `Architecture Overview
+
+This document overviews the general architecture of the system. The system is composed of three main components: a frontend, a backend, and a database.
+
+The frontend is a single-page application built with React. It communicates with the backend via a RESTful API.
+
+The backend is a Python service using the FastAPI framework. It handles business logic and connects to the PostgreSQL database.
+
+The database stores all persistent data, including user information, documents, and analysis results.`
+                },
+                {
+                    id: 2,
+                    filename: '02-current-implementation.md',
+                    status: 'pending_review',
+                    imageUrl: 'https://via.placeholder.com/800x1100.png?text=Document+Page+2',
+                    confidence_score: 0.85,
+                    full_ocr_text: `Current Implementation Details
+
+Project Name: Contract Analysis System
+Primary Technology: FastAPI (Python)
+Database: PostgreSQL
+Confidence Score: 0.85
+Requires Human Review: true
+
+The API is currently deployed on a staging environment. The database schema includes tables for 'documents' and 'document_analysis'. The 'documents' table stores the raw uploaded files, while the 'document_analysis' table stores the results from the AI/ML models.`
+                },
+                {
+                    id: 3,
+                    filename: '05-next-phase-priorities.md',
+                    status: 'pending_review',
+                    imageUrl: 'https://via.placeholder.com/800x1100.png?text=Document+Page+3',
+                    confidence_score: 0.65,
+                    full_ocr_text: `Next Phase Priorities
+
+Phase: 1B
+Objective: Legal Document Sophistication
+Key Feature: Human Review Required Flag
+Timeline: 3-7 days
+
+The next phase will focus on enhancing the system's ability to understand complex legal documents. This includes improving the schema to track contract hierarchies (e.g., MSA to SOW relationships) and introducing more specialized AI agents for risk assessment and compliance checking. The goal is to move from a generic document processor to an intelligent legal contract analysis platform.`
+                }
+            ];
+
+            // --- DOM ELEMENTS ---
+            const documentList = document.getElementById('documentList');
+            const documentImageContainer = document.getElementById('documentImageContainer');
+            const dataEditorForm = document.getElementById('dataEditorForm');
+            const approveBtn = document.getElementById('approveBtn');
+            const rejectBtn = document.getElementById('rejectBtn');
+            const saveBtn = document.getElementById('saveBtn');
+
+            let selectedDocumentId = null;
+
+            // --- FUNCTIONS ---
+
+            function renderDocumentList() {
+                documentList.innerHTML = ''; // Clear existing list
+                mockDocuments.forEach(doc => {
+                    const li = document.createElement('li');
+                    li.className = 'document-item';
+                    li.dataset.id = doc.id;
+
+                    const filenameSpan = document.createElement('span');
+                    filenameSpan.className = 'filename';
+                    filenameSpan.textContent = doc.filename;
+
+                    const scoreSpan = document.createElement('span');
+                    scoreSpan.className = 'confidence-score';
+                    scoreSpan.textContent = `${Math.round(doc.confidence_score * 100)}%`;
+
+                    if (doc.confidence_score > 0.9) {
+                        scoreSpan.classList.add('score-high');
+                    } else if (doc.confidence_score > 0.7) {
+                        scoreSpan.classList.add('score-medium');
+                    } else {
+                        scoreSpan.classList.add('score-low');
+                    }
+
+                    li.appendChild(filenameSpan);
+                    li.appendChild(scoreSpan);
+                    documentList.appendChild(li);
+                });
+            }
+
+            function displayDocument(docId) {
+                const doc = mockDocuments.find(d => d.id == docId);
+                if (!doc) return;
+
+                selectedDocumentId = docId;
+                updateSelectedListItem(docId);
+                displayImage(doc.imageUrl);
+                displayFormData(doc.full_ocr_text);
+            }
+
+            function updateSelectedListItem(docId) {
+                const items = document.querySelectorAll('.document-item');
+                items.forEach(item => {
+                    if(item.dataset.id == docId) {
+                        item.classList.add('selected');
+                    } else {
+                        item.classList.remove('selected');
+                    }
+                });
+            }
+
+            function displayImage(imageUrl) {
+                documentImageContainer.innerHTML = `<img src="${imageUrl}" alt="Document Scan">`;
+            }
+
+            function displayFormData(text) {
+                dataEditorForm.innerHTML = ''; // Clear previous form
+
+                const group = document.createElement('div');
+                group.className = 'form-group';
+
+                const label = document.createElement('label');
+                label.setAttribute('for', 'fullOcrText');
+                label.textContent = 'Full OCR Text';
+
+                const textarea = document.createElement('textarea');
+                textarea.id = 'fullOcrText';
+                textarea.name = 'fullOcrText';
+                textarea.value = text;
+                // Make the textarea fill the available space
+                textarea.style.height = 'calc(100% - 100px)';
+                textarea.style.minHeight = '300px';
+
+                group.appendChild(label);
+                group.appendChild(textarea);
+                dataEditorForm.appendChild(group);
+            }
+
+            function handleApproval() {
+                if (!selectedDocumentId) {
+                    alert('Please select a document first.');
+                    return;
+                }
+                console.log(`Document ID ${selectedDocumentId} APPROVED.`);
+                alert(`Document ID ${selectedDocumentId} marked as APPROVED.`);
+            }
+
+            function handleRejection() {
+                if (!selectedDocumentId) {
+                    alert('Please select a document first.');
+                    return;
+                }
+                console.log(`Document ID ${selectedDocumentId} REJECTED.`);
+                alert(`Document ID ${selectedDocumentId} marked as REJECTED.`);
+            }
+
+            function handleSave() {
+                if (!selectedDocumentId) {
+                    alert('Please select a document first.');
+                    return;
+                }
+                const textarea = document.getElementById('fullOcrText');
+                const updatedText = textarea.value;
+
+                console.log(`Document ID ${selectedDocumentId} SAVED with new text:`, updatedText);
+                alert(`Changes for document ID ${selectedDocumentId} saved.`);
+
+                // Update mock data
+                const docIndex = mockDocuments.findIndex(d => d.id == selectedDocumentId);
+                if(docIndex !== -1) {
+                    mockDocuments[docIndex].full_ocr_text = updatedText;
+                }
+            }
+
+            // --- EVENT LISTENERS ---
+            documentList.addEventListener('click', (e) => {
+                // Handle clicks on the list item itself or its children (span)
+                const targetLi = e.target.closest('.document-item');
+                if (targetLi) {
+                    const docId = targetLi.dataset.id;
+                    displayDocument(docId);
+                }
+            });
+
+            approveBtn.addEventListener('click', handleApproval);
+            rejectBtn.addEventListener('click', handleRejection);
+            saveBtn.addEventListener('click', handleSave);
+
+            // --- INITIALIZATION ---
+            renderDocumentList();
+            // Optionally, display the first document by default
+            if(mockDocuments.length > 0) {
+                displayDocument(mockDocuments[0].id);
+            }
+        });
+    </script>
+</body>
+</html>
