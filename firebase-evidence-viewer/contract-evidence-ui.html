@@ -884,10 +884,9 @@
                 updateConformedTab();
                 updateTimelineChips();
                 
-                // If we're on the conformed tab, reload it with the new date
-                if (currentTab === 'conformed') {
-                    loadDocument('conformed');
-                }
+                // Always switch to conformed tab and reload with the new date
+                switchTab('conformed');
+                console.log('As-Of date changed to:', this.value);
             });
 
             // Timeline chips
@@ -899,10 +898,9 @@
                     updateConformedTab();
                     updateTimelineChips();
                     
-                    // If we're on the conformed tab, reload it with the new date
-                    if (currentTab === 'conformed') {
-                        loadDocument('conformed');
-                    }
+                    // Always switch to conformed tab and reload with the new date
+                    switchTab('conformed');
+                    console.log('Timeline chip clicked:', this.textContent, 'Date:', date);
                 });
             });
 
