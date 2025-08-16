@@ -783,52 +783,66 @@
                     </table>
                 `
             },
-            'conformed': {
-                title: 'Conformed Agreement',
-                content: `
-                    <h2 style="text-align: center; margin-bottom: 30px;">CONFORMED LEASE AGREEMENT</h2>
-                    <p style="text-align: center; color: #64748b; margin-bottom: 30px;">As of: <span id="conformedDate">${currentAsOfDate}</span></p>
-                    
-                    <p><strong>Section 2.1(a) - Base Rent (Current)</strong></p>
-                    <p style="background: rgba(34, 197, 94, 0.2); padding: 12px; border-left: 4px solid #22c55e;">
-                        Tenant shall pay to Landlord as base rent the sum of <strong>$10,000.00</strong> per month, payable in advance on the first day of each calendar month.
-                        <br><em style="font-size: 12px; color: #64748b;">↳ Updated by Amendment 1, effective June 1, 2019</em>
-                    </p>
-                    
-                    <div style="margin-top: 40px;">
-                        <h3>Current Operating Expenses</h3>
-                        <table style="width: 100%; border-collapse: collapse; margin-top: 15px;">
-                            <tr style="background: #f8f9fa;">
-                                <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Expense Type</th>
-                                <th style="border: 1px solid #ddd; padding: 8px; text-align: right;">Monthly Amount</th>
-                                <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Source</th>
-                            </tr>
-                            <tr>
-                                <td style="border: 1px solid #ddd; padding: 8px;">Property Taxes</td>
-                                <td style="border: 1px solid #ddd; padding: 8px; text-align: right; background: rgba(255, 235, 59, 0.3);">$1,111.00</td>
-                                <td style="border: 1px solid #ddd; padding: 8px; text-align: center; font-size: 11px;">Original Lease</td>
-                            </tr>
-                            <tr>
-                                <td style="border: 1px solid #ddd; padding: 8px;">CAM</td>
-                                <td style="border: 1px solid #ddd; padding: 8px; text-align: right; background: rgba(255, 235, 59, 0.3);">$4,231.17</td>
-                                <td style="border: 1px solid #ddd; padding: 8px; text-align: center; font-size: 11px;">Amendment 1</td>
-                            </tr>
-                            <tr style="font-weight: bold; background: rgba(34, 197, 94, 0.1);">
-                                <td style="border: 1px solid #ddd; padding: 8px;">TOTAL RENT</td>
-                                <td style="border: 1px solid #ddd; padding: 8px; text-align: right;">$15,342.17</td>
-                                <td style="border: 1px solid #ddd; padding: 8px; text-align: center; font-size: 11px;">Calculated</td>
-                            </tr>
-                        </table>
-                    </div>
+            'conformed': function(asOfDate) {
+                // Generate content based on the as-of date
+                const isBeforeAmendment = asOfDate < '2019-06-01';
+                const baseRent = isBeforeAmendment ? '$8,500.00' : '$10,000.00';
+                const cam = isBeforeAmendment ? '$2,100.00' : '$4,231.17';
+                const total = isBeforeAmendment ? '$12,691.00' : '$15,342.17';
+                const status = isBeforeAmendment ? 'Original terms in effect' : 'As amended';
+                
+                return {
+                    title: 'Conformed Agreement',
+                    content: `
+                        <h2 style="text-align: center; margin-bottom: 30px;">CONFORMED LEASE AGREEMENT</h2>
+                        <p style="text-align: center; color: #64748b; margin-bottom: 30px;">As of: <strong>${asOfDate}</strong> | Status: ${status}</p>
+                        
+                        <p><strong>Section 2.1(a) - Base Rent (${isBeforeAmendment ? 'Original' : 'Amended'})</strong></p>
+                        <p style="background: rgba(34, 197, 94, 0.2); padding: 12px; border-left: 4px solid #22c55e;">
+                            Tenant shall pay to Landlord as base rent the sum of <strong>${baseRent}</strong> per month, payable in advance on the first day of each calendar month.
+                            ${!isBeforeAmendment ? '<br><em style="font-size: 12px; color: #64748b;">↳ Updated by Amendment 1, effective June 1, 2019</em>' : ''}
+                        </p>
+                        
+                        <div style="margin-top: 40px;">
+                            <h3>Operating Expenses (As of ${asOfDate})</h3>
+                            <table style="width: 100%; border-collapse: collapse; margin-top: 15px;">
+                                <tr style="background: #f8f9fa;">
+                                    <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Expense Type</th>
+                                    <th style="border: 1px solid #ddd; padding: 8px; text-align: right;">Monthly Amount</th>
+                                    <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Source</th>
+                                </tr>
+                                <tr>
+                                    <td style="border: 1px solid #ddd; padding: 8px;">Base Rent</td>
+                                    <td style="border: 1px solid #ddd; padding: 8px; text-align: right; background: rgba(255, 235, 59, 0.3);">${baseRent}</td>
+                                    <td style="border: 1px solid #ddd; padding: 8px; text-align: center; font-size: 11px;">${isBeforeAmendment ? 'Original Lease' : 'Amendment 1'}</td>
+                                </tr>
+                                <tr>
+                                    <td style="border: 1px solid #ddd; padding: 8px;">Property Taxes</td>
+                                    <td style="border: 1px solid #ddd; padding: 8px; text-align: right;">$1,111.00</td>
+                                    <td style="border: 1px solid #ddd; padding: 8px; text-align: center; font-size: 11px;">Original Lease</td>
+                                </tr>
+                                <tr>
+                                    <td style="border: 1px solid #ddd; padding: 8px;">CAM</td>
+                                    <td style="border: 1px solid #ddd; padding: 8px; text-align: right; background: rgba(255, 235, 59, 0.3);">${cam}</td>
+                                    <td style="border: 1px solid #ddd; padding: 8px; text-align: center; font-size: 11px;">${isBeforeAmendment ? 'Original Lease' : 'Amendment 1'}</td>
+                                </tr>
+                                <tr style="font-weight: bold; background: rgba(34, 197, 94, 0.1);">
+                                    <td style="border: 1px solid #ddd; padding: 8px;">TOTAL RENT</td>
+                                    <td style="border: 1px solid #ddd; padding: 8px; text-align: right;">${total}</td>
+                                    <td style="border: 1px solid #ddd; padding: 8px; text-align: center; font-size: 11px;">Calculated</td>
+                                </tr>
+                            </table>
+                        </div>
 
-                    <div style="margin-top: 30px; padding: 16px; background: #f8fafc; border-left: 4px solid #3b82f6;">
-                        <h4>Amendment History</h4>
-                        <ul style="margin-top: 8px;">
-                            <li>Original Lease: January 1, 2019 - Base rent $8,500, CAM $2,100</li>
-                            <li>Amendment 1: June 1, 2019 - Base rent increased to $10,000, CAM to $4,231.17</li>
-                        </ul>
-                    </div>
-                `
+                        <div style="margin-top: 30px; padding: 16px; background: #f8fafc; border-left: 4px solid #3b82f6;">
+                            <h4>Amendment History</h4>
+                            <ul style="margin-top: 8px;">
+                                <li>Original Lease: January 1, 2019 - Base rent $8,500, CAM $2,100</li>
+                                ${!isBeforeAmendment ? '<li><strong>Amendment 1: June 1, 2019 - Base rent increased to $10,000, CAM to $4,231.17</strong></li>' : '<li style="color: #94a3b8;">Amendment 1: June 1, 2019 - <em>(not yet effective)</em></li>'}
+                            </ul>
+                        </div>
+                    `
+                };
             }
         };
 
@@ -869,6 +883,11 @@
                 currentAsOfDate = this.value;
                 updateConformedTab();
                 updateTimelineChips();
+                
+                // If we're on the conformed tab, reload it with the new date
+                if (currentTab === 'conformed') {
+                    loadDocument('conformed');
+                }
             });
 
             // Timeline chips
@@ -879,6 +898,11 @@
                     document.getElementById('asOfDate').value = date;
                     updateConformedTab();
                     updateTimelineChips();
+                    
+                    // If we're on the conformed tab, reload it with the new date
+                    if (currentTab === 'conformed') {
+                        loadDocument('conformed');
+                    }
                 });
             });
 
@@ -975,30 +999,50 @@
             // Remove existing highlights
             document.querySelectorAll('.highlight-overlay').forEach(h => h.remove());
 
-            // Wait a moment for document to load, then add highlight
+            // Wait a moment for document to load, then find and highlight the relevant text
             setTimeout(() => {
-                const [x1, y1, x2, y2] = bbox;
-                const highlight = document.createElement('div');
-                highlight.className = 'highlight-overlay flash';
-                highlight.style.position = 'absolute';
-                highlight.style.left = x1 + 'px';
-                highlight.style.top = y1 + 'px';
-                highlight.style.width = (x2 - x1) + 'px';
-                highlight.style.height = (y2 - y1) + 'px';
-                highlight.style.background = 'rgba(255, 235, 59, 0.6)';
-                highlight.style.border = '2px solid rgba(255, 193, 7, 0.9)';
-                highlight.style.pointerEvents = 'none';
-                highlight.style.zIndex = '10';
-
                 const documentContainer = document.querySelector('.document-page');
-                if (documentContainer) {
+                if (!documentContainer) return;
+
+                // Find elements with highlighted background (our target content)
+                const highlightTargets = documentContainer.querySelectorAll('[style*="background: rgba(255, 235, 59"]');
+                
+                if (highlightTargets.length > 0) {
+                    // Use the first highlighted element as our target
+                    const target = highlightTargets[0];
+                    const rect = target.getBoundingClientRect();
+                    const containerRect = documentContainer.getBoundingClientRect();
+                    
+                    // Create highlight overlay positioned relative to the target element
+                    const highlight = document.createElement('div');
+                    highlight.className = 'highlight-overlay flash';
+                    highlight.style.position = 'absolute';
+                    highlight.style.left = (target.offsetLeft - 5) + 'px';
+                    highlight.style.top = (target.offsetTop - 5) + 'px';
+                    highlight.style.width = (target.offsetWidth + 10) + 'px';
+                    highlight.style.height = (target.offsetHeight + 10) + 'px';
+                    highlight.style.background = 'rgba(59, 130, 246, 0.2)';
+                    highlight.style.border = '3px solid rgba(59, 130, 246, 0.8)';
+                    highlight.style.borderRadius = '4px';
+                    highlight.style.pointerEvents = 'none';
+                    highlight.style.zIndex = '10';
+                    highlight.style.boxShadow = '0 0 0 2px white, 0 0 10px rgba(59, 130, 246, 0.5)';
+
                     documentContainer.style.position = 'relative';
                     documentContainer.appendChild(highlight);
 
-                    // Scroll to highlight
-                    highlight.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    // Scroll to the target element
+                    target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    
+                    // Remove flash class after animation
+                    setTimeout(() => {
+                        highlight.classList.remove('flash');
+                    }, 600);
+                } else {
+                    // Fallback: highlight a default area if no specific target found
+                    console.log('No highlight targets found, using fallback positioning');
                 }
-            }, 100);
+            }, 200);
         }
 
         function openSxS(chip) {
@@ -1078,7 +1122,14 @@
 
         function loadDocument(tabId) {
             const documentContainer = document.querySelector('.document-page');
-            const doc = mockDocuments[tabId];
+            let doc;
+            
+            if (tabId === 'conformed') {
+                // Call the conformed function with current as-of date
+                doc = mockDocuments[tabId](currentAsOfDate);
+            } else {
+                doc = mockDocuments[tabId];
+            }
             
             if (doc) {
                 // Update document content
@@ -1088,14 +1139,6 @@
                     </div>
                 `;
                 
-                // Update conformed date if it's the conformed tab
-                if (tabId === 'conformed') {
-                    const conformedDateSpan = document.getElementById('conformedDate');
-                    if (conformedDateSpan) {
-                        conformedDateSpan.textContent = currentAsOfDate;
-                    }
-                }
-                
                 console.log('Loaded document:', doc.title);
             } else {
                 console.log('Document not found:', tabId);
@@ -1103,13 +1146,71 @@
         }
 
         // Viewer controls
-        function zoomIn() { console.log('Zoom in'); }
-        function zoomOut() { console.log('Zoom out'); }
-        function toggleTextLayer() { console.log('Toggle text layer'); }
-        function openFullPDF() { console.log('Open full PDF'); }
-        function findInDoc() { console.log('Find in document'); }
-        function prevEvidence() { console.log('Previous evidence'); }
-        function nextEvidence() { console.log('Next evidence'); }
+        let currentZoom = 1.0;
+        let evidenceIndex = 0;
+        const evidenceChips = document.querySelectorAll('.evidence-chip');
+
+        function zoomIn() { 
+            currentZoom = Math.min(currentZoom + 0.2, 3.0);
+            applyZoom();
+        }
+        
+        function zoomOut() { 
+            currentZoom = Math.max(currentZoom - 0.2, 0.5);
+            applyZoom();
+        }
+        
+        function applyZoom() {
+            const documentPage = document.querySelector('.document-page');
+            if (documentPage) {
+                documentPage.style.transform = `scale(${currentZoom})`;
+                documentPage.style.transformOrigin = 'top center';
+                console.log('Zoom applied:', currentZoom);
+            }
+        }
+        
+        function toggleTextLayer() { 
+            const documentPage = document.querySelector('.document-page');
+            if (documentPage) {
+                documentPage.style.opacity = documentPage.style.opacity === '0.7' ? '1' : '0.7';
+                console.log('Text layer toggled');
+            }
+        }
+        
+        function openFullPDF() { 
+            alert('Opening full PDF viewer...');
+            console.log('Open full PDF'); 
+        }
+        
+        function findInDoc() { 
+            const searchTerm = prompt('Search in document:');
+            if (searchTerm) {
+                console.log('Searching for:', searchTerm);
+                alert(`Searching for: "${searchTerm}"`);
+            }
+        }
+        
+        function prevEvidence() { 
+            if (evidenceIndex > 0) {
+                evidenceIndex--;
+                const chip = evidenceChips[evidenceIndex];
+                if (chip) {
+                    focusEvidence(chip);
+                    console.log('Previous evidence:', evidenceIndex);
+                }
+            }
+        }
+        
+        function nextEvidence() { 
+            if (evidenceIndex < evidenceChips.length - 1) {
+                evidenceIndex++;
+                const chip = evidenceChips[evidenceIndex];
+                if (chip) {
+                    focusEvidence(chip);
+                    console.log('Next evidence:', evidenceIndex);
+                }
+            }
+        }
     </script>
 </body>
 </html>
