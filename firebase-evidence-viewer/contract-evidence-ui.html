@@ -713,10 +713,130 @@
         let selectedEvidence = null;
         let sxsOpen = false;
 
+        // Mock document data
+        const mockDocuments = {
+            'lease2019': {
+                title: 'LEASE_2019.pdf',
+                content: `
+                    <h2 style="text-align: center; margin-bottom: 30px;">ORIGINAL LEASE AGREEMENT - 2019</h2>
+                    
+                    <p><strong>Section 2.1(a) - Base Rent</strong></p>
+                    <p style="background: rgba(255, 235, 59, 0.3); padding: 8px; border: 2px solid rgba(255, 193, 7, 0.8);">
+                        Tenant shall pay to Landlord as base rent the sum of <strong>$8,500.00</strong> per month, payable in advance on the first day of each calendar month.
+                    </p>
+                    
+                    <p style="margin-top: 30px;"><strong>Section 3.2 - Additional Charges</strong></p>
+                    <p>In addition to base rent, Tenant shall pay all applicable taxes, insurance, and common area maintenance charges as set forth in Exhibit B attached hereto.</p>
+                    
+                    <div style="margin-top: 40px;">
+                        <h3>Exhibit B - Operating Expenses (Original)</h3>
+                        <table style="width: 100%; border-collapse: collapse; margin-top: 15px;">
+                            <tr style="background: #f8f9fa;">
+                                <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Expense Type</th>
+                                <th style="border: 1px solid #ddd; padding: 8px; text-align: right;">Monthly Amount</th>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Property Taxes</td>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: right;">$980.00</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Insurance</td>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: right;">$456.00</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">CAM</td>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: right;">$2,100.00</td>
+                            </tr>
+                        </table>
+                    </div>
+                `
+            },
+            'amend1': {
+                title: 'AMEND_1.pdf',
+                content: `
+                    <h2 style="text-align: center; margin-bottom: 30px;">FIRST AMENDMENT TO LEASE</h2>
+                    <p><strong>Effective Date:</strong> June 1, 2019</p>
+                    
+                    <p style="margin-top: 20px;"><strong>Section 1 - Base Rent Increase</strong></p>
+                    <p style="background: rgba(255, 235, 59, 0.3); padding: 8px; border: 2px solid rgba(255, 193, 7, 0.8);">
+                        Effective June 1, 2019, Section 2.1(a) is hereby amended to increase base rent from $8,500.00 to <strong>$10,000.00</strong> per month.
+                    </p>
+                    
+                    <p style="margin-top: 30px;"><strong>Section 2 - CAM Charges Amendment</strong></p>
+                    <table style="width: 100%; border-collapse: collapse; margin-top: 15px;">
+                        <tr style="background: #f8f9fa;">
+                            <th style="border: 1px solid #ddd; padding: 8px;">Item</th>
+                            <th style="border: 1px solid #ddd; padding: 8px;">Amount</th>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 8px;">Base CAM</td>
+                            <td style="border: 1px solid #ddd; padding: 8px;">$2,789.00</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 8px; background: rgba(255, 235, 59, 0.3);">Escalation</td>
+                            <td style="border: 1px solid #ddd; padding: 8px; background: rgba(255, 235, 59, 0.3);">$1,442.17</td>
+                        </tr>
+                        <tr style="font-weight: bold;">
+                            <td style="border: 1px solid #ddd; padding: 8px;">Total CAM</td>
+                            <td style="border: 1px solid #ddd; padding: 8px; background: rgba(255, 235, 59, 0.3);">$4,231.17</td>
+                        </tr>
+                    </table>
+                `
+            },
+            'conformed': {
+                title: 'Conformed Agreement',
+                content: `
+                    <h2 style="text-align: center; margin-bottom: 30px;">CONFORMED LEASE AGREEMENT</h2>
+                    <p style="text-align: center; color: #64748b; margin-bottom: 30px;">As of: <span id="conformedDate">${currentAsOfDate}</span></p>
+                    
+                    <p><strong>Section 2.1(a) - Base Rent (Current)</strong></p>
+                    <p style="background: rgba(34, 197, 94, 0.2); padding: 12px; border-left: 4px solid #22c55e;">
+                        Tenant shall pay to Landlord as base rent the sum of <strong>$10,000.00</strong> per month, payable in advance on the first day of each calendar month.
+                        <br><em style="font-size: 12px; color: #64748b;">↳ Updated by Amendment 1, effective June 1, 2019</em>
+                    </p>
+                    
+                    <div style="margin-top: 40px;">
+                        <h3>Current Operating Expenses</h3>
+                        <table style="width: 100%; border-collapse: collapse; margin-top: 15px;">
+                            <tr style="background: #f8f9fa;">
+                                <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Expense Type</th>
+                                <th style="border: 1px solid #ddd; padding: 8px; text-align: right;">Monthly Amount</th>
+                                <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Source</th>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Property Taxes</td>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: right; background: rgba(255, 235, 59, 0.3);">$1,111.00</td>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: center; font-size: 11px;">Original Lease</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">CAM</td>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: right; background: rgba(255, 235, 59, 0.3);">$4,231.17</td>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: center; font-size: 11px;">Amendment 1</td>
+                            </tr>
+                            <tr style="font-weight: bold; background: rgba(34, 197, 94, 0.1);">
+                                <td style="border: 1px solid #ddd; padding: 8px;">TOTAL RENT</td>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: right;">$15,342.17</td>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: center; font-size: 11px;">Calculated</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div style="margin-top: 30px; padding: 16px; background: #f8fafc; border-left: 4px solid #3b82f6;">
+                        <h4>Amendment History</h4>
+                        <ul style="margin-top: 8px;">
+                            <li>Original Lease: January 1, 2019 - Base rent $8,500, CAM $2,100</li>
+                            <li>Amendment 1: June 1, 2019 - Base rent increased to $10,000, CAM to $4,231.17</li>
+                        </ul>
+                    </div>
+                `
+            }
+        };
+
         // Initialize the application
         document.addEventListener('DOMContentLoaded', function() {
             setupEventListeners();
             updateConformedTab();
+            loadDocument('conformed'); // Load initial document
         });
 
         function setupEventListeners() {
@@ -799,13 +919,8 @@
 
             currentTab = tabId;
             
-            if (tabId === 'conformed') {
-                // Show conformed view
-                updateConformedTab();
-            } else {
-                // Show specific document
-                loadDocument(tabId);
-            }
+            // Update document content
+            loadDocument(tabId);
         }
 
         function updateConformedTab() {
@@ -831,10 +946,16 @@
 
             const doc = chip.dataset.doc;
             const page = parseInt(chip.dataset.page);
-            const bbox = chip.dataset.bbox.split(',').map(Number);
+            const bbox = chip.dataset.bbox ? chip.dataset.bbox.split(',').map(Number) : [100, 200, 300, 220];
 
             // Open the correct tab
-            const tabId = doc.toLowerCase().replace('.pdf', '').replace('_', '');
+            let tabId = 'conformed'; // default
+            if (doc.includes('LEASE_2019')) {
+                tabId = 'lease2019';
+            } else if (doc.includes('AMEND_1')) {
+                tabId = 'amend1';
+            }
+            
             switchTab(tabId);
 
             // Highlight the evidence
@@ -854,20 +975,30 @@
             // Remove existing highlights
             document.querySelectorAll('.highlight-overlay').forEach(h => h.remove());
 
-            // Add new highlight
-            const [x1, y1, x2, y2] = bbox;
-            const highlight = document.createElement('div');
-            highlight.className = 'highlight-overlay';
-            highlight.style.left = x1 + 'px';
-            highlight.style.top = y1 + 'px';
-            highlight.style.width = (x2 - x1) + 'px';
-            highlight.style.height = (y2 - y1) + 'px';
+            // Wait a moment for document to load, then add highlight
+            setTimeout(() => {
+                const [x1, y1, x2, y2] = bbox;
+                const highlight = document.createElement('div');
+                highlight.className = 'highlight-overlay flash';
+                highlight.style.position = 'absolute';
+                highlight.style.left = x1 + 'px';
+                highlight.style.top = y1 + 'px';
+                highlight.style.width = (x2 - x1) + 'px';
+                highlight.style.height = (y2 - y1) + 'px';
+                highlight.style.background = 'rgba(255, 235, 59, 0.6)';
+                highlight.style.border = '2px solid rgba(255, 193, 7, 0.9)';
+                highlight.style.pointerEvents = 'none';
+                highlight.style.zIndex = '10';
 
-            const documentPage = document.querySelector('.document-page');
-            documentPage.appendChild(highlight);
+                const documentContainer = document.querySelector('.document-page');
+                if (documentContainer) {
+                    documentContainer.style.position = 'relative';
+                    documentContainer.appendChild(highlight);
 
-            // Scroll to highlight
-            highlight.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    // Scroll to highlight
+                    highlight.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }, 100);
         }
 
         function openSxS(chip) {
@@ -946,8 +1077,29 @@
         }
 
         function loadDocument(tabId) {
-            // Mock document loading
-            console.log('Loading document:', tabId);
+            const documentContainer = document.querySelector('.document-page');
+            const doc = mockDocuments[tabId];
+            
+            if (doc) {
+                // Update document content
+                documentContainer.innerHTML = `
+                    <div style="padding: 40px; font-family: serif; line-height: 1.6;">
+                        ${doc.content}
+                    </div>
+                `;
+                
+                // Update conformed date if it's the conformed tab
+                if (tabId === 'conformed') {
+                    const conformedDateSpan = document.getElementById('conformedDate');
+                    if (conformedDateSpan) {
+                        conformedDateSpan.textContent = currentAsOfDate;
+                    }
+                }
+                
+                console.log('Loaded document:', doc.title);
+            } else {
+                console.log('Document not found:', tabId);
+            }
         }
 
         // Viewer controls
