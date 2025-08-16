@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contract Evidence UI - Lawyer Grade</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: #f8fafc;
+            color: #1e293b;
+            overflow: hidden;
+        }
+
+        /* Main Layout - 3 Panes */
+        .main-container {
+            display: flex;
+            height: 100vh;
+            gap: 1px;
+            background: #e2e8f0;
+        }
+
+        .pane {
+            background: white;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .chat-window {
+            flex: 1;
+            min-width: 400px;
+            max-width: 500px;
+        }
+
+        .source-reading-pane {
+            flex: 2;
+            min-width: 600px;
+        }
+
+        .side-by-side-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sxs-container {
+            width: 95%;
+            height: 95%;
+            background: white;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sxs-content {
+            display: flex;
+            flex: 1;
+            gap: 1px;
+            background: #e2e8f0;
+        }
+
+        .sxs-pane {
+            flex: 1;
+            background: white;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Pane Headers */
+        .pane-header {
+            padding: 16px 20px;
+            border-bottom: 1px solid #e2e8f0;
+            background: #f8fafc;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 60px;
+        }
+
+        .pane-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .pane-subtitle {
+            font-size: 14px;
+            color: #64748b;
+        }
+
+        /* Chat Window Styles */
+        .chat-history {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .chat-input-area {
+            padding: 20px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .chat-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 14px;
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .chat-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .message {
+            margin-bottom: 24px;
+        }
+
+        .message.user {
+            text-align: right;
+        }
+
+        .message.assistant .content {
+            background: #f1f5f9;
+            padding: 16px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .message.user .content {
+            background: #3b82f6;
+            color: white;
+            padding: 16px;
+            border-radius: 12px;
+            display: inline-block;
+            max-width: 80%;
+        }
+
+        /* Evidence Chips */
+        .evidence-chips {
+            margin-top: 12px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .evidence-chip {
+            display: inline-flex;
+            align-items: center;
+            padding: 6px 12px;
+            background: #f1f5f9;
+            border: 1px solid #cbd5e1;
+            border-radius: 20px;
+            font-size: 12px;
+            color: #475569;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .evidence-chip:hover {
+            background: #e2e8f0;
+            border-color: #94a3b8;
+            transform: translateY(-1px);
+        }
+
+        .evidence-chip.verified {
+            border-color: #22c55e;
+            background: #f0fdf4;
+            color: #166534;
+        }
+
+        .evidence-chip .confidence-indicator {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            margin-right: 6px;
+        }
+
+        .confidence-high { background-color: #22c55e; }
+        .confidence-medium { background-color: #f59e0b; }
+        .confidence-low { background-color: #ef4444; }
+
+        /* Source Reading Pane */
+        .tab-bar {
+            display: flex;
+            background: #f8fafc;
+            border-bottom: 1px solid #e2e8f0;
+            overflow-x: auto;
+        }
+
+        .tab {
+            padding: 12px 20px;
+            border-bottom: 2px solid transparent;
+            cursor: pointer;
+            font-size: 14px;
+            white-space: nowrap;
+            color: #64748b;
+            transition: all 0.2s;
+        }
+
+        .tab.active {
+            color: #3b82f6;
+            border-bottom-color: #3b82f6;
+            background: white;
+        }
+
+        .tab:hover:not(.active) {
+            color: #1e293b;
+            background: #f1f5f9;
+        }
+
+        .tab.conformed {
+            font-weight: 600;
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .tab.conformed.active {
+            background: #fbbf24;
+            color: #78350f;
+        }
+
+        .as-of-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .as-of-date {
+            padding: 6px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .timeline-chips {
+            display: flex;
+            gap: 4px;
+        }
+
+        .timeline-chip {
+            padding: 4px 8px;
+            background: #f1f5f9;
+            border: 1px solid #cbd5e1;
+            border-radius: 12px;
+            font-size: 11px;
+            cursor: pointer;
+        }
+
+        .timeline-chip.active {
+            background: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
+        }
+
+        /* Document Viewer */
+        .document-viewer {
+            flex: 1;
+            background: #f8fafc;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .viewer-controls {
+            padding: 12px 20px;
+            background: white;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .viewer-controls button {
+            padding: 6px 12px;
+            border: 1px solid #d1d5db;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .viewer-controls button:hover {
+            background: #f9fafb;
+        }
+
+        .document-canvas-container {
+            flex: 1;
+            overflow: auto;
+            position: relative;
+            background: #e5e7eb;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 20px;
+        }
+
+        .document-page {
+            background: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .highlight-overlay {
+            position: absolute;
+            background: rgba(255, 235, 59, 0.4);
+            border: 2px solid rgba(255, 193, 7, 0.8);
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        .highlight-overlay.flash {
+            animation: flash 0.6s ease-in-out;
+        }
+
+        @keyframes flash {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 0.8; }
+        }
+
+        /* Calculation Breakdown */
+        .calculation-breakdown {
+            margin-top: 16px;
+            padding: 16px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+        }
+
+        .breakdown-title {
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #1e293b;
+        }
+
+        .breakdown-line {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 14px;
+        }
+
+        .breakdown-line.total {
+            border-top: 1px solid #d1d5db;
+            padding-top: 8px;
+            font-weight: 600;
+        }
+
+        .formula-trace {
+            margin-top: 8px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 13px;
+            color: #64748b;
+            background: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .verified-badge {
+            color: #22c55e;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+
+        .blocked-calculation {
+            padding: 16px;
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            border-radius: 8px;
+            margin-top: 16px;
+        }
+
+        .blocked-calculation .title {
+            color: #dc2626;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        /* Side-by-Side Controls */
+        .sxs-header {
+            padding: 16px 20px;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: between;
+            align-items: center;
+        }
+
+        .sxs-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #64748b;
+            margin-left: auto;
+        }
+
+        .sxs-close:hover {
+            color: #1e293b;
+        }
+
+        /* Responsive */
+        @media (max-width: 1400px) {
+            .chat-window {
+                min-width: 350px;
+                max-width: 400px;
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .main-container {
+                flex-direction: column;
+            }
+            
+            .chat-window {
+                max-width: none;
+                flex: 0 0 200px;
+            }
+        }
+
+        /* Utility Classes */
+        .hidden { display: none !important; }
+        .visible { display: block !important; }
+        .flex { display: flex !important; }
+
+        /* Context Menu */
+        .context-menu {
+            position: fixed;
+            background: white;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            padding: 4px 0;
+            z-index: 1001;
+            min-width: 150px;
+        }
+
+        .context-menu-item {
+            padding: 8px 16px;
+            cursor: pointer;
+            font-size: 14px;
+            border: none;
+            background: none;
+            width: 100%;
+            text-align: left;
+        }
+
+        .context-menu-item:hover {
+            background: #f1f5f9;
+        }
+    </style>
+</head>
+<body>
+    <!-- Main 3-Pane Layout -->
+    <div class="main-container">
+        <!-- Chat Window (Left Pane) -->
+        <div class="pane chat-window">
+            <div class="pane-header">
+                <div>
+                    <div class="pane-title">Contract Analysis</div>
+                    <div class="pane-subtitle">Ask questions about your contracts</div>
+                </div>
+            </div>
+            
+            <div class="chat-history" id="chatHistory">
+                <!-- Sample conversation -->
+                <div class="message user">
+                    <div class="content">
+                        What is the current base rent for the Lathrop property as of October 2020?
+                    </div>
+                </div>
+                
+                <div class="message assistant">
+                    <div class="content">
+                        <p>Total rent as of October 2020: <strong>$15,342.17</strong></p>
+                        
+                        <div class="calculation-breakdown">
+                            <div class="breakdown-title">Calculation Breakdown</div>
+                            <div class="breakdown-line">
+                                <span>Base Rent</span>
+                                <span>$10,000.00</span>
+                            </div>
+                            <div class="breakdown-line">
+                                <span>CAM Charges</span>
+                                <span>$4,231.17</span>
+                            </div>
+                            <div class="breakdown-line">
+                                <span>Property Taxes</span>
+                                <span>$1,111.00</span>
+                            </div>
+                            <div class="breakdown-line">
+                                <span>Credits</span>
+                                <span>-$0.00</span>
+                            </div>
+                            <div class="breakdown-line total">
+                                <span>Total</span>
+                                <span>$15,342.17</span>
+                            </div>
+                            
+                            <div class="formula-trace">
+                                = 10000.00 + 4231.17 + 1111.00 - 0.00 = 15342.17 <span class="verified-badge">✓ Verified</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="evidence-chips">
+                        <div class="evidence-chip verified" data-doc="LEASE_2019.pdf" data-page="12" data-bbox="100,520,420,560">
+                            <div class="confidence-indicator confidence-high"></div>
+                            Lease 2019 • p12 • §2.1(a)
+                        </div>
+                        <div class="evidence-chip verified" data-doc="AMEND_1.pdf" data-page="3" data-bbox="210,320,280,340">
+                            <div class="confidence-indicator confidence-high"></div>
+                            Amend. 1 • p3 • r3c2
+                        </div>
+                        <div class="evidence-chip verified" data-doc="LEASE_2019.pdf" data-page="18" data-bbox="140,200,390,230">
+                            <div class="confidence-indicator confidence-medium"></div>
+                            Lease 2019 • p18 • Exhibit B
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chat-input-area">
+                <textarea class="chat-input" placeholder="Ask about your contracts..." id="chatInput"></textarea>
+            </div>
+        </div>
+
+        <!-- Source Reading Pane (Center) -->
+        <div class="pane source-reading-pane">
+            <div class="pane-header">
+                <div>
+                    <div class="pane-title">Source Documents</div>
+                </div>
+                <div class="as-of-controls">
+                    <label for="asOfDate">As-Of:</label>
+                    <input type="date" class="as-of-date" id="asOfDate" value="2020-10-01">
+                    <div class="timeline-chips">
+                        <div class="timeline-chip" data-date="2019-01-01">Original</div>
+                        <div class="timeline-chip" data-date="2019-06-01">A1</div>
+                        <div class="timeline-chip active" data-date="2020-10-01">A2</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tab-bar" id="tabBar">
+                <div class="tab conformed active" data-tab="conformed">Conformed (As-Of 2020-10-01)</div>
+                <div class="tab" data-tab="lease2019">LEASE_2019.pdf</div>
+                <div class="tab" data-tab="amend1">AMEND_1.pdf</div>
+            </div>
+            
+            <div class="viewer-controls">
+                <button onclick="zoomOut()">Zoom Out</button>
+                <button onclick="zoomIn()">Zoom In</button>
+                <button onclick="toggleTextLayer()">Toggle Text</button>
+                <button onclick="openFullPDF()">Full PDF</button>
+                <button onclick="findInDoc()">Find</button>
+                <button onclick="prevEvidence()">← Prev Evidence</button>
+                <button onclick="nextEvidence()">Next Evidence →</button>
+            </div>
+            
+            <div class="document-viewer">
+                <div class="document-canvas-container" id="documentCanvas">
+                    <div class="document-page" style="width: 600px; height: 800px; background: white;">
+                        <!-- Mock document page -->
+                        <div style="padding: 40px; font-family: serif; line-height: 1.6;">
+                            <h2 style="text-align: center; margin-bottom: 30px;">COMMERCIAL LEASE AGREEMENT</h2>
+                            
+                            <p><strong>Section 2.1(a) - Base Rent</strong></p>
+                            <p style="background: rgba(255, 235, 59, 0.3); padding: 8px; border: 2px solid rgba(255, 193, 7, 0.8);">
+                                Tenant shall pay to Landlord as base rent the sum of <strong>$10,000.00</strong> per month, payable in advance on the first day of each calendar month.
+                            </p>
+                            
+                            <p style="margin-top: 30px;"><strong>Section 3.2 - Additional Charges</strong></p>
+                            <p>In addition to base rent, Tenant shall pay all applicable taxes, insurance, and common area maintenance charges as set forth in Exhibit B attached hereto.</p>
+                            
+                            <div style="margin-top: 40px;">
+                                <h3>Exhibit B - Operating Expenses</h3>
+                                <table style="width: 100%; border-collapse: collapse; margin-top: 15px;">
+                                    <tr style="background: #f8f9fa;">
+                                        <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Expense Type</th>
+                                        <th style="border: 1px solid #ddd; padding: 8px; text-align: right;">Monthly Amount</th>
+                                    </tr>
+                                    <tr>
+                                        <td style="border: 1px solid #ddd; padding: 8px;">Property Taxes</td>
+                                        <td style="border: 1px solid #ddd; padding: 8px; text-align: right; background: rgba(255, 235, 59, 0.3);">$1,111.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border: 1px solid #ddd; padding: 8px;">Insurance</td>
+                                        <td style="border: 1px solid #ddd; padding: 8px; text-align: right;">$456.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border: 1px solid #ddd; padding: 8px;">CAM</td>
+                                        <td style="border: 1px solid #ddd; padding: 8px; text-align: right;">$2,789.00</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Side-by-Side Overlay -->
+    <div class="side-by-side-overlay" id="sxsOverlay">
+        <div class="sxs-container">
+            <div class="sxs-header">
+                <div class="pane-title">Side-by-Side Comparison</div>
+                <button class="sxs-close" onclick="closeSxS()">&times;</button>
+            </div>
+            
+            <div class="sxs-content">
+                <div class="sxs-pane">
+                    <div class="pane-header">
+                        <div>
+                            <div class="pane-title">Conformed (As-Of 2020-10-01)</div>
+                            <div class="pane-subtitle">Current state with amendments</div>
+                        </div>
+                        <input type="date" class="as-of-date" value="2020-10-01">
+                    </div>
+                    <div class="document-viewer">
+                        <div class="document-canvas-container">
+                            <div class="document-page" style="width: 500px; height: 650px; background: white; padding: 30px;">
+                                <h3>Current Rent Terms (As-Of Oct 1, 2020)</h3>
+                                <p style="background: rgba(34, 197, 94, 0.2); padding: 12px; border-left: 4px solid #22c55e;">
+                                    <strong>Base Rent:</strong> $10,000.00/month<br>
+                                    <strong>CAM:</strong> $4,231.17/month<br>
+                                    <strong>Taxes:</strong> $1,111.00/month<br>
+                                    <strong>Total:</strong> $15,342.17/month
+                                </p>
+                                <p style="margin-top: 20px; font-size: 14px; color: #64748b;">
+                                    ↳ Updated by Amendment 1, effective June 1, 2019<br>
+                                    ↳ CAM increase per Amendment 2, effective October 1, 2020
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="sxs-pane">
+                    <div class="pane-header">
+                        <div>
+                            <div class="pane-title">AMEND_1.pdf</div>
+                            <div class="pane-subtitle">Source Amendment</div>
+                        </div>
+                    </div>
+                    <div class="document-viewer">
+                        <div class="document-canvas-container">
+                            <div class="document-page" style="width: 500px; height: 650px; background: white; padding: 30px;">
+                                <h3>First Amendment to Lease</h3>
+                                <p><strong>Effective Date:</strong> June 1, 2019</p>
+                                
+                                <p style="margin-top: 20px;"><strong>Section 3 - CAM Charges Amendment</strong></p>
+                                <table style="width: 100%; border-collapse: collapse; margin-top: 15px;">
+                                    <tr style="background: #f8f9fa;">
+                                        <th style="border: 1px solid #ddd; padding: 8px;">Item</th>
+                                        <th style="border: 1px solid #ddd; padding: 8px;">Amount</th>
+                                    </tr>
+                                    <tr>
+                                        <td style="border: 1px solid #ddd; padding: 8px;">Base CAM</td>
+                                        <td style="border: 1px solid #ddd; padding: 8px;">$2,789.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border: 1px solid #ddd; padding: 8px;">Escalation</td>
+                                        <td style="border: 1px solid #ddd; padding: 8px; background: rgba(255, 235, 59, 0.3);">$1,442.17</td>
+                                    </tr>
+                                    <tr style="font-weight: bold;">
+                                        <td style="border: 1px solid #ddd; padding: 8px;">Total CAM</td>
+                                        <td style="border: 1px solid #ddd; padding: 8px; background: rgba(255, 235, 59, 0.3);">$4,231.17</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Context Menu -->
+    <div class="context-menu hidden" id="contextMenu">
+        <button class="context-menu-item" onclick="copyDeepLink()">Copy Deep Link</button>
+        <button class="context-menu-item" onclick="sendToReview()">Send to Review</button>
+        <button class="context-menu-item" onclick="showEvidence()">Show Evidence</button>
+    </div>
+
+    <script>
+        // Global state
+        let currentTab = 'conformed';
+        let currentAsOfDate = '2020-10-01';
+        let selectedEvidence = null;
+        let sxsOpen = false;
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', function() {
+            setupEventListeners();
+            updateConformedTab();
+        });
+
+        function setupEventListeners() {
+            // Tab switching
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    switchTab(this.dataset.tab);
+                });
+            });
+
+            // Evidence chip interactions
+            document.querySelectorAll('.evidence-chip').forEach(chip => {
+                chip.addEventListener('click', function(e) {
+                    if (e.shiftKey) {
+                        openSxS(this);
+                    } else {
+                        focusEvidence(this);
+                    }
+                });
+
+                // Context menu
+                chip.addEventListener('contextmenu', function(e) {
+                    e.preventDefault();
+                    showContextMenu(e, this);
+                });
+            });
+
+            // As-of date changes
+            document.getElementById('asOfDate').addEventListener('change', function() {
+                currentAsOfDate = this.value;
+                updateConformedTab();
+                updateTimelineChips();
+            });
+
+            // Timeline chips
+            document.querySelectorAll('.timeline-chip').forEach(chip => {
+                chip.addEventListener('click', function() {
+                    const date = this.dataset.date;
+                    currentAsOfDate = date;
+                    document.getElementById('asOfDate').value = date;
+                    updateConformedTab();
+                    updateTimelineChips();
+                });
+            });
+
+            // Chat input
+            document.getElementById('chatInput').addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    sendMessage();
+                }
+            });
+
+            // Close context menu on click
+            document.addEventListener('click', function() {
+                hideContextMenu();
+            });
+
+            // Keyboard shortcuts
+            document.addEventListener('keydown', function(e) {
+                if (e.key === '[') {
+                    prevEvidence();
+                } else if (e.key === ']') {
+                    nextEvidence();
+                } else if (e.key === 'Enter' && selectedEvidence) {
+                    if (e.shiftKey) {
+                        openSxS(selectedEvidence);
+                    } else {
+                        focusEvidence(selectedEvidence);
+                    }
+                }
+            });
+        }
+
+        function switchTab(tabId) {
+            // Update tab appearance
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.toggle('active', tab.dataset.tab === tabId);
+            });
+
+            currentTab = tabId;
+            
+            if (tabId === 'conformed') {
+                // Show conformed view
+                updateConformedTab();
+            } else {
+                // Show specific document
+                loadDocument(tabId);
+            }
+        }
+
+        function updateConformedTab() {
+            const conformedTab = document.querySelector('.tab.conformed');
+            conformedTab.textContent = `Conformed (As-Of ${currentAsOfDate})`;
+            
+            // Update timeline chips
+            updateTimelineChips();
+        }
+
+        function updateTimelineChips() {
+            document.querySelectorAll('.timeline-chip').forEach(chip => {
+                chip.classList.toggle('active', chip.dataset.date === currentAsOfDate);
+            });
+        }
+
+        function focusEvidence(chip) {
+            selectedEvidence = chip;
+            
+            // Remove previous selections
+            document.querySelectorAll('.evidence-chip').forEach(c => c.classList.remove('selected'));
+            chip.classList.add('selected');
+
+            const doc = chip.dataset.doc;
+            const page = parseInt(chip.dataset.page);
+            const bbox = chip.dataset.bbox.split(',').map(Number);
+
+            // Open the correct tab
+            const tabId = doc.toLowerCase().replace('.pdf', '').replace('_', '');
+            switchTab(tabId);
+
+            // Highlight the evidence
+            highlightEvidence(bbox);
+            
+            // Flash highlight effect
+            setTimeout(() => {
+                const highlights = document.querySelectorAll('.highlight-overlay');
+                highlights.forEach(h => h.classList.add('flash'));
+                setTimeout(() => {
+                    highlights.forEach(h => h.classList.remove('flash'));
+                }, 600);
+            }, 100);
+        }
+
+        function highlightEvidence(bbox) {
+            // Remove existing highlights
+            document.querySelectorAll('.highlight-overlay').forEach(h => h.remove());
+
+            // Add new highlight
+            const [x1, y1, x2, y2] = bbox;
+            const highlight = document.createElement('div');
+            highlight.className = 'highlight-overlay';
+            highlight.style.left = x1 + 'px';
+            highlight.style.top = y1 + 'px';
+            highlight.style.width = (x2 - x1) + 'px';
+            highlight.style.height = (y2 - y1) + 'px';
+
+            const documentPage = document.querySelector('.document-page');
+            documentPage.appendChild(highlight);
+
+            // Scroll to highlight
+            highlight.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        function openSxS(chip) {
+            sxsOpen = true;
+            document.getElementById('sxsOverlay').style.display = 'flex';
+            
+            // Set up SxS content based on chip
+            const doc = chip.dataset.doc;
+            const rightPaneTitle = document.querySelector('.sxs-pane:last-child .pane-title');
+            rightPaneTitle.textContent = doc;
+            
+            // Update left pane with current as-of date
+            const leftPaneSubtitle = document.querySelector('.sxs-pane:first-child .pane-subtitle');
+            leftPaneSubtitle.textContent = `Current state with amendments`;
+        }
+
+        function closeSxS() {
+            sxsOpen = false;
+            document.getElementById('sxsOverlay').style.display = 'none';
+        }
+
+        function showContextMenu(event, chip) {
+            const menu = document.getElementById('contextMenu');
+            menu.classList.remove('hidden');
+            menu.style.left = event.pageX + 'px';
+            menu.style.top = event.pageY + 'px';
+            
+            // Store reference to chip for menu actions
+            menu.dataset.chipRef = chip.dataset.doc + '|' + chip.dataset.page + '|' + chip.dataset.bbox;
+        }
+
+        function hideContextMenu() {
+            document.getElementById('contextMenu').classList.add('hidden');
+        }
+
+        function copyDeepLink() {
+            const menu = document.getElementById('contextMenu');
+            const [doc, page, bbox] = menu.dataset.chipRef.split('|');
+            const sha256 = 'abc123...'; // Mock SHA256
+            const deepLink = `/doc/${sha256}?page=${page}&bbox=${bbox}&asof=${currentAsOfDate}`;
+            
+            navigator.clipboard.writeText(window.location.origin + deepLink);
+            alert('Deep link copied to clipboard!');
+            hideContextMenu();
+        }
+
+        function sendToReview() {
+            alert('Evidence sent to HIL review queue');
+            hideContextMenu();
+        }
+
+        function showEvidence() {
+            alert('Evidence details displayed');
+            hideContextMenu();
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            if (!message) return;
+
+            // Add user message to chat
+            const chatHistory = document.getElementById('chatHistory');
+            const userMessage = document.createElement('div');
+            userMessage.className = 'message user';
+            userMessage.innerHTML = `<div class="content">${message}</div>`;
+            chatHistory.appendChild(userMessage);
+
+            // Clear input
+            input.value = '';
+
+            // Scroll to bottom
+            chatHistory.scrollTop = chatHistory.scrollHeight;
+
+            // TODO: Send to API and add response
+        }
+
+        function loadDocument(tabId) {
+            // Mock document loading
+            console.log('Loading document:', tabId);
+        }
+
+        // Viewer controls
+        function zoomIn() { console.log('Zoom in'); }
+        function zoomOut() { console.log('Zoom out'); }
+        function toggleTextLayer() { console.log('Toggle text layer'); }
+        function openFullPDF() { console.log('Open full PDF'); }
+        function findInDoc() { console.log('Find in document'); }
+        function prevEvidence() { console.log('Previous evidence'); }
+        function nextEvidence() { console.log('Next evidence'); }
+    </script>
+</body>
+</html>
