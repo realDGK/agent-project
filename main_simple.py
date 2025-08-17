@@ -9,6 +9,8 @@ import json
 import uuid
 
 from fastapi import FastAPI, HTTPException
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 import asyncpg
 import google.generativeai as genai
@@ -22,6 +24,9 @@ if GOOGLE_API_KEY:
     genai.configure(api_key=GOOGLE_API_KEY)
 
 app = FastAPI(title="Contract Analysis Backend", version="1.0.0")
+
+# Mount static files for Evidence Viewer
+app.mount("/static", StaticFiles(directory="firebase-evidence-viewer"), name="static")
 
 DATABASE_URL = os.getenv(
     "DATABASE_URL", 
@@ -119,6 +124,25 @@ async def get_documents():
             return {"documents": [dict(doc) for doc in docs]}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+# Evidence Viewer routes
+@app.get("/doc/{sha256:path}")
+async def serve_evidence_viewer(sha256: str):
+    """Serve Evidence Viewer for deep links - /doc/* routes load the full UI"""
+    evidence_viewer_path = "firebase-evidence-viewer/contract-evidence-ui.html"
+    if os.path.exists(evidence_viewer_path):
+        return FileResponse(evidence_viewer_path, media_type="text/html")
+    else:
+        raise HTTPException(status_code=404, detail="Evidence Viewer not found")
+
+@app.get("/evidence-viewer")
+async def evidence_viewer():
+    """Direct access to Evidence Viewer"""
+    evidence_viewer_path = "firebase-evidence-viewer/contract-evidence-ui.html"
+    if os.path.exists(evidence_viewer_path):
+        return FileResponse(evidence_viewer_path, media_type="text/html")
+    else:
+        raise HTTPException(status_code=404, detail="Evidence Viewer not found")
 
 if __name__ == "__main__":
     import uvicorn

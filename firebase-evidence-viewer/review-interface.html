@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contract Evidence UI</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: sans-serif;
+            background-color: #f0f2f5;
+        }
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+        .pane {
+            border: 1px solid #ccc;
+            padding: 10px;
+            box-sizing: border-box;
+            background-color: #fff;
+            margin: 5px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+        }
+        .chat-window {
+            flex: 1;
+        }
+        .source-reading-pane {
+            flex: 2;
+        }
+        .sxs-pane {
+            flex: 2;
+        }
+        .hidden {
+            display: none;
+        }
+        .chat-history {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 10px;
+        }
+        .message {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 15px;
+            max-width: 80%;
+        }
+        .user-message {
+            background-color: #dcf8c6;
+            margin-left: auto;
+        }
+        .ai-message {
+            background-color: #fff;
+            border: 1px solid #eee;
+        }
+        .evidence-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-top: 10px;
+        }
+        .chip {
+            background-color: #e9e9eb;
+            border-radius: 12px;
+            padding: 5px 10px;
+            font-size: 0.8em;
+            cursor: pointer;
+        }
+        .chip:hover {
+            background-color: #dcdce0;
+        }
+        .chat-input {
+            display: flex;
+            padding-top: 10px;
+            border-top: 1px solid #ccc;
+        }
+        .chat-input input {
+            flex-grow: 1;
+            border: 1px solid #ccc;
+            border-radius: 15px;
+            padding: 10px;
+        }
+        .chat-input button {
+            margin-left: 10px;
+            padding: 10px 15px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 15px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="pane chat-window">
+            <h2>Chat Window</h2>
+            <div class="chat-history">
+                <div class="message user-message">
+                    <p>What is the monthly rent for the initial term?</p>
+                </div>
+                <div class="message ai-message">
+                    <p>The initial monthly rent is $10,000. This is subject to an annual increase of 3% as per <a href="#">[§2.1(a)]</a>.</p>
+                    <div class="evidence-chips">
+                        <div class="chip">Lease 2019 • p12 • §2.1(a)</div>
+                        <div class="chip">Amend. 1 • p3 • r3c2</div>
+                    </div>
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" placeholder="Enter prompt / question">
+                <button>Send</button>
+            </div>
+        </div>
+        <div class="pane source-reading-pane">
+            <h2>Source Reading Pane</h2>
+            <!-- Tabbed document viewer will go here -->
+        </div>
+        <div class="pane sxs-pane hidden">
+            <h2>Side-by-Side View</h2>
+            <!-- SxS content will go here -->
+        </div>
+    </div>
+</body>
+</html>

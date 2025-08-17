@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contract Evidence UI - Lawyer Grade</title>
+    <meta name="version" content="2.1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Contract Evidence UI v2.1.0 - Lawyer Grade</title>
     <style>
         /* Reset and Base Styles */
         * {
@@ -253,25 +257,6 @@
             font-size: 14px;
         }
 
-        .timeline-chips {
-            display: flex;
-            gap: 4px;
-        }
-
-        .timeline-chip {
-            padding: 4px 8px;
-            background: #f1f5f9;
-            border: 1px solid #cbd5e1;
-            border-radius: 12px;
-            font-size: 11px;
-            cursor: pointer;
-        }
-
-        .timeline-chip.active {
-            background: #3b82f6;
-            color: white;
-            border-color: #3b82f6;
-        }
 
         /* Document Viewer */
         .document-viewer {
@@ -383,6 +368,58 @@
             color: #22c55e;
             font-weight: 600;
             margin-left: 8px;
+        }
+
+        .status-badge {
+            font-size: 10px;
+            padding: 2px 4px;
+            border-radius: 3px;
+            margin-left: 6px;
+            font-weight: 600;
+        }
+
+        .status-badge.verified {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .status-badge.warn {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .status-badge.blocked {
+            background: #fecaca;
+            color: #991b1b;
+        }
+
+        .status-badge.na {
+            background: #f1f5f9;
+            color: #64748b;
+        }
+
+        /* Toast notification */
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #22c55e;
+            color: white;
+            padding: 12px 16px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            z-index: 3000;
+            opacity: 0;
+            transform: translateX(100%);
+            transition: all 0.3s ease-in-out;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(0);
         }
 
         .blocked-calculation {
@@ -498,46 +535,70 @@
                         
                         <div class="calculation-breakdown">
                             <div class="breakdown-title">Calculation Breakdown</div>
-                            <div class="breakdown-line">
-                                <span>Base Rent</span>
+                            <div class="breakdown-line" data-testid="breakdown-row">
+                                <span>Base Rent <span class="status-badge verified">✓</span></span>
                                 <span>$10,000.00</span>
                             </div>
-                            <div class="breakdown-line">
-                                <span>CAM Charges</span>
+                            <div class="breakdown-line" data-testid="breakdown-row">
+                                <span>CAM Charges <span class="status-badge verified">✓</span></span>
                                 <span>$4,231.17</span>
                             </div>
-                            <div class="breakdown-line">
-                                <span>Property Taxes</span>
+                            <div class="breakdown-line" data-testid="breakdown-row">
+                                <span>Property Taxes <span class="status-badge verified">✓</span></span>
                                 <span>$1,111.00</span>
                             </div>
-                            <div class="breakdown-line">
-                                <span>Credits</span>
-                                <span>-$0.00</span>
+                            <div class="breakdown-line" data-testid="breakdown-row">
+                                <span>Credits <span class="status-badge na">—</span></span>
+                                <span>$0.00</span>
                             </div>
-                            <div class="breakdown-line total">
-                                <span>Total</span>
+                            <div class="breakdown-line total" data-testid="breakdown-row">
+                                <span>Total <span class="status-badge verified">✓</span></span>
                                 <span>$15,342.17</span>
                             </div>
                             
                             <div class="formula-trace">
-                                = 10000.00 + 4231.17 + 1111.00 - 0.00 = 15342.17 <span class="verified-badge">✓ Verified</span>
+                                = 10000.00 + 4231.17 + 1111.00 + 0.00 = 15342.17 <span class="verified-badge">✓ Verified</span>
                             </div>
                         </div>
                     </div>
                     
                     <div class="evidence-chips">
-                        <div class="evidence-chip verified" data-doc="LEASE_2019.pdf" data-page="12" data-bbox="100,520,420,560">
+                        <a href="/doc/abc123def456lease2019?page=12&bbox=100,520,420,560&field=base_rent&asof=2020-10-01" 
+                           class="evidence-chip verified" 
+                           data-testid="evidence-chip"
+                           data-doc="LEASE_2019.pdf" 
+                           data-sha256="abc123def456lease2019" 
+                           data-page="12" 
+                           data-bbox="100,520,420,560"
+                           data-field="base_rent"
+                           data-section="§2.1(a)">
                             <div class="confidence-indicator confidence-high"></div>
                             Lease 2019 • p12 • §2.1(a)
-                        </div>
-                        <div class="evidence-chip verified" data-doc="AMEND_1.pdf" data-page="3" data-bbox="210,320,280,340">
+                        </a>
+                        <a href="/doc/def789ghi012amend1?page=3&bbox=210,320,280,340&field=cam_charges&asof=2020-10-01" 
+                           class="evidence-chip verified" 
+                           data-testid="evidence-chip"
+                           data-doc="AMEND_1.pdf" 
+                           data-sha256="def789ghi012amend1" 
+                           data-page="3" 
+                           data-bbox="210,320,280,340"
+                           data-field="cam_charges"
+                           data-section="r3c2">
                             <div class="confidence-indicator confidence-high"></div>
                             Amend. 1 • p3 • r3c2
-                        </div>
-                        <div class="evidence-chip verified" data-doc="LEASE_2019.pdf" data-page="18" data-bbox="140,200,390,230">
+                        </a>
+                        <a href="/doc/abc123def456lease2019?page=18&bbox=140,200,390,230&field=property_taxes&asof=2020-10-01" 
+                           class="evidence-chip verified" 
+                           data-testid="evidence-chip"
+                           data-doc="LEASE_2019.pdf" 
+                           data-sha256="abc123def456lease2019" 
+                           data-page="18" 
+                           data-bbox="140,200,390,230"
+                           data-field="property_taxes"
+                           data-section="Exhibit B">
                             <div class="confidence-indicator confidence-medium"></div>
                             Lease 2019 • p18 • Exhibit B
-                        </div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -555,19 +616,14 @@
                 </div>
                 <div class="as-of-controls">
                     <label for="asOfDate">As-Of:</label>
-                    <input type="date" class="as-of-date" id="asOfDate" value="2020-10-01">
-                    <div class="timeline-chips">
-                        <div class="timeline-chip" data-date="2019-01-01">Original</div>
-                        <div class="timeline-chip" data-date="2019-06-01">A1</div>
-                        <div class="timeline-chip active" data-date="2020-10-01">A2</div>
-                    </div>
+                    <input type="date" class="as-of-date" id="asOfDate" value="2020-10-01" data-testid="asof-date">
                 </div>
             </div>
             
             <div class="tab-bar" id="tabBar">
-                <div class="tab conformed active" data-tab="conformed">Conformed (As-Of 2020-10-01)</div>
-                <div class="tab" data-tab="lease2019">LEASE_2019.pdf</div>
-                <div class="tab" data-tab="amend1">AMEND_1.pdf</div>
+                <div class="tab conformed active" data-tab="conformed" data-testid="tab-conformed">Conformed (As-Of 2020-10-01)</div>
+                <div class="tab" data-tab="lease2019" data-testid="tab-document">LEASE_2019.pdf</div>
+                <div class="tab" data-tab="amend1" data-testid="tab-document">AMEND_1.pdf</div>
             </div>
             
             <div class="viewer-controls">
@@ -576,8 +632,9 @@
                 <button onclick="toggleTextLayer()">Toggle Text</button>
                 <button onclick="openFullPDF()">Full PDF</button>
                 <button onclick="findInDoc()">Find</button>
-                <button onclick="prevEvidence()">← Prev Evidence</button>
-                <button onclick="nextEvidence()">Next Evidence →</button>
+                <button onclick="expandCurrentView()" data-testid="fullview-toggle" title="Expand Current View (F)">Expand</button>
+                <button onclick="prevEvidence()" data-testid="prev-evidence">← Prev Evidence</button>
+                <button onclick="nextEvidence()" data-testid="next-evidence">Next Evidence →</button>
             </div>
             
             <div class="document-viewer">
@@ -628,7 +685,7 @@
         <div class="sxs-container">
             <div class="sxs-header">
                 <div class="pane-title">Side-by-Side Comparison</div>
-                <button class="sxs-close" onclick="closeSxS()">&times;</button>
+                <button class="sxs-close" onclick="closeSxS()" data-testid="open-sxs">&times;</button>
             </div>
             
             <div class="sxs-content">
@@ -707,11 +764,17 @@
     </div>
 
     <script>
+        // Version and Cache Control
+        const VERSION = '2.1.0';
+        const BUILD_TIMESTAMP = new Date().toISOString();
+        console.log(`Contract Evidence UI v${VERSION} - Build: ${BUILD_TIMESTAMP}`);
+        
         // Global state
         let currentTab = 'conformed';
         let currentAsOfDate = '2020-10-01';
         let selectedEvidence = null;
         let sxsOpen = false;
+        let fullViewOpen = false;
 
         // Mock document data
         const mockDocuments = {
@@ -847,11 +910,285 @@
         };
 
         // Initialize the application
-        document.addEventListener('DOMContentLoaded', function() {
-            setupEventListeners();
-            updateConformedTab();
-            loadDocument('conformed'); // Load initial document
+        window.addEventListener('DOMContentLoaded', () => {
+            try {
+                // Primary initialization - use legacy first
+                setupEventListeners();
+                updateConformedTab();
+                loadDocument('conformed'); // Load initial document
+                
+                // Then wire modular enhancements
+                wireFullView();
+                
+                console.log('App initialized successfully');
+            } catch (error) {
+                console.error('Failed to initialize app:', error);
+            }
         });
+
+        // v2.1.0: Full View functionality
+        function getActiveTabMeta() {
+            const activeTab = document.querySelector('.tab.active');
+            if (!activeTab) return null;
+            
+            const tabType = activeTab.classList.contains('conformed') ? 'conformed' : 'document';
+            const result = { tabType };
+            
+            if (tabType === 'conformed') {
+                result.asOf = currentAsOfDate;
+            } else {
+                result.sha256 = activeTab.dataset.sha256 || 'unknown';
+            }
+            
+            return result;
+        }
+
+        function openFullView(tabMeta) {
+            if (!tabMeta) tabMeta = getActiveTabMeta();
+            if (!tabMeta) return;
+            
+            fullViewOpen = true;
+            
+            // Create or show full view overlay
+            let overlay = document.getElementById('fullViewOverlay');
+            if (!overlay) {
+                overlay = createFullViewOverlay();
+            }
+            
+            overlay.style.display = 'flex';
+            overlay.classList.remove('hidden');
+            
+            // Set aria-pressed on expand button
+            const expandBtn = document.querySelector('[data-testid="fullview-toggle"]');
+            if (expandBtn) {
+                expandBtn.setAttribute('aria-pressed', 'true');
+            }
+            
+            // Populate content based on tab type
+            if (tabMeta.tabType === 'conformed') {
+                populateFullViewConformed(overlay, tabMeta.asOf);
+            } else {
+                populateFullViewDocument(overlay, tabMeta.sha256);
+            }
+            
+            logTelemetry('fullview_opened', {
+                tab: tabMeta.tabType,
+                as_of: tabMeta.asOf,
+                sha256: tabMeta.sha256
+            });
+        }
+
+        function closeFullView() {
+            const overlay = document.getElementById('fullViewOverlay');
+            if (!overlay) return;
+            
+            fullViewOpen = false;
+            overlay.style.display = 'none';
+            overlay.classList.add('hidden');
+            
+            logTelemetry('fullview_closed', {
+                tab: getActiveTabMeta()?.tabType
+            });
+        }
+
+        function createFullViewOverlay() {
+            const overlay = document.createElement('div');
+            overlay.id = 'fullViewOverlay';
+            overlay.className = 'fullview-overlay hidden';
+            overlay.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0, 0, 0, 0.8);
+                z-index: 2000;
+                display: none;
+                align-items: center;
+                justify-content: center;
+            `;
+            
+            overlay.innerHTML = `
+                <div class="fullview-container" style="
+                    width: 95%;
+                    height: 95%;
+                    background: white;
+                    border-radius: 8px;
+                    display: flex;
+                    flex-direction: column;
+                    position: relative;
+                ">
+                    <div class="fullview-header" style="
+                        padding: 16px 20px;
+                        border-bottom: 1px solid #e2e8f0;
+                        display: flex;
+                        justify-content: between;
+                        align-items: center;
+                    ">
+                        <h2 class="fullview-title">Full View</h2>
+                        <button class="fullview-close-btn" data-testid="fullview-close" style="
+                            background: none;
+                            border: none;
+                            font-size: 24px;
+                            cursor: pointer;
+                            color: #64748b;
+                            margin-left: auto;
+                        ">&times;</button>
+                    </div>
+                    <div class="fullview-content" style="
+                        flex: 1;
+                        overflow: auto;
+                        padding: 20px;
+                    "></div>
+                </div>
+            `;
+            
+            // Add close button handler
+            overlay.querySelector('[data-testid="fullview-close"]').addEventListener('click', closeFullView);
+            
+            // Close on overlay click
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) closeFullView();
+            });
+            
+            document.body.appendChild(overlay);
+            return overlay;
+        }
+
+        function populateFullViewConformed(overlay, asOf) {
+            const title = overlay.querySelector('.fullview-title');
+            const content = overlay.querySelector('.fullview-content');
+            
+            title.textContent = `Full Conformed View (As-Of ${asOf})`;
+            
+            const isBeforeAmendment = asOf < '2019-06-01';
+            const baseRent = isBeforeAmendment ? '$8,500.00' : '$10,000.00';
+            const cam = isBeforeAmendment ? '$2,100.00' : '$4,231.17';
+            const total = isBeforeAmendment ? '$12,691.00' : '$15,342.17';
+            
+            content.innerHTML = `
+                <div style="max-width: 800px; margin: 0 auto; font-family: serif; line-height: 1.6;">
+                    <h1 style="text-align: center; margin-bottom: 30px;">CONFORMED LEASE AGREEMENT</h1>
+                    <p style="text-align: center; color: #64748b; margin-bottom: 40px;">
+                        As of: <strong>${asOf}</strong> | 
+                        Status: ${isBeforeAmendment ? 'Original terms in effect' : 'As amended'}
+                    </p>
+                    
+                    <div style="background: rgba(34, 197, 94, 0.1); padding: 20px; border-left: 4px solid #22c55e; margin-bottom: 30px;">
+                        <h3>Current Rent Terms</h3>
+                        <table style="width: 100%; margin-top: 15px;">
+                            <tr><td><strong>Base Rent:</strong></td><td style="text-align: right;"><strong>${baseRent}</strong>/month</td></tr>
+                            <tr><td><strong>CAM:</strong></td><td style="text-align: right;"><strong>${cam}</strong>/month</td></tr>
+                            <tr><td><strong>Property Taxes:</strong></td><td style="text-align: right;"><strong>$1,111.00</strong>/month</td></tr>
+                            <tr style="border-top: 2px solid #22c55e; font-weight: bold;"><td>TOTAL:</td><td style="text-align: right;">${total}/month</td></tr>
+                        </table>
+                    </div>
+                    
+                    <div style="margin-bottom: 30px;">
+                        <h3>Amendment History</h3>
+                        <ul>
+                            <li><strong>Original Lease:</strong> January 1, 2019 - Base rent $8,500, CAM $2,100</li>
+                            ${!isBeforeAmendment ? '<li><strong>Amendment 1:</strong> June 1, 2019 - Base rent increased to $10,000, CAM to $4,231.17</li>' : '<li style="color: #94a3b8;">Amendment 1: June 1, 2019 - <em>(not yet effective as of this date)</em></li>'}
+                        </ul>
+                    </div>
+                </div>
+            `;
+        }
+
+        function populateFullViewDocument(overlay, sha256) {
+            const title = overlay.querySelector('.fullview-title');
+            const content = overlay.querySelector('.fullview-content');
+            
+            title.textContent = `Full Document View - ${sha256.slice(0, 8)}...`;
+            
+            content.innerHTML = `
+                <div style="max-width: 800px; margin: 0 auto;">
+                    <h1>Document: ${sha256.slice(0, 8)}...</h1>
+                    <div style="background: #f8fafc; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                        <p><strong>Full document viewer would be rendered here</strong></p>
+                        <p>In production, this would show:</p>
+                        <ul>
+                            <li>Full PDF.js viewer with all pages</li>
+                            <li>Page thumbnails sidebar (optional)</li>
+                            <li>Zoom, search, and navigation controls</li>
+                            <li>Preserved highlight from evidence chip</li>
+                        </ul>
+                    </div>
+                </div>
+            `;
+        }
+
+        // v2.1.0: Expand current view function
+        function expandCurrentView() {
+            const tabMeta = getActiveTabMeta();
+            if (!tabMeta) return;
+            
+            if (fullViewOpen) {
+                closeFullView();
+            } else {
+                openFullView(tabMeta);
+            }
+        }
+
+        // v2.1.0: Wire Full View keyboard shortcuts
+        function wireFullView() {
+            // Keyboard shortcuts only (button is wired via onclick)
+            document.addEventListener('keydown', (e) => {
+                // Only handle shortcuts when not in input fields
+                if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+                
+                if (e.key.toLowerCase() === 'f' && !e.metaKey && !e.ctrlKey && !e.altKey) {
+                    e.preventDefault();
+                    expandCurrentView();
+                } else if (e.key === 'Escape') {
+                    if (fullViewOpen) {
+                        closeFullView();
+                    }
+                }
+            });
+        }
+
+        // v2.1.0: Toast notification system
+        function showToast(message, type = 'success') {
+            // Remove existing toast
+            const existingToast = document.querySelector('.toast');
+            if (existingToast) {
+                existingToast.remove();
+            }
+            
+            // Create new toast
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.innerHTML = `
+                <span>✓</span>
+                <span>${message}</span>
+            `;
+            
+            if (type === 'error') {
+                toast.style.background = '#ef4444';
+                toast.innerHTML = `
+                    <span>✗</span>
+                    <span>${message}</span>
+                `;
+            }
+            
+            document.body.appendChild(toast);
+            
+            // Animate in
+            setTimeout(() => {
+                toast.classList.add('show');
+            }, 10);
+            
+            // Auto-remove after 2 seconds
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => {
+                    if (toast.parentNode) {
+                        toast.parentNode.removeChild(toast);
+                    }
+                }, 300);
+            }, 2000);
+        }
 
         function setupEventListeners() {
             // Tab switching
@@ -864,9 +1201,37 @@
             // Evidence chip interactions
             document.querySelectorAll('.evidence-chip').forEach(chip => {
                 chip.addEventListener('click', function(e) {
+                    // v2.1.0: Allow Ctrl/Cmd+Click to open new tab
+                    if (e.metaKey || e.ctrlKey) {
+                        // Don't preventDefault - let browser handle new tab
+                        logTelemetry('chip_clicked', {
+                            sha256: this.dataset.sha256,
+                            page: this.dataset.page,
+                            field: this.dataset.field,
+                            as_of: currentAsOfDate,
+                            with_shift: false,
+                            new_tab: true
+                        });
+                        return;
+                    }
+                    
+                    // Prevent default for all other clicks
+                    e.preventDefault();
+                    
+                    // Log telemetry
+                    logTelemetry('chip_clicked', {
+                        sha256: this.dataset.sha256,
+                        page: this.dataset.page,
+                        field: this.dataset.field,
+                        as_of: currentAsOfDate,
+                        with_shift: e.shiftKey,
+                        new_tab: false
+                    });
+                    
                     if (e.shiftKey) {
                         openSxS(this);
                     } else {
+                        // v2.1.0: Use focusEvidence which loads document and highlights
                         focusEvidence(this);
                     }
                 });
@@ -880,29 +1245,21 @@
 
             // As-of date changes
             document.getElementById('asOfDate').addEventListener('change', function() {
+                const oldDate = currentAsOfDate;
                 currentAsOfDate = this.value;
                 updateConformedTab();
-                updateTimelineChips();
+                
+                // Log telemetry
+                logTelemetry('asof_changed', {
+                    from: oldDate,
+                    to: this.value
+                });
                 
                 // Always switch to conformed tab and reload with the new date
                 switchTab('conformed');
                 console.log('As-Of date changed to:', this.value);
             });
 
-            // Timeline chips
-            document.querySelectorAll('.timeline-chip').forEach(chip => {
-                chip.addEventListener('click', function() {
-                    const date = this.dataset.date;
-                    currentAsOfDate = date;
-                    document.getElementById('asOfDate').value = date;
-                    updateConformedTab();
-                    updateTimelineChips();
-                    
-                    // Always switch to conformed tab and reload with the new date
-                    switchTab('conformed');
-                    console.log('Timeline chip clicked:', this.textContent, 'Date:', date);
-                });
-            });
 
             // Chat input
             document.getElementById('chatInput').addEventListener('keydown', function(e) {
@@ -949,15 +1306,8 @@
             const conformedTab = document.querySelector('.tab.conformed');
             conformedTab.textContent = `Conformed (As-Of ${currentAsOfDate})`;
             
-            // Update timeline chips
-            updateTimelineChips();
         }
 
-        function updateTimelineChips() {
-            document.querySelectorAll('.timeline-chip').forEach(chip => {
-                chip.classList.toggle('active', chip.dataset.date === currentAsOfDate);
-            });
-        }
 
         function focusEvidence(chip) {
             selectedEvidence = chip;
@@ -1014,6 +1364,7 @@
                     // Create highlight overlay positioned relative to the target element
                     const highlight = document.createElement('div');
                     highlight.className = 'highlight-overlay flash';
+                    highlight.setAttribute('data-testid', 'highlight-span');
                     highlight.style.position = 'absolute';
                     highlight.style.left = (target.offsetLeft - 5) + 'px';
                     highlight.style.top = (target.offsetTop - 5) + 'px';
@@ -1049,12 +1400,21 @@
             
             // Set up SxS content based on chip
             const doc = chip.dataset.doc;
+            const sha256 = chip.dataset.sha256;
             const rightPaneTitle = document.querySelector('.sxs-pane:last-child .pane-title');
             rightPaneTitle.textContent = doc;
             
             // Update left pane with current as-of date
             const leftPaneSubtitle = document.querySelector('.sxs-pane:first-child .pane-subtitle');
             leftPaneSubtitle.textContent = `Current state with amendments`;
+            
+            // Log telemetry
+            logTelemetry('sxs_opened', {
+                left_type: 'conformed',
+                left_as_of: currentAsOfDate,
+                right_type: 'document',
+                sha256: sha256
+            });
         }
 
         function closeSxS() {
@@ -1079,15 +1439,47 @@
         function copyDeepLink() {
             const menu = document.getElementById('contextMenu');
             const [doc, page, bbox] = menu.dataset.chipRef.split('|');
-            const sha256 = 'abc123...'; // Mock SHA256
-            const deepLink = `/doc/${sha256}?page=${page}&bbox=${bbox}&asof=${currentAsOfDate}`;
+            
+            // Find the corresponding chip to get its SHA256
+            const chip = document.querySelector(`[data-doc="${doc}"][data-page="${page}"][data-bbox="${bbox}"]`);
+            const sha256 = chip ? chip.dataset.sha256 : 'unknown';
+            const field = chip ? chip.dataset.field : '';
+            
+            // Generate signed URL with expiration (mock implementation)
+            const exp = Math.floor(Date.now() / 1000) + 600; // 10 minutes from now
+            const deepLink = `/doc/${sha256}?page=${page}&bbox=${bbox}&field=${field}&asof=${currentAsOfDate}&exp=${exp}&sig=mock_signature`;
             
             navigator.clipboard.writeText(window.location.origin + deepLink);
-            alert('Deep link copied to clipboard!');
+            
+            // Log telemetry
+            logTelemetry('deep_link_copied', {
+                sha256: sha256,
+                page: page,
+                field: field
+            });
+            
+            // v2.1.0: Show toast instead of alert
+            showToast('Copied ✓');
             hideContextMenu();
         }
 
         function sendToReview() {
+            const menu = document.getElementById('contextMenu');
+            const [doc, page, bbox] = menu.dataset.chipRef.split('|');
+            
+            // Find the corresponding chip to get its details
+            const chip = document.querySelector(`[data-doc="${doc}"][data-page="${page}"][data-bbox="${bbox}"]`);
+            const sha256 = chip ? chip.dataset.sha256 : 'unknown';
+            const field = chip ? chip.dataset.field : '';
+            
+            // Log telemetry
+            logTelemetry('hil_action', {
+                action: 'send_to_review',
+                field: field,
+                sha256: sha256,
+                page: page
+            });
+            
             alert('Evidence sent to HIL review queue');
             hideContextMenu();
         }
@@ -1208,6 +1600,27 @@
                     console.log('Next evidence:', evidenceIndex);
                 }
             }
+        }
+
+        // Telemetry logging function
+        function logTelemetry(eventName, payload) {
+            const telemetryEvent = {
+                event: eventName,
+                timestamp: new Date().toISOString(),
+                as_of: currentAsOfDate,
+                session_id: 'mock_session_' + Date.now(),
+                version: VERSION,
+                ...payload
+            };
+            
+            console.log('Telemetry:', telemetryEvent);
+            
+            // In production, this would send to your analytics service
+            // fetch('/api/telemetry', {
+            //     method: 'POST',
+            //     headers: { 'Content-Type': 'application/json' },
+            //     body: JSON.stringify(telemetryEvent)
+            // });
         }
     </script>
 </body>
