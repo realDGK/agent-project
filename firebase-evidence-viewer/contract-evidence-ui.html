@@ -200,6 +200,35 @@
             margin-right: 6px;
         }
 
+        /* Answer Evidence Highlighting */
+        .answer-evidence {
+            padding: 2px 4px;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .answer-evidence.highlighted {
+            background: rgba(59, 130, 246, 0.2);
+            border: 2px solid #3b82f6;
+            box-shadow: 0 0 8px rgba(59, 130, 246, 0.3);
+            font-weight: 600;
+        }
+
+        .answer-evidence.highlighted::before {
+            content: "◄";
+            position: absolute;
+            left: -12px;
+            color: #3b82f6;
+            font-weight: bold;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
         .confidence-high { background-color: #22c55e; }
         .confidence-medium { background-color: #f59e0b; }
         .confidence-low { background-color: #ef4444; }
@@ -533,19 +562,23 @@
                     <div class="content">
                         <p>Total rent as of October 2020: <strong>$15,342.17</strong></p>
                         
+                        <p>This includes base rent of <span class="answer-evidence" data-evidence-id="base_rent" data-doc="AMEND_1.pdf" data-page="3" data-field="base_rent">$10,000</span>, 
+                        CAM charges of <span class="answer-evidence" data-evidence-id="cam_charges" data-doc="AMEND_1.pdf" data-page="3" data-field="cam_charges">$4,231.17</span>, 
+                        and property taxes of <span class="answer-evidence" data-evidence-id="property_taxes" data-doc="LEASE_2019.pdf" data-page="18" data-field="property_taxes">$1,111.00</span>.</p>
+                        
                         <div class="calculation-breakdown">
                             <div class="breakdown-title">Calculation Breakdown</div>
                             <div class="breakdown-line" data-testid="breakdown-row">
                                 <span>Base Rent <span class="status-badge verified">✓</span></span>
-                                <span>$10,000.00</span>
+                                <span class="answer-evidence" data-field="base_rent" data-doc="AMEND_1.pdf" data-page="3">$10,000.00</span>
                             </div>
                             <div class="breakdown-line" data-testid="breakdown-row">
                                 <span>CAM Charges <span class="status-badge verified">✓</span></span>
-                                <span>$4,231.17</span>
+                                <span class="answer-evidence" data-field="cam_charges" data-doc="AMEND_1.pdf" data-page="3">$4,231.17</span>
                             </div>
                             <div class="breakdown-line" data-testid="breakdown-row">
                                 <span>Property Taxes <span class="status-badge verified">✓</span></span>
-                                <span>$1,111.00</span>
+                                <span class="answer-evidence" data-field="property_taxes" data-doc="LEASE_2019.pdf" data-page="18">$1,111.00</span>
                             </div>
                             <div class="breakdown-line" data-testid="breakdown-row">
                                 <span>Credits <span class="status-badge na">—</span></span>
@@ -1298,6 +1331,11 @@
 
             currentTab = tabId;
             
+            // Clear answer highlighting when switching tabs
+            document.querySelectorAll('.answer-evidence').forEach(span => {
+                span.classList.remove('highlighted');
+            });
+            
             // Update document content
             loadDocument(tabId);
         }
@@ -1330,8 +1368,11 @@
             
             switchTab(tabId);
 
-            // Highlight the evidence
+            // Highlight the evidence in source document
             highlightEvidence(bbox);
+            
+            // DUAL HIGHLIGHTING: Also highlight corresponding answer portion
+            highlightAnswerEvidence(chip);
             
             // Flash highlight effect
             setTimeout(() => {
@@ -1392,6 +1433,38 @@
                     console.log('No highlight targets found, using fallback positioning');
                 }
             }, 200);
+        }
+
+        function highlightAnswerEvidence(chip) {
+            // Remove existing answer highlights
+            document.querySelectorAll('.answer-evidence').forEach(span => {
+                span.classList.remove('highlighted');
+            });
+            
+            // Get field from chip
+            const chipField = chip.dataset.field;
+            const chipDoc = chip.dataset.doc;
+            const chipPage = chip.dataset.page;
+            
+            // Find matching answer evidence span
+            const answerSpan = document.querySelector(`.answer-evidence[data-field="${chipField}"][data-doc="${chipDoc}"][data-page="${chipPage}"]`);
+            
+            if (answerSpan) {
+                // Add highlight class
+                answerSpan.classList.add('highlighted');
+                
+                // Scroll answer into view if needed
+                answerSpan.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'center',
+                    inline: 'nearest'
+                });
+                
+                // Log for debugging
+                console.log(`Highlighted answer evidence for ${chipField} from ${chipDoc}`);
+            } else {
+                console.log(`No matching answer evidence found for ${chipField} from ${chipDoc}`);
+            }
         }
 
         function openSxS(chip) {

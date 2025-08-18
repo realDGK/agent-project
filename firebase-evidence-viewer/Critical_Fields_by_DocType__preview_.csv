@@ -1,0 +1,31 @@
+Category,DocType,CriticalFieldKey,Label,Datatype,Required,Importance
+Acquisition & Disposition,Purchase and Sale Agreement,doc_title,Document Title,text,No,Med
+Acquisition & Disposition,Purchase and Sale Agreement,effective_date,Effective Date,date,No,High
+Acquisition & Disposition,Purchase and Sale Agreement,execution_date,Execution/Signing Date,date,No,High
+Acquisition & Disposition,Purchase and Sale Agreement,recording_date,Recording Date,date,No,High
+Acquisition & Disposition,Purchase and Sale Agreement,instrument_number,Recorder Instrument #,text,No,High
+Acquisition & Disposition,Purchase and Sale Agreement,jurisdiction,Jurisdiction/Agency,text,No,High
+Acquisition & Disposition,Purchase and Sale Agreement,apn_list,APN(s),text[],No,High
+Acquisition & Disposition,Purchase and Sale Agreement,seller,Seller,party,Yes,High
+Acquisition & Disposition,Purchase and Sale Agreement,buyer,Buyer,party,Yes,High
+Acquisition & Disposition,Purchase and Sale Agreement,purchase_price,Purchase Price,currency,Yes,High
+Acquisition & Disposition,Purchase and Sale Agreement,earnest_money,Earnest Money Deposit,currency,Yes,High
+Acquisition & Disposition,Purchase and Sale Agreement,deposit_schedule,Deposit Schedule,text,No,Med
+Acquisition & Disposition,Purchase and Sale Agreement,inspection_period_days,Inspection/Due Diligence Period (days),integer,Yes,High
+Acquisition & Disposition,Purchase and Sale Agreement,closing_date,Outside Closing Date,date,Yes,High
+Acquisition & Disposition,Purchase and Sale Agreement,closing_conditions,Closing Conditions,text,No,Med
+Acquisition & Disposition,Purchase and Sale Agreement,feasibility_rights,Feasibility/Access Rights,text,No,Low
+Acquisition & Disposition,Purchase and Sale Agreement,title_survey_objection_window,Title/Survey Objection Window,integer,No,Med
+Acquisition & Disposition,Purchase and Sale Agreement,seller_reps_warranties,Seller Reps & Warranties (summary),text,No,Med
+Acquisition & Disposition,Purchase and Sale Agreement,assignability,Assignment Rights,"enum(assignable, assignable_with_consent, not_assignable)",No,Med
+Acquisition & Disposition,Option Agreement,doc_title,Document Title,text,No,Med
+Acquisition & Disposition,Option Agreement,effective_date,Effective Date,date,No,High
+Acquisition & Disposition,Option Agreement,execution_date,Execution/Signing Date,date,No,High
+Acquisition & Disposition,Option Agreement,recording_date,Recording Date,date,No,High
+Acquisition & Disposition,Option Agreement,instrument_number,Recorder Instrument #,text,No,High
+Acquisition & Disposition,Option Agreement,jurisdiction,Jurisdiction/Agency,text,No,High
+Acquisition & Disposition,Option Agreement,apn_list,APN(s),text[],No,High
+Acquisition & Disposition,Option Agreement,optionor,Optionor (Owner),party,Yes,High
+Acquisition & Disposition,Option Agreement,optionee,Optionee (Buyer),party,Yes,High
+Acquisition & Disposition,Option Agreement,option_fee,Option Fee,currency,Yes,High
+Acquisition & Disposition,Option Agreement,option_term_start,Option Term Start,date,Yes,High

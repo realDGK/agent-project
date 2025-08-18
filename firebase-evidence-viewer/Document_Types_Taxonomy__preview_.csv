@@ -1,0 +1,16 @@
+Category,DocType,CommonAliases,LifecycleStage
+Corporate & Entity,Articles of Organization (LLC),Articles of Incorporation; LLC-1,Corporate
+Corporate & Entity,Operating Agreement,LLC Agreement,Corporate
+Corporate & Entity,Statement of Information,LLC-12 (CA),Corporate
+Acquisition & Disposition,Letter of Intent,LOI; Term Sheet; MOU (deal),Acquisition
+Acquisition & Disposition,Purchase and Sale Agreement,PSA; Purchase Agreement,Acquisition
+Acquisition & Disposition,Option Agreement,Land Option,Acquisition
+Acquisition & Disposition,Escrow Instructions,General/Amended Escrow Instructions; Release of Funds,Acquisition
+Acquisition & Disposition,Grant Deed,Warranty Deed (non-CA); Special Warranty Deed,Acquisition
+Acquisition & Disposition,Quitclaim Deed,Quit Claim,Acquisition
+Acquisition & Disposition,Assignment & Assumption of PSA,Assignment of Contract,Acquisition
+"Title, Survey & Records",Preliminary Title Report,Title Commitment; PTR,Acquisition
+"Title, Survey & Records",ALTA Owner/Lender Policy,Title Policy,Acquisition
+"Title, Survey & Records",Recorded Easement,Access/Utility/Drainage Easement,Acquisition
+"Title, Survey & Records",Reciprocal Easement Agreement,REA; OEA; JOEA,Operations
+Entitlements & Land Use,Development Agreement,DA,Entitlement

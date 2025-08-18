@@ -1,0 +1,48 @@
+Category,DocType,CommonAliases,LifecycleStage
+Corporate & Entity,Articles of Organization (LLC),Articles of Incorporation; LLC-1,Corporate
+Corporate & Entity,Operating Agreement,LLC Agreement,Corporate
+Corporate & Entity,Statement of Information,LLC-12 (CA),Corporate
+Acquisition & Disposition,Letter of Intent,LOI; Term Sheet; MOU (deal),Acquisition
+Acquisition & Disposition,Purchase and Sale Agreement,PSA; Purchase Agreement,Acquisition
+Acquisition & Disposition,Option Agreement,Land Option,Acquisition
+Acquisition & Disposition,Escrow Instructions,General/Amended Escrow Instructions; Release of Funds,Acquisition
+Acquisition & Disposition,Grant Deed,Warranty Deed (non-CA); Special Warranty Deed,Acquisition
+Acquisition & Disposition,Quitclaim Deed,Quit Claim,Acquisition
+Acquisition & Disposition,Assignment & Assumption of PSA,Assignment of Contract,Acquisition
+"Title, Survey & Records",Preliminary Title Report,Title Commitment; PTR,Acquisition
+"Title, Survey & Records",ALTA Owner/Lender Policy,Title Policy,Acquisition
+"Title, Survey & Records",Recorded Easement,Access/Utility/Drainage Easement,Acquisition
+"Title, Survey & Records",Reciprocal Easement Agreement,REA; OEA; JOEA,Operations
+Entitlements & Land Use,Development Agreement,DA,Entitlement
+Entitlements & Land Use,Conditions of Approval Resolution,COAs; Planning Commission/City Council Resolution,Entitlement
+Entitlements & Land Use,Tentative Tract/Parcel Map,TTM; TPM; Vesting TTM/TPM,Entitlement
+Entitlements & Land Use,Final Map/Parcel Map,Tract Map; Parcel Map; Certificate of Correction,Entitlement
+Entitlements & Land Use,Conditional Use Permit,CUP,Entitlement
+Entitlements & Land Use,Variance,,Entitlement
+Environmental (CEQA/NEPA),CEQA Document,IS; MND/ND; Draft/Final EIR; Addendum; NOD; NOE; SOC; MMRP,Environmental
+Environmental (CEQA/NEPA),Phase I ESA,Environmental Site Assessment Phase I,Environmental
+Environmental (CEQA/NEPA),Phase II ESA,Subsurface Investigation,Environmental
+Infrastructure & Utilities,Reimbursement/Credit Agreement,Impact Fee Credit Agreement; DIF; TUMF,Entitlement
+Infrastructure & Utilities,Sewer/Water Allocation Agreement,Capacity Reservation; Will-Serve Verification,Entitlement
+Infrastructure & Utilities,Sewer Allocation Transfer,Capacity Transfer,Entitlement
+Financing & Capital,Loan Agreement,Construction Loan Agreement; Land Loan Agreement,Financing
+Financing & Capital,Promissory Note,Note,Financing
+Financing & Capital,Deed of Trust,Mortgage (non-CA),Financing
+Financing & Capital,Guaranty,Completion Guaranty; Payment Guaranty; Carveout,Financing
+Financing & Capital,SNDA,"Subordination, Non-Disturbance and Attornment",Financing
+Construction & Development,AIA A101/A102 Agreement,Prime Contract (GMP/Fix-Price),Construction
+Construction & Development,Change Order,CCD; Directive,Construction
+Construction & Development,Lien Waiver (Progress/Final),Conditional/Unconditional,Construction
+Construction & Development,Certificate of Occupancy,CO; TCO,Construction
+Leasing & Asset Mgmt,Commercial Lease,NNN; Gross; Ground Lease,Operations
+Leasing & Asset Mgmt,Estoppel Certificate,Tenant Estoppel,Operations
+Leasing & Asset Mgmt,Lease Amendment,,Operations
+HOA/Condo/Subdivision,CC&Rs,"Covenants, Conditions & Restrictions",Disposition
+HOA/Condo/Subdivision,Subdivision Improvement Agreement,SIA; Improvement Agreement,Entitlement
+Bonds/Taxes/Assessments,CFD Formation Docs,Mello-Roos; RMA; Indenture; Official Statement,Entitlement
+Litigation/Enforcement,Lis Pendens,Notice of Pendency,Litigation
+Litigation/Enforcement,Notice of Default (Loan),NOD,Litigation
+Litigation/Enforcement,Notice of Trustee’s Sale,NOTS,Litigation
+Litigation/Enforcement,Settlement Agreement,,Litigation
+Records & Process,Agency Staff Report,Planning/City Council Packet,Entitlement
+Records & Process,Public Hearing Notice,Proof of Publication/Mailing,Entitlement

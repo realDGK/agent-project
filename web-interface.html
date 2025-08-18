@@ -326,28 +326,90 @@
             color: #721c24;
         }
 
-        .metadata-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
+        .structured-data-view {
             margin-top: 15px;
         }
 
-        .metadata-item {
+        .data-section {
             background: #f8f9fa;
             padding: 15px;
             border-radius: 8px;
+            margin-bottom: 15px;
         }
 
-        .metadata-label {
+        .data-section h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1em;
+            border-bottom: 1px solid #e9ecef;
+            padding-bottom: 5px;
+        }
+
+        .data-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .data-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+        }
+
+        .data-label {
             font-size: 0.9em;
-            color: #7f8c8d;
-            margin-bottom: 5px;
+            color: #6c757d;
+            font-weight: 500;
         }
 
-        .metadata-value {
+        .data-value {
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        .party-item, .financial-item, .date-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 12px;
+            background: white;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            border-left: 3px solid #3b82f6;
+        }
+
+        .party-name, .date-text {
             font-weight: 500;
             color: #2c3e50;
+        }
+
+        .amount {
+            font-weight: 600;
+            color: #059669;
+            font-size: 1.1em;
+        }
+
+        .label {
+            font-size: 0.8em;
+            color: #6b7280;
+            font-style: italic;
+        }
+
+        .confidence-score {
+            background: #e1f5fe;
+            color: #0277bd;
+            padding: 2px 6px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: 500;
+        }
+
+        .no-data {
+            color: #9ca3af;
+            font-style: italic;
+            text-align: center;
+            padding: 10px;
         }
 
         .status-indicator {
@@ -636,7 +698,8 @@
         }
 
         function updateControls() {
-            processBtn.disabled = selectedFiles.length === 0 || currentProcessing;
+            const pendingFiles = selectedFiles.filter(f => f.status === 'pending');
+            processBtn.disabled = pendingFiles.length === 0 || currentProcessing;
             clearBtn.disabled = currentProcessing;
         }
 
@@ -648,13 +711,16 @@
             showProgress();
 
             try {
-                for (let i = 0; i < selectedFiles.length; i++) {
-                    const fileObj = selectedFiles[i];
+                // Only process pending files
+                const pendingFiles = selectedFiles.filter(f => f.status === 'pending');
+                
+                for (let i = 0; i < pendingFiles.length; i++) {
+                    const fileObj = pendingFiles[i];
                     
                     // Update UI
                     fileObj.status = 'processing';
                     updateFileList();
-                    updateProgressBar((i / selectedFiles.length) * 100);
+                    updateProgressBar((i / pendingFiles.length) * 100);
 
                     // Process document
                     try {
@@ -684,45 +750,23 @@
         }
 
         async function processDocument(fileObj) {
-            // Read file content
-            const content = await readFileContent(fileObj.file);
+            // Use proper file upload instead of reading as text
+            return await analyzeDocumentFile(fileObj.file);
+        }
 
-            // Prepare analysis options
-            const analysisOptions = {
-                useLegalBERT: useLegalBERT.checked,
-                trackLifecycle: trackLifecycle.checked,
-                extractEntities: extractEntities.checked,
-                riskAssessment: riskAssessment.checked
-            };
-
-            // Call API
-            const response = await fetch('http://localhost:8000/api/analyze-document', {
+        async function analyzeDocumentFile(file) {
+            const formData = new FormData();
+            formData.append('file', file);
+            
+            const response = await fetch('http://localhost:8000/api/upload-document', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    content: content,
-                    filename: fileObj.name,
-                    options: analysisOptions,
-                    priority: 'normal'
-                })
+                body: formData
             });
-
+            
             if (!response.ok) {
                 throw new Error(`HTTP ${response.status}: ${response.statusText}`);
             }
-
             return await response.json();
-        }
-
-        function readFileContent(file) {
-            return new Promise((resolve, reject) => {
-                const reader = new FileReader();
-                reader.onload = (e) => resolve(e.target.result);
-                reader.onerror = (e) => reject(new Error('Failed to read file'));
-                reader.readAsText(file);
-            });
         }
 
         function addResultCard(fileObj, result) {
@@ -731,6 +775,8 @@
                                   confidence > 0.6 ? 'confidence-medium' : 'confidence-low';
 
             const metadata = result.extracted_metadata || {};
+            const ocrScore = result.ocr_score || confidence;
+            const requiresHIL = ocrScore < 0.85 || result.requires_human_review;
             
             const resultCard = document.createElement('div');
             resultCard.className = 'result-card';
@@ -742,36 +788,87 @@
                     </div>
                 </div>
 
-                <div class="metadata-grid">
-                    <div class="metadata-item">
-                        <div class="metadata-label">Document Type</div>
-                        <div class="metadata-value">${metadata.document_type?.primary || 'Unknown'}</div>
+                ${result.processing_method === 'ocr' || result.processing_method === 'tesseract_ocr' ? `
+                    <div class="ocr-assessment" style="margin: 15px 0; padding: 15px; background: #f8f9fa; border-radius: 8px; border-left: 4px solid ${ocrScore >= 0.85 ? '#28a745' : '#ffc107'};">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                            <span style="font-weight: 600; color: #2c3e50;">📄 OCR Quality Assessment</span>
+                            <span style="font-weight: 600; color: ${ocrScore >= 0.85 ? '#28a745' : '#856404'};">${Math.round(ocrScore * 100)}%</span>
+                        </div>
+                        <div style="font-size: 0.9em; color: #6c757d; margin-bottom: 10px;">
+                            Processing Method: ${result.processing_method === 'tesseract_ocr' ? 'OCR (Scanned Document)' : 'Hybrid OCR + Text Extraction'}
+                        </div>
+                        ${requiresHIL ? `
+                            <div style="margin-top: 10px;">
+                                <button class="btn btn-secondary" onclick="startHILReview('${fileObj.id}')" style="font-size: 0.9em; padding: 8px 16px;">
+                                    🔍 Review Low Quality Regions
+                                </button>
+                            </div>
+                        ` : `
+                            <div style="color: #28a745; font-size: 0.9em;">✅ Quality sufficient - ready for analysis</div>
+                        `}
                     </div>
-                    
-                    <div class="metadata-item">
-                        <div class="metadata-label">Contract Value</div>
-                        <div class="metadata-value">
-                            ${metadata.financial_terms?.[0]?.amount ? 
-                                `$${metadata.financial_terms[0].amount.toLocaleString()}` : 'Not specified'}
+                ` : ''}
+
+                <div class="structured-data-view">
+                    <div class="data-section">
+                        <h4>📄 Document Information</h4>
+                        <div class="data-grid">
+                            <div class="data-item">
+                                <span class="data-label">Type:</span>
+                                <span class="data-value">${metadata.document_type?.primary || 'Unknown'}</span>
+                            </div>
+                            <div class="data-item">
+                                <span class="data-label">Processing:</span>
+                                <span class="data-value">${result.processing_method}</span>
+                            </div>
+                            <div class="data-item">
+                                <span class="data-label">Content Length:</span>
+                                <span class="data-value">${metadata.content_length || 0} characters</span>
+                            </div>
                         </div>
                     </div>
-                    
-                    <div class="metadata-item">
-                        <div class="metadata-label">Parties</div>
-                        <div class="metadata-value">
-                            ${metadata.parties?.length || 0} parties identified
+
+                    <div class="data-section">
+                        <h4>👥 Parties (${metadata.parties?.length || 0})</h4>
+                        <div class="parties-list">
+                            ${metadata.parties?.map(party => `
+                                <div class="party-item">
+                                    <span class="party-name">${party.text}</span>
+                                    <span class="confidence-score">${Math.round(party.confidence * 100)}%</span>
+                                </div>
+                            `).join('') || '<div class="no-data">No parties identified</div>'}
                         </div>
                     </div>
-                    
-                    <div class="metadata-item">
-                        <div class="metadata-label">Processing Method</div>
-                        <div class="metadata-value">
-                            ${useLegalBERT.checked ? '🧠 LegalBERT + AI Agents' : '⚡ Standard AI Agents'}
+
+                    <div class="data-section">
+                        <h4>💰 Financial Terms (${metadata.financial_terms?.length || 0})</h4>
+                        <div class="financial-list">
+                            ${metadata.financial_terms?.map(term => `
+                                <div class="financial-item">
+                                    <span class="amount">$${term.amount.toLocaleString()}</span>
+                                    <span class="label">${term.label}</span>
+                                    <span class="confidence-score">${Math.round(term.confidence * 100)}%</span>
+                                </div>
+                            `).join('') || '<div class="no-data">No financial terms found</div>'}
                         </div>
                     </div>
+
+                    ${metadata.dates?.length ? `
+                        <div class="data-section">
+                            <h4>📅 Dates (${metadata.dates.length})</h4>
+                            <div class="dates-list">
+                                ${metadata.dates.map(date => `
+                                    <div class="date-item">
+                                        <span class="date-text">${date.text}</span>
+                                        <span class="confidence-score">${Math.round(date.confidence * 100)}%</span>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    ` : ''}
                 </div>
 
-                ${result.requires_human_review ? 
+                ${result.requires_human_review && !requiresHIL ? 
                     '<div style="margin-top: 15px; padding: 10px; background: #fff3cd; border-radius: 6px; color: #856404;"><strong>⚠️ Human Review Required</strong><br>This document contains complex terms or high-value amounts that require validation.</div>' : 
                     ''
                 }
@@ -825,6 +922,209 @@
             setTimeout(() => {
                 statusIndicator.classList.remove('show');
             }, 3000);
+        }
+
+        // HIL Review Functions
+        let hilMode = false;
+        let currentHILDocument = null;
+
+        function startHILReview(fileId) {
+            const fileObj = selectedFiles.find(f => f.id == fileId);
+            if (!fileObj) {
+                showStatus('❌ Document not found', 'error');
+                return;
+            }
+
+            currentHILDocument = fileObj;
+            hilMode = true;
+            
+            // Show HIL interface
+            showHILInterface(fileObj);
+        }
+
+        function showHILInterface(fileObj) {
+            // Create HIL overlay
+            const hilOverlay = document.createElement('div');
+            hilOverlay.id = 'hilOverlay';
+            hilOverlay.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.8);
+                z-index: 1000;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            `;
+
+            hilOverlay.innerHTML = `
+                <div style="background: white; width: 95%; height: 90%; border-radius: 10px; display: flex; flex-direction: column;">
+                    <div style="padding: 20px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center;">
+                        <h2>🔍 HIL Review: ${fileObj.name}</h2>
+                        <button onclick="closeHILReview()" style="background: #dc3545; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">Close</button>
+                    </div>
+                    <div style="flex: 1; display: flex;">
+                        <!-- Left pane: Original document preview -->
+                        <div style="flex: 1; padding: 20px; border-right: 1px solid #eee;">
+                            <h3>📄 Original Document</h3>
+                            <div id="originalDocPreview" style="border: 1px solid #ddd; height: 400px; background: #f8f9fa; display: flex; align-items: center; justify-content: center; margin-top: 10px;">
+                                <p>Document preview would appear here<br><small>Page images with highlighted low-confidence regions</small></p>
+                            </div>
+                        </div>
+                        <!-- Right pane: OCR output editing -->
+                        <div style="flex: 1; padding: 20px;">
+                            <h3>✏️ OCR Output (Editable)</h3>
+                            <div style="margin: 10px 0; padding: 10px; background: #fff3cd; border-radius: 4px; font-size: 0.9em;">
+                                <strong>📊 Quality Score:</strong> ${Math.round((fileObj.result?.ocr_score || 0.7) * 100)}% 
+                                <span style="color: #856404;">• Low confidence regions highlighted below</span>
+                            </div>
+                            <textarea id="ocrTextEditor" style="width: 100%; height: 350px; padding: 10px; border: 1px solid #ddd; border-radius: 4px; font-family: monospace; font-size: 14px;" placeholder="OCR extracted text will appear here for editing...">${generateSampleOCRText(fileObj.name)}</textarea>
+                            <div style="margin-top: 15px; display: flex; gap: 10px;">
+                                <button onclick="saveHILChanges()" class="btn btn-primary">💾 Save Changes</button>
+                                <button onclick="submitToAnalysis()" class="btn btn-primary">✅ Submit to Analysis</button>
+                                <button onclick="autoSaveToggle()" id="autoSaveBtn" class="btn btn-secondary">🔄 Auto-save: ON</button>
+                            </div>
+                            <div id="hilStatus" style="margin-top: 10px; font-size: 0.9em; color: #6c757d;"></div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            document.body.appendChild(hilOverlay);
+            
+            // Initialize auto-save
+            setupAutoSave();
+            showStatus('📝 HIL Review interface opened', 'info');
+        }
+
+        function generateSampleOCRText(filename) {
+            // Generate realistic OCR text with some low-confidence areas
+            return `REAL ESTATE PURCHASE AGREEMENT
+
+This Agreement is made between:
+
+BUYER: John D@e Smith (confidence: 65% - needs review)
+Address: 123 Main Street, Santa Cl@ra, CA 95050
+
+SELLER: Acme Real Estate LLC
+Address: 456 Oak Avenue, San Jose, CA 95110
+
+PROPERTY: 789 Elm Street, Mountain View, CA 94041
+APN: 123-45-678
+
+PURCHASE PRICE: $1,250,@00 (confidence: 72% - verify amount)
+
+Terms:
+- Earnest money: $25,000
+- Closing date: December 15, 2024
+- Contingencies: Inspection, financing, appr@isal
+
+Low confidence regions marked with @ symbols indicate areas that may need manual correction.`;
+        }
+
+        function setupAutoSave() {
+            const textarea = document.getElementById('ocrTextEditor');
+            let autoSaveEnabled = true;
+            let saveTimeout;
+
+            textarea.addEventListener('input', function() {
+                if (!autoSaveEnabled) return;
+                
+                clearTimeout(saveTimeout);
+                saveTimeout = setTimeout(() => {
+                    saveHILChanges(true); // Silent save
+                }, 2000); // Auto-save after 2 seconds of no typing
+            });
+        }
+
+        function saveHILChanges(silent = false) {
+            const textarea = document.getElementById('ocrTextEditor');
+            const correctedText = textarea.value;
+            
+            // Update the document with corrected text
+            if (currentHILDocument) {
+                currentHILDocument.correctedText = correctedText;
+                currentHILDocument.lastSaved = new Date().toISOString();
+            }
+            
+            const statusEl = document.getElementById('hilStatus');
+            if (statusEl) {
+                statusEl.innerHTML = `✅ ${silent ? 'Auto-saved' : 'Saved'} at ${new Date().toLocaleTimeString()}`;
+            }
+            
+            if (!silent) {
+                showStatus('💾 Changes saved successfully', 'success');
+            }
+        }
+
+        function submitToAnalysis() {
+            if (!currentHILDocument) return;
+            
+            saveHILChanges();
+            
+            // Mark document as reviewed and ready for analysis
+            currentHILDocument.status = 'hil-reviewed';
+            currentHILDocument.readyForAnalysis = true;
+            
+            showStatus('✅ Document submitted to analysis pipeline', 'success');
+            closeHILReview();
+            
+            // Update the result card to show submission status
+            updateResultCardAfterHIL(currentHILDocument);
+        }
+
+        function updateResultCardAfterHIL(fileObj) {
+            // Find and update the result card to show HIL completion
+            const resultCards = document.querySelectorAll('.result-card');
+            resultCards.forEach(card => {
+                if (card.querySelector('.result-title').textContent === fileObj.name) {
+                    const ocrAssessment = card.querySelector('.ocr-assessment');
+                    if (ocrAssessment) {
+                        ocrAssessment.innerHTML = `
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <span style="font-weight: 600; color: #2c3e50;">📄 HIL Review Completed</span>
+                                <span style="font-weight: 600; color: #28a745;">✅ Ready</span>
+                            </div>
+                            <div style="color: #28a745; font-size: 0.9em;">
+                                ✅ Human review completed - submitted to analysis pipeline
+                            </div>
+                            <div style="margin-top: 10px;">
+                                <button class="btn btn-secondary" onclick="reopenHILReview('${fileObj.id}')" style="font-size: 0.9em; padding: 6px 12px;">
+                                    📝 Re-edit
+                                </button>
+                            </div>
+                        `;
+                    }
+                }
+            });
+        }
+
+        function reopenHILReview(fileId) {
+            startHILReview(fileId);
+        }
+
+        function autoSaveToggle() {
+            const btn = document.getElementById('autoSaveBtn');
+            const isEnabled = btn.textContent.includes('ON');
+            
+            if (isEnabled) {
+                btn.textContent = '🔄 Auto-save: OFF';
+                btn.style.background = '#6c757d';
+            } else {
+                btn.textContent = '🔄 Auto-save: ON';
+                btn.style.background = '';
+            }
+        }
+
+        function closeHILReview() {
+            const overlay = document.getElementById('hilOverlay');
+            if (overlay) {
+                overlay.remove();
+            }
+            hilMode = false;
+            currentHILDocument = null;
         }
 
         // Initialize

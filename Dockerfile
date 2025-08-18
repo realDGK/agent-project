@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y \
     tesseract-ocr \
     tesseract-ocr-eng \
     poppler-utils \
-    libgl1-mesa-glx \
+    curl \
     # Clean up to reduce image size
     && rm -rf /var/lib/apt/lists/*
 
@@ -38,4 +38,4 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
 # Command to run the application
 # This is also part of the fix. The entry point for the app is now correctly
 # set to the main.py file in the /app directory.
-CMD ["python", "main_simple.py"]
+CMD ["python", "main.py"]
