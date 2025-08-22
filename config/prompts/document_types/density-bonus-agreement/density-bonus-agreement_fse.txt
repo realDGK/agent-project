@@ -1,0 +1,30 @@
+**INPUT DOCUMENT TEXT:**
+DENSITY BONUS HOUSING AGREEMENT
+This Agreement is made April 10, 2030, between the City of Metropolis ("City") and Urban Lofts LLC ("Developer").
+
+RECITALS:
+A. The Project at 456 High Street allows a base density of 100 residential units.
+B. Developer has agreed to restrict ten (10) units for Very Low-Income households.
+C. In exchange, the City grants a 20% density bonus, allowing for a total of 120 units.
+D. The City also grants one concession: a reduction in the required parking ratio.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Density Bonus Housing Agreement",
+  "effective_date": "2030-04-10",
+  "parties": [
+    { "name": "City of Metropolis", "role": "City" },
+    { "name": "Urban Lofts LLC", "role": "Developer" }
+  ],
+  "entitlement_details": {
+    "project_name": null,
+    "property_address": "456 High Street",
+    "base_density": "100 residential units",
+    "affordable_units_provided": "Ten (10) units for Very Low-Income households.",
+    "density_bonus_granted": "20% density bonus, allowing for a total of 120 units.",
+    "concessions_or_incentives": [
+      "A reduction in the required parking ratio."
+    ]
+  },
+  "discovered_entities": []
+}

@@ -1,0 +1,29 @@
+**INPUT DOCUMENT TEXT:**
+INDENTURE OF TRUST
+by and between the
+OAKWOOD PUBLIC FINANCING AUTHORITY, as Issuer
+and
+U.S. BANK NATIONAL ASSOCIATION, as Trustee
+
+Dated as of July 1, 2032
+$15,000,000 Special Tax Bonds, Series 2032 (CFD No. 2032-1)
+
+This Indenture sets forth the terms of the Bonds, which mature on September 1, 2062, and bear interest at rates from 3.0% to 5.0%. The Bonds are secured by a pledge of the Net Special Taxes levied within CFD No. 2032-1.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Indenture of Trust",
+  "effective_date": "2032-07-01",
+  "parties": [
+    { "name": "OAKWOOD PUBLIC FINANCING AUTHORITY", "role": "Issuer" },
+    { "name": "U.S. BANK NATIONAL ASSOCIATION", "role": "Trustee" }
+  ],
+  "bond_details": {
+    "bond_series_name": "Special Tax Bonds, Series 2032 (CFD No. 2032-1)",
+    "principal_amount": 15000000,
+    "maturity_date": "2062-09-01",
+    "interest_rate_summary": "Rates from 3.0% to 5.0%.",
+    "security_for_bonds": "A pledge of the Net Special Taxes levied within CFD No. 2032-1."
+  },
+  "discovered_entities": []
+}

@@ -1,0 +1,28 @@
+**INPUT DOCUMENT TEXT:**
+RIVERBEND UNIFIED SCHOOL DISTRICT
+WILL SERVE LETTER
+
+Date: March 20, 2030
+To: Riverbend Homes LLC
+Re: "Riverbend" (Tract No. 8888)
+
+This letter is to confirm that the Riverbend Unified School District has the capacity and is willing to serve the 150 single-family homes proposed in the Riverbend project.
+
+This commitment is conditioned upon the Developer's payment of all applicable school impact fees prior to the issuance of building permits.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Will Serve Letter",
+  "effective_date": "2030-03-20",
+  "parties": [
+    { "name": "Riverbend Unified School District", "role": "Utility Provider" },
+    { "name": "Riverbend Homes LLC", "role": "Developer" }
+  ],
+  "utility_service_details": {
+    "utility_type": "School District",
+    "project_name": "Riverbend (Tract No. 8888)",
+    "service_commitment": "Has the capacity and is willing to serve the 150 single-family homes.",
+    "conditions_of_service": "Payment of all applicable school impact fees prior to the issuance of building permits."
+  },
+  "discovered_entities": []
+}

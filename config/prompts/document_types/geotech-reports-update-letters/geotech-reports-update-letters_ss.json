@@ -1,0 +1,66 @@
+{
+  "title": "Geotechnical Report Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string"
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "Client",
+              "Geotechnical Engineer"
+            ]
+          }
+        },
+        "required": [
+          "name",
+          "role"
+        ]
+      }
+    },
+    "technical_report_details": {
+      "type": "object",
+      "properties": {
+        "project_name": {
+          "type": "string"
+        },
+        "report_type": {
+          "type": "string",
+          "enum": [
+            "Geotechnical Investigation",
+            "Soils Report",
+            "Update Letter"
+          ]
+        },
+        "site_address": {
+          "type": "string"
+        },
+        "key_findings": {
+          "type": "string"
+        },
+        "recommendations_summary": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "required": [
+    "contract_name",
+    "effective_date",
+    "parties",
+    "technical_report_details"
+  ]
+}

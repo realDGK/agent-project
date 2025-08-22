@@ -1,0 +1,48 @@
+{
+  "title": "Ground Lease Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Ground Lease'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Landlord", "Tenant"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "lease_details": {
+      "type": "object",
+      "properties": {
+        "lease_type": { "type": "string", "default": "Ground" },
+        "property_description": { "type": "string" },
+        "lease_term_years": { "type": "integer" },
+        "rent_schedule": { "type": "string" },
+        "permitted_use": { "type": "string" },
+        "reversion_clause": { "type": "string", "description": "Describes what happens to the improvements at the end of the lease." }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "lease_details"]
+}

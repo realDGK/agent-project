@@ -1,0 +1,10 @@
+{
+  "rules_and_regulations_details": {
+    "type": "object",
+    "description": "Details specific to building or project rules and regulations.",
+    "properties": {
+      "property_name": { "type": "string" },
+      "key_rules": { "type": "array", "items": { "type": "string" } }
+    }
+  }
+}

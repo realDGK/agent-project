@@ -1,0 +1,54 @@
+{
+  "title": "Due Diligence Request List Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Due Diligence Checklist'."
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date",
+      "description": "The date the request list was sent."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Requesting Party", "Responding Party"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "due_diligence_details": {
+      "type": "object",
+      "properties": {
+        "project_name": {
+          "type": "string"
+        },
+        "requested_item_categories": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "A list of the main categories of documents requested."
+        }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "due_diligence_details"]
+}

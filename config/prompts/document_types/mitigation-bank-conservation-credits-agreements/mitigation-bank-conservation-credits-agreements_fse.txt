@@ -1,0 +1,27 @@
+**INPUT DOCUMENT TEXT:**
+AGREEMENT FOR THE SALE OF VERNAL POOL WETLAND MITIGATION CREDITS
+
+This Agreement is made June 10, 2031, between Spring Valley Mitigation Bank LLC ("Seller") and Pine Hills Development LLC ("Buyer").
+
+Seller agrees to sell to Buyer, and Buyer agrees to purchase, One and a Half (1.5) vernal pool wetland credits for a price of $150,000 per credit, for a total of $225,000.
+
+These credits will be used to satisfy the mitigation requirements for the Pine Hills Estates project, as required by USACE Permit No. SPK-2031-00123.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Agreement for the Sale of Vernal Pool Wetland Mitigation Credits",
+  "effective_date": "2031-06-10",
+  "parties": [
+    { "name": "Spring Valley Mitigation Bank LLC", "role": "Seller" },
+    { "name": "Pine Hills Development LLC", "role": "Buyer" }
+  ],
+  "mitigation_credit_details": {
+    "bank_name": "Spring Valley Mitigation Bank",
+    "credit_type": "Vernal pool wetland",
+    "number_of_credits": 1.5,
+    "price_per_credit": 150000,
+    "total_purchase_price": 225000,
+    "project_to_be_mitigated": "Pine Hills Estates project (USACE Permit No. SPK-2031-00123)"
+  },
+  "discovered_entities": []
+}

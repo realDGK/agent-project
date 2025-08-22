@@ -1,0 +1,45 @@
+{
+  "title": "Website/Press Release Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The title of the press release or web page."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Company", "Author"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "public_release_details": {
+      "type": "object",
+      "properties": {
+        "release_type": { "type": "string", "enum": ["Website", "Press Release"] },
+        "headline": { "type": "string" },
+        "summary": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "public_release_details"]
+}

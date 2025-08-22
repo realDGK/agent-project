@@ -1,0 +1,12 @@
+{
+  "casp_report_details": {
+    "type": "object",
+    "description": "Details specific to a Certified Access Specialist (CASp) report.",
+    "properties": {
+      "property_address": { "type": "string" },
+      "inspection_date": { "type": "string", "format": "date" },
+      "determination": { "type": "string" },
+      "summary_of_findings": { "type": "string" }
+    }
+  }
+}

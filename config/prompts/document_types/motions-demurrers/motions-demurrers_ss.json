@@ -1,0 +1,46 @@
+{
+  "title": "Motion/Demurrer Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Notice of Motion and Motion for Summary Judgment'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Moving Party", "Opposing Party"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "litigation_details": {
+      "type": "object",
+      "properties": {
+        "case_number": { "type": "string" },
+        "motion_type": { "type": "string" },
+        "relief_sought": { "type": "string" },
+        "hearing_date": { "type": "string", "format": "date" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "litigation_details"]
+}

@@ -1,0 +1,22 @@
+**INPUT DOCUMENT TEXT:**
+FOR IMMEDIATE RELEASE
+August 1, 2027
+
+Global Commercial Real Estate Announces Sale of Napa Valley Development Site
+
+NAPA, CA – Global Commercial Real Estate today announced it has arranged the $10 million sale of The Vineyard Estates, a 5.25-acre entitled development site, to Western Land Partners, LP.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Press Release",
+  "effective_date": "2027-08-01",
+  "parties": [
+    { "name": "Global Commercial Real Estate", "role": "Author" }
+  ],
+  "public_release_details": {
+    "release_type": "Press Release",
+    "headline": "Global Commercial Real Estate Announces Sale of Napa Valley Development Site",
+    "summary": "Arranged the $10 million sale of The Vineyard Estates, a 5.25-acre entitled development site, to Western Land Partners, LP."
+  },
+  "discovered_entities": []
+}

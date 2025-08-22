@@ -1,0 +1,27 @@
+**INPUT DOCUMENT TEXT:**
+CULTURAL RESOURCES STUDY FOR THE CANYON RANCH PROJECT
+
+Prepared by: Heritage Consultants, Inc.
+Date: April 20, 2031
+
+RESULTS:
+No prehistoric or historic-era archaeological resources were identified during the pedestrian survey. A records search indicated low sensitivity for such resources.
+
+AB 52 TRIBAL CONSULTATION:
+The Lead Agency initiated consultation with the United Auburn Indian Community. The tribe requested the implementation of an inadvertent discovery protocol as a condition of approval.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Cultural Resources Study for the Canyon Ranch Project",
+  "effective_date": "2031-04-20",
+  "parties": [
+    { "name": "Heritage Consultants, Inc.", "role": "Consultant" }
+  ],
+  "technical_study_details": {
+    "study_type": "Cultural/Tribal Resources",
+    "project_name": "Canyon Ranch Project",
+    "findings_summary": "No prehistoric or historic-era archaeological resources were identified during the pedestrian survey.",
+    "ab52_consultation_summary": "Consultation was initiated with the United Auburn Indian Community, who requested an inadvertent discovery protocol."
+  },
+  "discovered_entities": []
+}

@@ -1,0 +1,27 @@
+**INPUT DOCUMENT TEXT:**
+NOTICE OF DEFAULT AND ELECTION TO SELL
+
+To: Downtown Tower LLC
+From: Mega Bank, N.A.
+Date: October 1, 2034
+
+You are in default under the Deed of Trust dated August 1, 2031, due to failure to make the monthly interest payment due September 1, 2034.
+
+The amount currently due to cure the default is $250,000.00. You have 90 days from the recording of this notice to cure the default.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Notice of Default and Election to Sell",
+  "effective_date": "2034-10-01",
+  "parties": [
+    { "name": "Mega Bank, N.A.", "role": "Lender" },
+    { "name": "Downtown Tower LLC", "role": "Borrower" }
+  ],
+  "default_notice_details": {
+    "loan_reference": "Deed of Trust dated August 1, 2031",
+    "nature_of_default": "Failure to make the monthly interest payment due September 1, 2034.",
+    "amount_to_cure": 250000,
+    "cure_period": "90 days from the recording of this notice."
+  },
+  "discovered_entities": []
+}

@@ -1,0 +1,28 @@
+**INPUT DOCUMENT TEXT:**
+NOTICE OF BREACH AND OPPORTUNITY TO CURE
+
+Date: December 10, 2031
+To: BuildRight Corp.
+From: Downtown Tower LLC
+
+Re: Construction Agreement dated September 1, 2031
+
+You are hereby notified that you are in breach of the Agreement for failure to meet Milestone #3 (Topping Out) by the required date.
+
+Pursuant to Section 14.1 of the Agreement, you have fifteen (15) days from receipt of this notice to cure the default.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Notice of Breach and Opportunity to Cure",
+  "effective_date": "2031-12-10",
+  "parties": [
+    { "name": "Downtown Tower LLC", "role": "Notifying Party" },
+    { "name": "BuildRight Corp.", "role": "Breaching Party" }
+  ],
+  "default_notice_details": {
+    "contract_reference": "Construction Agreement dated September 1, 2031",
+    "nature_of_default": "Failure to meet Milestone #3 (Topping Out) by the required date.",
+    "cure_period": "Fifteen (15) days from receipt of this notice."
+  },
+  "discovered_entities": []
+}

@@ -1,0 +1,45 @@
+{
+  "title": "Habitat Conservation Plan (HCP) Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'East County Habitat Conservation Plan'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Plan Operator", "Regulatory Agency"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "hcp_details": {
+      "type": "object",
+      "properties": {
+        "plan_area": { "type": "string" },
+        "covered_species": { "type": "array", "items": { "type": "string" } },
+        "mitigation_strategy": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "hcp_details"]
+}

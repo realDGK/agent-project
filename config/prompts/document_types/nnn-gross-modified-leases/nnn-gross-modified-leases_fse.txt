@@ -1,0 +1,33 @@
+**INPUT DOCUMENT TEXT:**
+STANDARD TRIPLE NET (NNN) COMMERCIAL LEASE
+
+Date: March 1, 2033
+Landlord: Commerce Center LLC
+Tenant: Logistics Solutions Inc.
+
+1. Premises: Suite 150, containing approximately 25,000 square feet, at 100 Business Park Drive.
+2. Term: Five (5) years (60 months), commencing on April 1, 2033.
+3. Base Rent: $1.25 per square foot per month, increasing 3% annually.
+4. Operating Expenses: This is a Triple Net (NNN) lease. Tenant shall pay its pro-rata share of all property taxes, insurance, and common area maintenance.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Standard Triple Net (NNN) Commercial Lease",
+  "effective_date": "2033-03-01",
+  "parties": [
+    { "name": "Commerce Center LLC", "role": "Landlord" },
+    { "name": "Logistics Solutions Inc.", "role": "Tenant" }
+  ],
+  "lease_details": {
+    "lease_type": "NNN",
+    "premises_address": "Suite 150, 100 Business Park Drive",
+    "premises_sqft": 25000,
+    "lease_term_months": 60,
+    "commencement_date": "2033-04-01",
+    "expiration_date": null,
+    "base_rent": "$1.25 per square foot per month, increasing 3% annually.",
+    "operating_expenses_pass_through": "Tenant shall pay its pro-rata share of all property taxes, insurance, and common area maintenance.",
+    "renewal_options": null
+  },
+  "discovered_entities": []
+}

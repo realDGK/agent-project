@@ -1,0 +1,14 @@
+{
+  "draw_request_details": {
+    "type": "object",
+    "description": "Details specific to a construction loan draw request.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "draw_number": { "integer": "string" },
+      "draw_period": { "type": "string" },
+      "total_amount_requested": { "type": "number" },
+      "total_amount_approved": { "type": "number" },
+      "total_project_completion_pct": { "type": "number" }
+    }
+  }
+}

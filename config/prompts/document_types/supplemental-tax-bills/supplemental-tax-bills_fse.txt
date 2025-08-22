@@ -1,0 +1,29 @@
+**INPUT DOCUMENT TEXT:**
+NOTICE OF SUPPLEMENTAL PROPERTY TAX BILL
+COUNTY OF ALAMEDA
+
+APN: 123-456-789
+Reason for Bill: Change in Ownership on 10/30/2027.
+
+Prior Assessed Value: $5,000,000
+New Assessed Value (Sales Price): $10,000,000
+Supplemental Assessment: $5,000,000
+Supplemental Tax Due: $27,500.00
+Due Date: 01/15/2028
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Supplemental Property Tax Bill",
+  "parties": [
+    { "name": "County of Alameda", "role": "Taxing Agency" }
+  ],
+  "tax_details": {
+    "apn": "123-456-789",
+    "reason_for_supplemental_bill": "Change in Ownership on 10/30/2027.",
+    "prior_assessed_value": 5000000,
+    "new_assessed_value": 10000000,
+    "supplemental_tax_due": 27500,
+    "due_date": "2028-01-15"
+  },
+  "discovered_entities": []
+}

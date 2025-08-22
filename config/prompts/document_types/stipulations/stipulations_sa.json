@@ -1,0 +1,12 @@
+{
+  "stipulation_details": {
+    "type": "object",
+    "description": "Details specific to a stipulation between parties in a legal proceeding.",
+    "properties": {
+      "stipulation_summary": {
+        "type": "string",
+        "description": "A summary of what the parties are agreeing to."
+      }
+    }
+  }
+}

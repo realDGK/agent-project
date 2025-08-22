@@ -1,0 +1,12 @@
+{
+  "calgreen_details": {
+    "type": "object",
+    "description": "Details specific to a CALGreen compliance document.",
+    "properties": {
+      "project_address": { "type": "string" },
+      "permit_number": { "type": "string" },
+      "compliance_tier": { "type": "string", "description": "e.g., 'Tier 1', 'Tier 2'." },
+      "key_measures_verified": { "type": "array", "items": { "type": "string" } }
+    }
+  }
+}

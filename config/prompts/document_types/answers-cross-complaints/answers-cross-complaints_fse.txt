@@ -1,0 +1,32 @@
+**INPUT DOCUMENT TEXT:**
+ANSWER TO COMPLAINT; CROSS-COMPLAINT
+Case No. RG12345678
+
+Defendant PROPERTY OWNER LLC answers the complaint and alleges the following affirmative defenses:
+1. Failure to state a claim.
+2. Unclean hands.
+
+CROSS-COMPLAINT
+Cross-Complainant PROPERTY OWNER LLC alleges that Cross-Defendant GENERAL CONTRACTOR INC. performed defective work and seeks damages in excess of $500,000.
+
+Date Filed: August 1, 2029
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Answer to Complaint; Cross-Complaint",
+  "effective_date": "2029-08-01",
+  "parties": [
+    { "name": "PROPERTY OWNER LLC", "role": "Defendant" },
+    { "name": "PROPERTY OWNER LLC", "role": "Cross-Complainant" },
+    { "name": "GENERAL CONTRACTOR INC.", "role": "Cross-Defendant" }
+  ],
+  "litigation_details": {
+    "case_number": "RG12345678",
+    "affirmative_defenses": [
+      "Failure to state a claim.",
+      "Unclean hands."
+    ],
+    "cross_complaint_summary": "Alleges defective work and seeks damages in excess of $500,000."
+  },
+  "discovered_entities": []
+}

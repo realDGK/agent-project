@@ -1,0 +1,26 @@
+**INPUT DOCUMENT TEXT:**
+OIL, GAS AND MINERAL LEASE
+
+This Lease is made July 1, 2033, between Texas Landowners LLC ("Lessor") and Wildcat Exploration Inc. ("Lessee").
+
+Lessor grants to Lessee the exclusive right to explore for, drill for, and produce oil, gas, and other minerals from the 640-acre property described in Exhibit A.
+
+The primary term of this lease is five (5) years.
+Lessee shall pay Lessor a royalty of one-eighth (1/8th) of the value of all oil and gas produced.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Oil, Gas and Mineral Lease",
+  "effective_date": "2033-07-01",
+  "parties": [
+    { "name": "Texas Landowners LLC", "role": "Lessor" },
+    { "name": "Wildcat Exploration Inc.", "role": "Lessee" }
+  ],
+  "mineral_rights_details": {
+    "rights_type": "Oil, Gas, and Mineral",
+    "property_description": "The 640-acre property described in Exhibit A.",
+    "royalty_rate": "One-eighth (1/8th) of the value of all oil and gas produced.",
+    "lease_term": "Primary term of five (5) years."
+  },
+  "discovered_entities": []
+}

@@ -1,0 +1,36 @@
+**INPUT DOCUMENT TEXT:**
+PRELIMINARY REPORT - Chicago Title Company
+Order No: CT-98765
+Effective Date: September 1, 2027 at 7:30 AM
+
+1. The estate or interest in the land is a Fee.
+2. Title to said estate is vested in: OAK TREE INVESTORS, LLC.
+3. The land is described as Lot 1 of Parcel Map No. 1234.
+
+SCHEDULE B - EXCEPTIONS
+1. Property taxes for the fiscal year 2027-2028.
+2. An easement for public utilities recorded as Instrument No. 1999-54321.
+3. Covenants, Conditions, and Restrictions recorded as Instrument No. 1999-54322.
+4. A Deed of Trust to secure an indebtedness of $4,500,000.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Preliminary Report",
+  "effective_date": "2027-09-01",
+  "parties": [
+    { "name": "Chicago Title Company", "role": "Title Company" },
+    { "name": "OAK TREE INVESTORS, LLC", "role": "Assessed Owner" }
+  ],
+  "title_details": {
+    "report_number": "CT-98765",
+    "property_legal_description": "Lot 1 of Parcel Map No. 1234.",
+    "estate_or_interest": "Fee",
+    "exceptions": [
+      "Property taxes for the fiscal year 2027-2028.",
+      "An easement for public utilities recorded as Instrument No. 1999-54321.",
+      "Covenants, Conditions, and Restrictions recorded as Instrument No. 1999-54322.",
+      "A Deed of Trust to secure an indebtedness of $4,500,000."
+    ]
+  },
+  "discovered_entities": []
+}

@@ -1,0 +1,23 @@
+{
+  "technical_study_details": {
+    "type": "object",
+    "description": "Details specific to a technical study or report.",
+    "properties": {
+      "study_type": { "type": "string" },
+      "project_name": { "type": "string" },
+      "site_description": { "type": "string" },
+      "key_findings": { "type": "array", "items": { "type": "string" } },
+      "recommendations": { "type": "string" },
+      "findings_summary": { "type": "string" },
+      "ab52_consultation_summary": { "type": "string" },
+      "paleontological_sensitivity": { "type": "string" },
+      "project_trip_generation": { "type": "string" },
+      "significant_impacts_identified": { "type": "array", "items": { "type": "string" } },
+      "recommended_mitigation": { "type": "string" },
+      "emissions_summary": { "type": "string" },
+      "thresholds_exceeded": { "type": "array", "items": { "type": "string" } },
+      "pollutants_analyzed": { "type": "array", "items": { "type": "string" } },
+      "risk_conclusion": { "type": "string" }
+    }
+  }
+}

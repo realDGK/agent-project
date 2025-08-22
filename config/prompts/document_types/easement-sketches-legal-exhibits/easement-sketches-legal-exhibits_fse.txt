@@ -1,0 +1,23 @@
+**INPUT DOCUMENT TEXT:**
+EXHIBIT 'B'
+LEGAL DESCRIPTION OF PUBLIC UTILITY EASEMENT
+
+A strip of land, 10 feet in width, over a portion of Lot 2 as shown on that certain map entitled "Tract 9000", filed for record in Book 123 of Maps, at Page 45, Official Records of Orange County, California.
+APN: 987-654-002
+
+Prepared by: Compass Land Surveying
+Date: October 1, 2028
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Exhibit 'B' - Legal Description of Public Utility Easement",
+  "effective_date": "2028-10-01",
+  "parties": [
+    { "name": "Compass Land Surveying", "role": "Surveyor" }
+  ],
+  "map_details": {
+    "property_legal_description": "A strip of land, 10 feet in width, over a portion of Lot 2 as shown on that certain map entitled \"Tract 9000\", filed for record in Book 123 of Maps, at Page 45, Official Records of Orange County, California.",
+    "apn": "987-654-002",
+    "purpose_of_exhibit": "Legal Description of Public Utility Easement"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "title": "Preliminary Notice Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Preliminary Notice' or '20-Day Preliminary Notice'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Claimant", "Direct Contractor", "Owner", "Construction Lender"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "preliminary_notice_details": {
+      "type": "object",
+      "properties": {
+        "project_address": { "type": "string" },
+        "work_or_materials_provided": { "type": "string" },
+        "estimated_total_price": { "type": "number" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "preliminary_notice_details"]
+}

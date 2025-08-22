@@ -1,0 +1,45 @@
+{
+  "title": "Street Lighting Agreement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Agreement for the Installation of Street Lighting'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Developer", "Utility Company"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "utility_service_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "scope_of_work": { "type": "string" },
+        "cost_responsibility": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "utility_service_details"]
+}

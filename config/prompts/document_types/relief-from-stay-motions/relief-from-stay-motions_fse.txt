@@ -1,0 +1,26 @@
+**INPUT DOCUMENT TEXT:**
+NOTICE OF MOTION AND MOTION FOR RELIEF FROM THE AUTOMATIC STAY
+Case No. 32-12345
+In re: Old Retailer Inc.
+
+Moving Party, Landlord LLC, a secured creditor, hereby moves the Court for an order granting relief from the automatic stay with respect to the real property at 100 Main Street.
+
+The Debtor has no equity in the property and the property is not necessary for an effective reorganization.
+
+Date Filed: December 1, 2032
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Motion for Relief from the Automatic Stay",
+  "effective_date": "2032-12-01",
+  "parties": [
+    { "name": "Landlord LLC", "role": "Moving Party" },
+    { "name": "Old Retailer Inc.", "role": "Debtor" }
+  ],
+  "bankruptcy_details": {
+    "case_number": "32-12345",
+    "property_address": "100 Main Street",
+    "reason_for_relief": "The Debtor has no equity in the property and the property is not necessary for an effective reorganization."
+  },
+  "discovered_entities": []
+}

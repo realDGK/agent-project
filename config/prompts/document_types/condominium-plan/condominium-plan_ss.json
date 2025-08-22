@@ -1,0 +1,52 @@
+{
+  "title": "Condominium Plan Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Condominium Plan'."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Declarant", "Engineer", "Surveyor"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "map_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "number_of_units": { "type": "integer" },
+        "common_area_description": { "type": "string" },
+        "limited_common_area_description": { "type": "string" }
+      }
+    },
+    "legal_recording_details": {
+      "type": "object",
+      "properties": {
+        "instrument_number": { "type": "string" },
+        "recording_date": { "type": "string", "format": "date" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "map_details"]
+}

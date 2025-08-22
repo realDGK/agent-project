@@ -1,0 +1,45 @@
+{
+  "title": "Offering Memorandum Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Confidential Offering Memorandum'."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Listing Broker", "Seller"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "offering_memorandum_details": {
+      "type": "object",
+      "properties": {
+        "property_name": { "type": "string" },
+        "property_address": { "type": "string" },
+        "offering_price": { "type": "number" },
+        "investment_highlights": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "offering_memorandum_details"]
+}

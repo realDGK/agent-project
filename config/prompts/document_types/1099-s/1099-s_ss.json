@@ -1,0 +1,50 @@
+{
+  "title": "1099-S Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Form 1099-S, Proceeds From Real Estate Transactions'."
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date",
+      "description": "The 'Date of Closing' listed on the form."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Filer", "Transferor"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "tax_details": {
+      "type": "object",
+      "properties": {
+        "form_reference": { "type": "string", "default": "1099-S" },
+        "transferor_tin": { "type": "string" },
+        "gross_proceeds": { "type": "number" },
+        "property_description": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "tax_details"]
+}

@@ -1,0 +1,23 @@
+**INPUT DOCUMENT TEXT:**
+Pavement Design Recommendations
+Project: Northgate Business Park, Phase 2
+Date: October 10, 2027
+Prepared for: Sterling Development Group
+Prepared by: GeoTek Engineers, Inc.
+
+Based on our geotechnical investigation and traffic analysis, we recommend the following pavement section for arterial roads: 4 inches of asphalt concrete over 8 inches of aggregate base.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Pavement Design Recommendations",
+  "effective_date": "2027-10-10",
+  "parties": [
+    { "name": "Sterling Development Group", "role": "Client" },
+    { "name": "GeoTek Engineers, Inc.", "role": "Engineer" }
+  ],
+  "technical_report_details": {
+    "project_name": "Northgate Business Park, Phase 2",
+    "report_type": "Pavement Design",
+    "recommendations_summary": "Arterial roads: 4 inches of asphalt concrete over 8 inches of aggregate base."
+  }
+}

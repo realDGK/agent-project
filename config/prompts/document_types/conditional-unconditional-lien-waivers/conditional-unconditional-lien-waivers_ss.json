@@ -1,0 +1,46 @@
+{
+  "title": "Lien Waiver Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Conditional Waiver and Release on Progress Payment'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Claimant", "Customer", "Owner"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "lien_waiver_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "waiver_type": { "type": "string", "enum": ["Conditional Progress", "Unconditional Progress", "Conditional Final", "Unconditional Final"] },
+        "through_date": { "type": "string", "format": "date" },
+        "payment_amount": { "type": "number" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "lien_waiper_details"]
+}

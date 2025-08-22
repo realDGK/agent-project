@@ -1,0 +1,25 @@
+**INPUT DOCUMENT TEXT:**
+EASEMENT FOR FLOOD CONTROL PURPOSES
+
+This easement is granted October 1, 2033, by Riverfront Properties LLC ("Grantor") to the County Flood Control District ("Grantee").
+
+Grantor grants a perpetual easement over the portion of the property described in Exhibit A for the purpose of constructing and maintaining a flood control levee.
+
+No structures of any kind shall be erected within the easement area.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Easement for Flood Control Purposes",
+  "effective_date": "2033-10-01",
+  "parties": [
+    { "name": "Riverfront Properties LLC", "role": "Grantor" },
+    { "name": "County Flood Control District", "role": "Grantee" }
+  ],
+  "easement_details": {
+    "easement_type": "Flood Control",
+    "property_description": "The portion of the property described in Exhibit A.",
+    "purpose": "Constructing and maintaining a flood control levee.",
+    "restrictions_imposed": "No structures of any kind shall be erected within the easement area."
+  },
+  "discovered_entities": []
+}

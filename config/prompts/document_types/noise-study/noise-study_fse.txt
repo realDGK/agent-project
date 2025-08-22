@@ -1,0 +1,30 @@
+**INPUT DOCUMENT TEXT:**
+NOISE AND VIBRATION STUDY
+OAKVILLE QUARRY PROJECT
+
+Prepared by: Acoustic Solutions LLC
+Date: June 20, 2031
+
+CONCLUSIONS:
+Construction noise levels will temporarily exceed the City's 60 dBA threshold at the nearest residential receptors.
+
+MITIGATION:
+Mitigation Measure N-1: Temporary sound walls shall be erected along the project boundary adjacent to residences. Construction hours shall be limited.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Noise and Vibration Study",
+  "effective_date": "2031-06-20",
+  "parties": [
+    { "name": "Acoustic Solutions LLC", "role": "Consultant" }
+  ],
+  "technical_study_details": {
+    "study_type": "Noise Study",
+    "project_name": "Oakville Quarry Project",
+    "significant_impacts_identified": [
+      "Construction noise levels will temporarily exceed the City's 60 dBA threshold at the nearest residential receptors."
+    ],
+    "recommended_mitigation": "Mitigation Measure N-1: Temporary sound walls shall be erected along the project boundary adjacent to residences. Construction hours shall be limited."
+  },
+  "discovered_entities": []
+}

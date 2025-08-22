@@ -1,0 +1,49 @@
+INPUT DOCUMENT TEXT:
+UNANIMOUS WRITTEN CONSENT OF THE BOARD OF DIRECTORS
+OF
+CRESTLINE HOMES, INC.
+The undersigned, being all the directors of Crestline Homes, Inc., a California corporation, hereby take the following actions by unanimous written consent without a meeting as of July 18, 2026:
+RESOLVED: That the Corporation is authorized to enter into a Purchase Agreement to acquire the property located at 456 Oak Avenue, Mill Valley, CA.
+RESOLVED: That the officers of the Corporation, specifically the President, are authorized to execute all necessary documents to complete the purchase.
+RESOLVED: That the appointment of Maria Flores as the new company Secretary is hereby approved.
+(Signature) - John Adams, Director
+(Signature) - Susan Bell, Director
+(Signature) - Charles Davis, Director
+JSON OUTPUT:
+{
+"contract_name": "Unanimous Written Consent of the Board of Directors",
+"effective_date": "2026-07-18",
+"parties": [
+{
+"name": "Crestline Homes, Inc.",
+"role": "Entity"
+},
+{
+"name": "John Adams",
+"role": "Director"
+},
+{
+"name": "Susan Bell",
+"role": "Director"
+},
+{
+"name": "Charles Davis",
+"role": "Director"
+},
+{
+"name": "Maria Flores",
+"role": "Officer"
+}
+],
+"corporate_action_details": {
+"action_type": "Unanimous Written Consent",
+"resolutions_passed": [
+"Authorization to enter into a Purchase Agreement for 456 Oak Avenue, Mill Valley, CA.",
+"Authorization for the President to execute necessary documents for the purchase.",
+"Approval of Maria Flores as the new company Secretary."
+],
+"attendees": null,
+"voting_summary": "Unanimous"
+},
+"discovered_entities": []
+}

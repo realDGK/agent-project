@@ -1,0 +1,45 @@
+**INPUT DOCUMENT TEXT:**
+STACKING PLAN - 123 MAIN STREET
+As of 07/01/2033
+
+Floor 3: AVAILABLE (15,000 SF)
+Floor 2: Global Tech Inc. (15,000 SF) - Exp. 12/31/2035
+Floor 1: National Bank (10,000 SF) - Exp. 06/30/2038
+Floor 1: The Coffee Spot (5,000 SF) - Exp. 06/30/2034
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Stacking Plan",
+  "effective_date": "2033-07-01",
+  "parties": [],
+  "stacking_plan_details": {
+    "property_name": "123 Main Street",
+    "floors": [
+      {
+        "floor_number": "3",
+        "tenant": "AVAILABLE",
+        "sqft": 15000,
+        "lease_expiration": null
+      },
+      {
+        "floor_number": "2",
+        "tenant": "Global Tech Inc.",
+        "sqft": 15000,
+        "lease_expiration": "2035-12-31"
+      },
+      {
+        "floor_number": "1",
+        "tenant": "National Bank",
+        "sqft": 10000,
+        "lease_expiration": "2038-06-30"
+      },
+      {
+        "floor_number": "1",
+        "tenant": "The Coffee Spot",
+        "sqft": 5000,
+        "lease_expiration": "2034-06-30"
+      }
+    ]
+  },
+  "discovered_entities": []
+}

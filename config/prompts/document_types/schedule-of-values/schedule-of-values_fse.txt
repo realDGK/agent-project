@@ -1,0 +1,32 @@
+**INPUT DOCUMENT TEXT:**
+SCHEDULE OF VALUES
+PROJECT: DOWNTOWN TOWER
+CONTRACTOR: BUILDRIGHT CORP.
+
+ITEM | DESCRIPTION | VALUE
+1 | General Conditions | $5,000,000
+2 | Site Work | $8,000,000
+3 | Concrete | $20,000,000
+4 | Structural Steel | $25,000,000
+... | ... | ...
+TOTAL | | $100,000,000
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Schedule of Values",
+  "effective_date": null,
+  "parties": [
+    { "name": "BUILDRIGHT CORP.", "role": "Contractor" }
+  ],
+  "schedule_of_values_details": {
+    "project_name": "DOWNTOWN TOWER",
+    "total_contract_value": 100000000,
+    "line_items": [
+      { "item_number": "1", "description": "General Conditions", "scheduled_value": 5000000 },
+      { "item_number": "2", "description": "Site Work", "scheduled_value": 8000000 },
+      { "item_number": "3", "description": "Concrete", "scheduled_value": 20000000 },
+      { "item_number": "4", "description": "Structural Steel", "scheduled_value": 25000000 }
+    ]
+  },
+  "discovered_entities": []
+}

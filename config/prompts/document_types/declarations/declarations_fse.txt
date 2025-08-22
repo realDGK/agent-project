@@ -1,0 +1,26 @@
+**INPUT DOCUMENT TEXT:**
+DECLARATION OF JANE DOE
+Case No. 12345
+
+I, Jane Doe, declare as follows:
+1. I am the project manager for the plaintiff in this action and have personal knowledge of the facts stated herein.
+2. On May 1, 2028, I personally witnessed the defendant operating heavy machinery on the disputed property line.
+
+I declare under penalty of perjury under the laws of the State of California that the foregoing is true and correct.
+Executed on July 1, 2028, at San Jose, California.
+(Signature)
+Jane Doe
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Declaration of Jane Doe",
+  "effective_date": "2028-07-01",
+  "parties": [
+    { "name": "Jane Doe", "role": "Declarant" }
+  ],
+  "litigation_details": {
+    "court_name": null,
+    "case_number": "12345",
+    "supporting": null
+  }
+}

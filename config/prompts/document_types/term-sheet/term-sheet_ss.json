@@ -1,0 +1,64 @@
+{
+  "title": "Term Sheet Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Term Sheet', 'Loan Term Sheet', etc."
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date",
+      "description": "The date the Term Sheet was prepared or issued."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Borrower", "Lender", "Purchaser", "Seller", "Investor", "Company"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "deal_terms": {
+      "type": "object",
+      "properties": {
+        "transaction_summary": {
+          "type": "string",
+          "description": "A high-level summary of the proposed transaction."
+        },
+        "key_financial_terms": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "term": { "type": "string" },
+              "value": { "type": "string" }
+            }
+          }
+        },
+        "is_binding": {
+          "type": "boolean",
+          "description": "Indicates whether the Term Sheet is stated to be binding or non-binding."
+        }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "deal_terms"]
+}

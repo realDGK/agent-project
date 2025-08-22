@@ -1,0 +1,33 @@
+**INPUT DOCUMENT TEXT:**
+REQUEST FOR INFORMATION
+
+RFI No: 055
+Date: November 10, 2031
+To: Global Architects Inc.
+From: BuildRight Corp.
+Project: Downtown Tower
+
+Question: Drawing A-501 shows a conflict between a structural beam and a mechanical duct in the 5th floor ceiling. Please clarify.
+
+Response (11/15/2031): Relocate the duct as shown on the attached Sketch SK-101. There is no cost or schedule impact.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Request for Information",
+  "effective_date": "2031-11-10",
+  "parties": [
+    { "name": "BuildRight Corp.", "role": "Author" },
+    { "name": "Global Architects Inc.", "role": "Recipient" }
+  ],
+  "rfi_details": {
+    "project_name": "Downtown Tower",
+    "rfi_number": "055",
+    "date_sent": "2031-11-10",
+    "question": "Drawing A-501 shows a conflict between a structural beam and a mechanical duct in the 5th floor ceiling. Please clarify.",
+    "response_date": "2031-11-15",
+    "response": "Relocate the duct as shown on the attached Sketch SK-101.",
+    "cost_impact": "No",
+    "schedule_impact": "No"
+  },
+  "discovered_entities": []
+}

@@ -1,0 +1,10 @@
+{
+  "cba_details": {
+    "type": "object",
+    "description": "Details specific to a Community Benefits Agreement (CBA).",
+    "properties": {
+      "project_name": { "type": "string" },
+      "developer_commitments": { "type": "array", "items": { "type": "string" } }
+    }
+  }
+}

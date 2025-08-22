@@ -1,0 +1,25 @@
+**INPUT DOCUMENT TEXT:**
+SCHOOL FACILITIES FEE AGREEMENT
+
+This Agreement is made July 20, 2030, between the Riverbend Unified School District ("District") and Riverbend Homes LLC ("Developer").
+
+Developer agrees to pay school impact fees for the 150-unit Riverbend project in the total amount of One Million Two Hundred Thousand Dollars ($1,200,000).
+
+Payment shall be made on a per-lot basis prior to the issuance of each building permit.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "School Facilities Fee Agreement",
+  "effective_date": "2030-07-20",
+  "parties": [
+    { "name": "Riverbend Unified School District", "role": "School District" },
+    { "name": "Riverbend Homes LLC", "role": "Developer" }
+  ],
+  "fee_details": {
+    "project_name": "Riverbend project",
+    "fee_type": "School Impact Fee",
+    "total_fee_amount": 1200000,
+    "payment_schedule": "On a per-lot basis prior to the issuance of each building permit."
+  },
+  "discovered_entities": []
+}

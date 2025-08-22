@@ -1,0 +1,46 @@
+{
+  "title": "CALGreen Document Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'CALGreen Checklist'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Applicant", "Building Department"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "calgreen_details": {
+      "type": "object",
+      "properties": {
+        "project_address": { "type": "string" },
+        "permit_number": { "type": "string" },
+        "compliance_tier": { "type": "string", "description": "e.g., 'Tier 1', 'Tier 2'." },
+        "key_measures_verified": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "calgreen_details"]
+}

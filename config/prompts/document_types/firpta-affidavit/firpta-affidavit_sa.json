@@ -1,0 +1,12 @@
+{
+  "tax_details": {
+    "type": "object",
+    "description": "Details specific to tax-related documents and information.",
+    "properties": {
+      "ein": { "type": "string" },
+      "form_reference": { "type": "string" },
+      "taxpayer_id_number": { "type": "string" },
+      "certification_statement": { "type": "string" }
+    }
+  }
+}

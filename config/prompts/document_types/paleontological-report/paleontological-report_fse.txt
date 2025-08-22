@@ -1,0 +1,28 @@
+**INPUT DOCUMENT TEXT:**
+PALEONTOLOGICAL RESOURCES ASSESSMENT
+CANYON RANCH PROJECT
+
+Prepared by: Fossil Finders Inc.
+Date: May 1, 2031
+
+RESULTS:
+The project site is underlain by the Monterey Formation, which is assigned a high paleontological resource sensitivity.
+
+RECOMMENDATIONS:
+Due to the high sensitivity, it is recommended that a qualified paleontological monitor be present during all ground-disturbing activities exceeding 5 feet in depth.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Paleontological Resources Assessment",
+  "effective_date": "2031-05-01",
+  "parties": [
+    { "name": "Fossil Finders Inc.", "role": "Consultant" }
+  ],
+  "technical_study_details": {
+    "study_type": "Paleontological Report",
+    "project_name": "Canyon Ranch Project",
+    "paleontological_sensitivity": "High",
+    "recommendations": "A qualified paleontological monitor should be present during all ground-disturbing activities exceeding 5 feet in depth."
+  },
+  "discovered_entities": []
+}

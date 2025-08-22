@@ -1,0 +1,11 @@
+{
+  "ucc_filing_details": {
+    "type": "object",
+    "description": "Details specific to a UCC financing statement.",
+    "properties": {
+      "filing_type": { "type": "string", "enum": ["UCC-1", "UCC-3"] },
+      "filing_number": { "type": "string" },
+      "collateral_description": { "type": "string" }
+    }
+  }
+}

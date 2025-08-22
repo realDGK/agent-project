@@ -1,0 +1,28 @@
+**INPUT DOCUMENT TEXT:**
+CERTIFICATE OF COMPLIANCE
+(Pursuant to California Government Code Section 66499.35)
+
+The County of Placer hereby certifies that the real property described in Exhibit A (APN 012-345-678), owned by Placer Land Holdings LLC, has been determined to be a legal parcel and is in compliance with the Subdivision Map Act.
+
+Dated: August 1, 2028
+Recorded: August 2, 2028, Inst. No. 2028-555444
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Certificate of Compliance",
+  "effective_date": "2028-08-01",
+  "parties": [
+    { "name": "Placer Land Holdings LLC", "role": "Property Owner" },
+    { "name": "County of Placer", "role": "Issuing Agency" }
+  ],
+  "compliance_certificate_details": {
+    "property_description": "Described in Exhibit A",
+    "apn": "012-345-678",
+    "certification_statement": "The real property has been determined to be a legal parcel and is in compliance with the Subdivision Map Act."
+  },
+  "legal_recording_details": {
+    "instrument_number": "2028-555444",
+    "recording_date": "2028-08-02"
+  },
+  "discovered_entities": []
+}

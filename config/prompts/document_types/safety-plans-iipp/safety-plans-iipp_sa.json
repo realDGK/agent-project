@@ -1,0 +1,11 @@
+{
+  "safety_plan_details": {
+    "type": "object",
+    "description": "Details specific to a safety plan.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "safety_officer": { "type": "string" },
+      "key_procedures": { "type": "array", "items": { "type": "string" } }
+    }
+  }
+}

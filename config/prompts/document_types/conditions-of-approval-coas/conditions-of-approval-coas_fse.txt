@@ -1,0 +1,46 @@
+**INPUT DOCUMENT TEXT:**
+EXHIBIT A
+CONDITIONS OF APPROVAL FOR TTM 5555
+
+Project: "Canyon View Estates"
+Date: June 5, 2030
+
+The following conditions shall be satisfied:
+
+PLANNING DEPARTMENT
+1. Prior to recordation of the Final Map, the applicant shall submit a final landscape plan.
+
+PUBLIC WORKS DEPARTMENT
+12. Prior to issuance of a grading permit, the applicant shall pay all applicable traffic impact fees.
+
+FIRE DEPARTMENT
+25. All homes shall be equipped with residential fire sprinklers. This shall be verified prior to final inspection.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Conditions of Approval for TTM 5555",
+  "effective_date": "2030-06-05",
+  "parties": [],
+  "entitlement_details": {
+    "project_name": "Canyon View Estates",
+    "application_number": "TTM 5555",
+    "conditions": [
+      {
+        "department": "Planning Department",
+        "condition_summary": "Submit a final landscape plan.",
+        "timing": "Prior to recordation of the Final Map"
+      },
+      {
+        "department": "Public Works Department",
+        "condition_summary": "Pay all applicable traffic impact fees.",
+        "timing": "Prior to issuance of a grading permit"
+      },
+      {
+        "department": "Fire Department",
+        "condition_summary": "All homes shall be equipped with residential fire sprinklers.",
+        "timing": "Prior to final inspection"
+      }
+    ]
+  },
+  "discovered_entities": []
+}

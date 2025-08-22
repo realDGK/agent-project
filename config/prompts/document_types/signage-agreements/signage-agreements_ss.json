@@ -1,0 +1,44 @@
+{
+  "title": "Signage Agreement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, often a clause within a lease or a separate 'Signage Rider'."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Landlord", "Tenant"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "signage_details": {
+      "type": "object",
+      "properties": {
+        "building_signage_rights": { "type": "string" },
+        "monument_signage_rights": { "type": "string" },
+        "approval_requirements": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "signage_details"]
+}

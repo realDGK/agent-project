@@ -1,0 +1,47 @@
+{
+  "title": "Submittal/Shop Drawing Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Submittal Transmittal'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Subcontractor", "General Contractor", "Architect"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "submittal_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "submittal_number": { "type": "string" },
+        "spec_section": { "type": "string" },
+        "description": { "type": "string" },
+        "review_status": { "type": "string", "enum": ["Approved", "Approved as Noted", "Revise and Resubmit", "Rejected"] }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "submittal_details"]
+}

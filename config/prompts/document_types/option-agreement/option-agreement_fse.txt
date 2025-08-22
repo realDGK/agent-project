@@ -1,0 +1,33 @@
+**INPUT DOCUMENT TEXT:**
+OPTION TO PURCHASE AGREEMENT
+
+This Agreement is made on October 1, 2027, between Summit Land Holdings ("Optionor") and Ridgeline Builders, Inc. ("Optionee").
+
+1. Grant of Option. In consideration of a payment of Fifty Thousand Dollars ($50,000) (the "Option Fee"), Optionor grants to Optionee the exclusive right to purchase the property known as APN 987-654-32.
+2. Option Period. This option shall be exercisable for a period of twelve (12) months from the Effective Date.
+3. Exercise of Option. Optionee may exercise this option by providing written notice to Optionor.
+4. Purchase Price. The purchase price for the Property shall be Two Million Dollars ($2,000,000), payable at closing.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Option to Purchase Agreement",
+  "effective_date": "2027-10-01",
+  "parties": [
+    {
+      "name": "Summit Land Holdings",
+      "role": "Optionor"
+    },
+    {
+      "name": "Ridgeline Builders, Inc.",
+      "role": "Optionee"
+    }
+  ],
+  "option_details": {
+    "property_description": "The property known as APN 987-654-32.",
+    "option_fee": 50000,
+    "option_period": "Twelve (12) months from the Effective Date.",
+    "exercise_price": 2000000,
+    "exercise_procedure": "By providing written notice to Optionor."
+  },
+  "discovered_entities": []
+}

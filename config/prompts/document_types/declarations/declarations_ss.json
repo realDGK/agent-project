@@ -1,0 +1,58 @@
+{
+  "title": "Declaration Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "e.g., 'Declaration of John Smith in Support of Motion'"
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date",
+      "description": "The date the declaration was signed."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "Declarant",
+              "Attorney"
+            ]
+          }
+        },
+        "required": [
+          "name",
+          "role"
+        ]
+      }
+    },
+    "litigation_details": {
+      "type": "object",
+      "properties": {
+        "court_name": {
+          "type": "string"
+        },
+        "case_number": {
+          "type": "string"
+        },
+        "supporting": {
+          "type": "string",
+          "description": "The motion or purpose the declaration supports."
+        }
+      }
+    }
+  },
+  "required": [
+    "contract_name",
+    "effective_date",
+    "parties",
+    "litigation_details"
+  ]
+}

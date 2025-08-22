@@ -1,0 +1,47 @@
+{
+  "title": "Property Tax Appeal Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Application for Changed Assessment'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Applicant", "Assessor"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "tax_appeal_details": {
+      "type": "object",
+      "properties": {
+        "apn": { "type": "string" },
+        "tax_year": { "type": "string" },
+        "assessor_s_value": { "type": "number" },
+        "applicant_s_opinion_of_value": { "type": "number" },
+        "reason_for_appeal": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "tax_appeal_details"]
+}

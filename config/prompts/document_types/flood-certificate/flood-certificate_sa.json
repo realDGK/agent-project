@@ -1,0 +1,12 @@
+{
+  "flood_details": {
+    "type": "object",
+    "description": "Details specific to a flood hazard determination.",
+    "properties": {
+      "property_address": { "type": "string" },
+      "fema_map_number": { "type": "string" },
+      "flood_zone": { "type": "string" },
+      "is_in_special_flood_hazard_area": { "type": "boolean" }
+    }
+  }
+}

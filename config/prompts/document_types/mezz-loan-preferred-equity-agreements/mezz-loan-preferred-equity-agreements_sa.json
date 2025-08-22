@@ -1,0 +1,32 @@
+{
+  "loan_details": {
+    "type": "object",
+    "description": "Details specific to a loan or financing agreement.",
+    "properties": {
+      "loan_amount": { "type": "number" },
+      "interest_rate": { "type": "string" },
+      "loan_term": { "type": "string" },
+      "amortization_period": { "type": "string" },
+      "commitment_fee": { "type": "number" },
+      "commitment_expiration_date": { "type": "string", "format": "date" },
+      "maturity_date": { "type": "string", "format": "date" },
+      "repayment_terms": { "type": "string" },
+      "collateral": { "type": "string" },
+      "key_covenants": { "type": "array", "items": { "type": "string" } },
+      "principal_amount": { "type": "number" },
+      "payment_terms": { "type": "string" },
+      "is_secured": { "type": "boolean" },
+      "secured_debt_amount": { "type": "number" },
+      "promissory_note_date": { "type": "string", "format": "date" },
+      "loan_budget": { "type": "number" },
+      "draw_conditions": { "type": "string" },
+      "completion_deadline": { "type": "string", "format": "date" },
+      "loan_reference": { "type": "string" },
+      "reserve_amount": { "type": "number" },
+      "purpose_of_reserve": { "type": "string" },
+      "investment_amount": { "type": "number" },
+      "interest_or_preferred_return_rate": { "type": "string" },
+      "equity_pledge": { "type": "string" }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+**INPUT DOCUMENT TEXT:**
+WRITTEN VERIFICATION OF WATER SUPPLY SUFFICIENCY
+(Government Code Section 66473.7 - "SB 221")
+
+To: Placer County
+From: River City Water District
+Date: August 1, 2031
+
+In response to the request for the Canyon Ranch project (Tentative Subdivision Map No. 1234), the River City Water District hereby verifies that a sufficient water supply is available to serve the proposed 500-lot subdivision, based on the findings of the approved Water Supply Assessment.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Written Verification of Water Supply Sufficiency",
+  "effective_date": "2031-08-01",
+  "parties": [
+    { "name": "River City Water District", "role": "Water Supplier" },
+    { "name": "Placer County", "role": "Approving Agency" }
+  ],
+  "utility_service_details": {
+    "utility_type": "Water",
+    "map_reference": "Tentative Subdivision Map No. 1234",
+    "verification_statement": "The River City Water District hereby verifies that a sufficient water supply is available to serve the proposed 500-lot subdivision."
+  },
+  "discovered_entities": []
+}

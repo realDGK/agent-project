@@ -1,0 +1,17 @@
+{
+  "lease_details": {
+    "type": "object",
+    "description": "Details specific to a property lease agreement.",
+    "properties": {
+      "lease_type": { "type": "string", "enum": ["NNN", "Gross", "Modified Gross", "Ground"] },
+      "premises_address": { "type": "string" },
+      "premises_sqft": { "type": "integer" },
+      "lease_term_months": { "type": "integer" },
+      "commencement_date": { "type": "string", "format": "date" },
+      "expiration_date": { "type": "string", "format": "date" },
+      "base_rent": { "type": "string" },
+      "operating_expenses_pass_through": { "type": "string" },
+      "renewal_options": { "type": "string" }
+    }
+  }
+}

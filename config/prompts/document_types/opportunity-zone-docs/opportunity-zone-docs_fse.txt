@@ -1,0 +1,24 @@
+**INPUT DOCUMENT TEXT:**
+FORM 8996 - QUALIFIED OPPORTUNITY FUND
+
+Part I: Fund Information
+1a. Name of Fund: Urban Renewal QOF LLC
+1b. Employer Identification Number: 99-1234567
+
+Part II: Investment Information
+The fund's sole asset is the real property located at 500 Redevelopment Way, Anytown, CA, which is a qualified opportunity zone property.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Form 8996 - Qualified Opportunity Fund",
+  "effective_date": null,
+  "parties": [
+    { "name": "Urban Renewal QOF LLC", "role": "Fund" }
+  ],
+  "oz_details": {
+    "fund_name": "Urban Renewal QOF LLC",
+    "fund_ein": "99-1234567",
+    "investment_property_address": "500 Redevelopment Way, Anytown, CA"
+  },
+  "discovered_entities": []
+}

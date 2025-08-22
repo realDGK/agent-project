@@ -1,0 +1,24 @@
+**INPUT DOCUMENT TEXT:**
+ORDINANCE NO. 1234
+AN ORDINANCE OF THE CITY OF SUNNYSIDE AMENDING THE ZONING MAP (REZONE RZ-002)
+
+The City Council of the City of Sunnyside does ordain as follows:
+The zoning classification for the property located at 123 Farm Road (APN 111-222-333) is hereby changed from R-1 (Single Family Residential) to R-3 (Multi-Family Residential).
+
+PASSED AND ADOPTED this 1st day of October, 2029.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Ordinance Amending the Zoning Map (Rezone RZ-002)",
+  "effective_date": "2029-10-01",
+  "parties": [
+    { "name": "City of Sunnyside", "role": "Approving Agency" }
+  ],
+  "entitlement_details": {
+    "application_number": "RZ-002",
+    "property_description": "123 Farm Road (APN 111-222-333)",
+    "original_zoning": "R-1 (Single Family Residential)",
+    "new_zoning": "R-3 (Multi-Family Residential)"
+  },
+  "discovered_entities": []
+}

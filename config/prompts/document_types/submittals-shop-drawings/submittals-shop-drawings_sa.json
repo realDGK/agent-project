@@ -1,0 +1,13 @@
+{
+  "submittal_details": {
+    "type": "object",
+    "description": "Details specific to a construction submittal or shop drawing.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "submittal_number": { "type": "string" },
+      "spec_section": { "type": "string" },
+      "description": { "type": "string" },
+      "review_status": { "type": "string", "enum": ["Approved", "Approved as Noted", "Revise and Resubmit", "Rejected"] }
+    }
+  }
+}

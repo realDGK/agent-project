@@ -1,0 +1,20 @@
+{
+  "improvement_agreement_details": {
+    "type": "object",
+    "description": "Details specific to a Subdivision Improvement Agreement.",
+    "properties": {
+      "subdivision_name": { "type": "string" },
+      "map_reference": { "type": "string" },
+      "required_improvements": { "type": "array", "items": { "type": "string" } },
+      "completion_deadline": { "type": "string" },
+      "security_posted": {
+        "type": "object",
+        "properties": {
+          "type": { "type": "string" },
+          "amount": { "type": "number" },
+          "bond_number": { "type": "string" }
+        }
+      }
+    }
+  }
+}

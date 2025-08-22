@@ -1,0 +1,68 @@
+{
+  "title": "Employment Agreement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Employment Agreement'."
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date",
+      "description": "The date the agreement was signed or the employment begins."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Employer", "Employee"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "employment_details": {
+      "type": "object",
+      "properties": {
+        "job_title": {
+          "type": "string"
+        },
+        "start_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "base_salary": {
+          "type": "number"
+        },
+        "salary_period": {
+          "type": "string",
+          "enum": ["Annual", "Monthly", "Hourly"]
+        },
+        "bonus_structure": {
+          "type": "string",
+          "description": "A summary of any performance bonus, signing bonus, or other incentive compensation."
+        },
+        "termination_clause_summary": {
+          "type": "string",
+          "description": "A brief summary of the conditions for termination, including notice period or 'at-will' status."
+        }
+      }
+    },
+    "discovered_entities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "entity_name": { "type": "string" },
+          "entity_value": { "type": "string" },
+          "context_summary": { "type": "string" }
+        }
+      }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "employment_details"]
+}

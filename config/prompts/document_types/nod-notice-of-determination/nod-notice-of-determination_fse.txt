@@ -1,0 +1,37 @@
+**INPUT DOCUMENT TEXT:**
+NOTICE OF DETERMINATION
+
+To: Office of Planning and Research
+From: City of Oakville
+Date Filed: February 15, 2031
+
+Subject: Filing of Notice of Determination in compliance with Section 21108 of the Public Resources Code.
+
+Project Title: Oakville Quarry Redevelopment Project
+Project Applicant: Oakville Developers LLC
+Project Approval Date: February 14, 2031
+
+This is to advise that the City of Oakville has approved the above project and has made the following determinations:
+1. An Environmental Impact Report was prepared and certified for this project.
+2. Mitigation measures were made a condition of the approval.
+3. A statement of overriding considerations was adopted.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Notice of Determination",
+  "effective_date": "2031-02-15",
+  "parties": [
+    { "name": "City of Oakville", "role": "Lead Agency" },
+    { "name": "Oakville Developers LLC", "role": "Project Applicant" }
+  ],
+  "environmental_details": {
+    "document_type": "NOD",
+    "project_name": "Oakville Quarry Redevelopment Project",
+    "project_approval_date": "2031-02-14",
+    "ceqa_finding": "An Environmental Impact Report was prepared and certified."
+  },
+  "legal_recording_details": {
+    "filing_date": "2031-02-15"
+  },
+  "discovered_entities": []
+}

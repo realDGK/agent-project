@@ -1,0 +1,20 @@
+**INPUT DOCUMENT TEXT:**
+ASSESSMENT DIAGRAM
+ASSESSMENT DISTRICT NO. 2032-A (DOWNTOWN STREETSCAPE)
+
+This diagram shows the exterior boundaries of the assessment district and the lines and dimensions of each parcel of land within the district. Each parcel is identified by an assessment number.
+
+Prepared by: Apex Civil Engineering
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Assessment Diagram",
+  "parties": [
+    { "name": "Apex Civil Engineering", "role": "Engineer" }
+  ],
+  "assessment_district_details": {
+    "district_name": "Assessment District No. 2032-A (Downtown Streetscape)",
+    "diagram_summary": "Shows the exterior boundaries of the district and the lines and dimensions of each parcel within it, identified by an assessment number."
+  },
+  "discovered_entities": []
+}

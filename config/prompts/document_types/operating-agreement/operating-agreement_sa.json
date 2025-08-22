@@ -1,0 +1,17 @@
+{
+  "corporate_details": {
+    "type": "object",
+    "description": "Details specific to corporate formation and governance documents.",
+    "properties": {
+      "corporate_purpose": { "type": "string" },
+      "shares_authorized": {
+        "type": "object",
+        "properties": {
+          "class": { "type": "string" },
+          "count": { "type": "integer" },
+          "par_value": { "type": "number" }
+        }
+      }
+    }
+  }
+}

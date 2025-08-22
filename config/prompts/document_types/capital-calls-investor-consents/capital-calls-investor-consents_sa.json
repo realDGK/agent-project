@@ -1,0 +1,12 @@
+{
+  "capital_call_details": {
+    "type": "object",
+    "description": "Details specific to a capital call or investor consent.",
+    "properties": {
+      "fund_name": { "type": "string" },
+      "call_amount": { "type": "number" },
+      "due_date": { "type": "string", "format": "date" },
+      "purpose_of_call": { "type": "string" }
+    }
+  }
+}

@@ -1,0 +1,39 @@
+INPUT DOCUMENT TEXT:
+BUY-SELL AGREEMENT FOR RIVERBEND PARTNERS, LLC
+This Agreement is entered into on March 1, 2026, by and between Riverbend Partners, LLC (the "Company"), and its members, John Smith and Jane Doe.
+TRIGGERING EVENTS. This Agreement shall be triggered by the following events: (a) the death of a Member; (b) the permanent disability of a Member; or (c) the voluntary retirement of a Member.
+PURCHASE OBLIGATION. Upon a triggering event, the Company shall have the mandatory obligation to purchase the entirety of the affected Member's interest.
+PURCHASE PRICE. The purchase price shall be determined according to the Certificate of Agreed Value, attached as Exhibit A and updated annually by the Members.
+FUNDING. The Company shall maintain life insurance policies on each Member in an amount sufficient to fund the purchase obligation upon death. For all other events, the purchase may be funded by a promissory note payable over sixty (60) months.
+CLOSING. The closing of the purchase shall take place no later than 90 days following the date of the triggering event.
+JSON OUTPUT:
+{
+"contract_name": "Buy-Sell Agreement for Riverbend Partners, LLC",
+"effective_date": "2026-03-01",
+"parties": [
+{
+"name": "Riverbend Partners, LLC",
+"role": "Company"
+},
+{
+"name": "John Smith",
+"role": "Member"
+},
+{
+"name": "Jane Doe",
+"role": "Member"
+}
+],
+"buy_sell_details": {
+"triggering_events": [
+"Death of a Member",
+"Permanent disability of a Member",
+"Voluntary retirement of a Member"
+],
+"purchase_obligation": "Mandatory obligation for the Company to purchase the affected Member's interest.",
+"valuation_method": "Certificate of Agreed Value, updated annually.",
+"funding_mechanism": "Life insurance policies for death; promissory note over 60 months for other events.",
+"closing_timeline": "No later than 90 days following the date of the triggering event."
+},
+"discovered_entities": []
+}

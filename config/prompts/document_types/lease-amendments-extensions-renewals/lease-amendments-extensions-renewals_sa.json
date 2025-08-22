@@ -1,0 +1,13 @@
+{
+  "lease_amendment_details": {
+    "type": "object",
+    "description": "Details specific to a lease amendment, extension, or renewal.",
+    "properties": {
+      "amendment_type": { "type": "string", "enum": ["Amendment", "Extension", "Renewal"] },
+      "original_lease_date": { "type": "string", "format": "date" },
+      "summary_of_changes": { "type": "string" },
+      "new_expiration_date": { "type": "string", "format": "date" },
+      "new_rent_terms": { "type": "string" }
+    }
+  }
+}

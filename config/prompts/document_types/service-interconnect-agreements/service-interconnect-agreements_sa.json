@@ -1,0 +1,21 @@
+{
+  "interconnect_agreement_details": {
+    "type": "object",
+    "description": "Details specific to an agreement to interconnect a generation facility with a utility grid.",
+    "properties": {
+      "service_address": {
+        "type": "string"
+      },
+      "generation_facility_type": {
+        "type": "string",
+        "description": "e.g., 'Solar PV', 'Battery Storage'"
+      },
+      "system_capacity_kw": {
+        "type": "number"
+      },
+      "point_of_interconnection": {
+        "type": "string"
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+**INPUT DOCUMENT TEXT:**
+NOTICE OF INTENT (NOI) TO COMPLY WITH THE
+CONSTRUCTION GENERAL PERMIT
+
+Project Name: Riverbend Tract No. 8888
+Operator: Riverbend Homes LLC
+WDID#: 5A34C123456
+
+This project will disturb a total of 75 acres. A Stormwater Pollution Prevention Plan (SWPPP) has been prepared and will be implemented on-site.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Notice of Intent (NOI)",
+  "effective_date": null,
+  "parties": [
+    { "name": "Riverbend Homes LLC", "role": "Operator" }
+  ],
+  "stormwater_details": {
+    "document_type": "NOI",
+    "project_name": "Riverbend Tract No. 8888",
+    "wdid_number": "5A34C123456",
+    "total_disturbed_area_acres": 75
+  },
+  "discovered_entities": []
+}

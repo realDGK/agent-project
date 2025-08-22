@@ -1,0 +1,49 @@
+INPUT DOCUMENT TEXT:
+State of Nevada - Secretary of State
+STATEMENT OF CHANGE OF REGISTERED AGENT BY ENTITY
+File Number: E0123456789-10
+Name of Entity: Desert Sky Holdings, LLC
+Name of Former Registered Agent: Mark Johnson
+Address of Former Registered Agent: 100 Old Town Rd, Las Vegas, NV 89101
+Name of New Registered Agent: Nevada Corporate Services, Inc.
+Address of New Registered Agent: 300 Commerce St, Carson City, NV 89701
+The street address of the new registered agent is identical to the entity's registered office.
+I declare that the above is true and correct.
+Signature: (Signature)
+Name: Sarah Chen, Managing Member
+Date: 11/22/2025
+JSON OUTPUT:
+{
+"contract_name": "Statement of Change of Registered Agent",
+"parties": [
+{
+"name": "Desert Sky Holdings, LLC",
+"role": "Entity",
+"address": null
+},
+{
+"name": "Nevada Corporate Services, Inc.",
+"role": "New Registered Agent",
+"address": "300 Commerce St, Carson City, NV 89701"
+},
+{
+"name": "Mark Johnson",
+"role": "Former Registered Agent",
+"address": "100 Old Town Rd, Las Vegas, NV 89101"
+},
+{
+"name": "Sarah Chen",
+"role": "Authorized Person",
+"address": null
+}
+],
+"legal_recording_details": {
+"state": "Nevada",
+"filing_date": "2025-11-22"
+},
+"registered_agent_filing_details": {
+"entity_file_number": "E0123456789-10",
+"filing_type": "Change of Registered Agent"
+},
+"discovered_entities": []
+}

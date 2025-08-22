@@ -1,0 +1,23 @@
+**INPUT DOCUMENT TEXT:**
+CONDOMINIUM PLAN
+FOR
+BAYVIEW TOWER CONDOMINIUMS
+
+This plan creates 50 residential condominium units.
+The plan consists of a three-dimensional depiction of the units and the common areas.
+Limited common elements include the balconies and parking spaces assigned to each unit.
+All other areas, including the lobby, hallways, and roof, are general common elements.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Condominium Plan",
+  "parties": [],
+  "map_details": {
+    "project_name": "Bayview Tower Condominiums",
+    "number_of_units": 50,
+    "common_area_description": "Lobby, hallways, and roof.",
+    "limited_common_area_description": "Balconies and parking spaces assigned to each unit."
+  },
+  "legal_recording_details": null,
+  "discovered_entities": []
+}

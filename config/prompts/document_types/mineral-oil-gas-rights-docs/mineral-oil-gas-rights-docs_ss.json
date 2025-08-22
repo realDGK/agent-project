@@ -1,0 +1,46 @@
+{
+  "title": "Mineral/Oil/Gas Rights Document Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Oil and Gas Lease'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Lessor", "Lessee", "Grantor", "Grantee"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "mineral_rights_details": {
+      "type": "object",
+      "properties": {
+        "rights_type": { "type": "string", "enum": ["Mineral", "Oil", "Gas"] },
+        "property_description": { "type": "string" },
+        "royalty_rate": { "type": "string" },
+        "lease_term": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "mineral_rights_details"]
+}

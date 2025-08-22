@@ -1,0 +1,23 @@
+{
+  "schedule_details": {
+    "type": "object",
+    "description": "Details specific to a project schedule.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "schedule_type": { "type": "string", "enum": ["Baseline", "Updated"] },
+      "project_start_date": { "type": "string", "format": "date" },
+      "projected_completion_date": { "type": "string", "format": "date" },
+      "total_duration_days": { "type": "integer" },
+      "key_milestones": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "milestone": { "type": "string" },
+            "date": { "type": "string", "format": "date" }
+          }
+        }
+      }
+    }
+  }
+}

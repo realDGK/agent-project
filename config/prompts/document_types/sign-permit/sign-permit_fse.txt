@@ -1,0 +1,31 @@
+**INPUT DOCUMENT TEXT:**
+CITY OF LAKESIDE - SIGN PERMIT
+
+PERMIT NO: SGN-2030-005
+ISSUANCE DATE: March 1, 2030
+EXPIRES: March 1, 2031
+
+PERMITTEE: Lakeside Shopping Center LLC
+ADDRESS: 800 Commerce Drive, Lakeside, CA
+
+DESCRIPTION OF WORK:
+Installation of one (1) new monument sign at the main entrance.
+Dimensions: 10 feet high, 8 feet wide.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Sign Permit",
+  "effective_date": "2030-03-01",
+  "parties": [
+    { "name": "Lakeside Shopping Center LLC", "role": "Permittee" },
+    { "name": "City of Lakeside", "role": "Issuing Agency" }
+  ],
+  "permit_details": {
+    "permit_number": "SGN-2030-005",
+    "property_address": "800 Commerce Drive, Lakeside, CA",
+    "sign_description": "Installation of one (1) new monument sign at the main entrance.",
+    "sign_dimensions": "10 feet high, 8 feet wide.",
+    "expiration_date": "2031-03-01"
+  },
+  "discovered_entities": []
+}

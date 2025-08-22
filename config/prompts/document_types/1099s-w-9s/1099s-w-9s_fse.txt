@@ -1,0 +1,23 @@
+**INPUT DOCUMENT TEXT:**
+Form W-9 (Rev. October 2018)
+Request for Taxpayer Identification Number and Certification
+
+1. Name: Apex Civil Engineering
+2. Business Name: Apex Civil Engineering Inc.
+4. Tax Classification: S Corporation
+5. Address: 500 Tech Circle, San Jose, CA
+Part I. Taxpayer Identification Number (TIN): 98-7654321
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Form W-9",
+  "parties": [
+    { "name": "Apex Civil Engineering Inc.", "role": "Recipient" }
+  ],
+  "tax_details": {
+    "form_reference": "W-9",
+    "taxpayer_id_number": "98-7654321",
+    "total_payment_amount": null
+  },
+  "discovered_entities": []
+}

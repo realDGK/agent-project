@@ -1,0 +1,25 @@
+**INPUT DOCUMENT TEXT:**
+CITY OF RIVERBEND
+CONFIRMATION OF MELLO-ROOS PAYOFF
+
+Date: October 10, 2031
+Owner: John Smith
+APN: 123-456-001
+
+This letter confirms that the Mello-Roos special tax obligation for Community Facilities District No. 5 for the above-referenced parcel has been paid in full. There are no further special taxes due for CFD No. 5 on this parcel.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Confirmation of Mello-Roos Payoff",
+  "effective_date": "2031-10-10",
+  "parties": [
+    { "name": "City of Riverbend", "role": "Confirming Agency" },
+    { "name": "John Smith", "role": "Property Owner" }
+  ],
+  "fee_details": {
+    "property_apn": "123-456-001",
+    "obligation_paid": "Mello-Roos special tax for Community Facilities District No. 5",
+    "confirmation_statement": "The obligation has been paid in full. There are no further special taxes due for CFD No. 5 on this parcel."
+  },
+  "discovered_entities": []
+}

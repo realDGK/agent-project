@@ -1,0 +1,1696 @@
+Of course. Let's keep the momentum going with a batch of 15.
+
+Here are the next fifteen documents from the checklist, #111 through #125, all in the requested format.
+
+Document Type 111: SOC (Statement of Overriding Considerations)
+111_specialist_schema.json
+
+JSON
+
+{
+  "title": "Statement of Overriding Considerations (SOC) Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Statement of Overriding Considerations'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Lead Agency", "Approving Body"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "environmental_details": {
+      "type": "object",
+      "properties": {
+        "document_type": { "type": "string", "default": "SOC" },
+        "project_name": { "type": "string" },
+        "significant_unavoidable_impacts": { "type": "array", "items": { "type": "string" } },
+        "overriding_considerations": { "type": "string", "description": "A summary of the specific economic, legal, social, technological, or other benefits that outweigh the unavoidable adverse environmental effects." }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "environmental_details"]
+}
+111_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+A RESOLUTION OF THE CITY COUNCIL OF OAKVILLE ADOPTING A STATEMENT OF OVERRIDING CONSIDERATIONS FOR THE OAKVILLE QUARRY REDEVELOPMENT PROJECT
+
+WHEREAS, the Final EIR identified significant and unavoidable impacts to Traffic and Air Quality; and
+
+WHEREAS, the City Council finds that specific economic and social benefits of the project, including the creation of 500 new jobs and the provision of 200 units of affordable housing, outweigh the significant unavoidable environmental impacts.
+
+NOW, THEREFORE, the City Council adopts this Statement of Overriding Considerations.
+
+ADOPTED: February 14, 2031
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Statement of Overriding Considerations for the Oakville Quarry Redevelopment Project",
+  "effective_date": "2031-02-14",
+  "parties": [
+    { "name": "City Council of Oakville", "role": "Approving Body" }
+  ],
+  "environmental_details": {
+    "document_type": "SOC",
+    "project_name": "Oakville Quarry Redevelopment Project",
+    "significant_unavoidable_impacts": [
+      "Traffic",
+      "Air Quality"
+    ],
+    "overriding_considerations": "The creation of 500 new jobs and the provision of 200 units of affordable housing."
+  },
+  "discovered_entities": []
+}
+111_schema_additions.json
+
+JSON
+
+{
+  "environmental_details": {
+    "type": "object",
+    "description": "Details specific to environmental review documents (CEQA/NEPA).",
+    "properties": {
+      "document_type": { "type": "string" },
+      "project_name": { "type": "string" },
+      "project_description": { "type": "string" },
+      "scoping_meeting_date": { "type": "string", "format": "date" },
+      "comment_period_end_date": { "type": "string", "format": "date" },
+      "environmental_determination": { "type": "string" },
+      "mitigation_measures_summary": { "type": "string" },
+      "finding": { "type": "string" },
+      "public_review_period": { "type": "string" },
+      "significant_unavoidable_impacts": { "type": "array", "items": { "type": "string" } },
+      "alternatives_analyzed": { "type": "array", "items": { "type": "string" } },
+      "original_eir_reference": { "type": "string" },
+      "reason_for_addendum": { "type": "string" },
+      "project_approval_date": { "type": "string", "format": "date" },
+      "ceqa_finding": { "type": "string" },
+      "exemption_type": { "type": "string" },
+      "exemption_reason": { "type": "string" },
+      "overriding_considerations": { "type": "string" }
+    }
+  }
+}
+Document Type 112: MMRP (Mitigation Monitoring & Reporting Program)
+112_specialist_schema.json
+
+JSON
+
+{
+  "title": "Mitigation Monitoring & Reporting Program (MMRP) Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Mitigation Monitoring and Reporting Program'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Lead Agency", "Project Proponent"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "environmental_details": {
+      "type": "object",
+      "properties": {
+        "document_type": { "type": "string", "default": "MMRP" },
+        "project_name": { "type": "string" },
+        "mitigation_measures": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "measure_id": { "type": "string" },
+              "measure_description": { "type": "string" },
+              "monitoring_responsibility": { "type": "string" },
+              "timing": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "environmental_details"]
+}
+112_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+MITIGATION MONITORING AND REPORTING PROGRAM
+Elm Street Apartments Project
+
+Adopted: July 10, 2030 by the City of Springfield
+
+Mitigation Measure BIO-1: A qualified biologist shall conduct a pre-construction survey for nesting birds.
+- Monitoring Agency: City Planning Department
+- Timing: Within 14 days prior to any ground disturbance.
+
+Mitigation Measure NOI-1: Construction activities shall be limited to the hours of 7 AM to 6 PM.
+- Monitoring Agency: City Code Enforcement
+- Timing: Throughout construction.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Mitigation Monitoring and Reporting Program",
+  "effective_date": "2030-07-10",
+  "parties": [
+    { "name": "City of Springfield", "role": "Lead Agency" }
+  ],
+  "environmental_details": {
+    "document_type": "MMRP",
+    "project_name": "Elm Street Apartments Project",
+    "mitigation_measures": [
+      {
+        "measure_id": "BIO-1",
+        "measure_description": "A qualified biologist shall conduct a pre-construction survey for nesting birds.",
+        "monitoring_responsibility": "City Planning Department",
+        "timing": "Within 14 days prior to any ground disturbance."
+      },
+      {
+        "measure_id": "NOI-1",
+        "measure_description": "Construction activities shall be limited to the hours of 7 AM to 6 PM.",
+        "monitoring_responsibility": "City Code Enforcement",
+        "timing": "Throughout construction."
+      }
+    ]
+  },
+  "discovered_entities": []
+}
+112_schema_additions.json
+
+JSON
+
+{
+  "environmental_details": {
+    "type": "object",
+    "description": "Details specific to environmental review documents (CEQA/NEPA).",
+    "properties": {
+      "document_type": { "type": "string" },
+      "project_name": { "type": "string" },
+      "project_description": { "type": "string" },
+      "scoping_meeting_date": { "type": "string", "format": "date" },
+      "comment_period_end_date": { "type": "string", "format": "date" },
+      "environmental_determination": { "type": "string" },
+      "mitigation_measures_summary": { "type": "string" },
+      "finding": { "type": "string" },
+      "public_review_period": { "type": "string" },
+      "significant_unavoidable_impacts": { "type": "array", "items": { "type": "string" } },
+      "alternatives_analyzed": { "type": "array", "items": { "type": "string" } },
+      "original_eir_reference": { "type": "string" },
+      "reason_for_addendum": { "type": "string" },
+      "project_approval_date": { "type": "string", "format": "date" },
+      "ceqa_finding": { "type": "string" },
+      "exemption_type": { "type": "string" },
+      "exemption_reason": { "type": "string" },
+      "overriding_considerations": { "type": "string" },
+      "mitigation_measures": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "measure_id": { "type": "string" },
+            "measure_description": { "type": "string" },
+            "monitoring_responsibility": { "type": "string" },
+            "timing": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}
+Document Type 113: CE (Categorical Exclusion)
+113_specialist_schema.json
+
+JSON
+
+{
+  "title": "Categorical Exclusion (CE) Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Categorical Exclusion Form'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Lead Agency", "Federal Agency"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "environmental_details": {
+      "type": "object",
+      "properties": {
+        "document_type": { "type": "string", "default": "Categorical Exclusion" },
+        "project_name": { "type": "string" },
+        "ce_category": { "type": "string", "description": "The specific category of exclusion cited, e.g., '23 CFR 771.117(c)(22)'." },
+        "determination_summary": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "environmental_details"]
+}
+113_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+U.S. Department of Transportation
+Federal Highway Administration (FHWA)
+CATEGORICAL EXCLUSION DETERMINATION
+
+Project: Repaving of State Route 80 from milepost 10 to 12.
+Date: March 5, 2031
+
+The FHWA has determined that this project is a Categorical Exclusion under 23 CFR 771.117(c)(22) for pavement resurfacing projects. The action does not involve significant environmental impacts.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Categorical Exclusion Determination",
+  "effective_date": "2031-03-05",
+  "parties": [
+    { "name": "Federal Highway Administration (FHWA)", "role": "Federal Agency" }
+  ],
+  "environmental_details": {
+    "document_type": "Categorical Exclusion",
+    "project_name": "Repaving of State Route 80 from milepost 10 to 12.",
+    "ce_category": "23 CFR 771.117(c)(22)",
+    "determination_summary": "The action does not involve significant environmental impacts."
+  },
+  "discovered_entities": []
+}
+113_schema_additions.json
+
+JSON
+
+{
+  "environmental_details": {
+    "type": "object",
+    "description": "Details specific to environmental review documents (CEQA/NEPA).",
+    "properties": {
+      "document_type": { "type": "string" },
+      "project_name": { "type": "string" },
+      "project_description": { "type": "string" },
+      "scoping_meeting_date": { "type": "string", "format": "date" },
+      "comment_period_end_date": { "type": "string", "format": "date" },
+      "environmental_determination": { "type": "string" },
+      "mitigation_measures_summary": { "type": "string" },
+      "finding": { "type": "string" },
+      "public_review_period": { "type": "string" },
+      "significant_unavoidable_impacts": { "type": "array", "items": { "type": "string" } },
+      "alternatives_analyzed": { "type": "array", "items": { "type": "string" } },
+      "original_eir_reference": { "type": "string" },
+      "reason_for_addendum": { "type": "string" },
+      "project_approval_date": { "type": "string", "format": "date" },
+      "ceqa_finding": { "type": "string" },
+      "exemption_type": { "type": "string" },
+      "exemption_reason": { "type": "string" },
+      "overriding_considerations": { "type": "string" },
+      "mitigation_measures": { "type": "array" },
+      "ce_category": { "type": "string" },
+      "determination_summary": { "type": "string" }
+    }
+  }
+}
+Document Type 114: EA/FONSI
+114_specialist_schema.json
+
+JSON
+
+{
+  "title": "EA/FONSI Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Finding of No Significant Impact'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Lead Agency", "Federal Agency"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "environmental_details": {
+      "type": "object",
+      "properties": {
+        "document_type": { "type": "string", "default": "FONSI" },
+        "project_name": { "type": "string" },
+        "ea_reference": { "type": "string" },
+        "determination_summary": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "environmental_details"]
+}
+114_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+FINDING OF NO SIGNIFICANT IMPACT (FONSI)
+FOR THE PROPOSED AIRPORT RUNWAY EXTENSION
+
+Lead Agency: Federal Aviation Administration (FAA)
+Date: April 10, 2031
+
+The FAA has prepared an Environmental Assessment (EA), dated February 2031, for the proposed runway extension at Municipal Airport.
+
+Based on the analysis in the EA, the FAA has determined that the proposed action will not have a significant effect on the human environment. An Environmental Impact Statement will not be prepared.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Finding of No Significant Impact (FONSI)",
+  "effective_date": "2031-04-10",
+  "parties": [
+    { "name": "Federal Aviation Administration (FAA)", "role": "Lead Agency" }
+  ],
+  "environmental_details": {
+    "document_type": "FONSI",
+    "project_name": "Proposed Airport Runway Extension",
+    "ea_reference": "Environmental Assessment (EA), dated February 2031",
+    "determination_summary": "The proposed action will not have a significant effect on the human environment. An Environmental Impact Statement will not be prepared."
+  },
+  "discovered_entities": []
+}
+114_schema_additions.json
+
+JSON
+
+{
+  "environmental_details": {
+    "type": "object",
+    "description": "Details specific to environmental review documents (CEQA/NEPA).",
+    "properties": {
+      "document_type": { "type": "string" },
+      "project_name": { "type": "string" },
+      "project_description": { "type": "string" },
+      "scoping_meeting_date": { "type": "string", "format": "date" },
+      "comment_period_end_date": { "type": "string", "format": "date" },
+      "environmental_determination": { "type": "string" },
+      "mitigation_measures_summary": { "type": "string" },
+      "finding": { "type": "string" },
+      "public_review_period": { "type": "string" },
+      "significant_unavoidable_impacts": { "type": "array", "items": { "type": "string" } },
+      "alternatives_analyzed": { "type": "array", "items": { "type": "string" } },
+      "original_eir_reference": { "type": "string" },
+      "reason_for_addendum": { "type": "string" },
+      "project_approval_date": { "type": "string", "format": "date" },
+      "ceqa_finding": { "type": "string" },
+      "exemption_type": { "type": "string" },
+      "exemption_reason": { "type": "string" },
+      "overriding_considerations": { "type": "string" },
+      "mitigation_measures": { "type": "array" },
+      "ce_category": { "type": "string" },
+      "determination_summary": { "type": "string" },
+      "ea_reference": { "type": "string" }
+    }
+  }
+}
+Document Type 115: EIS/ROD
+115_specialist_schema.json
+
+JSON
+
+{
+  "title": "EIS/ROD Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Record of Decision'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Lead Agency", "Federal Agency"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "environmental_details": {
+      "type": "object",
+      "properties": {
+        "document_type": { "type": "string", "default": "Record of Decision" },
+        "project_name": { "type": "string" },
+        "eis_reference": { "type": "string" },
+        "selected_alternative": { "type": "string" },
+        "decision_summary": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "environmental_details"]
+}
+115_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+RECORD OF DECISION (ROD)
+Interstate 5 Widening Project
+
+Lead Agency: U.S. Department of Transportation, FHWA
+Date of Decision: August 20, 2031
+
+DECISION:
+The Federal Highway Administration (FHWA) has decided to implement the Preferred Alternative as described in the Final Environmental Impact Statement (FEIS) for the Interstate 5 Widening Project, published in May 2031. This alternative involves widening the highway to six lanes and includes noise walls and habitat restoration.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Record of Decision (ROD)",
+  "effective_date": "2031-08-20",
+  "parties": [
+    { "name": "U.S. Department of Transportation, FHWA", "role": "Lead Agency" }
+  ],
+  "environmental_details": {
+    "document_type": "Record of Decision",
+    "project_name": "Interstate 5 Widening Project",
+    "eis_reference": "Final Environmental Impact Statement (FEIS), published in May 2031",
+    "selected_alternative": "The Preferred Alternative.",
+    "decision_summary": "Implement the Preferred Alternative, which involves widening the highway to six lanes and includes noise walls and habitat restoration."
+  },
+  "discovered_entities": []
+}
+115_schema_additions.json
+
+JSON
+
+{
+  "environmental_details": {
+    "type": "object",
+    "description": "Details specific to environmental review documents (CEQA/NEPA).",
+    "properties": {
+      "document_type": { "type": "string" },
+      "project_name": { "type": "string" },
+      "project_description": { "type": "string" },
+      "scoping_meeting_date": { "type": "string", "format": "date" },
+      "comment_period_end_date": { "type": "string", "format": "date" },
+      "environmental_determination": { "type": "string" },
+      "mitigation_measures_summary": { "type": "string" },
+      "finding": { "type": "string" },
+      "public_review_period": { "type": "string" },
+      "significant_unavoidable_impacts": { "type": "array", "items": { "type": "string" } },
+      "alternatives_analyzed": { "type": "array", "items": { "type": "string" } },
+      "original_eir_reference": { "type": "string" },
+      "reason_for_addendum": { "type": "string" },
+      "project_approval_date": { "type": "string", "format": "date" },
+      "ceqa_finding": { "type": "string" },
+      "exemption_type": { "type": "string" },
+      "exemption_reason": { "type": "string" },
+      "overriding_considerations": { "type": "string" },
+      "mitigation_measures": { "type": "array" },
+      "ce_category": { "type": "string" },
+      "determination_summary": { "type": "string" },
+      "ea_reference": { "type": "string" },
+      "eis_reference": { "type": "string" },
+      "selected_alternative": { "type": "string" },
+      "decision_summary": { "type": "string" }
+    }
+  }
+}
+Document Type 116: Biological Resources Report
+116_specialist_schema.json
+
+JSON
+
+{
+  "title": "Biological Resources Report Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Biological Resources Assessment'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Author", "Consultant", "Client"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "technical_study_details": {
+      "type": "object",
+      "properties": {
+        "study_type": { "type": "string", "default": "Biological Resources Report" },
+        "project_name": { "type": "string" },
+        "site_description": { "type": "string" },
+        "key_findings": { "type": "array", "items": { "type": "string" } },
+        "recommendations": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "technical_study_details"]
+}
+116_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+BIOLOGICAL RESOURCES ASSESSMENT
+FOR THE PINE HILLS ESTATES PROJECT
+
+Prepared for: Pine Hills Development LLC
+Prepared by: EcoSphere Consulting
+Date: February 10, 2031
+
+SUMMARY OF FINDINGS:
+The 50-acre project site contains suitable habitat for the California red-legged frog. No individuals were observed during protocol-level surveys. Several protected oak trees are located on the site.
+
+RECOMMENDATIONS:
+To avoid impacts, a 50-foot buffer should be established around the seasonal drainage. An arborist report is recommended to address potential impacts to oak trees.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Biological Resources Assessment",
+  "effective_date": "2031-02-10",
+  "parties": [
+    { "name": "EcoSphere Consulting", "role": "Consultant" },
+    { "name": "Pine Hills Development LLC", "role": "Client" }
+  ],
+  "technical_study_details": {
+    "study_type": "Biological Resources Report",
+    "project_name": "Pine Hills Estates Project",
+    "site_description": "50-acre project site",
+    "key_findings": [
+      "Contains suitable habitat for the California red-legged frog.",
+      "No individuals were observed during protocol-level surveys.",
+      "Several protected oak trees are located on the site."
+    ],
+    "recommendations": "Establish a 50-foot buffer around the seasonal drainage. An arborist report is recommended to address potential impacts to oak trees."
+  },
+  "discovered_entities": []
+}
+116_schema_additions.json
+
+JSON
+
+{
+  "technical_study_details": {
+    "type": "object",
+    "description": "Details specific to a technical study or report.",
+    "properties": {
+      "study_type": { "type": "string" },
+      "project_name": { "type": "string" },
+      "site_description": { "type": "string" },
+      "key_findings": { "type": "array", "items": { "type": "string" } },
+      "recommendations": { "type": "string" }
+    }
+  }
+}
+Document Type 117: Jurisdictional Delineation (Wetlands)
+117_specialist_schema.json
+
+JSON
+
+{
+  "title": "Jurisdictional Delineation Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Wetland Delineation Report'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Author", "Consultant", "Client", "Regulatory Agency"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "technical_study_details": {
+      "type": "object",
+      "properties": {
+        "study_type": { "type": "string", "default": "Jurisdictional Delineation" },
+        "project_name": { "type": "string" },
+        "site_description": { "type": "string" },
+        "findings_summary": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "technical_study_details"]
+}
+117_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+AQUATIC RESOURCES DELINEATION REPORT
+PINE HILLS ESTATES
+
+Prepared by: EcoSphere Consulting
+Date: March 1, 2031
+
+RESULTS:
+A total of 1.25 acres of jurisdictional waters of the U.S., consisting of a seasonal wetland complex, were delineated within the project study area. This delineation was verified by the U.S. Army Corps of Engineers on March 15, 2031.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Aquatic Resources Delineation Report",
+  "effective_date": "2031-03-01",
+  "parties": [
+    { "name": "EcoSphere Consulting", "role": "Consultant" },
+    { "name": "U.S. Army Corps of Engineers", "role": "Regulatory Agency" }
+  ],
+  "technical_study_details": {
+    "study_type": "Jurisdictional Delineation",
+    "project_name": "Pine Hills Estates",
+    "site_description": null,
+    "findings_summary": "A total of 1.25 acres of jurisdictional waters of the U.S., consisting of a seasonal wetland complex, were delineated."
+  },
+  "discovered_entities": []
+}
+117_schema_additions.json
+
+JSON
+
+{
+  "technical_study_details": {
+    "type": "object",
+    "description": "Details specific to a technical study or report.",
+    "properties": {
+      "study_type": { "type": "string" },
+      "project_name": { "type": "string" },
+      "site_description": { "type": "string" },
+      "key_findings": { "type": "array", "items": { "type": "string" } },
+      "recommendations": { "type": "string" },
+      "findings_summary": { "type": "string" }
+    }
+  }
+}
+Document Type 118: Cultural/Tribal (AB-52) Report
+118_specialist_schema.json
+
+JSON
+
+{
+  "title": "Cultural/Tribal Resources Report Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Cultural Resources Inventory Report'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Author", "Consultant", "Client"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "technical_study_details": {
+      "type": "object",
+      "properties": {
+        "study_type": { "type": "string", "default": "Cultural/Tribal Resources" },
+        "project_name": { "type": "string" },
+        "findings_summary": { "type": "string" },
+        "ab52_consultation_summary": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "technical_study_details"]
+}
+118_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+CULTURAL RESOURCES STUDY FOR THE CANYON RANCH PROJECT
+
+Prepared by: Heritage Consultants, Inc.
+Date: April 20, 2031
+
+RESULTS:
+No prehistoric or historic-era archaeological resources were identified during the pedestrian survey. A records search indicated low sensitivity for such resources.
+
+AB 52 TRIBAL CONSULTATION:
+The Lead Agency initiated consultation with the United Auburn Indian Community. The tribe requested the implementation of an inadvertent discovery protocol as a condition of approval.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Cultural Resources Study for the Canyon Ranch Project",
+  "effective_date": "2031-04-20",
+  "parties": [
+    { "name": "Heritage Consultants, Inc.", "role": "Consultant" }
+  ],
+  "technical_study_details": {
+    "study_type": "Cultural/Tribal Resources",
+    "project_name": "Canyon Ranch Project",
+    "findings_summary": "No prehistoric or historic-era archaeological resources were identified during the pedestrian survey.",
+    "ab52_consultation_summary": "Consultation was initiated with the United Auburn Indian Community, who requested an inadvertent discovery protocol."
+  },
+  "discovered_entities": []
+}
+118_schema_additions.json
+
+JSON
+
+{
+  "technical_study_details": {
+    "type": "object",
+    "description": "Details specific to a technical study or report.",
+    "properties": {
+      "study_type": { "type": "string" },
+      "project_name": { "type": "string" },
+      "site_description": { "type": "string" },
+      "key_findings": { "type": "array", "items": { "type": "string" } },
+      "recommendations": { "type": "string" },
+      "findings_summary": { "type": "string" },
+      "ab52_consultation_summary": { "type": "string" }
+    }
+  }
+}
+Document Type 119: Paleontological Report
+119_specialist_schema.json
+
+JSON
+
+{
+  "title": "Paleontological Report Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Paleontological Resources Assessment'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Author", "Consultant", "Client"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "technical_study_details": {
+      "type": "object",
+      "properties": {
+        "study_type": { "type": "string", "default": "Paleontological Report" },
+        "project_name": { "type": "string" },
+        "paleontological_sensitivity": { "type": "string" },
+        "recommendations": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "technical_study_details"]
+}
+119_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+PALEONTOLOGICAL RESOURCES ASSESSMENT
+CANYON RANCH PROJECT
+
+Prepared by: Fossil Finders Inc.
+Date: May 1, 2031
+
+RESULTS:
+The project site is underlain by the Monterey Formation, which is assigned a high paleontological resource sensitivity.
+
+RECOMMENDATIONS:
+Due to the high sensitivity, it is recommended that a qualified paleontological monitor be present during all ground-disturbing activities exceeding 5 feet in depth.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Paleontological Resources Assessment",
+  "effective_date": "2031-05-01",
+  "parties": [
+    { "name": "Fossil Finders Inc.", "role": "Consultant" }
+  ],
+  "technical_study_details": {
+    "study_type": "Paleontological Report",
+    "project_name": "Canyon Ranch Project",
+    "paleontological_sensitivity": "High",
+    "recommendations": "A qualified paleontological monitor should be present during all ground-disturbing activities exceeding 5 feet in depth."
+  },
+  "discovered_entities": []
+}
+119_schema_additions.json
+
+JSON
+
+{
+  "technical_study_details": {
+    "type": "object",
+    "description": "Details specific to a technical study or report.",
+    "properties": {
+      "study_type": { "type": "string" },
+      "project_name": { "type": "string" },
+      "site_description": { "type": "string" },
+      "key_findings": { "type": "array", "items": { "type": "string" } },
+      "recommendations": { "type": "string" },
+      "findings_summary": { "type": "string" },
+      "ab52_consultation_summary": { "type": "string" },
+      "paleontological_sensitivity": { "type": "string" }
+    }
+  }
+}
+Document Type 120: Traffic/Transportation Study
+120_specialist_schema.json
+
+JSON
+
+{
+  "title": "Traffic/Transportation Study Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Traffic Impact Analysis'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Author", "Consultant", "Client"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "technical_study_details": {
+      "type": "object",
+      "properties": {
+        "study_type": { "type": "string", "default": "Traffic/Transportation Study" },
+        "project_name": { "type": "string" },
+        "project_trip_generation": { "type": "string" },
+        "significant_impacts_identified": { "type": "array", "items": { "type": "string" } },
+        "recommended_mitigation": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "technical_study_details"]
+}
+120_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+TRAFFIC IMPACT ANALYSIS FOR THE OAKVILLE QUARRY PROJECT
+
+Prepared by: Mobility Engineering Group
+Date: June 15, 2031
+
+TRIP GENERATION:
+The project is forecast to generate 5,000 new daily vehicle trips.
+
+IMPACTS:
+The study concludes that the project will result in significant impacts at the intersection of Main Street and Quarry Road, causing the Level of Service (LOS) to degrade from C to E.
+
+MITIGATION:
+To mitigate this impact, the installation of a new traffic signal is required.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Traffic Impact Analysis for the Oakville Quarry Project",
+  "effective_date": "2031-06-15",
+  "parties": [
+    { "name": "Mobility Engineering Group", "role": "Consultant" }
+  ],
+  "technical_study_details": {
+    "study_type": "Traffic/Transportation Study",
+    "project_name": "Oakville Quarry Project",
+    "project_trip_generation": "5,000 new daily vehicle trips.",
+    "significant_impacts_identified": [
+      "Intersection of Main Street and Quarry Road will degrade from LOS C to E."
+    ],
+    "recommended_mitigation": "Installation of a new traffic signal."
+  },
+  "discovered_entities": []
+}
+120_schema_additions.json
+
+JSON
+
+{
+  "technical_study_details": {
+    "type": "object",
+    "description": "Details specific to a technical study or report.",
+    "properties": {
+      "study_type": { "type": "string" },
+      "project_name": { "type": "string" },
+      "site_description": { "type": "string" },
+      "key_findings": { "type": "array", "items": { "type": "string" } },
+      "recommendations": { "type": "string" },
+      "findings_summary": { "type": "string" },
+      "ab52_consultation_summary": { "type": "string" },
+      "paleontological_sensitivity": { "type": "string" },
+      "project_trip_generation": { "type": "string" },
+      "significant_impacts_identified": { "type": "array", "items": { "type": "string" } },
+      "recommended_mitigation": { "type": "string" }
+    }
+  }
+}
+Document Type 121: Noise Study
+121_specialist_schema.json
+
+JSON
+
+{
+  "title": "Noise Study Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Noise Impact Analysis'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Author", "Consultant", "Client"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "technical_study_details": {
+      "type": "object",
+      "properties": {
+        "study_type": { "type": "string", "default": "Noise Study" },
+        "project_name": { "type": "string" },
+        "significant_impacts_identified": { "type": "array", "items": { "type": "string" } },
+        "recommended_mitigation": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "technical_study_details"]
+}
+121_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+NOISE AND VIBRATION STUDY
+OAKVILLE QUARRY PROJECT
+
+Prepared by: Acoustic Solutions LLC
+Date: June 20, 2031
+
+CONCLUSIONS:
+Construction noise levels will temporarily exceed the City's 60 dBA threshold at the nearest residential receptors.
+
+MITIGATION:
+Mitigation Measure N-1: Temporary sound walls shall be erected along the project boundary adjacent to residences. Construction hours shall be limited.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Noise and Vibration Study",
+  "effective_date": "2031-06-20",
+  "parties": [
+    { "name": "Acoustic Solutions LLC", "role": "Consultant" }
+  ],
+  "technical_study_details": {
+    "study_type": "Noise Study",
+    "project_name": "Oakville Quarry Project",
+    "significant_impacts_identified": [
+      "Construction noise levels will temporarily exceed the City's 60 dBA threshold at the nearest residential receptors."
+    ],
+    "recommended_mitigation": "Mitigation Measure N-1: Temporary sound walls shall be erected along the project boundary adjacent to residences. Construction hours shall be limited."
+  },
+  "discovered_entities": []
+}
+121_schema_additions.json
+
+JSON
+
+{
+  "technical_study_details": {
+    "type": "object",
+    "description": "Details specific to a technical study or report.",
+    "properties": {
+      "study_type": { "type": "string" },
+      "project_name": { "type": "string" },
+      "site_description": { "type": "string" },
+      "key_findings": { "type": "array", "items": { "type": "string" } },
+      "recommendations": { "type": "string" },
+      "findings_summary": { "type": "string" },
+      "ab52_consultation_summary": { "type": "string" },
+      "paleontological_sensitivity": { "type": "string" },
+      "project_trip_generation": { "type": "string" },
+      "significant_impacts_identified": { "type": "array", "items": { "type": "string" } },
+      "recommended_mitigation": { "type": "string" }
+    }
+  }
+}
+Document Type 122: Air Quality/GHG Report
+122_specialist_schema.json
+
+JSON
+
+{
+  "title": "Air Quality/GHG Report Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Air Quality and Greenhouse Gas Impact Analysis'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Author", "Consultant", "Client"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "technical_study_details": {
+      "type": "object",
+      "properties": {
+        "study_type": { "type": "string", "default": "Air Quality/GHG Report" },
+        "project_name": { "type": "string" },
+        "emissions_summary": { "type": "string" },
+        "thresholds_exceeded": { "type": "array", "items": { "type": "string" } },
+        "recommended_mitigation": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "technical_study_details"]
+}
+122_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+AIR QUALITY AND GHG ANALYSIS - OAKVILLE QUARRY
+
+Prepared by: Enviro Air Sciences
+Date: July 1, 2031
+
+FINDINGS:
+Operational emissions of ROG and NOx are projected to exceed the BAAQMD thresholds of significance. Greenhouse gas (GHG) emissions are below the applicable thresholds.
+
+MITIGATION:
+AQ-1: All construction equipment shall be Tier 4 compliant.
+AQ-2: The project shall include EV charging stations for 15% of parking spaces.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Air Quality and GHG Analysis - Oakville Quarry",
+  "effective_date": "2031-07-01",
+  "parties": [
+    { "name": "Enviro Air Sciences", "role": "Consultant" }
+  ],
+  "technical_study_details": {
+    "study_type": "Air Quality/GHG Report",
+    "project_name": "Oakville Quarry",
+    "emissions_summary": "Greenhouse gas (GHG) emissions are below the applicable thresholds.",
+    "thresholds_exceeded": [
+      "ROG (Reactive Organic Gases)",
+      "NOx (Nitrogen Oxides)"
+    ],
+    "recommended_mitigation": "AQ-1: All construction equipment shall be Tier 4 compliant. AQ-2: The project shall include EV charging stations for 15% of parking spaces."
+  },
+  "discovered_entities": []
+}
+122_schema_additions.json
+
+JSON
+
+{
+  "technical_study_details": {
+    "type": "object",
+    "description": "Details specific to a technical study or report.",
+    "properties": {
+      "study_type": { "type": "string" },
+      "project_name": { "type": "string" },
+      "site_description": { "type": "string" },
+      "key_findings": { "type": "array", "items": { "type": "string" } },
+      "recommendations": { "type": "string" },
+      "findings_summary": { "type": "string" },
+      "ab52_consultation_summary": { "type": "string" },
+      "paleontological_sensitivity": { "type": "string" },
+      "project_trip_generation": { "type": "string" },
+      "significant_impacts_identified": { "type": "array", "items": { "type": "string" } },
+      "recommended_mitigation": { "type": "string" },
+      "emissions_summary": { "type": "string" },
+      "thresholds_exceeded": { "type": "array", "items": { "type": "string" } }
+    }
+  }
+}
+Document Type 123: HRA (Health Risk Assessment)
+123_specialist_schema.json
+
+JSON
+
+{
+  "title": "Health Risk Assessment (HRA) Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Health Risk Assessment'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Author", "Consultant", "Client"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "technical_study_details": {
+      "type": "object",
+      "properties": {
+        "study_type": { "type": "string", "default": "Health Risk Assessment" },
+        "project_name": { "type": "string" },
+        "pollutants_analyzed": { "type": "array", "items": { "type": "string" } },
+        "risk_conclusion": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "technical_study_details"]
+}
+123_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+HEALTH RISK ASSESSMENT
+OAKVILLE QUARRY PROJECT
+
+Prepared by: Enviro Air Sciences
+Date: July 1, 2031
+
+This HRA evaluates potential health risks from exposure to Diesel Particulate Matter (DPM) during project construction.
+
+CONCLUSION:
+The maximum incremental cancer risk for the Maximally Exposed Individual Resident (MEIR) is calculated to be 8.5 in one million, which is below the BAAQMD significance threshold of 10 in one million. The impact is less than significant.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Health Risk Assessment",
+  "effective_date": "2031-07-01",
+  "parties": [
+    { "name": "Enviro Air Sciences", "role": "Consultant" }
+  ],
+  "technical_study_details": {
+    "study_type": "Health Risk Assessment",
+    "project_name": "Oakville Quarry Project",
+    "pollutants_analyzed": [
+      "Diesel Particulate Matter (DPM)"
+    ],
+    "risk_conclusion": "The maximum incremental cancer risk is 8.5 in one million, which is below the significance threshold of 10 in one million. The impact is less than significant."
+  },
+  "discovered_entities": []
+}
+123_schema_additions.json
+
+JSON
+
+{
+  "technical_study_details": {
+    "type": "object",
+    "description": "Details specific to a technical study or report.",
+    "properties": {
+      "study_type": { "type": "string" },
+      "project_name": { "type": "string" },
+      "site_description": { "type": "string" },
+      "key_findings": { "type": "array", "items": { "type": "string" } },
+      "recommendations": { "type": "string" },
+      "findings_summary": { "type": "string" },
+      "ab52_consultation_summary": { "type": "string" },
+      "paleontological_sensitivity": { "type": "string" },
+      "project_trip_generation": { "type": "string" },
+      "significant_impacts_identified": { "type": "array", "items": { "type": "string" } },
+      "recommended_mitigation": { "type": "string" },
+      "emissions_summary": { "type": "string" },
+      "thresholds_exceeded": { "type": "array", "items": { "type": "string" } },
+      "pollutants_analyzed": { "type": "array", "items": { "type": "string" } },
+      "risk_conclusion": { "type": "string" }
+    }
+  }
+}
+Document Type 124: Geotechnical/Soils Report
+124_specialist_schema.json
+
+JSON
+
+{
+  "title": "Geotechnical/Soils Report Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Geotechnical Investigation Report'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Author", "Consultant", "Client"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "technical_study_details": {
+      "type": "object",
+      "properties": {
+        "study_type": { "type": "string", "default": "Geotechnical/Soils Report" },
+        "project_name": { "type": "string" },
+        "key_findings": { "type": "array", "items": { "type": "string" } },
+        "recommendations": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "technical_study_details"]
+}
+124_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+GEOTECHNICAL INVESTIGATION
+PROPOSED COMMERCIAL BUILDING, 123 MAIN ST
+
+Prepared for: Main Street Development LLC
+Prepared by: GeoTek Solutions
+Date: January 25, 2031
+
+FINDINGS:
+The site is underlain by expansive clay soils. The potential for liquefaction is low.
+
+RECOMMENDATIONS:
+Foundations should consist of a post-tensioned slab-on-grade. All fill material should be compacted to 95% relative compaction.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Geotechnical Investigation",
+  "effective_date": "2031-01-25",
+  "parties": [
+    { "name": "GeoTek Solutions", "role": "Consultant" },
+    { "name": "Main Street Development LLC", "role": "Client" }
+  ],
+  "technical_study_details": {
+    "study_type": "Geotechnical/Soils Report",
+    "project_name": "Proposed Commercial Building, 123 Main St",
+    "key_findings": [
+      "The site is underlain by expansive clay soils.",
+      "The potential for liquefaction is low."
+    ],
+    "recommendations": "Foundations should consist of a post-tensioned slab-on-grade. All fill material should be compacted to 95% relative compaction."
+  },
+  "discovered_entities": []
+}
+124_schema_additions.json
+
+JSON
+
+{
+  "technical_study_details": {
+    "type": "object",
+    "description": "Details specific to a technical study or report.",
+    "properties": {
+      "study_type": { "type": "string" },
+      "project_name": { "type": "string" },
+      "site_description": { "type": "string" },
+      "key_findings": { "type": "array", "items": { "type": "string" } },
+      "recommendations": { "type": "string" },
+      "findings_summary": { "type": "string" },
+      "ab52_consultation_summary": { "type": "string" },
+      "paleontological_sensitivity": { "type": "string" },
+      "project_trip_generation": { "type": "string" },
+      "significant_impacts_identified": { "type": "array", "items": { "type": "string" } },
+      "recommended_mitigation": { "type": "string" },
+      "emissions_summary": { "type": "string" },
+      "thresholds_exceeded": { "type": "array", "items": { "type": "string" } },
+      "pollutants_analyzed": { "type": "array", "items": { "type": "string" } },
+      "risk_conclusion": { "type": "string" }
+    }
+  }
+}
+Document Type 125: Hydro/Floodplain Analysis
+125_specialist_schema.json
+
+JSON
+
+{
+  "title": "Hydrology/Floodplain Analysis Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Hydrology and Hydraulics Study'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Author", "Consultant", "Client"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "technical_study_details": {
+      "type": "object",
+      "properties": {
+        "study_type": { "type": "string", "default": "Hydro/Floodplain Analysis" },
+        "project_name": { "type": "string" },
+        "key_findings": { "type": "array", "items": { "type": "string" } },
+        "recommendations": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "technical_study_details"]
+}
+125_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+DRAINAGE STUDY FOR THE CREEKSIDE ESTATES PROJECT
+
+Prepared by: Water Resources Engineering
+Date: February 20, 2031
+
+FINDINGS:
+The project will increase impervious surfaces by 5 acres, resulting in a 15% increase in peak runoff during a 100-year storm event. The southern portion of the site is located within the FEMA 100-year floodplain.
+
+RECOMMENDATIONS:
+An on-site detention basin with a capacity of 2.5 acre-feet is required to mitigate the increase in runoff. The finished floor elevation of all structures must be a minimum of 2 feet above the Base Flood Elevation.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Drainage Study for the Creekside Estates Project",
+  "effective_date": "2031-02-20",
+  "parties": [
+    { "name": "Water Resources Engineering", "role": "Consultant" }
+  ],
+  "technical_study_details": {
+    "study_type": "Hydro/Floodplain Analysis",
+    "project_name": "Creekside Estates Project",
+    "key_findings": [
+      "The project will increase impervious surfaces by 5 acres.",
+      "Results in a 15% increase in peak runoff during a 100-year storm event.",
+      "The southern portion of the site is located within the FEMA 100-year floodplain."
+    ],
+    "recommendations": "An on-site detention basin (2.5 acre-feet) is required. Finished floor elevation must be a minimum of 2 feet above the Base Flood Elevation."
+  },
+  "discovered_entities": []
+}
+125_schema_additions.json
+
+JSON
+
+{
+  "technical_study_details": {
+    "type": "object",
+    "description": "Details specific to a technical study or report.",
+    "properties": {
+      "study_type": { "type": "string" },
+      "project_name": { "type": "string" },
+      "site_description": { "type": "string" },
+      "key_findings": { "type": "array", "items": { "type": "string" } },
+      "recommendations": { "type": "string" },
+      "findings_summary": { "type": "string" },
+      "ab52_consultation_summary": { "type": "string" },
+      "paleontological_sensitivity": { "type": "string" },
+      "project_trip_generation": { "type": "string" },
+      "significant_impacts_identified": { "type": "array", "items": { "type": "string" } },
+      "recommended_mitigation": { "type": "string" },
+      "emissions_summary": { "type": "string" },
+      "thresholds_exceeded": { "type": "array", "items": { "type": "string" } },
+      "pollutants_analyzed": { "type": "array", "items": { "type": "string" } },
+      "risk_conclusion": { "type": "string" }
+    }
+  }
+}

@@ -1,0 +1,34 @@
+**INPUT DOCUMENT TEXT:**
+BIOLOGICAL OPINION
+Consultation No. 08ESMF00-2031-F-1234
+Action Agency: U.S. Army Corps of Engineers
+Applicant: Pine Hills Development LLC
+Date: September 1, 2031
+
+This Biological Opinion addresses the effects of the Pine Hills Estates project on the federally listed California red-legged frog.
+
+CONCLUSION: It is our biological opinion that the action is not likely to jeopardize the continued existence of the species.
+
+INCIDENTAL TAKE STATEMENT:
+The Service anticipates take of up to 5 adult California red-legged frogs will be incidental to the proposed action.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Biological Opinion",
+  "effective_date": "2031-09-01",
+  "parties": [
+    { "name": "U.S. Army Corps of Engineers", "role": "Action Agency" },
+    { "name": "Pine Hills Development LLC", "role": "Applicant" }
+  ],
+  "biological_opinion_details": {
+    "consultation_number": "08ESMF00-2031-F-1234",
+    "project_name": "Pine Hills Estates",
+    "species_affected": [
+      "California red-legged frog"
+    ],
+    "jeopardy_finding": false,
+    "incidental_take_statement": "Anticipates take of up to 5 adult California red-legged frogs.",
+    "conservation_measures": null
+  },
+  "discovered_entities": []
+}

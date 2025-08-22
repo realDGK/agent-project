@@ -1,0 +1,13 @@
+{
+  "assessment_district_details": {
+    "type": "object",
+    "description": "Details specific to an Assessment District.",
+    "properties": {
+      "district_name": { "type": "string" },
+      "improvements_to_be_financed": { "type": "string" },
+      "total_estimated_cost": { "type": "number" },
+      "method_of_assessment": { "type": "string" },
+      "diagram_summary": { "type": "string" }
+    }
+  }
+}

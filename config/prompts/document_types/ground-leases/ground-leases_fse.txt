@@ -1,0 +1,28 @@
+**INPUT DOCUMENT TEXT:**
+GROUND LEASE AGREEMENT
+
+This Lease is made April 1, 2033, between City Port Authority ("Landlord") and Waterfront Development LLC ("Tenant").
+
+Landlord leases to Tenant the 5-acre parcel known as Pier 4 for a term of ninety-nine (99) years.
+Tenant shall pay annual rent of $500,000, with adjustments every 10 years based on fair market value.
+Tenant is permitted to construct and operate a hotel on the premises.
+Upon expiration of the Term, all improvements shall revert to and become the property of the Landlord.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Ground Lease Agreement",
+  "effective_date": "2033-04-01",
+  "parties": [
+    { "name": "City Port Authority", "role": "Landlord" },
+    { "name": "Waterfront Development LLC", "role": "Tenant" }
+  ],
+  "lease_details": {
+    "lease_type": "Ground",
+    "property_description": "The 5-acre parcel known as Pier 4.",
+    "lease_term_years": 99,
+    "rent_schedule": "Annual rent of $500,000, with adjustments every 10 years based on fair market value.",
+    "permitted_use": "Construct and operate a hotel on the premises.",
+    "reversion_clause": "Upon expiration of the Term, all improvements shall revert to and become the property of the Landlord."
+  },
+  "discovered_entities": []
+}

@@ -1,0 +1,39 @@
+**INPUT DOCUMENT TEXT:**
+TENANT ESTOPPEL CERTIFICATE
+
+To: Big Bank, N.A. and Future Owner LLC
+From: The Coffee Spot LLC ("Tenant")
+Date: April 5, 2028
+Landlord: Main Street Properties LLC
+
+Re: Lease dated June 1, 2025 for the premises at 123 Main St, Suite 101.
+
+Tenant hereby certifies:
+1. The Lease is in full force and effect.
+2. The lease term expires May 31, 2030.
+3. Current monthly base rent is $4,500.
+4. A security deposit of $4,500 was paid.
+5. To Tenant's knowledge, there are no defaults by the Landlord.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Tenant Estoppel Certificate",
+  "effective_date": "2028-04-05",
+  "parties": [
+    { "name": "The Coffee Spot LLC", "role": "Tenant" },
+    { "name": "Main Street Properties LLC", "role": "Landlord" },
+    { "name": "Big Bank, N.A.", "role": "Lender" },
+    { "name": "Future Owner LLC", "role": "Buyer" }
+  ],
+  "estoppel_details": {
+    "lease_date": "2025-06-01",
+    "lease_premises": "123 Main St, Suite 101",
+    "rent_commencement_date": null,
+    "lease_expiration_date": "2030-05-31",
+    "current_monthly_rent": 4500,
+    "security_deposit_amount": 4500,
+    "known_defaults": "No defaults by the Landlord.",
+    "outstanding_allowances": null
+  },
+  "discovered_entities": []
+}

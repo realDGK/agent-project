@@ -1,0 +1,47 @@
+{
+  "title": "Phase I/II ESA Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Phase I Environmental Site Assessment'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Author", "Consultant", "Client"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "technical_study_details": {
+      "type": "object",
+      "properties": {
+        "study_type": { "type": "string", "enum": ["Phase I ESA", "Phase II ESA"] },
+        "project_name": { "type": "string" },
+        "recognized_environmental_conditions_recs": { "type": "array", "items": { "type": "string" } },
+        "conclusions": { "type": "string" },
+        "recommendations": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "technical_study_details"]
+}

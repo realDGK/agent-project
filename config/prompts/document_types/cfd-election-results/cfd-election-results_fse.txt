@@ -1,0 +1,29 @@
+**INPUT DOCUMENT TEXT:**
+CANVASS OF VOTES AND CERTIFICATE OF ELECTION RESULTS
+COMMUNITY FACILITIES DISTRICT NO. 2032-1
+
+I, the City Clerk of the City of Oakwood, do hereby certify that the election for CFD No. 2032-1 was held on June 15, 2032, with the following results:
+
+YES VOTES: 1 (representing all landowners)
+NO VOTES: 0
+
+The proposition to authorize the special tax and bond issuance has passed.
+
+Dated: June 16, 2032
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Canvass of Votes and Certificate of Election Results",
+  "effective_date": "2032-06-16",
+  "parties": [
+    { "name": "City Clerk of the City of Oakwood", "role": "Certifying Official" }
+  ],
+  "cfd_details": {
+    "cfd_number": "2032-1",
+    "election_date": "2032-06-15",
+    "votes_yes": 1,
+    "votes_no": 0,
+    "outcome": "The proposition to authorize the special tax and bond issuance has passed."
+  },
+  "discovered_entities": []
+}

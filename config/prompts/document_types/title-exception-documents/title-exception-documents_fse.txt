@@ -1,0 +1,27 @@
+**INPUT DOCUMENT TEXT:**
+EASEMENT AGREEMENT
+Recorded 05/20/1999, as Instrument No. 1999-54321, Napa County Records.
+
+This agreement is made by ORIGINAL DEVELOPER ("Grantor") in favor of PACIFIC UTILITY COMPANY ("Grantee").
+
+Grantor hereby grants to Grantee a perpetual easement for the installation and maintenance of public utility lines over, under, and across the easterly 10 feet of Lot 1 of Parcel Map No. 1234.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Easement Agreement",
+  "effective_date": null,
+  "parties": [
+    { "name": "ORIGINAL DEVELOPER", "role": "Grantor" },
+    { "name": "PACIFIC UTILITY COMPANY", "role": "Grantee" }
+  ],
+  "title_details": {
+    "document_summary": "Grants a perpetual easement for public utility lines over the easterly 10 feet of Lot 1 of Parcel Map No. 1234."
+  },
+  "legal_recording_details": {
+    "instrument_number": "1999-54321",
+    "recording_date": "1999-05-20",
+    "county": "Napa",
+    "state": null
+  },
+  "discovered_entities": []
+}

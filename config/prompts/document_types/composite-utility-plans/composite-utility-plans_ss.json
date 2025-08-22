@@ -1,0 +1,45 @@
+{
+  "title": "Composite Utility Plan Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The title of the plan set, e.g., 'Composite Utility Plan'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Engineer", "Developer"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "plan_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "plan_type": { "type": "string", "default": "Composite Utility Plan" },
+        "utilities_shown": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "plan_details"]
+}

@@ -1,0 +1,65 @@
+{
+  "title": "Resolutions & Minutes Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Minutes of the Board of Directors Meeting', 'Unanimous Written Consent'."
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date",
+      "description": "The date the meeting was held or the consent was signed."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Entity", "Director", "Member", "Shareholder", "Officer"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "corporate_action_details": {
+      "type": "object",
+      "properties": {
+        "action_type": {
+          "type": "string",
+          "enum": ["Board Meeting Minutes", "Shareholder Meeting Minutes", "Unanimous Written Consent", "Resolution"],
+          "description": "The type of corporate action being recorded."
+        },
+        "resolutions_passed": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "A list summarizing the key decisions or resolutions approved."
+        },
+        "attendees": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "A list of individuals present at the meeting."
+        },
+        "voting_summary": {
+          "type": "string",
+          "description": "A summary of the vote outcome (e.g., 'Unanimously approved', 'Passed by a majority vote')."
+        }
+      }
+    },
+    "discovered_entities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "entity_name": { "type": "string" },
+          "entity_value": { "type": "string" },
+          "context_summary": { "type": "string" }
+        }
+      }
+    }
+  },
+  "required": ["contract_name", "effective_date", "corporate_action_details"]
+}

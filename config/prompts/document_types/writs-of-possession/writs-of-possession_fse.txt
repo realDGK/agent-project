@@ -1,0 +1,26 @@
+**INPUT DOCUMENT TEXT:**
+WRIT OF POSSESSION (REAL PROPERTY)
+Case Number: UD-2028-555
+
+TO THE SHERIFF OF THE COUNTY OF LOS ANGELES:
+You are directed to enforce the judgment entered on September 15, 2028, in the above-entitled action. You are ordered to restore possession of the premises located at 987 Tenant Ave, Los Angeles, CA to the Plaintiff, Property Management Inc.
+
+Issued on: September 20, 2028
+Clerk of the Court
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Writ of Possession (Real Property)",
+  "effective_date": "2028-09-20",
+  "parties": [
+    { "name": "Property Management Inc.", "role": "Plaintiff" },
+    { "name": "Sheriff of the County of Los Angeles", "role": "Sheriff" },
+    { "name": "Clerk of the Court", "role": "Clerk of the Court" }
+  ],
+  "litigation_details": {
+    "court_name": null,
+    "case_number": "UD-2028-555",
+    "property_address": "987 Tenant Ave, Los Angeles, CA",
+    "judgment_date": "2028-09-15"
+  }
+}

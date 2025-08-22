@@ -1,0 +1,42 @@
+INPUT DOCUMENT TEXT:
+SHAREHOLDER AGREEMENT FOR OAKWOOD VENTURES, INC.
+This Agreement is made as of July 1, 2025, by and among Oakwood Ventures, Inc. (the "Company"), and its shareholders, Alice Marks and Ben Carter.
+ARTICLE 4: RESTRICTIONS ON TRANSFER
+4.1 General Restriction. No Shareholder shall transfer any Shares without first offering them to the Company.
+4.2 Right of First Refusal. The Company shall have thirty (30) days to purchase the shares on the same terms as a third-party offer.
+ARTICLE 5: BUY-SELL PROVISIONS
+5.1 Triggering Events. Upon the death or permanent disability of a Shareholder, the Company shall be obligated to purchase all of the Shares of such Shareholder.
+5.2 Purchase Price. The value of the shares shall be determined by an independent appraiser agreed upon by the parties annually.
+ARTICLE 6: MAJORITY RIGHTS
+6.1 Drag-Along. If Shareholders holding more than 75% of shares approve a sale of the Company, all other Shareholders are required to participate in the sale on the same terms.
+JSON OUTPUT:
+{
+"contract_name": "Shareholder Agreement for Oakwood Ventures, Inc.",
+"effective_date": "2025-07-01",
+"parties": [
+{
+"name": "Oakwood Ventures, Inc.",
+"role": "Company"
+},
+{
+"name": "Alice Marks",
+"role": "Shareholder"
+},
+{
+"name": "Ben Carter",
+"role": "Shareholder"
+}
+],
+"shareholder_agreement_details": {
+"transfer_restrictions": "No Shareholder shall transfer any Shares without first offering them to the Company.",
+"right_of_first_refusal_rofr": "The Company has thirty (30) days to purchase the shares on the same terms as a third-party offer.",
+"drag_along_rights": "If Shareholders holding more than 75% of shares approve a sale, all other Shareholders are required to participate.",
+"tag_along_rights": null,
+"buy_sell_triggers": [
+"Death",
+"Permanent Disability"
+],
+"valuation_method": "Determined by an independent appraiser agreed upon by the parties annually."
+},
+"discovered_entities": []
+}

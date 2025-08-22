@@ -1,0 +1,74 @@
+{
+  "title": "Discovery Request Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "e.g., 'Request for Production of Documents', 'Interrogatories'"
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date",
+      "description": "The date the request was served."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "Propounding Party",
+              "Responding Party"
+            ]
+          }
+        },
+        "required": [
+          "name",
+          "role"
+        ]
+      }
+    },
+    "litigation_details": {
+      "type": "object",
+      "properties": {
+        "court_name": {
+          "type": "string"
+        },
+        "case_number": {
+          "type": "string"
+        }
+      }
+    },
+    "discovery_details": {
+      "type": "object",
+      "properties": {
+        "discovery_type": {
+          "type": "string",
+          "enum": [
+            "Request for Production",
+            "Special Interrogatories",
+            "Request for Admissions"
+          ]
+        },
+        "response_due_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "number_of_requests": {
+          "type": "integer"
+        }
+      }
+    }
+  },
+  "required": [
+    "contract_name",
+    "effective_date",
+    "parties",
+    "discovery_details"
+  ]
+}

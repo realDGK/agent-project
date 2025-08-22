@@ -1,0 +1,46 @@
+{
+  "title": "Accessibility (CASp) Report Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'CASp Inspection Report'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["CASp Inspector", "Client"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "casp_report_details": {
+      "type": "object",
+      "properties": {
+        "property_address": { "type": "string" },
+        "inspection_date": { "type": "string", "format": "date" },
+        "determination": { "type": "string", "description": "e.g., 'Inspected by a CASp', 'Meets all applicable construction-related accessibility standards'." },
+        "summary_of_findings": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "casp_report_details"]
+}

@@ -1,0 +1,15 @@
+{
+  "governance_details": {
+    "type": "object",
+    "description": "Details specific to the internal governance rules of an entity.",
+    "properties": {
+      "director_quorum_requirement": { "type": "string" },
+      "shareholder_quorum_requirement": { "type": "string" },
+      "director_count": { "type": "string" },
+      "officer_titles": { "type": "array", "items": { "type": "string" } },
+      "fiscal_year_end": { "type": "string" },
+      "indemnification_clause_summary": { "type": "string" },
+      "member_quorum_requirement": { "type": "string" }
+    }
+  }
+}

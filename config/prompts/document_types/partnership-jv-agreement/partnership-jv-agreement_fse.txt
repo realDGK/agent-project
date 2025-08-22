@@ -1,0 +1,46 @@
+INPUT DOCUMENT TEXT:
+JOINT VENTURE AGREEMENT
+This Joint Venture Agreement is made this 30th day of September, 2024, between Apex Constructors, Inc. ("Apex") and Bedrock Land Co. ("Bedrock").
+FORMATION AND PURPOSE. The parties hereby form a joint venture (the "Venture") for the sole purpose of acquiring and developing the property known as the "Old Mill Site".
+TERM. The Venture shall commence on the date hereof and shall continue until the sale of all developed lots, unless terminated sooner.
+CAPITAL CONTRIBUTIONS.
+(a) Apex shall contribute construction management services valued at $500,000 for a 50% interest.
+(b) Bedrock shall contribute the Old Mill Site, valued at $500,000, for a 50% interest.
+MANAGEMENT. The Venture shall be managed by a Management Committee composed of one representative from each party.
+PROFITS AND LOSSES. Net profits and losses of the Venture shall be shared equally between the parties. Apex shall be the General Partner. Bedrock shall be a Limited Partner.
+JSON OUTPUT:
+{
+"contract_name": "Joint Venture Agreement",
+"effective_date": "2024-09-30",
+"parties": [
+{
+"name": "Apex Constructors, Inc.",
+"role": "General Partner"
+},
+{
+"name": "Bedrock Land Co.",
+"role": "Limited Partner"
+}
+],
+"partnership_details": {
+"partnership_purpose": "Acquiring and developing the property known as the 'Old Mill Site'.",
+"management_structure": "Managed by a Management Committee composed of one representative from each party.",
+"capital_contributions": [
+{
+"partner_name": "Apex Constructors, Inc.",
+"contribution_amount": 500000,
+"contribution_description": "construction management services",
+"partnership_interest_pct": 50
+},
+{
+"partner_name": "Bedrock Land Co.",
+"contribution_amount": 500000,
+"contribution_description": "the Old Mill Site",
+"partnership_interest_pct": 50
+}
+],
+"profit_loss_distribution": "Shared equally between the parties.",
+"partnership_term": "Until the sale of all developed lots, unless terminated sooner."
+},
+"discovered_entities": []
+}

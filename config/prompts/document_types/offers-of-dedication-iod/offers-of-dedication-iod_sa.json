@@ -1,0 +1,11 @@
+{
+  "dedication_details": {
+    "type": "object",
+    "description": "Details specific to an offer to dedicate property for public use.",
+    "properties": {
+      "property_dedicated": { "type": "string" },
+      "purpose_of_dedication": { "type": "string" },
+      "is_irrevocable": { "type": "boolean" }
+    }
+  }
+}

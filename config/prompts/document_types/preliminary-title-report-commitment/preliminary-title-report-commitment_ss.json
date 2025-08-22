@@ -1,0 +1,46 @@
+{
+  "title": "Preliminary Title Report Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Preliminary Report'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Title Company", "Assessed Owner"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "title_details": {
+      "type": "object",
+      "properties": {
+        "report_number": { "type": "string" },
+        "property_legal_description": { "type": "string" },
+        "estate_or_interest": { "type": "string" },
+        "exceptions": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "title_details"]
+}

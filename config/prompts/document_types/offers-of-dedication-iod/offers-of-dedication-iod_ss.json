@@ -1,0 +1,52 @@
+{
+  "title": "Offer of Dedication Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Irrevocable Offer of Dedication'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Owner", "Dedicator", "Beneficiary", "Public Agency"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "dedication_details": {
+      "type": "object",
+      "properties": {
+        "property_dedicated": { "type": "string" },
+        "purpose_of_dedication": { "type": "string" },
+        "is_irrevocable": { "type": "boolean" }
+      }
+    },
+    "legal_recording_details": {
+      "type": "object",
+      "properties": {
+        "instrument_number": { "type": "string" },
+        "recording_date": { "type": "string", "format": "date" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "dedication_details"]
+}

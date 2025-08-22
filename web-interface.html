@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contract Analysis Platform</title>
+    <title>Contract Analysis Platform - HIL Enhanced</title>
     <style>
         * {
             margin: 0;
@@ -199,11 +199,13 @@
         .btn {
             padding: 12px 24px;
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
             font-size: 1em;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .btn-primary {
@@ -217,51 +219,21 @@
         }
 
         .btn-secondary {
-            background: #ecf0f1;
-            color: #2c3e50;
+            background: #95a5a6;
+            color: white;
         }
 
         .btn-secondary:hover {
-            background: #d5dbdb;
+            background: #7f8c8d;
         }
 
-        .btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
+        .btn-warning {
+            background: #f39c12;
+            color: white;
         }
 
-        .analysis-options {
-            background: white;
-            border-radius: 10px;
-            padding: 20px;
-            margin-top: 20px;
-        }
-
-        .option-group {
-            margin-bottom: 15px;
-        }
-
-        .option-label {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 500;
-            color: #2c3e50;
-            cursor: pointer;
-        }
-
-        .option-label input[type="checkbox"] {
-            width: 18px;
-            height: 18px;
-        }
-
-        .option-description {
-            font-size: 0.9em;
-            color: #7f8c8d;
-            margin-left: 28px;
-            margin-top: 5px;
+        .btn-warning:hover {
+            background: #e67e22;
         }
 
         .progress-bar {
@@ -270,7 +242,7 @@
             background: #ecf0f1;
             border-radius: 3px;
             overflow: hidden;
-            margin: 10px 0;
+            margin-top: 10px;
         }
 
         .progress-fill {
@@ -280,21 +252,48 @@
             transition: width 0.3s ease;
         }
 
+        .status-message {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+            animation: slideIn 0.3s ease;
+        }
+
+        .status-message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .status-message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .status-message.info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+
         .results-container {
-            margin-top: 20px;
+            max-height: 600px;
+            overflow-y: auto;
         }
 
         .result-card {
             background: white;
-            border-radius: 10px;
+            border-radius: 8px;
             padding: 20px;
-            margin-bottom: 20px;
-            border-left: 4px solid #2ecc71;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
         .result-header {
             display: flex;
-            justify-content: between;
+            justify-content: space-between;
             align-items: center;
             margin-bottom: 15px;
         }
@@ -305,9 +304,9 @@
         }
 
         .confidence-badge {
-            padding: 4px 8px;
+            padding: 4px 10px;
             border-radius: 12px;
-            font-size: 0.8em;
+            font-size: 0.85em;
             font-weight: 500;
         }
 
@@ -326,46 +325,27 @@
             color: #721c24;
         }
 
-        .structured-data-view {
+        .metadata-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
             margin-top: 15px;
         }
 
-        .data-section {
-            background: #f8f9fa;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 15px;
-        }
-
-        .data-section h4 {
-            color: #2c3e50;
-            margin-bottom: 10px;
-            font-size: 1em;
-            border-bottom: 1px solid #e9ecef;
-            padding-bottom: 5px;
-        }
-
-        .data-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-        }
-
-        .data-item {
+        .metadata-item {
             display: flex;
-            justify-content: space-between;
-            padding: 8px 0;
+            flex-direction: column;
         }
 
-        .data-label {
-            font-size: 0.9em;
-            color: #6c757d;
+        .metadata-label {
+            font-size: 0.85em;
+            color: #7f8c8d;
+            margin-bottom: 4px;
+        }
+
+        .metadata-value {
             font-weight: 500;
-        }
-
-        .data-value {
             color: #2c3e50;
-            font-weight: 600;
         }
 
         .party-item, .financial-item, .date-item {
@@ -373,75 +353,197 @@
             justify-content: space-between;
             align-items: center;
             padding: 8px 12px;
-            background: white;
-            border-radius: 4px;
+            background: #f8f9fa;
+            border-radius: 6px;
             margin-bottom: 8px;
-            border-left: 3px solid #3b82f6;
         }
 
-        .party-name, .date-text {
+        .party-name, .amount {
             font-weight: 500;
             color: #2c3e50;
         }
 
-        .amount {
-            font-weight: 600;
-            color: #059669;
+        .confidence-score {
+            font-size: 0.85em;
+            padding: 2px 6px;
+            background: #e9ecef;
+            border-radius: 4px;
+            color: #495057;
+        }
+
+        .data-section {
+            margin-top: 20px;
+        }
+
+        .data-section h4 {
+            color: #495057;
+            margin-bottom: 10px;
             font-size: 1.1em;
         }
 
-        .label {
-            font-size: 0.8em;
-            color: #6b7280;
-            font-style: italic;
-        }
-
-        .confidence-score {
-            background: #e1f5fe;
-            color: #0277bd;
-            padding: 2px 6px;
-            border-radius: 12px;
-            font-size: 0.8em;
-            font-weight: 500;
+        .parties-list, .financial-list, .dates-list {
+            margin-top: 10px;
         }
 
         .no-data {
-            color: #9ca3af;
+            color: #6c757d;
             font-style: italic;
-            text-align: center;
             padding: 10px;
+            text-align: center;
+            background: #f8f9fa;
+            border-radius: 6px;
         }
 
-        .status-indicator {
+        /* HIL Review Interface Styles */
+        .hil-overlay {
             position: fixed;
-            top: 20px;
-            right: 20px;
-            background: white;
-            padding: 15px 20px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            display: none;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            animation: fadeIn 0.3s ease;
         }
 
-        .status-indicator.show {
-            display: block;
-            animation: slideIn 0.3s ease;
+        .hil-container {
+            background: white;
+            border-radius: 12px;
+            width: 95%;
+            max-width: 1400px;
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .hil-header {
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+            color: white;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 12px 12px 0 0;
+        }
+
+        .hil-content {
+            flex: 1;
+            display: flex;
+            overflow: hidden;
+        }
+
+        .hil-pane {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .hil-pane-left {
+            border-right: 1px solid #dee2e6;
+            background: #f8f9fa;
+        }
+
+        .hil-pane-right {
+            background: white;
+        }
+
+        .document-preview {
+            background: white;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 20px;
+            min-height: 500px;
+            max-height: 70vh;
+            overflow-y: auto;
+            font-family: 'Courier New', monospace;
+            white-space: pre-wrap;
+            line-height: 1.6;
+        }
+
+        .ocr-editor {
+            width: 100%;
+            min-height: 500px;
+            max-height: 70vh;
+            padding: 15px;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            resize: vertical;
+        }
+
+        .low-confidence-highlight {
+            background: #fff3cd;
+            border-bottom: 2px solid #ffc107;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        .confidence-marker {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background: #ffc107;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 20px;
+            font-size: 12px;
+            margin-left: 5px;
+            cursor: help;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5em;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .close-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .hil-footer {
+            padding: 15px 30px;
+            background: #f8f9fa;
+            border-top: 1px solid #dee2e6;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .hil-status {
+            color: #6c757d;
+            font-size: 0.9em;
+        }
+
+        .hil-actions {
+            display: flex;
+            gap: 10px;
         }
 
         @keyframes slideIn {
-            from { transform: translateX(100%); }
-            to { transform: translateX(0); }
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
-        .loading-spinner {
-            width: 20px;
-            height: 20px;
-            border: 2px solid #f3f3f3;
-            border-top: 2px solid #3498db;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            display: inline-block;
-            margin-right: 10px;
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         @keyframes spin {
@@ -453,9 +555,18 @@
             .main-content {
                 grid-template-columns: 1fr;
             }
-            
+
             .metadata-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .hil-content {
+                flex-direction: column;
+            }
+
+            .hil-pane-left {
+                border-right: none;
+                border-bottom: 1px solid #dee2e6;
             }
         }
     </style>
@@ -463,92 +574,65 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>🏢 Contract Analysis Platform</h1>
-            <p>AI-powered legal document processing with PostgreSQL backend</p>
+            <h1>📄 Contract Analysis Platform</h1>
+            <p>AI-Powered Document Processing with Human-in-the-Loop Review</p>
         </div>
 
         <div class="main-content">
-            <!-- Upload Section -->
             <div class="upload-section">
                 <h2 class="section-title">
-                    📄 Document Upload
+                    <span>📤</span>
+                    Document Upload
                 </h2>
 
+                <div id="statusMessage" class="status-message"></div>
+
                 <div class="upload-area" id="uploadArea">
-                    <div class="upload-icon">📎</div>
-                    <div class="upload-text">Drop your contracts here or click to browse</div>
-                    <div class="upload-hint">Supports PDF, DOCX, TXT files up to 50MB</div>
-                    <input type="file" id="fileInput" accept=".pdf,.docx,.txt,.doc" multiple>
-                </div>
-
-                <div class="analysis-options">
-                    <h3>Analysis Options</h3>
-                    
-                    <div class="option-group">
-                        <label class="option-label">
-                            <input type="checkbox" id="useLegalBERT" checked>
-                            🧠 LegalBERT Analysis
-                        </label>
-                        <div class="option-description">
-                            Use specialized legal language model for enhanced contract understanding
-                        </div>
-                    </div>
-
-                    <div class="option-group">
-                        <label class="option-label">
-                            <input type="checkbox" id="trackLifecycle" checked>
-                            🔗 Contract Lifecycle Tracking
-                        </label>
-                        <div class="option-description">
-                            Identify amendments, addendums, and document relationships
-                        </div>
-                    </div>
-
-                    <div class="option-group">
-                        <label class="option-label">
-                            <input type="checkbox" id="extractEntities" checked>
-                            👥 Entity & Relationship Extraction
-                        </label>
-                        <div class="option-description">
-                            Extract parties, roles, and inter-document relationships
-                        </div>
-                    </div>
-
-                    <div class="option-group">
-                        <label class="option-label">
-                            <input type="checkbox" id="riskAssessment">
-                            ⚖️ Risk Assessment (Premium)
-                        </label>
-                        <div class="option-description">
-                            Analyze contract terms for potential legal and business risks
-                        </div>
-                    </div>
+                    <div class="upload-icon">📁</div>
+                    <div class="upload-text">Drag & drop files here</div>
+                    <div class="upload-hint">or click to browse</div>
+                    <input type="file" id="fileInput" multiple accept=".pdf,.doc,.docx,.txt">
                 </div>
 
                 <div class="file-list" id="fileList"></div>
 
                 <div class="controls">
                     <button class="btn btn-primary" id="processBtn" disabled>
-                        <span class="loading-spinner" id="loadingSpinner" style="display: none;"></span>
-                        Process Documents
+                        <span>⚡</span>
+                        Process All
                     </button>
-                    <button class="btn btn-secondary" id="clearBtn">Clear All</button>
+                    <button class="btn btn-secondary" id="clearBtn">
+                        <span>🗑️</span>
+                        Clear All
+                    </button>
                 </div>
 
                 <div class="progress-bar" id="progressBar" style="display: none;">
                     <div class="progress-fill" id="progressFill"></div>
                 </div>
+
+                <div style="margin-top: 30px; padding: 20px; background: #e8f4fd; border-radius: 8px;">
+                    <h3 style="color: #0066cc; margin-bottom: 10px;">🚀 Enhanced HIL Features</h3>
+                    <ul style="color: #495057; line-height: 1.8; margin-left: 20px;">
+                        <li>📝 <strong>Real Document Text</strong> displayed side-by-side</li>
+                        <li>🔍 <strong>Low-Confidence Highlighting</strong> in actual content</li>
+                        <li>✏️ <strong>In-line Editing</strong> of extracted text</li>
+                        <li>📊 <strong>Confidence Scoring</strong> for each region</li>
+                        <li>💾 <strong>Auto-save</strong> functionality</li>
+                        <li>✅ <strong>Submit Corrections</strong> for re-analysis</li>
+                    </ul>
+                </div>
             </div>
 
-            <!-- Results Section -->
             <div class="results-section">
                 <h2 class="section-title">
-                    📊 Analysis Results
+                    <span>📊</span>
+                    Analysis Results
                 </h2>
-
+                
                 <div class="results-container" id="resultsContainer">
-                    <div style="text-align: center; color: #7f8c8d; padding: 40px;">
-                        <div style="font-size: 3em; margin-bottom: 15px;">📈</div>
+                    <div style="text-align: center; padding: 40px; color: #7f8c8d;">
+                        <div style="font-size: 3em; margin-bottom: 20px;">📋</div>
                         <p>Upload and process documents to see analysis results here</p>
                     </div>
                 </div>
@@ -556,18 +640,16 @@
         </div>
     </div>
 
-    <!-- Status Indicator -->
-    <div class="status-indicator" id="statusIndicator">
-        <div id="statusMessage"></div>
-    </div>
-
     <script>
-        // Global variables
+        // Global state
         let selectedFiles = [];
         let processingQueue = [];
-        let currentProcessing = false;
+        let isProcessing = false;
+        let hilMode = false;
+        let currentHILDocument = null;
+        let autoSaveInterval = null;
 
-        // DOM elements
+        // DOM Elements
         const uploadArea = document.getElementById('uploadArea');
         const fileInput = document.getElementById('fileInput');
         const fileList = document.getElementById('fileList');
@@ -575,182 +657,167 @@
         const clearBtn = document.getElementById('clearBtn');
         const progressBar = document.getElementById('progressBar');
         const progressFill = document.getElementById('progressFill');
-        const resultsContainer = document.getElementById('resultsContainer');
-        const statusIndicator = document.getElementById('statusIndicator');
         const statusMessage = document.getElementById('statusMessage');
-        const loadingSpinner = document.getElementById('loadingSpinner');
+        const resultsContainer = document.getElementById('resultsContainer');
 
-        // Analysis options
-        const useLegalBERT = document.getElementById('useLegalBERT');
-        const trackLifecycle = document.getElementById('trackLifecycle');
-        const extractEntities = document.getElementById('extractEntities');
-        const riskAssessment = document.getElementById('riskAssessment');
-
-        // Event listeners
+        // Event Listeners
         uploadArea.addEventListener('click', () => fileInput.click());
-        uploadArea.addEventListener('dragover', handleDragOver);
-        uploadArea.addEventListener('drop', handleDrop);
-        uploadArea.addEventListener('dragleave', handleDragLeave);
-        fileInput.addEventListener('change', handleFileSelect);
-        processBtn.addEventListener('click', processDocuments);
-        clearBtn.addEventListener('click', clearAll);
-
-        function handleDragOver(e) {
+        
+        uploadArea.addEventListener('dragover', (e) => {
             e.preventDefault();
             uploadArea.classList.add('dragover');
-        }
+        });
 
-        function handleDragLeave(e) {
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('dragover');
+        });
+
+        uploadArea.addEventListener('drop', (e) => {
             e.preventDefault();
             uploadArea.classList.remove('dragover');
-        }
+            handleFiles(e.dataTransfer.files);
+        });
 
-        function handleDrop(e) {
-            e.preventDefault();
-            uploadArea.classList.remove('dragover');
-            const files = Array.from(e.dataTransfer.files);
-            addFiles(files);
-        }
+        fileInput.addEventListener('change', (e) => {
+            handleFiles(e.target.files);
+        });
 
-        function handleFileSelect(e) {
-            const files = Array.from(e.target.files);
-            addFiles(files);
-        }
+        processBtn.addEventListener('click', processAllDocuments);
+        clearBtn.addEventListener('click', clearAllFiles);
 
-        function addFiles(files) {
-            const validTypes = ['.pdf', '.docx', '.txt', '.doc'];
-            const maxSize = 50 * 1024 * 1024; // 50MB
-
-            files.forEach(file => {
-                const extension = '.' + file.name.split('.').pop().toLowerCase();
-                
-                if (!validTypes.includes(extension)) {
-                    showStatus(`❌ ${file.name}: Unsupported file type`, 'error');
-                    return;
+        // File handling
+        function handleFiles(files) {
+            for (let file of files) {
+                if (isValidFile(file)) {
+                    const fileObj = {
+                        id: Date.now() + Math.random(),
+                        file: file,
+                        name: file.name,
+                        size: file.size,
+                        status: 'pending',
+                        result: null
+                    };
+                    selectedFiles.push(fileObj);
+                    addFileToList(fileObj);
                 }
-
-                if (file.size > maxSize) {
-                    showStatus(`❌ ${file.name}: File too large (max 50MB)`, 'error');
-                    return;
-                }
-
-                // Check if file already exists
-                if (selectedFiles.find(f => f.name === file.name && f.size === file.size)) {
-                    showStatus(`⚠️ ${file.name}: Already added`, 'warning');
-                    return;
-                }
-
-                selectedFiles.push({
-                    file: file,
-                    name: file.name,
-                    size: file.size,
-                    status: 'pending',
-                    id: Date.now() + Math.random()
-                });
-            });
-
-            updateFileList();
-            updateControls();
+            }
+            updateProcessButton();
         }
 
-        function updateFileList() {
-            fileList.innerHTML = selectedFiles.map(fileObj => `
-                <div class="file-item" data-file-id="${fileObj.id}">
-                    <div class="file-info">
-                        <div class="file-icon">${getFileIcon(fileObj.name)}</div>
-                        <div class="file-details">
-                            <div class="file-name">${fileObj.name}</div>
-                            <div class="file-size">${formatFileSize(fileObj.size)}</div>
-                        </div>
+        function isValidFile(file) {
+            const validTypes = ['application/pdf', 'application/msword', 
+                              'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                              'text/plain'];
+            return validTypes.includes(file.type) || 
+                   file.name.match(/\.(pdf|doc|docx|txt)$/i);
+        }
+
+        function addFileToList(fileObj) {
+            const fileItem = document.createElement('div');
+            fileItem.className = 'file-item';
+            fileItem.id = `file-${fileObj.id}`;
+            
+            const fileIcon = getFileIcon(fileObj.name);
+            const fileSize = formatFileSize(fileObj.size);
+            
+            fileItem.innerHTML = `
+                <div class="file-info">
+                    <div class="file-icon">${fileIcon}</div>
+                    <div class="file-details">
+                        <div class="file-name">${fileObj.name}</div>
+                        <div class="file-size">${fileSize}</div>
                     </div>
-                    <div class="file-status ${fileObj.status}">${getStatusText(fileObj.status)}</div>
                 </div>
-            `).join('');
+                <div class="file-status ${fileObj.status}" id="status-${fileObj.id}">
+                    ${getStatusText(fileObj.status)}
+                </div>
+            `;
+            
+            fileList.appendChild(fileItem);
         }
 
         function getFileIcon(filename) {
-            const extension = filename.split('.').pop().toLowerCase();
-            const icons = {
-                'pdf': '📄',
-                'docx': '📝',
-                'doc': '📝',
-                'txt': '📃'
-            };
-            return icons[extension] || '📄';
+            if (filename.endsWith('.pdf')) return 'PDF';
+            if (filename.endsWith('.doc') || filename.endsWith('.docx')) return 'DOC';
+            return 'TXT';
         }
 
         function formatFileSize(bytes) {
-            if (bytes === 0) return '0 Bytes';
-            const k = 1024;
-            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-            const i = Math.floor(Math.log(bytes) / Math.log(k));
-            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+            if (bytes < 1024) return bytes + ' B';
+            if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+            return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
         }
 
         function getStatusText(status) {
             const statusTexts = {
-                'pending': '⏳ Pending',
-                'processing': '🔄 Processing',
-                'completed': '✅ Completed',
-                'error': '❌ Error'
+                pending: '⏳ Pending',
+                processing: '⚙️ Processing',
+                completed: '✅ Completed',
+                error: '❌ Error',
+                'hil-review': '👁️ Review Required'
             };
             return statusTexts[status] || status;
         }
 
-        function updateControls() {
-            const pendingFiles = selectedFiles.filter(f => f.status === 'pending');
-            processBtn.disabled = pendingFiles.length === 0 || currentProcessing;
-            clearBtn.disabled = currentProcessing;
+        function updateProcessButton() {
+            processBtn.disabled = selectedFiles.length === 0 || isProcessing;
         }
 
-        async function processDocuments() {
-            if (selectedFiles.length === 0 || currentProcessing) return;
+        function clearAllFiles() {
+            selectedFiles = [];
+            fileList.innerHTML = '';
+            resultsContainer.innerHTML = `
+                <div style="text-align: center; padding: 40px; color: #7f8c8d;">
+                    <div style="font-size: 3em; margin-bottom: 20px;">📋</div>
+                    <p>Upload and process documents to see analysis results here</p>
+                </div>
+            `;
+            updateProcessButton();
+            hideStatus();
+        }
 
-            currentProcessing = true;
-            updateControls();
-            showProgress();
-
-            try {
-                // Only process pending files
-                const pendingFiles = selectedFiles.filter(f => f.status === 'pending');
-                
-                for (let i = 0; i < pendingFiles.length; i++) {
-                    const fileObj = pendingFiles[i];
+        async function processAllDocuments() {
+            if (isProcessing) return;
+            
+            isProcessing = true;
+            processingQueue = [...selectedFiles];
+            updateProcessButton();
+            
+            progressBar.style.display = 'block';
+            showStatus('🚀 Processing documents...', 'info');
+            
+            let completed = 0;
+            const total = processingQueue.length;
+            
+            for (let fileObj of processingQueue) {
+                try {
+                    updateFileStatus(fileObj.id, 'processing');
                     
-                    // Update UI
-                    fileObj.status = 'processing';
-                    updateFileList();
-                    updateProgressBar((i / pendingFiles.length) * 100);
-
-                    // Process document
-                    try {
-                        const result = await processDocument(fileObj);
-                        fileObj.status = 'completed';
-                        fileObj.result = result;
-                        addResultCard(fileObj, result);
-                    } catch (error) {
-                        fileObj.status = 'error';
-                        fileObj.error = error.message;
-                        showStatus(`❌ Error processing ${fileObj.name}: ${error.message}`, 'error');
-                    }
-
-                    updateFileList();
+                    const result = await processDocument(fileObj);
+                    
+                    fileObj.result = result;
+                    addResultCard(fileObj, result);
+                    
+                    updateFileStatus(fileObj.id, 'completed');
+                    completed++;
+                    
+                    const progress = (completed / total) * 100;
+                    progressFill.style.width = progress + '%';
+                    
+                } catch (error) {
+                    console.error('Processing error:', error);
+                    updateFileStatus(fileObj.id, 'error');
+                    showStatus(`❌ Error processing ${fileObj.name}: ${error.message}`, 'error');
                 }
-
-                updateProgressBar(100);
-                showStatus('✅ All documents processed successfully!', 'success');
-
-            } catch (error) {
-                showStatus(`❌ Processing failed: ${error.message}`, 'error');
-            } finally {
-                currentProcessing = false;
-                updateControls();
-                hideProgress();
             }
+            
+            isProcessing = false;
+            updateProcessButton();
+            progressBar.style.display = 'none';
+            showStatus('✅ All documents processed successfully!', 'success');
         }
 
         async function processDocument(fileObj) {
-            // Use proper file upload instead of reading as text
             return await analyzeDocumentFile(fileObj.file);
         }
 
@@ -784,82 +851,87 @@
                 <div class="result-header">
                     <div class="result-title">${fileObj.name}</div>
                     <div class="confidence-badge ${confidenceClass}">
-                        ${Math.round(confidence * 100)}% Confidence
+                        Confidence: ${Math.round(confidence * 100)}%
                     </div>
                 </div>
-
+                
                 ${result.processing_method === 'ocr' || result.processing_method === 'tesseract_ocr' ? `
-                    <div class="ocr-assessment" style="margin: 15px 0; padding: 15px; background: #f8f9fa; border-radius: 8px; border-left: 4px solid ${ocrScore >= 0.85 ? '#28a745' : '#ffc107'};">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                            <span style="font-weight: 600; color: #2c3e50;">📄 OCR Quality Assessment</span>
+                    <div style="padding: 10px; background: #f0f8ff; border-radius: 6px; margin-bottom: 15px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <strong>📷 OCR Processing</strong>
+                                <span style="margin-left: 10px; color: #6c757d;">Quality Score:</span>
+                            </div>
                             <span style="font-weight: 600; color: ${ocrScore >= 0.85 ? '#28a745' : '#856404'};">${Math.round(ocrScore * 100)}%</span>
                         </div>
                         <div style="font-size: 0.9em; color: #6c757d; margin-bottom: 10px;">
                             Processing Method: ${result.processing_method === 'tesseract_ocr' ? 'OCR (Scanned Document)' : 'Hybrid OCR + Text Extraction'}
                         </div>
-                        ${requiresHIL ? `
+                        ${requiresHIL && result.document_text ? `
                             <div style="margin-top: 10px;">
-                                <button class="btn btn-secondary" onclick="startHILReview('${fileObj.id}')" style="font-size: 0.9em; padding: 8px 16px;">
-                                    🔍 Review Low Quality Regions
+                                <button class="btn btn-warning" onclick="startHILReview('${fileObj.id}')" style="font-size: 0.9em; padding: 8px 16px;">
+                                    🔍 Review Document Text
                                 </button>
                             </div>
-                        ` : `
-                            <div style="color: #28a745; font-size: 0.9em;">✅ Quality sufficient - ready for analysis</div>
-                        `}
+                        ` : ''}
                     </div>
                 ` : ''}
-
-                <div class="structured-data-view">
-                    <div class="data-section">
-                        <h4>📄 Document Information</h4>
-                        <div class="data-grid">
-                            <div class="data-item">
-                                <span class="data-label">Type:</span>
-                                <span class="data-value">${metadata.document_type?.primary || 'Unknown'}</span>
-                            </div>
-                            <div class="data-item">
-                                <span class="data-label">Processing:</span>
-                                <span class="data-value">${result.processing_method}</span>
-                            </div>
-                            <div class="data-item">
-                                <span class="data-label">Content Length:</span>
-                                <span class="data-value">${metadata.content_length || 0} characters</span>
-                            </div>
-                        </div>
+                
+                <div class="metadata-grid">
+                    <div class="metadata-item">
+                        <span class="metadata-label">📄 Document Type</span>
+                        <span class="data-value">${metadata.document_type?.primary || 'Unknown'}</span>
                     </div>
+                    <div class="metadata-item">
+                        <span class="metadata-label">⚙️ Processing Method</span>
+                        <span class="data-value">${result.processing_method}</span>
+                    </div>
+                    <div class="metadata-item">
+                        <span class="metadata-label">📏 Document Size</span>
+                        <span class="data-value">${metadata.content_length || 0} characters</span>
+                    </div>
+                </div>
 
-                    <div class="data-section">
+                <div class="data-section">
+                    <div style="margin-bottom: 20px;">
                         <h4>👥 Parties (${metadata.parties?.length || 0})</h4>
                         <div class="parties-list">
                             ${metadata.parties?.map(party => `
                                 <div class="party-item">
-                                    <span class="party-name">${party.text}</span>
-                                    <span class="confidence-score">${Math.round(party.confidence * 100)}%</span>
+                                    <span class="party-name">${party.text || party.name || party.full_name || (typeof party === 'string' ? party : 'Unknown')}</span>
+                                    <span class="confidence-score">${party.confidence ? Math.round(party.confidence * 100) : 85}%</span>
                                 </div>
                             `).join('') || '<div class="no-data">No parties identified</div>'}
                         </div>
                     </div>
 
-                    <div class="data-section">
+                    <div style="margin-bottom: 20px;">
                         <h4>💰 Financial Terms (${metadata.financial_terms?.length || 0})</h4>
                         <div class="financial-list">
-                            ${metadata.financial_terms?.map(term => `
-                                <div class="financial-item">
-                                    <span class="amount">$${term.amount.toLocaleString()}</span>
-                                    <span class="label">${term.label}</span>
-                                    <span class="confidence-score">${Math.round(term.confidence * 100)}%</span>
-                                </div>
-                            `).join('') || '<div class="no-data">No financial terms found</div>'}
+                            ${metadata.financial_terms?.map(term => {
+                                let amount = term.amount || term.value || term;
+                                if (typeof amount === 'string') {
+                                    amount = amount.replace(/[$,]/g, '');
+                                }
+                                const numAmount = parseFloat(amount) || 0;
+                                return `
+                                    <div class="financial-item">
+                                        <span class="amount">$${numAmount.toLocaleString()}</span>
+                                        <span class="label">${term.label || term.type || term.description || ''}</span>
+                                        <span class="confidence-score">${term.confidence ? Math.round(term.confidence * 100) : 85}%</span>
+                                    </div>
+                                `;
+                            }).join('') || '<div class="no-data">No financial terms found</div>'}
                         </div>
                     </div>
-
+                    
                     ${metadata.dates?.length ? `
-                        <div class="data-section">
+                        <div>
                             <h4>📅 Dates (${metadata.dates.length})</h4>
                             <div class="dates-list">
                                 ${metadata.dates.map(date => `
                                     <div class="date-item">
-                                        <span class="date-text">${date.text}</span>
+                                        <span>${date.text || date.date}</span>
                                         <span class="confidence-score">${Math.round(date.confidence * 100)}%</span>
                                     </div>
                                 `).join('')}
@@ -873,120 +945,92 @@
                     ''
                 }
             `;
-
+            
             // Clear placeholder content if this is the first result
             if (resultsContainer.children.length === 1 && resultsContainer.children[0].textContent.includes('Upload and process')) {
                 resultsContainer.innerHTML = '';
             }
-
+            
             resultsContainer.appendChild(resultCard);
         }
 
-        function clearAll() {
-            if (currentProcessing) return;
-            
-            selectedFiles = [];
-            updateFileList();
-            updateControls();
-            
-            resultsContainer.innerHTML = `
-                <div style="text-align: center; color: #7f8c8d; padding: 40px;">
-                    <div style="font-size: 3em; margin-bottom: 15px;">📈</div>
-                    <p>Upload and process documents to see analysis results here</p>
-                </div>
-            `;
-        }
-
-        function showProgress() {
-            progressBar.style.display = 'block';
-            loadingSpinner.style.display = 'inline-block';
-            processBtn.textContent = ' Processing...';
-            processBtn.appendChild(loadingSpinner);
-        }
-
-        function hideProgress() {
-            progressBar.style.display = 'none';
-            loadingSpinner.style.display = 'none';
-            processBtn.innerHTML = 'Process Documents';
-            updateProgressBar(0);
-        }
-
-        function updateProgressBar(percentage) {
-            progressFill.style.width = percentage + '%';
-        }
-
-        function showStatus(message, type = 'info') {
-            statusMessage.textContent = message;
-            statusIndicator.className = `status-indicator show ${type}`;
-            
-            setTimeout(() => {
-                statusIndicator.classList.remove('show');
-            }, 3000);
-        }
-
-        // HIL Review Functions
-        let hilMode = false;
-        let currentHILDocument = null;
-
         function startHILReview(fileId) {
             const fileObj = selectedFiles.find(f => f.id == fileId);
-            if (!fileObj) {
-                showStatus('❌ Document not found', 'error');
+            if (!fileObj || !fileObj.result) {
+                showStatus('❌ Document data not found', 'error');
                 return;
             }
 
             currentHILDocument = fileObj;
             hilMode = true;
             
-            // Show HIL interface
             showHILInterface(fileObj);
         }
 
         function showHILInterface(fileObj) {
+            const result = fileObj.result;
+            const documentText = result.document_text || 'No text available';
+            const lowConfidenceRegions = result.low_confidence_regions || [];
+            
             // Create HIL overlay
             const hilOverlay = document.createElement('div');
             hilOverlay.id = 'hilOverlay';
-            hilOverlay.style.cssText = `
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: rgba(0,0,0,0.8);
-                z-index: 1000;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            `;
+            hilOverlay.className = 'hil-overlay';
+
+            // Process text with highlights
+            let highlightedText = documentText;
+            if (lowConfidenceRegions.length > 0) {
+                // Sort regions by position to avoid overlap issues
+                const sortedRegions = lowConfidenceRegions.sort((a, b) => 
+                    (b.position?.start || 0) - (a.position?.start || 0)
+                );
+                
+                sortedRegions.forEach((region, index) => {
+                    if (region.position) {
+                        const start = region.position.start;
+                        const end = region.position.end;
+                        const text = documentText.substring(start, end);
+                        const highlighted = `<span class="low-confidence-highlight" title="${region.type || 'Low confidence'}">${text}</span>`;
+                        highlightedText = highlightedText.substring(0, start) + highlighted + highlightedText.substring(end);
+                    }
+                });
+            }
 
             hilOverlay.innerHTML = `
-                <div style="background: white; width: 95%; height: 90%; border-radius: 10px; display: flex; flex-direction: column;">
-                    <div style="padding: 20px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center;">
-                        <h2>🔍 HIL Review: ${fileObj.name}</h2>
-                        <button onclick="closeHILReview()" style="background: #dc3545; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">Close</button>
+                <div class="hil-container">
+                    <div class="hil-header">
+                        <h2>🔍 Document Review: ${fileObj.name}</h2>
+                        <button class="close-btn" onclick="closeHILReview()">✕</button>
                     </div>
-                    <div style="flex: 1; display: flex;">
-                        <!-- Left pane: Original document preview -->
-                        <div style="flex: 1; padding: 20px; border-right: 1px solid #eee;">
-                            <h3>📄 Original Document</h3>
-                            <div id="originalDocPreview" style="border: 1px solid #ddd; height: 400px; background: #f8f9fa; display: flex; align-items: center; justify-content: center; margin-top: 10px;">
-                                <p>Document preview would appear here<br><small>Page images with highlighted low-confidence regions</small></p>
+                    <div class="hil-content">
+                        <div class="hil-pane hil-pane-left">
+                            <h3>📄 Original Document (Read-Only)</h3>
+                            <div style="margin: 10px 0; padding: 10px; background: #d1ecf1; border-radius: 4px; font-size: 0.9em;">
+                                <strong>ℹ️ Info:</strong> Yellow highlights indicate low-confidence regions that need review
+                            </div>
+                            <div class="document-preview" id="documentPreview">
+                                ${highlightedText}
                             </div>
                         </div>
-                        <!-- Right pane: OCR output editing -->
-                        <div style="flex: 1; padding: 20px;">
-                            <h3>✏️ OCR Output (Editable)</h3>
+                        <div class="hil-pane hil-pane-right">
+                            <h3>✏️ Extracted Text (Editable)</h3>
                             <div style="margin: 10px 0; padding: 10px; background: #fff3cd; border-radius: 4px; font-size: 0.9em;">
-                                <strong>📊 Quality Score:</strong> ${Math.round((fileObj.result?.ocr_score || 0.7) * 100)}% 
-                                <span style="color: #856404;">• Low confidence regions highlighted below</span>
+                                <strong>📊 Quality Score:</strong> ${Math.round((result.ocr_score || 0.7) * 100)}% 
+                                <span style="color: #856404;">• ${lowConfidenceRegions.length} regions need review</span>
                             </div>
-                            <textarea id="ocrTextEditor" style="width: 100%; height: 350px; padding: 10px; border: 1px solid #ddd; border-radius: 4px; font-family: monospace; font-size: 14px;" placeholder="OCR extracted text will appear here for editing...">${generateSampleOCRText(fileObj.name)}</textarea>
-                            <div style="margin-top: 15px; display: flex; gap: 10px;">
-                                <button onclick="saveHILChanges()" class="btn btn-primary">💾 Save Changes</button>
-                                <button onclick="submitToAnalysis()" class="btn btn-primary">✅ Submit to Analysis</button>
-                                <button onclick="autoSaveToggle()" id="autoSaveBtn" class="btn btn-secondary">🔄 Auto-save: ON</button>
-                            </div>
-                            <div id="hilStatus" style="margin-top: 10px; font-size: 0.9em; color: #6c757d;"></div>
+                            <textarea class="ocr-editor" id="ocrTextEditor" placeholder="Document text for editing...">${documentText}</textarea>
+                        </div>
+                    </div>
+                    <div class="hil-footer">
+                        <div class="hil-status" id="hilStatus">
+                            ${lowConfidenceRegions.length > 0 ? 
+                                `⚠️ ${lowConfidenceRegions.length} low-confidence regions detected` : 
+                                '✅ No issues detected'}
+                        </div>
+                        <div class="hil-actions">
+                            <button class="btn btn-secondary" onclick="autoCorrect()">🔧 Auto-Correct</button>
+                            <button class="btn btn-primary" onclick="saveHILChanges()">💾 Save Changes</button>
+                            <button class="btn btn-primary" onclick="submitToAnalysis()">✅ Submit for Re-Analysis</button>
                         </div>
                     </div>
                 </div>
@@ -994,128 +1038,9 @@
 
             document.body.appendChild(hilOverlay);
             
-            // Initialize auto-save
+            // Setup auto-save
             setupAutoSave();
             showStatus('📝 HIL Review interface opened', 'info');
-        }
-
-        function generateSampleOCRText(filename) {
-            // Generate realistic OCR text with some low-confidence areas
-            return `REAL ESTATE PURCHASE AGREEMENT
-
-This Agreement is made between:
-
-BUYER: John D@e Smith (confidence: 65% - needs review)
-Address: 123 Main Street, Santa Cl@ra, CA 95050
-
-SELLER: Acme Real Estate LLC
-Address: 456 Oak Avenue, San Jose, CA 95110
-
-PROPERTY: 789 Elm Street, Mountain View, CA 94041
-APN: 123-45-678
-
-PURCHASE PRICE: $1,250,@00 (confidence: 72% - verify amount)
-
-Terms:
-- Earnest money: $25,000
-- Closing date: December 15, 2024
-- Contingencies: Inspection, financing, appr@isal
-
-Low confidence regions marked with @ symbols indicate areas that may need manual correction.`;
-        }
-
-        function setupAutoSave() {
-            const textarea = document.getElementById('ocrTextEditor');
-            let autoSaveEnabled = true;
-            let saveTimeout;
-
-            textarea.addEventListener('input', function() {
-                if (!autoSaveEnabled) return;
-                
-                clearTimeout(saveTimeout);
-                saveTimeout = setTimeout(() => {
-                    saveHILChanges(true); // Silent save
-                }, 2000); // Auto-save after 2 seconds of no typing
-            });
-        }
-
-        function saveHILChanges(silent = false) {
-            const textarea = document.getElementById('ocrTextEditor');
-            const correctedText = textarea.value;
-            
-            // Update the document with corrected text
-            if (currentHILDocument) {
-                currentHILDocument.correctedText = correctedText;
-                currentHILDocument.lastSaved = new Date().toISOString();
-            }
-            
-            const statusEl = document.getElementById('hilStatus');
-            if (statusEl) {
-                statusEl.innerHTML = `✅ ${silent ? 'Auto-saved' : 'Saved'} at ${new Date().toLocaleTimeString()}`;
-            }
-            
-            if (!silent) {
-                showStatus('💾 Changes saved successfully', 'success');
-            }
-        }
-
-        function submitToAnalysis() {
-            if (!currentHILDocument) return;
-            
-            saveHILChanges();
-            
-            // Mark document as reviewed and ready for analysis
-            currentHILDocument.status = 'hil-reviewed';
-            currentHILDocument.readyForAnalysis = true;
-            
-            showStatus('✅ Document submitted to analysis pipeline', 'success');
-            closeHILReview();
-            
-            // Update the result card to show submission status
-            updateResultCardAfterHIL(currentHILDocument);
-        }
-
-        function updateResultCardAfterHIL(fileObj) {
-            // Find and update the result card to show HIL completion
-            const resultCards = document.querySelectorAll('.result-card');
-            resultCards.forEach(card => {
-                if (card.querySelector('.result-title').textContent === fileObj.name) {
-                    const ocrAssessment = card.querySelector('.ocr-assessment');
-                    if (ocrAssessment) {
-                        ocrAssessment.innerHTML = `
-                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                                <span style="font-weight: 600; color: #2c3e50;">📄 HIL Review Completed</span>
-                                <span style="font-weight: 600; color: #28a745;">✅ Ready</span>
-                            </div>
-                            <div style="color: #28a745; font-size: 0.9em;">
-                                ✅ Human review completed - submitted to analysis pipeline
-                            </div>
-                            <div style="margin-top: 10px;">
-                                <button class="btn btn-secondary" onclick="reopenHILReview('${fileObj.id}')" style="font-size: 0.9em; padding: 6px 12px;">
-                                    📝 Re-edit
-                                </button>
-                            </div>
-                        `;
-                    }
-                }
-            });
-        }
-
-        function reopenHILReview(fileId) {
-            startHILReview(fileId);
-        }
-
-        function autoSaveToggle() {
-            const btn = document.getElementById('autoSaveBtn');
-            const isEnabled = btn.textContent.includes('ON');
-            
-            if (isEnabled) {
-                btn.textContent = '🔄 Auto-save: OFF';
-                btn.style.background = '#6c757d';
-            } else {
-                btn.textContent = '🔄 Auto-save: ON';
-                btn.style.background = '';
-            }
         }
 
         function closeHILReview() {
@@ -1123,12 +1048,130 @@ Low confidence regions marked with @ symbols indicate areas that may need manual
             if (overlay) {
                 overlay.remove();
             }
+            if (autoSaveInterval) {
+                clearInterval(autoSaveInterval);
+            }
             hilMode = false;
             currentHILDocument = null;
         }
 
+        function setupAutoSave() {
+            const textarea = document.getElementById('ocrTextEditor');
+            let saveTimeout;
+
+            textarea.addEventListener('input', function() {
+                clearTimeout(saveTimeout);
+                saveTimeout = setTimeout(() => {
+                    saveHILChanges(true);
+                }, 2000);
+            });
+        }
+
+        function saveHILChanges(isAutoSave = false) {
+            const textarea = document.getElementById('ocrTextEditor');
+            const correctedText = textarea.value;
+            
+            if (currentHILDocument) {
+                currentHILDocument.correctedText = correctedText;
+                currentHILDocument.lastSaved = new Date().toISOString();
+                
+                const statusEl = document.getElementById('hilStatus');
+                if (statusEl) {
+                    statusEl.textContent = isAutoSave ? 
+                        '💾 Auto-saved at ' + new Date().toLocaleTimeString() :
+                        '✅ Changes saved at ' + new Date().toLocaleTimeString();
+                }
+                
+                if (!isAutoSave) {
+                    showStatus('✅ Changes saved successfully', 'success');
+                }
+            }
+        }
+
+        function autoCorrect() {
+            const textarea = document.getElementById('ocrTextEditor');
+            let text = textarea.value;
+            
+            // Basic auto-corrections
+            text = text.replace(/@/g, 'a');  // Common OCR error
+            text = text.replace(/\bl\b/g, 'I');  // l -> I
+            text = text.replace(/0(?=[a-zA-Z])/g, 'O');  // 0 -> O before letters
+            text = text.replace(/(?<=[a-zA-Z])0/g, 'O');  // 0 -> O after letters
+            
+            textarea.value = text;
+            showStatus('🔧 Auto-corrections applied', 'info');
+        }
+
+        async function submitToAnalysis() {
+            if (!currentHILDocument || !currentHILDocument.correctedText) {
+                showStatus('❌ No changes to submit', 'error');
+                return;
+            }
+            
+            showStatus('📤 Submitting corrected text for re-analysis...', 'info');
+            
+            try {
+                const response = await fetch('http://localhost:8000/api/analyze-document', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        content: currentHILDocument.correctedText,
+                        filename: currentHILDocument.name + ' (Corrected)'
+                    })
+                });
+                
+                if (response.ok) {
+                    const result = await response.json();
+                    currentHILDocument.result = result;
+                    
+                    // Update the result card
+                    const existingCard = document.querySelector(`.result-card[data-file-id="${currentHILDocument.id}"]`);
+                    if (existingCard) {
+                        existingCard.remove();
+                    }
+                    addResultCard(currentHILDocument, result);
+                    
+                    showStatus('✅ Re-analysis completed successfully', 'success');
+                    closeHILReview();
+                } else {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+            } catch (error) {
+                showStatus(`❌ Re-analysis failed: ${error.message}`, 'error');
+            }
+        }
+
+        function updateFileStatus(fileId, status) {
+            const statusElement = document.getElementById(`status-${fileId}`);
+            if (statusElement) {
+                statusElement.className = `file-status ${status}`;
+                statusElement.textContent = getStatusText(status);
+            }
+            
+            const fileObj = selectedFiles.find(f => f.id === fileId);
+            if (fileObj) {
+                fileObj.status = status;
+            }
+        }
+
+        function showStatus(message, type) {
+            statusMessage.textContent = message;
+            statusMessage.className = `status-message ${type}`;
+            statusMessage.style.display = 'block';
+            
+            if (type === 'success') {
+                setTimeout(hideStatus, 5000);
+            }
+        }
+
+        function hideStatus() {
+            statusMessage.style.display = 'none';
+        }
+
         // Initialize
-        updateControls();
+        updateProcessButton();
     </script>
 </body>
 </html>

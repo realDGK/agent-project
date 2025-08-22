@@ -1,0 +1,13 @@
+{
+  "cost_segregation_details": {
+    "type": "object",
+    "description": "Details specific to a cost segregation study.",
+    "properties": {
+      "property_address": { "type": "string" },
+      "total_depreciable_basis": { "type": "number" },
+      "reclassified_to_5_year_property": { "type": "number" },
+      "reclassified_to_7_year_property": { "type": "number" },
+      "reclassified_to_15_year_property": { "type": "number" }
+    }
+  }
+}

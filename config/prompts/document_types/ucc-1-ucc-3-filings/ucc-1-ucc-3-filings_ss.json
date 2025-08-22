@@ -1,0 +1,45 @@
+{
+  "title": "UCC Filing Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'UCC Financing Statement'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Debtor", "Secured Party"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "ucc_filing_details": {
+      "type": "object",
+      "properties": {
+        "filing_type": { "type": "string", "enum": ["UCC-1", "UCC-3"] },
+        "filing_number": { "type": "string" },
+        "collateral_description": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "ucc_filing_details"]
+}

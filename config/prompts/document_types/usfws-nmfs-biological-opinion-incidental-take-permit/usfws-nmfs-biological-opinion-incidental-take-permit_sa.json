@@ -1,0 +1,14 @@
+{
+  "biological_opinion_details": {
+    "type": "object",
+    "description": "Details specific to a USFWS/NMFS Biological Opinion or Incidental Take Permit.",
+    "properties": {
+      "consultation_number": { "type": "string" },
+      "project_name": { "type": "string" },
+      "species_affected": { "type": "array", "items": { "type": "string" } },
+      "jeopardy_finding": { "type": "boolean" },
+      "incidental_take_statement": { "type": "string" },
+      "conservation_measures": { "type": "string" }
+    }
+  }
+}

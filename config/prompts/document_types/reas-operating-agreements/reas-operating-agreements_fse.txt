@@ -1,0 +1,31 @@
+**INPUT DOCUMENT TEXT:**
+RECIPROCAL EASEMENT AND OPERATING AGREEMENT
+FOR PINE RIDGE SHOPPING CENTER
+
+This REA is made December 1, 2028, by Shopping Center Developer LLC, owner of the property.
+
+This REA establishes easements for access and parking across all parcels.
+The Anchor Tenant (Big Grocery Store) is required to operate continuously for at least 15 years.
+No other parcel may be used as a grocery store.
+The Owner's Association shall maintain all common areas, with costs allocated pro-rata.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Reciprocal Easement and Operating Agreement",
+  "effective_date": "2028-12-01",
+  "parties": [
+    { "name": "Shopping Center Developer LLC", "role": "Owner" }
+  ],
+  "easement_details": {
+    "property_description": "Pine Ridge Shopping Center",
+    "easements_granted": [
+      "Access",
+      "Parking"
+    ],
+    "operating_covenants": "The Anchor Tenant (Big Grocery Store) is required to operate continuously for at least 15 years.",
+    "use_restrictions": "No other parcel may be used as a grocery store.",
+    "maintenance_obligations": "The Owner's Association shall maintain all common areas.",
+    "cost_sharing_provisions": "Costs allocated pro-rata."
+  },
+  "discovered_entities": []
+}

@@ -1,0 +1,13 @@
+{
+  "williamson_act_details": {
+    "type": "object",
+    "description": "Details specific to a Williamson Act contract.",
+    "properties": {
+      "contract_number": { "type": "string" },
+      "property_apn": { "type": "string" },
+      "acreage": { "type": "number" },
+      "term_of_contract": { "type": "string" },
+      "notice_of_non_renewal_date": { "type": "string", "format": "date" }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "assignment_details": {
+    "type": "object",
+    "description": "Details specific to the assignment and assumption of a contract.",
+    "properties": {
+      "original_agreement_name": {
+        "type": "string",
+        "description": "The name or description of the underlying contract being assigned."
+      },
+      "original_agreement_date": {
+        "type": "string",
+        "format": "date",
+        "description": "The date of the underlying contract."
+      },
+      "assumption_of_obligations": {
+        "type": "string",
+        "description": "A summary of the clause where the Assignee agrees to assume the Assignor's duties."
+      },
+      "consideration": {
+        "type": "string",
+        "description": "Any payment or consideration made for the assignment."
+      }
+    }
+  }
+}

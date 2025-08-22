@@ -1,0 +1,54 @@
+{
+  "title": "Exclusivity/No-Shop Agreement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Exclusivity Agreement'."
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date",
+      "description": "The date the agreement was signed or became effective."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Seller", "Prospective Buyer"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "exclusivity_details": {
+      "type": "object",
+      "properties": {
+        "exclusivity_period": {
+          "type": "string",
+          "description": "The duration of the exclusivity or no-shop period (e.g., '30 days from the Effective Date')."
+        },
+        "scope_of_exclusivity": {
+          "type": "string",
+          "description": "A summary of what the seller is prohibited from doing (e.g., 'soliciting, negotiating, or accepting alternative proposals')."
+        }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "exclusivity_details"]
+}

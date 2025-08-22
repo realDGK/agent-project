@@ -1,0 +1,46 @@
+{
+  "title": "Complaint/Petition Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Complaint' or 'Petition'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Plaintiff", "Petitioner", "Defendant", "Respondent"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "litigation_details": {
+      "type": "object",
+      "properties": {
+        "court_name": { "type": "string" },
+        "case_number": { "type": "string" },
+        "causes_of_action": { "type": "array", "items": { "type": "string" } },
+        "remedy_sought": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "litigation_details"]
+}

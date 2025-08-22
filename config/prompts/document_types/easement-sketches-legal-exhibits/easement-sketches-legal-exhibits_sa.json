@@ -1,0 +1,17 @@
+{
+  "map_details": {
+    "type": "object",
+    "description": "Details specific to maps, plats, and legal descriptions.",
+    "properties": {
+      "property_legal_description": {
+        "type": "string"
+      },
+      "apn": {
+        "type": "string"
+      },
+      "purpose_of_exhibit": {
+        "type": "string"
+      }
+    }
+  }
+}

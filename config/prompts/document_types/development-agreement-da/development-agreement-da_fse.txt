@@ -1,0 +1,28 @@
+DEVELOPMENT AGREEMENT
+(Northgate Specific Plan)
+
+This Development Agreement is entered into on January 10, 2030, between the City of Northgate ("City") and Northgate Partners, LLC ("Developer").
+
+1. Project: This DA governs the development of the 200-acre Northgate Specific Plan area.
+2. Term: The term of this agreement is twenty (20) years.
+3. Vested Rights: Developer's right to develop the Project in accordance with existing regulations is hereby vested.
+4. Developer Obligations: Developer shall construct the public park and arterial roadway improvements as described in Exhibit C.
+5. Public Benefits: The Project will provide needed housing and generate significant tax revenue.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Development Agreement (Northgate Specific Plan)",
+  "effective_date": "2030-01-10",
+  "parties": [
+    { "name": "City of Northgate", "role": "City" },
+    { "name": "Northgate Partners, LLC", "role": "Developer" }
+  ],
+  "development_agreement_details": {
+    "project_description": "Development of the 200-acre Northgate Specific Plan area.",
+    "term_of_agreement": "Twenty (20) years.",
+    "vested_rights": "Developer's right to develop the Project in accordance with existing regulations is vested.",
+    "developer_obligations": "Construct the public park and arterial roadway improvements as described in Exhibit C.",
+    "public_benefits": "Provide needed housing and generate significant tax revenue."
+  },
+  "discovered_entities": []
+}

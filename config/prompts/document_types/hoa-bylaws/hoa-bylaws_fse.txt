@@ -1,0 +1,30 @@
+**INPUT DOCUMENT TEXT:**
+BYLAWS OF THE GREEN VALLEY RANCH HOMEOWNERS ASSOCIATION
+Adopted: June 1, 2033
+
+ARTICLE III: BOARD OF DIRECTORS
+Section 1. Number. The Association shall have five (5) directors.
+Section 5. Quorum. A majority of the directors shall constitute a quorum.
+
+ARTICLE V: MEETINGS OF MEMBERS
+Section 2. Quorum. The presence of members representing fifty-one percent (51%) of the total voting power shall constitute a quorum.
+
+ARTICLE X: FISCAL YEAR
+The fiscal year of the Association shall end on December 31.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Bylaws of the Green Valley Ranch Homeowners Association",
+  "effective_date": "2033-06-01",
+  "parties": [
+    { "name": "Green Valley Ranch Homeowners Association", "role": "Homeowners Association" }
+  ],
+  "governance_details": {
+    "director_quorum_requirement": "A majority of the directors.",
+    "member_quorum_requirement": "Fifty-one percent (51%) of the total voting power.",
+    "director_count": "Five (5)",
+    "officer_titles": null,
+    "fiscal_year_end": "December 31"
+  },
+  "discovered_entities": []
+}

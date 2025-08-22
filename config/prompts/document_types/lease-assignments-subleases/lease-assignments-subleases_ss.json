@@ -1,0 +1,45 @@
+{
+  "title": "Lease Assignment/Sublease Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Assignment and Assumption of Lease'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Landlord", "Assignor", "Assignee", "Sublandlord", "Subtenant"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "lease_assignment_details": {
+      "type": "object",
+      "properties": {
+        "assignment_type": { "type": "string", "enum": ["Assignment", "Sublease"] },
+        "master_lease_date": { "type": "string", "format": "date" },
+        "landlord_consent_required": { "type": "boolean" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "lease_assignment_details"]
+}

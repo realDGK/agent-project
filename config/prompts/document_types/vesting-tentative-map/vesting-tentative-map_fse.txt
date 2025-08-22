@@ -1,0 +1,22 @@
+**INPUT DOCUMENT TEXT:**
+CITY OF FOLSOM
+VESTING TENTATIVE SUBDIVISION MAP NO. TSM01-1234
+APPLICANT: Folsom Builders LLC
+
+This Vesting Tentative Map for the "Prairie Creek" subdivision creates 120 residential lots and vests the developer's right to proceed with development in substantial compliance with the ordinances, policies, and standards in effect at the time the application was deemed complete.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Vesting Tentative Subdivision Map No. TSM01-1234",
+  "parties": [
+    { "name": "Folsom Builders LLC", "role": "Applicant" },
+    { "name": "City of Folsom", "role": "Approving Agency" }
+  ],
+  "map_details": {
+    "map_type": "Vesting Tentative Map",
+    "map_number": "TSM01-1234",
+    "number_of_lots_created": 120,
+    "vesting_rights_summary": "Vests the developer's right to proceed with development in substantial compliance with the ordinances, policies, and standards in effect at the time the application was deemed complete."
+  },
+  "discovered_entities": []
+}

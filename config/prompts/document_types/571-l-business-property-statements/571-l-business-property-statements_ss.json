@@ -1,0 +1,47 @@
+{
+  "title": "571-L Business Property Statement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Business Property Statement'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Business Owner", "Assessor"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "tax_details": {
+      "type": "object",
+      "properties": {
+        "form_reference": { "type": "string", "default": "571-L" },
+        "business_name": { "type": "string" },
+        "business_address": { "type": "string" },
+        "total_cost_of_equipment": { "type": "number" },
+        "total_cost_of_supplies": { "type": "number" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "tax_details"]
+}

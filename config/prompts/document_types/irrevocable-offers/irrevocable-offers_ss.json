@@ -1,0 +1,45 @@
+{
+  "title": "Irrevocable Offer Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Irrevocable Offer'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Offeror", "Offeree"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "offer_details": {
+      "type": "object",
+      "properties": {
+        "offer_summary": { "type": "string" },
+        "expiration_date": { "type": "string", "format": "date" },
+        "consideration_paid": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "offer_details"]
+}

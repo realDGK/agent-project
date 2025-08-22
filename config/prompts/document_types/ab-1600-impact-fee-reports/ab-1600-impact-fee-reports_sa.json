@@ -1,0 +1,37 @@
+{
+  "fee_details": {
+    "type": "object",
+    "description": "Details specific to development fees, credits, and reimbursements.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "total_fee_amount": { "type": "number" },
+      "fee_breakdown": { "type": "array" },
+      "fee_type": { "type": "string" },
+      "payment_schedule": { "type": "string" },
+      "fees_deferred": { "type": "array", "items": { "type": "string" } },
+      "deferred_amount": { "type": "number" },
+      "payment_due_date": { "type": "string" },
+      "work_generating_credit": { "type": "string" },
+      "credit_or_reimbursement_amount": { "type": "number" },
+      "applicable_fees": { "type": "string" },
+      "credit_type": { "type": "string" },
+      "credit_amount": { "type": "number" },
+      "original_project": { "type": "string" },
+      "benefitting_project": { "type": "string" },
+      "property_apn": { "type": "string" },
+      "obligation_paid": { "type": "string" },
+      "confirmation_statement": { "type": "string" },
+      "report_purpose": { "type": "string" },
+      "fee_recommendations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "fee_name": { "type": "string" },
+            "recommended_fee": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}

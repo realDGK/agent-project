@@ -1,0 +1,46 @@
+{
+  "title": "EIFD/TIF Formation Document Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Resolution of Intention to Form an Enhanced Infrastructure Financing District'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Forming Agency", "Public Financing Authority"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "financing_district_details": {
+      "type": "object",
+      "properties": {
+        "district_type": { "type": "string", "enum": ["EIFD", "TIF"] },
+        "district_name": { "type": "string" },
+        "plan_area_description": { "type": "string" },
+        "tax_increment_pledge": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "financing_district_details"]
+}

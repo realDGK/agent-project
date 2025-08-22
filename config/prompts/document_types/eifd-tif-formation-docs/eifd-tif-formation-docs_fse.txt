@@ -1,0 +1,25 @@
+**INPUT DOCUMENT TEXT:**
+RESOLUTION NO. 2032-88
+A RESOLUTION OF THE CITY COUNCIL OF THE CITY OF METROBURG OF INTENTION TO ESTABLISH THE METROBURG TRANSIT CORRIDOR ENHANCED INFRASTRUCTURE FINANCING DISTRICT (EIFD)
+
+WHEREAS, the City desires to finance public infrastructure improvements within the Metroburg Transit Corridor area.
+
+NOW, THEREFORE, the City Council hereby declares its intention to form the EIFD and directs staff to prepare an Infrastructure Financing Plan. The plan will be financed by a pledge of future property tax increment generated within the district boundaries.
+
+ADOPTED: September 1, 2032
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Resolution of Intention to Establish the Metroburg Transit Corridor Enhanced Infrastructure Financing District (EIFD)",
+  "effective_date": "2032-09-01",
+  "parties": [
+    { "name": "City Council of the City of Metroburg", "role": "Forming Agency" }
+  ],
+  "financing_district_details": {
+    "district_type": "EIFD",
+    "district_name": "Metroburg Transit Corridor",
+    "plan_area_description": "Metroburg Transit Corridor area",
+    "tax_increment_pledge": "A pledge of future property tax increment generated within the district boundaries."
+  },
+  "discovered_entities": []
+}

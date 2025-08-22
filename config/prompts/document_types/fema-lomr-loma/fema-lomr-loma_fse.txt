@@ -1,0 +1,30 @@
+**INPUT DOCUMENT TEXT:**
+Federal Emergency Management Agency (FEMA)
+LETTER OF MAP AMENDMENT (LOMA) DETERMINATION DOCUMENT
+
+Case No.: 23-09-1234A
+Community: City of Creekside, CA
+Map Panel: 06013C0123H
+
+This letter amends the Flood Insurance Rate Map (FIRM) for the property at 555 Creekside Drive.
+
+We have determined that the structure on the property is not in the Special Flood Hazard Area (SFHA). The property is correctly located in Zone X.
+
+Effective Date of this Determination: May 1, 2031
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Letter of Map Amendment (LOMA) Determination Document",
+  "effective_date": "2031-05-01",
+  "parties": [
+    { "name": "Federal Emergency Management Agency (FEMA)", "role": "Issuing Agency" }
+  ],
+  "flood_details": {
+    "case_number": "23-09-1234A",
+    "document_type": "LOMA",
+    "community_name": "City of Creekside, CA",
+    "map_panel_affected": "06013C0123H",
+    "determination": "The structure on the property at 555 Creekside Drive is not in the SFHA and is correctly located in Zone X."
+  },
+  "discovered_entities": []
+}

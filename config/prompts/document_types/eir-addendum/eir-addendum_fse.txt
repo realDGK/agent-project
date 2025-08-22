@@ -1,0 +1,24 @@
+**INPUT DOCUMENT TEXT:**
+ADDENDUM TO THE OAKVILLE QUARRY REDEVELOPMENT PROJECT FINAL EIR
+(State Clearinghouse No. 2030040012)
+
+Date: January 10, 2031
+Lead Agency: City of Oakville
+
+This Addendum addresses minor technical changes to the project description since the certification of the Final EIR. The changes involve a slight reduction in the commercial square footage and do not create new significant impacts.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Addendum to the Oakville Quarry Redevelopment Project Final EIR",
+  "effective_date": "2031-01-10",
+  "parties": [
+    { "name": "City of Oakville", "role": "Lead Agency" }
+  ],
+  "environmental_details": {
+    "document_type": "EIR Addendum",
+    "project_name": "Oakville Quarry Redevelopment Project",
+    "original_eir_reference": "State Clearinghouse No. 2030040012",
+    "reason_for_addendum": "To address minor technical changes to the project description, specifically a slight reduction in commercial square footage."
+  },
+  "discovered_entities": []
+}

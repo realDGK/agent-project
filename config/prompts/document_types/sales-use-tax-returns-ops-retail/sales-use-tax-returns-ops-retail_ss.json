@@ -1,0 +1,46 @@
+{
+  "title": "Sales/Use Tax Return Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Sales and Use Tax Return'."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Filer", "Taxing Agency"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "tax_details": {
+      "type": "object",
+      "properties": {
+        "account_number": { "type": "string" },
+        "reporting_period": { "type": "string" },
+        "total_sales": { "type": "number" },
+        "taxable_sales": { "type": "number" },
+        "tax_due": { "type": "number" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "tax_details"]
+}

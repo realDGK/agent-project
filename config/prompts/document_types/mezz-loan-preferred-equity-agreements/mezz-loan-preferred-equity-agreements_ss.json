@@ -1,0 +1,47 @@
+{
+  "title": "Mezzanine Loan/Preferred Equity Agreement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Mezzanine Loan Agreement'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Borrower", "Lender", "Investor", "Company"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "loan_details": {
+      "type": "object",
+      "properties": {
+        "investment_amount": { "type": "number" },
+        "interest_or_preferred_return_rate": { "type": "string" },
+        "maturity_date": { "type": "string", "format": "date" },
+        "collateral": { "type": "string" },
+        "equity_pledge": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "loan_details"]
+}

@@ -1,0 +1,46 @@
+{
+  "title": "Flood Certificate Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Standard Flood Hazard Determination Form'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Lender", "Borrower", "Determination Company"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "flood_details": {
+      "type": "object",
+      "properties": {
+        "property_address": { "type": "string" },
+        "fema_map_number": { "type": "string" },
+        "flood_zone": { "type": "string" },
+        "is_in_special_flood_hazard_area": { "type": "boolean" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "flood_details"]
+}

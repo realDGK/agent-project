@@ -1,0 +1,46 @@
+{
+  "title": "Assignment & Assumption of Credits Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Assignment and Assumption of Fee Credits'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Assignor", "Assignee", "Public Agency"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "fee_details": {
+      "type": "object",
+      "properties": {
+        "credit_type": { "type": "string" },
+        "credit_amount": { "type": "number" },
+        "original_project": { "type": "string" },
+        "benefitting_project": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "fee_details"]
+}

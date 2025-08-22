@@ -1,0 +1,33 @@
+**INPUT DOCUMENT TEXT:**
+AIA Document A201® – 2017
+General Conditions of the Contract for Construction
+
+This document is referenced by and is a part of the Agreement between the Owner (Downtown Tower LLC) and the Contractor (BuildRight Corp.) for the Downtown Tower project. The Architect is Global Architects Inc.
+
+ARTICLE 2: OWNER
+The Owner shall furnish surveys and secure and pay for approvals, easements, and assessments required for construction.
+
+ARTICLE 3: CONTRACTOR
+The Contractor shall be solely responsible for all construction means, methods, techniques, sequences, and procedures.
+
+ARTICLE 4: ARCHITECT
+The Architect will be the Owner's representative during construction and will be the initial interpreter of the requirements of the Contract Documents.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "AIA Document A201 – 2017 General Conditions of the Contract for Construction",
+  "effective_date": null,
+  "parties": [
+    { "name": "Downtown Tower LLC", "role": "Owner" },
+    { "name": "BuildRight Corp.", "role": "Contractor" },
+    { "name": "Global Architects Inc.", "role": "Architect" }
+  ],
+  "construction_contract_details": {
+    "project_name": "Downtown Tower",
+    "owner_responsibilities": "Furnish surveys and secure and pay for approvals, easements, and assessments required for construction.",
+    "contractor_responsibilities": "Solely responsible for all construction means, methods, techniques, sequences, and procedures.",
+    "architect_responsibilities": "Will be the Owner's representative during construction and the initial interpreter of the requirements of the Contract Documents.",
+    "claims_and_disputes_procedure": null
+  },
+  "discovered_entities": []
+}

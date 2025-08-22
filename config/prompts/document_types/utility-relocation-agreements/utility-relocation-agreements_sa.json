@@ -1,0 +1,20 @@
+{
+  "utility_relocation_details": {
+    "type": "object",
+    "description": "Details specific to an agreement for the relocation of utility infrastructure.",
+    "properties": {
+      "project_requiring_relocation": {
+        "type": "string",
+        "description": "The name or description of the project necessitating the utility move."
+      },
+      "facilities_to_be_relocated": {
+        "type": "string",
+        "description": "A summary of the utility infrastructure being moved (e.g., 'underground electrical conduit', 'water mains')."
+      },
+      "cost_responsibility": {
+        "type": "string",
+        "description": "A summary of who is responsible for the costs of the relocation."
+      }
+    }
+  }
+}

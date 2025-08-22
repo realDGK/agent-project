@@ -1,0 +1,54 @@
+{
+  "title": "Settlement/ALTA Statement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Settlement Statement', 'ALTA Closing Statement'."
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date",
+      "description": "The closing date or settlement date."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Buyer", "Seller", "Settlement Agent"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "settlement_statement_details": {
+      "type": "object",
+      "properties": {
+        "property_address": { "type": "string" },
+        "escrow_number": { "type": "string" },
+        "buyer_total_debits": { "type": "number" },
+        "buyer_total_credits": { "type": "number" },
+        "cash_from_buyer": { "type": "number" },
+        "seller_total_debits": { "type": "number" },
+        "seller_total_credits": { "type": "number" },
+        "cash_to_seller": { "type": "number" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "settlement_statement_details"]
+}

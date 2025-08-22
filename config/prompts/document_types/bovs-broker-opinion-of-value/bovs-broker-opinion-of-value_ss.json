@@ -1,0 +1,46 @@
+{
+  "title": "Broker Opinion of Value (BOV) Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Broker Opinion of Value'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Broker", "Client", "Owner"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "bov_details": {
+      "type": "object",
+      "properties": {
+        "property_address": { "type": "string" },
+        "opinion_of_value": { "type": "number" },
+        "value_range": { "type": "string" },
+        "analysis_summary": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "bov_details"]
+}

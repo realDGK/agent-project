@@ -1,0 +1,46 @@
+{
+  "title": "Water Supply Assessment (SB 610) Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Water Supply Assessment'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Author", "Water Supplier", "Lead Agency"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "technical_study_details": {
+      "type": "object",
+      "properties": {
+        "study_type": { "type": "string", "default": "Water Supply Assessment" },
+        "project_name": { "type": "string" },
+        "project_water_demand": { "type": "string" },
+        "sufficiency_finding": { "type": "string", "description": "The conclusion of the assessment regarding the adequacy of water supplies." }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "technical_study_details"]
+}

@@ -1,0 +1,29 @@
+**INPUT DOCUMENT TEXT:**
+MECHANIC'S LIEN
+
+Claimant: City Electric Inc.
+vs.
+Owner: Downtown Tower LLC
+
+NOTICE IS HEREBY GIVEN that City Electric Inc. claims a lien on the property at 123 Main Street for the sum of $450,000.00 for electrical work performed.
+
+Recorded: June 1, 2032, as Instrument No. 2032-555666
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Mechanic's Lien",
+  "effective_date": null,
+  "parties": [
+    { "name": "City Electric Inc.", "role": "Claimant" },
+    { "name": "Downtown Tower LLC", "role": "Owner" }
+  ],
+  "mechanics_lien_details": {
+    "property_address": "123 Main Street",
+    "amount_of_lien": 450000
+  },
+  "legal_recording_details": {
+    "instrument_number": "2032-555666",
+    "recording_date": "2032-06-01"
+  },
+  "discovered_entities": []
+}

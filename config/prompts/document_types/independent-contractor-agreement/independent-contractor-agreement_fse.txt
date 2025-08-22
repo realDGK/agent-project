@@ -1,0 +1,36 @@
+INPUT DOCUMENT TEXT:
+INDEPENDENT CONTRACTOR AGREEMENT
+This Agreement is made as of October 10, 2026, between BuildRight Corp. (the "Company") and Creative Designs LLC (the "Contractor").
+Services. The Contractor agrees to provide architectural design services for the "Hillside Project" as detailed in Exhibit A.
+Term. This agreement shall commence on October 15, 2026 and continue until the final plans are approved by the city, unless terminated earlier.
+Compensation. The Company shall pay the Contractor a fixed fee of fifty thousand dollars ($50,000), payable in two installments.
+Termination. Either party may terminate this Agreement upon thirty (30) days written notice to the other party.
+Independent Contractor Status. Contractor is an independent contractor and not an employee of the Company.
+JSON OUTPUT:
+{
+"contract_name": "Independent Contractor Agreement",
+"effective_date": "2026-10-10",
+"parties": [
+{
+"name": "BuildRight Corp.",
+"role": "Company"
+},
+{
+"name": "Creative Designs LLC",
+"role": "Contractor"
+}
+],
+"contractor_details": {
+"scope_of_work_summary": "Provide architectural design services for the 'Hillside Project'.",
+"compensation_summary": "Fixed fee of $50,000, payable in two installments.",
+"term_of_agreement": "Commences on October 15, 2026 and continues until final plans are approved by the city.",
+"termination_clause_summary": "Either party may terminate upon thirty (30) days written notice."
+},
+"discovered_entities": [
+{
+"entity_name": "Independent Contractor Status",
+"entity_value": "Contractor is an independent contractor and not an employee of the Company.",
+"context_summary": "Clause explicitly defining the legal relationship between the parties."
+}
+]
+}

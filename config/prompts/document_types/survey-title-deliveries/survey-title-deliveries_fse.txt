@@ -1,0 +1,33 @@
+**INPUT DOCUMENT TEXT:**
+EMAIL
+From: j.smith@seller.com
+To: l.chen@buyer.com
+Date: July 1, 2031
+Subject: Downtown Tower - Due Diligence Items
+
+Hi Laura,
+
+Attached please find the following documents for your review:
+- Preliminary Title Report (Chicago Title Order #12345)
+- ALTA Survey by Precision Land Surveyors
+
+Thanks,
+John
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Email Transmittal",
+  "effective_date": "2031-07-01",
+  "parties": [
+    { "name": "j.smith@seller.com", "role": "Sender" },
+    { "name": "l.chen@buyer.com", "role": "Recipient" }
+  ],
+  "transmittal_details": {
+    "documents_delivered": [
+      "Preliminary Title Report (Chicago Title Order #12345)",
+      "ALTA Survey by Precision Land Surveyors"
+    ],
+    "project_name": "Downtown Tower"
+  },
+  "discovered_entities": []
+}

@@ -1,0 +1,21 @@
+**INPUT DOCUMENT TEXT:**
+SIGNAGE RIDER TO LEASE
+
+This Rider is part of the Lease between Commerce Center LLC ("Landlord") and Logistics Solutions Inc. ("Tenant").
+
+Landlord grants Tenant the non-exclusive right to one (1) panel on the project's monument sign located at the main entrance. Tenant shall also have the right to install building signage on the facade above its main entrance. All signage designs must be submitted to Landlord for prior written approval.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Signage Rider to Lease",
+  "parties": [
+    { "name": "Commerce Center LLC", "role": "Landlord" },
+    { "name": "Logistics Solutions Inc.", "role": "Tenant" }
+  ],
+  "signage_details": {
+    "building_signage_rights": "Right to install building signage on the facade above its main entrance.",
+    "monument_signage_rights": "Non-exclusive right to one (1) panel on the project's monument sign.",
+    "approval_requirements": "All signage designs must be submitted to Landlord for prior written approval."
+  },
+  "discovered_entities": []
+}

@@ -1,0 +1,1359 @@
+## Document Type 89: Site Plan/Design Review
+89_specialist_schema.json
+
+JSON
+
+{
+  "title": "Site Plan/Design Review Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Design Review Approval DR-2030-02'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Applicant", "Approving Agency"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "entitlement_details": {
+      "type": "object",
+      "properties": {
+        "application_number": { "type": "string" },
+        "project_description": { "type": "string" },
+        "approval_statement": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "entitlement_details"]
+}
+89_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+ACTION OF THE DESIGN REVIEW BOARD
+CITY OF HILLDALE
+Case No. DR-2030-02
+Date: January 20, 2030
+
+Applicant: Hilldale Retail LLC
+Project: A new 15,000 sq. ft. retail building at 789 Town Center Drive.
+
+The Design Review Board hereby approves the site plan and architectural elevations dated December 15, 2029, finding them consistent with the City's Design Guidelines.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Design Review Approval DR-2030-02",
+  "effective_date": "2030-01-20",
+  "parties": [
+    { "name": "Hilldale Retail LLC", "role": "Applicant" },
+    { "name": "City of Hilldale Design Review Board", "role": "Approving Agency" }
+  ],
+  "entitlement_details": {
+    "application_number": "DR-2030-02",
+    "project_description": "A new 15,000 sq. ft. retail building at 789 Town Center Drive.",
+    "approval_statement": "Approves the site plan and architectural elevations dated December 15, 2029, finding them consistent with the City's Design Guidelines."
+  },
+  "discovered_entities": []
+}
+89_schema_additions.json
+
+JSON
+
+{
+  "entitlement_details": {
+    "type": "object",
+    "description": "Details specific to land use entitlements and government approvals.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "application_number": { "type": "string" },
+      "property_description": { "type": "string" },
+      "original_land_use_designation": { "type": "string" },
+      "new_land_use_designation": { "type": "string" },
+      "original_zoning": { "type": "string" },
+      "new_zoning": { "type": "string" },
+      "plan_area_description": { "type": "string" },
+      "plan_summary": { "type": "string" },
+      "allowed_land_uses": { "type": "array", "items": { "type": "string" } },
+      "development_standards_summary": { "type": "string" },
+      "pud_summary": { "type": "string" },
+      "property_address": { "type": "string" },
+      "permitted_use": { "type": "string" },
+      "key_conditions": { "type": "array", "items": { "type": "string" } },
+      "variance_request": { "type": "string" },
+      "findings_for_approval": { "type": "string" },
+      "approval_statement": { "type": "string" }
+    }
+  }
+}
+Document Type 90: Architectural Review approvals
+90_specialist_schema.json
+
+JSON
+
+{
+  "title": "Architectural Review Approval Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Architectural Committee Approval'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Applicant", "Approving Body", "HOA"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "entitlement_details": {
+      "type": "object",
+      "properties": {
+        "project_description": { "type": "string" },
+        "approval_statement": { "type": "string" },
+        "approved_plans_reference": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "entitlement_details"]
+}
+90_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+GREEN VALLEY RANCH HOMEOWNERS ASSOCIATION
+ARCHITECTURAL REVIEW COMMITTEE - NOTICE OF APPROVAL
+
+Date: February 10, 2030
+Applicant: Sarah Miller
+Property: 123 Green Valley Lane
+
+The Architectural Review Committee has approved the applicant's plans for a new patio cover and outdoor kitchen, as shown on the drawings prepared by "Patio Pros" dated January 15, 2030.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Architectural Review Committee - Notice of Approval",
+  "effective_date": "2030-02-10",
+  "parties": [
+    { "name": "Sarah Miller", "role": "Applicant" },
+    { "name": "Green Valley Ranch Homeowners Association", "role": "Approving Body" }
+  ],
+  "entitlement_details": {
+    "project_description": "A new patio cover and outdoor kitchen at 123 Green Valley Lane.",
+    "approval_statement": "The Architectural Review Committee has approved the applicant's plans.",
+    "approved_plans_reference": "Drawings prepared by 'Patio Pros' dated January 15, 2030."
+  },
+  "discovered_entities": []
+}
+90_schema_additions.json
+
+JSON
+
+{
+  "entitlement_details": {
+    "type": "object",
+    "description": "Details specific to land use entitlements and government approvals.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "application_number": { "type": "string" },
+      "property_description": { "type": "string" },
+      "original_land_use_designation": { "type": "string" },
+      "new_land_use_designation": { "type": "string" },
+      "original_zoning": { "type": "string" },
+      "new_zoning": { "type": "string" },
+      "plan_area_description": { "type": "string" },
+      "plan_summary": { "type": "string" },
+      "allowed_land_uses": { "type": "array", "items": { "type": "string" } },
+      "development_standards_summary": { "type": "string" },
+      "pud_summary": { "type": "string" },
+      "property_address": { "type": "string" },
+      "permitted_use": { "type": "string" },
+      "key_conditions": { "type": "array", "items": { "type": "string" } },
+      "variance_request": { "type": "string" },
+      "findings_for_approval": { "type": "string" },
+      "approval_statement": { "type": "string" },
+      "approved_plans_reference": { "type": "string" }
+    }
+  }
+}
+
+
+
+
+
+
+continue with the next 10 please
+
+
+
+Show thinking
+Of course. Let's continue with the next batch of ten.
+
+Here are documents #91 through #100 from the checklist, all in the requested format.
+
+Document Type 91: Sign Permit
+91_specialist_schema.json
+
+JSON
+
+{
+  "title": "Sign Permit Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Sign Permit'."
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date",
+      "description": "The date the permit was issued."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Permittee", "Applicant", "Issuing Agency"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "permit_details": {
+      "type": "object",
+      "properties": {
+        "permit_number": { "type": "string" },
+        "property_address": { "type": "string" },
+        "sign_description": { "type": "string" },
+        "sign_dimensions": { "type": "string" },
+        "expiration_date": { "type": "string", "format": "date" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "permit_details"]
+}
+91_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+CITY OF LAKESIDE - SIGN PERMIT
+
+PERMIT NO: SGN-2030-005
+ISSUANCE DATE: March 1, 2030
+EXPIRES: March 1, 2031
+
+PERMITTEE: Lakeside Shopping Center LLC
+ADDRESS: 800 Commerce Drive, Lakeside, CA
+
+DESCRIPTION OF WORK:
+Installation of one (1) new monument sign at the main entrance.
+Dimensions: 10 feet high, 8 feet wide.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Sign Permit",
+  "effective_date": "2030-03-01",
+  "parties": [
+    { "name": "Lakeside Shopping Center LLC", "role": "Permittee" },
+    { "name": "City of Lakeside", "role": "Issuing Agency" }
+  ],
+  "permit_details": {
+    "permit_number": "SGN-2030-005",
+    "property_address": "800 Commerce Drive, Lakeside, CA",
+    "sign_description": "Installation of one (1) new monument sign at the main entrance.",
+    "sign_dimensions": "10 feet high, 8 feet wide.",
+    "expiration_date": "2031-03-01"
+  },
+  "discovered_entities": []
+}
+91_schema_additions.json
+
+JSON
+
+{
+  "permit_details": {
+    "type": "object",
+    "description": "Details specific to a permit issued by a government agency.",
+    "properties": {
+      "permit_number": { "type": "string" },
+      "property_address": { "type": "string" },
+      "sign_description": { "type": "string" },
+      "sign_dimensions": { "type": "string" },
+      "expiration_date": { "type": "string", "format": "date" }
+    }
+  }
+}
+Document Type 92: Density Bonus Agreement
+92_specialist_schema.json
+
+JSON
+
+{
+  "title": "Density Bonus Agreement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Density Bonus Agreement'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Developer", "Public Agency", "City"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "entitlement_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "property_address": { "type": "string" },
+        "base_density": { "type": "string" },
+        "affordable_units_provided": { "type": "string" },
+        "density_bonus_granted": { "type": "string" },
+        "concessions_or_incentives": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "entitlement_details"]
+}
+92_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+DENSITY BONUS HOUSING AGREEMENT
+This Agreement is made April 10, 2030, between the City of Metropolis ("City") and Urban Lofts LLC ("Developer").
+
+RECITALS:
+A. The Project at 456 High Street allows a base density of 100 residential units.
+B. Developer has agreed to restrict ten (10) units for Very Low-Income households.
+C. In exchange, the City grants a 20% density bonus, allowing for a total of 120 units.
+D. The City also grants one concession: a reduction in the required parking ratio.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Density Bonus Housing Agreement",
+  "effective_date": "2030-04-10",
+  "parties": [
+    { "name": "City of Metropolis", "role": "City" },
+    { "name": "Urban Lofts LLC", "role": "Developer" }
+  ],
+  "entitlement_details": {
+    "project_name": null,
+    "property_address": "456 High Street",
+    "base_density": "100 residential units",
+    "affordable_units_provided": "Ten (10) units for Very Low-Income households.",
+    "density_bonus_granted": "20% density bonus, allowing for a total of 120 units.",
+    "concessions_or_incentives": [
+      "A reduction in the required parking ratio."
+    ]
+  },
+  "discovered_entities": []
+}
+92_schema_additions.json
+
+JSON
+
+{
+  "entitlement_details": {
+    "type": "object",
+    "description": "Details specific to land use entitlements and government approvals.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "application_number": { "type": "string" },
+      "property_description": { "type": "string" },
+      "original_land_use_designation": { "type": "string" },
+      "new_land_use_designation": { "type": "string" },
+      "original_zoning": { "type": "string" },
+      "new_zoning": { "type": "string" },
+      "plan_area_description": { "type": "string" },
+      "plan_summary": { "type": "string" },
+      "allowed_land_uses": { "type": "array", "items": { "type": "string" } },
+      "development_standards_summary": { "type": "string" },
+      "pud_summary": { "type": "string" },
+      "property_address": { "type": "string" },
+      "permitted_use": { "type": "string" },
+      "key_conditions": { "type": "array", "items": { "type": "string" } },
+      "variance_request": { "type": "string" },
+      "findings_for_approval": { "type": "string" },
+      "approval_statement": { "type": "string" },
+      "approved_plans_reference": { "type": "string" },
+      "base_density": { "type": "string" },
+      "affordable_units_provided": { "type": "string" },
+      "density_bonus_granted": { "type": "string" },
+      "concessions_or_incentives": { "type": "array", "items": { "type": "string" } }
+    }
+  }
+}
+Document Type 93: Inclusionary/Affordable Housing Regulatory Agreement
+93_specialist_schema.json
+
+JSON
+
+{
+  "title": "Affordable Housing Regulatory Agreement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Regulatory Agreement and Declaration of Restrictive Covenants'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Owner", "Developer", "Public Agency", "City"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "regulatory_agreement_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "property_address": { "type": "string" },
+        "number_of_restricted_units": { "type": "integer" },
+        "affordability_levels": { "type": "string" },
+        "term_of_restrictions": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "regulatory_agreement_details"]
+}
+93_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+AGREEMENT CONTAINING COVENANTS AFFECTING REAL PROPERTY
+(Inclusionary Housing Program)
+
+This Agreement is made May 1, 2030, by and between Affordable Housing Partners LLC ("Owner") and the City of Bayview ("City").
+
+The Owner agrees to set aside and restrict twenty (20) of the residential units at the "Bayview Towers" project as affordable to households earning at or below 80% of the Area Median Income (AMI).
+
+These restrictions shall remain in effect for a period of fifty-five (55) years from the date of the Certificate of Occupancy.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Agreement Containing Covenants Affecting Real Property (Inclusionary Housing Program)",
+  "effective_date": "2030-05-01",
+  "parties": [
+    { "name": "Affordable Housing Partners LLC", "role": "Owner" },
+    { "name": "City of Bayview", "role": "City" }
+  ],
+  "regulatory_agreement_details": {
+    "project_name": "Bayview Towers",
+    "property_address": null,
+    "number_of_restricted_units": 20,
+    "affordability_levels": "At or below 80% of the Area Median Income (AMI).",
+    "term_of_restrictions": "Fifty-five (55) years from the date of the Certificate of Occupancy."
+  },
+  "discovered_entities": []
+}
+93_schema_additions.json
+
+JSON
+
+{
+  "regulatory_agreement_details": {
+    "type": "object",
+    "description": "Details specific to an affordable housing or regulatory agreement.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "property_address": { "type": "string" },
+      "number_of_restricted_units": { "type": "integer" },
+      "affordability_levels": { "type": "string" },
+      "term_of_restrictions": { "type": "string" }
+    }
+  }
+}
+Document Type 94: ADU Program Docs
+94_specialist_schema.json
+
+JSON
+
+{
+  "title": "ADU Program Document Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Accessory Dwelling Unit Permit Application'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Applicant", "Property Owner", "Issuing Agency"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "adu_details": {
+      "type": "object",
+      "properties": {
+        "property_address": { "type": "string" },
+        "adu_type": { "type": "string", "enum": ["Detached", "Attached", "Conversion", "JADU"] },
+        "adu_square_footage": { "type": "integer" },
+        "deed_restriction_required": { "type": "boolean" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "adu_details"]
+}
+94_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+CITY OF OAK CREEK
+ACCESSORY DWELLING UNIT PERMIT
+
+APPLICANT: Robert Chen
+ADDRESS: 789 Elm Street, Oak Creek, CA
+
+DESCRIPTION:
+Permit for the construction of a new, 800 square foot detached Accessory Dwelling Unit (ADU).
+A deed restriction prohibiting the separate sale of the ADU and requiring owner-occupancy of either the primary or accessory unit must be recorded prior to final inspection.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Accessory Dwelling Unit Permit",
+  "effective_date": null,
+  "parties": [
+    { "name": "Robert Chen", "role": "Applicant" },
+    { "name": "City of Oak Creek", "role": "Issuing Agency" }
+  ],
+  "adu_details": {
+    "property_address": "789 Elm Street, Oak Creek, CA",
+    "adu_type": "Detached",
+    "adu_square_footage": 800,
+    "deed_restriction_required": true
+  },
+  "discovered_entities": []
+}
+94_schema_additions.json
+
+JSON
+
+{
+  "adu_details": {
+    "type": "object",
+    "description": "Details specific to an Accessory Dwelling Unit (ADU) program or permit.",
+    "properties": {
+      "property_address": { "type": "string" },
+      "adu_type": { "type": "string", "enum": ["Detached", "Attached", "Conversion", "JADU"] },
+      "adu_square_footage": { "type": "integer" },
+      "deed_restriction_required": { "type": "boolean" }
+    }
+  }
+}
+Document Type 95: Conditions of Approval (COAs)
+95_specialist_schema.json
+
+JSON
+
+{
+  "title": "Conditions of Approval (COAs) Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Conditions of Approval for Tentative Tract Map 123'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Applicant", "Approving Agency"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "entitlement_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "application_number": { "type": "string" },
+        "conditions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "department": { "type": "string" },
+              "condition_summary": { "type": "string" },
+              "timing": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "entitlement_details"]
+}
+95_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+EXHIBIT A
+CONDITIONS OF APPROVAL FOR TTM 5555
+
+Project: "Canyon View Estates"
+Date: June 5, 2030
+
+The following conditions shall be satisfied:
+
+PLANNING DEPARTMENT
+1. Prior to recordation of the Final Map, the applicant shall submit a final landscape plan.
+
+PUBLIC WORKS DEPARTMENT
+12. Prior to issuance of a grading permit, the applicant shall pay all applicable traffic impact fees.
+
+FIRE DEPARTMENT
+25. All homes shall be equipped with residential fire sprinklers. This shall be verified prior to final inspection.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Conditions of Approval for TTM 5555",
+  "effective_date": "2030-06-05",
+  "parties": [],
+  "entitlement_details": {
+    "project_name": "Canyon View Estates",
+    "application_number": "TTM 5555",
+    "conditions": [
+      {
+        "department": "Planning Department",
+        "condition_summary": "Submit a final landscape plan.",
+        "timing": "Prior to recordation of the Final Map"
+      },
+      {
+        "department": "Public Works Department",
+        "condition_summary": "Pay all applicable traffic impact fees.",
+        "timing": "Prior to issuance of a grading permit"
+      },
+      {
+        "department": "Fire Department",
+        "condition_summary": "All homes shall be equipped with residential fire sprinklers.",
+        "timing": "Prior to final inspection"
+      }
+    ]
+  },
+  "discovered_entities": []
+}
+95_schema_additions.json
+
+JSON
+
+{
+  "entitlement_details": {
+    "type": "object",
+    "description": "Details specific to land use entitlements and government approvals.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "application_number": { "type": "string" },
+      "property_description": { "type": "string" },
+      "original_land_use_designation": { "type": "string" },
+      "new_land_use_designation": { "type": "string" },
+      "original_zoning": { "type": "string" },
+      "new_zoning": { "type": "string" },
+      "plan_area_description": { "type": "string" },
+      "plan_summary": { "type": "string" },
+      "allowed_land_uses": { "type": "array", "items": { "type": "string" } },
+      "development_standards_summary": { "type": "string" },
+      "pud_summary": { "type": "string" },
+      "property_address": { "type": "string" },
+      "permitted_use": { "type": "string" },
+      "key_conditions": { "type": "array", "items": { "type": "string" } },
+      "variance_request": { "type": "string" },
+      "findings_for_approval": { "type": "string" },
+      "approval_statement": { "type": "string" },
+      "approved_plans_reference": { "type": "string" },
+      "base_density": { "type": "string" },
+      "affordable_units_provided": { "type": "string" },
+      "density_bonus_granted": { "type": "string" },
+      "concessions_or_incentives": { "type": "array", "items": { "type": "string" } },
+      "conditions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "department": { "type": "string" },
+            "condition_summary": { "type": "string" },
+            "timing": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}
+Document Type 96: Staff Reports
+96_specialist_schema.json
+
+JSON
+
+{
+  "title": "Staff Report Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Staff Report to the Planning Commission'."
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date",
+      "description": "The date of the meeting for which the report was prepared."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Authoring Agency", "Reviewing Body", "Applicant"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "staff_report_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "application_number": { "type": "string" },
+        "staff_recommendation": { "type": "string" },
+        "project_summary": { "type": "string" },
+        "key_issues": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "staff_report_details"]
+}
+96_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+STAFF REPORT
+
+TO: Planning Commission
+FROM: Community Development Department
+MEETING DATE: July 15, 2030
+SUBJECT: Conditional Use Permit P30-005 (New Gas Station)
+APPLICANT: Corner Store Inc.
+
+PROJECT DESCRIPTION:
+The applicant proposes a new gas station with a convenience store at the corner of Main and Oak.
+
+KEY ISSUES:
+The primary issues are traffic circulation at the intersection and architectural compatibility with the downtown historic district.
+
+RECOMMENDATION:
+Staff recommends APPROVAL, with the attached conditions.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Staff Report",
+  "effective_date": "2030-07-15",
+  "parties": [
+    { "name": "Community Development Department", "role": "Authoring Agency" },
+    { "name": "Planning Commission", "role": "Reviewing Body" },
+    { "name": "Corner Store Inc.", "role": "Applicant" }
+  ],
+  "staff_report_details": {
+    "project_name": "New Gas Station",
+    "application_number": "P30-005",
+    "staff_recommendation": "Approval, with attached conditions.",
+    "project_summary": "A new gas station with a convenience store at the corner of Main and Oak.",
+    "key_issues": [
+      "Traffic circulation at the intersection.",
+      "Architectural compatibility with the downtown historic district."
+    ]
+  },
+  "discovered_entities": []
+}
+96_schema_additions.json
+
+JSON
+
+{
+  "staff_report_details": {
+    "type": "object",
+    "description": "Details specific to a staff report for a public hearing.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "application_number": { "type": "string" },
+      "staff_recommendation": { "type": "string" },
+      "project_summary": { "type": "string" },
+      "key_issues": { "type": "array", "items": { "type": "string" } }
+    }
+  }
+}
+Document Type 97: Planning Commission/City Council Resolutions
+97_specialist_schema.json
+
+JSON
+
+{
+  "title": "Resolution Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Resolution No. 2030-15'."
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date",
+      "description": "The date the resolution was adopted."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Approving Body", "Applicant"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "resolution_details": {
+      "type": "object",
+      "properties": {
+        "resolution_number": { "type": "string" },
+        "action_taken": { "type": "string" },
+        "project_or_subject": { "type": "string" },
+        "vote_summary": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "resolution_details"]
+}
+97_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+RESOLUTION NO. PC-2030-10
+A RESOLUTION OF THE PLANNING COMMISSION OF THE CITY OF VISTA APPROVING CONDITIONAL USE PERMIT P29-123 FOR A SELF-STORAGE FACILITY
+
+WHEREAS, the Planning Commission has reviewed the application from Vista Storage Solutions LLC;
+
+NOW, THEREFORE, BE IT RESOLVED that the Planning Commission hereby approves CUP P29-123.
+
+PASSED AND ADOPTED this 15th day of November, 2029, by the following vote:
+AYES: 4
+NOES: 1
+ABSENT: 0
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Resolution No. PC-2030-10",
+  "effective_date": "2029-11-15",
+  "parties": [
+    { "name": "Planning Commission of the City of Vista", "role": "Approving Body" },
+    { "name": "Vista Storage Solutions LLC", "role": "Applicant" }
+  ],
+  "resolution_details": {
+    "resolution_number": "PC-2030-10",
+    "action_taken": "Approval",
+    "project_or_subject": "Conditional Use Permit P29-123 for a self-storage facility.",
+    "vote_summary": "AYES: 4, NOES: 1, ABSENT: 0"
+  },
+  "discovered_entities": []
+}
+97_schema_additions.json
+
+JSON
+
+{
+  "resolution_details": {
+    "type": "object",
+    "description": "Details specific to a formal resolution by a governing body.",
+    "properties": {
+      "resolution_number": { "type": "string" },
+      "action_taken": { "type": "string" },
+      "project_or_subject": { "type": "string" },
+      "vote_summary": { "type": "string" }
+    }
+  }
+}
+Document Type 98: Public Hearing Notices
+98_specialist_schema.json
+
+JSON
+
+{
+  "title": "Public Hearing Notice Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Notice of Public Hearing'."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Noticing Agency", "Applicant"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "hearing_details": {
+      "type": "object",
+      "properties": {
+        "hearing_date": { "type": "string", "format": "date" },
+        "hearing_time": { "type": "string" },
+        "hearing_location": { "type": "string" },
+        "hearing_body": { "type": "string" },
+        "project_description": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "hearing_details"]
+}
+98_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+NOTICE OF PUBLIC HEARING
+
+NOTICE IS HEREBY GIVEN that the Planning Commission of the City of Vista will hold a public hearing on Tuesday, November 15, 2029, at 6:00 PM in the City Council Chambers, 123 Civic Center Drive, Vista, CA.
+
+The purpose of the hearing is to consider an application (P29-123) by Vista Storage Solutions LLC for a Conditional Use Permit to allow a self-storage facility.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Notice of Public Hearing",
+  "parties": [
+    { "name": "Planning Commission of the City of Vista", "role": "Noticing Agency" },
+    { "name": "Vista Storage Solutions LLC", "role": "Applicant" }
+  ],
+  "hearing_details": {
+    "hearing_date": "2029-11-15",
+    "hearing_time": "6:00 PM",
+    "hearing_location": "City Council Chambers, 123 Civic Center Drive, Vista, CA",
+    "hearing_body": "Planning Commission of the City of Vista",
+    "project_description": "Consider an application (P29-123) for a Conditional Use Permit to allow a self-storage facility."
+  },
+  "discovered_entities": []
+}
+98_schema_additions.json
+
+JSON
+
+{
+  "hearing_details": {
+    "type": "object",
+    "description": "Details specific to a public hearing notice.",
+    "properties": {
+      "hearing_date": { "type": "string", "format": "date" },
+      "hearing_time": { "type": "string" },
+      "hearing_location": { "type": "string" },
+      "hearing_body": { "type": "string" },
+      "project_description": { "type": "string" }
+    }
+  }
+}
+Document Type 99: Community Benefits Agreements
+99_specialist_schema.json
+
+JSON
+
+{
+  "title": "Community Benefits Agreement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Community Benefits Agreement'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Developer", "Community Coalition", "Public Agency"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "cba_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "developer_commitments": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "cba_details"]
+}
+99_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+COMMUNITY BENEFITS AGREEMENT
+FOR THE BAYFRONT STADIUM PROJECT
+
+This Agreement is made June 1, 2030, between the City of Bayfront, the Bayfront Community Alliance, and Stadium Developers LLC.
+
+In consideration for support of the project, the Developer commits to:
+1. A local hiring program giving preference to Bayfront residents.
+2. Funding for a new public library in the amount of $5,000,000.
+3. Construction of 100 affordable housing units on-site.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Community Benefits Agreement for the Bayfront Stadium Project",
+  "effective_date": "2030-06-01",
+  "parties": [
+    { "name": "Stadium Developers LLC", "role": "Developer" },
+    { "name": "Bayfront Community Alliance", "role": "Community Coalition" },
+    { "name": "City of Bayfront", "role": "Public Agency" }
+  ],
+  "cba_details": {
+    "project_name": "Bayfront Stadium Project",
+    "developer_commitments": [
+      "A local hiring program giving preference to Bayfront residents.",
+      "Funding for a new public library in the amount of $5,000,000.",
+      "Construction of 100 affordable housing units on-site."
+    ]
+  },
+  "discovered_entities": []
+}
+99_schema_additions.json
+
+JSON
+
+{
+  "cba_details": {
+    "type": "object",
+    "description": "Details specific to a Community Benefits Agreement (CBA).",
+    "properties": {
+      "project_name": { "type": "string" },
+      "developer_commitments": { "type": "array", "items": { "type": "string" } }
+    }
+  }
+}
+Document Type 100: Subdivision Improvement Agreement
+100_specialist_schema.json
+
+JSON
+
+{
+  "title": "Subdivision Improvement Agreement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Subdivision Improvement Agreement'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Subdivider", "Developer", "Public Agency", "City"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "improvement_agreement_details": {
+      "type": "object",
+      "properties": {
+        "subdivision_name": { "type": "string" },
+        "map_reference": { "type": "string" },
+        "required_improvements": { "type": "array", "items": { "type": "string" } },
+        "completion_deadline": { "type": "string" },
+        "security_posted": {
+          "type": "object",
+          "properties": {
+            "type": { "type": "string" },
+            "amount": { "type": "number" },
+            "bond_number": { "type": "string" }
+          }
+        }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "improvement_agreement_details"]
+}
+100_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+SUBDIVISION IMPROVEMENT AGREEMENT
+(Tract No. 8888 - "Riverbend")
+
+This Agreement is made July 1, 2030, between the City of Riverbend and Riverbend Homes LLC ("Subdivider").
+
+Subdivider agrees to construct and install, at its own expense, all public improvements required for Tract No. 8888, including streets, curbs, gutters, sidewalks, water, and sewer lines.
+
+All work shall be completed within two (2) years of the recordation of the Final Map.
+
+Subdivider has posted a Faithful Performance Bond in the amount of $2,500,000 to secure its obligations.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Subdivision Improvement Agreement",
+  "effective_date": "2030-07-01",
+  "parties": [
+    { "name": "City of Riverbend", "role": "City" },
+    { "name": "Riverbend Homes LLC", "role": "Subdivider" }
+  ],
+  "improvement_agreement_details": {
+    "subdivision_name": "Riverbend",
+    "map_reference": "Tract No. 8888",
+    "required_improvements": [
+      "streets",
+      "curbs",
+      "gutters",
+      "sidewalks",
+      "water lines",
+      "sewer lines"
+    ],
+    "completion_deadline": "Within two (2) years of the recordation of the Final Map.",
+    "security_posted": {
+      "type": "Faithful Performance Bond",
+      "amount": 2500000,
+      "bond_number": null
+    }
+  },
+  "discovered_entities": []
+}
+100_schema_additions.json
+
+JSON
+
+{
+  "improvement_agreement_details": {
+    "type": "object",
+    "description": "Details specific to a Subdivision Improvement Agreement.",
+    "properties": {
+      "subdivision_name": { "type": "string" },
+      "map_reference": { "type": "string" },
+      "required_improvements": { "type": "array", "items": { "type": "string" } },
+      "completion_deadline": { "type": "string" },
+      "security_posted": {
+        "type": "object",
+        "properties": {
+          "type": { "type": "string" },
+          "amount": { "type": "number" },
+          "bond_number": { "type": "string" }
+        }
+      }
+    }
+  }
+}
+

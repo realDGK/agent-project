@@ -1,0 +1,11 @@
+{
+  "vacation_details": {
+    "type": "object",
+    "description": "Details specific to the vacation or abandonment of a public right-of-way or easement.",
+    "properties": {
+      "resolution_number": { "type": "string" },
+      "property_vacated": { "type": "string" },
+      "reason_for_vacation": { "type": "string" }
+    }
+  }
+}

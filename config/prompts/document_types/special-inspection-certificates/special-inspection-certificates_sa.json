@@ -1,0 +1,17 @@
+{
+  "inspection_report_details": {
+    "type": "object",
+    "description": "Details specific to a construction or property inspection report.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "inspection_date": { "type": "string", "format": "date" },
+      "percent_complete": { "type": "number" },
+      "work_completed_summary": { "type": "string" },
+      "issues_or_deficiencies": { "type": "string" },
+      "recommended_draw_amount": { "type": "number" },
+      "permit_number": { "type": "string" },
+      "inspection_type": { "type": "string" },
+      "compliance_statement": { "type": "string" }
+    }
+  }
+}

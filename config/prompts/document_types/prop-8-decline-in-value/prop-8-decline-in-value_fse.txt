@@ -1,0 +1,29 @@
+**INPUT DOCUMENT TEXT:**
+NOTICE OF TEMPORARY REDUCTION IN ASSESSED VALUE
+(Proposition 8)
+County of Alameda Assessor's Office
+
+Date: July 1, 2033
+APN: 123-456-789
+Owner: Property Owner LLC
+
+For the 2033-2034 tax year, your property's assessed value has been temporarily reduced due to a decline in market value.
+Original Prop 13 Value: $10,000,000
+Temporary Prop 8 Value: $8,500,000
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Notice of Temporary Reduction in Assessed Value (Proposition 8)",
+  "effective_date": "2033-07-01",
+  "parties": [
+    { "name": "County of Alameda Assessor's Office", "role": "Assessor" },
+    { "name": "Property Owner LLC", "role": "Property Owner" }
+  ],
+  "tax_appeal_details": {
+    "apn": "123-456-789",
+    "tax_year": "2033-2034",
+    "original_assessed_value": 10000000,
+    "prop_8_reduced_value": 8500000
+  },
+  "discovered_entities": []
+}

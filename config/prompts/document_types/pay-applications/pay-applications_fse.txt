@@ -1,0 +1,42 @@
+**INPUT DOCUMENT TEXT:**
+AIA Document G702® – 1992
+Application and Certificate for Payment
+
+APPLICATION NO: 005
+PERIOD TO: March 31, 2032
+PROJECT: Downtown Tower
+TO OWNER: Downtown Tower LLC
+FROM CONTRACTOR: BuildRight Corp.
+
+1. ORIGINAL CONTRACT SUM: $100,000,000.00
+2. Net change by Change Orders: $575,000.00
+3. CONTRACT SUM TO DATE: $100,575,000.00
+4. TOTAL COMPLETED & STORED TO DATE: $25,143,750.00
+5. RETAINAGE (10%): $2,514,375.00
+6. TOTAL EARNED LESS RETAINAGE: $22,629,375.00
+7. LESS PREVIOUS CERTIFICATES FOR PAYMENT: $20,179,375.00
+8. CURRENT PAYMENT DUE: $2,450,000.00
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Application and Certificate for Payment",
+  "effective_date": null,
+  "parties": [
+    { "name": "BuildRight Corp.", "role": "Contractor" },
+    { "name": "Downtown Tower LLC", "role": "Owner" }
+  ],
+  "pay_application_details": {
+    "project_name": "Downtown Tower",
+    "application_number": "005",
+    "period_to": "2032-03-31",
+    "original_contract_sum": 100000000,
+    "net_change_by_change_orders": 575000,
+    "contract_sum_to_date": 100575000,
+    "total_completed_and_stored_to_date": 25143750,
+    "retainage": 2514375,
+    "total_earned_less_retainage": 22629375,
+    "less_previous_certificates_for_payment": 20179375,
+    "current_payment_due": 2450000
+  },
+  "discovered_entities": []
+}

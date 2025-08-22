@@ -1,0 +1,59 @@
+{
+  "title": "Punch List Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Punch List'."
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date",
+      "description": "The date of the inspection that generated the list."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Architect", "Owner", "Contractor"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "punch_list_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "total_items": { "type": "integer" },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "location": { "type": "string" },
+              "description": { "type": "string" },
+              "status": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "punch_list_details"]
+}

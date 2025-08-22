@@ -1,0 +1,64 @@
+{
+  "title": "Stipulation Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Stipulation for Entry of Judgment'."
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "Plaintiff",
+              "Defendant",
+              "Petitioner",
+              "Respondent"
+            ]
+          }
+        },
+        "required": [
+          "name",
+          "role"
+        ]
+      }
+    },
+    "litigation_details": {
+      "type": "object",
+      "properties": {
+        "court_name": {
+          "type": "string"
+        },
+        "case_number": {
+          "type": "string"
+        }
+      }
+    },
+    "stipulation_details": {
+      "type": "object",
+      "properties": {
+        "stipulation_summary": {
+          "type": "string",
+          "description": "A summary of what the parties are agreeing to."
+        }
+      }
+    }
+  },
+  "required": [
+    "contract_name",
+    "effective_date",
+    "parties",
+    "stipulation_details"
+  ]
+}

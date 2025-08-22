@@ -1,0 +1,24 @@
+**INPUT DOCUMENT TEXT:**
+ARBORIST REPORT & TREE PROTECTION PLAN
+For: The Oak Knoll Subdivision Project
+Date: November 5, 2027
+Prepared by: Certified Arborist, Susan Jones (#WE-1234A)
+
+This report details the survey of 50 trees on the project site.
+Trees to be Removed: A total of 5 trees are designated for removal as shown on the plan, including three (3) Coast Live Oaks and two (2) Monterey Pines.
+Trees to be Preserved: All remaining 45 trees shall be protected. Fencing shall be installed at the designated tree protection zone (TPZ) prior to any grading.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Arborist Report & Tree Protection Plan",
+  "effective_date": "2027-11-05",
+  "parties": [
+    { "name": "Susan Jones", "role": "Arborist" }
+  ],
+  "plan_details": {
+    "project_name": "The Oak Knoll Subdivision Project",
+    "plan_type": "Tree Protection and Removal",
+    "trees_to_be_removed_summary": "5 trees total: three (3) Coast Live Oaks and two (2) Monterey Pines.",
+    "trees_to_be_protected_summary": "45 trees shall be protected with fencing at the tree protection zone (TPZ)."
+  }
+}

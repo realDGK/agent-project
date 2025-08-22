@@ -1,0 +1,22 @@
+{
+  "utility_service_details": {
+    "type": "object",
+    "description": "Details specific to utility service letters and agreements.",
+    "properties": {
+      "utility_type": { "type": "string" },
+      "project_name": { "type": "string" },
+      "service_commitment": { "type": "string" },
+      "conditions_of_service": { "type": "string" },
+      "map_reference": { "type": "string" },
+      "verification_statement": { "type": "string" },
+      "capacity_amount": { "type": "string" },
+      "unit_of_measure": { "type": "string" },
+      "purchase_price": { "type": "number" },
+      "scope_of_work": { "type": "string" },
+      "applicant_cost_responsibility": { "type": "number" },
+      "utility_allowance_credit": { "type": "number" },
+      "participating_utilities": { "type": "array", "items": { "type": "string" } },
+      "cost_sharing_arrangement": { "type": "string" }
+    }
+  }
+}

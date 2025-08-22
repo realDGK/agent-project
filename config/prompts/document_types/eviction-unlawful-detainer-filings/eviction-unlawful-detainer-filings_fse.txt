@@ -1,0 +1,28 @@
+**INPUT DOCUMENT TEXT:**
+COMPLAINT - UNLAWFUL DETAINER
+Case Number: 28-UC-12345
+Court: Superior Court of California, County of Orange
+
+Plaintiff: Oak Tree Apartments, LLC
+Defendant: Robert Miller
+
+1. Plaintiff is the owner of the property at 100 Main St, Apt 2B, Irvine, CA.
+2. Defendant is in possession of the premises.
+3. Defendant has failed to pay rent due for the month of August 2028.
+Dated: August 20, 2028
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Complaint - Unlawful Detainer",
+  "effective_date": "2028-08-20",
+  "parties": [
+    { "name": "Oak Tree Apartments, LLC", "role": "Plaintiff" },
+    { "name": "Robert Miller", "role": "Defendant" }
+  ],
+  "litigation_details": {
+    "court_name": "Superior Court of California, County of Orange",
+    "case_number": "28-UC-12345",
+    "property_address": "100 Main St, Apt 2B, Irvine, CA",
+    "reason_for_eviction": "Failure to pay rent for August 2028."
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "title": "Pay Application Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Application and Certificate for Payment'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Contractor", "Owner", "Architect"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "pay_application_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "application_number": { "type": "string" },
+        "period_to": { "type": "string", "format": "date" },
+        "original_contract_sum": { "type": "number" },
+        "net_change_by_change_orders": { "type": "number" },
+        "contract_sum_to_date": { "type": "number" },
+        "total_completed_and_stored_to_date": { "type": "number" },
+        "retainage": { "type": "number" },
+        "total_earned_less_retainage": { "type": "number" },
+        "less_previous_certificates_for_payment": { "type": "number" },
+        "current_payment_due": { "type": "number" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "pay_application_details"]
+}

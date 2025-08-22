@@ -1,0 +1,30 @@
+**INPUT DOCUMENT TEXT:**
+CLEAN WATER ACT SECTION 401 WATER QUALITY CERTIFICATION
+
+Applicant: Pine Hills Development LLC
+Project: Pine Hills Estates
+WDID No: 5A12CR00345
+Date: July 15, 2031
+
+This Certification is issued in response to an application for a U.S. Army Corps of Engineers Permit (SPK-2031-00123).
+
+This action is a conditional certification for the activities described. The applicant shall comply with all conditions, including the implementation of Best Management Practices for erosion control.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Clean Water Act Section 401 Water Quality Certification",
+  "effective_date": "2031-07-15",
+  "parties": [
+    { "name": "Pine Hills Development LLC", "role": "Applicant" }
+  ],
+  "permit_details": {
+    "certification_number": "5A12CR00345",
+    "project_name": "Pine Hills Estates",
+    "related_404_permit": "SPK-2031-00123",
+    "key_conditions": [
+      "Comply with all conditions.",
+      "Implementation of Best Management Practices for erosion control."
+    ]
+  },
+  "discovered_entities": []
+}

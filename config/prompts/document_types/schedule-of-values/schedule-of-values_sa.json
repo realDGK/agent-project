@@ -1,0 +1,21 @@
+{
+  "schedule_of_values_details": {
+    "type": "object",
+    "description": "Details specific to a schedule of values for a construction contract.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "total_contract_value": { "type": "number" },
+      "line_items": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "item_number": { "type": "string" },
+            "description": { "type": "string" },
+            "scheduled_value": { "type": "number" }
+          }
+        }
+      }
+    }
+  }
+}

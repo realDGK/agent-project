@@ -1,0 +1,11 @@
+{
+  "architectural_guideline_details": {
+    "type": "object",
+    "description": "Details specific to architectural design guidelines.",
+    "properties": {
+      "property_name": { "type": "string" },
+      "key_guidelines": { "type": "array", "items": { "type": "string" } },
+      "review_process_summary": { "type": "string" }
+    }
+  }
+}

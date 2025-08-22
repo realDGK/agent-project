@@ -1,0 +1,31 @@
+**INPUT DOCUMENT TEXT:**
+AIA Document B101™ – 2017
+Standard Form of Agreement Between Owner and Architect
+
+AGREEMENT made as of the 1st day of March, 2031
+BETWEEN the Owner: Downtown Tower LLC
+AND the Architect: Global Architects Inc.
+FOR the Project: Downtown Tower, 123 Main Street
+
+ARTICLE 3: SCOPE OF ARCHITECT'S BASIC SERVICES
+The Architect's Basic Services consist of Schematic Design, Design Development, Construction Documents, Bidding or Negotiation, and Construction Phase Services.
+
+ARTICLE 11: COMPENSATION
+The Owner shall compensate the Architect a stipulated sum of Five Million Dollars ($5,000,000) for Basic Services.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "AIA Document B101 – 2017",
+  "effective_date": "2031-03-01",
+  "parties": [
+    { "name": "Downtown Tower LLC", "role": "Owner" },
+    { "name": "Global Architects Inc.", "role": "Architect" }
+  ],
+  "design_contract_details": {
+    "project_name": "Downtown Tower, 123 Main Street",
+    "basic_services_scope": "Schematic Design, Design Development, Construction Documents, Bidding or Negotiation, and Construction Phase Services.",
+    "supplemental_services_scope": null,
+    "architects_compensation": "Stipulated sum of $5,000,000 for Basic Services."
+  },
+  "discovered_entities": []
+}

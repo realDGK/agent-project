@@ -1,0 +1,13 @@
+{
+  "plan_details": {
+    "type": "object",
+    "description": "Details specific to engineering or architectural plan sets.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "plan_type": { "type": "string", "description": "e.g., 'Road', 'Water', 'Sewer', 'Architectural'." },
+      "engineer_of_record": { "type": "string" },
+      "approval_date": { "type": "string", "format": "date" },
+      "plan_sheet_count": { "type": "integer" }
+    }
+  }
+}

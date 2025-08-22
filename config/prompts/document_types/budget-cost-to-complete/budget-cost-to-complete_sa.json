@@ -1,0 +1,22 @@
+{
+  "budget_details": {
+    "type": "object",
+    "description": "Details specific to a project budget or cost analysis.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "total_budget_amount": { "type": "number" },
+      "cost_to_complete": { "type": "number" },
+      "funds_expended_to_date": { "type": "number" },
+      "line_items": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "category": { "type": "string" },
+            "amount": { "type": "number" }
+          }
+        }
+      }
+    }
+  }
+}

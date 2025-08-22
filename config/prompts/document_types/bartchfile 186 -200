@@ -1,0 +1,1678 @@
+Document Type 186: AIA A201 (General Conditions)
+186_specialist_schema.json
+
+JSON
+
+{
+  "title": "AIA A201 General Conditions Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'AIA Document A201 - General Conditions of the Contract for Construction'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Owner", "Contractor", "Architect"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "construction_contract_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "owner_responsibilities": { "type": "string" },
+        "contractor_responsibilities": { "type": "string" },
+        "architect_responsibilities": { "type": "string" },
+        "claims_and_disputes_procedure": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "construction_contract_details"]
+}
+186_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+AIA Document A201® – 2017
+General Conditions of the Contract for Construction
+
+This document is referenced by and is a part of the Agreement between the Owner (Downtown Tower LLC) and the Contractor (BuildRight Corp.) for the Downtown Tower project. The Architect is Global Architects Inc.
+
+ARTICLE 2: OWNER
+The Owner shall furnish surveys and secure and pay for approvals, easements, and assessments required for construction.
+
+ARTICLE 3: CONTRACTOR
+The Contractor shall be solely responsible for all construction means, methods, techniques, sequences, and procedures.
+
+ARTICLE 4: ARCHITECT
+The Architect will be the Owner's representative during construction and will be the initial interpreter of the requirements of the Contract Documents.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "AIA Document A201 – 2017 General Conditions of the Contract for Construction",
+  "effective_date": null,
+  "parties": [
+    { "name": "Downtown Tower LLC", "role": "Owner" },
+    { "name": "BuildRight Corp.", "role": "Contractor" },
+    { "name": "Global Architects Inc.", "role": "Architect" }
+  ],
+  "construction_contract_details": {
+    "project_name": "Downtown Tower",
+    "owner_responsibilities": "Furnish surveys and secure and pay for approvals, easements, and assessments required for construction.",
+    "contractor_responsibilities": "Solely responsible for all construction means, methods, techniques, sequences, and procedures.",
+    "architect_responsibilities": "Will be the Owner's representative during construction and the initial interpreter of the requirements of the Contract Documents.",
+    "claims_and_disputes_procedure": null
+  },
+  "discovered_entities": []
+}
+186_schema_additions.json
+
+JSON
+
+{
+  "construction_contract_details": {
+    "type": "object",
+    "description": "Details specific to a construction contract.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "contract_type": { "type": "string" },
+      "contract_sum": { "type": "number" },
+      "guaranteed_maximum_price_gmp": { "type": "number" },
+      "date_of_commencement": { "type": "string", "format": "date" },
+      "substantial_completion_date": { "type": "string" },
+      "liquidated_damages": { "type": "string" },
+      "owner_responsibilities": { "type": "string" },
+      "contractor_responsibilities": { "type": "string" },
+      "architect_responsibilities": { "type": "string" },
+      "claims_and_disputes_procedure": { "type": "string" }
+    }
+  }
+}
+Document Type 187: AIA B101 (Design)
+187_specialist_schema.json
+
+JSON
+
+{
+  "title": "AIA B101 Owner-Architect Agreement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'AIA Document B101 - Standard Form of Agreement Between Owner and Architect'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Owner", "Architect"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "design_contract_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "basic_services_scope": { "type": "string" },
+        "supplemental_services_scope": { "type": "string" },
+        "architects_compensation": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "design_contract_details"]
+}
+187_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+AIA Document B101™ – 2017
+Standard Form of Agreement Between Owner and Architect
+
+AGREEMENT made as of the 1st day of March, 2031
+BETWEEN the Owner: Downtown Tower LLC
+AND the Architect: Global Architects Inc.
+FOR the Project: Downtown Tower, 123 Main Street
+
+ARTICLE 3: SCOPE OF ARCHITECT'S BASIC SERVICES
+The Architect's Basic Services consist of Schematic Design, Design Development, Construction Documents, Bidding or Negotiation, and Construction Phase Services.
+
+ARTICLE 11: COMPENSATION
+The Owner shall compensate the Architect a stipulated sum of Five Million Dollars ($5,000,000) for Basic Services.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "AIA Document B101 – 2017",
+  "effective_date": "2031-03-01",
+  "parties": [
+    { "name": "Downtown Tower LLC", "role": "Owner" },
+    { "name": "Global Architects Inc.", "role": "Architect" }
+  ],
+  "design_contract_details": {
+    "project_name": "Downtown Tower, 123 Main Street",
+    "basic_services_scope": "Schematic Design, Design Development, Construction Documents, Bidding or Negotiation, and Construction Phase Services.",
+    "supplemental_services_scope": null,
+    "architects_compensation": "Stipulated sum of $5,000,000 for Basic Services."
+  },
+  "discovered_entities": []
+}
+187_schema_additions.json
+
+JSON
+
+{
+  "design_contract_details": {
+    "type": "object",
+    "description": "Details specific to a design or architectural services agreement.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "basic_services_scope": { "type": "string" },
+      "supplemental_services_scope": { "type": "string" },
+      "architects_compensation": { "type": "string" }
+    }
+  }
+}
+Document Type 188: CM/GC Agreements
+188_specialist_schema.json
+
+JSON
+
+{
+  "title": "CM/GC Agreement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Agreement Between Owner and Construction Manager'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Owner", "Construction Manager", "General Contractor"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "construction_contract_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "contract_type": { "type": "string" },
+        "preconstruction_phase_services": { "type": "string" },
+        "construction_phase_services": { "type": "string" },
+        "compensation_structure": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "construction_contract_details"]
+}
+188_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+AGREEMENT BETWEEN OWNER AND CONSTRUCTION MANAGER
+
+This Agreement is made September 1, 2031, between Downtown Tower LLC ("Owner") and BuildRight Corp. ("Construction Manager").
+
+PRECONSTRUCTION PHASE:
+The Construction Manager shall provide cost estimating, scheduling, and value engineering services during the design phase.
+
+CONSTRUCTION PHASE:
+Upon establishment of a Guaranteed Maximum Price (GMP), the Construction Manager shall act as the General Contractor for the Project.
+
+COMPENSATION:
+Compensation for Preconstruction Services shall be a fixed fee of $250,000. Compensation for Construction Phase services shall be a fee of 3% of the Cost of the Work.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Agreement Between Owner and Construction Manager",
+  "effective_date": "2031-09-01",
+  "parties": [
+    { "name": "Downtown Tower LLC", "role": "Owner" },
+    { "name": "BuildRight Corp.", "role": "Construction Manager" }
+  ],
+  "construction_contract_details": {
+    "project_name": null,
+    "contract_type": "CM/GC",
+    "preconstruction_phase_services": "Provide cost estimating, scheduling, and value engineering services during the design phase.",
+    "construction_phase_services": "Act as the General Contractor for the Project upon establishment of a GMP.",
+    "compensation_structure": "Fixed fee of $250,000 for Preconstruction; fee of 3% of the Cost of the Work for Construction."
+  },
+  "discovered_entities": []
+}
+188_schema_additions.json
+
+JSON
+
+{
+  "construction_contract_details": {
+    "type": "object",
+    "description": "Details specific to a construction contract.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "contract_type": { "type": "string" },
+      "contract_sum": { "type": "number" },
+      "guaranteed_maximum_price_gmp": { "type": "number" },
+      "date_of_commencement": { "type": "string", "format": "date" },
+      "substantial_completion_date": { "type": "string" },
+      "liquidated_damages": { "type": "string" },
+      "owner_responsibilities": { "type": "string" },
+      "contractor_responsibilities": { "type": "string" },
+      "architect_responsibilities": { "type": "string" },
+      "claims_and_disputes_procedure": { "type": "string" },
+      "preconstruction_phase_services": { "type": "string" },
+      "construction_phase_services": { "type": "string" },
+      "compensation_structure": { "type": "string" }
+    }
+  }
+}
+Document Type 189: Subcontracts
+189_specialist_schema.json
+
+JSON
+
+{
+  "title": "Subcontract Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Subcontract Agreement'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Contractor", "Subcontractor"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "subcontract_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "scope_of_work": { "type": "string" },
+        "subcontract_price": { "type": "number" },
+        "payment_terms": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "subcontract_details"]
+}
+189_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+SUBCONTRACT AGREEMENT
+
+This Agreement is made October 1, 2031, between BuildRight Corp. ("Contractor") and City Electric Inc. ("Subcontractor").
+
+Project: Downtown Tower
+
+Scope of Work: Subcontractor shall furnish and install all electrical work for the project in accordance with the prime contract and plans.
+
+Subcontract Price: The fixed price for this work is Five Million Dollars ($5,000,000).
+
+Payment: Payments shall be made monthly based on percentage of work completed, less 10% retention.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Subcontract Agreement",
+  "effective_date": "2031-10-01",
+  "parties": [
+    { "name": "BuildRight Corp.", "role": "Contractor" },
+    { "name": "City Electric Inc.", "role": "Subcontractor" }
+  ],
+  "subcontract_details": {
+    "project_name": "Downtown Tower",
+    "scope_of_work": "Furnish and install all electrical work for the project in accordance with the prime contract and plans.",
+    "subcontract_price": 5000000,
+    "payment_terms": "Monthly based on percentage of work completed, less 10% retention."
+  },
+  "discovered_entities": []
+}
+189_schema_additions.json
+
+JSON
+
+{
+  "subcontract_details": {
+    "type": "object",
+    "description": "Details specific to a subcontract agreement.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "scope_of_work": { "type": "string" },
+      "subcontract_price": { "type": "number" },
+      "payment_terms": { "type": "string" }
+    }
+  }
+}
+Document Type 190: Consultant Agreements (Civil, Survey, Geotech, etc.)
+190_specialist_schema.json
+
+JSON
+
+{
+  "title": "Consultant Agreement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Agreement for Professional Services'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Client", "Consultant"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "consulting_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "scope_of_services_summary": { "type": "string" },
+        "compensation_summary": { "type": "string" },
+        "standard_of_care": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "consulting_details"]
+}
+190_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+AGREEMENT FOR PROFESSIONAL ENGINEERING SERVICES
+
+This Agreement is made April 1, 2031, between Downtown Tower LLC ("Client") and Apex Civil Engineering ("Consultant").
+
+Project: Downtown Tower
+
+Scope of Services: Consultant shall provide civil engineering design services, including grading, drainage, and utility plans.
+
+Compensation: Services shall be billed on a time and materials basis not to exceed a fee of $150,000.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Agreement for Professional Engineering Services",
+  "effective_date": "2031-04-01",
+  "parties": [
+    { "name": "Downtown Tower LLC", "role": "Client" },
+    { "name": "Apex Civil Engineering", "role": "Consultant" }
+  ],
+  "consulting_details": {
+    "project_name": "Downtown Tower",
+    "scope_of_services_summary": "Provide civil engineering design services, including grading, drainage, and utility plans.",
+    "compensation_summary": "Time and materials basis not to exceed a fee of $150,000.",
+    "standard_of_care": null
+  },
+  "discovered_entities": []
+}
+190_schema_additions.json
+
+JSON
+
+{
+  "consulting_details": {
+    "type": "object",
+    "description": "Details specific to a professional consulting engagement.",
+    "properties": {
+      "scope_of_services_summary": { "type": "string" },
+      "compensation_summary": { "type": "string" },
+      "term_of_agreement": { "type": "string" },
+      "confidentiality_clause_summary": { "type": "string" },
+      "project_name": { "type": "string" },
+      "standard_of_care": { "type": "string" }
+    }
+  }
+}
+Document Type 191: Baseline/Updated Schedules
+191_specialist_schema.json
+
+JSON
+
+{
+  "title": "Construction Schedule Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Baseline Project Schedule'."
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date",
+      "description": "The date or data date of the schedule."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Contractor", "Owner"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "schedule_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "schedule_type": { "type": "string", "enum": ["Baseline", "Updated"] },
+        "project_start_date": { "type": "string", "format": "date" },
+        "projected_completion_date": { "type": "string", "format": "date" },
+        "total_duration_days": { "type": "integer" },
+        "key_milestones": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "milestone": { "type": "string" },
+              "date": { "type": "string", "format": "date" }
+            }
+          }
+        }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "schedule_details"]
+}
+191_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+BASELINE PROJECT SCHEDULE
+Project: Downtown Tower
+Data Date: September 15, 2031
+
+Project Start: 09/15/2031
+Project Finish: 09/14/2034
+Duration: 1095 days
+
+Key Milestones:
+- Foundation Complete: 03/15/2032
+- Topping Out: 03/15/2033
+- Substantial Completion: 08/15/2034
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Baseline Project Schedule",
+  "effective_date": "2031-09-15",
+  "parties": [],
+  "schedule_details": {
+    "project_name": "Downtown Tower",
+    "schedule_type": "Baseline",
+    "project_start_date": "2031-09-15",
+    "projected_completion_date": "2034-09-14",
+    "total_duration_days": 1095,
+    "key_milestones": [
+      { "milestone": "Foundation Complete", "date": "2032-03-15" },
+      { "milestone": "Topping Out", "date": "2033-03-15" },
+      { "milestone": "Substantial Completion", "date": "2034-08-15" }
+    ]
+  },
+  "discovered_entities": []
+}
+191_schema_additions.json
+
+JSON
+
+{
+  "schedule_details": {
+    "type": "object",
+    "description": "Details specific to a project schedule.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "schedule_type": { "type": "string", "enum": ["Baseline", "Updated"] },
+      "project_start_date": { "type": "string", "format": "date" },
+      "projected_completion_date": { "type": "string", "format": "date" },
+      "total_duration_days": { "type": "integer" },
+      "key_milestones": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "milestone": { "type": "string" },
+            "date": { "type": "string", "format": "date" }
+          }
+        }
+      }
+    }
+  }
+}
+Document Type 192: Schedule of Values
+192_specialist_schema.json
+
+JSON
+
+{
+  "title": "Schedule of Values Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Schedule of Values'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Contractor", "Owner"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "schedule_of_values_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "total_contract_value": { "type": "number" },
+        "line_items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "item_number": { "type": "string" },
+              "description": { "type": "string" },
+              "scheduled_value": { "type": "number" }
+            }
+          }
+        }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "schedule_of_values_details"]
+}
+192_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+SCHEDULE OF VALUES
+PROJECT: DOWNTOWN TOWER
+CONTRACTOR: BUILDRIGHT CORP.
+
+ITEM | DESCRIPTION | VALUE
+1 | General Conditions | $5,000,000
+2 | Site Work | $8,000,000
+3 | Concrete | $20,000,000
+4 | Structural Steel | $25,000,000
+... | ... | ...
+TOTAL | | $100,000,000
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Schedule of Values",
+  "effective_date": null,
+  "parties": [
+    { "name": "BUILDRIGHT CORP.", "role": "Contractor" }
+  ],
+  "schedule_of_values_details": {
+    "project_name": "DOWNTOWN TOWER",
+    "total_contract_value": 100000000,
+    "line_items": [
+      { "item_number": "1", "description": "General Conditions", "scheduled_value": 5000000 },
+      { "item_number": "2", "description": "Site Work", "scheduled_value": 8000000 },
+      { "item_number": "3", "description": "Concrete", "scheduled_value": 20000000 },
+      { "item_number": "4", "description": "Structural Steel", "scheduled_value": 25000000 }
+    ]
+  },
+  "discovered_entities": []
+}
+192_schema_additions.json
+
+JSON
+
+{
+  "schedule_of_values_details": {
+    "type": "object",
+    "description": "Details specific to a schedule of values for a construction contract.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "total_contract_value": { "type": "number" },
+      "line_items": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "item_number": { "type": "string" },
+            "description": { "type": "string" },
+            "scheduled_value": { "type": "number" }
+          }
+        }
+      }
+    }
+  }
+}
+Document Type 193: RFIs (Request for Information)
+193_specialist_schema.json
+
+JSON
+
+{
+  "title": "RFI (Request for Information) Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Request for Information'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Author", "Recipient", "Contractor", "Architect"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "rfi_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "rfi_number": { "type": "string" },
+        "date_sent": { "type": "string", "format": "date" },
+        "question": { "type": "string" },
+        "response_date": { "type": "string", "format": "date" },
+        "response": { "type": "string" },
+        "cost_impact": { "type": "string" },
+        "schedule_impact": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "rfi_details"]
+}
+193_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+REQUEST FOR INFORMATION
+
+RFI No: 055
+Date: November 10, 2031
+To: Global Architects Inc.
+From: BuildRight Corp.
+Project: Downtown Tower
+
+Question: Drawing A-501 shows a conflict between a structural beam and a mechanical duct in the 5th floor ceiling. Please clarify.
+
+Response (11/15/2031): Relocate the duct as shown on the attached Sketch SK-101. There is no cost or schedule impact.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Request for Information",
+  "effective_date": "2031-11-10",
+  "parties": [
+    { "name": "BuildRight Corp.", "role": "Author" },
+    { "name": "Global Architects Inc.", "role": "Recipient" }
+  ],
+  "rfi_details": {
+    "project_name": "Downtown Tower",
+    "rfi_number": "055",
+    "date_sent": "2031-11-10",
+    "question": "Drawing A-501 shows a conflict between a structural beam and a mechanical duct in the 5th floor ceiling. Please clarify.",
+    "response_date": "2031-11-15",
+    "response": "Relocate the duct as shown on the attached Sketch SK-101.",
+    "cost_impact": "No",
+    "schedule_impact": "No"
+  },
+  "discovered_entities": []
+}
+193_schema_additions.json
+
+JSON
+
+{
+  "rfi_details": {
+    "type": "object",
+    "description": "Details specific to a Request for Information (RFI).",
+    "properties": {
+      "project_name": { "type": "string" },
+      "rfi_number": { "type": "string" },
+      "date_sent": { "type": "string", "format": "date" },
+      "question": { "type": "string" },
+      "response_date": { "type": "string", "format": "date" },
+      "response": { "type": "string" },
+      "cost_impact": { "type": "string" },
+      "schedule_impact": { "type": "string" }
+    }
+  }
+}
+Document Type 194: Submittals/Shop Drawings
+194_specialist_schema.json
+
+JSON
+
+{
+  "title": "Submittal/Shop Drawing Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Submittal Transmittal'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Subcontractor", "General Contractor", "Architect"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "submittal_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "submittal_number": { "type": "string" },
+        "spec_section": { "type": "string" },
+        "description": { "type": "string" },
+        "review_status": { "type": "string", "enum": ["Approved", "Approved as Noted", "Revise and Resubmit", "Rejected"] }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "submittal_details"]
+}
+194_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+SUBMITTAL TRANSMITTAL
+To: Global Architects Inc.
+From: BuildRight Corp.
+Date: November 20, 2031
+
+Submittal No: 23-001
+Spec Section: 23 05 00 - HVAC
+Description: Shop drawings for rooftop air handling unit AHU-1.
+
+Architect's Review Stamp:
+[ ] APPROVED
+[X] APPROVED AS NOTED
+[ ] REVISE AND RESUBMIT
+Date: 11/28/2031
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Submittal Transmittal",
+  "effective_date": "2031-11-20",
+  "parties": [
+    { "name": "BuildRight Corp.", "role": "General Contractor" },
+    { "name": "Global Architects Inc.", "role": "Architect" }
+  ],
+  "submittal_details": {
+    "project_name": null,
+    "submittal_number": "23-001",
+    "spec_section": "23 05 00 - HVAC",
+    "description": "Shop drawings for rooftop air handling unit AHU-1.",
+    "review_status": "Approved as Noted"
+  },
+  "discovered_entities": []
+}
+194_schema_additions.json
+
+JSON
+
+{
+  "submittal_details": {
+    "type": "object",
+    "description": "Details specific to a construction submittal or shop drawing.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "submittal_number": { "type": "string" },
+      "spec_section": { "type": "string" },
+      "description": { "type": "string" },
+      "review_status": { "type": "string", "enum": ["Approved", "Approved as Noted", "Revise and Resubmit", "Rejected"] }
+    }
+  }
+}
+Document Type 195: Meeting Minutes
+195_specialist_schema.json
+
+JSON
+
+{
+  "title": "Meeting Minutes Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Weekly OAC Meeting Minutes'."
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date",
+      "description": "The date of the meeting."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Attendee", "Author"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "meeting_minutes_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "meeting_title": { "type": "string" },
+        "attendees": { "type": "array", "items": { "type": "string" } },
+        "key_discussion_points": { "type": "array", "items": { "type": "string" } },
+        "action_items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "item": { "type": "string" },
+              "responsible_party": { "type": "string" },
+              "due_date": { "type": "string", "format": "date" }
+            }
+          }
+        }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "meeting_minutes_details"]
+}
+195_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+OAC Meeting Minutes #25
+Project: Downtown Tower
+Date: December 1, 2031
+
+Attendees: John Smith (Owner), Laura Chen (Architect), Mike Davis (Contractor)
+
+Discussion:
+- The schedule is currently 2 days behind due to weather delays.
+- Change Order #10 for the lobby revisions was approved.
+
+Action Items:
+1. Contractor to submit a recovery schedule. (Mike Davis, 12/08/2031)
+2. Architect to issue revised lobby drawings. (Laura Chen, 12/10/2031)
+
+**JSON OUTPUT:**
+{
+  "contract_name": "OAC Meeting Minutes #25",
+  "effective_date": "2031-12-01",
+  "parties": [
+    { "name": "John Smith", "role": "Attendee" },
+    { "name": "Laura Chen", "role": "Attendee" },
+    { "name": "Mike Davis", "role": "Attendee" }
+  ],
+  "meeting_minutes_details": {
+    "project_name": "Downtown Tower",
+    "meeting_title": "OAC Meeting #25",
+    "attendees": [
+      "John Smith (Owner)",
+      "Laura Chen (Architect)",
+      "Mike Davis (Contractor)"
+    ],
+    "key_discussion_points": [
+      "The schedule is currently 2 days behind due to weather delays.",
+      "Change Order #10 for the lobby revisions was approved."
+    ],
+    "action_items": [
+      {
+        "item": "Submit a recovery schedule.",
+        "responsible_party": "Mike Davis",
+        "due_date": "2031-12-08"
+      },
+      {
+        "item": "Issue revised lobby drawings.",
+        "responsible_party": "Laura Chen",
+        "due_date": "2031-12-10"
+      }
+    ]
+  },
+  "discovered_entities": []
+}
+195_schema_additions.json
+
+JSON
+
+{
+  "meeting_minutes_details": {
+    "type": "object",
+    "description": "Details specific to meeting minutes.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "meeting_title": { "type": "string" },
+      "attendees": { "type": "array", "items": { "type": "string" } },
+      "key_discussion_points": { "type": "array", "items": { "type": "string" } },
+      "action_items": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "item": { "type": "string" },
+            "responsible_party": { "type": "string" },
+            "due_date": { "type": "string", "format": "date" }
+          }
+        }
+      }
+    }
+  }
+}
+Document Type 196: Daily Reports
+196_specialist_schema.json
+
+JSON
+
+{
+  "title": "Daily Report Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Daily Construction Report'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Superintendent", "Contractor"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "daily_report_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "weather": { "type": "string" },
+        "work_performed": { "type": "string" },
+        "subcontractors_on_site": { "type": "array", "items": { "type": "string" } },
+        "equipment_on_site": { "type": "array", "items": { "type": "string" } },
+        "issues_or_delays": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "daily_report_details"]
+}
+196_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+DAILY REPORT
+Project: Downtown Tower
+Date: December 5, 2031
+Superintendent: Bill Jones
+
+Weather: Sunny, 65°F
+Work Performed Today:
+- Poured concrete slab on 11th floor.
+- Continued MEP rough-in on 8th floor.
+
+Subcontractors On Site: City Electric, Metro Plumbing
+Equipment: 2 tower cranes, 1 concrete pump truck.
+Delays: None.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Daily Report",
+  "effective_date": "2031-12-05",
+  "parties": [
+    { "name": "Bill Jones", "role": "Superintendent" }
+  ],
+  "daily_report_details": {
+    "project_name": "Downtown Tower",
+    "weather": "Sunny, 65°F",
+    "work_performed": "Poured concrete slab on 11th floor. Continued MEP rough-in on 8th floor.",
+    "subcontractors_on_site": [
+      "City Electric",
+      "Metro Plumbing"
+    ],
+    "equipment_on_site": [
+      "2 tower cranes",
+      "1 concrete pump truck"
+    ],
+    "issues_or_delays": "None."
+  },
+  "discovered_entities": []
+}
+196_schema_additions.json
+
+JSON
+
+{
+  "daily_report_details": {
+    "type": "object",
+    "description": "Details specific to a daily construction report.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "weather": { "type": "string" },
+      "work_performed": { "type": "string" },
+      "subcontractors_on_site": { "type": "array", "items": { "type": "string" } },
+      "equipment_on_site": { "type": "array", "items": { "type": "string" } },
+      "issues_or_delays": { "type": "string" }
+    }
+  }
+}
+Document Type 197: Change Orders/Directives
+197_specialist_schema.json
+
+JSON
+
+{
+  "title": "Change Order/Directive Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Change Order No. 10'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Owner", "Contractor", "Architect"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "change_order_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "change_order_number": { "type": "string" },
+        "description_of_change": { "type": "string" },
+        "cost_impact": { "type": "number" },
+        "schedule_impact_days": { "type": "integer" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "change_order_details"]
+}
+197_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+AIA Document G701™ – 2017
+Change Order
+
+PROJECT: Downtown Tower
+CHANGE ORDER NUMBER: 010
+DATE: December 1, 2031
+OWNER: Downtown Tower LLC
+CONTRACTOR: BuildRight Corp.
+ARCHITECT: Global Architects Inc.
+
+DESCRIPTION OF CHANGE:
+Revise lobby finishes per architect's sketch SK-201.
+
+The original Contract Sum was $100,000,000.
+The net change by previously authorized Change Orders was $500,000.
+The Contract Sum prior to this Change Order was $100,500,000.
+The Contract Sum will be increased by this Change Order in the amount of $75,000.
+The new Contract Sum including this Change Order will be $100,575,000.
+The Contract Time will be increased by five (5) days.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Change Order No. 10",
+  "effective_date": "2031-12-01",
+  "parties": [
+    { "name": "Downtown Tower LLC", "role": "Owner" },
+    { "name": "BuildRight Corp.", "role": "Contractor" },
+    { "name": "Global Architects Inc.", "role": "Architect" }
+  ],
+  "change_order_details": {
+    "project_name": "Downtown Tower",
+    "change_order_number": "010",
+    "description_of_change": "Revise lobby finishes per architect's sketch SK-201.",
+    "cost_impact": 75000,
+    "schedule_impact_days": 5
+  },
+  "discovered_entities": []
+}
+197_schema_additions.json
+
+JSON
+
+{
+  "change_order_details": {
+    "type": "object",
+    "description": "Details specific to a construction change order.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "change_order_number": { "type": "string" },
+      "description_of_change": { "type": "string" },
+      "cost_impact": { "type": "number" },
+      "schedule_impact_days": { "type": "integer" }
+    }
+  }
+}
+Document Type 198: Safety Plans (IIPP)
+198_specialist_schema.json
+
+JSON
+
+{
+  "title": "Safety Plan (IIPP) Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Injury and Illness Prevention Program'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Company", "Author"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "safety_plan_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "safety_officer": { "type": "string" },
+        "key_procedures": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "safety_plan_details"]
+}
+198_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+INJURY AND ILLNESS PREVENTION PROGRAM (IIPP)
+FOR THE DOWNTOWN TOWER PROJECT
+
+Company: BuildRight Corp.
+Date Revised: September 1, 2031
+
+SAFETY OFFICER: The designated site safety officer is Bill Jones.
+
+PROCEDURES:
+This plan includes procedures for hazard identification, accident investigation, and emergency response. Weekly tailgate safety meetings are mandatory for all personnel.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Injury and Illness Prevention Program (IIPP)",
+  "effective_date": "2031-09-01",
+  "parties": [
+    { "name": "BuildRight Corp.", "role": "Company" }
+  ],
+  "safety_plan_details": {
+    "project_name": "Downtown Tower Project",
+    "safety_officer": "Bill Jones",
+    "key_procedures": [
+      "Hazard identification",
+      "Accident investigation",
+      "Emergency response",
+      "Weekly tailgate safety meetings"
+    ]
+  },
+  "discovered_entities": []
+}
+198_schema_additions.json
+
+JSON
+
+{
+  "safety_plan_details": {
+    "type": "object",
+    "description": "Details specific to a safety plan.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "safety_officer": { "type": "string" },
+      "key_procedures": { "type": "array", "items": { "type": "string" } }
+    }
+  }
+}
+Document Type 199: SWPPP & Inspection Logs
+199_specialist_schema.json
+
+JSON
+
+{
+  "title": "SWPPP & Inspection Log Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Stormwater Pollution Prevention Plan'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Operator", "QSP", "Consultant"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "stormwater_details": {
+      "type": "object",
+      "properties": {
+        "document_type": { "type": "string", "enum": ["SWPPP", "Inspection Log"] },
+        "project_name": { "type": "string" },
+        "wdid_number": { "type": "string" },
+        "risk_level": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "stormwater_details"]
+}
+199_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+STORMWATER POLLUTION PREVENTION PLAN (SWPPP)
+RIVERBEND TRACT NO. 8888
+WDID: 5A34C123456
+
+Prepared for: Riverbend Homes LLC
+Prepared by: Stormwater Compliance Services
+Date: June 1, 2030
+
+This project is determined to be a Risk Level 2 project. The Qualified SWPPP Practitioner (QSP) for this project is John Smith.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Stormwater Pollution Prevention Plan (SWPPP)",
+  "effective_date": "2030-06-01",
+  "parties": [
+    { "name": "Riverbend Homes LLC", "role": "Operator" },
+    { "name": "Stormwater Compliance Services", "role": "Consultant" }
+  ],
+  "stormwater_details": {
+    "document_type": "SWPPP",
+    "project_name": "Riverbend Tract No. 8888",
+    "wdid_number": "5A34C123456",
+    "risk_level": "2"
+  },
+  "discovered_entities": [
+    {
+      "entity_name": "Qualified SWPPP Practitioner (QSP)",
+      "entity_value": "John Smith",
+      "context_summary": "The individual responsible for implementing the SWPPP."
+    }
+  ]
+}
+199_schema_additions.json
+
+JSON
+
+{
+  "stormwater_details": {
+    "type": "object",
+    "description": "Details specific to stormwater compliance documents.",
+    "properties": {
+      "document_type": { "type": "string", "enum": ["NOI", "NOT", "SWPPP", "Inspection Log"] },
+      "project_name": { "type": "string" },
+      "wdid_number": { "type": "string" },
+      "total_disturbed_area_acres": { "type": "number" },
+      "inspection_findings": { "type": "string" },
+      "corrective_actions_required": { "type": "string" },
+      "risk_level": { "type": "string" }
+    }
+  }
+}
+Document Type 200: Special Inspection Certificates
+200_specialist_schema.json
+
+JSON
+
+{
+  "title": "Special Inspection Certificate Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Certificate of Compliance for Special Inspection'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Special Inspector", "Engineer of Record", "Building Official"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "inspection_report_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "permit_number": { "type": "string" },
+        "inspection_type": { "type": "string" },
+        "compliance_statement": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "inspection_report_details"]
+}
+200_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+SPECIAL INSPECTION FINAL REPORT
+
+Project: Downtown Tower
+Permit No: B-2031-0101
+Date: July 1, 2034
+
+I, Jane Doe, as the Special Inspector for high-strength concrete, hereby certify that to the best of my knowledge, the work I have inspected was performed in accordance with the approved plans and specifications.
+
+Inspector: Jane Doe, Certified Inspector #555
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Special Inspection Final Report",
+  "effective_date": "2034-07-01",
+  "parties": [
+    { "name": "Jane Doe", "role": "Special Inspector" }
+  ],
+  "inspection_report_details": {
+    "project_name": "Downtown Tower",
+    "permit_number": "B-2031-0101",
+    "inspection_type": "High-strength concrete",
+    "compliance_statement": "The work inspected was performed in accordance with the approved plans and specifications."
+  },
+  "discovered_entities": []
+}
+200_schema_additions.json
+
+JSON
+
+{
+  "inspection_report_details": {
+    "type": "object",
+    "description": "Details specific to a construction or property inspection report.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "inspection_date": { "type": "string", "format": "date" },
+      "percent_complete": { "type": "number" },
+      "work_completed_summary": { "type": "string" },
+      "issues_or_deficiencies": { "type": "string" },
+      "recommended_draw_amount": { "type": "number" },
+      "permit_number": { "type": "string" },
+      "inspection_type": { "type": "string" },
+      "compliance_statement": { "type": "string" }
+    }
+  }
+}

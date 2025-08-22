@@ -1,0 +1,14 @@
+{
+  "loan_details": {
+    "type": "object",
+    "description": "Details specific to a loan or financing agreement.",
+    "properties": {
+      "loan_amount": { "type": "number" },
+      "interest_rate": { "type": "string" },
+      "loan_term": { "type": "string" },
+      "amortization_period": { "type": "string" },
+      "commitment_fee": { "type": "number" },
+      "commitment_expiration_date": { "type": "string", "format": "date" }
+    }
+  }
+}

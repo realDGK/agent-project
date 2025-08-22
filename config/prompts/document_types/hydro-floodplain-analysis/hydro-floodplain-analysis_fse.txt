@@ -1,0 +1,31 @@
+**INPUT DOCUMENT TEXT:**
+DRAINAGE STUDY FOR THE CREEKSIDE ESTATES PROJECT
+
+Prepared by: Water Resources Engineering
+Date: February 20, 2031
+
+FINDINGS:
+The project will increase impervious surfaces by 5 acres, resulting in a 15% increase in peak runoff during a 100-year storm event. The southern portion of the site is located within the FEMA 100-year floodplain.
+
+RECOMMENDATIONS:
+An on-site detention basin with a capacity of 2.5 acre-feet is required to mitigate the increase in runoff. The finished floor elevation of all structures must be a minimum of 2 feet above the Base Flood Elevation.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Drainage Study for the Creekside Estates Project",
+  "effective_date": "2031-02-20",
+  "parties": [
+    { "name": "Water Resources Engineering", "role": "Consultant" }
+  ],
+  "technical_study_details": {
+    "study_type": "Hydro/Floodplain Analysis",
+    "project_name": "Creekside Estates Project",
+    "key_findings": [
+      "The project will increase impervious surfaces by 5 acres.",
+      "Results in a 15% increase in peak runoff during a 100-year storm event.",
+      "The southern portion of the site is located within the FEMA 100-year floodplain."
+    ],
+    "recommendations": "An on-site detention basin (2.5 acre-feet) is required. Finished floor elevation must be a minimum of 2 feet above the Base Flood Elevation."
+  },
+  "discovered_entities": []
+}

@@ -1,0 +1,13 @@
+{
+  "permit_details": {
+    "type": "object",
+    "description": "Details specific to a permit issued by a government agency.",
+    "properties": {
+      "permit_number": { "type": "string" },
+      "property_address": { "type": "string" },
+      "sign_description": { "type": "string" },
+      "sign_dimensions": { "type": "string" },
+      "expiration_date": { "type": "string", "format": "date" }
+    }
+  }
+}

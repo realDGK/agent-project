@@ -1,0 +1,26 @@
+**INPUT DOCUMENT TEXT:**
+AQUATIC RESOURCES DELINEATION REPORT
+PINE HILLS ESTATES
+
+Prepared by: EcoSphere Consulting
+Date: March 1, 2031
+
+RESULTS:
+A total of 1.25 acres of jurisdictional waters of the U.S., consisting of a seasonal wetland complex, were delineated within the project study area. This delineation was verified by the U.S. Army Corps of Engineers on March 15, 2031.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Aquatic Resources Delineation Report",
+  "effective_date": "2031-03-01",
+  "parties": [
+    { "name": "EcoSphere Consulting", "role": "Consultant" },
+    { "name": "U.S. Army Corps of Engineers", "role": "Regulatory Agency" }
+  ],
+  "technical_study_details": {
+    "study_type": "Jurisdictional Delineation",
+    "project_name": "Pine Hills Estates",
+    "site_description": null,
+    "findings_summary": "A total of 1.25 acres of jurisdictional waters of the U.S., consisting of a seasonal wetland complex, were delineated."
+  },
+  "discovered_entities": []
+}

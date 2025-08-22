@@ -1,0 +1,13 @@
+{
+  "technical_study_details": {
+    "type": "object",
+    "description": "Details specific to a technical study or report.",
+    "properties": {
+      "study_type": { "type": "string" },
+      "project_name": { "type": "string" },
+      "site_description": { "type": "string" },
+      "key_findings": { "type": "array", "items": { "type": "string" } },
+      "recommendations": { "type": "string" }
+    }
+  }
+}

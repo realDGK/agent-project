@@ -1,0 +1,1602 @@
+Document Type 141: Water Supply Assessment (SB 610)
+141_specialist_schema.json
+
+JSON
+
+{
+  "title": "Water Supply Assessment (SB 610) Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Water Supply Assessment'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Author", "Water Supplier", "Lead Agency"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "technical_study_details": {
+      "type": "object",
+      "properties": {
+        "study_type": { "type": "string", "default": "Water Supply Assessment" },
+        "project_name": { "type": "string" },
+        "project_water_demand": { "type": "string" },
+        "sufficiency_finding": { "type": "string", "description": "The conclusion of the assessment regarding the adequacy of water supplies." }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "technical_study_details"]
+}
+141_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+WATER SUPPLY ASSESSMENT
+FOR THE CANYON RANCH PROJECT
+
+Prepared by: River City Water District
+Prepared for: Placer County
+Date: July 1, 2031
+
+This assessment evaluates the water supply availability for the proposed 500-unit Canyon Ranch project. The project's estimated water demand is 250 acre-feet per year (AFY).
+
+Based on our Urban Water Management Plan, the District's available supplies are sufficient to meet the project's demand over a 20-year projection, including in single-dry and multiple-dry year scenarios.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Water Supply Assessment",
+  "effective_date": "2031-07-01",
+  "parties": [
+    { "name": "River City Water District", "role": "Water Supplier" },
+    { "name": "Placer County", "role": "Lead Agency" }
+  ],
+  "technical_study_details": {
+    "study_type": "Water Supply Assessment",
+    "project_name": "Canyon Ranch Project",
+    "project_water_demand": "250 acre-feet per year (AFY)",
+    "sufficiency_finding": "The District's available supplies are sufficient to meet the project's demand over a 20-year projection."
+  },
+  "discovered_entities": []
+}
+141_schema_additions.json
+
+JSON
+
+{
+  "technical_study_details": {
+    "type": "object",
+    "description": "Details specific to a technical study or report.",
+    "properties": {
+      "study_type": { "type": "string" },
+      "project_name": { "type": "string" },
+      "site_description": { "type": "string" },
+      "key_findings": { "type": "array", "items": { "type": "string" } },
+      "recommendations": { "type": "string" },
+      "findings_summary": { "type": "string" },
+      "ab52_consultation_summary": { "type": "string" },
+      "paleontological_sensitivity": { "type": "string" },
+      "project_trip_generation": { "type": "string" },
+      "significant_impacts_identified": { "type": "array", "items": { "type": "string" } },
+      "recommended_mitigation": { "type": "string" },
+      "emissions_summary": { "type": "string" },
+      "thresholds_exceeded": { "type": "array", "items": { "type": "string" } },
+      "pollutants_analyzed": { "type": "array", "items": { "type": "string" } },
+      "risk_conclusion": { "type": "string" },
+      "recognized_environmental_conditions_recs": { "type": "array", "items": { "type": "string" } },
+      "conclusions": { "type": "string" },
+      "project_water_demand": { "type": "string" },
+      "sufficiency_finding": { "type": "string" }
+    }
+  }
+}
+Document Type 142: SB 221 Verification
+142_specialist_schema.json
+
+JSON
+
+{
+  "title": "SB 221 Verification Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Verification of Sufficient Water Supply'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Water Supplier", "Approving Agency"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "utility_service_details": {
+      "type": "object",
+      "properties": {
+        "utility_type": { "type": "string", "default": "Water" },
+        "map_reference": { "type": "string" },
+        "verification_statement": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "utility_service_details"]
+}
+142_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+WRITTEN VERIFICATION OF WATER SUPPLY SUFFICIENCY
+(Government Code Section 66473.7 - "SB 221")
+
+To: Placer County
+From: River City Water District
+Date: August 1, 2031
+
+In response to the request for the Canyon Ranch project (Tentative Subdivision Map No. 1234), the River City Water District hereby verifies that a sufficient water supply is available to serve the proposed 500-lot subdivision, based on the findings of the approved Water Supply Assessment.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Written Verification of Water Supply Sufficiency",
+  "effective_date": "2031-08-01",
+  "parties": [
+    { "name": "River City Water District", "role": "Water Supplier" },
+    { "name": "Placer County", "role": "Approving Agency" }
+  ],
+  "utility_service_details": {
+    "utility_type": "Water",
+    "map_reference": "Tentative Subdivision Map No. 1234",
+    "verification_statement": "The River City Water District hereby verifies that a sufficient water supply is available to serve the proposed 500-lot subdivision."
+  },
+  "discovered_entities": []
+}
+142_schema_additions.json
+
+JSON
+
+{
+  "utility_service_details": {
+    "type": "object",
+    "description": "Details specific to utility service letters and agreements.",
+    "properties": {
+      "utility_type": { "type": "string" },
+      "project_name": { "type": "string" },
+      "service_commitment": { "type": "string" },
+      "conditions_of_service": { "type": "string" },
+      "map_reference": { "type": "string" },
+      "verification_statement": { "type": "string" }
+    }
+  }
+}
+Document Type 143: Capacity/Allocation Agreements & Transfers
+143_specialist_schema.json
+
+JSON
+
+{
+  "title": "Capacity/Allocation Agreement & Transfer Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Sewer Capacity Transfer Agreement'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Seller", "Buyer", "Utility District"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "utility_service_details": {
+      "type": "object",
+      "properties": {
+        "utility_type": { "type": "string" },
+        "capacity_amount": { "type": "string" },
+        "unit_of_measure": { "type": "string" },
+        "purchase_price": { "type": "number" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "utility_service_details"]
+}
+143_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+AGREEMENT FOR TRANSFER OF SEWER CAPACITY
+
+This Agreement is made April 5, 2031, between Old Factory LLC ("Seller") and New Homes LLC ("Buyer"), and is approved by the South County Sanitation District ("District").
+
+Seller agrees to sell and transfer to Buyer Two Hundred (200) Equivalent Dwelling Units (EDUs) of sewer treatment capacity within the District's service area for a total price of $500,000.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Agreement for Transfer of Sewer Capacity",
+  "effective_date": "2031-04-05",
+  "parties": [
+    { "name": "Old Factory LLC", "role": "Seller" },
+    { "name": "New Homes LLC", "role": "Buyer" },
+    { "name": "South County Sanitation District", "role": "Utility District" }
+  ],
+  "utility_service_details": {
+    "utility_type": "Sewer",
+    "capacity_amount": "200",
+    "unit_of_measure": "Equivalent Dwelling Units (EDUs)",
+    "purchase_price": 500000
+  },
+  "discovered_entities": []
+}
+143_schema_additions.json
+
+JSON
+
+{
+  "utility_service_details": {
+    "type": "object",
+    "description": "Details specific to utility service letters and agreements.",
+    "properties": {
+      "utility_type": { "type": "string" },
+      "project_name": { "type": "string" },
+      "service_commitment": { "type": "string" },
+      "conditions_of_service": { "type": "string" },
+      "map_reference": { "type": "string" },
+      "verification_statement": { "type": "string" },
+      "capacity_amount": { "type": "string" },
+      "unit_of_measure": { "type": "string" },
+      "purchase_price": { "type": "number" }
+    }
+  }
+}
+Document Type 144: Connection Permits
+144_specialist_schema.json
+
+JSON
+
+{
+  "title": "Connection Permit Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Water/Sewer Connection Permit'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Permittee", "Issuing Agency"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "permit_details": {
+      "type": "object",
+      "properties": {
+        "permit_number": { "type": "string" },
+        "property_address": { "type": "string" },
+        "utility_type": { "type": "string" },
+        "connection_fee": { "type": "number" },
+        "meter_size": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "permit_details"]
+}
+144_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+RIVER CITY WATER DISTRICT
+WATER SERVICE CONNECTION PERMIT
+
+Permit No: W-2031-555
+Date Issued: October 1, 2031
+Applicant: Riverbend Homes LLC
+Service Address: 101 Riverbend Way (Lot 1)
+
+This permit authorizes the installation of one (1) 3/4-inch water meter to serve a single-family residence.
+Connection Fee Paid: $15,000.00
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Water Service Connection Permit",
+  "effective_date": "2031-10-01",
+  "parties": [
+    { "name": "Riverbend Homes LLC", "role": "Permittee" },
+    { "name": "River City Water District", "role": "Issuing Agency" }
+  ],
+  "permit_details": {
+    "permit_number": "W-2031-555",
+    "property_address": "101 Riverbend Way (Lot 1)",
+    "utility_type": "Water",
+    "connection_fee": 15000,
+    "meter_size": "3/4-inch"
+  },
+  "discovered_entities": []
+}
+144_schema_additions.json
+
+JSON
+
+{
+  "permit_details": {
+    "type": "object",
+    "description": "Details specific to a permit issued by a government agency.",
+    "properties": {
+      "permit_number": { "type": "string" },
+      "property_address": { "type": "string" },
+      "sign_description": { "type": "string" },
+      "sign_dimensions": { "type": "string" },
+      "expiration_date": { "type": "string", "format": "date" },
+      "permit_type": { "type": "string" },
+      "authorized_activity": { "type": "string" },
+      "impacts_authorized": { "type": "string" },
+      "mitigation_required": { "type": "string" },
+      "certification_number": { "type": "string" },
+      "project_name": { "type": "string" },
+      "related_404_permit": { "type": "string" },
+      "key_conditions": { "type": "array", "items": { "type": "string" } },
+      "notification_number": { "type": "string" },
+      "term_of_agreement": { "type": "string" },
+      "equipment_or_process_permitted": { "type": "string" },
+      "utility_type": { "type": "string" },
+      "connection_fee": { "type": "number" },
+      "meter_size": { "type": "string" }
+    }
+  }
+}
+Document Type 145: Backflow & Well Permits
+145_specialist_schema.json
+
+JSON
+
+{
+  "title": "Backflow & Well Permit Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Well Construction Permit'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Permittee", "Issuing Agency"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "permit_details": {
+      "type": "object",
+      "properties": {
+        "permit_number": { "type": "string" },
+        "property_address": { "type": "string" },
+        "permit_type": { "type": "string", "enum": ["Backflow", "Well"] },
+        "permit_summary": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "permit_details"]
+}
+145_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+COUNTY OF NAPA
+DEPARTMENT OF ENVIRONMENTAL HEALTH
+WELL CONSTRUCTION PERMIT
+
+Permit No. W-2031-123
+Issue Date: November 1, 2031
+Applicant: Napa Valley Vineyards LLC
+Site APN: 123-456-789
+
+This permit authorizes the construction of one (1) new agricultural irrigation well to a depth of 500 feet.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Well Construction Permit",
+  "effective_date": "2031-11-01",
+  "parties": [
+    { "name": "Napa Valley Vineyards LLC", "role": "Permittee" },
+    { "name": "County of Napa Department of Environmental Health", "role": "Issuing Agency" }
+  ],
+  "permit_details": {
+    "permit_number": "W-2031-123",
+    "property_address": "APN 123-456-789",
+    "permit_type": "Well",
+    "permit_summary": "Authorizes construction of one new agricultural irrigation well to a depth of 500 feet."
+  },
+  "discovered_entities": []
+}
+145_schema_additions.json
+
+JSON
+
+{
+  "permit_details": {
+    "type": "object",
+    "description": "Details specific to a permit issued by a government agency.",
+    "properties": {
+      "permit_number": { "type": "string" },
+      "property_address": { "type": "string" },
+      "sign_description": { "type": "string" },
+      "sign_dimensions": { "type": "string" },
+      "expiration_date": { "type": "string", "format": "date" },
+      "permit_type": { "type": "string" },
+      "authorized_activity": { "type": "string" },
+      "impacts_authorized": { "type": "string" },
+      "mitigation_required": { "type": "string" },
+      "certification_number": { "type": "string" },
+      "project_name": { "type": "string" },
+      "related_404_permit": { "type": "string" },
+      "key_conditions": { "type": "array", "items": { "type": "string" } },
+      "notification_number": { "type": "string" },
+      "term_of_agreement": { "type": "string" },
+      "equipment_or_process_permitted": { "type": "string" },
+      "utility_type": { "type": "string" },
+      "connection_fee": { "type": "number" },
+      "meter_size": { "type": "string" },
+      "permit_summary": { "type": "string" }
+    }
+  }
+}
+Document Type 146: Utility Service/Line Extension Agreements
+146_specialist_schema.json
+
+JSON
+
+{
+  "title": "Utility Service/Line Extension Agreement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Agreement for Installation of Electric Facilities'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Applicant", "Utility Company"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "utility_service_details": {
+      "type": "object",
+      "properties": {
+        "utility_type": { "type": "string" },
+        "project_name": { "type": "string" },
+        "scope_of_work": { "type": "string" },
+        "applicant_cost_responsibility": { "type": "number" },
+        "utility_allowance_credit": { "type": "number" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "utility_service_details"]
+}
+146_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+PACIFIC GAS AND ELECTRIC COMPANY
+AGREEMENT TO PERFORM TARIFF SCHEDULED WORK
+
+Applicant: Riverbend Homes LLC
+Project: Riverbend (Tract No. 8888)
+Date: May 10, 2030
+
+PG&E agrees to install the gas and electric distribution facilities to serve the 150-lot Riverbend project.
+
+The total estimated cost of the work is $1,200,000. Based on the projected load, the project is eligible for a Utility Allowance of $450,000. The Applicant's required advance payment is $750,000.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Agreement to Perform Tariff Scheduled Work",
+  "effective_date": "2030-05-10",
+  "parties": [
+    { "name": "Riverbend Homes LLC", "role": "Applicant" },
+    { "name": "Pacific Gas and Electric Company", "role": "Utility Company" }
+  ],
+  "utility_service_details": {
+    "utility_type": "Gas and Electric",
+    "project_name": "Riverbend (Tract No. 8888)",
+    "scope_of_work": "Install the gas and electric distribution facilities to serve the 150-lot project.",
+    "applicant_cost_responsibility": 750000,
+    "utility_allowance_credit": 450000
+  },
+  "discovered_entities": []
+}
+146_schema_additions.json
+
+JSON
+
+{
+  "utility_service_details": {
+    "type": "object",
+    "description": "Details specific to utility service letters and agreements.",
+    "properties": {
+      "utility_type": { "type": "string" },
+      "project_name": { "type": "string" },
+      "service_commitment": { "type": "string" },
+      "conditions_of_service": { "type": "string" },
+      "map_reference": { "type": "string" },
+      "verification_statement": { "type": "string" },
+      "capacity_amount": { "type": "string" },
+      "unit_of_measure": { "type": "string" },
+      "purchase_price": { "type": "number" },
+      "scope_of_work": { "type": "string" },
+      "applicant_cost_responsibility": { "type": "number" },
+      "utility_allowance_credit": { "type": "number" }
+    }
+  }
+}
+Document Type 147: Joint Trench Agreements
+147_specialist_schema.json
+
+JSON
+
+{
+  "title": "Joint Trench Agreement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Joint Trench Agreement'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Developer", "Utility Company"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "utility_service_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "participating_utilities": { "type": "array", "items": { "type": "string" } },
+        "cost_sharing_arrangement": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "utility_service_details"]
+}
+147_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+JOINT TRENCH ARRANGEMENT AGREEMENT
+RIVERBEND TRACT NO. 8888
+
+This agreement, dated May 15, 2030, is by and among Riverbend Homes LLC ("Developer"), Pacific Gas and Electric Company, AT&T, and Comcast.
+
+The parties agree to the joint installation of their respective facilities in a common trench throughout the Riverbend project. The Developer shall be responsible for the excavation and backfill of the trench. Each utility shall be responsible for the cost of its own conduit and cable.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Joint Trench Arrangement Agreement",
+  "effective_date": "2030-05-15",
+  "parties": [
+    { "name": "Riverbend Homes LLC", "role": "Developer" },
+    { "name": "Pacific Gas and Electric Company", "role": "Utility Company" },
+    { "name": "AT&T", "role": "Utility Company" },
+    { "name": "Comcast", "role": "Utility Company" }
+  ],
+  "utility_service_details": {
+    "project_name": "Riverbend Tract No. 8888",
+    "participating_utilities": [
+      "Pacific Gas and Electric",
+      "AT&T",
+      "Comcast"
+    ],
+    "cost_sharing_arrangement": "Developer is responsible for excavation and backfill. Each utility is responsible for its own conduit and cable."
+  },
+  "discovered_entities": []
+}
+147_schema_additions.json
+
+JSON
+
+{
+  "utility_service_details": {
+    "type": "object",
+    "description": "Details specific to utility service letters and agreements.",
+    "properties": {
+      "utility_type": { "type": "string" },
+      "project_name": { "type": "string" },
+      "service_commitment": { "type": "string" },
+      "conditions_of_service": { "type": "string" },
+      "map_reference": { "type": "string" },
+      "verification_statement": { "type": "string" },
+      "capacity_amount": { "type": "string" },
+      "unit_of_measure": { "type": "string" },
+      "purchase_price": { "type": "number" },
+      "scope_of_work": { "type": "string" },
+      "applicant_cost_responsibility": { "type": "number" },
+      "utility_allowance_credit": { "type": "number" },
+      "participating_utilities": { "type": "array", "items": { "type": "string" } },
+      "cost_sharing_arrangement": { "type": "string" }
+    }
+  }
+}
+Document Type 148: Composite Utility Plans
+148_specialist_schema.json
+
+JSON
+
+{
+  "title": "Composite Utility Plan Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The title of the plan set, e.g., 'Composite Utility Plan'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Engineer", "Developer"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "plan_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "plan_type": { "type": "string", "default": "Composite Utility Plan" },
+        "utilities_shown": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "plan_details"]
+}
+148_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+RIVERBEND TRACT NO. 8888
+COMPOSITE UTILITY AND JOINT TRENCH PLAN
+
+PREPARED BY: Apex Civil Engineering
+DATE: May 20, 2030
+
+This plan shows the proposed horizontal and vertical alignment of all wet and dry utilities, including water, sewer, storm drain, gas, electric, and communications facilities.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Composite Utility and Joint Trench Plan",
+  "effective_date": "2030-05-20",
+  "parties": [
+    { "name": "Apex Civil Engineering", "role": "Engineer" }
+  ],
+  "plan_details": {
+    "project_name": "Riverbend Tract No. 8888",
+    "plan_type": "Composite Utility Plan",
+    "utilities_shown": [
+      "water",
+      "sewer",
+      "storm drain",
+      "gas",
+      "electric",
+      "communications"
+    ]
+  },
+  "discovered_entities": []
+}
+148_schema_additions.json
+
+JSON
+
+{
+  "plan_details": {
+    "type": "object",
+    "description": "Details specific to engineering or architectural plan sets.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "plan_type": { "type": "string" },
+      "engineer_of_record": { "type": "string" },
+      "approval_date": { "type": "string", "format": "date" },
+      "plan_sheet_count": { "type": "integer" },
+      "utilities_shown": { "type": "array", "items": { "type": "string" } }
+    }
+  }
+}
+Document Type 149: Street Lighting Agreements
+149_specialist_schema.json
+
+JSON
+
+{
+  "title": "Street Lighting Agreement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Agreement for the Installation of Street Lighting'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Developer", "Utility Company"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "utility_service_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "scope_of_work": { "type": "string" },
+        "cost_responsibility": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "utility_service_details"]
+}
+149_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+AGREEMENT FOR INSTALLATION AND MAINTENANCE OF STREETLIGHTS
+Project: Riverbend Tract No. 8888
+
+This agreement, dated June 1, 2030, is between Riverbend Homes LLC ("Owner") and Pacific Gas and Electric Company ("PG&E").
+
+Owner agrees to pay PG&E for the installation of 50 standard LED streetlights throughout the subdivision. Upon acceptance by the City, PG&E will own and maintain the facilities, and the City will be responsible for the energy costs.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Agreement for Installation and Maintenance of Streetlights",
+  "effective_date": "2030-06-01",
+  "parties": [
+    { "name": "Riverbend Homes LLC", "role": "Developer" },
+    { "name": "Pacific Gas and Electric Company", "role": "Utility Company" }
+  ],
+  "utility_service_details": {
+    "project_name": "Riverbend Tract No. 8888",
+    "scope_of_work": "Installation of 50 standard LED streetlights.",
+    "cost_responsibility": "Owner pays for installation. City pays for energy costs after acceptance."
+  },
+  "discovered_entities": []
+}
+149_schema_additions.json
+
+JSON
+
+{
+  "utility_service_details": {
+    "type": "object",
+    "description": "Details specific to utility service letters and agreements.",
+    "properties": {
+      "utility_type": { "type": "string" },
+      "project_name": { "type": "string" },
+      "service_commitment": { "type": "string" },
+      "conditions_of_service": { "type": "string" },
+      "map_reference": { "type": "string" },
+      "verification_statement": { "type": "string" },
+      "capacity_amount": { "type": "string" },
+      "unit_of_measure": { "type": "string" },
+      "purchase_price": { "type": "number" },
+      "scope_of_work": { "type": "string" },
+      "applicant_cost_responsibility": { "type": "number" },
+      "utility_allowance_credit": { "type": "number" },
+      "participating_utilities": { "type": "array", "items": { "type": "string" } },
+      "cost_sharing_arrangement": { "type": "string" },
+      "cost_responsibility": { "type": "string" }
+    }
+  }
+}
+Document Type 150: Encroachment Permits (City/County/Caltrans)
+150_specialist_schema.json
+
+JSON
+
+{
+  "title": "Encroachment Permit Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Encroachment Permit'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Permittee", "Issuing Agency"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "permit_details": {
+      "type": "object",
+      "properties": {
+        "permit_number": { "type": "string" },
+        "location_of_work": { "type": "string" },
+        "authorized_work_summary": { "type": "string" },
+        "expiration_date": { "type": "string", "format": "date" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "permit_details"]
+}
+150_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+CITY OF RIVERBEND
+ENCROACHMENT PERMIT
+
+Permit No: E-2030-101
+Date Issued: September 2, 2030
+Permittee: Riverbend Homes LLC
+
+Location of Work: Main Street, adjacent to the Riverbend project.
+Description of Work: Installation of new curb, gutter, and sidewalk along the project frontage within the public right-of-way.
+This permit is valid for 180 days from the date of issuance.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Encroachment Permit",
+  "effective_date": "2030-09-02",
+  "parties": [
+    { "name": "Riverbend Homes LLC", "role": "Permittee" },
+    { "name": "City of Riverbend", "role": "Issuing Agency" }
+  ],
+  "permit_details": {
+    "permit_number": "E-2030-101",
+    "location_of_work": "Main Street, adjacent to the Riverbend project.",
+    "authorized_work_summary": "Installation of new curb, gutter, and sidewalk along the project frontage within the public right-of-way.",
+    "expiration_date": null
+  },
+  "discovered_entities": []
+}
+150_schema_additions.json
+
+JSON
+
+{
+  "permit_details": {
+    "type": "object",
+    "description": "Details specific to a permit issued by a government agency.",
+    "properties": {
+      "permit_number": { "type": "string" },
+      "property_address": { "type": "string" },
+      "sign_description": { "type": "string" },
+      "sign_dimensions": { "type": "string" },
+      "expiration_date": { "type": "string", "format": "date" },
+      "permit_type": { "type": "string" },
+      "authorized_activity": { "type": "string" },
+      "impacts_authorized": { "type": "string" },
+      "mitigation_required": { "type": "string" },
+      "certification_number": { "type": "string" },
+      "project_name": { "type": "string" },
+      "related_404_permit": { "type": "string" },
+      "key_conditions": { "type": "array", "items": { "type": "string" } },
+      "notification_number": { "type": "string" },
+      "term_of_agreement": { "type": "string" },
+      "equipment_or_process_permitted": { "type": "string" },
+      "utility_type": { "type": "string" },
+      "connection_fee": { "type": "number" },
+      "meter_size": { "type": "string" },
+      "permit_summary": { "type": "string" },
+      "location_of_work": { "type": "string" },
+      "authorized_work_summary": { "type": "string" }
+    }
+  }
+}
+Document Type 151: Signalization/Intersection improvement agreements
+151_specialist_schema.json
+
+JSON
+
+{
+  "title": "Signalization/Intersection Improvement Agreement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Traffic Signal Reimbursement Agreement'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Developer", "Public Agency", "City"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "improvement_agreement_details": {
+      "type": "object",
+      "properties": {
+        "improvement_location": { "type": "string" },
+        "improvement_description": { "type": "string" },
+        "cost_responsibility": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "improvement_agreement_details"]
+}
+151_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+AGREEMENT FOR DESIGN AND CONSTRUCTION OF TRAFFIC SIGNAL
+
+This Agreement is made September 1, 2030, between the City of Riverbend ("City") and Riverbend Homes LLC ("Developer").
+
+Developer agrees to design and construct a traffic signal at the intersection of Main Street and Riverbend Parkway. Upon completion and acceptance by the City Engineer, the City shall own and maintain the signal. The Developer shall bear 100% of the design and construction costs.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Agreement for Design and Construction of Traffic Signal",
+  "effective_date": "2030-09-01",
+  "parties": [
+    { "name": "City of Riverbend", "role": "City" },
+    { "name": "Riverbend Homes LLC", "role": "Developer" }
+  ],
+  "improvement_agreement_details": {
+    "improvement_location": "Intersection of Main Street and Riverbend Parkway.",
+    "improvement_description": "Design and construct a traffic signal.",
+    "cost_responsibility": "The Developer shall bear 100% of the design and construction costs."
+  },
+  "discovered_entities": []
+}
+151_schema_additions.json
+
+JSON
+
+{
+  "improvement_agreement_details": {
+    "type": "object",
+    "description": "Details specific to a Subdivision or Off-site Improvement Agreement.",
+    "properties": {
+      "subdivision_name": { "type": "string" },
+      "map_reference": { "type": "string" },
+      "required_improvements": { "type": "array", "items": { "type": "string" } },
+      "completion_deadline": { "type": "string" },
+      "security_posted": { "type": "object" },
+      "project_name": { "type": "string" },
+      "offsite_improvements_summary": { "type": "string" },
+      "cost_estimate": { "type": "number" },
+      "reimbursement_terms": { "type": "string" },
+      "improvement_location": { "type": "string" },
+      "improvement_description": { "type": "string" },
+      "cost_responsibility": { "type": "string" }
+    }
+  }
+}
+Document Type 152: Development Impact Fee (DIF/TUMF) Calculations
+152_specialist_schema.json
+
+JSON
+
+{
+  "title": "Development Impact Fee Calculation Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Development Impact Fee Estimate'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Applicant", "Public Agency", "City"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "fee_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "total_fee_amount": { "type": "number" },
+        "fee_breakdown": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "fee_name": { "type": "string" },
+              "amount": { "type": "number" }
+            }
+          }
+        }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "fee_details"]
+}
+152_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+CITY OF RIVERBEND
+DEVELOPMENT IMPACT FEE ESTIMATE
+
+PROJECT: Riverbend Tract No. 8888 (150 Single Family Units)
+DATE: July 10, 2030
+
+FEE SUMMARY:
+- Traffic Impact Fee: $1,500,000
+- Park Fee: $750,000
+- School Fee: $1,200,000
+- Library Fee: $150,000
+--------------------
+TOTAL ESTIMATED FEES: $3,600,000
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Development Impact Fee Estimate",
+  "effective_date": "2030-07-10",
+  "parties": [
+    { "name": "City of Riverbend", "role": "City" }
+  ],
+  "fee_details": {
+    "project_name": "Riverbend Tract No. 8888 (150 Single Family Units)",
+    "total_fee_amount": 3600000,
+    "fee_breakdown": [
+      { "fee_name": "Traffic Impact Fee", "amount": 1500000 },
+      { "fee_name": "Park Fee", "amount": 750000 },
+      { "fee_name": "School Fee", "amount": 1200000 },
+      { "fee_name": "Library Fee", "amount": 150000 }
+    ]
+  },
+  "discovered_entities": []
+}
+152_schema_additions.json
+
+JSON
+
+{
+  "fee_details": {
+    "type": "object",
+    "description": "Details specific to development fees, credits, and reimbursements.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "total_fee_amount": { "type": "number" },
+      "fee_breakdown": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "fee_name": { "type": "string" },
+            "amount": { "type": "number" }
+          }
+        }
+      }
+    }
+  }
+}
+Document Type 153: Traffic/Park/School Fee Agreements
+153_specialist_schema.json
+
+JSON
+
+{
+  "title": "Fee Agreement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'School Fee Agreement'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Developer", "Public Agency", "School District"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "fee_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "fee_type": { "type": "string" },
+        "total_fee_amount": { "type": "number" },
+        "payment_schedule": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "fee_details"]
+}
+153_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+SCHOOL FACILITIES FEE AGREEMENT
+
+This Agreement is made July 20, 2030, between the Riverbend Unified School District ("District") and Riverbend Homes LLC ("Developer").
+
+Developer agrees to pay school impact fees for the 150-unit Riverbend project in the total amount of One Million Two Hundred Thousand Dollars ($1,200,000).
+
+Payment shall be made on a per-lot basis prior to the issuance of each building permit.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "School Facilities Fee Agreement",
+  "effective_date": "2030-07-20",
+  "parties": [
+    { "name": "Riverbend Unified School District", "role": "School District" },
+    { "name": "Riverbend Homes LLC", "role": "Developer" }
+  ],
+  "fee_details": {
+    "project_name": "Riverbend project",
+    "fee_type": "School Impact Fee",
+    "total_fee_amount": 1200000,
+    "payment_schedule": "On a per-lot basis prior to the issuance of each building permit."
+  },
+  "discovered_entities": []
+}
+153_schema_additions.json
+
+JSON
+
+{
+  "fee_details": {
+    "type": "object",
+    "description": "Details specific to development fees, credits, and reimbursements.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "total_fee_amount": { "type": "number" },
+      "fee_breakdown": { "type": "array" },
+      "fee_type": { "type": "string" },
+      "payment_schedule": { "type": "string" }
+    }
+  }
+}
+Document Type 154: Fee Deferral Agreements
+154_specialist_schema.json
+
+JSON
+
+{
+  "title": "Fee Deferral Agreement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Impact Fee Deferral Agreement'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Developer", "Public Agency", "City"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "fee_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "fees_deferred": { "type": "array", "items": { "type": "string" } },
+        "deferred_amount": { "type": "number" },
+        "payment_due_date": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "fee_details"]
+}
+154_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+AGREEMENT TO DEFER PAYMENT OF DEVELOPMENT IMPACT FEES
+
+This Agreement is made July 25, 2030, between the City of Riverbend and Riverbend Homes LLC.
+
+The City agrees to defer the collection of the Traffic Impact Fee ($1,500,000) for the Riverbend project. The deferred fees shall become due and payable upon the issuance of the first Certificate of Occupancy for the project.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Agreement to Defer Payment of Development Impact Fees",
+  "effective_date": "2030-07-25",
+  "parties": [
+    { "name": "City of Riverbend", "role": "City" },
+    { "name": "Riverbend Homes LLC", "role": "Developer" }
+  ],
+  "fee_details": {
+    "project_name": "Riverbend project",
+    "fees_deferred": [
+      "Traffic Impact Fee"
+    ],
+    "deferred_amount": 1500000,
+    "payment_due_date": "Upon the issuance of the first Certificate of Occupancy for the project."
+  },
+  "discovered_entities": []
+}
+154_schema_additions.json
+
+JSON
+
+{
+  "fee_details": {
+    "type": "object",
+    "description": "Details specific to development fees, credits, and reimbursements.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "total_fee_amount": { "type": "number" },
+      "fee_breakdown": { "type": "array" },
+      "fee_type": { "type": "string" },
+      "payment_schedule": { "type": "string" },
+      "fees_deferred": { "type": "array", "items": { "type": "string" } },
+      "deferred_amount": { "type": "number" },
+      "payment_due_date": { "type": "string" }
+    }
+  }
+}
+Document Type 155: Reimbursement/Credit Agreements
+155_specialist_schema.json
+
+JSON
+
+{
+  "title": "Reimbursement/Credit Agreement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Fee Credit and Reimbursement Agreement'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Developer", "Public Agency", "City"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "fee_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "work_generating_credit": { "type": "string" },
+        "credit_or_reimbursement_amount": { "type": "number" },
+        "applicable_fees": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "fee_details"]
+}
+155_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+FEE CREDIT AGREEMENT
+
+This Agreement is made September 1, 2030, between the City of Riverbend and Riverbend Homes LLC.
+
+In consideration of the Developer's construction of the Main Street traffic signal, the City agrees to grant the Developer a credit in the amount of $350,000. This credit may be applied against the Traffic Impact Fees due for the Riverbend project.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Fee Credit Agreement",
+  "effective_date": "2030-09-01",
+  "parties": [
+    { "name": "City of Riverbend", "role": "City" },
+    { "name": "Riverbend Homes LLC", "role": "Developer" }
+  ],
+  "fee_details": {
+    "project_name": "Riverbend project",
+    "work_generating_credit": "Construction of the Main Street traffic signal.",
+    "credit_or_reimbursement_amount": 350000,
+    "applicable_fees": "Traffic Impact Fees"
+  },
+  "discovered_entities": []
+}
+155_schema_additions.json
+
+JSON
+
+{
+  "fee_details": {
+    "type": "object",
+    "description": "Details specific to development fees, credits, and reimbursements.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "total_fee_amount": { "type": "number" },
+      "fee_breakdown": { "type": "array" },
+      "fee_type": { "type": "string" },
+      "payment_schedule": { "type": "string" },
+      "fees_deferred": { "type": "array", "items": { "type": "string" } },
+      "deferred_amount": { "type": "number" },
+      "payment_due_date": { "type": "string" },
+      "work_generating_credit": { "type": "string" },
+      "credit_or_reimbursement_amount": { "type": "number" },
+      "applicable_fees": { "type": "string" }
+    }
+  }
+}

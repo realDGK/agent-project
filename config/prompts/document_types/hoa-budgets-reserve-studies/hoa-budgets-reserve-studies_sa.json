@@ -1,0 +1,14 @@
+{
+  "hoa_financial_details": {
+    "type": "object",
+    "description": "Details specific to HOA financial documents.",
+    "properties": {
+      "document_type": { "type": "string", "enum": ["Budget", "Reserve Study"] },
+      "fiscal_year": { "type": "string" },
+      "total_annual_budget": { "type": "number" },
+      "monthly_assessment_per_unit": { "type": "number" },
+      "reserve_fund_balance": { "type": "number" },
+      "percent_funded": { "type": "number" }
+    }
+  }
+}

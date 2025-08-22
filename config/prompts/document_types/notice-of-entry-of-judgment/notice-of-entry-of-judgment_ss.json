@@ -1,0 +1,46 @@
+{
+  "title": "Notice of Entry of Judgment Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Notice of Entry of Judgment'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Plaintiff", "Defendant", "Judgment Creditor", "Judgment Debtor"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "litigation_details": {
+      "type": "object",
+      "properties": {
+        "court_name": { "type": "string" },
+        "case_number": { "type": "string" },
+        "judgment_date": { "type": "string", "format": "date" },
+        "judgment_summary": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "litigation_details"]
+}

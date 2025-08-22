@@ -1,0 +1,48 @@
+{
+  "title": "Hedging/Rate-Lock/ISDA Agreement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'ISDA Master Agreement'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Party A", "Party B"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "derivative_details": {
+      "type": "object",
+      "properties": {
+        "trade_date": { "type": "string", "format": "date" },
+        "notional_amount": { "type": "number" },
+        "product_type": { "type": "string", "description": "e.g., 'Interest Rate Swap', 'Interest Rate Cap'." },
+        "fixed_rate": { "type": "string" },
+        "floating_rate_index": { "type": "string" },
+        "termination_date": { "type": "string", "format": "date" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "derivative_details"]
+}

@@ -1,0 +1,32 @@
+**INPUT DOCUMENT TEXT:**
+SUPERIOR COURT OF CALIFORNIA, COUNTY OF SAN FRANCISCO
+Case No. CGC-28-123456
+
+PROPOUNDING PARTY: WESTWOOD DEVELOPMENT, LLC
+RESPONDING PARTY: CITY AND COUNTY OF SAN FRANCISCO
+SET NO.: ONE
+
+PLAINTIFF'S FIRST SET OF REQUESTS FOR PRODUCTION OF DOCUMENTS
+
+Pursuant to the Code of Civil Procedure, Plaintiff requests that Defendant produce the documents described below for inspection and copying within 30 days. This set contains 25 requests.
+
+Dated: June 10, 2028
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Plaintiff's First Set of Requests for Production of Documents",
+  "effective_date": "2028-06-10",
+  "parties": [
+    { "name": "WESTWOOD DEVELOPMENT, LLC", "role": "Propounding Party" },
+    { "name": "CITY AND COUNTY OF SAN FRANCISCO", "role": "Responding Party" }
+  ],
+  "litigation_details": {
+    "court_name": "Superior Court of California, County of San Francisco",
+    "case_number": "CGC-28-123456"
+  },
+  "discovery_details": {
+    "discovery_type": "Request for Production",
+    "response_due_date": null,
+    "number_of_requests": 25
+  }
+}

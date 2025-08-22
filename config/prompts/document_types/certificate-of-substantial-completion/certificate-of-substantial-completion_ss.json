@@ -1,0 +1,50 @@
+{
+  "title": "Certificate of Substantial Completion Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'AIA Document G704 - Certificate of Substantial Completion'."
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date",
+      "description": "The Date of Substantial Completion."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Owner", "Contractor", "Architect"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "completion_certificate_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "date_of_substantial_completion": { "type": "string", "format": "date" },
+        "punch_list_reference": { "type": "string" },
+        "warranty_start_date": { "type": "string", "format": "date" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "completion_certificate_details"]
+}

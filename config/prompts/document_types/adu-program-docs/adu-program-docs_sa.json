@@ -1,0 +1,12 @@
+{
+  "adu_details": {
+    "type": "object",
+    "description": "Details specific to an Accessory Dwelling Unit (ADU) program or permit.",
+    "properties": {
+      "property_address": { "type": "string" },
+      "adu_type": { "type": "string", "enum": ["Detached", "Attached", "Conversion", "JADU"] },
+      "adu_square_footage": { "type": "integer" },
+      "deed_restriction_required": { "type": "boolean" }
+    }
+  }
+}

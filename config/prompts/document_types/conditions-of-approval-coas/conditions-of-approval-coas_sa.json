@@ -1,0 +1,42 @@
+{
+  "entitlement_details": {
+    "type": "object",
+    "description": "Details specific to land use entitlements and government approvals.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "application_number": { "type": "string" },
+      "property_description": { "type": "string" },
+      "original_land_use_designation": { "type": "string" },
+      "new_land_use_designation": { "type": "string" },
+      "original_zoning": { "type": "string" },
+      "new_zoning": { "type": "string" },
+      "plan_area_description": { "type": "string" },
+      "plan_summary": { "type": "string" },
+      "allowed_land_uses": { "type": "array", "items": { "type": "string" } },
+      "development_standards_summary": { "type": "string" },
+      "pud_summary": { "type": "string" },
+      "property_address": { "type": "string" },
+      "permitted_use": { "type": "string" },
+      "key_conditions": { "type": "array", "items": { "type": "string" } },
+      "variance_request": { "type": "string" },
+      "findings_for_approval": { "type": "string" },
+      "approval_statement": { "type": "string" },
+      "approved_plans_reference": { "type": "string" },
+      "base_density": { "type": "string" },
+      "affordable_units_provided": { "type": "string" },
+      "density_bonus_granted": { "type": "string" },
+      "concessions_or_incentives": { "type": "array", "items": { "type": "string" } },
+      "conditions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "department": { "type": "string" },
+            "condition_summary": { "type": "string" },
+            "timing": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,516 @@
+Document Type 350: Meeting Agendas/Minutes
+350_specialist_schema.json
+
+JSON
+
+{
+  "title": "Meeting Agenda/Minutes Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Agenda for OAC Meeting #25'."
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date",
+      "description": "The date of the meeting."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Attendee", "Author"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "meeting_minutes_details": {
+      "type": "object",
+      "properties": {
+        "document_type": { "type": "string", "enum": ["Agenda", "Minutes"] },
+        "project_name": { "type": "string" },
+        "meeting_title": { "type": "string" },
+        "agenda_items": { "type": "array", "items": { "type": "string" } },
+        "key_decisions_made": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "meeting_minutes_details"]
+}
+350_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+AGENDA
+OAC Meeting #25
+Project: Downtown Tower
+Date: December 1, 2031
+
+1. Review and Approve Minutes from Meeting #24
+2. Schedule Update
+3. Review Change Order #10 (Lobby Revisions)
+4. New Business
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Agenda - OAC Meeting #25",
+  "effective_date": "2031-12-01",
+  "parties": [],
+  "meeting_minutes_details": {
+    "document_type": "Agenda",
+    "project_name": "Downtown Tower",
+    "meeting_title": "OAC Meeting #25",
+    "agenda_items": [
+      "Review and Approve Minutes from Meeting #24",
+      "Schedule Update",
+      "Review Change Order #10 (Lobby Revisions)",
+      "New Business"
+    ],
+    "key_decisions_made": null
+  },
+  "discovered_entities": []
+}
+350_schema_additions.json
+
+JSON
+
+{
+  "meeting_minutes_details": {
+    "type": "object",
+    "description": "Details specific to meeting minutes or agendas.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "meeting_title": { "type": "string" },
+      "attendees": { "type": "array", "items": { "type": "string" } },
+      "key_discussion_points": { "type": "array", "items": { "type": "string" } },
+      "action_items": { "type": "array" },
+      "meeting_type": { "type": "string" },
+      "key_decisions_made": { "type": "array", "items": { "type": "string" } },
+      "vote_summary": { "type": "string" },
+      "document_type": { "type": "string", "enum": ["Agenda", "Minutes"] },
+      "agenda_items": { "type": "array", "items": { "type": "string" } }
+    }
+  }
+}
+Document Type 351: Decision Logs
+351_specialist_schema.json
+
+JSON
+
+{
+  "title": "Decision Log Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Decision Log'."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Project Manager", "Owner"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "decision_log_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "decisions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "decision_id": { "type": "string" },
+              "date": { "type": "string", "format": "date" },
+              "decision": { "type": "string" },
+              "reason": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "decision_log_details"]
+}
+351_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+DECISION LOG - DOWNTOWN TOWER PROJECT
+
+ID | Date | Decision | Rationale
+--- | --- | --- | ---
+001 | 12/01/2031 | Proceed with Alternate Lobby Finish #2 | Cost savings of $50,000.
+002 | 12/15/2031 | Reject proposal for rooftop solar | Payback period exceeds 10 years.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Decision Log",
+  "parties": [],
+  "decision_log_details": {
+    "project_name": "Downtown Tower Project",
+    "decisions": [
+      {
+        "decision_id": "001",
+        "date": "2031-12-01",
+        "decision": "Proceed with Alternate Lobby Finish #2",
+        "reason": "Cost savings of $50,000."
+      },
+      {
+        "decision_id": "002",
+        "date": "2031-12-15",
+        "decision": "Reject proposal for rooftop solar",
+        "reason": "Payback period exceeds 10 years."
+      }
+    ]
+  },
+  "discovered_entities": []
+}
+351_schema_additions.json
+
+JSON
+
+{
+  "decision_log_details": {
+    "type": "object",
+    "description": "Details specific to a project decision log.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "decisions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "decision_id": { "type": "string" },
+            "date": { "type": "string", "format": "date" },
+            "decision": { "type": "string" },
+            "reason": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}
+Document Type 352: MOUs (Memorandum of Understanding)
+352_specialist_schema.json
+
+JSON
+
+{
+  "title": "Memorandum of Understanding (MOU) Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Memorandum of Understanding'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Party"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "mou_details": {
+      "type": "object",
+      "properties": {
+        "purpose_of_mou": { "type": "string" },
+        "key_understandings": { "type": "array", "items": { "type": "string" } },
+        "is_binding": { "type": "boolean" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "mou_details"]
+}
+352_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+MEMORANDUM OF UNDERSTANDING
+
+This MOU is entered into on March 1, 2034, between the City of Riverbend and the Riverbend Unified School District.
+
+The purpose of this MOU is to establish a framework for cooperation on the joint use of the new community park facilities to be constructed at Riverbend High School.
+
+The parties agree to work together to develop a formal joint use agreement. This MOU is not a legally binding contract.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Memorandum of Understanding",
+  "effective_date": "2034-03-01",
+  "parties": [
+    { "name": "City of Riverbend", "role": "Party" },
+    { "name": "Riverbend Unified School District", "role": "Party" }
+  ],
+  "mou_details": {
+    "purpose_of_mou": "To establish a framework for cooperation on the joint use of new community park facilities.",
+    "key_understandings": [
+      "The parties agree to work together to develop a formal joint use agreement."
+    ],
+    "is_binding": false
+  },
+  "discovered_entities": []
+}
+352_schema_additions.json
+
+JSON
+
+{
+  "mou_details": {
+    "type": "object",
+    "description": "Details specific to a Memorandum of Understanding (MOU).",
+    "properties": {
+      "purpose_of_mou": { "type": "string" },
+      "key_understandings": { "type": "array", "items": { "type": "string" } },
+      "is_binding": { "type": "boolean" }
+    }
+  }
+}
+Document Type 353: Counsel Opinion Letters
+353_specialist_schema.json
+
+JSON
+
+{
+  "title": "Counsel Opinion Letter Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Legal Opinion Letter'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Author", "Counsel", "Recipient", "Client"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "legal_opinion_details": {
+      "type": "object",
+      "properties": {
+        "subject_matter": { "type": "string" },
+        "opinion_summary": { "type": "string" },
+        "qualifications_and_assumptions": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "legal_opinion_details"]
+}
+353_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+LAW OFFICES OF SMITH & JONES
+Date: August 1, 2031
+To: Mega Bank, N.A.
+
+Re: Loan to Downtown Tower LLC
+
+You have requested our opinion as counsel to Downtown Tower LLC ("Borrower").
+
+Based on our review, and subject to the qualifications stated herein, it is our opinion that the Loan Documents constitute legal, valid, and binding obligations of the Borrower, enforceable in accordance with their terms.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Legal Opinion Letter",
+  "effective_date": "2031-08-01",
+  "parties": [
+    { "name": "Law Offices of Smith & Jones", "role": "Counsel" },
+    { "name": "Mega Bank, N.A.", "role": "Recipient" }
+  ],
+  "legal_opinion_details": {
+    "subject_matter": "Loan to Downtown Tower LLC",
+    "opinion_summary": "The Loan Documents constitute legal, valid, and binding obligations of the Borrower, enforceable in accordance with their terms.",
+    "qualifications_and_assumptions": "Subject to the qualifications stated herein."
+  },
+  "discovered_entities": []
+}
+353_schema_additions.json
+
+JSON
+
+{
+  "legal_opinion_details": {
+    "type": "object",
+    "description": "Details specific to a legal opinion letter.",
+    "properties": {
+      "subject_matter": { "type": "string" },
+      "opinion_summary": { "type": "string" },
+      "qualifications_and_assumptions": { "type": "string" }
+    }
+  }
+}
+Document Type 354: Legal Strategy Memos
+354_specialist_schema.json
+
+JSON
+
+{
+  "title": "Legal Strategy Memo Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Memorandum'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type":- "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Author", "Counsel", "Recipient", "Client"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "legal_strategy_memo_details": {
+      "type": "object",
+      "properties": {
+        "subject_matter": { "type": "string" },
+        "issue_summary": { "type": "string" },
+        "recommended_strategy": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "legal_strategy_memo_details"]
+}
+354_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+CONFIDENTIAL ATTORNEY-CLIENT PRIVILEGED MEMORANDUM
+
+TO: File
+FROM: Lead Counsel
+DATE: June 15, 2032
+RE: City Electric Inc. vs. BuildRight Corp. - Litigation Strategy
+
+ISSUE: Plaintiff has filed a mechanic's lien and stop notice for $450,000.
+
+RECOMMENDATION: Our initial strategy will be to file a motion to release the lien based on a defect in their preliminary notice. Concurrently, we will open settlement discussions, offering to bond around the lien in exchange for a withdrawal of the stop notice to keep loan funds flowing.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Confidential Attorney-Client Privileged Memorandum",
+  "effective_date": "2032-06-15",
+  "parties": [
+    { "name": "Lead Counsel", "role": "Author" }
+  ],
+  "legal_strategy_memo_details": {
+    "subject_matter": "City Electric Inc. vs. BuildRight Corp. - Litigation Strategy",
+    "issue_summary": "Plaintiff has filed a mechanic's lien and stop notice for $450,000.",
+    "recommended_strategy": "File a motion to release the lien due to a defective preliminary notice and open settlement discussions to bond around the lien in exchange for withdrawing the stop notice."
+  },
+  "discovered_entities": []
+}
+354_schema_additions.json
+
+JSON
+
+{
+  "legal_strategy_memo_details": {
+    "type": "object",
+    "description": "Details specific to a legal strategy memorandum.",
+    "properties": {
+      "subject_matter": { "type": "string" },
+      "issue_summary": { "type": "string" },
+      "recommended_strategy": { "type": "string" }
+    }
+  }
+}

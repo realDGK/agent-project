@@ -1,0 +1,29 @@
+**INPUT DOCUMENT TEXT:**
+CONSTRUCTION LOAN AGREEMENT
+
+This Agreement is dated August 1, 2031, between Downtown Tower LLC ("Borrower") and Mega Bank, N.A. ("Lender").
+
+1. Loan. Lender agrees to lend Borrower up to Fifty Million Dollars ($50,000,000) to finance the construction of the Project.
+2. Budget. The loan shall be disbursed in accordance with the Project Budget attached as Exhibit B, totaling $65,000,000.
+3. Draws. Loan proceeds shall be disbursed monthly based on draw requests submitted by Borrower.
+4. Completion. Borrower shall cause the Project to be substantially completed on or before August 1, 2034.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Construction Loan Agreement",
+  "effective_date": "2031-08-01",
+  "parties": [
+    { "name": "Downtown Tower LLC", "role": "Borrower" },
+    { "name": "Mega Bank, N.A.", "role": "Lender" }
+  ],
+  "loan_details": {
+    "loan_amount": 50000000,
+    "interest_rate": null,
+    "maturity_date": null,
+    "collateral": null,
+    "loan_budget": 65000000,
+    "draw_conditions": "Disbursed monthly based on draw requests submitted by Borrower.",
+    "completion_deadline": "2034-08-01"
+  },
+  "discovered_entities": []
+}

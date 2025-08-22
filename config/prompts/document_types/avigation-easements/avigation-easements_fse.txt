@@ -1,0 +1,25 @@
+**INPUT DOCUMENT TEXT:**
+GRANT OF AVIGATION EASEMENT
+
+This easement is granted on September 1, 2033, by Airport Business Park LLC ("Grantor") to the County Airport Authority ("Grantee").
+
+Grantor grants to Grantee the right for the flight of aircraft through the airspace above the surface of the property at 100 Runway View Drive.
+
+Grantor is restricted from erecting any structure or allowing any natural growth to exceed a height of 50 feet above the ground surface.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Grant of Avigation Easement",
+  "effective_date": "2033-09-01",
+  "parties": [
+    { "name": "Airport Business Park LLC", "role": "Grantor" },
+    { "name": "County Airport Authority", "role": "Grantee" }
+  ],
+  "easement_details": {
+    "easement_type": "Avigation",
+    "property_description": "100 Runway View Drive",
+    "rights_granted": "The right for the flight of aircraft through the airspace above the surface of the property.",
+    "restrictions_imposed": "Restricted from erecting any structure or allowing any natural growth to exceed a height of 50 feet."
+  },
+  "discovered_entities": []
+}

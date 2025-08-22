@@ -1,0 +1,31 @@
+**INPUT DOCUMENT TEXT:**
+INJURY AND ILLNESS PREVENTION PROGRAM (IIPP)
+FOR THE DOWNTOWN TOWER PROJECT
+
+Company: BuildRight Corp.
+Date Revised: September 1, 2031
+
+SAFETY OFFICER: The designated site safety officer is Bill Jones.
+
+PROCEDURES:
+This plan includes procedures for hazard identification, accident investigation, and emergency response. Weekly tailgate safety meetings are mandatory for all personnel.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Injury and Illness Prevention Program (IIPP)",
+  "effective_date": "2031-09-01",
+  "parties": [
+    { "name": "BuildRight Corp.", "role": "Company" }
+  ],
+  "safety_plan_details": {
+    "project_name": "Downtown Tower Project",
+    "safety_officer": "Bill Jones",
+    "key_procedures": [
+      "Hazard identification",
+      "Accident investigation",
+      "Emergency response",
+      "Weekly tailgate safety meetings"
+    ]
+  },
+  "discovered_entities": []
+}

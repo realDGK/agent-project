@@ -1,0 +1,27 @@
+**INPUT DOCUMENT TEXT:**
+TAX DEED
+
+WHEREAS, the real property described as APN 777-888-999 was sold on September 10, 2028, by the County Tax Collector for delinquent taxes for the years 2025 and 2026.
+
+NOW, THEREFORE, the County of Sunshine, a political subdivision of the State of Florida ("Grantor"), grants to TAX SALE BUYERS LLC ("Grantee"), that certain real property. The former owner was Delinquent Taxpayer.
+
+Executed September 12, 2028.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Tax Deed",
+  "effective_date": "2028-09-12",
+  "parties": [
+    { "name": "County of Sunshine", "role": "Grantor" },
+    { "name": "TAX SALE BUYERS LLC", "role": "Grantee" },
+    { "name": "Delinquent Taxpayer", "role": "Former Owner" }
+  ],
+  "deed_details": {
+    "deed_type": "Tax Deed",
+    "property_legal_description": null,
+    "apn": "777-888-999",
+    "tax_sale_date": "2028-09-10",
+    "delinquent_tax_years": "2025 and 2026"
+  },
+  "discovered_entities": []
+}

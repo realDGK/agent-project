@@ -1,0 +1,36 @@
+INPUT DOCUMENT TEXT:
+MUTUAL NON-DISCLOSURE AGREEMENT
+This Mutual NDA ("Agreement") is made as of January 5, 2027, between Prospect Development Corp. ("Prospect") and Visionary Architects, Inc. ("Visionary"). Each party may be a Disclosing Party and a Receiving Party.
+Purpose. The parties wish to explore a potential business relationship related to the "Sunrise Hills Project" (the "Purpose").
+Confidential Information. "Confidential Information" includes all non-public business, technical, and financial information disclosed by one party to the other.
+Term of Confidentiality. The obligations of this Agreement shall survive for a period of five (5) years from the date of disclosure.
+JSON OUTPUT:
+{
+"contract_name": "Mutual Non-Disclosure Agreement",
+"effective_date": "2027-01-05",
+"parties": [
+{
+"name": "Prospect Development Corp.",
+"role": "Disclosing Party"
+},
+{
+"name": "Prospect Development Corp.",
+"role": "Receiving Party"
+},
+{
+"name": "Visionary Architects, Inc.",
+"role": "Disclosing Party"
+},
+{
+"name": "Visionary Architects, Inc.",
+"role": "Receiving Party"
+}
+],
+"nda_details": {
+"nda_type": "Mutual",
+"purpose_of_disclosure": "To explore a potential business relationship related to the 'Sunrise Hills Project'.",
+"term_of_confidentiality": "Five (5) years from the date of disclosure.",
+"definition_of_confidential_info": "All non-public business, technical, and financial information disclosed by one party to the other."
+},
+"discovered_entities": []
+}

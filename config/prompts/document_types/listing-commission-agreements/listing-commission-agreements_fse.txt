@@ -1,0 +1,27 @@
+**INPUT DOCUMENT TEXT:**
+EXCLUSIVE AUTHORIZATION AND RIGHT TO SELL
+
+1. Owner: OAK TREE INVESTORS, LLC
+2. Broker: Global Commercial Real Estate
+3. Property: 100 Valley View Road, Napa, CA
+4. Listing Period: Commencing January 1, 2027 and expiring 180 days thereafter.
+5. Listing Price: $12,000,000
+6. Commission: Owner agrees to pay Broker a commission of five percent (5%) of the selling price. Broker agrees to offer 2.5% to a cooperating broker.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Exclusive Authorization and Right to Sell",
+  "effective_date": "2027-01-01",
+  "parties": [
+    { "name": "OAK TREE INVESTORS, LLC", "role": "Owner" },
+    { "name": "Global Commercial Real Estate", "role": "Broker" }
+  ],
+  "listing_agreement_details": {
+    "property_address": "100 Valley View Road, Napa, CA",
+    "listing_price": 12000000,
+    "listing_period": "180 days from January 1, 2027",
+    "commission_rate_pct": 5,
+    "cooperating_broker_split": "2.5%"
+  },
+  "discovered_entities": []
+}

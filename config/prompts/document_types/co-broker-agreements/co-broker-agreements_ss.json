@@ -1,0 +1,45 @@
+{
+  "title": "Co-Broker Agreement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Co-Brokerage Agreement'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Listing Broker", "Cooperating Broker"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "co_broker_agreement_details": {
+      "type": "object",
+      "properties": {
+        "property_address": { "type": "string" },
+        "client_name": { "type": "string" },
+        "commission_split": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "co_broker_agreement_details"]
+}

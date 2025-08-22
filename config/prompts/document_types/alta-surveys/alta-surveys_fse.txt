@@ -1,0 +1,28 @@
+**INPUT DOCUMENT TEXT:**
+ALTA/NSPS LAND TITLE SURVEY
+A survey of Lot 10, Block B, of the Sunnyside Estates, City of Austin, Travis County, Texas.
+For: Big Tex Development
+Title Company: First American Title, GF No. 12345
+
+Surveyor's Certification:
+I hereby certify that this map or plat and the survey on which it is based were made in accordance with the 2021 Minimum Standard Detail Requirements for ALTA/NSPS Land Title Surveys, jointly established and adopted by ALTA and NSPS, and includes items 1, 5, 8, and 11 of Table A thereof.
+Date of Certification: August 30, 2028
+John Surveyor, RPLS No. 1234
+
+**JSON OUTPUT:**
+{
+  "contract_name": "ALTA/NSPS Land Title Survey",
+  "effective_date": "2028-08-30",
+  "parties": [
+    { "name": "Big Tex Development", "role": "Client" },
+    { "name": "John Surveyor, RPLS No. 1234", "role": "Surveyor" },
+    { "name": "First American Title", "role": "Title Company" }
+  ],
+  "survey_details": {
+    "property_address": null,
+    "property_legal_description": "Lot 10, Block B, of the Sunnyside Estates, City of Austin, Travis County, Texas.",
+    "apn": null,
+    "survey_type": "ALTA/NSPS Land Title Survey",
+    "table_a_items": ["1", "5", "8", "11"]
+  }
+}

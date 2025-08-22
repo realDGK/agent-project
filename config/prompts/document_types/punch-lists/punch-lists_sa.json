@@ -1,0 +1,21 @@
+{
+  "punch_list_details": {
+    "type": "object",
+    "description": "Details specific to a construction punch list.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "total_items": { "type": "integer" },
+      "items": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "location": { "type": "string" },
+            "description": { "type": "string" },
+            "status": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}

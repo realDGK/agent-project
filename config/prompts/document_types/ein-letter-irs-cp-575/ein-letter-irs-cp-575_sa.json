@@ -1,0 +1,16 @@
+{
+  "tax_details": {
+    "type": "object",
+    "description": "Details specific to tax-related documents and information.",
+    "properties": {
+      "ein": {
+        "type": "string",
+        "description": "The 9-digit Employer Identification Number assigned to the entity."
+      },
+      "form_reference": {
+        "type": "string",
+        "description": "The official form number referenced in the document (e.g., 'CP-575', '1099-S')."
+      }
+    }
+  }
+}

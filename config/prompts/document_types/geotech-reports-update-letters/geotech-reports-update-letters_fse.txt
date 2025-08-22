@@ -1,0 +1,24 @@
+**INPUT DOCUMENT TEXT:**
+GEOTECHNICAL INVESTIGATION UPDATE
+Date: July 22, 2027
+Project No: 12345
+Project: Proposed Retail Center at 456 Commerce Way, Irvine, CA
+To: Premier Properties
+
+This letter presents an update to our Geotechnical Investigation dated May 1, 2026. Based on a review of the revised grading plans, our original recommendations for foundation design and soil compaction remain valid. No significant changes are required.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Geotechnical Investigation Update",
+  "effective_date": "2027-07-22",
+  "parties": [
+    { "name": "Premier Properties", "role": "Client" }
+  ],
+  "technical_report_details": {
+    "project_name": "Proposed Retail Center",
+    "report_type": "Update Letter",
+    "site_address": "456 Commerce Way, Irvine, CA",
+    "key_findings": "Original recommendations remain valid after review of revised grading plans.",
+    "recommendations_summary": "No significant changes are required."
+  }
+}

@@ -1,0 +1,26 @@
+**INPUT DOCUMENT TEXT:**
+COOPERATING BROKER COMMISSION AGREEMENT
+
+Date: March 1, 2027
+Listing Broker: Global Commercial Real Estate
+Cooperating Broker: Local Realty Inc.
+Property: 100 Valley View Road, Napa, CA
+Prospective Buyer: WESTERN LAND PARTNERS, LP
+
+Listing Broker agrees to pay Cooperating Broker a commission equal to two and one-half percent (2.5%) of the final sales price if the Prospective Buyer successfully closes escrow on the Property.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Cooperating Broker Commission Agreement",
+  "effective_date": "2027-03-01",
+  "parties": [
+    { "name": "Global Commercial Real Estate", "role": "Listing Broker" },
+    { "name": "Local Realty Inc.", "role": "Cooperating Broker" }
+  ],
+  "co_broker_agreement_details": {
+    "property_address": "100 Valley View Road, Napa, CA",
+    "client_name": "WESTERN LAND PARTNERS, LP",
+    "commission_split": "2.5% of the final sales price."
+  },
+  "discovered_entities": []
+}

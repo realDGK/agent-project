@@ -1,0 +1,40 @@
+**INPUT DOCUMENT TEXT:**
+BENEFICIARY STATEMENT
+
+Date: October 2, 2027
+To: Premier Title & Escrow
+Re: Loan from Private Lender LLC to OAK TREE INVESTORS, LLC
+
+This statement is provided for your escrow #PT-54321.
+
+As of October 1, 2027, the status of the loan secured by a Deed of Trust is as follows:
+- Unpaid Principal Balance: $1,200,000.00
+- Interest Rate: 8.5% fixed
+- Accrued Interest: $1,416.67
+- Late Charges Due: $0.00
+- Total Payoff: $1,201,416.67
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Beneficiary Statement",
+  "effective_date": "2027-10-02",
+  "parties": [
+    { "name": "Private Lender LLC", "role": "Beneficiary" },
+    { "name": "OAK TREE INVESTORS, LLC", "role": "Trustor" },
+    { "name": "Premier Title & Escrow", "role": "Escrow Holder" }
+  ],
+  "payoff_details": {
+    "loan_number": null,
+    "unpaid_balance": 1200000.00,
+    "interest_rate": "8.5% fixed",
+    "statement_as_of_date": "2027-10-01",
+    "late_charges": 0.00
+  },
+  "discovered_entities": [
+    {
+      "entity_name": "Total Payoff",
+      "entity_value": "1201416.67",
+      "context_summary": "The total amount including principal and accrued interest as of the statement date."
+    }
+  ]
+}

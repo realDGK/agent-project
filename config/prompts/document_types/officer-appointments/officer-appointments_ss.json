@@ -1,0 +1,58 @@
+{
+  "title": "Officer Appointment Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Certificate of Appointment of Officers'."
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date",
+      "description": "The date the appointment was made effective."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Entity", "Appointee", "Appointing Officer"]
+          },
+          "title": { "type": "string" }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "officer_appointment_details": {
+      "type": "object",
+      "properties": {
+        "appointed_officers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "title": { "type": "string" }
+            }
+          },
+          "description": "A list of individuals and the officer titles they were appointed to."
+        }
+      }
+    },
+    "discovered_entities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "entity_name": { "type": "string" },
+          "entity_value": { "type": "string" },
+          "context_summary": { "type": "string" }
+        }
+      }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties"]
+}

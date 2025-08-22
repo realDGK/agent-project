@@ -1,0 +1,52 @@
+**INPUT DOCUMENT TEXT:**
+DUE DILIGENCE REQUEST LIST
+Project: Sunrise Hills Acquisition
+
+To: Seller LLC
+From: Buyer Corp
+Date: January 15, 2028
+
+Please provide the following documents for our review:
+
+I. Corporate Documents
+   a. Articles of Organization
+   b. Operating Agreement
+
+II. Financial Information
+   a. Trailing 12-month P&L statements
+   b. Current rent roll
+
+III. Physical Property Documents
+   a. ALTA Survey
+   b. Phase I Environmental Report
+   c. All active Leases
+
+IV. Entitlements
+   a. Tentative Tract Map
+   b. Conditions of Approval
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Due Diligence Request List",
+  "effective_date": "2028-01-15",
+  "parties": [
+    {
+      "name": "Buyer Corp",
+      "role": "Requesting Party"
+    },
+    {
+      "name": "Seller LLC",
+      "role": "Responding Party"
+    }
+  ],
+  "due_diligence_details": {
+    "project_name": "Sunrise Hills Acquisition",
+    "requested_item_categories": [
+      "Corporate Documents",
+      "Financial Information",
+      "Physical Property Documents",
+      "Entitlements"
+    ]
+  },
+  "discovered_entities": []
+}

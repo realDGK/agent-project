@@ -1,0 +1,27 @@
+{
+  "corporate_action_details": {
+    "type": "object",
+    "description": "Details specific to a corporate action, such as a board resolution or meeting minutes.",
+    "properties": {
+      "action_type": {
+        "type": "string",
+        "enum": ["Board Meeting Minutes", "Shareholder Meeting Minutes", "Unanimous Written Consent", "Resolution"],
+        "description": "The type of corporate action being recorded."
+      },
+      "resolutions_passed": {
+        "type": "array",
+        "items": { "type": "string" },
+        "description": "A list summarizing the key decisions or resolutions approved."
+      },
+      "attendees": {
+        "type": "array",
+        "items": { "type": "string" },
+        "description": "A list of individuals present at the meeting."
+      },
+      "voting_summary": {
+        "type": "string",
+        "description": "A summary of the vote outcome (e.g., 'Unanimously approved', 'Passed by a majority vote')."
+      }
+    }
+  }
+}

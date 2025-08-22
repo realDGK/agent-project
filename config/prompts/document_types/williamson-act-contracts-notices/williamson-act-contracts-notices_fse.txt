@@ -1,0 +1,25 @@
+**INPUT DOCUMENT TEXT:**
+CALIFORNIA LAND CONSERVATION ACT CONTRACT
+Contract No. WA2020-001
+
+This contract is made by and between the County of Yolo and Ranch Properties LLC, Landowner of APN 012-345-678, consisting of 500 acres.
+
+The Landowner agrees to restrict the use of the land to agricultural and compatible uses for an initial term of 10 years, automatically renewing annually.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "California Land Conservation Act Contract",
+  "effective_date": null,
+  "parties": [
+    { "name": "County of Yolo", "role": "County" },
+    { "name": "Ranch Properties LLC", "role": "Landowner" }
+  ],
+  "williamson_act_details": {
+    "contract_number": "WA2020-001",
+    "property_apn": "012-345-678",
+    "acreage": 500,
+    "term_of_contract": "Initial term of 10 years, automatically renewing annually.",
+    "notice_of_non_renewal_date": null
+  },
+  "discovered_entities": []
+}

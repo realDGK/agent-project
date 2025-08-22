@@ -1,0 +1,29 @@
+{
+  "utility_service_details": {
+    "type": "object",
+    "description": "Details specific to utility service letters and agreements.",
+    "properties": {
+      "utility_type": {
+        "type": "string"
+      },
+      "project_name": {
+        "type": "string"
+      },
+      "service_commitment": {
+        "type": "string"
+      },
+      "conditions_of_service": {
+        "type": "string"
+      },
+      "service_address": {
+        "type": "string"
+      },
+      "meter_type_requested": {
+        "type": "string"
+      },
+      "service_type": {
+        "type": "string"
+      }
+    }
+  }
+}

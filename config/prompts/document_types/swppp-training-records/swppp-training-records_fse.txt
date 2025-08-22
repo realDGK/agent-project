@@ -1,0 +1,30 @@
+**INPUT DOCUMENT TEXT:**
+STORMWATER POLLUTION PREVENTION TRAINING RECORD
+
+Project: Riverbend Tract No. 8888
+Date: July 15, 2030
+Trainer: John Smith, QSP
+
+Topic: BMP Installation and Maintenance
+
+Attendees:
+- Mike Davis (Signature)
+- Laura Chen (Signature)
+- Bill Jones (Signature)
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Stormwater Pollution Prevention Training Record",
+  "parties": [
+    { "name": "John Smith, QSP", "role": "Trainer" },
+    { "name": "Mike Davis", "role": "Attendee" },
+    { "name": "Laura Chen", "role": "Attendee" },
+    { "name": "Bill Jones", "role": "Attendee" }
+  ],
+  "training_record_details": {
+    "project_name": "Riverbend Tract No. 8888",
+    "training_date": "2030-07-15",
+    "training_topic": "BMP Installation and Maintenance"
+  },
+  "discovered_entities": []
+}

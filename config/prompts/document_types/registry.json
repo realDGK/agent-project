@@ -1,0 +1,2826 @@
+{
+  "1031-exchange-agreement": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "f4379559",
+    "path": "config/prompts/document_types/1031-exchange-agreement",
+    "properties_count": 5
+  },
+  "1099-s": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "d043931e",
+    "path": "config/prompts/document_types/1099-s",
+    "properties_count": 5
+  },
+  "1099s-w-9s": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "400c7d0a",
+    "path": "config/prompts/document_types/1099s-w-9s",
+    "properties_count": 4
+  },
+  "5-legal-descriptions-plats": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "94663634",
+    "path": "config/prompts/document_types/5-legal-descriptions-plats",
+    "properties_count": 4
+  },
+  "571-l-business-property-statements": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "c4106c4a",
+    "path": "config/prompts/document_types/571-l-business-property-statements",
+    "properties_count": 5
+  },
+  "ab-1600-impact-fee-reports": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "d5c12e58",
+    "path": "config/prompts/document_types/ab-1600-impact-fee-reports",
+    "properties_count": 5
+  },
+  "abstracts-of-judgment": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "f4a54520",
+    "path": "config/prompts/document_types/abstracts-of-judgment",
+    "properties_count": 5
+  },
+  "access-entry-agreements": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "e7db8e94",
+    "path": "config/prompts/document_types/access-entry-agreements",
+    "properties_count": 5
+  },
+  "accessibility-casp-reports": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "5b3114f7",
+    "path": "config/prompts/document_types/accessibility-casp-reports",
+    "properties_count": 5
+  },
+  "adu-program-docs": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "3a0e8cb0",
+    "path": "config/prompts/document_types/adu-program-docs",
+    "properties_count": 5
+  },
+  "aerials-maps": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "fff0fb40",
+    "path": "config/prompts/document_types/aerials-maps",
+    "properties_count": 4
+  },
+  "agency-comment-response-letters": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "9f420756",
+    "path": "config/prompts/document_types/agency-comment-response-letters",
+    "properties_count": 5
+  },
+  "agricultural-leases-crop-rights": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "7b34ac83",
+    "path": "config/prompts/document_types/agricultural-leases-crop-rights",
+    "properties_count": 5
+  },
+  "aia-a101-a102-gmp-fix-price": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "3f4ac3b2",
+    "path": "config/prompts/document_types/aia-a101-a102-gmp-fix-price",
+    "properties_count": 5
+  },
+  "aia-a201-general-conditions": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "f48b5a4e",
+    "path": "config/prompts/document_types/aia-a201-general-conditions",
+    "properties_count": 5
+  },
+  "aia-b101-design": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "97e623bb",
+    "path": "config/prompts/document_types/aia-b101-design",
+    "properties_count": 5
+  },
+  "air-district-permits": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "7c8627ab",
+    "path": "config/prompts/document_types/air-district-permits",
+    "properties_count": 5
+  },
+  "air-quality-ghg-report": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "b68147eb",
+    "path": "config/prompts/document_types/air-quality-ghg-report",
+    "properties_count": 5
+  },
+  "airspace-easements": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "aa93434b",
+    "path": "config/prompts/document_types/airspace-easements",
+    "properties_count": 5
+  },
+  "alta-nsps-survey": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "65193962",
+    "path": "config/prompts/document_types/alta-nsps-survey",
+    "properties_count": 5
+  },
+  "alta-owner-lender-policies": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "7171aa90",
+    "path": "config/prompts/document_types/alta-owner-lender-policies",
+    "properties_count": 5
+  },
+  "alta-surveys": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "f3b44384",
+    "path": "config/prompts/document_types/alta-surveys",
+    "properties_count": 4
+  },
+  "annexation-documents": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "de0f2bb4",
+    "path": "config/prompts/document_types/annexation-documents",
+    "properties_count": 5
+  },
+  "answers-cross-complaints": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "83eb06be",
+    "path": "config/prompts/document_types/answers-cross-complaints",
+    "properties_count": 5
+  },
+  "appraisal-s": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "5b6974ec",
+    "path": "config/prompts/document_types/appraisal-s",
+    "properties_count": 5
+  },
+  "architectural-guidelines": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "4805caf9",
+    "path": "config/prompts/document_types/architectural-guidelines",
+    "properties_count": 5
+  },
+  "architectural-review-approvals": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "cfdb2706",
+    "path": "config/prompts/document_types/architectural-review-approvals",
+    "properties_count": 5
+  },
+  "articles-of-incorporation": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "fd87229d",
+    "path": "config/prompts/document_types/articles-of-incorporation",
+    "properties_count": 6
+  },
+  "as-builts-record-drawings": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "7a8c609d",
+    "path": "config/prompts/document_types/as-builts-record-drawings",
+    "properties_count": 5
+  },
+  "assessment-district-bond-docs": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "9278868e",
+    "path": "config/prompts/document_types/assessment-district-bond-docs",
+    "properties_count": 5
+  },
+  "assessment-district-diagram": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "e1afb64f",
+    "path": "config/prompts/document_types/assessment-district-diagram",
+    "properties_count": 4
+  },
+  "assessment-district-engineers-report": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "300a02fb",
+    "path": "config/prompts/document_types/assessment-district-engineers-report",
+    "properties_count": 5
+  },
+  "assignment-assumption-of-off-site-public-facility-credits": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "9ec006dc",
+    "path": "config/prompts/document_types/assignment-assumption-of-off-site-public-facility-credits",
+    "properties_count": 5
+  },
+  "assignment-assumption-of-psa": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "20520e6d",
+    "path": "config/prompts/document_types/assignment-assumption-of-psa",
+    "properties_count": 5
+  },
+  "assignment-of-intangibles": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "ab3cbc50",
+    "path": "config/prompts/document_types/assignment-of-intangibles",
+    "properties_count": 5
+  },
+  "assignment-of-rents-leases": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "e05174d6",
+    "path": "config/prompts/document_types/assignment-of-rents-leases",
+    "properties_count": 5
+  },
+  "avigation-easements": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "afa8f1ea",
+    "path": "config/prompts/document_types/avigation-easements",
+    "properties_count": 5
+  },
+  "backflow-well-permits": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "f3e2a5c1",
+    "path": "config/prompts/document_types/backflow-well-permits",
+    "properties_count": 5
+  },
+  "bankruptcy-petitions": {
+    "has_additions": true,
+    "has_few_shot": false,
+    "has_specialist": false,
+    "hash": "c58ff778",
+    "path": "config/prompts/document_types/bankruptcy-petitions",
+    "properties_count": 0
+  },
+  "bankruptcy-petitions-schedules-proofs-of-claim": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "27dff10b",
+    "path": "config/prompts/document_types/bankruptcy-petitions-schedules-proofs-of-claim",
+    "properties_count": 5
+  },
+  "baseline-updated-schedules": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "291ee627",
+    "path": "config/prompts/document_types/baseline-updated-schedules",
+    "properties_count": 5
+  },
+  "beneficiary-statements": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "465dcf5b",
+    "path": "config/prompts/document_types/beneficiary-statements",
+    "properties_count": 5
+  },
+  "bill-of-sale": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "3b53493e",
+    "path": "config/prompts/document_types/bill-of-sale",
+    "properties_count": 5
+  },
+  "biological-resources-report": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "7ac3f942",
+    "path": "config/prompts/document_types/biological-resources-report",
+    "properties_count": 5
+  },
+  "bond-exoneration-requests": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "70295f9c",
+    "path": "config/prompts/document_types/bond-exoneration-requests",
+    "properties_count": 5
+  },
+  "bovs-broker-opinion-of-value": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "94e80082",
+    "path": "config/prompts/document_types/bovs-broker-opinion-of-value",
+    "properties_count": 5
+  },
+  "budget-cost-to-complete": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "3c73d484",
+    "path": "config/prompts/document_types/budget-cost-to-complete",
+    "properties_count": 5
+  },
+  "building-grading-demolition-permits": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "6fd9f0c8",
+    "path": "config/prompts/document_types/building-grading-demolition-permits",
+    "properties_count": 5
+  },
+  "business-licenses": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "f69dd336",
+    "path": "config/prompts/document_types/business-licenses",
+    "properties_count": 5
+  },
+  "buy-sell-agreement": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "fa866027",
+    "path": "config/prompts/document_types/buy-sell-agreement",
+    "properties_count": 5
+  },
+  "bylaws": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "a5915156",
+    "path": "config/prompts/document_types/bylaws",
+    "properties_count": 5
+  },
+  "calgreen-docs": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "6ca33e0d",
+    "path": "config/prompts/document_types/calgreen-docs",
+    "properties_count": 5
+  },
+  "cam-budgets-reconciliations": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "b5d032d1",
+    "path": "config/prompts/document_types/cam-budgets-reconciliations",
+    "properties_count": 5
+  },
+  "capacity-allocation-agreements-transfers": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "e8932715",
+    "path": "config/prompts/document_types/capacity-allocation-agreements-transfers",
+    "properties_count": 5
+  },
+  "capital-calls-investor-consents": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "d7a0fae2",
+    "path": "config/prompts/document_types/capital-calls-investor-consents",
+    "properties_count": 5
+  },
+  "ccrs-covenants-conditions-restrictions": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "2e4402a2",
+    "path": "config/prompts/document_types/ccrs-covenants-conditions-restrictions",
+    "properties_count": 6
+  },
+  "cdfw-1602-permit": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "0e6c3199",
+    "path": "config/prompts/document_types/cdfw-1602-permit",
+    "properties_count": 5
+  },
+  "ce-categorical-exclusion": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "3d4c7391",
+    "path": "config/prompts/document_types/ce-categorical-exclusion",
+    "properties_count": 5
+  },
+  "certificate-of-compliance": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "ffd2750e",
+    "path": "config/prompts/document_types/certificate-of-compliance",
+    "properties_count": 6
+  },
+  "certificate-of-correction": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "986d86ba",
+    "path": "config/prompts/document_types/certificate-of-correction",
+    "properties_count": 8
+  },
+  "certificate-of-foreign-qualification": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "9dd08aa2",
+    "path": "config/prompts/document_types/certificate-of-foreign-qualification",
+    "properties_count": 4
+  },
+  "certificate-of-good-standing": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "ecea1182",
+    "path": "config/prompts/document_types/certificate-of-good-standing",
+    "properties_count": 4
+  },
+  "certificate-of-insurance-coi": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "b10ffed9",
+    "path": "config/prompts/document_types/certificate-of-insurance-coi",
+    "properties_count": 5
+  },
+  "certificate-of-substantial-completion": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "ac5f2c5f",
+    "path": "config/prompts/document_types/certificate-of-substantial-completion",
+    "properties_count": 5
+  },
+  "certified-payroll-prevailing-wage-dir": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": false,
+    "hash": "e009d4e3",
+    "path": "config/prompts/document_types/certified-payroll-prevailing-wage-dir",
+    "properties_count": 0
+  },
+  "cfd-bond-indenture": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "3797e80a",
+    "path": "config/prompts/document_types/cfd-bond-indenture",
+    "properties_count": 5
+  },
+  "cfd-continuing-disclosure": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "e12f3134",
+    "path": "config/prompts/document_types/cfd-continuing-disclosure",
+    "properties_count": 5
+  },
+  "cfd-election-results": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "dca6beff",
+    "path": "config/prompts/document_types/cfd-election-results",
+    "properties_count": 5
+  },
+  "cfd-fiscal-agent-agreement": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "04d944e8",
+    "path": "config/prompts/document_types/cfd-fiscal-agent-agreement",
+    "properties_count": 5
+  },
+  "cfd-mello-roos-boundary-map": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "b257ce72",
+    "path": "config/prompts/document_types/cfd-mello-roos-boundary-map",
+    "properties_count": 5
+  },
+  "cfd-official-statement": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "0ebb299e",
+    "path": "config/prompts/document_types/cfd-official-statement",
+    "properties_count": 5
+  },
+  "cfd-resolutions-intention-formation-levy": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "def77b02",
+    "path": "config/prompts/document_types/cfd-resolutions-intention-formation-levy",
+    "properties_count": 5
+  },
+  "cfd-special-tax-reports": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "15122308",
+    "path": "config/prompts/document_types/cfd-special-tax-reports",
+    "properties_count": 5
+  },
+  "change-orders-directives": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "ad749d19",
+    "path": "config/prompts/document_types/change-orders-directives",
+    "properties_count": 5
+  },
+  "civil-plan-sets": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "6943d308",
+    "path": "config/prompts/document_types/civil-plan-sets",
+    "properties_count": 5
+  },
+  "closing-certificates": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "2290c34c",
+    "path": "config/prompts/document_types/closing-certificates",
+    "properties_count": 5
+  },
+  "cm-gc-agreements": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "c58b7d2c",
+    "path": "config/prompts/document_types/cm-gc-agreements",
+    "properties_count": 5
+  },
+  "co-broker-agreements": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "90472160",
+    "path": "config/prompts/document_types/co-broker-agreements",
+    "properties_count": 5
+  },
+  "coastal-development-permits": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "ab33cb87",
+    "path": "config/prompts/document_types/coastal-development-permits",
+    "properties_count": 5
+  },
+  "collateral-assignments-contracts-plans-permits": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "bf89126b",
+    "path": "config/prompts/document_types/collateral-assignments-contracts-plans-permits",
+    "properties_count": 5
+  },
+  "community-benefits-agreements": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "60620fa5",
+    "path": "config/prompts/document_types/community-benefits-agreements",
+    "properties_count": 5
+  },
+  "complaints-petitions": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "1f559907",
+    "path": "config/prompts/document_types/complaints-petitions",
+    "properties_count": 5
+  },
+  "composite-utility-plans": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "2f36ecd8",
+    "path": "config/prompts/document_types/composite-utility-plans",
+    "properties_count": 5
+  },
+  "conditional-unconditional-lien-waivers": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "28191933",
+    "path": "config/prompts/document_types/conditional-unconditional-lien-waivers",
+    "properties_count": 5
+  },
+  "conditions-of-approval-coas": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "71a9cec0",
+    "path": "config/prompts/document_types/conditions-of-approval-coas",
+    "properties_count": 5
+  },
+  "condominium-plan": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "a401c821",
+    "path": "config/prompts/document_types/condominium-plan",
+    "properties_count": 5
+  },
+  "confidentiality-agreement": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "f3398f63",
+    "path": "config/prompts/document_types/confidentiality-agreement",
+    "properties_count": 5
+  },
+  "confirmation-of-bond-impact-fee-payoffs": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "3518fc60",
+    "path": "config/prompts/document_types/confirmation-of-bond-impact-fee-payoffs",
+    "properties_count": 5
+  },
+  "connection-permits": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "006bc184",
+    "path": "config/prompts/document_types/connection-permits",
+    "properties_count": 5
+  },
+  "conservation-easements": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "63bd5dd8",
+    "path": "config/prompts/document_types/conservation-easements",
+    "properties_count": 6
+  },
+  "construction-loan-agreement": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "57494332",
+    "path": "config/prompts/document_types/construction-loan-agreement",
+    "properties_count": 5
+  },
+  "consultant-agreements-civil-survey-geotech-etc": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "ab1c6418",
+    "path": "config/prompts/document_types/consultant-agreements-civil-survey-geotech-etc",
+    "properties_count": 5
+  },
+  "consulting-agreement": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "22ecde55",
+    "path": "config/prompts/document_types/consulting-agreement",
+    "properties_count": 5
+  },
+  "cost-segregation-reports": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "da5836a8",
+    "path": "config/prompts/document_types/cost-segregation-reports",
+    "properties_count": 5
+  },
+  "counsel-opinion-letters": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "3c8dcf6b",
+    "path": "config/prompts/document_types/counsel-opinion-letters",
+    "properties_count": 5
+  },
+  "cultural-tribal-ab-52-report": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "1c167bc6",
+    "path": "config/prompts/document_types/cultural-tribal-ab-52-report",
+    "properties_count": 5
+  },
+  "cup-conditional-use-permit": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "80fb1336",
+    "path": "config/prompts/document_types/cup-conditional-use-permit",
+    "properties_count": 5
+  },
+  "cure-default-notices-contracts": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "a9148a71",
+    "path": "config/prompts/document_types/cure-default-notices-contracts",
+    "properties_count": 5
+  },
+  "daily-reports": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "0e891f15",
+    "path": "config/prompts/document_types/daily-reports",
+    "properties_count": 5
+  },
+  "dba-fbn-filings": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "1ab1f124",
+    "path": "config/prompts/document_types/dba-fbn-filings",
+    "properties_count": 5
+  },
+  "decision-logs": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "5a3aa07c",
+    "path": "config/prompts/document_types/decision-logs",
+    "properties_count": 4
+  },
+  "declarations": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "2f9a0f6e",
+    "path": "config/prompts/document_types/declarations",
+    "properties_count": 4
+  },
+  "deed-of-trust-mortgage": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "d32f0722",
+    "path": "config/prompts/document_types/deed-of-trust-mortgage",
+    "properties_count": 6
+  },
+  "demand-letters": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "97e6162a",
+    "path": "config/prompts/document_types/demand-letters",
+    "properties_count": 5
+  },
+  "demographic-trade-area-reports": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "f9877095",
+    "path": "config/prompts/document_types/demographic-trade-area-reports",
+    "properties_count": 5
+  },
+  "density-bonus-agreement": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "5cc88e21",
+    "path": "config/prompts/document_types/density-bonus-agreement",
+    "properties_count": 5
+  },
+  "depreciation-schedules": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "257170da",
+    "path": "config/prompts/document_types/depreciation-schedules",
+    "properties_count": 5
+  },
+  "development-agreement-da": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "d211bfa4",
+    "path": "config/prompts/document_types/development-agreement-da",
+    "properties_count": 5
+  },
+  "development-impact-fee-dif-tumf-calculations": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "9d322ef7",
+    "path": "config/prompts/document_types/development-impact-fee-dif-tumf-calculations",
+    "properties_count": 5
+  },
+  "discovery-rfps-rogs-rfas": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "d5ac0e5f",
+    "path": "config/prompts/document_types/discovery-rfps-rogs-rfas",
+    "properties_count": 5
+  },
+  "draft-final-eir": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "3e7f3d4f",
+    "path": "config/prompts/document_types/draft-final-eir",
+    "properties_count": 5
+  },
+  "draw-requests-requisitions": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "a12d9f32",
+    "path": "config/prompts/document_types/draw-requests-requisitions",
+    "properties_count": 5
+  },
+  "due-diligence-request-list": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "d4df09c0",
+    "path": "config/prompts/document_types/due-diligence-request-list",
+    "properties_count": 5
+  },
+  "dust-control-plans": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "b4e5e1c6",
+    "path": "config/prompts/document_types/dust-control-plans",
+    "properties_count": 5
+  },
+  "ea-fonsi-environmental-assessment-finding-of-no-significant-impact": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "35a6e1bb",
+    "path": "config/prompts/document_types/ea-fonsi-environmental-assessment-finding-of-no-significant-impact",
+    "properties_count": 5
+  },
+  "easement-sketches-legal-exhibits": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "2a1936f2",
+    "path": "config/prompts/document_types/easement-sketches-legal-exhibits",
+    "properties_count": 4
+  },
+  "eifd-tif-formation-docs": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "5d9231e6",
+    "path": "config/prompts/document_types/eifd-tif-formation-docs",
+    "properties_count": 5
+  },
+  "ein-letter-irs-cp-575": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "5b1463b3",
+    "path": "config/prompts/document_types/ein-letter-irs-cp-575",
+    "properties_count": 5
+  },
+  "eir-addendum": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "a2409137",
+    "path": "config/prompts/document_types/eir-addendum",
+    "properties_count": 5
+  },
+  "eis-rod-environmental-impact-statement-record-of-decision": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "f3c3702a",
+    "path": "config/prompts/document_types/eis-rod-environmental-impact-statement-record-of-decision",
+    "properties_count": 5
+  },
+  "elevator-boiler-certificates": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "348a0e33",
+    "path": "config/prompts/document_types/elevator-boiler-certificates",
+    "properties_count": 5
+  },
+  "employment-agreement": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "b85cfd77",
+    "path": "config/prompts/document_types/employment-agreement",
+    "properties_count": 5
+  },
+  "encroachment-agreements": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "498eee5e",
+    "path": "config/prompts/document_types/encroachment-agreements",
+    "properties_count": 6
+  },
+  "encroachment-maintenance-agreements": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "f58b8961",
+    "path": "config/prompts/document_types/encroachment-maintenance-agreements",
+    "properties_count": 4
+  },
+  "encroachment-permits-city-county-caltrans": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "bf924cd4",
+    "path": "config/prompts/document_types/encroachment-permits-city-county-caltrans",
+    "properties_count": 5
+  },
+  "endorsements": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "4c83b186",
+    "path": "config/prompts/document_types/endorsements",
+    "properties_count": 5
+  },
+  "energy-title-24-reports": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "4df60579",
+    "path": "config/prompts/document_types/energy-title-24-reports",
+    "properties_count": 5
+  },
+  "environmental-indemnity": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "760e3b03",
+    "path": "config/prompts/document_types/environmental-indemnity",
+    "properties_count": 5
+  },
+  "environmental-reliance-letters": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "b9b6f8cc",
+    "path": "config/prompts/document_types/environmental-reliance-letters",
+    "properties_count": 5
+  },
+  "escrow-instructions": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "15d528f0",
+    "path": "config/prompts/document_types/escrow-instructions",
+    "properties_count": 5
+  },
+  "estoppel-certificate": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "09c391d5",
+    "path": "config/prompts/document_types/estoppel-certificate",
+    "properties_count": 5
+  },
+  "eviction-unlawful-detainer-filings": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "0a4944e3",
+    "path": "config/prompts/document_types/eviction-unlawful-detainer-filings",
+    "properties_count": 4
+  },
+  "exclusive-use-co-tenancy-agreements": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "9ecc07be",
+    "path": "config/prompts/document_types/exclusive-use-co-tenancy-agreements",
+    "properties_count": 4
+  },
+  "exclusivity-no-shop-agreement": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "3c587e35",
+    "path": "config/prompts/document_types/exclusivity-no-shop-agreement",
+    "properties_count": 5
+  },
+  "fee-deferral-agreements": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "1ff620f4",
+    "path": "config/prompts/document_types/fee-deferral-agreements",
+    "properties_count": 5
+  },
+  "fema-lomr-loma": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "a8e9a69f",
+    "path": "config/prompts/document_types/fema-lomr-loma",
+    "properties_count": 5
+  },
+  "final-map-parcel-map": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "a5fd702f",
+    "path": "config/prompts/document_types/final-map-parcel-map",
+    "properties_count": 5
+  },
+  "fire-dept-permits": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "18e5e88e",
+    "path": "config/prompts/document_types/fire-dept-permits",
+    "properties_count": 5
+  },
+  "firpta-affidavit": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "ffd057df",
+    "path": "config/prompts/document_types/firpta-affidavit",
+    "properties_count": 5
+  },
+  "flood-certificate": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "f56a3e83",
+    "path": "config/prompts/document_types/flood-certificate",
+    "properties_count": 5
+  },
+  "flood-control-easements": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "eccbeb3d",
+    "path": "config/prompts/document_types/flood-control-easements",
+    "properties_count": 5
+  },
+  "general-plan-amendment": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "f1d291e4",
+    "path": "config/prompts/document_types/general-plan-amendment",
+    "properties_count": 5
+  },
+  "geotech-reports-update-letters": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "b2c35168",
+    "path": "config/prompts/document_types/geotech-reports-update-letters",
+    "properties_count": 4
+  },
+  "geotechnical-soils-report": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "b11a90a3",
+    "path": "config/prompts/document_types/geotechnical-soils-report",
+    "properties_count": 5
+  },
+  "gis-imagery-3d-models": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "9c44b577",
+    "path": "config/prompts/document_types/gis-imagery-3d-models",
+    "properties_count": 4
+  },
+  "grant-deed": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "70a1baf4",
+    "path": "config/prompts/document_types/grant-deed",
+    "properties_count": 6
+  },
+  "ground-leases": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "c0cb3b03",
+    "path": "config/prompts/document_types/ground-leases",
+    "properties_count": 5
+  },
+  "guaranties-completion-payment-bad-boy": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "0cd14095",
+    "path": "config/prompts/document_types/guaranties-completion-payment-bad-boy",
+    "properties_count": 5
+  },
+  "habitat-conservation-plan-hcp": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "b74bf222",
+    "path": "config/prompts/document_types/habitat-conservation-plan-hcp",
+    "properties_count": 5
+  },
+  "hazardous-materials-business-plan": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "22baffdd",
+    "path": "config/prompts/document_types/hazardous-materials-business-plan",
+    "properties_count": 5
+  },
+  "hazmat-remedial-action-plans": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "3dbff5c6",
+    "path": "config/prompts/document_types/hazmat-remedial-action-plans",
+    "properties_count": 5
+  },
+  "hearing-notices": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "5e692223",
+    "path": "config/prompts/document_types/hearing-notices",
+    "properties_count": 4
+  },
+  "hedging-rate-lock-isda-agreements": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "eae57638",
+    "path": "config/prompts/document_types/hedging-rate-lock-isda-agreements",
+    "properties_count": 5
+  },
+  "hoa-articles-of-incorporation": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "2d831614",
+    "path": "config/prompts/document_types/hoa-articles-of-incorporation",
+    "properties_count": 6
+  },
+  "hoa-budgets-reserve-studies": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "b8ddbd56",
+    "path": "config/prompts/document_types/hoa-budgets-reserve-studies",
+    "properties_count": 5
+  },
+  "hoa-bylaws": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "c0b11a94",
+    "path": "config/prompts/document_types/hoa-bylaws",
+    "properties_count": 5
+  },
+  "hoa-meeting-minutes-resolutions": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "15cfe55f",
+    "path": "config/prompts/document_types/hoa-meeting-minutes-resolutions",
+    "properties_count": 5
+  },
+  "hoa-rules-regulations": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "b6662d91",
+    "path": "config/prompts/document_types/hoa-rules-regulations",
+    "properties_count": 5
+  },
+  "hra-health-risk-assessment": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "034743b6",
+    "path": "config/prompts/document_types/hra-health-risk-assessment",
+    "properties_count": 5
+  },
+  "hydro-floodplain-analysis": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "03c0252d",
+    "path": "config/prompts/document_types/hydro-floodplain-analysis",
+    "properties_count": 5
+  },
+  "identification-notices": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "9de96a09",
+    "path": "config/prompts/document_types/identification-notices",
+    "properties_count": 5
+  },
+  "improvement-plans-road-water-sewer-storm": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "61b7da7c",
+    "path": "config/prompts/document_types/improvement-plans-road-water-sewer-storm",
+    "properties_count": 5
+  },
+  "inclusionary-affordable-housing-regulatory-agreement": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "17e17fca",
+    "path": "config/prompts/document_types/inclusionary-affordable-housing-regulatory-agreement",
+    "properties_count": 5
+  },
+  "independent-contractor-agreement": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "37b710a6",
+    "path": "config/prompts/document_types/independent-contractor-agreement",
+    "properties_count": 5
+  },
+  "inspector-reports": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "770a2a0e",
+    "path": "config/prompts/document_types/inspector-reports",
+    "properties_count": 5
+  },
+  "insurance-policy-declaration-pages": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "573a0545",
+    "path": "config/prompts/document_types/insurance-policy-declaration-pages",
+    "properties_count": 4
+  },
+  "intercreditor-agreement": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "5dd98e02",
+    "path": "config/prompts/document_types/intercreditor-agreement",
+    "properties_count": 5
+  },
+  "interest-reserve-agreement": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "3dfd644b",
+    "path": "config/prompts/document_types/interest-reserve-agreement",
+    "properties_count": 5
+  },
+  "internal-memos": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "718d6d70",
+    "path": "config/prompts/document_types/internal-memos",
+    "properties_count": 5
+  },
+  "invention-assignment-work-for-hire-agreement": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "08ffc042",
+    "path": "config/prompts/document_types/invention-assignment-work-for-hire-agreement",
+    "properties_count": 5
+  },
+  "irrevocable-offers": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "181397bf",
+    "path": "config/prompts/document_types/irrevocable-offers",
+    "properties_count": 5
+  },
+  "is-initial-study": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "ae599455",
+    "path": "config/prompts/document_types/is-initial-study",
+    "properties_count": 5
+  },
+  "joint-trench-agreements": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "e810d1f9",
+    "path": "config/prompts/document_types/joint-trench-agreements",
+    "properties_count": 5
+  },
+  "judgments": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "caa8c308",
+    "path": "config/prompts/document_types/judgments",
+    "properties_count": 4
+  },
+  "jurisdictional-delineation-wetlands": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "337cedbe",
+    "path": "config/prompts/document_types/jurisdictional-delineation-wetlands",
+    "properties_count": 5
+  },
+  "landscape-irrigation-plans": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "5e967c19",
+    "path": "config/prompts/document_types/landscape-irrigation-plans",
+    "properties_count": 5
+  },
+  "lease-amendments-extensions-renewals": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "3503f9a6",
+    "path": "config/prompts/document_types/lease-amendments-extensions-renewals",
+    "properties_count": 5
+  },
+  "lease-assignments-subleases": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "2f3f6374",
+    "path": "config/prompts/document_types/lease-assignments-subleases",
+    "properties_count": 5
+  },
+  "lease-estoppels": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "b1b00c1e",
+    "path": "config/prompts/document_types/lease-estoppels",
+    "properties_count": 5
+  },
+  "lease-guaranties": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "d701afe4",
+    "path": "config/prompts/document_types/lease-guaranties",
+    "properties_count": 5
+  },
+  "lease-sndas": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "2cd89c1d",
+    "path": "config/prompts/document_types/lease-sndas",
+    "properties_count": 5
+  },
+  "legal-strategy-memos": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "a060dbc3",
+    "path": "config/prompts/document_types/legal-strategy-memos",
+    "properties_count": 5
+  },
+  "letter-of-intent-loi": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "15ad2910",
+    "path": "config/prompts/document_types/letter-of-intent-loi",
+    "properties_count": 5
+  },
+  "lis-pendens": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "7a2a7907",
+    "path": "config/prompts/document_types/lis-pendens",
+    "properties_count": 6
+  },
+  "listing-commission-agreements": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "33f712c6",
+    "path": "config/prompts/document_types/listing-commission-agreements",
+    "properties_count": 5
+  },
+  "loan-agreement": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "72bf75fa",
+    "path": "config/prompts/document_types/loan-agreement",
+    "properties_count": 5
+  },
+  "local-hire-apprenticeship-docs": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "9a7ebc23",
+    "path": "config/prompts/document_types/local-hire-apprenticeship-docs",
+    "properties_count": 5
+  },
+  "lot-line-boundary-line-adjustments": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "42348d4a",
+    "path": "config/prompts/document_types/lot-line-boundary-line-adjustments",
+    "properties_count": 5
+  },
+  "marketing-brochures-flyers": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "0d3f53e9",
+    "path": "config/prompts/document_types/marketing-brochures-flyers",
+    "properties_count": 4
+  },
+  "mechanics-liens": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "af9db8d4",
+    "path": "config/prompts/document_types/mechanics-liens",
+    "properties_count": 6
+  },
+  "mediation-arbitration-agreements": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "4e6f03ca",
+    "path": "config/prompts/document_types/mediation-arbitration-agreements",
+    "properties_count": 4
+  },
+  "meeting-agendas-minutes": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "78c4801c",
+    "path": "config/prompts/document_types/meeting-agendas-minutes",
+    "properties_count": 5
+  },
+  "meeting-minutes": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "9ab09e84",
+    "path": "config/prompts/document_types/meeting-minutes",
+    "properties_count": 5
+  },
+  "meter-set-requests": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "4df1d741",
+    "path": "config/prompts/document_types/meter-set-requests",
+    "properties_count": 4
+  },
+  "mezz-loan-preferred-equity-agreements": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "07496291",
+    "path": "config/prompts/document_types/mezz-loan-preferred-equity-agreements",
+    "properties_count": 5
+  },
+  "mf-lease-forms": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "30db50a5",
+    "path": "config/prompts/document_types/mf-lease-forms",
+    "properties_count": 5
+  },
+  "mineral-oil-gas-rights-docs": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "c6176731",
+    "path": "config/prompts/document_types/mineral-oil-gas-rights-docs",
+    "properties_count": 5
+  },
+  "mitigation-bank-conservation-credits-agreements": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "f4d1ee8e",
+    "path": "config/prompts/document_types/mitigation-bank-conservation-credits-agreements",
+    "properties_count": 5
+  },
+  "mmrp-mitigation-monitoring-reporting-program": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "0ed359c7",
+    "path": "config/prompts/document_types/mmrp-mitigation-monitoring-reporting-program",
+    "properties_count": 5
+  },
+  "mmrp-monitoring-reports": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "7c355a46",
+    "path": "config/prompts/document_types/mmrp-monitoring-reports",
+    "properties_count": 5
+  },
+  "mnd-nd-mitigated-negative-declaration": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "0a455093",
+    "path": "config/prompts/document_types/mnd-nd-mitigated-negative-declaration",
+    "properties_count": 5
+  },
+  "monument-records": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "df4482d4",
+    "path": "config/prompts/document_types/monument-records",
+    "properties_count": 4
+  },
+  "motions-demurrers": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "5455bc18",
+    "path": "config/prompts/document_types/motions-demurrers",
+    "properties_count": 5
+  },
+  "mous-memorandum-of-understanding": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "3097aec0",
+    "path": "config/prompts/document_types/mous-memorandum-of-understanding",
+    "properties_count": 5
+  },
+  "move-in-move-out-docs": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "b9f0358c",
+    "path": "config/prompts/document_types/move-in-move-out-docs",
+    "properties_count": 5
+  },
+  "nda-non-disclosure-agreement": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "4629fc5a",
+    "path": "config/prompts/document_types/nda-non-disclosure-agreement",
+    "properties_count": 5
+  },
+  "ndas-ca-for-tours-data-rooms": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "bcc550c1",
+    "path": "config/prompts/document_types/ndas-ca-for-tours-data-rooms",
+    "properties_count": 5
+  },
+  "net-metering-agreements": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "4696b3ea",
+    "path": "config/prompts/document_types/net-metering-agreements",
+    "properties_count": 4
+  },
+  "nnn-gross-modified-leases": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "9ff35854",
+    "path": "config/prompts/document_types/nnn-gross-modified-leases",
+    "properties_count": 5
+  },
+  "nod-notice-of-determination": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "13052935",
+    "path": "config/prompts/document_types/nod-notice-of-determination",
+    "properties_count": 6
+  },
+  "noe-notice-of-exemption": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "a83aab30",
+    "path": "config/prompts/document_types/noe-notice-of-exemption",
+    "properties_count": 5
+  },
+  "noise-study": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "5d8b7c1d",
+    "path": "config/prompts/document_types/noise-study",
+    "properties_count": 5
+  },
+  "nop-notice-of-preparation": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "533190a6",
+    "path": "config/prompts/document_types/nop-notice-of-preparation",
+    "properties_count": 5
+  },
+  "notice-of-entry-of-judgment": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "a43d9fb3",
+    "path": "config/prompts/document_types/notice-of-entry-of-judgment",
+    "properties_count": 5
+  },
+  "notice-of-tax-sale": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "9b6db0c7",
+    "path": "config/prompts/document_types/notice-of-tax-sale",
+    "properties_count": 3
+  },
+  "notice-of-trustee-s-sale": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "a49e4492",
+    "path": "config/prompts/document_types/notice-of-trustee-s-sale",
+    "properties_count": 3
+  },
+  "notices-of-default-loan": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "9869e5f8",
+    "path": "config/prompts/document_types/notices-of-default-loan",
+    "properties_count": 5
+  },
+  "npdes-noi-not": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "869d19ca",
+    "path": "config/prompts/document_types/npdes-noi-not",
+    "properties_count": 5
+  },
+  "npdes-noi-not-swppp": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "82d4d3a8",
+    "path": "config/prompts/document_types/npdes-noi-not-swppp",
+    "properties_count": 5
+  },
+  "o-m-manuals-warranties": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "8051b015",
+    "path": "config/prompts/document_types/o-m-manuals-warranties",
+    "properties_count": 5
+  },
+  "oea-joea-operating-joint-operating-easement-agreement": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "fc892cff",
+    "path": "config/prompts/document_types/oea-joea-operating-joint-operating-easement-agreement",
+    "properties_count": 5
+  },
+  "off-site-improvement-agreements": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "a0d0b4e5",
+    "path": "config/prompts/document_types/off-site-improvement-agreements",
+    "properties_count": 5
+  },
+  "offering-memoranda": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "891a25be",
+    "path": "config/prompts/document_types/offering-memoranda",
+    "properties_count": 4
+  },
+  "offers-of-dedication-iod": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "56a5ded3",
+    "path": "config/prompts/document_types/offers-of-dedication-iod",
+    "properties_count": 6
+  },
+  "officer-appointments": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "ed858b9e",
+    "path": "config/prompts/document_types/officer-appointments",
+    "properties_count": 5
+  },
+  "operating-agreement": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "af288e3b",
+    "path": "config/prompts/document_types/operating-agreement",
+    "properties_count": 5
+  },
+  "opportunity-zone-docs": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "a6c5c50b",
+    "path": "config/prompts/document_types/opportunity-zone-docs",
+    "properties_count": 5
+  },
+  "option-agreement": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "53bdea07",
+    "path": "config/prompts/document_types/option-agreement",
+    "properties_count": 5
+  },
+  "paleontological-report": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "d28648d3",
+    "path": "config/prompts/document_types/paleontological-report",
+    "properties_count": 5
+  },
+  "parking-shared-facilities-agreements": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "e71954e8",
+    "path": "config/prompts/document_types/parking-shared-facilities-agreements",
+    "properties_count": 5
+  },
+  "partnership-jv-agreement": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "cfbf1438",
+    "path": "config/prompts/document_types/partnership-jv-agreement",
+    "properties_count": 5
+  },
+  "pavement-design": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "e519bc95",
+    "path": "config/prompts/document_types/pavement-design",
+    "properties_count": 4
+  },
+  "pay-applications": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "70fe542a",
+    "path": "config/prompts/document_types/pay-applications",
+    "properties_count": 5
+  },
+  "payment-performance-bonds": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "a25a76b1",
+    "path": "config/prompts/document_types/payment-performance-bonds",
+    "properties_count": 5
+  },
+  "payoff-demand": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "582a827a",
+    "path": "config/prompts/document_types/payoff-demand",
+    "properties_count": 5
+  },
+  "phase-i-ii-esas": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "081db47a",
+    "path": "config/prompts/document_types/phase-i-ii-esas",
+    "properties_count": 5
+  },
+  "pilot-payment-in-lieu-of-taxes-agreement": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "a3501a58",
+    "path": "config/prompts/document_types/pilot-payment-in-lieu-of-taxes-agreement",
+    "properties_count": 5
+  },
+  "pip-om-private-investment-proposal-offering-memorandum": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "d3296f3e",
+    "path": "config/prompts/document_types/pip-om-private-investment-proposal-offering-memorandum",
+    "properties_count": 5
+  },
+  "planned-development-pud": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "9f3d7a18",
+    "path": "config/prompts/document_types/planned-development-pud",
+    "properties_count": 5
+  },
+  "planning-commission-city-council-resolutions": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "c9e8ecf4",
+    "path": "config/prompts/document_types/planning-commission-city-council-resolutions",
+    "properties_count": 5
+  },
+  "ppm-private-placement-memorandum": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "258958fb",
+    "path": "config/prompts/document_types/ppm-private-placement-memorandum",
+    "properties_count": 5
+  },
+  "preliminary-notices": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "32913807",
+    "path": "config/prompts/document_types/preliminary-notices",
+    "properties_count": 5
+  },
+  "preliminary-title-report-commitment": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "f7a09ef7",
+    "path": "config/prompts/document_types/preliminary-title-report-commitment",
+    "properties_count": 5
+  },
+  "pro-forma-policies": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "8ffe4835",
+    "path": "config/prompts/document_types/pro-forma-policies",
+    "properties_count": 5
+  },
+  "promissory-note": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "a483487a",
+    "path": "config/prompts/document_types/promissory-note",
+    "properties_count": 5
+  },
+  "proofs-of-publication-mailing": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "4276a8bd",
+    "path": "config/prompts/document_types/proofs-of-publication-mailing",
+    "properties_count": 5
+  },
+  "prop-8-decline-in-value": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "69044275",
+    "path": "config/prompts/document_types/prop-8-decline-in-value",
+    "properties_count": 5
+  },
+  "property-tax-appeals": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "ce97d348",
+    "path": "config/prompts/document_types/property-tax-appeals",
+    "properties_count": 5
+  },
+  "public-hearing-notices": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "7a10e12c",
+    "path": "config/prompts/document_types/public-hearing-notices",
+    "properties_count": 4
+  },
+  "public-records-cpra-requests-responses": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "114a65c8",
+    "path": "config/prompts/document_types/public-records-cpra-requests-responses",
+    "properties_count": 5
+  },
+  "punch-lists": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "5544497d",
+    "path": "config/prompts/document_types/punch-lists",
+    "properties_count": 5
+  },
+  "purchase-sale-agreement-psa": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "836470e7",
+    "path": "config/prompts/document_types/purchase-sale-agreement-psa",
+    "properties_count": 5
+  },
+  "qi-agreement": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "bf23b369",
+    "path": "config/prompts/document_types/qi-agreement",
+    "properties_count": 5
+  },
+  "quitclaim-deed": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "ec9b7354",
+    "path": "config/prompts/document_types/quitclaim-deed",
+    "properties_count": 6
+  },
+  "railroad-crossing-corridor-licenses": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "53d16c2b",
+    "path": "config/prompts/document_types/railroad-crossing-corridor-licenses",
+    "properties_count": 4
+  },
+  "rate-method-rma": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "d97cbbfc",
+    "path": "config/prompts/document_types/rate-method-rma",
+    "properties_count": 4
+  },
+  "rea-reciprocal-easement-agreement": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "a1da57a8",
+    "path": "config/prompts/document_types/rea-reciprocal-easement-agreement",
+    "properties_count": 6
+  },
+  "reas-operating-agreements": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "40687be9",
+    "path": "config/prompts/document_types/reas-operating-agreements",
+    "properties_count": 5
+  },
+  "recorded-easements": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "8cbb1f09",
+    "path": "config/prompts/document_types/recorded-easements",
+    "properties_count": 6
+  },
+  "registered-agent-filings": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "5ce1b293",
+    "path": "config/prompts/document_types/registered-agent-filings",
+    "properties_count": 5
+  },
+  "reimbursement-credit-agreements": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "935d7598",
+    "path": "config/prompts/document_types/reimbursement-credit-agreements",
+    "properties_count": 5
+  },
+  "release-of-funds": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "f64db8f8",
+    "path": "config/prompts/document_types/release-of-funds",
+    "properties_count": 5
+  },
+  "relief-from-stay-motions": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "adc900c1",
+    "path": "config/prompts/document_types/relief-from-stay-motions",
+    "properties_count": 5
+  },
+  "rent-rolls": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "28f8820a",
+    "path": "config/prompts/document_types/rent-rolls",
+    "properties_count": 5
+  },
+  "resolutions-minutes": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "3b29296e",
+    "path": "config/prompts/document_types/resolutions-minutes",
+    "properties_count": 5
+  },
+  "rfis-request-for-information": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "89e843c8",
+    "path": "config/prompts/document_types/rfis-request-for-information",
+    "properties_count": 5
+  },
+  "right-of-way-dedications": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "43885f6d",
+    "path": "config/prompts/document_types/right-of-way-dedications",
+    "properties_count": 6
+  },
+  "rofr-rofo-agreement": {
+    "has_additions": false,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "e5e49620",
+    "path": "config/prompts/document_types/rofr-rofo-agreement",
+    "properties_count": 5
+  },
+  "rules-regulations": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "38108076",
+    "path": "config/prompts/document_types/rules-regulations",
+    "properties_count": 5
+  },
+  "rwqcb-401-permit": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "3fa6d1fe",
+    "path": "config/prompts/document_types/rwqcb-401-permit",
+    "properties_count": 5
+  },
+  "safety-plans-iipp": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "1385f879",
+    "path": "config/prompts/document_types/safety-plans-iipp",
+    "properties_count": 5
+  },
+  "sales-use-tax-returns-ops-retail": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "9c2f92f6",
+    "path": "config/prompts/document_types/sales-use-tax-returns-ops-retail",
+    "properties_count": 4
+  },
+  "sb-221-verification": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "9447605a",
+    "path": "config/prompts/document_types/sb-221-verification",
+    "properties_count": 5
+  },
+  "schedule-of-values": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "0d035e21",
+    "path": "config/prompts/document_types/schedule-of-values",
+    "properties_count": 5
+  },
+  "secured-unsecured-tax-bills": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "382428ae",
+    "path": "config/prompts/document_types/secured-unsecured-tax-bills",
+    "properties_count": 4
+  },
+  "seller-disclosures": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": false,
+    "hash": "322a704f",
+    "path": "config/prompts/document_types/seller-disclosures",
+    "properties_count": 0
+  },
+  "sellers-permit-retail": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "c5e9d900",
+    "path": "config/prompts/document_types/sellers-permit-retail",
+    "properties_count": 5
+  },
+  "service-interconnect-agreements": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "955b3f5c",
+    "path": "config/prompts/document_types/service-interconnect-agreements",
+    "properties_count": 4
+  },
+  "settlement-agreements": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "7900befa",
+    "path": "config/prompts/document_types/settlement-agreements",
+    "properties_count": 4
+  },
+  "settlement-alta-statement": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "14546579",
+    "path": "config/prompts/document_types/settlement-alta-statement",
+    "properties_count": 5
+  },
+  "shareholder-member-agreement": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "d9e78de3",
+    "path": "config/prompts/document_types/shareholder-member-agreement",
+    "properties_count": 5
+  },
+  "sheriffs-deed": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": false,
+    "hash": "870ca912",
+    "path": "config/prompts/document_types/sheriffs-deed",
+    "properties_count": 0
+  },
+  "sign-permit": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "a1b6a9f6",
+    "path": "config/prompts/document_types/sign-permit",
+    "properties_count": 5
+  },
+  "signage-agreements": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "cea1c44b",
+    "path": "config/prompts/document_types/signage-agreements",
+    "properties_count": 4
+  },
+  "signalization-intersection-improvement-agreements": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "6b96787c",
+    "path": "config/prompts/document_types/signalization-intersection-improvement-agreements",
+    "properties_count": 5
+  },
+  "site-plan-design-review": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "72173c54",
+    "path": "config/prompts/document_types/site-plan-design-review",
+    "properties_count": 5
+  },
+  "snda": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "103bf56a",
+    "path": "config/prompts/document_types/snda",
+    "properties_count": 5
+  },
+  "snda-lender-form": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "1623c8b6",
+    "path": "config/prompts/document_types/snda-lender-form",
+    "properties_count": 5
+  },
+  "soc-statement-of-overriding-considerations": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "dcc8fbf1",
+    "path": "config/prompts/document_types/soc-statement-of-overriding-considerations",
+    "properties_count": 5
+  },
+  "special-inspection-certificates": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "cf9a816b",
+    "path": "config/prompts/document_types/special-inspection-certificates",
+    "properties_count": 5
+  },
+  "special-warranty-deed": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "3cc5182f",
+    "path": "config/prompts/document_types/special-warranty-deed",
+    "properties_count": 6
+  },
+  "specific-plan": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "11314cfe",
+    "path": "config/prompts/document_types/specific-plan",
+    "properties_count": 5
+  },
+  "stacking-plans": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "5b7fde5b",
+    "path": "config/prompts/document_types/stacking-plans",
+    "properties_count": 5
+  },
+  "staff-memos": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "df3df715",
+    "path": "config/prompts/document_types/staff-memos",
+    "properties_count": 5
+  },
+  "staff-reports": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "cface1bf",
+    "path": "config/prompts/document_types/staff-reports",
+    "properties_count": 5
+  },
+  "statement-of-information": {
+    "has_additions": false,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "dee441b5",
+    "path": "config/prompts/document_types/statement-of-information",
+    "properties_count": 5
+  },
+  "stipulations": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "36d4576b",
+    "path": "config/prompts/document_types/stipulations",
+    "properties_count": 5
+  },
+  "stop-payment-notices": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "930b2607",
+    "path": "config/prompts/document_types/stop-payment-notices",
+    "properties_count": 5
+  },
+  "stormwater-inspection-reports": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "d90505db",
+    "path": "config/prompts/document_types/stormwater-inspection-reports",
+    "properties_count": 5
+  },
+  "street-lighting-agreements": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "82ae9862",
+    "path": "config/prompts/document_types/street-lighting-agreements",
+    "properties_count": 5
+  },
+  "subcontracts": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "ad8350cf",
+    "path": "config/prompts/document_types/subcontracts",
+    "properties_count": 5
+  },
+  "subdivision-improvement-agreement": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "e18431a0",
+    "path": "config/prompts/document_types/subdivision-improvement-agreement",
+    "properties_count": 5
+  },
+  "subdivision-improvement-bonds": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "c94ce2a0",
+    "path": "config/prompts/document_types/subdivision-improvement-bonds",
+    "properties_count": 5
+  },
+  "subdivision-public-reports-dre-prelim-final": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "40946c24",
+    "path": "config/prompts/document_types/subdivision-public-reports-dre-prelim-final",
+    "properties_count": 5
+  },
+  "submittals-shop-drawings": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "65e5ebb9",
+    "path": "config/prompts/document_types/submittals-shop-drawings",
+    "properties_count": 5
+  },
+  "subordination-agreement": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "dba724c5",
+    "path": "config/prompts/document_types/subordination-agreement",
+    "properties_count": 5
+  },
+  "subordination-agreements": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "0b4e1607",
+    "path": "config/prompts/document_types/subordination-agreements",
+    "properties_count": 5
+  },
+  "subscription-agreements": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "be9e0cc9",
+    "path": "config/prompts/document_types/subscription-agreements",
+    "properties_count": 5
+  },
+  "supplemental-tax-bills": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "79d893a2",
+    "path": "config/prompts/document_types/supplemental-tax-bills",
+    "properties_count": 4
+  },
+  "survey-title-deliveries": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "a7325dff",
+    "path": "config/prompts/document_types/survey-title-deliveries",
+    "properties_count": 5
+  },
+  "swppp-inspection-logs": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "258c5cda",
+    "path": "config/prompts/document_types/swppp-inspection-logs",
+    "properties_count": 5
+  },
+  "swppp-training-records": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "8105515e",
+    "path": "config/prompts/document_types/swppp-training-records",
+    "properties_count": 4
+  },
+  "tax-abatements-exemptions": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "26d7c151",
+    "path": "config/prompts/document_types/tax-abatements-exemptions",
+    "properties_count": 5
+  },
+  "tax-deed": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "082a368b",
+    "path": "config/prompts/document_types/tax-deed",
+    "properties_count": 5
+  },
+  "tco-co-temporary-certificate-of-occupancy": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "3999bf79",
+    "path": "config/prompts/document_types/tco-co-temporary-certificate-of-occupancy",
+    "properties_count": 5
+  },
+  "tenant-compliance-notices": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "707272a3",
+    "path": "config/prompts/document_types/tenant-compliance-notices",
+    "properties_count": 5
+  },
+  "tentative-final-parcel-maps": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "31c00773",
+    "path": "config/prompts/document_types/tentative-final-parcel-maps",
+    "properties_count": 4
+  },
+  "tentative-parcel-map-tpm": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "f33aef18",
+    "path": "config/prompts/document_types/tentative-parcel-map-tpm",
+    "properties_count": 4
+  },
+  "tentative-tract-map-ttm": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "ec0082bb",
+    "path": "config/prompts/document_types/tentative-tract-map-ttm",
+    "properties_count": 4
+  },
+  "term-sheet": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "5ccbc641",
+    "path": "config/prompts/document_types/term-sheet",
+    "properties_count": 5
+  },
+  "term-sheet-commitment-letter": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "f35f66cf",
+    "path": "config/prompts/document_types/term-sheet-commitment-letter",
+    "properties_count": 5
+  },
+  "testing-reports-compaction-concrete-steel": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "ad27d894",
+    "path": "config/prompts/document_types/testing-reports-compaction-concrete-steel",
+    "properties_count": 5
+  },
+  "ti-work-letters": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "9ee87ac1",
+    "path": "config/prompts/document_types/ti-work-letters",
+    "properties_count": 5
+  },
+  "title-bring-downs": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "504cbc11",
+    "path": "config/prompts/document_types/title-bring-downs",
+    "properties_count": 5
+  },
+  "title-exception-documents": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "7c787c5b",
+    "path": "config/prompts/document_types/title-exception-documents",
+    "properties_count": 6
+  },
+  "topographic-boundary-surveys": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "2f23ad72",
+    "path": "config/prompts/document_types/topographic-boundary-surveys",
+    "properties_count": 4
+  },
+  "traffic-park-school-fee-agreements": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "7381c9a3",
+    "path": "config/prompts/document_types/traffic-park-school-fee-agreements",
+    "properties_count": 5
+  },
+  "traffic-transportation-study": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "9da957d1",
+    "path": "config/prompts/document_types/traffic-transportation-study",
+    "properties_count": 5
+  },
+  "transfer-tax-affidavits": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "dacf6509",
+    "path": "config/prompts/document_types/transfer-tax-affidavits",
+    "properties_count": 5
+  },
+  "tree-protection-removal-plans": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "73da8a5d",
+    "path": "config/prompts/document_types/tree-protection-removal-plans",
+    "properties_count": 4
+  },
+  "trustee-s-deed": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "21a381c1",
+    "path": "config/prompts/document_types/trustee-s-deed",
+    "properties_count": 4
+  },
+  "trustees-deed-upon-sale": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": false,
+    "hash": "505d328e",
+    "path": "config/prompts/document_types/trustees-deed-upon-sale",
+    "properties_count": 0
+  },
+  "ucc-1-ucc-3-filings": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "7eeed6c1",
+    "path": "config/prompts/document_types/ucc-1-ucc-3-filings",
+    "properties_count": 5
+  },
+  "usace-404-permit": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "409844a4",
+    "path": "config/prompts/document_types/usace-404-permit",
+    "properties_count": 5
+  },
+  "usfws-nmfs-biological-opinion-incidental-take-permit": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "a37e577f",
+    "path": "config/prompts/document_types/usfws-nmfs-biological-opinion-incidental-take-permit",
+    "properties_count": 5
+  },
+  "utility-easements": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "89a8f13d",
+    "path": "config/prompts/document_types/utility-easements",
+    "properties_count": 6
+  },
+  "utility-relocation-agreements": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "24fa38eb",
+    "path": "config/prompts/document_types/utility-relocation-agreements",
+    "properties_count": 5
+  },
+  "utility-service-line-extension-agreements": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "ed1d185a",
+    "path": "config/prompts/document_types/utility-service-line-extension-agreements",
+    "properties_count": 5
+  },
+  "vacation-abandonment": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "e5cb2ba8",
+    "path": "config/prompts/document_types/vacation-abandonment",
+    "properties_count": 5
+  },
+  "variance": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "9d5a92bb",
+    "path": "config/prompts/document_types/variance",
+    "properties_count": 5
+  },
+  "vertical-plan-sets": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "2c0a1328",
+    "path": "config/prompts/document_types/vertical-plan-sets",
+    "properties_count": 5
+  },
+  "vesting-tentative-map": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "8074e92b",
+    "path": "config/prompts/document_types/vesting-tentative-map",
+    "properties_count": 4
+  },
+  "vesting-ttm": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "9cd97483",
+    "path": "config/prompts/document_types/vesting-ttm",
+    "properties_count": 4
+  },
+  "warranty-bonds": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "254b72d6",
+    "path": "config/prompts/document_types/warranty-bonds",
+    "properties_count": 5
+  },
+  "wastewater-discharge-permits": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "bb57abe4",
+    "path": "config/prompts/document_types/wastewater-discharge-permits",
+    "properties_count": 5
+  },
+  "water-rights-appropriative-transfers": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "0780f014",
+    "path": "config/prompts/document_types/water-rights-appropriative-transfers",
+    "properties_count": 5
+  },
+  "water-supply-assessment-sb-610": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "fbaf58aa",
+    "path": "config/prompts/document_types/water-supply-assessment-sb-610",
+    "properties_count": 5
+  },
+  "website-press-releases": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "e8f5f325",
+    "path": "config/prompts/document_types/website-press-releases",
+    "properties_count": 5
+  },
+  "will-serve-verification-letters": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "5c278670",
+    "path": "config/prompts/document_types/will-serve-verification-letters",
+    "properties_count": 5
+  },
+  "williamson-act-contracts-notices": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "1e79d0af",
+    "path": "config/prompts/document_types/williamson-act-contracts-notices",
+    "properties_count": 5
+  },
+  "wiring-instructions": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "e1bec5ad",
+    "path": "config/prompts/document_types/wiring-instructions",
+    "properties_count": 5
+  },
+  "writs-of-possession": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "3c0095a0",
+    "path": "config/prompts/document_types/writs-of-possession",
+    "properties_count": 4
+  },
+  "zoning-map-text-amendment": {
+    "has_additions": true,
+    "has_few_shot": true,
+    "has_specialist": true,
+    "hash": "010bcc50",
+    "path": "config/prompts/document_types/zoning-map-text-amendment",
+    "properties_count": 5
+  }
+}

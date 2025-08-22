@@ -1,0 +1,23 @@
+**INPUT DOCUMENT TEXT:**
+ASSIGNMENT AND ASSUMPTION OF LEASE
+
+This Agreement is made June 1, 2034, by and among Commerce Center LLC ("Landlord") and Logistics Solutions Inc. ("Assignor"), and Global Distribution Co. ("Assignee").
+
+Assignor hereby assigns all of its rights and obligations under the Lease dated March 1, 2033, to Assignee. Assignee assumes all such obligations. Landlord hereby consents to this assignment.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Assignment and Assumption of Lease",
+  "effective_date": "2034-06-01",
+  "parties": [
+    { "name": "Commerce Center LLC", "role": "Landlord" },
+    { "name": "Logistics Solutions Inc.", "role": "Assignor" },
+    { "name": "Global Distribution Co.", "role": "Assignee" }
+  ],
+  "lease_assignment_details": {
+    "assignment_type": "Assignment",
+    "master_lease_date": "2033-03-01",
+    "landlord_consent_required": true
+  },
+  "discovered_entities": []
+}

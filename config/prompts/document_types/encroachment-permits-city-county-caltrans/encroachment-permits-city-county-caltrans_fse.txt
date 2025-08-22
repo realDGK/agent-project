@@ -1,0 +1,28 @@
+**INPUT DOCUMENT TEXT:**
+CITY OF RIVERBEND
+ENCROACHMENT PERMIT
+
+Permit No: E-2030-101
+Date Issued: September 2, 2030
+Permittee: Riverbend Homes LLC
+
+Location of Work: Main Street, adjacent to the Riverbend project.
+Description of Work: Installation of new curb, gutter, and sidewalk along the project frontage within the public right-of-way.
+This permit is valid for 180 days from the date of issuance.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Encroachment Permit",
+  "effective_date": "2030-09-02",
+  "parties": [
+    { "name": "Riverbend Homes LLC", "role": "Permittee" },
+    { "name": "City of Riverbend", "role": "Issuing Agency" }
+  ],
+  "permit_details": {
+    "permit_number": "E-2030-101",
+    "location_of_work": "Main Street, adjacent to the Riverbend project.",
+    "authorized_work_summary": "Installation of new curb, gutter, and sidewalk along the project frontage within the public right-of-way.",
+    "expiration_date": null
+  },
+  "discovered_entities": []
+}

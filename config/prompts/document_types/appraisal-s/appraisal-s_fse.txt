@@ -1,0 +1,33 @@
+**INPUT DOCUMENT TEXT:**
+SUMMARY APPRAISAL REPORT
+Property: 123 Main Street, Anytown, USA
+Client: First National Bank
+Appraiser: Value Associates Inc.
+Effective Date of Appraisal: May 1, 2031
+
+APPROACHES TO VALUE:
+The Sales Comparison Approach and Income Approach were utilized.
+
+OPINION OF VALUE:
+Based on our analysis, the "As Is" Market Value of the fee simple interest in the subject property is concluded to be:
+$5,200,000
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Summary Appraisal Report",
+  "effective_date": "2031-05-01",
+  "parties": [
+    { "name": "Value Associates Inc.", "role": "Appraiser" },
+    { "name": "First National Bank", "role": "Client" }
+  ],
+  "appraisal_details": {
+    "property_address": "123 Main Street, Anytown, USA",
+    "appraised_value": 5200000,
+    "value_type": "As Is",
+    "appraisal_approaches_used": [
+      "Sales Comparison Approach",
+      "Income Approach"
+    ]
+  },
+  "discovered_entities": []
+}

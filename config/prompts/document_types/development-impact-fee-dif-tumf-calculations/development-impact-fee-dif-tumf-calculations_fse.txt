@@ -1,0 +1,34 @@
+**INPUT DOCUMENT TEXT:**
+CITY OF RIVERBEND
+DEVELOPMENT IMPACT FEE ESTIMATE
+
+PROJECT: Riverbend Tract No. 8888 (150 Single Family Units)
+DATE: July 10, 2030
+
+FEE SUMMARY:
+- Traffic Impact Fee: $1,500,000
+- Park Fee: $750,000
+- School Fee: $1,200,000
+- Library Fee: $150,000
+--------------------
+TOTAL ESTIMATED FEES: $3,600,000
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Development Impact Fee Estimate",
+  "effective_date": "2030-07-10",
+  "parties": [
+    { "name": "City of Riverbend", "role": "City" }
+  ],
+  "fee_details": {
+    "project_name": "Riverbend Tract No. 8888 (150 Single Family Units)",
+    "total_fee_amount": 3600000,
+    "fee_breakdown": [
+      { "fee_name": "Traffic Impact Fee", "amount": 1500000 },
+      { "fee_name": "Park Fee", "amount": 750000 },
+      { "fee_name": "School Fee", "amount": 1200000 },
+      { "fee_name": "Library Fee", "amount": 150000 }
+    ]
+  },
+  "discovered_entities": []
+}

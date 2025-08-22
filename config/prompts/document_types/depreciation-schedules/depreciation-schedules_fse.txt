@@ -1,0 +1,47 @@
+**INPUT DOCUMENT TEXT:**
+FIXED ASSET DEPRECIATION SCHEDULE
+For the Year Ended December 31, 2035
+Property: 123 Main Street Office Building
+
+Asset | Cost | Method | Life | Current Depreciation
+Building | $60,000,000 | SL | 39 | $1,538,462
+Land Improvements | $12,000,000 | SL | 15 | $800,000
+Personal Property | $8,000,000 | MACRS | 5 | $1,600,000
+------------------------------------------------------
+TOTAL | | | | $3,938,462
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Fixed Asset Depreciation Schedule",
+  "effective_date": "2035-12-31",
+  "parties": [],
+  "depreciation_schedule_details": {
+    "property_name": "123 Main Street Office Building",
+    "year": 2035,
+    "total_depreciation_expense": 3938462,
+    "assets": [
+      {
+        "asset_description": "Building",
+        "cost_basis": 60000000,
+        "depreciation_method": "SL",
+        "useful_life_years": 39,
+        "current_year_depreciation": 1538462
+      },
+      {
+        "asset_description": "Land Improvements",
+        "cost_basis": 12000000,
+        "depreciation_method": "SL",
+        "useful_life_years": 15,
+        "current_year_depreciation": 800000
+      },
+      {
+        "asset_description": "Personal Property",
+        "cost_basis": 8000000,
+        "depreciation_method": "MACRS",
+        "useful_life_years": 5,
+        "current_year_depreciation": 1600000
+      }
+    ]
+  },
+  "discovered_entities": []
+}

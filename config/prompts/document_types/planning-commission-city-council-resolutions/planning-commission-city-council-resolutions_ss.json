@@ -1,0 +1,50 @@
+{
+  "title": "Resolution Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Resolution No. 2030-15'."
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date",
+      "description": "The date the resolution was adopted."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Approving Body", "Applicant"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "resolution_details": {
+      "type": "object",
+      "properties": {
+        "resolution_number": { "type": "string" },
+        "action_taken": { "type": "string" },
+        "project_or_subject": { "type": "string" },
+        "vote_summary": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "resolution_details"]
+}

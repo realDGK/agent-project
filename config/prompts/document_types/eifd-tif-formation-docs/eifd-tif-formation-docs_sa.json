@@ -1,0 +1,12 @@
+{
+  "financing_district_details": {
+    "type": "object",
+    "description": "Details specific to an EIFD or TIF district.",
+    "properties": {
+      "district_type": { "type": "string", "enum": ["EIFD", "TIF"] },
+      "district_name": { "type": "string" },
+      "plan_area_description": { "type": "string" },
+      "tax_increment_pledge": { "type": "string" }
+    }
+  }
+}

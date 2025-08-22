@@ -1,0 +1,24 @@
+**INPUT DOCUMENT TEXT:**
+[An aerial image with text overlays]
+
+Subject Property: 100 Valley View Road, Napa, CA
+Labels:
+- Site Boundary (5.25 Acres)
+- Adjacent to Highway 29
+- Future Retail Center (Neighboring Parcel)
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Site Aerial",
+  "parties": [],
+  "map_details": {
+    "map_type": "Aerial",
+    "property_address": "100 Valley View Road, Napa, CA",
+    "labels_or_callouts": [
+      "Site Boundary (5.25 Acres)",
+      "Adjacent to Highway 29",
+      "Future Retail Center (Neighboring Parcel)"
+    ]
+  },
+  "discovered_entities": []
+}

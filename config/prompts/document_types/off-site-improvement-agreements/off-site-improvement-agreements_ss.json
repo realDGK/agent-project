@@ -1,0 +1,46 @@
+{
+  "title": "Off-site Improvement Agreement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Off-site Improvement Agreement'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Developer", "Public Agency", "City"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "improvement_agreement_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "offsite_improvements_summary": { "type": "string" },
+        "cost_estimate": { "type": "number" },
+        "reimbursement_terms": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "improvement_agreement_details"]
+}

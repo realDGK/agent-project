@@ -1,0 +1,23 @@
+**INPUT DOCUMENT TEXT:**
+FEE CREDIT AGREEMENT
+
+This Agreement is made September 1, 2030, between the City of Riverbend and Riverbend Homes LLC.
+
+In consideration of the Developer's construction of the Main Street traffic signal, the City agrees to grant the Developer a credit in the amount of $350,000. This credit may be applied against the Traffic Impact Fees due for the Riverbend project.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Fee Credit Agreement",
+  "effective_date": "2030-09-01",
+  "parties": [
+    { "name": "City of Riverbend", "role": "City" },
+    { "name": "Riverbend Homes LLC", "role": "Developer" }
+  ],
+  "fee_details": {
+    "project_name": "Riverbend project",
+    "work_generating_credit": "Construction of the Main Street traffic signal.",
+    "credit_or_reimbursement_amount": 350000,
+    "applicable_fees": "Traffic Impact Fees"
+  },
+  "discovered_entities": []
+}

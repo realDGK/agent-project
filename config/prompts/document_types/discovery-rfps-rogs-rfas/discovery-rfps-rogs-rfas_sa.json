@@ -1,0 +1,23 @@
+{
+  "discovery_details": {
+    "type": "object",
+    "description": "Details specific to a formal discovery request in litigation.",
+    "properties": {
+      "discovery_type": {
+        "type": "string",
+        "enum": [
+          "Request for Production",
+          "Special Interrogatories",
+          "Request for Admissions"
+        ]
+      },
+      "response_due_date": {
+        "type": "string",
+        "format": "date"
+      },
+      "number_of_requests": {
+        "type": "integer"
+      }
+    }
+  }
+}

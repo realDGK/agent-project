@@ -1,0 +1,30 @@
+**INPUT DOCUMENT TEXT:**
+DOCUMENTARY TRANSFER TAX DECLARATION
+
+Assessor's Parcel No. (APN): 123-456-78
+Property Address: 100 Valley View Road, Napa, CA
+
+The undersigned declares:
+[X] Computed on full value of property conveyed, which is $10,000,000.
+[ ] Computed on full value less liens remaining at time of sale.
+
+Documentary Transfer Tax is $11,000.00
+
+Declarant: OAK TREE INVESTORS, LLC
+Dated: October 30, 2027
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Documentary Transfer Tax Declaration",
+  "effective_date": "2027-10-30",
+  "parties": [
+    { "name": "OAK TREE INVESTORS, LLC", "role": "Declarant" }
+  ],
+  "tax_details": {
+    "property_apn": "123-456-78",
+    "full_value_of_property": 10000000,
+    "taxable_value": 10000000,
+    "transfer_tax_amount": 11000
+  },
+  "discovered_entities": []
+}

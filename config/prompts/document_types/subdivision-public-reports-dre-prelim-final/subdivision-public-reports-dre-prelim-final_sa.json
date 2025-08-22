@@ -1,0 +1,13 @@
+{
+  "public_report_details": {
+    "type": "object",
+    "description": "Details specific to a Subdivision Public Report.",
+    "properties": {
+      "report_type": { "type": "string", "enum": ["Preliminary", "Final"] },
+      "file_number": { "type": "string" },
+      "subdivision_name": { "type": "string" },
+      "number_of_lots_or_units": { "type": "integer" },
+      "expiration_date": { "type": "string", "format": "date" }
+    }
+  }
+}

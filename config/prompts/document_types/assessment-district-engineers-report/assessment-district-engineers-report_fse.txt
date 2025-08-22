@@ -1,0 +1,28 @@
+**INPUT DOCUMENT TEXT:**
+ENGINEER'S REPORT
+ASSESSMENT DISTRICT NO. 2032-A (DOWNTOWN STREETSCAPE)
+CITY OF OAKWOOD
+
+Prepared by: Apex Civil Engineering
+Date: March 1, 2032
+
+This report describes the public improvements to be financed by the District, which include new sidewalks, streetlights, and landscaping in the downtown area.
+The total estimated cost of the improvements is $3,500,000.
+The assessment is spread to each parcel based upon the linear footage of property fronting the improvements.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Engineer's Report",
+  "effective_date": "2032-03-01",
+  "parties": [
+    { "name": "Apex Civil Engineering", "role": "Engineer" },
+    { "name": "City of Oakwood", "role": "Public Agency" }
+  ],
+  "assessment_district_details": {
+    "district_name": "Assessment District No. 2032-A (Downtown Streetscape)",
+    "improvements_to_be_financed": "New sidewalks, streetlights, and landscaping in the downtown area.",
+    "total_estimated_cost": 3500000,
+    "method_of_assessment": "Spread to each parcel based upon the linear footage of property fronting the improvements."
+  },
+  "discovered_entities": []
+}

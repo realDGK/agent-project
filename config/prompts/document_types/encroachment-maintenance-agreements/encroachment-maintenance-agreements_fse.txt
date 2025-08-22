@@ -1,0 +1,21 @@
+**INPUT DOCUMENT TEXT:**
+ENCROACHMENT MAINTENANCE AND REMOVAL AGREEMENT
+This Agreement is made on September 5, 2028, between the City of Walnut Creek ("City") and Maplewood Center LLC ("Owner").
+
+Owner desires to install and maintain a decorative sign and landscaping which will encroach into the public right-of-way adjacent to its property at 123 Maple St. Owner agrees to maintain the encroachment in good condition at its sole expense. The City reserves the right to revoke this permit at any time.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Encroachment Maintenance and Removal Agreement",
+  "effective_date": "2028-09-05",
+  "parties": [
+    { "name": "City of Walnut Creek", "role": "Public Agency" },
+    { "name": "Maplewood Center LLC", "role": "Owner" }
+  ],
+  "encroachment_details": {
+    "description_of_encroachment": "Decorative sign and landscaping.",
+    "location_of_encroachment": "Public right-of-way adjacent to 123 Maple St.",
+    "maintenance_responsibility": "Owner shall maintain the encroachment at its sole expense.",
+    "is_revocable": true
+  }
+}

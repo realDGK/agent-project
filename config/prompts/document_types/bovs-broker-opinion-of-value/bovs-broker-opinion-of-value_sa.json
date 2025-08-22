@@ -1,0 +1,12 @@
+{
+  "bov_details": {
+    "type": "object",
+    "description": "Details specific to a Broker Opinion of Value (BOV).",
+    "properties": {
+      "property_address": { "type": "string" },
+      "opinion_of_value": { "type": "number" },
+      "value_range": { "type": "string" },
+      "analysis_summary": { "type": "string" }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+**INPUT DOCUMENT TEXT:**
+EXCERPT FROM LEASE AGREEMENT
+
+ARTICLE 15: EXCLUSIVE USE
+So long as Tenant, a coffee shop, is not in default, Landlord shall not lease any other space in the Shopping Center to another business whose primary use is the sale of coffee.
+
+ARTICLE 16: CO-TENANCY
+Tenant's obligation to pay full rent is conditioned upon the continued operation of the Big Grocery Store anchor tenant. If the anchor tenant ceases operation, Tenant may pay 50% of Base Rent until a replacement anchor opens.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Exclusive Use and Co-Tenancy Clauses",
+  "parties": [],
+  "lease_clause_details": {
+    "clause_type": "Exclusive Use",
+    "exclusive_use_granted": "Landlord shall not lease any other space to another business whose primary use is the sale of coffee.",
+    "co_tenancy_requirement": "Tenant's obligation to pay full rent is conditioned upon the continued operation of the Big Grocery Store anchor tenant.",
+    "remedy_for_breach": "If the anchor tenant ceases operation, Tenant may pay 50% of Base Rent until a replacement anchor opens."
+  },
+  "discovered_entities": []
+}

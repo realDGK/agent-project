@@ -1,0 +1,45 @@
+{
+  "title": "Civil Plan Set Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The title of the plan set, e.g., 'Grading and Drainage Plans'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Engineer", "Developer", "Approving Agency"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "plan_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "plan_type": { "type": "string", "default": "Civil Plan Set" },
+        "plan_sheet_count": { "type": "integer" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "plan_details"]
+}

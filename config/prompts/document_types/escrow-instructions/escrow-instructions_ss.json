@@ -1,0 +1,48 @@
+{
+  "title": "Escrow Instructions Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'General Escrow Instructions'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Seller", "Buyer", "Escrow Holder"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "escrow_details": {
+      "type": "object",
+      "properties": {
+        "escrow_number": { "type": "string" },
+        "property_description": { "type": "string" },
+        "purchase_price": { "type": "number" },
+        "closing_date": { "type": "string", "format": "date" },
+        "conditions_to_close": { "type": "array", "items": { "type": "string" } },
+        "disbursement_summary": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "escrow_details"]
+}

@@ -1,0 +1,22 @@
+**INPUT DOCUMENT TEXT:**
+DECLARATION OF AIRSPACE EASEMENT
+
+This Declaration is made August 1, 2033, by High-Rise Condos LLC ("Grantor").
+
+Grantor hereby grants to the City of Metropolis ("Grantee") a public access easement over, across, and through the privately-owned public plaza located at the ground floor of the building, for the purpose of public pedestrian access.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Declaration of Airspace Easement",
+  "effective_date": "2033-08-01",
+  "parties": [
+    { "name": "High-Rise Condos LLC", "role": "Grantor" },
+    { "name": "City of Metropolis", "role": "Grantee" }
+  ],
+  "easement_details": {
+    "easement_type": "Airspace",
+    "easement_area_description": "The privately-owned public plaza located at the ground floor of the building.",
+    "purpose": "Public pedestrian access."
+  },
+  "discovered_entities": []
+}

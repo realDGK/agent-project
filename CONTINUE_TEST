@@ -1,0 +1,399 @@
+A) Copy-paste test harness
+0) One-time: add the JSON-guard file
+mkdir -p src/app/agents
+
+cat > src/app/agents/json_extract.py <<'PY'
+import os, json, time, re
+from typing import Any, Dict, Tuple
+
+try:
+    import jsonschema
+except Exception as e:
+    raise SystemExit("Please add 'jsonschema>=4.22.0' to requirements.txt") from e
+
+JSON_BLOCK_RE = re.compile(r"\{(?:[^{}]|(?R))*\}", re.S)
+
+def _first_json_blob(text: str) -> str | None:
+    m = JSON_BLOCK_RE.search(text or "")
+    return m.group(0) if m else None
+
+def _validate(obj: Dict[str, Any], schema: Dict[str, Any]) -> Tuple[bool, str]:
+    try:
+        jsonschema.Draft202012Validator(schema).validate(obj)
+        return True, ""
+    except jsonschema.exceptions.ValidationError as e:
+        path = "$." + ".".join(map(str, list(e.path)))
+        return False, f"{path}: {e.message}"
+
+def _load_openai():
+    from openai import OpenAI
+    key = os.getenv("OPENAI_API_KEY")
+    if not key:
+        raise RuntimeError("OPENAI_API_KEY not set")
+    return OpenAI(api_key=key)
+
+def _load_anthropic():
+    import anthropic
+    key = os.getenv("ANTHROPIC_API_KEY")
+    if not key:
+        raise RuntimeError("ANTHROPIC_API_KEY not set")
+    return anthropic.Anthropic(api_key=key)
+
+def _call_model(prompt: str, provider: str = "anthropic", model: str | None = None) -> str:
+    provider = (provider or "anthropic").lower()
+    if provider == "openai":
+        client = _load_openai()
+        model = model or os.getenv("OPENAI_MODEL", "gpt-4o-mini")
+        resp = client.chat.completions.create(
+            model=model,
+            messages=[{"role":"system","content":prompt}],
+            temperature=float(os.getenv("EXTRACT_T", "0.0")),
+        )
+        return resp.choices[0].message.content
+    else:
+        client = _load_anthropic()
+        model = model or os.getenv("ANTHROPIC_MODEL", "claude-3-5-sonnet-latest")
+        resp = client.messages.create(
+            model=model,
+            max_tokens=int(os.getenv("EXTRACT_MAX_TOKENS","4096")),
+            temperature=float(os.getenv("EXTRACT_T", "0.0")),
+            system=prompt,
+            messages=[{"role":"user","content":"Return ONLY the JSON object."}],
+        )
+        return "".join(getattr(part, "text", "") for part in resp.content)
+
+def extract_json(prompt: str, schema: Dict[str, Any], max_tries: int = 3) -> Dict[str, Any]:
+    """
+    Calls the model, extracts first JSON block, and validates against `schema`.
+    Retries with a repair instruction up to `max_tries`. Returns a validated object.
+    """
+    provider = os.getenv("EXTRACT_PROVIDER", "anthropic")
+    model = os.getenv("EXTRACT_MODEL")
+    last_err = None
+    reply = ""
+
+    for attempt in range(1, max_tries+1):
+        if attempt == 1:
+            reply = _call_model(prompt, provider, model)
+        else:
+            repaired_prompt = (
+                f"{prompt}\n\n# REPAIR CONTEXT\n"
+                f"Prior response:\n{reply}\n\n"
+                "Your previous response was invalid. "
+                "Return ONLY a strictly valid JSON object that conforms to the schema above."
+            )
+            reply = _call_model(repaired_prompt, provider, model)
+
+        blob = _first_json_blob(reply)
+        if not blob:
+            last_err = f"no JSON detected in model reply (len={len(reply)})"
+            continue
+
+        try:
+            obj = json.loads(blob)
+        except Exception as e:
+            last_err = f"json.loads failed: {e}"
+            continue
+
+        ok, why = _validate(obj, schema)
+        if ok:
+            return obj
+        last_err = f"schema validation failed: {why}"
+        time.sleep(0.4)
+
+    raise RuntimeError(last_err or "failed to extract JSON")
+PY
+
+
+Add deps (idempotent):
+
+printf '\njsonschema>=4.22.0\nopenai>=1.40.0\nanthropic>=0.31.0\n' >> requirements.txt
+
+1) Self-contained CLI that bundles prompt from your slug folders
+
+This avoids assuming any internal import paths—just reads your new <slug>_ss.json, <slug>_sa.json, <slug>_fse.txt, and Pre_prompt.txt.
+
+mkdir -p scripts
+
+cat > scripts/extract_one.py <<'PY'
+import os, sys, json, glob, difflib, hashlib
+from pathlib import Path
+from typing import Dict, Any, Tuple, Optional
+from src.app.agents.json_extract import extract_json
+
+ROOT = Path(__file__).resolve().parents[1]
+DOC_DIR = Path(os.getenv("DOC_TYPES_DIR", ROOT/"config/prompts/document_types"))
+PREPROMPT_PATH = Path(os.getenv("CLASSIFIER_AGENT_PREPROMPT", ROOT/"config/prompts/Pre_prompt.txt"))
+
+def _slugify(s: str) -> str:
+    import re
+    s = s.strip().lower()
+    s = re.sub(r"[^a-z0-9]+", "-", s)
+    s = re.sub(r"-{2,}", "-", s).strip("-")
+    return s
+
+def _resolve_slug(label_or_slug: str) -> str:
+    want = _slugify(label_or_slug)
+    # exact dir match
+    if (DOC_DIR/want).is_dir():
+        return want
+    # try mapping file if present
+    map_path = ROOT/"directory_name_mapping.json"
+    if map_path.exists():
+        try:
+            m = json.loads(map_path.read_text(encoding="utf-8"))
+            mappings = (m.get("mappings") or {}) | {v:k for v,k in (m.get("reverse_mappings") or {}).items()}
+            if label_or_slug in mappings:
+                s = mappings[label_or_slug]
+                s = s if (DOC_DIR/s).is_dir() else want
+                if (DOC_DIR/s).is_dir():
+                    return s
+        except Exception:
+            pass
+    # fuzzy dir match
+    choices = [p.name for p in DOC_DIR.iterdir() if p.is_dir()]
+    best = difflib.get_close_matches(want, choices, n=1, cutoff=0.72)
+    if best:
+        return best[0]
+    raise SystemExit(f"Could not resolve slug for: {label_or_slug}")
+
+def _load_schema(slug: str) -> Dict[str, Any]:
+    d = DOC_DIR/slug
+    ss = next(iter(glob.glob(str(d/f"{slug}_ss.json"))), None)
+    sa = next(iter(glob.glob(str(d/f"{slug}_sa.json"))), None)
+    base: Dict[str, Any] = {}
+    if ss:
+        base = json.loads(Path(ss).read_text(encoding="utf-8"))
+    if sa and Path(sa).exists():
+        add = json.loads(Path(sa).read_text(encoding="utf-8"))
+        # small deep-merge: only for dicts
+        def merge(a: Any, b: Any) -> Any:
+            if isinstance(a, dict) and isinstance(b, dict):
+                out = dict(a)
+                for k, v in b.items():
+                    out[k] = merge(a.get(k), v)
+                return out
+            return b if b is not None else a
+        base = merge(base, add)
+    if not isinstance(base, dict) or "properties" not in base:
+        raise SystemExit(f"Schema invalid for {slug}: missing 'properties'")
+    return base
+
+def _load_few_shot(slug: str) -> str:
+    p = DOC_DIR/slug/f"{slug}_fse.txt"
+    return p.read_text(encoding="utf-8") if p.exists() else ""
+
+def _build_prompt(slug: str, schema: Dict[str, Any], few_shot: str, preprompt: str) -> str:
+    schema_txt = json.dumps(schema, ensure_ascii=False, indent=2)
+    prompt = (
+        f"{preprompt.strip()}\n\n"
+        f"# DOCUMENT TYPE: {slug}\n"
+        f"# FEW-SHOT EXAMPLES\n{few_shot.strip()}\n\n"
+        f"# STRICT JSON SCHEMA (Draft 2020-12)\n{schema_txt}\n"
+        "You must return ONLY one JSON object that strictly validates against the schema."
+    )
+    return prompt
+
+def _schema_sha(schema: Dict[str, Any]) -> str:
+    return hashlib.sha256(json.dumps(schema, sort_keys=True).encode("utf-8")).hexdigest()
+
+def main():
+    if len(sys.argv) < 3:
+        print("Usage: python scripts/extract_one.py <slug-or-label> <path-to-text-file> [--online]")
+        sys.exit(2)
+
+    slug = _resolve_slug(sys.argv[1])
+    text_path = Path(sys.argv[2])
+    online = "--online" in sys.argv[3:]
+
+    if not text_path.is_file():
+        print(f"File not found: {text_path}")
+        sys.exit(2)
+
+    schema = _load_schema(slug)
+    few = _load_few_shot(slug)
+    pre = PREPROMPT_PATH.read_text(encoding="utf-8")
+    prompt = _build_prompt(slug, schema, few, pre)
+
+    doc = text_path.read_text(encoding="utf-8", errors="ignore").strip()
+    prompt = f"{prompt}\n\n# DOCUMENT CONTENT (verbatim)\n{doc}"
+
+    os.makedirs("logs", exist_ok=True)
+    (Path("logs")/f"prompt_{slug}.txt").write_text(prompt, encoding="utf-8")
+
+    meta = {"slug": slug, "schema_sha256": _schema_sha(schema)}
+    if not online or os.getenv("EXTRACT_PROVIDER","offline").lower() == "offline":
+        print(f"DRY RUN ✓  Prompt saved → logs/prompt_{slug}.txt")
+        print("Set EXTRACT_PROVIDER=anthropic (or openai) and pass --online to perform extraction.")
+        return
+
+    from src.app.agents.json_extract import extract_json
+    obj = extract_json(prompt, schema)
+    out_path = Path("logs")/f"extraction_{slug}.json"
+    out_path.write_text(json.dumps({"meta": meta, "data": obj}, ensure_ascii=False, indent=2), encoding="utf-8")
+    print(f"✅ Extraction OK → {out_path}")
+
+if __name__ == "__main__":
+    main()
+PY
+
+2) Minimal tests (no API calls needed)
+mkdir -p tests
+
+cat > tests/test_json_guard.py <<'PY'
+from src.app.agents.json_extract import _first_json_blob, _validate
+
+def test_first_json_blob_basic():
+    txt = "noise {\"a\": 1, \"b\": {\"c\":2}} trailing"
+    blob = _first_json_blob(txt)
+    assert blob and blob.startswith("{") and blob.endswith("}")
+
+def test_validate_ok_and_fail():
+    schema = {"type":"object","properties":{"foo":{"type":"string"}}, "required":["foo"]}
+    ok, why = _validate({"foo":"bar"}, schema)
+    assert ok and why == ""
+    ok2, why2 = _validate({}, schema)
+    assert not ok2 and "foo" in why2
+PY
+
+cat > tests/test_slug_loader_min.py <<'PY'
+import os, json
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+DOC_DIR = Path(os.getenv("DOC_TYPES_DIR", ROOT/"config/prompts/document_types"))
+
+def _load_schema_from_slug(slug: str):
+    d = DOC_DIR/slug
+    ss = d/f"{slug}_ss.json"
+    sa = d/f"{slug}_sa.json"
+    base = {}
+    if ss.exists():
+        base = json.loads(ss.read_text(encoding="utf-8"))
+    if sa.exists():
+        add = json.loads(sa.read_text(encoding="utf-8"))
+        if isinstance(base, dict) and isinstance(add, dict):
+            base = base | add
+    return base
+
+def test_three_well_known_slugs_have_properties():
+    for slug in ["purchase-sale-agreement-psa","letter-of-intent-loi","grant-deed"]:
+        d = DOC_DIR/slug
+        assert d.is_dir(), f"missing dir for {slug}"
+        schema = _load_schema_from_slug(slug)
+        assert isinstance(schema, dict) and "properties" in schema, f"schema missing properties for {slug}"
+PY
+
+3) Make targets (nice to have)
+awk 'BEGIN{print "\n# --- test & extract shortcuts ---"}{print}END{}' /dev/null >> Makefile
+
+printf 'venv:\n\tpython3 -m venv venv && . venv/bin/activate && pip install -U pip setuptools wheel && pip install -r requirements.txt\n' >> Makefile
+printf 'test:\n\tpytest -q\n' >> Makefile
+printf 'extract-one:\n\tpython3 scripts/extract_one.py $(slug) $(file) $(args)\n' >> Makefile
+
+4) Run it (offline smoke, then online)
+# from repo root
+python3 -m venv venv && . venv/bin/activate
+pip install -U pip && pip install -r requirements.txt
+pip install pytest
+
+# create a tiny sample text to avoid OCR for now
+mkdir -p data/samples
+cat > data/samples/loi_sample.txt <<'TXT'
+LETTER OF INTENT — Parties: Alpha LLC and Bravo Inc. Target: 123 Main St.
+Key points: purchase price TBD; closing Q4; exclusivity 30 days.
+TXT
+
+# offline: builds prompt and saves it (no API cost)
+make extract-one slug=letter-of-intent-loi file=data/samples/loi_sample.txt
+
+# unit tests (no API calls)
+make test
+
+
+Online extraction (optional):
+
+# Pick a provider you have keys for
+export EXTRACT_PROVIDER=anthropic
+export ANTHROPIC_API_KEY=sk-ant-...yourkey...
+export ANTHROPIC_MODEL=claude-3-5-sonnet-latest
+
+# or OpenAI:
+# export EXTRACT_PROVIDER=openai
+# export OPENAI_API_KEY=sk-...yourkey...
+# export OPENAI_MODEL=gpt-4o-mini
+
+# now run with --online
+make extract-one slug=letter-of-intent-loi file=data/samples/loi_sample.txt args=--online
+
+
+You should see either DRY RUN ✓ (offline) or ✅ Extraction OK → logs/extraction_letter-of-intent-loi.json (online).
+
+B) “Cursor Mission Brief” (paste this into Cursor/Gemini/Claude)
+You are operating inside the repo `~/agent-project`. Your task is to add a self-contained, SAFE test harness for the schema router + JSON extraction guard, then run a smoke test.
+
+CONTEXT
+- Slugged doc-type folders live at: config/prompts/document_types/<slug>/
+- Each slug may contain:
+  - <slug>_ss.json (specialist schema)
+  - <slug>_sa.json (schema additions) — optional
+  - <slug>_fse.txt (few-shot examples) — optional
+- Global pre-prompt: config/prompts/Pre_prompt.txt
+- Do NOT rename or move any existing files. Only add new files listed in the steps below.
+
+DELIVERABLES
+1) Create `src/app/agents/json_extract.py` (JSON guard using jsonschema + repair-loop).
+2) Create `scripts/extract_one.py` (bundles prompt from slug folders; offline by default; online if `--online` and EXTRACT_PROVIDER set).
+3) Create tests:
+   - `tests/test_json_guard.py` (unit tests for blob extraction + schema validation)
+   - `tests/test_slug_loader_min.py` (ensures a few known slugs load schemas with "properties")
+4) Add Make targets: `venv`, `test`, `extract-one`.
+5) Run:
+   - set up venv and install deps
+   - offline run: `make extract-one slug=letter-of-intent-loi file=data/samples/loi_sample.txt`
+   - tests: `make test`
+   - (optional online) with Anthropic or OpenAI keys and `--online`.
+
+ACCEPTANCE CRITERIA
+- `make extract-one ...` (offline) prints “DRY RUN ✓” and writes `logs/prompt_<slug>.txt`.
+- `make test` passes.
+- (Optional) Online run writes `logs/extraction_<slug>.json` with `meta.slug` and `meta.schema_sha256`.
+
+STEP-BY-STEP
+1) Create `src/app/agents/json_extract.py` with a function `extract_json(prompt, schema, max_tries=3)` using jsonschema Draft 2020-12. Include helpers `_first_json_blob` and `_validate`.
+2) Append these deps to `requirements.txt`: jsonschema>=4.22.0, openai>=1.40.0, anthropic>=0.31.0
+3) Create `scripts/extract_one.py`. Behavior:
+   - Input: `<slug-or-label> <path-to-text-file> [--online]`
+   - Resolve slug by exact/fuzzy match; optionally consult `directory_name_mapping.json` if present.
+   - Load and deep-merge `<slug>_ss.json` + `<slug>_sa.json` (if present).
+   - Read `<slug>_fse.txt` (if present) and Pre_prompt.txt.
+   - Build a system prompt and append the document text verbatim.
+   - Save prompt to `logs/prompt_<slug>.txt`.
+   - If `--online` and `EXTRACT_PROVIDER` is `anthropic` or `openai`, call `extract_json` and save `logs/extraction_<slug>.json` with `{ meta: {slug, schema_sha256}, data: {...} }`.
+   - Otherwise print “DRY RUN ✓”.
+4) Create tests shown below:
+   - `tests/test_json_guard.py`: verifies `_first_json_blob` and `_validate` with a toy schema.
+   - `tests/test_slug_loader_min.py`: verifies that slugs "purchase-sale-agreement-psa", "letter-of-intent-loi", and "grant-deed" exist and their merged schema has `"properties"`.
+5) Append Make targets:
+   - `venv`: create venv and install deps.
+   - `test`: run pytest -q.
+   - `extract-one`: wrapper for the CLI.
+6) Create sample file `data/samples/loi_sample.txt` with a few lines of text.
+7) Run commands:
+
+
+python3 -m venv venv && . venv/bin/activate
+pip install -U pip && pip install -r requirements.txt && pip install pytest
+make extract-one slug=letter-of-intent-loi file=data/samples/loi_sample.txt
+make test
+
+8) (Optional) Online run:
+- Export valid API key(s) and model env:
+  - Anthropic: EXTRACT_PROVIDER=anthropic, ANTHROPIC_API_KEY, ANTHROPIC_MODEL=claude-3-5-sonnet-latest
+  - or OpenAI: EXTRACT_PROVIDER=openai, OPENAI_API_KEY, OPENAI_MODEL=gpt-4o-mini
+- Run: `make extract-one slug=letter-of-intent-loi file=data/samples/loi_sample.txt args=--online`
+
+CONSTRAINTS
+- Do NOT change existing slugs, filenames, or directory layout.
+- Keep new code Python 3.11+ compatible, no external tooling beyond what’s specified.
+- If a step fails, stop and show me the exact command output and the file you touched last.

@@ -1,0 +1,28 @@
+**INPUT DOCUMENT TEXT:**
+STOP PAYMENT NOTICE
+
+To: Mega Bank, N.A. (Construction Lender)
+To: Downtown Tower LLC (Owner)
+
+Claimant: City Electric Inc.
+Amount of Claim: $450,000.00
+
+You are hereby notified to withhold sufficient funds to satisfy the claimant's demand for unpaid electrical work on the Downtown Tower project.
+
+Date: May 1, 2032
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Stop Payment Notice",
+  "effective_date": "2032-05-01",
+  "parties": [
+    { "name": "City Electric Inc.", "role": "Claimant" },
+    { "name": "Downtown Tower LLC", "role": "Owner" },
+    { "name": "Mega Bank, N.A.", "role": "Construction Lender" }
+  ],
+  "stop_payment_notice_details": {
+    "project_address": "Downtown Tower project",
+    "amount_of_claim": 450000
+  },
+  "discovered_entities": []
+}

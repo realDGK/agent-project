@@ -1,0 +1,12 @@
+{
+  "water_rights_details": {
+    "type": "object",
+    "description": "Details specific to water rights.",
+    "properties": {
+      "water_right_permit_or_license_number": { "type": "string" },
+      "amount_of_water_transferred": { "type": "string" },
+      "source_of_water": { "type": "string" },
+      "place_of_use": { "type": "string" }
+    }
+  }
+}

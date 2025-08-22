@@ -1,0 +1,21 @@
+**INPUT DOCUMENT TEXT:**
+COLLATERAL ASSIGNMENT OF PROJECT DOCUMENTS
+
+This Assignment is made August 1, 2031, by Downtown Tower LLC ("Assignor") for the benefit of Mega Bank, N.A. ("Assignee").
+
+As additional security for the Loan, Assignor hereby assigns to Assignee all of its rights in the construction contract with BuildRight Corp., the architectural plans, and all permits and governmental approvals for the Downtown Tower project.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Collateral Assignment of Project Documents",
+  "effective_date": "2031-08-01",
+  "parties": [
+    { "name": "Downtown Tower LLC", "role": "Assignor" },
+    { "name": "Mega Bank, N.A.", "role": "Assignee" }
+  ],
+  "assignment_details": {
+    "collateral_assigned": "All rights in the construction contract with BuildRight Corp., the architectural plans, and all permits and governmental approvals for the Downtown Tower project.",
+    "secured_debt_reference": "The Loan"
+  },
+  "discovered_entities": []
+}

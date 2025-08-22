@@ -1,0 +1,45 @@
+{
+  "title": "Relief from Stay Motion Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Motion for Relief from the Automatic Stay'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Moving Party", "Creditor", "Debtor"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "bankruptcy_details": {
+      "type": "object",
+      "properties": {
+        "case_number": { "type": "string" },
+        "property_address": { "type": "string" },
+        "reason_for_relief": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "bankruptcy_details"]
+}

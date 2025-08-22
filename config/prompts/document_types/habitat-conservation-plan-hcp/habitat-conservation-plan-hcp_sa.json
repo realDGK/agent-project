@@ -1,0 +1,11 @@
+{
+  "hcp_details": {
+    "type": "object",
+    "description": "Details specific to a Habitat Conservation Plan (HCP).",
+    "properties": {
+      "plan_area": { "type": "string" },
+      "covered_species": { "type": "array", "items": { "type": "string" } },
+      "mitigation_strategy": { "type": "string" }
+    }
+  }
+}

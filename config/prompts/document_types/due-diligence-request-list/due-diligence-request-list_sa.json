@@ -1,0 +1,16 @@
+{
+  "due_diligence_details": {
+    "type": "object",
+    "description": "Details specific to due diligence materials and requests.",
+    "properties": {
+      "project_name": {
+        "type": "string"
+      },
+      "requested_item_categories": {
+        "type": "array",
+        "items": { "type": "string" },
+        "description": "A list of the main categories of documents requested."
+      }
+    }
+  }
+}

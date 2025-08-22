@@ -1,0 +1,46 @@
+{
+  "title": "Flood Control Easement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Deed of Easement for Flood Control'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Grantor", "Grantee", "Flood Control District"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "easement_details": {
+      "type": "object",
+      "properties": {
+        "easement_type": { "type": "string", "default": "Flood Control" },
+        "property_description": { "type": "string" },
+        "purpose": { "type": "string" },
+        "restrictions_imposed": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "easement_details"]
+}

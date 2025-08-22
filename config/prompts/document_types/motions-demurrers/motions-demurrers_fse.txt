@@ -1,0 +1,24 @@
+**INPUT DOCUMENT TEXT:**
+NOTICE OF DEMURRER TO COMPLAINT
+Case No. RG12345678
+Hearing Date: September 15, 2029
+
+Defendant PROPERTY OWNER LLC hereby demurs to Plaintiff's First Cause of Action for Breach of Contract on the grounds that it fails to state facts sufficient to constitute a cause of action.
+
+Date Filed: August 10, 2029
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Notice of Demurrer to Complaint",
+  "effective_date": "2029-08-10",
+  "parties": [
+    { "name": "PROPERTY OWNER LLC", "role": "Moving Party" }
+  ],
+  "litigation_details": {
+    "case_number": "RG12345678",
+    "motion_type": "Demurrer",
+    "relief_sought": "Dismissal of the First Cause of Action for Breach of Contract.",
+    "hearing_date": "2029-09-15"
+  },
+  "discovered_entities": []
+}

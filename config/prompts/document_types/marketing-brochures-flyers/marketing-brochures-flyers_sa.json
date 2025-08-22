@@ -1,0 +1,12 @@
+{
+  "marketing_material_details": {
+    "type": "object",
+    "description": "Details specific to marketing materials like brochures or flyers.",
+    "properties": {
+      "property_name": { "type": "string" },
+      "property_address": { "type": "string" },
+      "property_type": { "type": "string" },
+      "key_features": { "type": "array", "items": { "type": "string" } }
+    }
+  }
+}

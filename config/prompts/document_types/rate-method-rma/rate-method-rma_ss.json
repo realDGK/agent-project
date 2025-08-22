@@ -1,0 +1,45 @@
+{
+  "title": "Rate and Method of Apportionment (RMA) Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Rate and Method of Apportionment of Special Tax'."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Author", "Special Tax Consultant"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "cfd_details": {
+      "type": "object",
+      "properties": {
+        "cfd_name": { "type": "string" },
+        "cfd_number": { "type": "string" },
+        "maximum_special_tax": { "type": "string" },
+        "method_of_apportionment": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "cfd_details"]
+}

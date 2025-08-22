@@ -1,0 +1,1616 @@
+Excellent. The batch file workflow is proving to be much more efficient. Let's proceed with the next batch of fifteen.
+
+Here are documents #126 through #140 from the checklist, all in the requested format.
+
+Document Type 126: Phase I/II ESAs
+126_specialist_schema.json
+
+JSON
+
+{
+  "title": "Phase I/II ESA Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Phase I Environmental Site Assessment'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Author", "Consultant", "Client"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "technical_study_details": {
+      "type": "object",
+      "properties": {
+        "study_type": { "type": "string", "enum": ["Phase I ESA", "Phase II ESA"] },
+        "project_name": { "type": "string" },
+        "recognized_environmental_conditions_recs": { "type": "array", "items": { "type": "string" } },
+        "conclusions": { "type": "string" },
+        "recommendations": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "technical_study_details"]
+}
+126_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+PHASE I ENVIRONMENTAL SITE ASSESSMENT
+123 INDUSTRIAL WAY, OAKLAND, CA
+
+Prepared for: Industrial Buyers LLC
+Prepared by: Clearwater Environmental
+Date: March 10, 2031
+
+CONCLUSIONS AND RECOMMENDATIONS:
+We have performed a Phase I ESA in conformance with ASTM E1527-13. This assessment has revealed the following recognized environmental conditions (RECs):
+1. The historical use of the property as a machine shop.
+2. The presence of an adjacent property listed as a leaking underground storage tank site.
+
+We recommend a Phase II Environmental Site Assessment to collect soil and groundwater samples to test for the presence of hazardous substances.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Phase I Environmental Site Assessment",
+  "effective_date": "2031-03-10",
+  "parties": [
+    { "name": "Clearwater Environmental", "role": "Consultant" },
+    { "name": "Industrial Buyers LLC", "role": "Client" }
+  ],
+  "technical_study_details": {
+    "study_type": "Phase I ESA",
+    "project_name": "123 Industrial Way, Oakland, CA",
+    "recognized_environmental_conditions_recs": [
+      "The historical use of the property as a machine shop.",
+      "The presence of an adjacent property listed as a leaking underground storage tank site."
+    ],
+    "conclusions": null,
+    "recommendations": "Recommend a Phase II Environmental Site Assessment to collect soil and groundwater samples."
+  },
+  "discovered_entities": []
+}
+126_schema_additions.json
+
+JSON
+
+{
+  "technical_study_details": {
+    "type": "object",
+    "description": "Details specific to a technical study or report.",
+    "properties": {
+      "study_type": { "type": "string" },
+      "project_name": { "type": "string" },
+      "site_description": { "type": "string" },
+      "key_findings": { "type": "array", "items": { "type": "string" } },
+      "recommendations": { "type": "string" },
+      "findings_summary": { "type": "string" },
+      "ab52_consultation_summary": { "type": "string" },
+      "paleontological_sensitivity": { "type": "string" },
+      "project_trip_generation": { "type": "string" },
+      "significant_impacts_identified": { "type": "array", "items": { "type": "string" } },
+      "recommended_mitigation": { "type": "string" },
+      "emissions_summary": { "type": "string" },
+      "thresholds_exceeded": { "type": "array", "items": { "type": "string" } },
+      "pollutants_analyzed": { "type": "array", "items": { "type": "string" } },
+      "risk_conclusion": { "type": "string" },
+      "recognized_environmental_conditions_recs": { "type": "array", "items": { "type": "string" } },
+      "conclusions": { "type": "string" }
+    }
+  }
+}
+Document Type 127: HazMat/Remedial Action Plans
+127_specialist_schema.json
+
+JSON
+
+{
+  "title": "Remedial Action Plan Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Remedial Action Plan'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Author", "Consultant", "Client", "Regulatory Agency"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "remediation_plan_details": {
+      "type": "object",
+      "properties": {
+        "site_address": { "type": "string" },
+        "contaminants_of_concern": { "type": "array", "items": { "type": "string" } },
+        "remedial_approach": { "type": "string" },
+        "cleanup_goals": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "remediation_plan_details"]
+}
+127_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+REMEDIAL ACTION WORKPLAN
+123 INDUSTRIAL WAY SITE, OAKLAND, CA
+
+Prepared for: Industrial Buyers LLC
+Prepared by: Clearwater Environmental
+Date: May 5, 2031
+Approved by: Alameda County Department of Environmental Health
+
+This plan addresses soil contamination by petroleum hydrocarbons and chlorinated solvents. The proposed remedial action is soil vapor extraction (SVE) combined with in-situ chemical oxidation. The cleanup goal is to reduce contaminant concentrations to below residential screening levels.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Remedial Action Workplan",
+  "effective_date": "2031-05-05",
+  "parties": [
+    { "name": "Clearwater Environmental", "role": "Consultant" },
+    { "name": "Industrial Buyers LLC", "role": "Client" },
+    { "name": "Alameda County Department of Environmental Health", "role": "Regulatory Agency" }
+  ],
+  "remediation_plan_details": {
+    "site_address": "123 Industrial Way Site, Oakland, CA",
+    "contaminants_of_concern": [
+      "petroleum hydrocarbons",
+      "chlorinated solvents"
+    ],
+    "remedial_approach": "Soil vapor extraction (SVE) combined with in-situ chemical oxidation.",
+    "cleanup_goals": "Reduce contaminant concentrations to below residential screening levels."
+  },
+  "discovered_entities": []
+}
+127_schema_additions.json
+
+JSON
+
+{
+  "remediation_plan_details": {
+    "type": "object",
+    "description": "Details specific to a hazardous materials remediation plan.",
+    "properties": {
+      "site_address": { "type": "string" },
+      "contaminants_of_concern": { "type": "array", "items": { "type": "string" } },
+      "remedial_approach": { "type": "string" },
+      "cleanup_goals": { "type": "string" }
+    }
+  }
+}
+Document Type 128: Dust Control Plans
+128_specialist_schema.json
+
+JSON
+
+{
+  "title": "Dust Control Plan Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Dust Control Plan'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type":- "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Developer", "Contractor", "Regulatory Agency"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "dust_control_plan_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "project_acreage": { "type": "number" },
+        "best_management_practices_bmps": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "dust_control_plan_details"]
+}
+128_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+DUST CONTROL PLAN
+FOR THE CANYON RANCH PROJECT (150 ACRES)
+
+Submitted to: Placer County Air Pollution Control District
+Submitted by: Canyon Ranch Developers LLC
+
+The following Best Management Practices (BMPs) will be implemented:
+- All active construction areas will be watered twice daily.
+- Vehicle speeds on unpaved roads will be limited to 15 mph.
+- A gravel apron will be installed at all site access points.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Dust Control Plan",
+  "effective_date": null,
+  "parties": [
+    { "name": "Canyon Ranch Developers LLC", "role": "Developer" },
+    { "name": "Placer County Air Pollution Control District", "role": "Regulatory Agency" }
+  ],
+  "dust_control_plan_details": {
+    "project_name": "Canyon Ranch Project",
+    "project_acreage": 150,
+    "best_management_practices_bmps": [
+      "All active construction areas will be watered twice daily.",
+      "Vehicle speeds on unpaved roads will be limited to 15 mph.",
+      "A gravel apron will be installed at all site access points."
+    ]
+  },
+  "discovered_entities": []
+}
+128_schema_additions.json
+
+JSON
+
+{
+  "dust_control_plan_details": {
+    "type": "object",
+    "description": "Details specific to a dust control plan.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "project_acreage": { "type": "number" },
+      "best_management_practices_bmps": { "type": "array", "items": { "type": "string" } }
+    }
+  }
+}
+Document Type 129: USACE 404 Permit
+129_specialist_schema.json
+
+JSON
+
+{
+  "title": "USACE 404 Permit Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Department of the Army Permit'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Permittee", "Issuing Agency"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "permit_details": {
+      "type": "object",
+      "properties": {
+        "permit_number": { "type": "string" },
+        "permit_type": { "type": "string", "description": "e.g., 'Nationwide Permit', 'Individual Permit'." },
+        "authorized_activity": { "type": "string" },
+        "impacts_authorized": { "type": "string" },
+        "mitigation_required": { "type": "string" },
+        "expiration_date": { "type": "string", "format": "date" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "permit_details"]
+}
+129_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+DEPARTMENT OF THE ARMY PERMIT
+
+Permittee: Pine Hills Development LLC
+Permit No.: SPK-2031-00123
+Issuing Office: U.S. Army Corps of Engineers, Sacramento District
+Date Issued: June 1, 2031
+Expiration Date: June 1, 2036
+
+You are authorized to place fill material into 0.75 acres of seasonal wetlands to construct an access road for the Pine Hills Estates project.
+
+As mitigation, the permittee shall purchase 1.5 acres of mitigation credits from the Spring Valley Mitigation Bank.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Department of the Army Permit",
+  "effective_date": "2031-06-01",
+  "parties": [
+    { "name": "Pine Hills Development LLC", "role": "Permittee" },
+    { "name": "U.S. Army Corps of Engineers, Sacramento District", "role": "Issuing Agency" }
+  ],
+  "permit_details": {
+    "permit_number": "SPK-2031-00123",
+    "permit_type": null,
+    "authorized_activity": "Place fill material to construct an access road for the Pine Hills Estates project.",
+    "impacts_authorized": "0.75 acres of seasonal wetlands.",
+    "mitigation_required": "Purchase 1.5 acres of mitigation credits from the Spring Valley Mitigation Bank.",
+    "expiration_date": "2036-06-01"
+  },
+  "discovered_entities": []
+}
+129_schema_additions.json
+
+JSON
+
+{
+  "permit_details": {
+    "type": "object",
+    "description": "Details specific to a permit issued by a government agency.",
+    "properties": {
+      "permit_number": { "type": "string" },
+      "property_address": { "type": "string" },
+      "sign_description": { "type": "string" },
+      "sign_dimensions": { "type": "string" },
+      "expiration_date": { "type": "string", "format": "date" },
+      "permit_type": { "type": "string" },
+      "authorized_activity": { "type": "string" },
+      "impacts_authorized": { "type": "string" },
+      "mitigation_required": { "type": "string" }
+    }
+  }
+}
+Document Type 130: RWQCB 401 Permit
+130_specialist_schema.json
+
+JSON
+
+{
+  "title": "RWQCB 401 Water Quality Certification Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Clean Water Act Section 401 Water Quality Certification'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Applicant", "Issuing Agency"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "permit_details": {
+      "type": "object",
+      "properties": {
+        "certification_number": { "type": "string" },
+        "project_name": { "type": "string" },
+        "related_404_permit": { "type": "string" },
+        "key_conditions": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "permit_details"]
+}
+130_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+CLEAN WATER ACT SECTION 401 WATER QUALITY CERTIFICATION
+
+Applicant: Pine Hills Development LLC
+Project: Pine Hills Estates
+WDID No: 5A12CR00345
+Date: July 15, 2031
+
+This Certification is issued in response to an application for a U.S. Army Corps of Engineers Permit (SPK-2031-00123).
+
+This action is a conditional certification for the activities described. The applicant shall comply with all conditions, including the implementation of Best Management Practices for erosion control.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Clean Water Act Section 401 Water Quality Certification",
+  "effective_date": "2031-07-15",
+  "parties": [
+    { "name": "Pine Hills Development LLC", "role": "Applicant" }
+  ],
+  "permit_details": {
+    "certification_number": "5A12CR00345",
+    "project_name": "Pine Hills Estates",
+    "related_404_permit": "SPK-2031-00123",
+    "key_conditions": [
+      "Comply with all conditions.",
+      "Implementation of Best Management Practices for erosion control."
+    ]
+  },
+  "discovered_entities": []
+}
+130_schema_additions.json
+
+JSON
+
+{
+  "permit_details": {
+    "type": "object",
+    "description": "Details specific to a permit issued by a government agency.",
+    "properties": {
+      "permit_number": { "type": "string" },
+      "property_address": { "type": "string" },
+      "sign_description": { "type": "string" },
+      "sign_dimensions": { "type": "string" },
+      "expiration_date": { "type": "string", "format": "date" },
+      "permit_type": { "type": "string" },
+      "authorized_activity": { "type": "string" },
+      "impacts_authorized": { "type": "string" },
+      "mitigation_required": { "type": "string" },
+      "certification_number": { "type": "string" },
+      "project_name": { "type": "string" },
+      "related_404_permit": { "type": "string" },
+      "key_conditions": { "type": "array", "items": { "type": "string" } }
+    }
+  }
+}
+Document Type 131: CDFW 1602 Permit
+131_specialist_schema.json
+
+JSON
+
+{
+  "title": "CDFW 1602 Streambed Alteration Agreement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Lake and Streambed Alteration Agreement'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Operator", "Permittee", "Issuing Agency"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "permit_details": {
+      "type": "object",
+      "properties": {
+        "notification_number": { "type": "string" },
+        "project_name": { "type": "string" },
+        "authorized_activity": { "type": "string" },
+        "mitigation_required": { "type": "string" },
+        "term_of_agreement": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "permit_details"]
+}
+131_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+LAKE AND STREAMBED ALTERATION AGREEMENT
+Notification No. 1600-2031-0123-R2
+
+This Agreement is entered into between the California Department of Fish and Wildlife ("CDFW") and Pine Hills Development LLC ("Operator").
+
+Operator is authorized to construct a clear-span bridge crossing Pine Creek to access the Pine Hills Estates project.
+
+As mitigation, Operator shall restore 500 linear feet of riparian habitat upstream of the crossing.
+
+This agreement is valid for five (5) years from the date of issuance, August 1, 2031.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Lake and Streambed Alteration Agreement",
+  "effective_date": "2031-08-01",
+  "parties": [
+    { "name": "California Department of Fish and Wildlife", "role": "Issuing Agency" },
+    { "name": "Pine Hills Development LLC", "role": "Operator" }
+  ],
+  "permit_details": {
+    "notification_number": "1600-2031-0123-R2",
+    "project_name": "Pine Hills Estates",
+    "authorized_activity": "Construct a clear-span bridge crossing Pine Creek.",
+    "mitigation_required": "Restore 500 linear feet of riparian habitat upstream of the crossing.",
+    "term_of_agreement": "Five (5) years from the date of issuance."
+  },
+  "discovered_entities": []
+}
+131_schema_additions.json
+
+JSON
+
+{
+  "permit_details": {
+    "type": "object",
+    "description": "Details specific to a permit issued by a government agency.",
+    "properties": {
+      "permit_number": { "type": "string" },
+      "property_address": { "type": "string" },
+      "sign_description": { "type": "string" },
+      "sign_dimensions": { "type": "string" },
+      "expiration_date": { "type": "string", "format": "date" },
+      "permit_type": { "type": "string" },
+      "authorized_activity": { "type": "string" },
+      "impacts_authorized": { "type": "string" },
+      "mitigation_required": { "type": "string" },
+      "certification_number": { "type": "string" },
+      "project_name": { "type": "string" },
+      "related_404_permit": { "type": "string" },
+      "key_conditions": { "type": "array", "items": { "type": "string" } },
+      "notification_number": { "type": "string" },
+      "term_of_agreement": { "type": "string" }
+    }
+  }
+}
+Document Type 132: USFWS/NMFS Biological Opinion/Incidental Take Permit
+132_specialist_schema.json
+
+JSON
+
+{
+  "title": "Biological Opinion/Incidental Take Permit Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Biological Opinion'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Action Agency", "Consulting Agency", "Applicant"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "biological_opinion_details": {
+      "type": "object",
+      "properties": {
+        "consultation_number": { "type": "string" },
+        "project_name": { "type": "string" },
+        "species_affected": { "type": "array", "items": { "type": "string" } },
+        "jeopardy_finding": { "type": "boolean" },
+        "incidental_take_statement": { "type": "string" },
+        "conservation_measures": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "biological_opinion_details"]
+}
+132_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+BIOLOGICAL OPINION
+Consultation No. 08ESMF00-2031-F-1234
+Action Agency: U.S. Army Corps of Engineers
+Applicant: Pine Hills Development LLC
+Date: September 1, 2031
+
+This Biological Opinion addresses the effects of the Pine Hills Estates project on the federally listed California red-legged frog.
+
+CONCLUSION: It is our biological opinion that the action is not likely to jeopardize the continued existence of the species.
+
+INCIDENTAL TAKE STATEMENT:
+The Service anticipates take of up to 5 adult California red-legged frogs will be incidental to the proposed action.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Biological Opinion",
+  "effective_date": "2031-09-01",
+  "parties": [
+    { "name": "U.S. Army Corps of Engineers", "role": "Action Agency" },
+    { "name": "Pine Hills Development LLC", "role": "Applicant" }
+  ],
+  "biological_opinion_details": {
+    "consultation_number": "08ESMF00-2031-F-1234",
+    "project_name": "Pine Hills Estates",
+    "species_affected": [
+      "California red-legged frog"
+    ],
+    "jeopardy_finding": false,
+    "incidental_take_statement": "Anticipates take of up to 5 adult California red-legged frogs.",
+    "conservation_measures": null
+  },
+  "discovered_entities": []
+}
+132_schema_additions.json
+
+JSON
+
+{
+  "biological_opinion_details": {
+    "type": "object",
+    "description": "Details specific to a USFWS/NMFS Biological Opinion or Incidental Take Permit.",
+    "properties": {
+      "consultation_number": { "type": "string" },
+      "project_name": { "type": "string" },
+      "species_affected": { "type": "array", "items": { "type": "string" } },
+      "jeopardy_finding": { "type": "boolean" },
+      "incidental_take_statement": { "type": "string" },
+      "conservation_measures": { "type": "string" }
+    }
+  }
+}
+Document Type 133: Air District permits
+133_specialist_schema.json
+
+JSON
+
+{
+  "title": "Air District Permit Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Authority to Construct'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Permittee", "Issuing Agency"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "permit_details": {
+      "type": "object",
+      "properties": {
+        "permit_number": { "type": "string" },
+        "permit_type": { "type": "string", "description": "e.g., 'Authority to Construct', 'Permit to Operate'." },
+        "equipment_or_process_permitted": { "type": "string" },
+        "key_conditions": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "permit_details"]
+}
+133_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+BAY AREA AIR QUALITY MANAGEMENT DISTRICT
+AUTHORITY TO CONSTRUCT
+
+Owner/Operator: Data Center Solutions Inc.
+Application No: 54321
+Date Issued: October 5, 2031
+
+Equipment Location: 100 Tech Way, San Jose, CA
+Equipment Description: One (1) 2,500 kW diesel-fired emergency generator.
+
+Conditions:
+1. The generator shall not operate more than 50 hours per year for testing and maintenance.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Authority to Construct",
+  "effective_date": "2031-10-05",
+  "parties": [
+    { "name": "Data Center Solutions Inc.", "role": "Permittee" },
+    { "name": "Bay Area Air Quality Management District", "role": "Issuing Agency" }
+  ],
+  "permit_details": {
+    "permit_number": "54321",
+    "permit_type": "Authority to Construct",
+    "equipment_or_process_permitted": "One (1) 2,500 kW diesel-fired emergency generator.",
+    "key_conditions": [
+      "The generator shall not operate more than 50 hours per year for testing and maintenance."
+    ]
+  },
+  "discovered_entities": []
+}
+133_schema_additions.json
+
+JSON
+
+{
+  "permit_details": {
+    "type": "object",
+    "description": "Details specific to a permit issued by a government agency.",
+    "properties": {
+      "permit_number": { "type": "string" },
+      "property_address": { "type": "string" },
+      "sign_description": { "type": "string" },
+      "sign_dimensions": { "type": "string" },
+      "expiration_date": { "type": "string", "format": "date" },
+      "permit_type": { "type": "string" },
+      "authorized_activity": { "type": "string" },
+      "impacts_authorized": { "type": "string" },
+      "mitigation_required": { "type": "string" },
+      "certification_number": { "type": "string" },
+      "project_name": { "type": "string" },
+      "related_404_permit": { "type": "string" },
+      "key_conditions": { "type": "array", "items": { "type": "string" } },
+      "notification_number": { "type": "string" },
+      "term_of_agreement": { "type": "string" },
+      "equipment_or_process_permitted": { "type": "string" }
+    }
+  }
+}
+Document Type 134: NPDES NOI/NOT & SWPPP
+134_specialist_schema.json
+
+JSON
+
+{
+  "title": "NPDES/SWPPP Document Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Notice of Intent (NOI)', 'Stormwater Pollution Prevention Plan (SWPPP)'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Discharger", "Operator", "Consultant"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "stormwater_details": {
+      "type": "object",
+      "properties": {
+        "document_type": { "type": "string", "enum": ["NOI", "NOT", "SWPPP"] },
+        "project_name": { "type": "string" },
+        "wdid_number": { "type": "string" },
+        "total_disturbed_area_acres": { "type": "number" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "stormwater_details"]
+}
+134_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+NOTICE OF INTENT (NOI) TO COMPLY WITH THE
+CONSTRUCTION GENERAL PERMIT
+
+Project Name: Riverbend Tract No. 8888
+Operator: Riverbend Homes LLC
+WDID#: 5A34C123456
+
+This project will disturb a total of 75 acres. A Stormwater Pollution Prevention Plan (SWPPP) has been prepared and will be implemented on-site.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Notice of Intent (NOI)",
+  "effective_date": null,
+  "parties": [
+    { "name": "Riverbend Homes LLC", "role": "Operator" }
+  ],
+  "stormwater_details": {
+    "document_type": "NOI",
+    "project_name": "Riverbend Tract No. 8888",
+    "wdid_number": "5A34C123456",
+    "total_disturbed_area_acres": 75
+  },
+  "discovered_entities": []
+}
+134_schema_additions.json
+
+JSON
+
+{
+  "stormwater_details": {
+    "type": "object",
+    "description": "Details specific to stormwater compliance documents.",
+    "properties": {
+      "document_type": { "type": "string", "enum": ["NOI", "NOT", "SWPPP"] },
+      "project_name": { "type": "string" },
+      "wdid_number": { "type": "string" },
+      "total_disturbed_area_acres": { "type": "number" }
+    }
+  }
+}
+Document Type 135: Stormwater Inspection Reports
+135_specialist_schema.json
+
+JSON
+
+{
+  "title": "Stormwater Inspection Report Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Stormwater Inspection Report'."
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date",
+      "description": "The date of the inspection."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Inspector", "QSP"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "stormwater_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "wdid_number": { "type": "string" },
+        "inspection_findings": { "type": "string" },
+        "corrective_actions_required": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "stormwater_details"]
+}
+135_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+WEEKLY STORMWATER INSPECTION CHECKLIST
+Project: Riverbend Tract No. 8888
+WDID: 5A34C123456
+Inspection Date: August 15, 2030
+Inspector: John Smith, QSP
+
+Observations:
+- Silt fence near Lot 10 is down.
+- All other BMPs are functioning as intended.
+
+Corrective Actions:
+- Repair silt fence near Lot 10 within 24 hours.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Weekly Stormwater Inspection Checklist",
+  "effective_date": "2030-08-15",
+  "parties": [
+    { "name": "John Smith", "role": "QSP" }
+  ],
+  "stormwater_details": {
+    "project_name": "Riverbend Tract No. 8888",
+    "wdid_number": "5A34C123456",
+    "inspection_findings": "Silt fence near Lot 10 is down. All other BMPs are functioning as intended.",
+    "corrective_actions_required": "Repair silt fence near Lot 10 within 24 hours."
+  },
+  "discovered_entities": []
+}
+135_schema_additions.json
+
+JSON
+
+{
+  "stormwater_details": {
+    "type": "object",
+    "description": "Details specific to stormwater compliance documents.",
+    "properties": {
+      "document_type": { "type": "string", "enum": ["NOI", "NOT", "SWPPP"] },
+      "project_name": { "type": "string" },
+      "wdid_number": { "type": "string" },
+      "total_disturbed_area_acres": { "type": "number" },
+      "inspection_findings": { "type": "string" },
+      "corrective_actions_required": { "type": "string" }
+    }
+  }
+}
+Document Type 136: Habitat Conservation Plan (HCP)
+136_specialist_schema.json
+
+JSON
+
+{
+  "title": "Habitat Conservation Plan (HCP) Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'East County Habitat Conservation Plan'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Plan Operator", "Regulatory Agency"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "hcp_details": {
+      "type": "object",
+      "properties": {
+        "plan_area": { "type": "string" },
+        "covered_species": { "type": "array", "items": { "type": "string" } },
+        "mitigation_strategy": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "hcp_details"]
+}
+136_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+EAST CONTRA COSTA COUNTY
+HABITAT CONSERVATION PLAN / NATURAL COMMUNITY CONSERVATION PLAN
+
+This HCP/NCCP provides a framework to protect natural resources while streamlining environmental permitting for impacts to 28 covered species, including the San Joaquin kit fox, within the 175,000-acre plan area. Mitigation is provided through a combination of land acquisition and habitat restoration.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "East Contra Costa County Habitat Conservation Plan / Natural Community Conservation Plan",
+  "effective_date": null,
+  "parties": [],
+  "hcp_details": {
+    "plan_area": "175,000 acres",
+    "covered_species": [
+      "San Joaquin kit fox",
+      "27 others"
+    ],
+    "mitigation_strategy": "A combination of land acquisition and habitat restoration."
+  },
+  "discovered_entities": []
+}
+136_schema_additions.json
+
+JSON
+
+{
+  "hcp_details": {
+    "type": "object",
+    "description": "Details specific to a Habitat Conservation Plan (HCP).",
+    "properties": {
+      "plan_area": { "type": "string" },
+      "covered_species": { "type": "array", "items": { "type": "string" } },
+      "mitigation_strategy": { "type": "string" }
+    }
+  }
+}
+Document Type 137: Conservation Easements
+137_specialist_schema.json
+
+JSON
+
+{
+  "title": "Conservation Easement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Deed of Conservation Easement'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Grantor", "Grantee", "Easement Holder"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "easement_details": {
+      "type": "object",
+      "properties": {
+        "property_description": { "type": "string" },
+        "conservation_values": { "type": "string" },
+        "prohibited_uses": { "type": "array", "items": { "type": "string" } },
+        "is_perpetual": { "type": "boolean" }
+      }
+    },
+    "legal_recording_details": {
+      "type": "object",
+      "properties": {
+        "instrument_number": { "type": "string" },
+        "recording_date": { "type": "string", "format": "date" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "easement_details"]
+}
+137_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+DEED OF CONSERVATION EASEMENT
+
+This Deed is made October 1, 2031, by Green Valley Ranch LLC ("Grantor") to the North Coast Land Trust ("Grantee").
+
+Grantor conveys to Grantee a perpetual conservation easement over the 500-acre property described in Exhibit A to protect its scenic and wildlife habitat values.
+
+Prohibited uses include any subdivision of the property, commercial timber harvesting, and construction of any new structures outside of the designated building envelope.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Deed of Conservation Easement",
+  "effective_date": "2031-10-01",
+  "parties": [
+    { "name": "Green Valley Ranch LLC", "role": "Grantor" },
+    { "name": "North Coast Land Trust", "role": "Grantee" }
+  ],
+  "easement_details": {
+    "property_description": "The 500-acre property described in Exhibit A.",
+    "conservation_values": "Scenic and wildlife habitat values.",
+    "prohibited_uses": [
+      "Any subdivision of the property",
+      "Commercial timber harvesting",
+      "Construction of any new structures outside of the designated building envelope"
+    ],
+    "is_perpetual": true
+  },
+  "legal_recording_details": null,
+  "discovered_entities": []
+}
+137_schema_additions.json
+
+JSON
+
+{
+  "easement_details": {
+    "type": "object",
+    "description": "Details specific to an easement agreement.",
+    "properties": {
+      "easement_type": { "type": "string" },
+      "purpose": { "type": "string" },
+      "servient_tenement_description": { "type": "string" },
+      "dominant_tenement_description": { "type": "string" },
+      "is_appurtenant_or_in_gross": { "type": "string" },
+      "property_description": { "type": "string" },
+      "easements_granted": { "type": "array", "items": { "type": "string" } },
+      "maintenance_obligations": { "type": "string" },
+      "cost_sharing_provisions": { "type": "string" },
+      "operating_covenants": { "type": "string" },
+      "use_restrictions": { "type": "string" },
+      "conservation_values": { "type": "string" },
+      "prohibited_uses": { "type": "array", "items": { "type": "string" } },
+      "is_perpetual": { "type": "boolean" }
+    }
+  }
+}
+Document Type 138: Mitigation Bank/Conservation Credits agreements
+138_specialist_schema.json
+
+JSON
+
+{
+  "title": "Mitigation/Conservation Credit Agreement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Credit Sale Agreement'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Seller", "Bank Owner", "Buyer", "Permittee"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "mitigation_credit_details": {
+      "type": "object",
+      "properties": {
+        "bank_name": { "type": "string" },
+        "credit_type": { "type": "string" },
+        "number_of_credits": { "type": "number" },
+        "price_per_credit": { "type": "number" },
+        "total_purchase_price": { "type": "number" },
+        "project_to_be_mitigated": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "mitigation_credit_details"]
+}
+138_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+AGREEMENT FOR THE SALE OF VERNAL POOL WETLAND MITIGATION CREDITS
+
+This Agreement is made June 10, 2031, between Spring Valley Mitigation Bank LLC ("Seller") and Pine Hills Development LLC ("Buyer").
+
+Seller agrees to sell to Buyer, and Buyer agrees to purchase, One and a Half (1.5) vernal pool wetland credits for a price of $150,000 per credit, for a total of $225,000.
+
+These credits will be used to satisfy the mitigation requirements for the Pine Hills Estates project, as required by USACE Permit No. SPK-2031-00123.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Agreement for the Sale of Vernal Pool Wetland Mitigation Credits",
+  "effective_date": "2031-06-10",
+  "parties": [
+    { "name": "Spring Valley Mitigation Bank LLC", "role": "Seller" },
+    { "name": "Pine Hills Development LLC", "role": "Buyer" }
+  ],
+  "mitigation_credit_details": {
+    "bank_name": "Spring Valley Mitigation Bank",
+    "credit_type": "Vernal pool wetland",
+    "number_of_credits": 1.5,
+    "price_per_credit": 150000,
+    "total_purchase_price": 225000,
+    "project_to_be_mitigated": "Pine Hills Estates project (USACE Permit No. SPK-2031-00123)"
+  },
+  "discovered_entities": []
+}
+138_schema_additions.json
+
+JSON
+
+{
+  "mitigation_credit_details": {
+    "type": "object",
+    "description": "Details specific to the purchase or sale of mitigation or conservation credits.",
+    "properties": {
+      "bank_name": { "type": "string" },
+      "credit_type": { "type": "string" },
+      "number_of_credits": { "type": "number" },
+      "price_per_credit": { "type": "number" },
+      "total_purchase_price": { "type": "number" },
+      "project_to_be_mitigated": { "type": "string" }
+    }
+  }
+}
+Document Type 139: MMRP Monitoring Reports
+139_specialist_schema.json
+
+JSON
+
+{
+  "title": "MMRP Monitoring Report Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Annual MMRP Monitoring Report'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Author", "Consultant", "Developer"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "monitoring_report_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "reporting_period": { "type": "string" },
+        "mitigation_measures_status": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "measure_id": { "type": "string" },
+              "status": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "monitoring_report_details"]
+}
+139_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+2031 ANNUAL MITIGATION MONITORING REPORT
+ELM STREET APARTMENTS
+
+Prepared for: Springfield Homes LLC
+Prepared by: Compliance Monitors Inc.
+Date: January 15, 2032
+Reporting Period: January 1, 2031 - December 31, 2031
+
+STATUS OF MITIGATION MEASURES:
+- BIO-1 (Nesting Birds): Completed. Pre-construction survey was submitted to the City on March 5, 2031.
+- NOI-1 (Noise): In Compliance. Construction hours have been monitored and no violations were recorded.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "2031 Annual Mitigation Monitoring Report",
+  "effective_date": "2032-01-15",
+  "parties": [
+    { "name": "Compliance Monitors Inc.", "role": "Consultant" },
+    { "name": "Springfield Homes LLC", "role": "Developer" }
+  ],
+  "monitoring_report_details": {
+    "project_name": "Elm Street Apartments",
+    "reporting_period": "January 1, 2031 - December 31, 2031",
+    "mitigation_measures_status": [
+      {
+        "measure_id": "BIO-1",
+        "status": "Completed. Pre-construction survey was submitted to the City on March 5, 2031."
+      },
+      {
+        "measure_id": "NOI-1",
+        "status": "In Compliance. Construction hours have been monitored and no violations were recorded."
+      }
+    ]
+  },
+  "discovered_entities": []
+}
+139_schema_additions.json
+
+JSON
+
+{
+  "monitoring_report_details": {
+    "type": "object",
+    "description": "Details specific to a mitigation monitoring report.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "reporting_period": { "type": "string" },
+      "mitigation_measures_status": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "measure_id": { "type": "string" },
+            "status": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}
+Document Type 140: Will-Serve/Verification Letters
+140_specialist_schema.json
+
+JSON
+
+{
+  "title": "Will-Serve/Verification Letter Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Will-Serve Letter'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Utility Provider", "Developer", "Property Owner"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "utility_service_details": {
+      "type": "object",
+      "properties": {
+        "utility_type": { "type": "string" },
+        "project_name": { "type": "string" },
+        "service_commitment": { "type": "string" },
+        "conditions_of_service": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "utility_service_details"]
+}
+140_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+RIVERBEND UNIFIED SCHOOL DISTRICT
+WILL SERVE LETTER
+
+Date: March 20, 2030
+To: Riverbend Homes LLC
+Re: "Riverbend" (Tract No. 8888)
+
+This letter is to confirm that the Riverbend Unified School District has the capacity and is willing to serve the 150 single-family homes proposed in the Riverbend project.
+
+This commitment is conditioned upon the Developer's payment of all applicable school impact fees prior to the issuance of building permits.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Will Serve Letter",
+  "effective_date": "2030-03-20",
+  "parties": [
+    { "name": "Riverbend Unified School District", "role": "Utility Provider" },
+    { "name": "Riverbend Homes LLC", "role": "Developer" }
+  ],
+  "utility_service_details": {
+    "utility_type": "School District",
+    "project_name": "Riverbend (Tract No. 8888)",
+    "service_commitment": "Has the capacity and is willing to serve the 150 single-family homes.",
+    "conditions_of_service": "Payment of all applicable school impact fees prior to the issuance of building permits."
+  },
+  "discovered_entities": []
+}
+140_schema_additions.json
+
+JSON
+
+{
+  "utility_service_details": {
+    "type": "object",
+    "description": "Details specific to utility service letters and agreements.",
+    "properties": {
+      "utility_type": { "type": "string" },
+      "project_name": { "type": "string" },
+      "service_commitment": { "type": "string" },
+      "conditions_of_service": { "type": "string" }
+    }
+  }
+}

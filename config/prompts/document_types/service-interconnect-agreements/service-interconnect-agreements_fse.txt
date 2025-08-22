@@ -1,0 +1,21 @@
+**INPUT DOCUMENT TEXT:**
+GENERATOR INTERCONNECTION AGREEMENT
+This Agreement is entered into on July 1, 2027, between Pacific Power ("Utility") and Sunstream Solar LLC ("Customer").
+
+Customer wishes to interconnect its 500 kW solar photovoltaic generating facility located at 123 Solar Way, Fresno, CA to the Utility's distribution system. The point of common coupling will be at the customer's main service panel.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Generator Interconnection Agreement",
+  "effective_date": "2027-07-01",
+  "parties": [
+    { "name": "Pacific Power", "role": "Utility" },
+    { "name": "Sunstream Solar LLC", "role": "Customer" }
+  ],
+  "interconnect_agreement_details": {
+    "service_address": "123 Solar Way, Fresno, CA",
+    "generation_facility_type": "solar photovoltaic",
+    "system_capacity_kw": 500,
+    "point_of_interconnection": "Customer's main service panel"
+  }
+}

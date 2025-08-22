@@ -1,0 +1,78 @@
+{
+  "title": "Utility Relocation Agreement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Agreement for Relocation of Utility Facilities'."
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date",
+      "description": "The date the agreement was executed."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "Owner",
+              "Utility",
+              "Agency"
+            ]
+          }
+        },
+        "required": [
+          "name",
+          "role"
+        ]
+      }
+    },
+    "utility_relocation_details": {
+      "type": "object",
+      "properties": {
+        "project_requiring_relocation": {
+          "type": "string",
+          "description": "The name or description of the project necessitating the utility move."
+        },
+        "facilities_to_be_relocated": {
+          "type": "string",
+          "description": "A summary of the utility infrastructure being moved (e.g., 'underground electrical conduit', 'water mains')."
+        },
+        "cost_responsibility": {
+          "type": "string",
+          "description": "A summary of who is responsible for the costs of the relocation."
+        }
+      }
+    },
+    "discovered_entities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "entity_name": {
+            "type": "string"
+          },
+          "entity_value": {
+            "type": "string"
+          },
+          "context_summary": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "contract_name",
+    "effective_date",
+    "parties",
+    "utility_relocation_details"
+  ]
+}

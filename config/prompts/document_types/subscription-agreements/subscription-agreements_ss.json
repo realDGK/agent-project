@@ -1,0 +1,45 @@
+{
+  "title": "Subscription Agreement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Subscription Agreement'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Subscriber", "Investor", "Company", "Issuer"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "offering_details": {
+      "type": "object",
+      "properties": {
+        "number_of_shares_or_units": { "type": "number" },
+        "price_per_unit_or_share": { "type": "number" },
+        "total_subscription_amount": { "type": "number" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "offering_details"]
+}

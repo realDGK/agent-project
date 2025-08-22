@@ -1,0 +1,33 @@
+**INPUT DOCUMENT TEXT:**
+SUBMITTAL TRANSMITTAL
+To: Global Architects Inc.
+From: BuildRight Corp.
+Date: November 20, 2031
+
+Submittal No: 23-001
+Spec Section: 23 05 00 - HVAC
+Description: Shop drawings for rooftop air handling unit AHU-1.
+
+Architect's Review Stamp:
+[ ] APPROVED
+[X] APPROVED AS NOTED
+[ ] REVISE AND RESUBMIT
+Date: 11/28/2031
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Submittal Transmittal",
+  "effective_date": "2031-11-20",
+  "parties": [
+    { "name": "BuildRight Corp.", "role": "General Contractor" },
+    { "name": "Global Architects Inc.", "role": "Architect" }
+  ],
+  "submittal_details": {
+    "project_name": null,
+    "submittal_number": "23-001",
+    "spec_section": "23 05 00 - HVAC",
+    "description": "Shop drawings for rooftop air handling unit AHU-1.",
+    "review_status": "Approved as Noted"
+  },
+  "discovered_entities": []
+}

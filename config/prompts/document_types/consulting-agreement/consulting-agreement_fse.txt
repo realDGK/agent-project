@@ -1,0 +1,29 @@
+INPUT DOCUMENT TEXT:
+CONSULTING AGREEMENT
+This Agreement is entered into on December 1, 2026, by and between Meridian Development Group ("Client") and Urban Strategy Advisors ("Consultant").
+SERVICES. Consultant will provide strategic advice and market analysis related to the Client's downtown revitalization project.
+TERM. The term of this Agreement shall be for a period of six (6) months, commencing on December 1, 2026.
+FEES. Client shall pay Consultant a monthly retainer of $10,000 for the services rendered.
+CONFIDENTIALITY. Consultant agrees to keep all non-public information provided by the Client strictly confidential.
+JSON OUTPUT:
+{
+"contract_name": "Consulting Agreement",
+"effective_date": "2026-12-01",
+"parties": [
+{
+"name": "Meridian Development Group",
+"role": "Client"
+},
+{
+"name": "Urban Strategy Advisors",
+"role": "Consultant"
+}
+],
+"consulting_details": {
+"scope_of_services_summary": "Provide strategic advice and market analysis related to the Client's downtown revitalization project.",
+"compensation_summary": "$10,000 monthly retainer.",
+"term_of_agreement": "Six (6) months, commencing on December 1, 2026.",
+"confidentiality_clause_summary": "Consultant agrees to keep all non-public information provided by the Client strictly confidential."
+},
+"discovered_entities": []
+}

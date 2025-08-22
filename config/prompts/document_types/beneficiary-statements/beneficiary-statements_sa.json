@@ -1,0 +1,17 @@
+{
+  "payoff_details": {
+    "type": "object",
+    "description": "Details specific to a loan payoff demand or beneficiary statement.",
+    "properties": {
+      "loan_number": { "type": "string" },
+      "property_address": { "type": "string" },
+      "payoff_amount": { "type": "number" },
+      "good_through_date": { "type": "string", "format": "date" },
+      "per_diem_interest": { "type": "number" },
+      "unpaid_balance": { "type": "number" },
+      "interest_rate": { "type": "string" },
+      "statement_as_of_date": { "type": "string", "format": "date" },
+      "late_charges": { "type": "number" }
+    }
+  }
+}

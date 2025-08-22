@@ -1,0 +1,24 @@
+**INPUT DOCUMENT TEXT:**
+AGREEMENT FOR TRANSFER OF SEWER CAPACITY
+
+This Agreement is made April 5, 2031, between Old Factory LLC ("Seller") and New Homes LLC ("Buyer"), and is approved by the South County Sanitation District ("District").
+
+Seller agrees to sell and transfer to Buyer Two Hundred (200) Equivalent Dwelling Units (EDUs) of sewer treatment capacity within the District's service area for a total price of $500,000.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Agreement for Transfer of Sewer Capacity",
+  "effective_date": "2031-04-05",
+  "parties": [
+    { "name": "Old Factory LLC", "role": "Seller" },
+    { "name": "New Homes LLC", "role": "Buyer" },
+    { "name": "South County Sanitation District", "role": "Utility District" }
+  ],
+  "utility_service_details": {
+    "utility_type": "Sewer",
+    "capacity_amount": "200",
+    "unit_of_measure": "Equivalent Dwelling Units (EDUs)",
+    "purchase_price": 500000
+  },
+  "discovered_entities": []
+}

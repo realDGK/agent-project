@@ -1,0 +1,46 @@
+{
+  "title": "Will-Serve/Verification Letter Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Will-Serve Letter'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Utility Provider", "Developer", "Property Owner"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "utility_service_details": {
+      "type": "object",
+      "properties": {
+        "utility_type": { "type": "string" },
+        "project_name": { "type": "string" },
+        "service_commitment": { "type": "string" },
+        "conditions_of_service": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "utility_service_details"]
+}

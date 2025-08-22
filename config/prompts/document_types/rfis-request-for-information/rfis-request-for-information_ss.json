@@ -1,0 +1,50 @@
+{
+  "title": "RFI (Request for Information) Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Request for Information'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Author", "Recipient", "Contractor", "Architect"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "rfi_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "rfi_number": { "type": "string" },
+        "date_sent": { "type": "string", "format": "date" },
+        "question": { "type": "string" },
+        "response_date": { "type": "string", "format": "date" },
+        "response": { "type": "string" },
+        "cost_impact": { "type": "string" },
+        "schedule_impact": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "rfi_details"]
+}

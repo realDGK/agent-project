@@ -1,0 +1,41 @@
+**INPUT DOCUMENT TEXT:**
+DRAFT ENVIRONMENTAL IMPACT REPORT
+for the OAKVILLE QUARRY REDEVELOPMENT PROJECT
+State Clearinghouse No. 2030040012
+
+Lead Agency: City of Oakville
+Date: August 2030
+
+EXECUTIVE SUMMARY
+This Draft EIR analyzes the potential environmental impacts of the proposed project.
+Significant and Unavoidable Impacts: The project would result in significant and unavoidable impacts to Transportation/Traffic and Air Quality.
+Alternatives: The EIR analyzes a No Project Alternative, a Reduced Density Alternative, and an Alternative Site.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Draft Environmental Impact Report",
+  "effective_date": "2030-08-01",
+  "parties": [
+    { "name": "City of Oakville", "role": "Lead Agency" }
+  ],
+  "environmental_details": {
+    "document_type": "Draft EIR",
+    "project_name": "Oakville Quarry Redevelopment Project",
+    "significant_unavoidable_impacts": [
+      "Transportation/Traffic",
+      "Air Quality"
+    ],
+    "alternatives_analyzed": [
+      "No Project Alternative",
+      "Reduced Density Alternative",
+      "Alternative Site"
+    ]
+  },
+  "discovered_entities": [
+    {
+      "entity_name": "State Clearinghouse No.",
+      "entity_value": "2030040012",
+      "context_summary": "The number assigned by the state for tracking CEQA documents."
+    }
+  ]
+}

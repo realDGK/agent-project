@@ -1,0 +1,21 @@
+**INPUT DOCUMENT TEXT:**
+ENVIRONMENTAL INDEMNITY AGREEMENT
+
+This Agreement is made August 1, 2031, by Downtown Tower LLC ("Indemnitor") for the benefit of Mega Bank, N.A. ("Indemnitee").
+
+In connection with the Loan for the property at 123 Main Street, Indemnitor agrees to indemnify, defend, and hold harmless the Indemnitee from and against any and all claims, losses, and liabilities arising out of or relating to the presence of any Hazardous Materials on, under, or about the Property.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Environmental Indemnity Agreement",
+  "effective_date": "2031-08-01",
+  "parties": [
+    { "name": "Downtown Tower LLC", "role": "Indemnitor" },
+    { "name": "Mega Bank, N.A.", "role": "Indemnitee" }
+  ],
+  "indemnity_details": {
+    "property_address": "123 Main Street",
+    "indemnified_matters": "Any and all claims, losses, and liabilities arising out of or relating to the presence of any Hazardous Materials on, under, or about the Property."
+  },
+  "discovered_entities": []
+}

@@ -1,0 +1,13 @@
+{
+  "payoff_details": {
+    "type": "object",
+    "description": "Details specific to a loan payoff demand.",
+    "properties": {
+      "loan_number": { "type": "string" },
+      "property_address": { "type": "string" },
+      "payoff_amount": { "type": "number" },
+      "good_through_date": { "type": "string", "format": "date" },
+      "per_diem_interest": { "type": "number" }
+    }
+  }
+}

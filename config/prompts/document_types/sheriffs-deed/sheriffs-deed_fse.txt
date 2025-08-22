@@ -1,0 +1,26 @@
+**INPUT DOCUMENT TEXT:**
+SHERIFF'S DEED
+
+I, John Miller, Sheriff of Cook County, Illinois, pursuant to a judgment entered in Case No. 2027-CV-1234 (Plaintiff: Big Bank vs. Defendant: Judgment Debtor LLC), and after a public auction held on October 5, 2028, do hereby convey to AUCTION BUYER CORP. ("Grantee"), all the interest of the defendant in the property at 789 State Street, Chicago, IL.
+
+Dated: October 6, 2028.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Sheriff's Deed",
+  "effective_date": "2028-10-06",
+  "parties": [
+    { "name": "John Miller, Sheriff of Cook County", "role": "Sheriff" },
+    { "name": "AUCTION BUYER CORP.", "role": "Grantee" },
+    { "name": "Judgment Debtor LLC", "role": "Judgment Debtor" },
+    { "name": "Big Bank", "role": "Judgment Creditor" }
+  ],
+  "deed_details": {
+    "deed_type": "Sheriff's Deed",
+    "property_legal_description": "789 State Street, Chicago, IL",
+    "apn": null,
+    "sheriffs_sale_date": "2028-10-05",
+    "court_case_number": "2027-CV-1234"
+  },
+  "discovered_entities": []
+}

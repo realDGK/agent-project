@@ -1,0 +1,1639 @@
+Document Type 320: Tree Protection/Removal Plans
+320_specialist_schema.json
+
+JSON
+
+{
+  "title": "Tree Protection/Removal Plan Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Tree Protection and Removal Plan'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Arborist", "Developer", "Approving Agency"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "plan_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "plan_type": { "type": "string", "default": "Tree Protection/Removal Plan" },
+        "trees_to_be_removed": { "type": "string" },
+        "trees_to_be_protected": { "type": "string" },
+        "protection_measures": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "plan_details"]
+}
+320_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+ARBORIST REPORT & TREE PROTECTION PLAN
+FOR THE CANYON RANCH PROJECT
+
+Prepared by: Certified Arborist Services
+Date: April 1, 2031
+
+This plan identifies all protected trees on the project site.
+- Trees to be Removed: Tree #101 (15" Oak), Tree #105 (18" Oak)
+- Trees to be Protected: All other oak trees 6" in diameter or greater.
+
+Protection measures shall include the installation of temporary protective fencing at the dripline of all protected trees prior to the start of grading.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Arborist Report & Tree Protection Plan",
+  "effective_date": "2031-04-01",
+  "parties": [
+    { "name": "Certified Arborist Services", "role": "Arborist" }
+  ],
+  "plan_details": {
+    "project_name": "Canyon Ranch Project",
+    "plan_type": "Tree Protection/Removal Plan",
+    "trees_to_be_removed": "Tree #101 (15\" Oak), Tree #105 (18\" Oak)",
+    "trees_to_be_protected": "All other oak trees 6\" in diameter or greater.",
+    "protection_measures": "Installation of temporary protective fencing at the dripline of all protected trees prior to the start of grading."
+  },
+  "discovered_entities": []
+}
+320_schema_additions.json
+
+JSON
+
+{
+  "plan_details": {
+    "type": "object",
+    "description": "Details specific to engineering or architectural plan sets.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "plan_type": { "type": "string" },
+      "engineer_of_record": { "type": "string" },
+      "approval_date": { "type": "string", "format": "date" },
+      "plan_sheet_count": { "type": "integer" },
+      "utilities_shown": { "type": "array", "items": { "type": "string" } },
+      "certification_statement": { "type": "string" },
+      "building_description": { "type": "string" },
+      "plan_summary": { "type": "string" },
+      "trees_to_be_removed": { "type": "string" },
+      "trees_to_be_protected": { "type": "string" },
+      "protection_measures": { "type": "string" }
+    }
+  }
+}
+Document Type 321: ALTA Surveys
+321_specialist_schema.json
+
+JSON
+
+{
+  "title": "ALTA Survey Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'ALTA/NSPS Land Title Survey'."
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date",
+      "description": "The date of the field work or certification."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Surveyor", "Client", "Title Company"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "survey_details": {
+      "type": "object",
+      "properties": {
+        "property_address": { "type": "string" },
+        "property_legal_description": { "type": "string" },
+        "apn": { "type": "string" },
+        "flood_zone_information": { "type": "string" },
+        "zoning_classification": { "type": "string" },
+        "table_a_items": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "A list of the optional ALTA Table A items included in the survey."
+        }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "survey_details"]
+}
+321_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+ALTA/NSPS LAND TITLE SURVEY
+For: Big Bank, N.A. and Buyer Corp.
+Property: 100 Valley View Road, Napa, CA
+Legal Description: Lot 1 of Parcel Map No. 1234
+APN: 123-456-78
+
+SURVEYOR'S CERTIFICATION:
+I hereby certify to Buyer Corp., Chicago Title Company, and Big Bank, N.A. that this map represents a survey made by me on March 15, 2028.
+Zoning: Commercial (C-2) per City of Napa letter.
+Flood Zone: Zone X per FEMA Map #06055C0123H.
+Optional Table A Items included: 1, 2, 3, 5, 8, 11.
+
+Surveyed by: Precision Land Surveyors, Inc.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "ALTA/NSPS Land Title Survey",
+  "effective_date": "2028-03-15",
+  "parties": [
+    { "name": "Precision Land Surveyors, Inc.", "role": "Surveyor" },
+    { "name": "Big Bank, N.A.", "role": "Client" },
+    { "name": "Buyer Corp.", "role": "Client" },
+    { "name": "Chicago Title Company", "role": "Title Company" }
+  ],
+  "survey_details": {
+    "property_address": "100 Valley View Road, Napa, CA",
+    "property_legal_description": "Lot 1 of Parcel Map No. 1234",
+    "apn": "123-456-78",
+    "flood_zone_information": "Zone X per FEMA Map #06055C0123H.",
+    "zoning_classification": "Commercial (C-2)",
+    "table_a_items": ["1", "2", "3", "5", "8", "11"]
+  },
+  "discovered_entities": []
+}
+321_schema_additions.json
+
+JSON
+
+{
+  "survey_details": {
+    "type": "object",
+    "description": "Details specific to a land survey.",
+    "properties": {
+      "property_address": { "type": "string" },
+      "property_legal_description": { "type": "string" },
+      "apn": { "type": "string" },
+      "flood_zone_information": { "type": "string" },
+      "zoning_classification": { "type": "string" },
+      "table_a_items": {
+        "type": "array",
+        "items": { "type": "string" },
+        "description": "A list of the optional ALTA Table A items included in the survey."
+      }
+    }
+  }
+}
+Document Type 322: Topographic/Boundary Surveys
+322_specialist_schema.json
+
+JSON
+
+{
+  "title": "Topographic/Boundary Survey Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Boundary Survey'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Surveyor", "Client"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "survey_details": {
+      "type": "object",
+      "properties": {
+        "survey_type": { "type": "string", "enum": ["Topographic", "Boundary"] },
+        "property_address": { "type": "string" },
+        "apn": { "type": "string" },
+        "survey_summary": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "survey_details"]
+}
+322_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+TOPOGRAPHIC SURVEY
+OF
+PARCEL 123-456-78, NAPA, CA
+
+Prepared for: OAK TREE INVESTORS, LLC
+By: Precision Land Surveyors, Inc.
+Date of Survey: February 15, 2027
+
+This survey shows existing site features, including buildings, paving, utilities, and contour lines at 1-foot intervals.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Topographic Survey",
+  "effective_date": "2027-02-15",
+  "parties": [
+    { "name": "Precision Land Surveyors, Inc.", "role": "Surveyor" },
+    { "name": "OAK TREE INVESTORS, LLC", "role": "Client" }
+  ],
+  "survey_details": {
+    "survey_type": "Topographic",
+    "property_address": null,
+    "apn": "123-456-78",
+    "survey_summary": "Shows existing site features, including buildings, paving, utilities, and contour lines at 1-foot intervals."
+  },
+  "discovered_entities": []
+}
+322_schema_additions.json
+
+JSON
+
+{
+  "survey_details": {
+    "type": "object",
+    "description": "Details specific to a land survey.",
+    "properties": {
+      "property_address": { "type": "string" },
+      "property_legal_description": { "type": "string" },
+      "apn": { "type": "string" },
+      "flood_zone_information": { "type": "string" },
+      "zoning_classification": { "type": "string" },
+      "table_a_items": { "type": "array", "items": { "type": "string" } },
+      "survey_type": { "type": "string", "enum": ["Topographic", "Boundary"] },
+      "survey_summary": { "type": "string" }
+    }
+  }
+}
+Document Type 323: Easement Sketches & Legal Exhibits
+323_specialist_schema.json
+
+JSON
+
+{
+  "title": "Easement Sketch/Legal Exhibit Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Exhibit B - Easement Description'."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Surveyor", "Engineer"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "easement_details": {
+      "type": "object",
+      "properties": {
+        "easement_type": { "type": "string" },
+        "easement_description": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "easement_details"]
+}
+323_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+EXHIBIT 'B'
+LEGAL DESCRIPTION OF PUBLIC UTILITY EASEMENT
+
+That certain 10-foot wide strip of land over the easterly portion of Lot 1, Tract 5555, as shown on the attached plat.
+
+Prepared by: Apex Civil Engineering
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Exhibit 'B' - Legal Description of Public Utility Easement",
+  "parties": [
+    { "name": "Apex Civil Engineering", "role": "Engineer" }
+  ],
+  "easement_details": {
+    "easement_type": "Public Utility",
+    "easement_description": "A 10-foot wide strip of land over the easterly portion of Lot 1, Tract 5555, as shown on the attached plat."
+  },
+  "discovered_entities": []
+}
+323_schema_additions.json
+
+JSON
+
+{
+  "easement_details": {
+    "type": "object",
+    "description": "Details specific to an easement agreement.",
+    "properties": {
+      "easement_type": { "type": "string" },
+      "purpose": { "type": "string" },
+      "servient_tenement_description": { "type": "string" },
+      "dominant_tenement_description": { "type": "string" },
+      "is_appurtenant_or_in_gross": { "type": "string" },
+      "property_description": { "type": "string" },
+      "easements_granted": { "type": "array", "items": { "type": "string" } },
+      "maintenance_obligations": { "type": "string" },
+      "cost_sharing_provisions": { "type": "string" },
+      "operating_covenants": { "type": "string" },
+      "use_restrictions": { "type": "string" },
+      "conservation_values": { "type": "string" },
+      "prohibited_uses": { "type": "array", "items": { "type": "string" } },
+      "is_perpetual": { "type": "boolean" },
+      "easement_description": { "type": "string" }
+    }
+  }
+}
+Document Type 324: Monument Records
+324_specialist_schema.json
+
+JSON
+
+{
+  "title": "Monument Record Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Corner Record' or 'Record of Survey'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Surveyor", "County Surveyor"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "survey_details": {
+      "type": "object",
+      "properties": {
+        "property_description": { "type": "string" },
+        "monument_description": { "type": "string" }
+      }
+    },
+    "legal_recording_details": {
+      "type": "object",
+      "properties": {
+        "instrument_number": { "type": "string" },
+        "recording_date": { "type": "string", "format": "date" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "survey_details"]
+}
+324_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+CORNER RECORD
+County of Napa, California
+
+This Corner Record is filed to perpetuate the location of the found 2-inch iron pipe at the northeast corner of Section 5, T. 8 N., R. 3 W.
+
+Surveyor: Precision Land Surveyors, Inc.
+Date: April 1, 2028
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Corner Record",
+  "effective_date": "2028-04-01",
+  "parties": [
+    { "name": "Precision Land Surveyors, Inc.", "role": "Surveyor" }
+  ],
+  "survey_details": {
+    "property_description": "Northeast corner of Section 5, T. 8 N., R. 3 W.",
+    "monument_description": "Found 2-inch iron pipe."
+  },
+  "legal_recording_details": null,
+  "discovered_entities": []
+}
+324_schema_additions.json
+
+JSON
+
+{
+  "survey_details": {
+    "type": "object",
+    "description": "Details specific to a land survey.",
+    "properties": {
+      "property_address": { "type": "string" },
+      "property_legal_description": { "type": "string" },
+      "apn": { "type": "string" },
+      "flood_zone_information": { "type": "string" },
+      "zoning_classification": { "type": "string" },
+      "table_a_items": { "type": "array", "items": { "type": "string" } },
+      "survey_type": { "type": "string" },
+      "survey_summary": { "type": "string" },
+      "property_description": { "type": "string" },
+      "monument_description": { "type": "string" }
+    }
+  }
+}
+Document Type 325: Geotech Reports/Update Letters
+325_specialist_schema.json
+
+JSON
+
+{
+  "title": "Geotech Report/Update Letter Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Geotechnical Investigation Report'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Author", "Consultant", "Client"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "technical_study_details": {
+      "type": "object",
+      "properties": {
+        "study_type": { "type": "string", "default": "Geotechnical/Soils Report" },
+        "project_name": { "type": "string" },
+        "key_findings": { "type": "array", "items": { "type": "string" } },
+        "recommendations": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "technical_study_details"]
+}
+325_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+GEOTECHNICAL INVESTIGATION
+PROPOSED COMMERCIAL BUILDING, 123 MAIN ST
+
+Prepared for: Main Street Development LLC
+Prepared by: GeoTek Solutions
+Date: January 25, 2031
+
+FINDINGS:
+The site is underlain by expansive clay soils. The potential for liquefaction is low.
+
+RECOMMENDATIONS:
+Foundations should consist of a post-tensioned slab-on-grade. All fill material should be compacted to 95% relative compaction.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Geotechnical Investigation",
+  "effective_date": "2031-01-25",
+  "parties": [
+    { "name": "GeoTek Solutions", "role": "Consultant" },
+    { "name": "Main Street Development LLC", "role": "Client" }
+  ],
+  "technical_study_details": {
+    "study_type": "Geotechnical/Soils Report",
+    "project_name": "Proposed Commercial Building, 123 Main St",
+    "key_findings": [
+      "The site is underlain by expansive clay soils.",
+      "The potential for liquefaction is low."
+    ],
+    "recommendations": "Foundations should consist of a post-tensioned slab-on-grade. All fill material should be compacted to 95% relative compaction."
+  },
+  "discovered_entities": []
+}
+325_schema_additions.json
+
+JSON
+
+{
+  "technical_study_details": {
+    "type": "object",
+    "description": "Details specific to a technical study or report.",
+    "properties": {
+      "study_type": { "type": "string" },
+      "project_name": { "type": "string" },
+      "site_description": { "type": "string" },
+      "key_findings": { "type": "array", "items": { "type": "string" } },
+      "recommendations": { "type": "string" },
+      "findings_summary": { "type": "string" },
+      "ab52_consultation_summary": { "type": "string" },
+      "paleontological_sensitivity": { "type": "string" },
+      "project_trip_generation": { "type": "string" },
+      "significant_impacts_identified": { "type": "array", "items": { "type": "string" } },
+      "recommended_mitigation": { "type": "string" },
+      "emissions_summary": { "type": "string" },
+      "thresholds_exceeded": { "type": "array", "items": { "type": "string" } },
+      "pollutants_analyzed": { "type": "array", "items": { "type": "string" } },
+      "risk_conclusion": { "type": "string" },
+      "recognized_environmental_conditions_recs": { "type": "array", "items": { "type": "string" } },
+      "conclusions": { "type": "string" },
+      "project_water_demand": { "type": "string" },
+      "sufficiency_finding": { "type": "string" }
+    }
+  }
+}
+Document Type 326: Pavement Design
+326_specialist_schema.json
+
+JSON
+
+{
+  "title": "Pavement Design Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Pavement Design Report'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Engineer", "Client"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "technical_study_details": {
+      "type": "object",
+      "properties": {
+        "study_type": { "type": "string", "default": "Pavement Design" },
+        "project_name": { "type": "string" },
+        "design_traffic_index": { "type": "string" },
+        "pavement_section_recommendations": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "technical_study_details"]
+}
+326_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+PAVEMENT DESIGN RECOMMENDATIONS
+RIVERBEND TRACT NO. 8888
+
+Prepared by: GeoTek Solutions
+Date: February 1, 2030
+
+Based on a design Traffic Index of 6.0, we recommend the following structural pavement sections:
+- Residential Streets: 3 inches of asphalt concrete over 8 inches of aggregate base.
+- Collector Streets: 4 inches of asphalt concrete over 10 inches of aggregate base.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Pavement Design Recommendations",
+  "effective_date": "2030-02-01",
+  "parties": [
+    { "name": "GeoTek Solutions", "role": "Engineer" }
+  ],
+  "technical_study_details": {
+    "study_type": "Pavement Design",
+    "project_name": "Riverbend Tract No. 8888",
+    "design_traffic_index": "6.0",
+    "pavement_section_recommendations": "Residential Streets: 3 inches AC over 8 inches AB. Collector Streets: 4 inches AC over 10 inches AB."
+  },
+  "discovered_entities": []
+}
+326_schema_additions.json
+
+JSON
+
+{
+  "technical_study_details": {
+    "type": "object",
+    "description": "Details specific to a technical study or report.",
+    "properties": {
+      "study_type": { "type": "string" },
+      "project_name": { "type": "string" },
+      "site_description": { "type": "string" },
+      "key_findings": { "type": "array", "items": { "type": "string" } },
+      "recommendations": { "type": "string" },
+      "findings_summary": { "type": "string" },
+      "ab52_consultation_summary": { "type": "string" },
+      "paleontological_sensitivity": { "type": "string" },
+      "project_trip_generation": { "type": "string" },
+      "significant_impacts_identified": { "type": "array", "items": { "type": "string" } },
+      "recommended_mitigation": { "type": "string" },
+      "emissions_summary": { "type": "string" },
+      "thresholds_exceeded": { "type": "array", "items": { "type": "string" } },
+      "pollutants_analyzed": { "type": "array", "items": { "type": "string" } },
+      "risk_conclusion": { "type": "string" },
+      "recognized_environmental_conditions_recs": { "type": "array", "items": { "type": "string" } },
+      "conclusions": { "type": "string" },
+      "project_water_demand": { "type": "string" },
+      "sufficiency_finding": { "type": "string" },
+      "design_traffic_index": { "type": "string" },
+      "pavement_section_recommendations": { "type": "string" }
+    }
+  }
+}
+Document Type 327: GIS/Imagery/3D Models
+327_specialist_schema.json
+
+JSON
+
+{
+  "title": "GIS/Imagery/3D Model Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the data set or model."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Creator", "Provider"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "gis_details": {
+      "type": "object",
+      "properties": {
+        "data_type": { "type": "string", "enum": ["GIS Data", "Aerial Imagery", "3D Model", "LiDAR"] },
+        "project_name": { "type": "string" },
+        "data_format": { "type": "string" },
+        "summary": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "gis_details"]
+}
+327_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+[Metadata file for a GIS dataset]
+
+Title: Riverbend Project - Zoning Layer
+Date: 2030-05-01
+Source: City of Riverbend Planning Dept.
+Format: Esri Shapefile (.shp)
+Abstract: This dataset contains the zoning designations for all parcels within the Riverbend project area.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Riverbend Project - Zoning Layer",
+  "effective_date": "2030-05-01",
+  "parties": [
+    { "name": "City of Riverbend Planning Dept.", "role": "Provider" }
+  ],
+  "gis_details": {
+    "data_type": "GIS Data",
+    "project_name": "Riverbend Project",
+    "data_format": "Esri Shapefile (.shp)",
+    "summary": "Contains the zoning designations for all parcels within the project area."
+  },
+  "discovered_entities": []
+}
+327_schema_additions.json
+
+JSON
+
+{
+  "gis_details": {
+    "type": "object",
+    "description": "Details specific to GIS data, imagery, or 3D models.",
+    "properties": {
+      "data_type": { "type": "string", "enum": ["GIS Data", "Aerial Imagery", "3D Model", "LiDAR"] },
+      "project_name": { "type": "string" },
+      "data_format": { "type": "string" },
+      "summary": { "type": "string" }
+    }
+  }
+}
+Document Type 328: Service/Interconnect Agreements
+328_specialist_schema.json
+
+JSON
+
+{
+  "title": "Service/Interconnect Agreement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Electric Service Agreement'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Customer", "Utility Company"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "utility_service_details": {
+      "type": "object",
+      "properties": {
+        "utility_type": { "type": "string" },
+        "service_address": { "type": "string" },
+        "account_number": { "type": "string" },
+        "service_description": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "utility_service_details"]
+}
+328_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+ELECTRIC SERVICE AGREEMENT
+
+Customer: Downtown Tower LLC
+Service Address: 123 Main Street, Anytown, CA
+Account No: 9876-5432
+Date: August 1, 2034
+
+This agreement establishes the terms and conditions for the provision of commercial electric service to the above-referenced property.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Electric Service Agreement",
+  "effective_date": "2034-08-01",
+  "parties": [
+    { "name": "Downtown Tower LLC", "role": "Customer" }
+  ],
+  "utility_service_details": {
+    "utility_type": "Electric",
+    "service_address": "123 Main Street, Anytown, CA",
+    "account_number": "9876-5432",
+    "service_description": "Provision of commercial electric service."
+  },
+  "discovered_entities": []
+}
+328_schema_additions.json
+
+JSON
+
+{
+  "utility_service_details": {
+    "type": "object",
+    "description": "Details specific to utility service letters and agreements.",
+    "properties": {
+      "utility_type": { "type": "string" },
+      "project_name": { "type": "string" },
+      "service_commitment": { "type": "string" },
+      "conditions_of_service": { "type": "string" },
+      "map_reference": { "type": "string" },
+      "verification_statement": { "type": "string" },
+      "capacity_amount": { "type": "string" },
+      "unit_of_measure": { "type": "string" },
+      "purchase_price": { "type": "number" },
+      "scope_of_work": { "type": "string" },
+      "applicant_cost_responsibility": { "type": "number" },
+      "utility_allowance_credit": { "type": "number" },
+      "participating_utilities": { "type": "array", "items": { "type": "string" } },
+      "cost_sharing_arrangement": { "type": "string" },
+      "cost_responsibility": { "type": "string" },
+      "service_address": { "type": "string" },
+      "account_number": { "type": "string" },
+      "service_description": { "type": "string" }
+    }
+  }
+}
+Document Type 329: Utility Easements
+329_specialist_schema.json
+
+JSON
+
+{
+  "title": "Utility Easement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Grant of Easement'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Grantor", "Grantee"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "easement_details": {
+      "type": "object",
+      "properties": {
+        "easement_type": { "type": "string", "default": "Utility" },
+        "purpose": { "type": "string" },
+        "easement_area_description": { "type": "string" }
+      }
+    },
+    "legal_recording_details": {
+      "type": "object",
+      "properties": {
+        "instrument_number": { "type": "string" },
+        "recording_date": { "type": "string", "format": "date" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "easement_details"]
+}
+329_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+GRANT OF EASEMENT
+
+FOR GOOD AND VALUABLE CONSIDERATION, Riverbend Homes LLC ("Grantor") hereby grants to Pacific Gas and Electric Company ("Grantee"), a perpetual easement for public utility purposes over, under, and across the 10-foot wide strip of land described in Exhibit A.
+
+Dated: September 15, 2030
+Recorded: September 16, 2030, as Inst. No. 2030-888999
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Grant of Easement",
+  "effective_date": "2030-09-15",
+  "parties": [
+    { "name": "Riverbend Homes LLC", "role": "Grantor" },
+    { "name": "Pacific Gas and Electric Company", "role": "Grantee" }
+  ],
+  "easement_details": {
+    "easement_type": "Utility",
+    "purpose": "Public utility purposes.",
+    "easement_area_description": "The 10-foot wide strip of land described in Exhibit A."
+  },
+  "legal_recording_details": {
+    "instrument_number": "2030-888999",
+    "recording_date": "2030-09-16"
+  },
+  "discovered_entities": []
+}
+329_schema_additions.json
+
+JSON
+
+{
+  "easement_details": {
+    "type": "object",
+    "description": "Details specific to an easement agreement.",
+    "properties": {
+      "easement_type": { "type": "string" },
+      "purpose": { "type": "string" },
+      "servient_tenement_description": { "type": "string" },
+      "dominant_tenement_description": { "type": "string" },
+      "is_appurtenant_or_in_gross": { "type": "string" },
+      "property_description": { "type": "string" },
+      "easements_granted": { "type": "array", "items": { "type": "string" } },
+      "maintenance_obligations": { "type": "string" },
+      "cost_sharing_provisions": { "type": "string" },
+      "operating_covenants": { "type": "string" },
+      "use_restrictions": { "type": "string" },
+      "conservation_values": { "type": "string" },
+      "prohibited_uses": { "type": "array", "items": { "type": "string" } },
+      "is_perpetual": { "type": "boolean" },
+      "easement_description": { "type": "string" },
+      "easement_area_description": { "type": "string" }
+    }
+  }
+}
+Document Type 330: Meter Set Requests
+330_specialist_schema.json
+
+JSON
+
+{
+  "title": "Meter Set Request Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Application for Service' or 'Meter Set Request'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Applicant", "Utility Company"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "utility_service_details": {
+      "type": "object",
+      "properties": {
+        "utility_type": { "type": "string" },
+        "service_address": { "type": "string" },
+        "meter_size": { "type": "string" },
+        "service_type": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "utility_service_details"]
+}
+330_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+PACIFIC GAS AND ELECTRIC COMPANY
+APPLICATION FOR GAS AND ELECTRIC SERVICE
+
+Applicant: Riverbend Homes LLC
+Service Address: 101 Riverbend Way, Riverbend, CA (Lot 1)
+Date: October 1, 2030
+
+Requesting set of one (1) 200 Amp electric meter and one (1) gas meter for a single-family residence.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Application for Gas and Electric Service",
+  "effective_date": "2030-10-01",
+  "parties": [
+    { "name": "Riverbend Homes LLC", "role": "Applicant" },
+    { "name": "Pacific Gas and Electric Company", "role": "Utility Company" }
+  ],
+  "utility_service_details": {
+    "utility_type": "Gas and Electric",
+    "service_address": "101 Riverbend Way, Riverbend, CA (Lot 1)",
+    "meter_size": "200 Amp electric",
+    "service_type": "Single-family residence"
+  },
+  "discovered_entities": []
+}
+330_schema_additions.json
+
+JSON
+
+{
+  "utility_service_details": {
+    "type": "object",
+    "description": "Details specific to utility service letters and agreements.",
+    "properties": {
+      "utility_type": { "type": "string" },
+      "project_name": { "type": "string" },
+      "service_commitment": { "type": "string" },
+      "conditions_of_service": { "type": "string" },
+      "map_reference": { "type": "string" },
+      "verification_statement": { "type": "string" },
+      "capacity_amount": { "type": "string" },
+      "unit_of_measure": { "type": "string" },
+      "purchase_price": { "type": "number" },
+      "scope_of_work": { "type": "string" },
+      "applicant_cost_responsibility": { "type": "number" },
+      "utility_allowance_credit": { "type": "number" },
+      "participating_utilities": { "type": "array", "items": { "type": "string" } },
+      "cost_sharing_arrangement": { "type": "string" },
+      "cost_responsibility": { "type": "string" },
+      "service_address": { "type": "string" },
+      "account_number": { "type": "string" },
+      "service_description": { "type": "string" },
+      "meter_size": { "type": "string" },
+      "service_type": { "type": "string" }
+    }
+  }
+}
+Document Type 331: Net Metering Agreements
+331_specialist_schema.json
+
+JSON
+
+{
+  "title": "Net Metering Agreement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Interconnection and Net Energy Metering Agreement'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Customer-Generator", "Utility Company"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "utility_service_details": {
+      "type": "object",
+      "properties": {
+        "service_address": { "type": "string" },
+        "generating_facility_type": { "type": "string" },
+        "system_capacity_kw": { "type": "number" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "utility_service_details"]
+}
+331_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+SOLAR INTERCONNECTION AND NET ENERGY METERING AGREEMENT
+
+This Agreement is between Solar Farm LLC ("Customer-Generator") and Pacific Gas and Electric Company ("PG&E").
+
+Customer-Generator will install and operate a 5.0 kW AC solar photovoltaic generating facility at the property located at 1 Power Plant Road.
+
+Date: June 1, 2032
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Solar Interconnection and Net Energy Metering Agreement",
+  "effective_date": "2032-06-01",
+  "parties": [
+    { "name": "Solar Farm LLC", "role": "Customer-Generator" },
+    { "name": "Pacific Gas and Electric Company", "role": "Utility Company" }
+  ],
+  "utility_service_details": {
+    "service_address": "1 Power Plant Road",
+    "generating_facility_type": "Solar Photovoltaic",
+    "system_capacity_kw": 5.0
+  },
+  "discovered_entities": []
+}
+331_schema_additions.json
+
+JSON
+
+{
+  "utility_service_details": {
+    "type": "object",
+    "description": "Details specific to utility service letters and agreements.",
+    "properties": {
+      "utility_type": { "type": "string" },
+      "project_name": { "type": "string" },
+      "service_commitment": { "type": "string" },
+      "conditions_of_service": { "type": "string" },
+      "map_reference": { "type": "string" },
+      "verification_statement": { "type": "string" },
+      "capacity_amount": { "type": "string" },
+      "unit_of_measure": { "type": "string" },
+      "purchase_price": { "type": "number" },
+      "scope_of_work": { "type": "string" },
+      "applicant_cost_responsibility": { "type": "number" },
+      "utility_allowance_credit": { "type": "number" },
+      "participating_utilities": { "type": "array", "items": { "type": "string" } },
+      "cost_sharing_arrangement": { "type": "string" },
+      "cost_responsibility": { "type": "string" },
+      "service_address": { "type": "string" },
+      "account_number": { "type": "string" },
+      "service_description": { "type": "string" },
+      "meter_size": { "type": "string" },
+      "service_type": { "type": "string" },
+      "generating_facility_type": { "type": "string" },
+      "system_capacity_kw": { "type": "number" }
+    }
+  }
+}
+Document Type 332: Utility Relocation Agreements
+332_specialist_schema.json
+
+JSON
+
+{
+  "title": "Utility Relocation Agreement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Utility Relocation Agreement'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Requesting Party", "Developer", "Utility Company"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "utility_service_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "relocation_description": { "type": "string" },
+        "cost_responsibility": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "utility_service_details"]
+}
+332_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+AGREEMENT FOR RELOCATION OF FACILITIES
+
+This Agreement is made July 1, 2030, between Riverbend Homes LLC ("Developer") and Pacific Bell Telephone Company ("Utility").
+
+In order to accommodate the construction of the Riverbend project, Developer has requested that Utility relocate its existing overhead telephone lines along Main Street to a new underground alignment.
+
+Developer agrees to pay all costs associated with the design and construction of the relocation.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Agreement for Relocation of Facilities",
+  "effective_date": "2030-07-01",
+  "parties": [
+    { "name": "Riverbend Homes LLC", "role": "Developer" },
+    { "name": "Pacific Bell Telephone Company", "role": "Utility Company" }
+  ],
+  "utility_service_details": {
+    "project_name": "Riverbend project",
+    "relocation_description": "Relocate existing overhead telephone lines along Main Street to a new underground alignment.",
+    "cost_responsibility": "Developer agrees to pay all costs associated with the design and construction of the relocation."
+  },
+  "discovered_entities": []
+}
+332_schema_additions.json
+
+JSON
+
+{
+  "utility_service_details": {
+    "type": "object",
+    "description": "Details specific to utility service letters and agreements.",
+    "properties": {
+      "utility_type": { "type": "string" },
+      "project_name": { "type": "string" },
+      "service_commitment": { "type": "string" },
+      "conditions_of_service": { "type": "string" },
+      "map_reference": { "type": "string" },
+      "verification_statement": { "type": "string" },
+      "capacity_amount": { "type": "string" },
+      "unit_of_measure": { "type": "string" },
+      "purchase_price": { "type": "number" },
+      "scope_of_work": { "type": "string" },
+      "applicant_cost_responsibility": { "type": "number" },
+      "utility_allowance_credit": { "type": "number" },
+      "participating_utilities": { "type": "array", "items": { "type": "string" } },
+      "cost_sharing_arrangement": { "type": "string" },
+      "cost_responsibility": { "type": "string" },
+      "service_address": { "type": "string" },
+      "account_number": { "type": "string" },
+      "service_description": { "type": "string" },
+      "meter_size": { "type": "string" },
+      "service_type": { "type": "string" },
+      "generating_facility_type": { "type": "string" },
+      "system_capacity_kw": { "type": "number" },
+      "relocation_description": { "type": "string" }
+    }
+  }
+}
+Document Type 333: Railroad Crossing/Corridor Licenses
+333_specialist_schema.json
+
+JSON
+
+{
+  "title": "Railroad License Agreement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Pipeline License Agreement'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Licensor", "Railroad", "Licensee"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "license_details": {
+      "type": "object",
+      "properties": {
+        "license_purpose": { "type": "string" },
+        "location_description": { "type": "string" },
+        "license_fee": { "type": "string" },
+        "insurance_requirements": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "license_details"]
+}
+333_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+UNION PACIFIC RAILROAD COMPANY
+LICENSE AGREEMENT FOR PIPELINE CROSSING
+
+This Agreement is made July 1, 2030, between Union Pacific Railroad Company ("Licensor") and the City of Riverbend ("Licensee").
+
+Licensor grants Licensee a license to construct and maintain a 24-inch sewer force main under the railroad tracks at Milepost 123.45.
+
+Licensee shall pay an annual fee of $5,000 and maintain a railroad protective liability insurance policy of $5,000,000.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "License Agreement for Pipeline Crossing",
+  "effective_date": "2030-07-01",
+  "parties": [
+    { "name": "Union Pacific Railroad Company", "role": "Licensor" },
+    { "name": "City of Riverbend", "role": "Licensee" }
+  ],
+  "license_details": {
+    "license_purpose": "Construct and maintain a 24-inch sewer force main under the railroad tracks.",
+    "location_description": "Milepost 123.45",
+    "license_fee": "Annual fee of $5,000",
+    "insurance_requirements": "Railroad protective liability insurance policy of $5,000,000"
+  },
+  "discovered_entities": []
+}
+333_schema_additions.json
+
+JSON
+
+{
+  "license_details": {
+    "type": "object",
+    "description": "Details specific to a business license or right-of-way license.",
+    "properties": {
+      "license_number": { "type": "string" },
+      "business_name": { "type": "string" },
+      "business_address": { "type": "string" },
+      "expiration_date": { "type": "string", "format": "date" },
+      "license_purpose": { "type": "string" },
+      "location_description": { "type": "string" },
+      "license_fee": { "type": "string" },
+      "insurance_requirements": { "type": "string" }
+    }
+  }
+}
+Document Type 334: Encroachment Maintenance Agreements
+334_specialist_schema.json
+
+JSON
+
+{
+  "title": "Encroachment Maintenance Agreement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Encroachment Maintenance and Indemnification Agreement'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Owner", "Public Agency", "City"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "encroachment_details": {
+      "type": "object",
+      "properties": {
+        "property_address": { "type": "string" },
+        "description_of_encroachment": { "type": "string" },
+        "maintenance_responsibility": { "type": "string" },
+        "indemnification_clause": { "type": "string" }
+      }
+    },
+    "legal_recording_details": {
+      "type": "object",
+      "properties": {
+        "instrument_number": { "type": "string" },
+        "recording_date": { "type": "string", "format": "date" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "encroachment_details"]
+}
+334_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+ENCROACHMENT MAINTENANCE AGREEMENT
+
+This Agreement is made June 1, 2033, between the City of Hillside ("City") and Hillside Property Owner LLC ("Owner") for the property at 100 Hillside Drive.
+
+Owner is permitted to install and maintain decorative landscaping and a retaining wall within the public right-of-way adjacent to the property.
+
+Owner shall be solely responsible for the maintenance of the encroachment and agrees to indemnify and hold harmless the City from any claims related thereto.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Encroachment Maintenance Agreement",
+  "effective_date": "2033-06-01",
+  "parties": [
+    { "name": "City of Hillside", "role": "City" },
+    { "name": "Hillside Property Owner LLC", "role": "Owner" }
+  ],
+  "encroachment_details": {
+    "property_address": "100 Hillside Drive",
+    "description_of_encroachment": "Decorative landscaping and a retaining wall within the public right-of-way.",
+    "maintenance_responsibility": "Owner shall be solely responsible for the maintenance of the encroachment.",
+    "indemnification_clause": "Owner agrees to indemnify and hold harmless the City from any claims related thereto."
+  },
+  "legal_recording_details": null,
+  "discovered_entities": []
+}
+334_schema_additions.json
+
+JSON
+
+{
+  "encroachment_details": {
+    "type": "object",
+    "description": "Details specific to an encroachment agreement.",
+    "properties": {
+      "encroaching_property_owner": { "type": "string" },
+      "encroached_upon_property_owner": { "type": "string" },
+      "description_of_encroachment": { "type": "string" },
+      "permission_granted": { "type": "string" },
+      "is_revocable": { "type": "boolean" },
+      "property_address": { "type": "string" },
+      "maintenance_responsibility": { "type": "string" },
+      "indemnification_clause": { "type": "string" }
+    }
+  }
+}
+

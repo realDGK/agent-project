@@ -1,0 +1,47 @@
+{
+  "title": "OEA/JOEA Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Operating and Easement Agreement'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Declarant", "Property Owner", "Anchor Tenant"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "easement_details": {
+      "type": "object",
+      "properties": {
+        "property_description": { "type": "string" },
+        "operating_covenants": { "type": "string" },
+        "use_restrictions": { "type": "string" },
+        "maintenance_obligations": { "type": "string" },
+        "cost_sharing_provisions": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "easement_details"]
+}

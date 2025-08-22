@@ -1,0 +1,10 @@
+{
+  "subordination_details": {
+    "type": "object",
+    "description": "Details specific to a subordination agreement.",
+    "properties": {
+      "subordinated_instrument": { "type": "string" },
+      "senior_instrument": { "type": "string" }
+    }
+  }
+}

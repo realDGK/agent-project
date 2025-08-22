@@ -1,0 +1,62 @@
+{
+  "title": "Writ of Possession Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string"
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date",
+      "description": "The date the writ was issued by the court."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "Plaintiff",
+              "Defendant",
+              "Sheriff",
+              "Clerk of the Court"
+            ]
+          }
+        },
+        "required": [
+          "name",
+          "role"
+        ]
+      }
+    },
+    "litigation_details": {
+      "type": "object",
+      "properties": {
+        "court_name": {
+          "type": "string"
+        },
+        "case_number": {
+          "type": "string"
+        },
+        "property_address": {
+          "type": "string"
+        },
+        "judgment_date": {
+          "type": "string",
+          "format": "date"
+        }
+      }
+    }
+  },
+  "required": [
+    "contract_name",
+    "effective_date",
+    "parties",
+    "litigation_details"
+  ]
+}

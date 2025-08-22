@@ -1,0 +1,43 @@
+**INPUT DOCUMENT TEXT:**
+SELLER'S DISCLOSURE NOTICE
+
+CONCERNING THE PROPERTY AT: 555 Oak Lane, Houston, TX
+Date: February 10, 2028
+Seller: Mark & Susan Davis
+
+Are you (Seller) aware of any of the following conditions? Write Yes (Y) or No (N).
+
+Roof: Any known defects? [Y] Explanation: Hail damage in 2026, repaired by ABC Roofing.
+Plumbing: Any known leaks? [Y] Explanation: Slow drip under kitchen sink.
+Foundation: Any known issues? [N]
+
+The undersigned buyer acknowledges receipt of the foregoing notice.
+Buyer: ________________
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Seller's Disclosure Notice",
+  "effective_date": "2028-02-10",
+  "parties": [
+    {
+      "name": "Mark & Susan Davis",
+      "role": "Seller"
+    }
+  ],
+  "disclosure_details": {
+    "property_address": "555 Oak Lane, Houston, TX",
+    "disclosed_issues": [
+      {
+        "category": "Roof",
+        "issue": "Known defects",
+        "explanation": "Hail damage in 2026, repaired by ABC Roofing."
+      },
+      {
+        "category": "Plumbing",
+        "issue": "Known leaks",
+        "explanation": "Slow drip under kitchen sink."
+      }
+    ]
+  },
+  "discovered_entities": []
+}

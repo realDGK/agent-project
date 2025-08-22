@@ -1,0 +1,12 @@
+{
+  "default_notice_details": {
+    "type": "object",
+    "description": "Details specific to a notice of default.",
+    "properties": {
+      "loan_reference": { "type": "string" },
+      "nature_of_default": { "type": "string" },
+      "amount_to_cure": { "type": "number" },
+      "cure_period": { "type": "string" }
+    }
+  }
+}

@@ -1,0 +1,45 @@
+**INPUT DOCUMENT TEXT:**
+REAL ESTATE PURCHASE AND SALE AGREEMENT
+
+This Agreement is made as of September 1, 2027, between OAK TREE INVESTORS, LLC ("Seller") and WESTERN LAND PARTNERS, LP ("Buyer").
+
+1. Property. Seller agrees to sell to Buyer the real property located at 100 Valley View Road, Napa, CA (APN: 123-456-78).
+2. Purchase Price. The total purchase price is Ten Million Dollars ($10,000,000).
+3. Deposit. Buyer shall deposit an initial amount of $100,000 with Chicago Title Company ("Escrow Agent") within 3 business days. The deposit shall become non-refundable and be increased by an additional $150,000 upon waiver of contingencies.
+4. Due Diligence. Buyer shall have sixty (60) days from the Effective Date to conduct its due diligence and approve all matters related to the Property. This includes a financing contingency.
+5. Closing. The closing shall take place on or before thirty (30) days after the expiration of the Due Diligence Period.
+6. Prorations. Property taxes, rents, and utilities shall be prorated as of the Closing Date.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Real Estate Purchase and Sale Agreement",
+  "effective_date": "2027-09-01",
+  "parties": [
+    {
+      "name": "OAK TREE INVESTORS, LLC",
+      "role": "Seller"
+    },
+    {
+      "name": "WESTERN LAND PARTNERS, LP",
+      "role": "Buyer"
+    },
+    {
+      "name": "Chicago Title Company",
+      "role": "Escrow Agent"
+    }
+  ],
+  "deal_terms": {
+    "property_description": "100 Valley View Road, Napa, CA (APN: 123-456-78)",
+    "purchase_price": 10000000,
+    "deposit_amount": 100000,
+    "deposit_increase_details": "Increased by an additional $150,000 upon waiver of contingencies.",
+    "due_diligence_period": "Sixty (60) days from the Effective Date.",
+    "contingencies": [
+      "Financing Contingency",
+      "General Due Diligence Approval"
+    ],
+    "closing_date": null,
+    "prorations_summary": "Property taxes, rents, and utilities shall be prorated as of the Closing Date."
+  },
+  "discovered_entities": []
+}

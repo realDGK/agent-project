@@ -1,0 +1,25 @@
+**INPUT DOCUMENT TEXT:**
+PARKING LICENSE AGREEMENT
+
+This Agreement is made July 1, 2033, between Commerce Center LLC ("Licensor") and Logistics Solutions Inc. ("Licensee").
+
+Licensor hereby grants Licensee the right to use twenty (20) unreserved parking spaces in the common area parking garage.
+The monthly fee for these spaces shall be $150 per space.
+All vehicles must display a valid parking permit.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Parking License Agreement",
+  "effective_date": "2033-07-01",
+  "parties": [
+    { "name": "Commerce Center LLC", "role": "Licensor" },
+    { "name": "Logistics Solutions Inc.", "role": "Licensee" }
+  ],
+  "shared_facility_details": {
+    "facility_type": "Parking",
+    "number_of_spaces_or_rights": "Twenty (20) unreserved parking spaces.",
+    "fee_or_rent": "$150 per space per month.",
+    "rules_of_use": "All vehicles must display a valid parking permit."
+  },
+  "discovered_entities": []
+}

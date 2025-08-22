@@ -1,0 +1,26 @@
+**INPUT DOCUMENT TEXT:**
+LAW OFFICES OF SMITH & JONES
+Date: August 1, 2031
+To: Mega Bank, N.A.
+
+Re: Loan to Downtown Tower LLC
+
+You have requested our opinion as counsel to Downtown Tower LLC ("Borrower").
+
+Based on our review, and subject to the qualifications stated herein, it is our opinion that the Loan Documents constitute legal, valid, and binding obligations of the Borrower, enforceable in accordance with their terms.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Legal Opinion Letter",
+  "effective_date": "2031-08-01",
+  "parties": [
+    { "name": "Law Offices of Smith & Jones", "role": "Counsel" },
+    { "name": "Mega Bank, N.A.", "role": "Recipient" }
+  ],
+  "legal_opinion_details": {
+    "subject_matter": "Loan to Downtown Tower LLC",
+    "opinion_summary": "The Loan Documents constitute legal, valid, and binding obligations of the Borrower, enforceable in accordance with their terms.",
+    "qualifications_and_assumptions": "Subject to the qualifications stated herein."
+  },
+  "discovered_entities": []
+}

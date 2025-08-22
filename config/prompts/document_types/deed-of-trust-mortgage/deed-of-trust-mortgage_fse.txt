@@ -1,0 +1,27 @@
+**INPUT DOCUMENT TEXT:**
+DEED OF TRUST AND ASSIGNMENT OF RENTS
+
+This Deed of Trust is made August 1, 2031, among Downtown Tower LLC, a Delaware LLC ("Trustor"), Chicago Title Company ("Trustee"), and Mega Bank, N.A. ("Beneficiary").
+
+Trustor irrevocably grants and conveys to Trustee, in trust, the property described in Exhibit A.
+
+This is for the purpose of securing a Promissory Note of even date herewith in the principal sum of $50,000,000.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Deed of Trust and Assignment of Rents",
+  "effective_date": "2031-08-01",
+  "parties": [
+    { "name": "Downtown Tower LLC", "role": "Trustor" },
+    { "name": "Chicago Title Company", "role": "Trustee" },
+    { "name": "Mega Bank, N.A.", "role": "Beneficiary" }
+  ],
+  "loan_details": {
+    "secured_debt_amount": 50000000,
+    "promissory_note_date": "2031-08-01"
+  },
+  "deed_details": {
+    "property_legal_description": "The property described in Exhibit A."
+  },
+  "discovered_entities": []
+}

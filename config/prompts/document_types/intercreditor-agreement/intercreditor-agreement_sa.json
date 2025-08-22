@@ -1,0 +1,13 @@
+{
+  "intercreditor_details": {
+    "type": "object",
+    "description": "Details specific to an intercreditor agreement between lenders.",
+    "properties": {
+      "senior_debt_amount": { "type": "number" },
+      "junior_debt_amount": { "type": "number" },
+      "payment_subordination": { "type": "string" },
+      "lien_subordination": { "type": "string" },
+      "standstill_provisions": { "type": "string" }
+    }
+  }
+}

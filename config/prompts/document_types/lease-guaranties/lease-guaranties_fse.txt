@@ -1,0 +1,24 @@
+**INPUT DOCUMENT TEXT:**
+GUARANTY OF LEASE
+
+For valuable consideration, the undersigned ("Guarantor"), parent company of Logistics Solutions Inc. ("Tenant"), hereby absolutely and unconditionally guarantees to Commerce Center LLC ("Landlord") the full and prompt payment of all rent and other sums due under the Lease dated March 1, 2033.
+
+Dated: March 1, 2033
+Guarantor: Logistics Holdings International
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Guaranty of Lease",
+  "effective_date": "2033-03-01",
+  "parties": [
+    { "name": "Logistics Holdings International", "role": "Guarantor" },
+    { "name": "Commerce Center LLC", "role": "Landlord" },
+    { "name": "Logistics Solutions Inc.", "role": "Tenant" }
+  ],
+  "guaranty_details": {
+    "guaranteed_lease_date": "2033-03-01",
+    "guaranteed_obligations": "The full and prompt payment of all rent and other sums due under the Lease.",
+    "is_unconditional_and_absolute": true
+  },
+  "discovered_entities": []
+}

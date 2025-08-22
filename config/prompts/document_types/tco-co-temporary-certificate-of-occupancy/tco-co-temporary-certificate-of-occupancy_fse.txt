@@ -1,0 +1,32 @@
+**INPUT DOCUMENT TEXT:**
+CITY OF ANYTOWN
+BUILDING DEPARTMENT
+CERTIFICATE OF OCCUPANCY
+
+Permit No: B-2031-0101
+Address: 123 Main Street
+Owner: Downtown Tower LLC
+
+This certifies that the structure at the above address has been inspected and found to be in compliance with the applicable codes for the following occupancy:
+Group B (Business) and Group R-1 (Residential)
+
+Issued on: October 15, 2034
+By: (Signature), Building Official
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Certificate of Occupancy",
+  "effective_date": "2034-10-15",
+  "parties": [
+    { "name": "Downtown Tower LLC", "role": "Owner" },
+    { "name": "City of Anytown Building Department", "role": "Issuing Agency" }
+  ],
+  "occupancy_certificate_details": {
+    "certificate_type": "Final",
+    "permit_number": "B-2031-0101",
+    "property_address": "123 Main Street",
+    "description_of_occupancy": "Group B (Business) and Group R-1 (Residential)",
+    "expiration_date": null
+  },
+  "discovered_entities": []
+}

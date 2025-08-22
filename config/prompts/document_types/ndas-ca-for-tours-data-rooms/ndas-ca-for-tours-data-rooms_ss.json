@@ -1,0 +1,45 @@
+{
+  "title": "NDA/CA for Tours & Data Rooms Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Confidentiality Agreement'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Disclosing Party", "Receiving Party", "Broker"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "nda_details": {
+      "type": "object",
+      "properties": {
+        "property_name": { "type": "string" },
+        "purpose_of_disclosure": { "type": "string" },
+        "term_of_confidentiality": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "nda_details"]
+}

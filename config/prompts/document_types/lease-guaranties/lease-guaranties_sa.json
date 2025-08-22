@@ -1,0 +1,14 @@
+{
+  "guaranty_details": {
+    "type": "object",
+    "description": "Details specific to a guaranty agreement.",
+    "properties": {
+      "guaranty_type": { "type": "string" },
+      "guaranteed_obligation": { "type": "string" },
+      "maximum_liability": { "type": "string" },
+      "guaranteed_lease_date": { "type": "string", "format": "date" },
+      "guaranteed_obligations": { "type": "string" },
+      "is_unconditional_and_absolute": { "type": "boolean" }
+    }
+  }
+}

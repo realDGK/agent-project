@@ -1,0 +1,30 @@
+**INPUT DOCUMENT TEXT:**
+GREEN VALLEY RANCH HOA
+2034 ANNUAL BUDGET
+
+For the Fiscal Year Beginning January 1, 2034
+
+Total Annual Operating Budget: $500,000
+Total Annual Reserve Contribution: $150,000
+Total Annual Budget: $650,000
+
+Number of Units: 200
+Monthly Assessment Per Unit: $270.83
+
+**JSON OUTPUT:**
+{
+  "contract_name": "2034 Annual Budget",
+  "effective_date": "2034-01-01",
+  "parties": [
+    { "name": "Green Valley Ranch HOA", "role": "Homeowners Association" }
+  ],
+  "hoa_financial_details": {
+    "document_type": "Budget",
+    "fiscal_year": "2034",
+    "total_annual_budget": 650000,
+    "monthly_assessment_per_unit": 270.83,
+    "reserve_fund_balance": null,
+    "percent_funded": null
+  },
+  "discovered_entities": []
+}

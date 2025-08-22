@@ -1,0 +1,12 @@
+{
+  "lease_clause_details": {
+    "type": "object",
+    "description": "Details specific to key lease clauses like exclusives or co-tenancy.",
+    "properties": {
+      "clause_type": { "type": "string", "enum": ["Exclusive Use", "Co-Tenancy"] },
+      "exclusive_use_granted": { "type": "string" },
+      "co_tenancy_requirement": { "type": "string" },
+      "remedy_for_breach": { "type": "string" }
+    }
+  }
+}

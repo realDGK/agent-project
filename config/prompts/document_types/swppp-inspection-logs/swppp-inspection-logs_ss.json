@@ -1,0 +1,46 @@
+{
+  "title": "SWPPP & Inspection Log Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Stormwater Pollution Prevention Plan'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Operator", "QSP", "Consultant"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "stormwater_details": {
+      "type": "object",
+      "properties": {
+        "document_type": { "type": "string", "enum": ["SWPPP", "Inspection Log"] },
+        "project_name": { "type": "string" },
+        "wdid_number": { "type": "string" },
+        "risk_level": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "stormwater_details"]
+}

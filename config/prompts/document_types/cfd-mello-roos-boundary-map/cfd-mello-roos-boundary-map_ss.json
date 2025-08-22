@@ -1,0 +1,51 @@
+{
+  "title": "CFD Boundary Map Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Boundary Map of Community Facilities District No. 10'."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Public Agency", "Engineer"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "cfd_details": {
+      "type": "object",
+      "properties": {
+        "cfd_name": { "type": "string" },
+        "cfd_number": { "type": "string" },
+        "map_summary": { "type": "string" }
+      }
+    },
+    "legal_recording_details": {
+      "type": "object",
+      "properties": {
+        "instrument_number": { "type": "string" },
+        "recording_date": { "type": "string", "format": "date" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "cfd_details"]
+}

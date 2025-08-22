@@ -1,0 +1,64 @@
+{
+  "title": "Articles of Incorporation Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The official, full name of the corporation being formed."
+    },
+    "execution_date": {
+      "type": "string",
+      "format": "date",
+      "description": "The date the document was signed by the incorporator(s)."
+    },
+    "legal_recording_details": {
+      "type": "object",
+      "properties": {
+        "county": { "type": "string" },
+        "state": { "type": "string" },
+        "filing_date": { "type": "string", "format": "date" }
+      }
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Incorporator", "Registered Agent", "Initial Director"]
+          },
+          "address": { "type": "string" }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "corporate_details": {
+      "type": "object",
+      "properties": {
+        "corporate_purpose": { "type": "string" },
+        "shares_authorized": {
+          "type": "object",
+          "properties": {
+            "class": { "type": "string" },
+            "count": { "type": "integer" },
+            "par_value": { "type": "number" }
+          }
+        }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "execution_date", "parties"]
+}

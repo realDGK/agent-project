@@ -1,0 +1,45 @@
+{
+  "title": "Architectural Guidelines Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Architectural Design Guidelines'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Homeowners Association", "Architectural Committee"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "architectural_guideline_details": {
+      "type": "object",
+      "properties": {
+        "property_name": { "type": "string" },
+        "key_guidelines": { "type": "array", "items": { "type": "string" } },
+        "review_process_summary": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "architectural_guideline_details"]
+}

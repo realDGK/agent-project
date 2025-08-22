@@ -1,0 +1,30 @@
+**INPUT DOCUMENT TEXT:**
+IDENTIFICATION OF REPLACEMENT PROPERTY
+
+To: Exchange Accommodators Inc.
+From: Property Seller LLC ("Exchangor")
+Date: May 10, 2028
+
+Pursuant to our Exchange Agreement, Exchangor hereby identifies the following properties as potential replacement properties for the relinquished property at 789 Business Loop:
+1. 101 Industrial Way, Cityville
+2. 202 Commerce Plaza, Townburg
+3. 303 Market Street, Metropolis
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Identification of Replacement Property",
+  "effective_date": "2028-05-10",
+  "parties": [
+    { "name": "Property Seller LLC", "role": "Exchangor" },
+    { "name": "Exchange Accommodators Inc.", "role": "Qualified Intermediary" }
+  ],
+  "exchange_details": {
+    "relinquished_property": "789 Business Loop",
+    "identified_replacement_properties": [
+      "101 Industrial Way, Cityville",
+      "202 Commerce Plaza, Townburg",
+      "303 Market Street, Metropolis"
+    ]
+  },
+  "discovered_entities": []
+}

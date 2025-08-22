@@ -1,0 +1,25 @@
+**INPUT DOCUMENT TEXT:**
+BILL OF SALE
+
+For the sum of Ten Thousand Dollars ($10,000), OAK TREE INVESTORS, LLC ("Seller") hereby sells, transfers, and conveys to WESTERN LAND PARTNERS, LP ("Buyer") the following personal property:
+All furniture, fixtures, and equipment located at the property at 100 Valley View Road, as detailed on the attached Exhibit A.
+
+The property is sold "AS-IS, WHERE-IS" with no warranties.
+
+Dated: October 30, 2027
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Bill of Sale",
+  "effective_date": "2027-10-30",
+  "parties": [
+    { "name": "OAK TREE INVESTORS, LLC", "role": "Seller" },
+    { "name": "WESTERN LAND PARTNERS, LP", "role": "Buyer" }
+  ],
+  "bill_of_sale_details": {
+    "personal_property_description": "All furniture, fixtures, and equipment located at the property at 100 Valley View Road, as detailed on the attached Exhibit A.",
+    "purchase_price": 10000,
+    "as_is_clause": "The property is sold 'AS-IS, WHERE-IS' with no warranties."
+  },
+  "discovered_entities": []
+}

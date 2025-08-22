@@ -1,0 +1,29 @@
+**INPUT DOCUMENT TEXT:**
+LAKE AND STREAMBED ALTERATION AGREEMENT
+Notification No. 1600-2031-0123-R2
+
+This Agreement is entered into between the California Department of Fish and Wildlife ("CDFW") and Pine Hills Development LLC ("Operator").
+
+Operator is authorized to construct a clear-span bridge crossing Pine Creek to access the Pine Hills Estates project.
+
+As mitigation, Operator shall restore 500 linear feet of riparian habitat upstream of the crossing.
+
+This agreement is valid for five (5) years from the date of issuance, August 1, 2031.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Lake and Streambed Alteration Agreement",
+  "effective_date": "2031-08-01",
+  "parties": [
+    { "name": "California Department of Fish and Wildlife", "role": "Issuing Agency" },
+    { "name": "Pine Hills Development LLC", "role": "Operator" }
+  ],
+  "permit_details": {
+    "notification_number": "1600-2031-0123-R2",
+    "project_name": "Pine Hills Estates",
+    "authorized_activity": "Construct a clear-span bridge crossing Pine Creek.",
+    "mitigation_required": "Restore 500 linear feet of riparian habitat upstream of the crossing.",
+    "term_of_agreement": "Five (5) years from the date of issuance."
+  },
+  "discovered_entities": []
+}

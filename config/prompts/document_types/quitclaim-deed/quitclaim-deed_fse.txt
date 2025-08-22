@@ -1,0 +1,29 @@
+**INPUT DOCUMENT TEXT:**
+QUITCLAIM DEED
+
+FOR VALUABLE CONSIDERATION, John Doe, an unmarried man ("Grantor") does hereby remise, release, and forever quitclaim to Jane Doe, an unmarried woman ("Grantee"), all right, title, and interest in and to the following described real property in the County of Maricopa, State of Arizona:
+Lot 5 of Block 10, of SUNNYSLOPE ESTATES, according to the plat of record.
+APN: 321-654-98
+
+Dated: July 8, 2028
+By: (Signature), John Doe
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Quitclaim Deed",
+  "effective_date": "2028-07-08",
+  "parties": [
+    { "name": "John Doe", "role": "Grantor" },
+    { "name": "Jane Doe", "role": "Grantee" }
+  ],
+  "deed_details": {
+    "deed_type": "Quitclaim Deed",
+    "property_legal_description": "Lot 5 of Block 10, of SUNNYSLOPE ESTATES, according to the plat of record.",
+    "apn": "321-654-98"
+  },
+  "legal_recording_details": {
+    "county": "Maricopa",
+    "state": "Arizona"
+  },
+  "discovered_entities": []
+}

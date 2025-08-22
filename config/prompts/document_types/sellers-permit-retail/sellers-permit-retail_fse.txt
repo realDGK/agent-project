@@ -1,0 +1,27 @@
+**INPUT DOCUMENT TEXT:**
+STATE OF CALIFORNIA
+CALIFORNIA DEPARTMENT OF TAX AND FEE ADMINISTRATION
+SELLER'S PERMIT
+
+ACCOUNT NUMBER: 101-123456
+BUSINESS NAME: The Coffee Spot LLC
+LOCATION: 123 Main Street, Anytown, CA
+
+This permit is to engage in the business of selling tangible personal property.
+ISSUE DATE: May 15, 2025
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Seller's Permit",
+  "effective_date": "2025-05-15",
+  "parties": [
+    { "name": "The Coffee Spot LLC", "role": "Permittee" },
+    { "name": "California Department of Tax and Fee Administration", "role": "Issuing Agency" }
+  ],
+  "permit_details": {
+    "permit_number": "101-123456",
+    "business_name": "The Coffee Spot LLC",
+    "business_address": "123 Main Street, Anytown, CA"
+  },
+  "discovered_entities": []
+}

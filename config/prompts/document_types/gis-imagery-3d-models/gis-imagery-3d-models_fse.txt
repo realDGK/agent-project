@@ -1,0 +1,25 @@
+**INPUT DOCUMENT TEXT:**
+METADATA
+Dataset: Riverbend Project - 2027 Aerial Imagery
+Date of Capture: 2027-06-10
+Description: 3-inch resolution orthorectified aerial imagery of the Riverbend project site.
+Format: GeoTIFF
+Projection: NAD 1983 StatePlane California III FIPS 0403 Feet
+Source: Eagle Eye Aerials for Riverbend Development Corp.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Riverbend Project - 2027 Aerial Imagery",
+  "effective_date": "2027-06-10",
+  "parties": [
+    { "name": "Eagle Eye Aerials", "role": "Creator" },
+    { "name": "Riverbend Development Corp.", "role": "Client" }
+  ],
+  "gis_details": {
+    "data_type": "Aerial Photo",
+    "project_name": "Riverbend Project",
+    "geographic_coverage": "Riverbend project site",
+    "coordinate_system": "NAD 1983 StatePlane California III FIPS 0403 Feet",
+    "file_format": "GeoTIFF"
+  }
+}

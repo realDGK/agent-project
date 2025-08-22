@@ -1,0 +1,23 @@
+**INPUT DOCUMENT TEXT:**
+COMPLETION GUARANTY
+
+This Guaranty is made August 1, 2031, by John Developer ("Guarantor") in favor of Mega Bank, N.A. ("Lender"), with respect to the loan made to Downtown Tower LLC ("Borrower").
+
+Guarantor hereby unconditionally guarantees the full and timely completion of the construction of the Project in accordance with the plans and specifications, free and clear of all liens. This is a guaranty of performance and not of collection.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Completion Guaranty",
+  "effective_date": "2031-08-01",
+  "parties": [
+    { "name": "John Developer", "role": "Guarantor" },
+    { "name": "Mega Bank, N.A.", "role": "Lender" },
+    { "name": "Downtown Tower LLC", "role": "Borrower" }
+  ],
+  "guaranty_details": {
+    "guaranty_type": "Completion",
+    "guaranteed_obligation": "Full and timely completion of the construction of the Project in accordance with the plans and specifications, free and clear of all liens.",
+    "maximum_liability": null
+  },
+  "discovered_entities": []
+}

@@ -1,0 +1,62 @@
+{
+  "title": "Certificate of Good Standing Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Certificate of Good Standing for [Company Name]'."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Entity", "Issuing Authority"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "certificate_details": {
+      "type": "object",
+      "properties": {
+        "entity_file_number": {
+          "type": "string",
+          "description": "The official file number assigned by the issuing authority."
+        },
+        "entity_type": {
+          "type": "string",
+          "description": "The legal structure of the entity (e.g., 'Limited Liability Company', 'Corporation')."
+        },
+        "jurisdiction": {
+          "type": "string",
+          "description": "The state or country of formation."
+        },
+        "issue_date": {
+          "type": "string",
+          "format": "date",
+          "description": "The date the certificate was issued."
+        },
+        "status_verified": {
+          "type": "string",
+          "description": "The status being certified (e.g., 'Good Standing', 'Active', 'Exists')."
+        }
+      }
+    },
+    "discovered_entities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "entity_name": { "type": "string" },
+          "entity_value": { "type": "string" },
+          "context_summary": { "type": "string" }
+        }
+      }
+    }
+  },
+  "required": ["contract_name", "parties"]
+}

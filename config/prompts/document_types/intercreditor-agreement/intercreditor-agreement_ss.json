@@ -1,0 +1,47 @@
+{
+  "title": "Intercreditor Agreement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Intercreditor and Subordination Agreement'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Senior Lender", "Mezzanine Lender", "Junior Lender", "Borrower"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "intercreditor_details": {
+      "type": "object",
+      "properties": {
+        "senior_debt_amount": { "type": "number" },
+        "junior_debt_amount": { "type": "number" },
+        "payment_subordination": { "type": "string" },
+        "lien_subordination": { "type": "string" },
+        "standstill_provisions": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "intercreditor_details"]
+}

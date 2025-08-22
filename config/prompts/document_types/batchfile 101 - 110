@@ -1,0 +1,1088 @@
+JSON
+
+{
+  "title": "Improvement Plans Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The title of the plan set, e.g., 'Tract 8888 - Street Improvement Plans'."
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date",
+      "description": "The date the plans were approved or signed."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Developer", "Engineer", "Approving Agency"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "plan_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "plan_type": { "type": "string", "description": "e.g., 'Road', 'Water', 'Sewer', 'Storm Drain'." },
+        "engineer_of_record": { "type": "string" },
+        "approval_date": { "type": "string", "format": "date" },
+        "plan_sheet_count": { "type": "integer" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "plan_details"]
+}
+101_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+CITY OF RIVERBEND
+DEPARTMENT OF PUBLIC WORKS
+COVER SHEET FOR IMPROVEMENT PLANS
+TRACT NO. 8888 - "RIVERBEND" - WATER SYSTEM
+
+ENGINEER: Apex Civil Engineering
+DEVELOPER: Riverbend Homes LLC
+
+Approved by City Engineer: (Signature)
+Date: August 1, 2030
+This set consists of 12 sheets.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Tract No. 8888 - \"Riverbend\" - Water System Improvement Plans",
+  "effective_date": "2030-08-01",
+  "parties": [
+    { "name": "Riverbend Homes LLC", "role": "Developer" },
+    { "name": "Apex Civil Engineering", "role": "Engineer" },
+    { "name": "City of Riverbend", "role": "Approving Agency" }
+  ],
+  "plan_details": {
+    "project_name": "Riverbend",
+    "plan_type": "Water System",
+    "engineer_of_record": "Apex Civil Engineering",
+    "approval_date": "2030-08-01",
+    "plan_sheet_count": 12
+  },
+  "discovered_entities": []
+}
+101_schema_additions.json
+
+JSON
+
+{
+  "plan_details": {
+    "type": "object",
+    "description": "Details specific to engineering or architectural plan sets.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "plan_type": { "type": "string", "description": "e.g., 'Road', 'Water', 'Sewer', 'Architectural'." },
+      "engineer_of_record": { "type": "string" },
+      "approval_date": { "type": "string", "format": "date" },
+      "plan_sheet_count": { "type": "integer" }
+    }
+  }
+}
+Document Type 102: Off-site Improvement Agreements
+102_specialist_schema.json
+
+JSON
+
+{
+  "title": "Off-site Improvement Agreement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Off-site Improvement Agreement'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Developer", "Public Agency", "City"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "improvement_agreement_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "offsite_improvements_summary": { "type": "string" },
+        "cost_estimate": { "type": "number" },
+        "reimbursement_terms": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "improvement_agreement_details"]
+}
+102_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+AGREEMENT FOR CONSTRUCTION OF OFF-SITE IMPROVEMENTS
+
+This Agreement is made September 1, 2030, between the City of Riverbend ("City") and Riverbend Homes LLC ("Developer").
+
+Developer agrees to construct a traffic signal at the intersection of Main Street and Riverbend Parkway, as required by the conditions of approval for the Riverbend project.
+
+The estimated cost of the signal is $350,000. The City agrees to reimburse Developer for 50% of the actual costs from the Traffic Impact Fee fund.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Agreement for Construction of Off-site Improvements",
+  "effective_date": "2030-09-01",
+  "parties": [
+    { "name": "City of Riverbend", "role": "City" },
+    { "name": "Riverbend Homes LLC", "role": "Developer" }
+  ],
+  "improvement_agreement_details": {
+    "project_name": "Riverbend",
+    "offsite_improvements_summary": "Construct a traffic signal at the intersection of Main Street and Riverbend Parkway.",
+    "cost_estimate": 350000,
+    "reimbursement_terms": "City agrees to reimburse Developer for 50% of the actual costs from the Traffic Impact Fee fund."
+  },
+  "discovered_entities": []
+}
+102_schema_additions.json
+
+JSON
+
+{
+  "improvement_agreement_details": {
+    "type": "object",
+    "description": "Details specific to a Subdivision or Off-site Improvement Agreement.",
+    "properties": {
+      "subdivision_name": { "type": "string" },
+      "map_reference": { "type": "string" },
+      "required_improvements": { "type": "array", "items": { "type": "string" } },
+      "completion_deadline": { "type": "string" },
+      "security_posted": {
+        "type": "object",
+        "properties": {
+          "type": { "type": "string" },
+          "amount": { "type": "number" },
+          "bond_number": { "type": "string" }
+        }
+      },
+      "project_name": { "type": "string" },
+      "offsite_improvements_summary": { "type": "string" },
+      "cost_estimate": { "type": "number" },
+      "reimbursement_terms": { "type": "string" }
+    }
+  }
+}
+Document Type 103: Right-of-Way Dedications
+103_specialist_schema.json
+
+JSON
+
+{
+  "title": "Right-of-Way Dedication Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Grant of Right-of-Way'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Grantor", "Grantee", "Public Agency"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "dedication_details": {
+      "type": "object",
+      "properties": {
+        "property_dedicated": { "type": "string" },
+        "purpose_of_dedication": { "type": "string" }
+      }
+    },
+    "legal_recording_details": {
+      "type": "object",
+      "properties": {
+        "instrument_number": { "type": "string" },
+        "recording_date": { "type": "string", "format": "date" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "dedication_details"]
+}
+103_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+GRANT DEED - PUBLIC STREET RIGHT-OF-WAY
+
+FOR NO CONSIDERATION, Riverbend Homes LLC, a California LLC ("Grantor"), hereby grants and dedicates to the City of Riverbend ("Grantee"), a municipal corporation, the real property described in Exhibit A for public street purposes.
+
+This dedication is made in accordance with the requirements of Tract Map No. 8888.
+
+Dated: September 15, 2030
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Grant Deed - Public Street Right-of-Way",
+  "effective_date": "2030-09-15",
+  "parties": [
+    { "name": "Riverbend Homes LLC", "role": "Grantor" },
+    { "name": "City of Riverbend", "role": "Grantee" }
+  ],
+  "dedication_details": {
+    "property_dedicated": "The real property described in Exhibit A.",
+    "purpose_of_dedication": "Public street purposes."
+  },
+  "legal_recording_details": null,
+  "discovered_entities": []
+}
+103_schema_additions.json
+
+JSON
+
+{
+  "dedication_details": {
+    "type": "object",
+    "description": "Details specific to an offer to dedicate property for public use.",
+    "properties": {
+      "property_dedicated": { "type": "string" },
+      "purpose_of_dedication": { "type": "string" },
+      "is_irrevocable": { "type": "boolean" }
+    }
+  }
+}
+Document Type 104: NOP (Notice of Preparation)
+104_specialist_schema.json
+
+JSON
+
+{
+  "title": "Notice of Preparation (NOP) Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Notice of Preparation of a Draft Environmental Impact Report'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Lead Agency", "Project Applicant"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "environmental_details": {
+      "type": "object",
+      "properties": {
+        "document_type": { "type": "string", "default": "NOP" },
+        "project_name": { "type": "string" },
+        "project_description": { "type": "string" },
+        "scoping_meeting_date": { "type": "string", "format": "date" },
+        "comment_period_end_date": { "type": "string", "format": "date" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "environmental_details"]
+}
+104_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+NOTICE OF PREPARATION OF A DRAFT ENVIRONMENTAL IMPACT REPORT
+
+To: Responsible Agencies and Interested Parties
+From: City of Oakville, Community Development Dept. (Lead Agency)
+Date: April 1, 2030
+
+Subject: Notice of Preparation for the "Oakville Quarry Redevelopment" Project.
+Project Applicant: Oakville Developers LLC
+
+The City will prepare an Environmental Impact Report (EIR) for the proposed project, which involves redeveloping a 100-acre former quarry site with mixed-use development.
+
+A public scoping meeting will be held on April 20, 2030. Written comments will be accepted until May 1, 2030.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Notice of Preparation of a Draft Environmental Impact Report",
+  "effective_date": "2030-04-01",
+  "parties": [
+    { "name": "City of Oakville, Community Development Dept.", "role": "Lead Agency" },
+    { "name": "Oakville Developers LLC", "role": "Project Applicant" }
+  ],
+  "environmental_details": {
+    "document_type": "NOP",
+    "project_name": "Oakville Quarry Redevelopment",
+    "project_description": "Redeveloping a 100-acre former quarry site with mixed-use development.",
+    "scoping_meeting_date": "2030-04-20",
+    "comment_period_end_date": "2030-05-01"
+  },
+  "discovered_entities": []
+}
+104_schema_additions.json
+
+JSON
+
+{
+  "environmental_details": {
+    "type": "object",
+    "description": "Details specific to environmental review documents (CEQA/NEPA).",
+    "properties": {
+      "document_type": { "type": "string" },
+      "project_name": { "type": "string" },
+      "project_description": { "type": "string" },
+      "scoping_meeting_date": { "type": "string", "format": "date" },
+      "comment_period_end_date": { "type": "string", "format": "date" }
+    }
+  }
+}
+Document Type 105: IS (Initial Study)
+105_specialist_schema.json
+
+JSON
+
+{
+  "title": "Initial Study (IS) Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Initial Study'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Lead Agency", "Project Applicant"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "environmental_details": {
+      "type": "object",
+      "properties": {
+        "document_type": { "type": "string", "default": "Initial Study" },
+        "project_name": { "type": "string" },
+        "environmental_determination": { "type": "string", "description": "The conclusion of the study, e.g., 'Potentially Significant Impact', 'Less Than Significant Impact with Mitigation'." },
+        "mitigation_measures_summary": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "environmental_details"]
+}
+105_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+Initial Study / Mitigated Negative Declaration
+Project Title: Elm Street Apartments
+Lead Agency: City of Springfield
+Project Applicant: Springfield Homes LLC
+Date: May 15, 2030
+
+ENVIRONMENTAL FACTORS POTENTIALLY AFFECTED:
+The environmental factors checked below would be potentially affected by this project:
+[ ] Aesthetics [X] Biological Resources [ ] Cultural Resources
+
+DETERMINATION:
+On the basis of this initial evaluation, the Lead Agency finds that the proposed project COULD have a significant effect on the environment, however, there will not be a significant effect because revisions in the project have been made. A MITIGATED NEGATIVE DECLARATION will be prepared.
+
+Mitigation Measure BIO-1: A pre-construction survey for nesting birds shall be conducted.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Initial Study / Mitigated Negative Declaration",
+  "effective_date": "2030-05-15",
+  "parties": [
+    { "name": "City of Springfield", "role": "Lead Agency" },
+    { "name": "Springfield Homes LLC", "role": "Project Applicant" }
+  ],
+  "environmental_details": {
+    "document_type": "Initial Study",
+    "project_name": "Elm Street Apartments",
+    "environmental_determination": "Less Than Significant Impact with Mitigation (Mitigated Negative Declaration will be prepared).",
+    "mitigation_measures_summary": "Mitigation Measure BIO-1: A pre-construction survey for nesting birds shall be conducted."
+  },
+  "discovered_entities": []
+}
+105_schema_additions.json
+
+JSON
+
+{
+  "environmental_details": {
+    "type": "object",
+    "description": "Details specific to environmental review documents (CEQA/NEPA).",
+    "properties": {
+      "document_type": { "type": "string" },
+      "project_name": { "type": "string" },
+      "project_description": { "type": "string" },
+      "scoping_meeting_date": { "type": "string", "format": "date" },
+      "comment_period_end_date": { "type": "string", "format": "date" },
+      "environmental_determination": { "type": "string" },
+      "mitigation_measures_summary": { "type": "string" }
+    }
+  }
+}
+Document Type 106: MND/ND (Mitigated/Negative Declaration)
+106_specialist_schema.json
+
+JSON
+
+{
+  "title": "Mitigated/Negative Declaration Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Mitigated Negative Declaration'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Lead Agency", "Project Applicant"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "environmental_details": {
+      "type": "object",
+      "properties": {
+        "document_type": { "type": "string", "enum": ["Negative Declaration", "Mitigated Negative Declaration"] },
+        "project_name": { "type": "string" },
+        "finding": { "type": "string" },
+        "public_review_period": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "environmental_details"]
+}
+106_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+MITIGATED NEGATIVE DECLARATION
+Project: Elm Street Apartments
+Lead Agency: City of Springfield
+Date: June 1, 2030
+
+FINDING:
+The City of Springfield has prepared an Initial Study for the above project and proposes to adopt a Mitigated Negative Declaration. The project will not have a significant effect on the environment because mitigation measures have been incorporated into the project.
+
+PUBLIC REVIEW PERIOD:
+June 1, 2030 to July 1, 2030.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Mitigated Negative Declaration",
+  "effective_date": "2030-06-01",
+  "parties": [
+    { "name": "City of Springfield", "role": "Lead Agency" }
+  ],
+  "environmental_details": {
+    "document_type": "Mitigated Negative Declaration",
+    "project_name": "Elm Street Apartments",
+    "finding": "The project will not have a significant effect on the environment because mitigation measures have been incorporated.",
+    "public_review_period": "June 1, 2030 to July 1, 2030."
+  },
+  "discovered_entities": []
+}
+106_schema_additions.json
+
+JSON
+
+{
+  "environmental_details": {
+    "type": "object",
+    "description": "Details specific to environmental review documents (CEQA/NEPA).",
+    "properties": {
+      "document_type": { "type": "string" },
+      "project_name": { "type": "string" },
+      "project_description": { "type": "string" },
+      "scoping_meeting_date": { "type": "string", "format": "date" },
+      "comment_period_end_date": { "type": "string", "format": "date" },
+      "environmental_determination": { "type": "string" },
+      "mitigation_measures_summary": { "type": "string" },
+      "finding": { "type": "string" },
+      "public_review_period": { "type": "string" }
+    }
+  }
+}
+Document Type 107: Draft/Final EIR
+107_specialist_schema.json
+
+JSON
+
+{
+  "title": "EIR (Draft/Final) Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Draft Environmental Impact Report'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Lead Agency", "Project Applicant"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "environmental_details": {
+      "type": "object",
+      "properties": {
+        "document_type": { "type": "string", "enum": ["Draft EIR", "Final EIR"] },
+        "project_name": { "type": "string" },
+        "significant_unavoidable_impacts": { "type": "array", "items": { "type": "string" } },
+        "alternatives_analyzed": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "environmental_details"]
+}
+107_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+DRAFT ENVIRONMENTAL IMPACT REPORT
+for the OAKVILLE QUARRY REDEVELOPMENT PROJECT
+State Clearinghouse No. 2030040012
+
+Lead Agency: City of Oakville
+Date: August 2030
+
+EXECUTIVE SUMMARY
+This Draft EIR analyzes the potential environmental impacts of the proposed project.
+Significant and Unavoidable Impacts: The project would result in significant and unavoidable impacts to Transportation/Traffic and Air Quality.
+Alternatives: The EIR analyzes a No Project Alternative, a Reduced Density Alternative, and an Alternative Site.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Draft Environmental Impact Report",
+  "effective_date": "2030-08-01",
+  "parties": [
+    { "name": "City of Oakville", "role": "Lead Agency" }
+  ],
+  "environmental_details": {
+    "document_type": "Draft EIR",
+    "project_name": "Oakville Quarry Redevelopment Project",
+    "significant_unavoidable_impacts": [
+      "Transportation/Traffic",
+      "Air Quality"
+    ],
+    "alternatives_analyzed": [
+      "No Project Alternative",
+      "Reduced Density Alternative",
+      "Alternative Site"
+    ]
+  },
+  "discovered_entities": [
+    {
+      "entity_name": "State Clearinghouse No.",
+      "entity_value": "2030040012",
+      "context_summary": "The number assigned by the state for tracking CEQA documents."
+    }
+  ]
+}
+107_schema_additions.json
+
+JSON
+
+{
+  "environmental_details": {
+    "type": "object",
+    "description": "Details specific to environmental review documents (CEQA/NEPA).",
+    "properties": {
+      "document_type": { "type": "string" },
+      "project_name": { "type": "string" },
+      "project_description": { "type": "string" },
+      "scoping_meeting_date": { "type": "string", "format": "date" },
+      "comment_period_end_date": { "type": "string", "format": "date" },
+      "environmental_determination": { "type": "string" },
+      "mitigation_measures_summary": { "type": "string" },
+      "finding": { "type": "string" },
+      "public_review_period": { "type": "string" },
+      "significant_unavoidable_impacts": { "type": "array", "items": { "type": "string" } },
+      "alternatives_analyzed": { "type": "array", "items": { "type": "string" } }
+    }
+  }
+}
+Document Type 108: EIR Addendum
+108_specialist_schema.json
+
+JSON
+
+{
+  "title": "EIR Addendum Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Addendum to the Final EIR'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Lead Agency"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "environmental_details": {
+      "type": "object",
+      "properties": {
+        "document_type": { "type": "string", "default": "EIR Addendum" },
+        "project_name": { "type": "string" },
+        "original_eir_reference": { "type": "string" },
+        "reason_for_addendum": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "environmental_details"]
+}
+108_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+ADDENDUM TO THE OAKVILLE QUARRY REDEVELOPMENT PROJECT FINAL EIR
+(State Clearinghouse No. 2030040012)
+
+Date: January 10, 2031
+Lead Agency: City of Oakville
+
+This Addendum addresses minor technical changes to the project description since the certification of the Final EIR. The changes involve a slight reduction in the commercial square footage and do not create new significant impacts.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Addendum to the Oakville Quarry Redevelopment Project Final EIR",
+  "effective_date": "2031-01-10",
+  "parties": [
+    { "name": "City of Oakville", "role": "Lead Agency" }
+  ],
+  "environmental_details": {
+    "document_type": "EIR Addendum",
+    "project_name": "Oakville Quarry Redevelopment Project",
+    "original_eir_reference": "State Clearinghouse No. 2030040012",
+    "reason_for_addendum": "To address minor technical changes to the project description, specifically a slight reduction in commercial square footage."
+  },
+  "discovered_entities": []
+}
+108_schema_additions.json
+
+JSON
+
+{
+  "environmental_details": {
+    "type": "object",
+    "description": "Details specific to environmental review documents (CEQA/NEPA).",
+    "properties": {
+      "document_type": { "type": "string" },
+      "project_name": { "type": "string" },
+      "project_description": { "type": "string" },
+      "scoping_meeting_date": { "type": "string", "format": "date" },
+      "comment_period_end_date": { "type": "string", "format": "date" },
+      "environmental_determination": { "type": "string" },
+      "mitigation_measures_summary": { "type": "string" },
+      "finding": { "type": "string" },
+      "public_review_period": { "type": "string" },
+      "significant_unavoidable_impacts": { "type": "array", "items": { "type": "string" } },
+      "alternatives_analyzed": { "type": "array", "items": { "type": "string" } },
+      "original_eir_reference": { "type": "string" },
+      "reason_for_addendum": { "type": "string" }
+    }
+  }
+}
+Document Type 109: NOD (Notice of Determination)
+109_specialist_schema.json
+
+JSON
+
+{
+  "title": "Notice of Determination (NOD) Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Notice of Determination'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Lead Agency", "Project Applicant"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "environmental_details": {
+      "type": "object",
+      "properties": {
+        "document_type": { "type": "string", "default": "NOD" },
+        "project_name": { "type": "string" },
+        "project_approval_date": { "type": "string", "format": "date" },
+        "ceqa_finding": { "type": "string", "description": "The CEQA document that was approved, e.g., 'An Environmental Impact Report was prepared', 'A Mitigated Negative Declaration was adopted'." }
+      }
+    },
+    "legal_recording_details": {
+      "type": "object",
+      "properties": {
+        "filing_date": { "type": "string", "format": "date" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "environmental_details"]
+}
+109_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+NOTICE OF DETERMINATION
+
+To: Office of Planning and Research
+From: City of Oakville
+Date Filed: February 15, 2031
+
+Subject: Filing of Notice of Determination in compliance with Section 21108 of the Public Resources Code.
+
+Project Title: Oakville Quarry Redevelopment Project
+Project Applicant: Oakville Developers LLC
+Project Approval Date: February 14, 2031
+
+This is to advise that the City of Oakville has approved the above project and has made the following determinations:
+1. An Environmental Impact Report was prepared and certified for this project.
+2. Mitigation measures were made a condition of the approval.
+3. A statement of overriding considerations was adopted.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Notice of Determination",
+  "effective_date": "2031-02-15",
+  "parties": [
+    { "name": "City of Oakville", "role": "Lead Agency" },
+    { "name": "Oakville Developers LLC", "role": "Project Applicant" }
+  ],
+  "environmental_details": {
+    "document_type": "NOD",
+    "project_name": "Oakville Quarry Redevelopment Project",
+    "project_approval_date": "2031-02-14",
+    "ceqa_finding": "An Environmental Impact Report was prepared and certified."
+  },
+  "legal_recording_details": {
+    "filing_date": "2031-02-15"
+  },
+  "discovered_entities": []
+}
+109_schema_additions.json
+
+JSON
+
+{
+  "environmental_details": {
+    "type": "object",
+    "description": "Details specific to environmental review documents (CEQA/NEPA).",
+    "properties": {
+      "document_type": { "type": "string" },
+      "project_name": { "type": "string" },
+      "project_description": { "type": "string" },
+      "scoping_meeting_date": { "type": "string", "format": "date" },
+      "comment_period_end_date": { "type": "string", "format": "date" },
+      "environmental_determination": { "type": "string" },
+      "mitigation_measures_summary": { "type": "string" },
+      "finding": { "type": "string" },
+      "public_review_period": { "type": "string" },
+      "significant_unavoidable_impacts": { "type": "array", "items": { "type": "string" } },
+      "alternatives_analyzed": { "type": "array", "items": { "type": "string" } },
+      "original_eir_reference": { "type": "string" },
+      "reason_for_addendum": { "type": "string" },
+      "project_approval_date": { "type": "string", "format": "date" },
+      "ceqa_finding": { "type": "string" }
+    }
+  }
+}
+Document Type 110: NOE (Notice of Exemption)
+110_specialist_schema.json
+
+JSON
+
+{
+  "title": "Notice of Exemption (NOE) Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Notice of Exemption'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Public Agency", "Project Applicant"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "environmental_details": {
+      "type": "object",
+      "properties": {
+        "document_type": { "type": "string", "default": "NOE" },
+        "project_name": { "type": "string" },
+        "project_approval_date": { "type": "string", "format": "date" },
+        "exemption_type": { "type": "string", "description": "The type of CEQA exemption, e.g., 'Categorical', 'Statutory'." },
+        "exemption_reason": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "environmental_details"]
+}
+110_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+NOTICE OF EXEMPTION
+
+To: County Clerk, County of Marin
+From: City of Marin
+Project Title: Interior Tenant Improvement Permit B-3456
+Project Applicant: The Corner Bakery
+Project Approval Date: July 10, 2030
+
+The project is exempt from CEQA.
+Exempt Status: Categorical Exemption, Class 1, Existing Facilities (Section 15301).
+Reasons why project is exempt: The project consists of interior alterations to an existing commercial space with no expansion of the building footprint.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Notice of Exemption",
+  "effective_date": null,
+  "parties": [
+    { "name": "City of Marin", "role": "Public Agency" },
+    { "name": "The Corner Bakery", "role": "Project Applicant" }
+  ],
+  "environmental_details": {
+    "document_type": "NOE",
+    "project_name": "Interior Tenant Improvement Permit B-3456",
+    "project_approval_date": "2030-07-10",
+    "exemption_type": "Categorical Exemption",
+    "exemption_reason": "Class 1, Existing Facilities (Section 15301): The project consists of interior alterations to an existing commercial space with no expansion of the building footprint."
+  },
+  "discovered_entities": []
+}
+110_schema_additions.json
+
+JSON
+
+{
+  "environmental_details": {
+    "type": "object",
+    "description": "Details specific to environmental review documents (CEQA/NEPA).",
+    "properties": {
+      "document_type": { "type": "string" },
+      "project_name": { "type": "string" },
+      "project_description": { "type": "string" },
+      "scoping_meeting_date": { "type": "string", "format": "date" },
+      "comment_period_end_date": { "type": "string", "format": "date" },
+      "environmental_determination": { "type": "string" },
+      "mitigation_measures_summary": { "type": "string" },
+      "finding": { "type": "string" },
+      "public_review_period": { "type": "string" },
+      "significant_unavoidable_impacts": { "type": "array", "items": { "type": "string" } },
+      "alternatives_analyzed": { "type": "array", "items": { "type": "string" } },
+      "original_eir_reference": { "type": "string" },
+      "reason_for_addendum": { "type": "string" },
+      "project_approval_date": { "type": "string", "format": "date" },
+      "ceqa_finding": { "type": "string" },
+      "exemption_type": { "type": "string" },
+      "exemption_reason": { "type": "string" }
+    }
+  }
+}

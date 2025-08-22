@@ -1,0 +1,11 @@
+{
+  "bill_of_sale_details": {
+    "type": "object",
+    "description": "Details specific to a bill of sale transferring personal property.",
+    "properties": {
+      "personal_property_description": { "type": "string" },
+      "purchase_price": { "type": "number" },
+      "as_is_clause": { "type": "string" }
+    }
+  }
+}

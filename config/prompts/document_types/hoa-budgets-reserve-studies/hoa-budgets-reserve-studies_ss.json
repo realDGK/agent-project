@@ -1,0 +1,48 @@
+{
+  "title": "HOA Budget/Reserve Study Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Annual Budget' or 'Reserve Study'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Homeowners Association", "Author"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "hoa_financial_details": {
+      "type": "object",
+      "properties": {
+        "document_type": { "type": "string", "enum": ["Budget", "Reserve Study"] },
+        "fiscal_year": { "type": "string" },
+        "total_annual_budget": { "type": "number" },
+        "monthly_assessment_per_unit": { "type": "number" },
+        "reserve_fund_balance": { "type": "number" },
+        "percent_funded": { "type": "number" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "hoa_financial_details"]
+}

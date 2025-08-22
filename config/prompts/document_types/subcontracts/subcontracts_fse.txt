@@ -1,0 +1,29 @@
+**INPUT DOCUMENT TEXT:**
+SUBCONTRACT AGREEMENT
+
+This Agreement is made October 1, 2031, between BuildRight Corp. ("Contractor") and City Electric Inc. ("Subcontractor").
+
+Project: Downtown Tower
+
+Scope of Work: Subcontractor shall furnish and install all electrical work for the project in accordance with the prime contract and plans.
+
+Subcontract Price: The fixed price for this work is Five Million Dollars ($5,000,000).
+
+Payment: Payments shall be made monthly based on percentage of work completed, less 10% retention.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Subcontract Agreement",
+  "effective_date": "2031-10-01",
+  "parties": [
+    { "name": "BuildRight Corp.", "role": "Contractor" },
+    { "name": "City Electric Inc.", "role": "Subcontractor" }
+  ],
+  "subcontract_details": {
+    "project_name": "Downtown Tower",
+    "scope_of_work": "Furnish and install all electrical work for the project in accordance with the prime contract and plans.",
+    "subcontract_price": 5000000,
+    "payment_terms": "Monthly based on percentage of work completed, less 10% retention."
+  },
+  "discovered_entities": []
+}

@@ -1,0 +1,11 @@
+{
+  "reliance_letter_details": {
+    "type": "object",
+    "description": "Details specific to a reliance letter for a technical report.",
+    "properties": {
+      "original_report_title": { "type": "string" },
+      "original_report_date": { "type": "string", "format": "date" },
+      "original_client": { "type": "string" }
+    }
+  }
+}

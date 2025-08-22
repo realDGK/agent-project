@@ -1,0 +1,28 @@
+**INPUT DOCUMENT TEXT:**
+BROKER OPINION OF VALUE
+
+Property: 100 Valley View Road, Napa, CA
+Prepared for: OAK TREE INVESTORS, LLC
+Prepared by: Global Commercial Real Estate
+Date: December 15, 2026
+
+Based on our analysis of comparable sales and market conditions, it is our opinion that the likely selling price for the subject property is in the range of $11,500,000 to $12,500,000. Our specific opinion of value is $12,000,000.
+
+This is an opinion of value and not an appraisal.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Broker Opinion of Value",
+  "effective_date": "2026-12-15",
+  "parties": [
+    { "name": "Global Commercial Real Estate", "role": "Broker" },
+    { "name": "OAK TREE INVESTORS, LLC", "role": "Client" }
+  ],
+  "bov_details": {
+    "property_address": "100 Valley View Road, Napa, CA",
+    "opinion_of_value": 12000000,
+    "value_range": "$11,500,000 to $12,500,000",
+    "analysis_summary": "Based on analysis of comparable sales and market conditions."
+  },
+  "discovered_entities": []
+}

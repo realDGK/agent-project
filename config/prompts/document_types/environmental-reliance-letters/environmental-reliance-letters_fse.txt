@@ -1,0 +1,25 @@
+**INPUT DOCUMENT TEXT:**
+RELIANCE LETTER
+
+Date: July 10, 2031
+To: Mega Bank, N.A.
+
+Re: Phase I Environmental Site Assessment for 123 Industrial Way, Oakland, CA, dated March 10, 2031.
+
+At the request of our client, Industrial Buyers LLC, Clearwater Environmental hereby grants permission for Mega Bank, N.A. to rely on the findings and conclusions of the above-referenced report as if it were originally addressed to you.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Reliance Letter",
+  "effective_date": "2031-07-10",
+  "parties": [
+    { "name": "Clearwater Environmental", "role": "Consultant" },
+    { "name": "Mega Bank, N.A.", "role": "Relying Party" }
+  ],
+  "reliance_letter_details": {
+    "original_report_title": "Phase I Environmental Site Assessment for 123 Industrial Way, Oakland, CA",
+    "original_report_date": "2031-03-10",
+    "original_client": "Industrial Buyers LLC"
+  },
+  "discovered_entities": []
+}

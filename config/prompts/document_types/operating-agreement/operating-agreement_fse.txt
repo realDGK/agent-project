@@ -1,0 +1,34 @@
+INPUT DOCUMENT TEXT:
+OPERATING AGREEMENT FOR PINE VIEW ESTATES, LLC
+This agreement is made and entered into as of January 10, 2025, by and among the initial members.
+
+ARTICLE II: CAPITAL CONTRIBUTIONS
+2.1 Initial Contributions. The Members shall contribute to the Company capital as follows:
+(a) Sarah Jenkins shall contribute $50,000 cash for a 50% Membership Interest.
+(b) Tom Alvarez shall contribute the real property located at 123 Main St, valued at $50,000, for a 50% Membership Interest.
+
+ARTICLE IV: MANAGEMENT
+4.1 Management. The business and affairs of the Company shall be managed by its Members.
+
+ARTICLE V: ALLOCATIONS
+5.1 Profits and Losses. The net profits and losses of the Company shall be allocated to the Members in proportion to their Membership Interest.
+
+ARTICLE IX: TAX MATTERS
+9.1 Tax Matters Partner. Sarah Jenkins is hereby designated as the Partnership Representative.
+
+JSON OUTPUT:
+
+"contract_name": "Operating Agreement for Pine View Estates, LLC",
+"effective_date": "2025-01-10",
+"parties": [
+{
+"name": "Sarah Jenkins",
+"role": "Initial Member",
+"title": null
+},
+{
+"name": "Tom Alvarez",
+"role": "Initial Member",
+"title": null
+}
+],

@@ -1,0 +1,50 @@
+{
+  "title": "Access/Entry Agreement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Site Access Agreement'."
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Property Owner", "Grantee", "Entering Party"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "access_details": {
+      "type": "object",
+      "properties": {
+        "property_description": { "type": "string" },
+        "purpose_of_access": { "type": "string" },
+        "access_period": { "type": "string" },
+        "insurance_requirements": { "type": "string" },
+        "indemnification_clause": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "access_details"]
+}

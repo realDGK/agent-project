@@ -1,0 +1,25 @@
+**INPUT DOCUMENT TEXT:**
+APPLICATION FOR LOT LINE ADJUSTMENT
+Case No: LLA2028-001
+Applicant: John Smith and Mary Jones
+
+This is an application to adjust the common boundary line between APN 111-222-333 (Owner: John Smith) and APN 111-222-334 (Owner: Mary Jones). The purpose is to transfer 500 square feet from Parcel 1 to Parcel 2 to accommodate a new garage.
+
+Approved by City of Walnut Creek, September 1, 2028.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Application for Lot Line Adjustment",
+  "effective_date": "2028-09-01",
+  "parties": [
+    { "name": "John Smith", "role": "Applicant" },
+    { "name": "Mary Jones", "role": "Applicant" },
+    { "name": "City of Walnut Creek", "role": "Approving Agency" }
+  ],
+  "map_details": {
+    "application_number": "LLA2028-001",
+    "affected_parcels_apn": ["111-222-333", "111-222-334"],
+    "adjustment_summary": "Transfer 500 square feet from Parcel 1 (APN 111-222-333) to Parcel 2 (APN 111-222-334) to accommodate a new garage."
+  },
+  "discovered_entities": []
+}

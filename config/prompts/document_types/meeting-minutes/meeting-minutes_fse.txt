@@ -1,0 +1,51 @@
+**INPUT DOCUMENT TEXT:**
+OAC Meeting Minutes #25
+Project: Downtown Tower
+Date: December 1, 2031
+
+Attendees: John Smith (Owner), Laura Chen (Architect), Mike Davis (Contractor)
+
+Discussion:
+- The schedule is currently 2 days behind due to weather delays.
+- Change Order #10 for the lobby revisions was approved.
+
+Action Items:
+1. Contractor to submit a recovery schedule. (Mike Davis, 12/08/2031)
+2. Architect to issue revised lobby drawings. (Laura Chen, 12/10/2031)
+
+**JSON OUTPUT:**
+{
+  "contract_name": "OAC Meeting Minutes #25",
+  "effective_date": "2031-12-01",
+  "parties": [
+    { "name": "John Smith", "role": "Attendee" },
+    { "name": "Laura Chen", "role": "Attendee" },
+    { "name": "Mike Davis", "role": "Attendee" }
+  ],
+  "meeting_minutes_details": {
+    "project_name": "Downtown Tower",
+    "meeting_title": "OAC Meeting #25",
+    "attendees": [
+      "John Smith (Owner)",
+      "Laura Chen (Architect)",
+      "Mike Davis (Contractor)"
+    ],
+    "key_discussion_points": [
+      "The schedule is currently 2 days behind due to weather delays.",
+      "Change Order #10 for the lobby revisions was approved."
+    ],
+    "action_items": [
+      {
+        "item": "Submit a recovery schedule.",
+        "responsible_party": "Mike Davis",
+        "due_date": "2031-12-08"
+      },
+      {
+        "item": "Issue revised lobby drawings.",
+        "responsible_party": "Laura Chen",
+        "due_date": "2031-12-10"
+      }
+    ]
+  },
+  "discovered_entities": []
+}

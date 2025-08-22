@@ -1,0 +1,28 @@
+**INPUT DOCUMENT TEXT:**
+TRUSTEE'S DEED UPON SALE
+
+QUALITY TRUSTEE SERVICES, as Trustee, hereby grants to FORECLOSURE INVESTORS LLC, ("Grantee"), the real property in Los Angeles County, CA (APN 444-555-666).
+
+This conveyance is made pursuant to a sale conducted on August 20, 2028, under the power of sale conferred by a Deed of Trust executed by Original Homeowner as Trustor, recorded on 01/15/2020 as Instrument No. 2020-123456. The original beneficiary was National Bank.
+
+Executed August 21, 2028.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Trustee's Deed Upon Sale",
+  "effective_date": "2028-08-21",
+  "parties": [
+    { "name": "QUALITY TRUSTEE SERVICES", "role": "Trustee" },
+    { "name": "FORECLOSURE INVESTORS LLC", "role": "Grantee" },
+    { "name": "Original Homeowner", "role": "Original Trustor" },
+    { "name": "National Bank", "role": "Original Beneficiary" }
+  ],
+  "deed_details": {
+    "deed_type": "Trustee's Deed Upon Sale",
+    "property_legal_description": null,
+    "apn": "444-555-666",
+    "foreclosure_sale_date": "2028-08-20",
+    "original_deed_of_trust_recording_info": "Recorded on 01/15/2020 as Instrument No. 2020-123456."
+  },
+  "discovered_entities": []
+}

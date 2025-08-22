@@ -1,0 +1,46 @@
+{
+  "title": "Business License Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Business License Certificate'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Licensee", "Issuing Agency"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "license_details": {
+      "type": "object",
+      "properties": {
+        "license_number": { "type": "string" },
+        "business_name": { "type": "string" },
+        "business_address": { "type": "string" },
+        "expiration_date": { "type": "string", "format": "date" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "license_details"]
+}

@@ -1,0 +1,25 @@
+**INPUT DOCUMENT TEXT:**
+MINUTES OF THE REGULAR MEETING OF THE BOARD OF DIRECTORS
+GREEN VALLEY RANCH HOMEOWNERS ASSOCIATION
+July 15, 2033
+
+A meeting of the Board of Directors was held.
+OLD BUSINESS: The contract for pool resurfacing was discussed.
+NEW BUSINESS: A motion was made to approve the 2034 Annual Budget. The motion was seconded and passed by a vote of 4 to 1.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Minutes of the Regular Meeting of the Board of Directors",
+  "effective_date": "2033-07-15",
+  "parties": [
+    { "name": "Green Valley Ranch Homeowners Association", "role": "Homeowners Association" }
+  ],
+  "meeting_minutes_details": {
+    "meeting_type": "Regular Meeting of the Board of Directors",
+    "key_decisions_made": [
+      "The 2034 Annual Budget was approved."
+    ],
+    "vote_summary": "Passed by a vote of 4 to 1."
+  },
+  "discovered_entities": []
+}

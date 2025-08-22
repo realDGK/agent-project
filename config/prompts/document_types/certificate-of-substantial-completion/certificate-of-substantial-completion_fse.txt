@@ -1,0 +1,31 @@
+**INPUT DOCUMENT TEXT:**
+AIA Document G704™ – 2017
+Certificate of Substantial Completion
+
+PROJECT: Downtown Tower
+OWNER: Downtown Tower LLC
+CONTRACTOR: BuildRight Corp.
+ARCHITECT: Global Architects Inc.
+
+The Work performed under the Contract has been reviewed and found, to the Architect's best knowledge, to be substantially complete.
+The Date of Substantial Completion of the Project is hereby established as September 1, 2034.
+
+A list of items to be completed or corrected is attached hereto. The failure to include an item on such list does not alter the responsibility of the Contractor to complete all Work. Warranties required by the Contract Documents shall commence on the Date of Substantial Completion.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Certificate of Substantial Completion",
+  "effective_date": "2034-09-01",
+  "parties": [
+    { "name": "Downtown Tower LLC", "role": "Owner" },
+    { "name": "BuildRight Corp.", "role": "Contractor" },
+    { "name": "Global Architects Inc.", "role": "Architect" }
+  ],
+  "completion_certificate_details": {
+    "project_name": "Downtown Tower",
+    "date_of_substantial_completion": "2034-09-01",
+    "punch_list_reference": "A list of items to be completed or corrected is attached hereto.",
+    "warranty_start_date": "2034-09-01"
+  },
+  "discovered_entities": []
+}

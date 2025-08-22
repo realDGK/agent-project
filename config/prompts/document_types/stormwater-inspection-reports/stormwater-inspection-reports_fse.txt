@@ -1,0 +1,29 @@
+**INPUT DOCUMENT TEXT:**
+WEEKLY STORMWATER INSPECTION CHECKLIST
+Project: Riverbend Tract No. 8888
+WDID: 5A34C123456
+Inspection Date: August 15, 2030
+Inspector: John Smith, QSP
+
+Observations:
+- Silt fence near Lot 10 is down.
+- All other BMPs are functioning as intended.
+
+Corrective Actions:
+- Repair silt fence near Lot 10 within 24 hours.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Weekly Stormwater Inspection Checklist",
+  "effective_date": "2030-08-15",
+  "parties": [
+    { "name": "John Smith", "role": "QSP" }
+  ],
+  "stormwater_details": {
+    "project_name": "Riverbend Tract No. 8888",
+    "wdid_number": "5A34C123456",
+    "inspection_findings": "Silt fence near Lot 10 is down. All other BMPs are functioning as intended.",
+    "corrective_actions_required": "Repair silt fence near Lot 10 within 24 hours."
+  },
+  "discovered_entities": []
+}

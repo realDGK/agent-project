@@ -1,0 +1,29 @@
+{
+  "preemptive_rights_details": {
+    "type": "object",
+    "description": "Details specific to preemptive rights like a ROFR or ROFO.",
+    "properties": {
+      "right_type": {
+        "type": "string",
+        "enum": ["ROFR", "ROFO"],
+        "description": "Right of First Refusal (ROFR) or Right of First Offer (ROFO)."
+      },
+      "property_description": {
+        "type": "string",
+        "description": "A description of the property subject to the right."
+      },
+      "triggering_event": {
+        "type": "string",
+        "description": "The event that triggers the right (e.g., 'Owner\'s intent to sell', 'Receipt of a third-party offer')."
+      },
+      "procedure_summary": {
+        "type": "string",
+        "description": "A summary of the notification and exercise process."
+      },
+      "exercise_period": {
+        "type": "string",
+        "description": "The time the holder has to exercise their right."
+      }
+    }
+  }
+}

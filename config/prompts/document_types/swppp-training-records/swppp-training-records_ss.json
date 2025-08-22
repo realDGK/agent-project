@@ -1,0 +1,44 @@
+{
+  "title": "SWPPP Training Record Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'SWPPP Training Log'."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Trainer", "Attendee"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "training_record_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "training_date": { "type": "string", "format": "date" },
+        "training_topic": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "training_record_details"]
+}

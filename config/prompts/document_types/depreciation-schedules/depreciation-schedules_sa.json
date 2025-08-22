@@ -1,0 +1,24 @@
+{
+  "depreciation_schedule_details": {
+    "type": "object",
+    "description": "Details specific to a depreciation schedule.",
+    "properties": {
+      "property_name": { "type": "string" },
+      "year": { "type": "integer" },
+      "total_depreciation_expense": { "type": "number" },
+      "assets": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "asset_description": { "type": "string" },
+            "cost_basis": { "type": "number" },
+            "depreciation_method": { "type": "string" },
+            "useful_life_years": { "type": "integer" },
+            "current_year_depreciation": { "type": "number" }
+          }
+        }
+      }
+    }
+  }
+}

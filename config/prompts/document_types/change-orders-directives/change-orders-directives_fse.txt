@@ -1,0 +1,39 @@
+**INPUT DOCUMENT TEXT:**
+AIA Document G701™ – 2017
+Change Order
+
+PROJECT: Downtown Tower
+CHANGE ORDER NUMBER: 010
+DATE: December 1, 2031
+OWNER: Downtown Tower LLC
+CONTRACTOR: BuildRight Corp.
+ARCHITECT: Global Architects Inc.
+
+DESCRIPTION OF CHANGE:
+Revise lobby finishes per architect's sketch SK-201.
+
+The original Contract Sum was $100,000,000.
+The net change by previously authorized Change Orders was $500,000.
+The Contract Sum prior to this Change Order was $100,500,000.
+The Contract Sum will be increased by this Change Order in the amount of $75,000.
+The new Contract Sum including this Change Order will be $100,575,000.
+The Contract Time will be increased by five (5) days.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Change Order No. 10",
+  "effective_date": "2031-12-01",
+  "parties": [
+    { "name": "Downtown Tower LLC", "role": "Owner" },
+    { "name": "BuildRight Corp.", "role": "Contractor" },
+    { "name": "Global Architects Inc.", "role": "Architect" }
+  ],
+  "change_order_details": {
+    "project_name": "Downtown Tower",
+    "change_order_number": "010",
+    "description_of_change": "Revise lobby finishes per architect's sketch SK-201.",
+    "cost_impact": 75000,
+    "schedule_impact_days": 5
+  },
+  "discovered_entities": []
+}

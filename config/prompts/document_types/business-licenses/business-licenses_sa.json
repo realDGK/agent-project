@@ -1,0 +1,12 @@
+{
+  "license_details": {
+    "type": "object",
+    "description": "Details specific to a business license.",
+    "properties": {
+      "license_number": { "type": "string" },
+      "business_name": { "type": "string" },
+      "business_address": { "type": "string" },
+      "expiration_date": { "type": "string", "format": "date" }
+    }
+  }
+}

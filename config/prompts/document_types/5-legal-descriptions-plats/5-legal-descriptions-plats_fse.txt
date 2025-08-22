@@ -1,0 +1,29 @@
+**INPUT DOCUMENT TEXT:**
+EXHIBIT A
+LEGAL DESCRIPTION
+
+Real property in the City of Napa, County of Napa, State of California, described as follows:
+
+Lot 1 of Parcel Map No. 1234, as shown on the map filed for record in Book 56 of Maps, Page 78, Napa County Records.
+
+Containing 5.25 acres, more or less.
+APN: 123-456-78
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Exhibit A - Legal Description",
+  "parties": [],
+  "map_details": {
+    "property_legal_description": "Lot 1 of Parcel Map No. 1234, as shown on the map filed for record in Book 56 of Maps, Page 78, Napa County Records.",
+    "apn": "123-456-78",
+    "county": "Napa",
+    "state": "California"
+  },
+  "discovered_entities": [
+    {
+      "entity_name": "Acreage",
+      "entity_value": "5.25",
+      "context_summary": "The approximate size of the property in acres."
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "title": "MMRP Monitoring Report Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Annual MMRP Monitoring Report'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Author", "Consultant", "Developer"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "monitoring_report_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "reporting_period": { "type": "string" },
+        "mitigation_measures_status": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "measure_id": { "type": "string" },
+              "status": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "monitoring_report_details"]
+}

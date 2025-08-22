@@ -1,0 +1,15 @@
+{
+  "bond_details": {
+    "type": "object",
+    "description": "Details specific to a surety bond.",
+    "properties": {
+      "bond_number": { "type": "string" },
+      "bond_type": { "type": "string" },
+      "penal_sum": { "type": "number" },
+      "project_description": { "type": "string" },
+      "warranty_period": { "type": "string" },
+      "project_name": { "type": "string" },
+      "reason_for_exoneration": { "type": "string" }
+    }
+  }
+}

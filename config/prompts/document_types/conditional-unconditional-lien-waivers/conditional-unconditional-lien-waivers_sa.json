@@ -1,0 +1,12 @@
+{
+  "lien_waiver_details": {
+    "type": "object",
+    "description": "Details specific to a mechanic's lien waiver and release.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "waiver_type": { "type": "string", "enum": ["Conditional Progress", "Unconditional Progress", "Conditional Final", "Unconditional Final"] },
+      "through_date": { "type": "string", "format": "date" },
+      "payment_amount": { "type": "number" }
+    }
+  }
+}

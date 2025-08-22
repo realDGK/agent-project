@@ -1,0 +1,46 @@
+{
+  "title": "Pro Forma Title Policy Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Pro Forma ALTA Owner's Policy'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Title Company", "Proposed Insured"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "title_details": {
+      "type": "object",
+      "properties": {
+        "report_number": { "type": "string" },
+        "policy_type": { "type": "string" },
+        "proposed_insured_amount": { "type": "number" },
+        "proposed_endorsements": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "title_details"]
+}

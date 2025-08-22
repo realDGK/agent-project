@@ -1,0 +1,66 @@
+{
+  "title": "Option Agreement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Option to Purchase Real Estate'."
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date",
+      "description": "The date the agreement was fully executed."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Optionor", "Optionee", "Seller", "Buyer"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "option_details": {
+      "type": "object",
+      "properties": {
+        "property_description": {
+          "type": "string",
+          "description": "A description of the property subject to the option."
+        },
+        "option_fee": {
+          "type": "number",
+          "description": "The consideration paid for the option right."
+        },
+        "option_period": {
+          "type": "string",
+          "description": "The duration during which the option can be exercised."
+        },
+        "exercise_price": {
+          "type": "number",
+          "description": "The pre-agreed price to purchase the property if the option is exercised."
+        },
+        "exercise_procedure": {
+          "type": "string",
+          "description": "A summary of how the option must be exercised (e.g., 'Written notice to Optionor')."
+        }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "option_details"]
+}

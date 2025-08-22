@@ -1,0 +1,36 @@
+**INPUT DOCUMENT TEXT:**
+AIA Document A102 – 2017
+Standard Form of Agreement Between Owner and Contractor where the basis of payment is the Cost of the Work Plus a Fee with a Guaranteed Maximum Price
+
+AGREEMENT made as of the 1st day of September, 2031
+BETWEEN the Owner: Downtown Tower LLC
+AND the Contractor: BuildRight Corp.
+FOR the Project: Downtown Tower, 123 Main Street
+THE ARCHITECT: Global Architects Inc.
+
+ARTICLE 5: CONTRACT SUM
+The Contract Sum is the Cost of the Work plus the Contractor's Fee. The Guaranteed Maximum Price (GMP) is One Hundred Million Dollars ($100,000,000).
+
+ARTICLE 3: DATE OF COMMENCEMENT AND SUBSTANTIAL COMPLETION
+The date of commencement shall be September 15, 2031. Substantial Completion shall be achieved within 36 months from the date of commencement.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "AIA Document A102 – 2017",
+  "effective_date": "2031-09-01",
+  "parties": [
+    { "name": "Downtown Tower LLC", "role": "Owner" },
+    { "name": "BuildRight Corp.", "role": "Contractor" },
+    { "name": "Global Architects Inc.", "role": "Architect" }
+  ],
+  "construction_contract_details": {
+    "project_name": "Downtown Tower, 123 Main Street",
+    "contract_type": "Cost Plus Fee with GMP",
+    "contract_sum": null,
+    "guaranteed_maximum_price_gmp": 100000000,
+    "date_of_commencement": "2031-09-15",
+    "substantial_completion_date": "36 months from the date of commencement.",
+    "liquidated_damages": null
+  },
+  "discovered_entities": []
+}

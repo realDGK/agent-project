@@ -1,0 +1,94 @@
+{
+  "title": "Utility Easement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Grant of Easement for Public Utilities'."
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date",
+      "description": "The date the easement was granted or recorded."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "Grantor",
+              "Grantee"
+            ]
+          }
+        },
+        "required": [
+          "name",
+          "role"
+        ]
+      }
+    },
+    "parcels": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "apn": {
+            "type": "string"
+          },
+          "legal_description": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "easement_details": {
+      "type": "object",
+      "properties": {
+        "easement_type": {
+          "type": "string",
+          "description": "The type of utility the easement is for (e.g., 'Electric', 'Water', 'Sewer', 'Communications')."
+        },
+        "purpose": {
+          "type": "string",
+          "description": "The specific purpose of the easement (e.g., 'install, maintain, and operate underground electric lines')."
+        },
+        "easement_area_description": {
+          "type": "string",
+          "description": "A description of the specific portion of the property affected by the easement."
+        },
+        "is_perpetual": {
+          "type": "boolean"
+        }
+      }
+    },
+    "discovered_entities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "entity_name": {
+            "type": "string"
+          },
+          "entity_value": {
+            "type": "string"
+          },
+          "context_summary": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "contract_name",
+    "effective_date",
+    "parties",
+    "easement_details"
+  ]
+}

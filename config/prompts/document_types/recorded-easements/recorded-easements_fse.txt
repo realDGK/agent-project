@@ -1,0 +1,30 @@
+**INPUT DOCUMENT TEXT:**
+GRANT OF EASEMENT FOR PUBLIC UTILITIES
+
+This Grant of Easement is made November 1, 2028, by Parcel A Owner LLC ("Grantor") to City Electric & Gas ("Grantee").
+
+Grantor, owner of Parcel A (APN 123-456-01), hereby grants to Grantee a perpetual easement in gross for the installation and maintenance of public utility lines over, under, and across the easterly 10 feet of Parcel A.
+
+Recorded November 2, 2028, as Inst. No. 2028-112233.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Grant of Easement for Public Utilities",
+  "effective_date": "2028-11-01",
+  "parties": [
+    { "name": "Parcel A Owner LLC", "role": "Grantor" },
+    { "name": "City Electric & Gas", "role": "Grantee" }
+  ],
+  "easement_details": {
+    "easement_type": "Utility",
+    "purpose": "Installation and maintenance of public utility lines.",
+    "servient_tenement_description": "The easterly 10 feet of Parcel A (APN 123-456-01).",
+    "dominant_tenement_description": null,
+    "is_appurtenant_or_in_gross": "In Gross"
+  },
+  "legal_recording_details": {
+    "instrument_number": "2028-112233",
+    "recording_date": "2028-11-02"
+  },
+  "discovered_entities": []
+}

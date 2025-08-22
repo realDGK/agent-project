@@ -1,0 +1,19 @@
+{
+  "cfd_details": {
+    "type": "object",
+    "description": "Details specific to a Community Facilities District (Mello-Roos) or Assessment District.",
+    "properties": {
+      "cfd_name": { "type": "string" },
+      "cfd_number": { "type": "string" },
+      "map_summary": { "type": "string" },
+      "maximum_special_tax": { "type": "string" },
+      "method_of_apportionment": { "type": "string" },
+      "election_date": { "type": "string", "format": "date" },
+      "votes_yes": { "type": "integer" },
+      "votes_no": { "type": "integer" },
+      "outcome": { "type": "string" },
+      "agent_responsibilities": { "type": "string" },
+      "agent_compensation": { "type": "string" }
+    }
+  }
+}

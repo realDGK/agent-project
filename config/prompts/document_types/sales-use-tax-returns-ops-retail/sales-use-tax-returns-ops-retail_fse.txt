@@ -1,0 +1,28 @@
+**INPUT DOCUMENT TEXT:**
+CALIFORNIA DEPARTMENT OF TAX AND FEE ADMINISTRATION
+SALES AND USE TAX RETURN
+
+Account No: 101-123456
+Business: The Coffee Spot LLC
+Period: Q1 2033 (Jan-Mar)
+
+1. Total Sales: $150,000
+2. Taxable Sales: $145,000
+3. Sales Tax Due (at 8.75%): $12,687.50
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Sales and Use Tax Return",
+  "parties": [
+    { "name": "The Coffee Spot LLC", "role": "Filer" },
+    { "name": "California Department of Tax and Fee Administration", "role": "Taxing Agency" }
+  ],
+  "tax_details": {
+    "account_number": "101-123456",
+    "reporting_period": "Q1 2033 (Jan-Mar)",
+    "total_sales": 150000,
+    "taxable_sales": 145000,
+    "tax_due": 12687.50
+  },
+  "discovered_entities": []
+}

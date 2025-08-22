@@ -1,0 +1,30 @@
+**INPUT DOCUMENT TEXT:**
+ANNUAL CONTINUING DISCLOSURE REPORT
+CITY OF OAKWOOD CFD NO. 2032-1
+
+Fiscal Year Ending: June 30, 2033
+Report Date: January 15, 2034
+
+This report is filed with EMMA.
+- Principal amount of Bonds outstanding: $14,500,000
+- Status of Reserve Fund: Fully funded.
+- Delinquency rate for prior tax year: 1.5%
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Annual Continuing Disclosure Report",
+  "effective_date": "2034-01-15",
+  "parties": [
+    { "name": "City of Oakwood", "role": "Issuer" }
+  ],
+  "cfd_details": {
+    "cfd_number": "2032-1",
+    "fiscal_year": "2033-06-30",
+    "key_disclosures": [
+      "Principal amount of Bonds outstanding: $14,500,000",
+      "Status of Reserve Fund: Fully funded.",
+      "Delinquency rate for prior tax year: 1.5%"
+    ]
+  },
+  "discovered_entities": []
+}

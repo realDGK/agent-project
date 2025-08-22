@@ -1,0 +1,34 @@
+**INPUT DOCUMENT TEXT:**
+AGREEMENT FOR RELOCATION OF UTILITY FACILITIES
+
+This Agreement is entered into this 12th day of May, 2026, by and between the City of Evergreen ("Agency") and Mountain Power & Light ("Utility").
+
+RECITALS
+WHEREAS, the Agency is undertaking the widening of Oak Street (the "Project"); and
+WHEREAS, the Project requires the relocation of certain of Utility's existing overhead power lines and poles located within the Project area.
+
+AGREEMENT
+1. Relocation of Facilities. Utility agrees to relocate its 12kV distribution lines as shown on Exhibit A.
+2. Costs of Relocation. The Agency shall bear the full cost of the relocation, estimated to be $250,000.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Agreement for Relocation of Utility Facilities",
+  "effective_date": "2026-05-12",
+  "parties": [
+    {
+      "name": "City of Evergreen",
+      "role": "Agency"
+    },
+    {
+      "name": "Mountain Power & Light",
+      "role": "Utility"
+    }
+  ],
+  "utility_relocation_details": {
+    "project_requiring_relocation": "Widening of Oak Street",
+    "facilities_to_be_relocated": "Existing overhead 12kV distribution power lines and poles.",
+    "cost_responsibility": "The Agency shall bear the full cost, estimated at $250,000."
+  },
+  "discovered_entities": []
+}

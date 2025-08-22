@@ -1,0 +1,28 @@
+**INPUT DOCUMENT TEXT:**
+COUNTY OF NAPA
+DEPARTMENT OF ENVIRONMENTAL HEALTH
+WELL CONSTRUCTION PERMIT
+
+Permit No. W-2031-123
+Issue Date: November 1, 2031
+Applicant: Napa Valley Vineyards LLC
+Site APN: 123-456-789
+
+This permit authorizes the construction of one (1) new agricultural irrigation well to a depth of 500 feet.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Well Construction Permit",
+  "effective_date": "2031-11-01",
+  "parties": [
+    { "name": "Napa Valley Vineyards LLC", "role": "Permittee" },
+    { "name": "County of Napa Department of Environmental Health", "role": "Issuing Agency" }
+  ],
+  "permit_details": {
+    "permit_number": "W-2031-123",
+    "property_address": "APN 123-456-789",
+    "permit_type": "Well",
+    "permit_summary": "Authorizes construction of one new agricultural irrigation well to a depth of 500 feet."
+  },
+  "discovered_entities": []
+}

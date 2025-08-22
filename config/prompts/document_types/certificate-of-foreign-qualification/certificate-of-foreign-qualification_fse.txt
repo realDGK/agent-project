@@ -1,0 +1,32 @@
+INPUT DOCUMENT TEXT:
+State of Texas
+Office of the Secretary of State
+CERTIFICATE OF AUTHORITY
+OF
+GLOBAL BUILDERS, INC.
+The undersigned, as Secretary of State of Texas, hereby certifies that the above named foreign corporation, which is incorporated under the laws of Delaware, was granted a certificate of authority to transact business in Texas on May 20, 2025.
+The file number assigned to this entity is 801234567.
+Dated: May 20, 2025
+(Signature)
+Jane Esparza, Secretary of State
+JSON OUTPUT:
+{
+"contract_name": "Certificate of Authority for Global Builders, Inc.",
+"parties": [
+{
+"name": "Global Builders, Inc.",
+"role": "Entity"
+},
+{
+"name": "Texas Secretary of State",
+"role": "Issuing Authority"
+}
+],
+"foreign_qualification_details": {
+"entity_file_number": "801234567",
+"home_jurisdiction": "Delaware",
+"qualified_jurisdiction": "Texas",
+"qualification_date": "2025-05-20"
+},
+"discovered_entities": []
+}

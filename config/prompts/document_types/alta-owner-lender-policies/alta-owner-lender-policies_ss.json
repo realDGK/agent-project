@@ -1,0 +1,48 @@
+{
+  "title": "ALTA Title Policy Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'ALTA Owner's Policy'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Title Company", "Insured"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "title_details": {
+      "type": "object",
+      "properties": {
+        "policy_number": { "type": "string" },
+        "policy_type": { "type": "string" },
+        "amount_of_insurance": { "type": "number" },
+        "policy_date": { "type": "string", "format": "date" },
+        "schedule_a_vesting": { "type": "string" },
+        "schedule_b_exceptions": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "title_details"]
+}

@@ -1,0 +1,27 @@
+**INPUT DOCUMENT TEXT:**
+NON-FOREIGN TRANSFEROR AFFIDAVIT
+(FIRPTA)
+
+Section 1445 of the Internal Revenue Code provides that a transferee of a U.S. real property interest must withhold tax if the transferor is a foreign person.
+
+The undersigned, being duly sworn, deposes and says on oath as follows:
+1. OAK TREE INVESTORS, LLC ("Transferor") is not a foreign corporation, foreign partnership, foreign trust, or foreign estate.
+2. Transferor's U.S. employer identification number is 12-3456789.
+3. Transferor's office address is 700 Main Street, San Francisco, CA.
+
+Date: October 30, 2027
+By: (Signature), John Smith, Manager
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Non-Foreign Transferor Affidavit (FIRPTA)",
+  "effective_date": "2027-10-30",
+  "parties": [
+    { "name": "OAK TREE INVESTORS, LLC", "role": "Transferor" }
+  ],
+  "tax_details": {
+    "taxpayer_id_number": "12-3456789",
+    "certification_statement": "Transferor is not a foreign corporation, foreign partnership, foreign trust, or foreign estate."
+  },
+  "discovered_entities": []
+}

@@ -1,0 +1,16 @@
+{
+  "plan_details": {
+    "type": "object",
+    "description": "Details specific to engineering or architectural plan sets.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "plan_type": { "type": "string" },
+      "engineer_of_record": { "type": "string" },
+      "approval_date": { "type": "string", "format": "date" },
+      "plan_sheet_count": { "type": "integer" },
+      "utilities_shown": { "type": "array", "items": { "type": "string" } },
+      "certification_statement": { "type": "string" },
+      "building_description": { "type": "string" }
+    }
+  }
+}

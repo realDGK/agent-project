@@ -1,0 +1,45 @@
+{
+  "title": "Exclusive Use/Co-Tenancy Agreement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, often a clause within a lease."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Landlord", "Tenant"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "lease_clause_details": {
+      "type": "object",
+      "properties": {
+        "clause_type": { "type": "string", "enum": ["Exclusive Use", "Co-Tenancy"] },
+        "exclusive_use_granted": { "type": "string" },
+        "co_tenancy_requirement": { "type": "string" },
+        "remedy_for_breach": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "lease_clause_details"]
+}

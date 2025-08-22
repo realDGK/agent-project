@@ -1,0 +1,29 @@
+**INPUT DOCUMENT TEXT:**
+RESOLUTION NO. PC-2030-10
+A RESOLUTION OF THE PLANNING COMMISSION OF THE CITY OF VISTA APPROVING CONDITIONAL USE PERMIT P29-123 FOR A SELF-STORAGE FACILITY
+
+WHEREAS, the Planning Commission has reviewed the application from Vista Storage Solutions LLC;
+
+NOW, THEREFORE, BE IT RESOLVED that the Planning Commission hereby approves CUP P29-123.
+
+PASSED AND ADOPTED this 15th day of November, 2029, by the following vote:
+AYES: 4
+NOES: 1
+ABSENT: 0
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Resolution No. PC-2030-10",
+  "effective_date": "2029-11-15",
+  "parties": [
+    { "name": "Planning Commission of the City of Vista", "role": "Approving Body" },
+    { "name": "Vista Storage Solutions LLC", "role": "Applicant" }
+  ],
+  "resolution_details": {
+    "resolution_number": "PC-2030-10",
+    "action_taken": "Approval",
+    "project_or_subject": "Conditional Use Permit P29-123 for a self-storage facility.",
+    "vote_summary": "AYES: 4, NOES: 1, ABSENT: 0"
+  },
+  "discovered_entities": []
+}

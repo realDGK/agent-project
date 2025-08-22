@@ -1,0 +1,29 @@
+{
+  "encroachment_details": {
+    "type": "object",
+    "description": "Details specific to an encroachment agreement.",
+    "properties": {
+      "encroaching_property_owner": {
+        "type": "string"
+      },
+      "encroached_upon_property_owner": {
+        "type": "string"
+      },
+      "description_of_encroachment": {
+        "type": "string"
+      },
+      "permission_granted": {
+        "type": "string"
+      },
+      "is_revocable": {
+        "type": "boolean"
+      },
+      "location_of_encroachment": {
+        "type": "string"
+      },
+      "maintenance_responsibility": {
+        "type": "string"
+      }
+    }
+  }
+}

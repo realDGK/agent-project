@@ -1,0 +1,24 @@
+**INPUT DOCUMENT TEXT:**
+GRANT DEED - PUBLIC STREET RIGHT-OF-WAY
+
+FOR NO CONSIDERATION, Riverbend Homes LLC, a California LLC ("Grantor"), hereby grants and dedicates to the City of Riverbend ("Grantee"), a municipal corporation, the real property described in Exhibit A for public street purposes.
+
+This dedication is made in accordance with the requirements of Tract Map No. 8888.
+
+Dated: September 15, 2030
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Grant Deed - Public Street Right-of-Way",
+  "effective_date": "2030-09-15",
+  "parties": [
+    { "name": "Riverbend Homes LLC", "role": "Grantor" },
+    { "name": "City of Riverbend", "role": "Grantee" }
+  ],
+  "dedication_details": {
+    "property_dedicated": "The real property described in Exhibit A.",
+    "purpose_of_dedication": "Public street purposes."
+  },
+  "legal_recording_details": null,
+  "discovered_entities": []
+}

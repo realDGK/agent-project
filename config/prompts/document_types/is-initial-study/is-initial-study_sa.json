@@ -1,0 +1,15 @@
+{
+  "environmental_details": {
+    "type": "object",
+    "description": "Details specific to environmental review documents (CEQA/NEPA).",
+    "properties": {
+      "document_type": { "type": "string" },
+      "project_name": { "type": "string" },
+      "project_description": { "type": "string" },
+      "scoping_meeting_date": { "type": "string", "format": "date" },
+      "comment_period_end_date": { "type": "string", "format": "date" },
+      "environmental_determination": { "type": "string" },
+      "mitigation_measures_summary": { "type": "string" }
+    }
+  }
+}

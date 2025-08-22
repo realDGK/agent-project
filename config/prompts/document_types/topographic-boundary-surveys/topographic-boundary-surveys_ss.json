@@ -1,0 +1,58 @@
+{
+  "title": "Survey Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string"
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "Client",
+              "Surveyor"
+            ]
+          }
+        },
+        "required": [
+          "name",
+          "role"
+        ]
+      }
+    },
+    "survey_details": {
+      "type": "object",
+      "properties": {
+        "property_address": {
+          "type": "string"
+        },
+        "property_legal_description": {
+          "type": "string"
+        },
+        "apn": {
+          "type": "string"
+        },
+        "survey_type": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "required": [
+    "contract_name",
+    "effective_date",
+    "parties",
+    "survey_details"
+  ]
+}

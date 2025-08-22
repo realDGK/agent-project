@@ -1,0 +1,49 @@
+{
+  "title": "AIA A101/A102 Construction Agreement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'AIA Document A101 - Standard Form of Agreement Between Owner and Contractor'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Owner", "Contractor", "Architect"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "construction_contract_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "contract_type": { "type": "string", "enum": ["Stipulated Sum", "Cost Plus Fee with GMP"] },
+        "contract_sum": { "type": "number" },
+        "guaranteed_maximum_price_gmp": { "type": "number" },
+        "date_of_commencement": { "type": "string", "format": "date" },
+        "substantial_completion_date": { "type": "string" },
+        "liquidated_damages": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "construction_contract_details"]
+}

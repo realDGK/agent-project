@@ -1,0 +1,15 @@
+{
+  "offering_details": {
+    "type": "object",
+    "description": "Details specific to a private placement or investment offering.",
+    "properties": {
+      "offering_summary": { "type": "string" },
+      "total_offering_amount": { "type": "number" },
+      "price_per_unit_or_share": { "type": "number" },
+      "minimum_investment": { "type": "number" },
+      "risk_factors_summary": { "type": "string" },
+      "number_of_shares_or_units": { "type": "number" },
+      "total_subscription_amount": { "type": "number" }
+    }
+  }
+}

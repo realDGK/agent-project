@@ -1,0 +1,28 @@
+**INPUT DOCUMENT TEXT:**
+OPERATING AND EASEMENT AGREEMENT
+
+This OEA is made January 15, 2029, by and between Mall Owner LLC and Big Department Store Inc. ("Anchor").
+
+Anchor agrees to continuously operate a department store on its parcel for a period of no less than ten (10) years.
+
+No other parcel in the shopping center shall be used for the sale of general apparel.
+
+All common areas shall be maintained by Mall Owner LLC, with costs passed through to tenants as CAM charges.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Operating and Easement Agreement",
+  "effective_date": "2029-01-15",
+  "parties": [
+    { "name": "Mall Owner LLC", "role": "Property Owner" },
+    { "name": "Big Department Store Inc.", "role": "Anchor Tenant" }
+  ],
+  "easement_details": {
+    "property_description": null,
+    "operating_covenants": "Anchor agrees to continuously operate a department store on its parcel for a period of no less than ten (10) years.",
+    "use_restrictions": "No other parcel in the shopping center shall be used for the sale of general apparel.",
+    "maintenance_obligations": "All common areas shall be maintained by Mall Owner LLC.",
+    "cost_sharing_provisions": "Costs passed through to tenants as CAM charges."
+  },
+  "discovered_entities": []
+}

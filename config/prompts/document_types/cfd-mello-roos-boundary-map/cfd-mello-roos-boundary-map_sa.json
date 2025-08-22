@@ -1,0 +1,11 @@
+{
+  "cfd_details": {
+    "type": "object",
+    "description": "Details specific to a Community Facilities District (Mello-Roos) or Assessment District.",
+    "properties": {
+      "cfd_name": { "type": "string" },
+      "cfd_number": { "type": "string" },
+      "map_summary": { "type": "string" }
+    }
+  }
+}

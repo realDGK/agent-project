@@ -1,0 +1,30 @@
+**INPUT DOCUMENT TEXT:**
+AGENDA
+OAC Meeting #25
+Project: Downtown Tower
+Date: December 1, 2031
+
+1. Review and Approve Minutes from Meeting #24
+2. Schedule Update
+3. Review Change Order #10 (Lobby Revisions)
+4. New Business
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Agenda - OAC Meeting #25",
+  "effective_date": "2031-12-01",
+  "parties": [],
+  "meeting_minutes_details": {
+    "document_type": "Agenda",
+    "project_name": "Downtown Tower",
+    "meeting_title": "OAC Meeting #25",
+    "agenda_items": [
+      "Review and Approve Minutes from Meeting #24",
+      "Schedule Update",
+      "Review Change Order #10 (Lobby Revisions)",
+      "New Business"
+    ],
+    "key_decisions_made": null
+  },
+  "discovered_entities": []
+}

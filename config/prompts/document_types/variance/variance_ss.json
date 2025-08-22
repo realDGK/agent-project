@@ -1,0 +1,46 @@
+{
+  "title": "Variance Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Resolution Approving Variance V-2029-01'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Applicant", "Approving Agency"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "entitlement_details": {
+      "type": "object",
+      "properties": {
+        "application_number": { "type": "string" },
+        "property_address": { "type": "string" },
+        "variance_request": { "type": "string" },
+        "findings_for_approval": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "entitlement_details"]
+}

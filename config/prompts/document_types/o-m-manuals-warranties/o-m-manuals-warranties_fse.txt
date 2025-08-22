@@ -1,0 +1,24 @@
+**INPUT DOCUMENT TEXT:**
+HVAC SYSTEM WARRANTY
+
+Manufacturer: Climate Control Inc.
+Equipment: Rooftop Packaged Unit Model AC-5000
+Project: Downtown Tower
+
+Climate Control Inc. warrants the compressor for a period of five (5) years and all other parts for a period of one (1) year from the date of Substantial Completion (September 1, 2034).
+
+**JSON OUTPUT:**
+{
+  "contract_name": "HVAC System Warranty",
+  "effective_date": "2034-09-01",
+  "parties": [
+    { "name": "Climate Control Inc.", "role": "Manufacturer" }
+  ],
+  "warranty_details": {
+    "project_name": "Downtown Tower",
+    "equipment_or_system": "Rooftop Packaged Unit Model AC-5000",
+    "warranty_period": "Compressor: 5 years; All other parts: 1 year.",
+    "warranty_start_date": "2034-09-01"
+  },
+  "discovered_entities": []
+}

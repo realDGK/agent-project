@@ -1,0 +1,32 @@
+**INPUT DOCUMENT TEXT:**
+AIR QUALITY AND GHG ANALYSIS - OAKVILLE QUARRY
+
+Prepared by: Enviro Air Sciences
+Date: July 1, 2031
+
+FINDINGS:
+Operational emissions of ROG and NOx are projected to exceed the BAAQMD thresholds of significance. Greenhouse gas (GHG) emissions are below the applicable thresholds.
+
+MITIGATION:
+AQ-1: All construction equipment shall be Tier 4 compliant.
+AQ-2: The project shall include EV charging stations for 15% of parking spaces.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Air Quality and GHG Analysis - Oakville Quarry",
+  "effective_date": "2031-07-01",
+  "parties": [
+    { "name": "Enviro Air Sciences", "role": "Consultant" }
+  ],
+  "technical_study_details": {
+    "study_type": "Air Quality/GHG Report",
+    "project_name": "Oakville Quarry",
+    "emissions_summary": "Greenhouse gas (GHG) emissions are below the applicable thresholds.",
+    "thresholds_exceeded": [
+      "ROG (Reactive Organic Gases)",
+      "NOx (Nitrogen Oxides)"
+    ],
+    "recommended_mitigation": "AQ-1: All construction equipment shall be Tier 4 compliant. AQ-2: The project shall include EV charging stations for 15% of parking spaces."
+  },
+  "discovered_entities": []
+}

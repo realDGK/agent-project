@@ -1,0 +1,48 @@
+{
+  "title": "Density Bonus Agreement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Density Bonus Agreement'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Developer", "Public Agency", "City"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "entitlement_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "property_address": { "type": "string" },
+        "base_density": { "type": "string" },
+        "affordable_units_provided": { "type": "string" },
+        "density_bonus_granted": { "type": "string" },
+        "concessions_or_incentives": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "entitlement_details"]
+}

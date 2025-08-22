@@ -1,0 +1,10 @@
+{
+  "mechanics_lien_details": {
+    "type": "object",
+    "description": "Details specific to a mechanic's lien.",
+    "properties": {
+      "property_address": { "type": "string" },
+      "amount_of_lien": { "type": "number" }
+    }
+  }
+}

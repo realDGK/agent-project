@@ -1,0 +1,11 @@
+{
+  "legal_strategy_memo_details": {
+    "type": "object",
+    "description": "Details specific to a legal strategy memorandum.",
+    "properties": {
+      "subject_matter": { "type": "string" },
+      "issue_summary": { "type": "string" },
+      "recommended_strategy": { "type": "string" }
+    }
+  }
+}

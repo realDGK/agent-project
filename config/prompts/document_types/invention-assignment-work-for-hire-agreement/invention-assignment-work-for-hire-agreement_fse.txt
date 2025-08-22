@@ -1,0 +1,25 @@
+INPUT DOCUMENT TEXT:
+CONFIDENTIAL INFORMATION AND INVENTION ASSIGNMENT AGREEMENT
+This Agreement is made by and between Apex Innovations Corp. (the "Company") and Susan Chen ("Employee") as of March 15, 2027.
+ASSIGNMENT OF INVENTIONS. Employee agrees to assign to the Company all right, title, and interest in and to any and all inventions, discoveries, designs, and original works of authorship which Employee conceives or develops during the term of employment.
+PRIOR INVENTIONS. Employee has attached a list of all inventions developed prior to employment, which are excluded from this Agreement. If no list is attached, Employee represents that there are no such prior inventions.
+JSON OUTPUT:
+{
+"contract_name": "Confidential Information and Invention Assignment Agreement",
+"effective_date": "2027-03-15",
+"parties": [
+{
+"name": "Apex Innovations Corp.",
+"role": "Company"
+},
+{
+"name": "Susan Chen",
+"role": "Employee"
+}
+],
+"ip_assignment_details": {
+"assignment_scope": "Assigns all right, title, and interest in any inventions, discoveries, designs, and original works of authorship conceived or developed during employment.",
+"prior_inventions_clause": "Employee must attach a list of prior inventions to exclude them; otherwise, it is represented that none exist."
+},
+"discovered_entities": []
+}

@@ -1,0 +1,12 @@
+{
+  "equipment_certificate_details": {
+    "type": "object",
+    "description": "Details specific to an equipment operating certificate.",
+    "properties": {
+      "equipment_type": { "type": "string", "enum": ["Elevator", "Boiler"] },
+      "certificate_number": { "type": "string" },
+      "location": { "type": "string" },
+      "expiration_date": { "type": "string", "format": "date" }
+    }
+  }
+}

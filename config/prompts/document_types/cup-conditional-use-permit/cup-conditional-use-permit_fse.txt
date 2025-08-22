@@ -1,0 +1,33 @@
+**INPUT DOCUMENT TEXT:**
+RESOLUTION NO. PC-2029-10
+A RESOLUTION OF THE PLANNING COMMISSION OF THE CITY OF VISTA APPROVING CONDITIONAL USE PERMIT P29-123
+
+Applicant: Vista Storage Solutions LLC
+Project: A 100,000 sq. ft. self-storage facility at 555 Industrial Drive.
+
+The Planning Commission hereby approves CUP P29-123, allowing for the operation of a self-storage facility in the M-1 zone, subject to the following conditions:
+1. Operating hours shall be limited to 7:00 AM to 8:00 PM.
+2. All outdoor lighting shall be shielded and directed downward.
+
+APPROVED this 15th day of November, 2029.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Resolution Approving Conditional Use Permit P29-123",
+  "effective_date": "2029-11-15",
+  "parties": [
+    { "name": "Vista Storage Solutions LLC", "role": "Applicant" },
+    { "name": "City of Vista Planning Commission", "role": "Approving Agency" }
+  ],
+  "entitlement_details": {
+    "application_number": "P29-123",
+    "project_name": "A 100,000 sq. ft. self-storage facility",
+    "property_address": "555 Industrial Drive",
+    "permitted_use": "Operation of a self-storage facility in the M-1 zone.",
+    "key_conditions": [
+      "Operating hours shall be limited to 7:00 AM to 8:00 PM.",
+      "All outdoor lighting shall be shielded and directed downward."
+    ]
+  },
+  "discovered_entities": []
+}

@@ -1,0 +1,28 @@
+**INPUT DOCUMENT TEXT:**
+CITY OF OAKWOOD
+BUSINESS LICENSE
+
+LICENSEE: BuildRight Corp.
+ADDRESS: 100 Construction Way, Oakwood, CA
+LICENSE NO: 12345
+ISSUE DATE: 01/01/2031
+EXPIRATION DATE: 12/31/2031
+
+This license must be displayed in a conspicuous place at the business location.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Business License",
+  "effective_date": "2031-01-01",
+  "parties": [
+    { "name": "BuildRight Corp.", "role": "Licensee" },
+    { "name": "City of Oakwood", "role": "Issuing Agency" }
+  ],
+  "license_details": {
+    "license_number": "12345",
+    "business_name": "BuildRight Corp.",
+    "business_address": "100 Construction Way, Oakwood, CA",
+    "expiration_date": "2031-12-31"
+  },
+  "discovered_entities": []
+}

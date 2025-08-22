@@ -1,0 +1,29 @@
+**INPUT DOCUMENT TEXT:**
+PACIFIC GAS AND ELECTRIC COMPANY
+AGREEMENT TO PERFORM TARIFF SCHEDULED WORK
+
+Applicant: Riverbend Homes LLC
+Project: Riverbend (Tract No. 8888)
+Date: May 10, 2030
+
+PG&E agrees to install the gas and electric distribution facilities to serve the 150-lot Riverbend project.
+
+The total estimated cost of the work is $1,200,000. Based on the projected load, the project is eligible for a Utility Allowance of $450,000. The Applicant's required advance payment is $750,000.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Agreement to Perform Tariff Scheduled Work",
+  "effective_date": "2030-05-10",
+  "parties": [
+    { "name": "Riverbend Homes LLC", "role": "Applicant" },
+    { "name": "Pacific Gas and Electric Company", "role": "Utility Company" }
+  ],
+  "utility_service_details": {
+    "utility_type": "Gas and Electric",
+    "project_name": "Riverbend (Tract No. 8888)",
+    "scope_of_work": "Install the gas and electric distribution facilities to serve the 150-lot project.",
+    "applicant_cost_responsibility": 750000,
+    "utility_allowance_credit": 450000
+  },
+  "discovered_entities": []
+}

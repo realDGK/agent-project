@@ -1,0 +1,26 @@
+**INPUT DOCUMENT TEXT:**
+JUDGMENT
+Case Number: CIV-2027-9876
+In the matter of: Prime Lenders, Plaintiff, vs. John Borrower, Defendant.
+
+IT IS HEREBY ORDERED AND ADJUDGED that judgment is entered in favor of Plaintiff Prime Lenders and against Defendant John Borrower in the principal amount of $150,000.00, plus interest and costs.
+
+Dated: May 5, 2028
+(Signature)
+Judge of the Superior Court
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Judgment",
+  "effective_date": "2028-05-05",
+  "parties": [
+    { "name": "Prime Lenders", "role": "Plaintiff" },
+    { "name": "John Borrower", "role": "Defendant" }
+  ],
+  "litigation_details": {
+    "court_name": "Superior Court",
+    "case_number": "CIV-2027-9876",
+    "judgment_summary": "Judgment entered in favor of Plaintiff and against Defendant.",
+    "judgment_amount": 150000
+  }
+}

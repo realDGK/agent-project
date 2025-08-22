@@ -1,0 +1,31 @@
+**INPUT DOCUMENT TEXT:**
+AGREEMENT BETWEEN OWNER AND CONSTRUCTION MANAGER
+
+This Agreement is made September 1, 2031, between Downtown Tower LLC ("Owner") and BuildRight Corp. ("Construction Manager").
+
+PRECONSTRUCTION PHASE:
+The Construction Manager shall provide cost estimating, scheduling, and value engineering services during the design phase.
+
+CONSTRUCTION PHASE:
+Upon establishment of a Guaranteed Maximum Price (GMP), the Construction Manager shall act as the General Contractor for the Project.
+
+COMPENSATION:
+Compensation for Preconstruction Services shall be a fixed fee of $250,000. Compensation for Construction Phase services shall be a fee of 3% of the Cost of the Work.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Agreement Between Owner and Construction Manager",
+  "effective_date": "2031-09-01",
+  "parties": [
+    { "name": "Downtown Tower LLC", "role": "Owner" },
+    { "name": "BuildRight Corp.", "role": "Construction Manager" }
+  ],
+  "construction_contract_details": {
+    "project_name": null,
+    "contract_type": "CM/GC",
+    "preconstruction_phase_services": "Provide cost estimating, scheduling, and value engineering services during the design phase.",
+    "construction_phase_services": "Act as the General Contractor for the Project upon establishment of a GMP.",
+    "compensation_structure": "Fixed fee of $250,000 for Preconstruction; fee of 3% of the Cost of the Work for Construction."
+  },
+  "discovered_entities": []
+}

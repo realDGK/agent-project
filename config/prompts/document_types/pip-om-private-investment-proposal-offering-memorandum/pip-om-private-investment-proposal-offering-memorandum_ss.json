@@ -1,0 +1,57 @@
+{
+  "title": "Offering Memorandum (OM/PIP) Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Confidential Private Placement Memorandum'."
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date",
+      "description": "The date the memorandum was issued."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Issuer", "Sponsor", "Company"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "offering_details": {
+      "type": "object",
+      "properties": {
+        "offering_summary": {
+          "type": "string",
+          "description": "A brief summary of the investment opportunity."
+        },
+        "total_offering_amount": { "type": "number" },
+        "price_per_unit_or_share": { "type": "number" },
+        "minimum_investment": { "type": "number" },
+        "risk_factors_summary": {
+          "type": "string",
+          "description": "A high-level summary of the key risk factors mentioned."
+        }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "offering_details"]
+}

@@ -1,0 +1,27 @@
+**INPUT DOCUMENT TEXT:**
+LAW OFFICES OF SMITH & JONES
+Date: June 10, 2032
+To: BuildRight Corp.
+From: Counsel for City Electric Inc.
+
+Re: Demand for Payment - Downtown Tower Project
+
+This letter constitutes a formal demand for the immediate payment of $450,000.00 for unpaid invoices related to electrical work on the Downtown Tower project.
+
+If payment is not received within ten (10) business days, we will proceed with further legal action.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Demand for Payment",
+  "effective_date": "2032-06-10",
+  "parties": [
+    { "name": "City Electric Inc.", "role": "Claimant" },
+    { "name": "BuildRight Corp.", "role": "Recipient" }
+  ],
+  "demand_letter_details": {
+    "amount_demanded": 450000,
+    "reason_for_demand": "Unpaid invoices related to electrical work on the Downtown Tower project.",
+    "deadline_to_respond": "Ten (10) business days."
+  },
+  "discovered_entities": []
+}

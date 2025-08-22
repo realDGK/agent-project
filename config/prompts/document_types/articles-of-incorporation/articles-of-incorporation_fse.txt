@@ -1,0 +1,48 @@
+**INPUT DOCUMENT TEXT:**
+ARTICLES OF INCORPORATION OF "SUMMIT PEAK DEVELOPMENT, INC."
+
+ARTICLE I: The name of this corporation is Summit Peak Development, Inc.
+
+ARTICLE II: The purpose of this corporation is to engage in any lawful act or activity for which a corporation may be organized under the General Corporation Law of California.
+
+ARTICLE III: This corporation is authorized to issue one class of shares of stock to be designated "Common Stock." The total number of shares which this corporation is authorized to issue is 200,000.
+
+ARTICLE IV: The name and address in the State of California of this corporation's initial agent for service of process is Jessica Miller, 1234 Market Street, Suite 500, San Francisco, CA 94103.
+
+ARTICLE V: The name and address of the sole incorporator is David Chen, 555 Grant Avenue, San Francisco, CA 94108.
+INPUT DOCUMENT TEXT:
+BYLAWS OF RIDGEBACK PROPERTIES, INC.
+Adopted on the 5th day of June, 2024.
+
+ARTICLE III: DIRECTORS
+Section 1. Number. The corporation shall have no less than three (3) and no more than seven (7) directors.
+Section 5. Quorum. A majority of the authorized number of directors shall constitute a quorum for the transaction of business.
+
+ARTICLE IV: OFFICERS
+Section 1. Officers. The officers of the corporation shall be a President, a Secretary, and a Chief Financial Officer, who shall act as treasurer.
+
+ARTICLE VI: INDEMNIFICATION
+The corporation shall indemnify its directors and officers to the fullest extent permitted by California law.
+
+ARTICLE VIII: MISCELLANEOUS
+Section 1. Fiscal Year. The fiscal year of the corporation shall end on December 31.
+
+JSON OUTPUT:
+{
+"contract_name": "Bylaws of Ridgeback Properties, Inc.",
+"effective_date": "2024-06-05",
+"parties": [],
+"governance_details": {
+"director_quorum_requirement": "A majority of the authorized number of directors",
+"shareholder_quorum_requirement": null,
+"director_count": "No less than three (3) and no more than seven (7)",
+"officer_titles": [
+"President",
+"Secretary",
+"Chief Financial Officer"
+],
+"fiscal_year_end": "December 31",
+"indemnification_clause_summary": "The corporation shall indemnify its directors and officers to the fullest extent permitted by California law."
+},
+"discovered_entities": []
+}

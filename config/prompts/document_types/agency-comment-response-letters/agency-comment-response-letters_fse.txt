@@ -1,0 +1,25 @@
+**INPUT DOCUMENT TEXT:**
+Department of Fish and Wildlife
+Date: September 1, 2030
+To: City of Oakville, Planning Department
+
+Subject: Comments on the Draft EIR for the Oakville Quarry Redevelopment Project
+
+The Department has reviewed the Draft EIR and has concerns regarding potential impacts to the on-site seasonal wetlands. We recommend that Mitigation Measure BIO-1 be strengthened to require protocol-level surveys for fairy shrimp.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Comment Letter on Draft EIR",
+  "effective_date": "2030-09-01",
+  "parties": [
+    { "name": "Department of Fish and Wildlife", "role": "Commenting Agency" },
+    { "name": "City of Oakville, Planning Department", "role": "Receiving Agency" }
+  ],
+  "correspondence_details": {
+    "document_type": "Comment Letter",
+    "project_name": "Oakville Quarry Redevelopment Project",
+    "subject_document": "Draft EIR",
+    "summary_of_comments": "Concerns regarding impacts to seasonal wetlands. Recommends strengthening Mitigation Measure BIO-1 to require protocol-level surveys for fairy shrimp."
+  },
+  "discovered_entities": []
+}

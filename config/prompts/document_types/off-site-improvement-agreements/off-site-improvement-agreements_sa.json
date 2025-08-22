@@ -1,0 +1,24 @@
+{
+  "improvement_agreement_details": {
+    "type": "object",
+    "description": "Details specific to a Subdivision or Off-site Improvement Agreement.",
+    "properties": {
+      "subdivision_name": { "type": "string" },
+      "map_reference": { "type": "string" },
+      "required_improvements": { "type": "array", "items": { "type": "string" } },
+      "completion_deadline": { "type": "string" },
+      "security_posted": {
+        "type": "object",
+        "properties": {
+          "type": { "type": "string" },
+          "amount": { "type": "number" },
+          "bond_number": { "type": "string" }
+        }
+      },
+      "project_name": { "type": "string" },
+      "offsite_improvements_summary": { "type": "string" },
+      "cost_estimate": { "type": "number" },
+      "reimbursement_terms": { "type": "string" }
+    }
+  }
+}

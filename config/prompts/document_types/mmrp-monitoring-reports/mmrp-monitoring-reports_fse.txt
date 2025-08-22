@@ -1,0 +1,37 @@
+**INPUT DOCUMENT TEXT:**
+2031 ANNUAL MITIGATION MONITORING REPORT
+ELM STREET APARTMENTS
+
+Prepared for: Springfield Homes LLC
+Prepared by: Compliance Monitors Inc.
+Date: January 15, 2032
+Reporting Period: January 1, 2031 - December 31, 2031
+
+STATUS OF MITIGATION MEASURES:
+- BIO-1 (Nesting Birds): Completed. Pre-construction survey was submitted to the City on March 5, 2031.
+- NOI-1 (Noise): In Compliance. Construction hours have been monitored and no violations were recorded.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "2031 Annual Mitigation Monitoring Report",
+  "effective_date": "2032-01-15",
+  "parties": [
+    { "name": "Compliance Monitors Inc.", "role": "Consultant" },
+    { "name": "Springfield Homes LLC", "role": "Developer" }
+  ],
+  "monitoring_report_details": {
+    "project_name": "Elm Street Apartments",
+    "reporting_period": "January 1, 2031 - December 31, 2031",
+    "mitigation_measures_status": [
+      {
+        "measure_id": "BIO-1",
+        "status": "Completed. Pre-construction survey was submitted to the City on March 5, 2031."
+      },
+      {
+        "measure_id": "NOI-1",
+        "status": "In Compliance. Construction hours have been monitored and no violations were recorded."
+      }
+    ]
+  },
+  "discovered_entities": []
+}

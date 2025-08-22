@@ -1,0 +1,28 @@
+**INPUT DOCUMENT TEXT:**
+STATE OF CALIFORNIA
+DEPARTMENT OF INDUSTRIAL RELATIONS - ELEVATOR UNIT
+PERMIT TO OPERATE
+
+Permit #: 123-45678
+Issued: 10/15/2034
+Expires: 10/15/2035
+Location: 123 Main Street, Anytown, CA - Elevator #1
+
+Owner: Downtown Tower LLC
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Permit to Operate Elevator",
+  "effective_date": "2034-10-15",
+  "parties": [
+    { "name": "Downtown Tower LLC", "role": "Owner" },
+    { "name": "State of California Department of Industrial Relations", "role": "Issuing Agency" }
+  ],
+  "equipment_certificate_details": {
+    "equipment_type": "Elevator",
+    "certificate_number": "123-45678",
+    "location": "123 Main Street, Anytown, CA - Elevator #1",
+    "expiration_date": "2035-10-15"
+  },
+  "discovered_entities": []
+}

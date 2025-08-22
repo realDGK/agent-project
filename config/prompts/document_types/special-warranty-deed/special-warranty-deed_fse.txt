@@ -1,0 +1,29 @@
+**INPUT DOCUMENT TEXT:**
+SPECIAL WARRANTY DEED
+
+KNOW ALL MEN BY THESE PRESENTS, that TEXAS LAND CORP. ("Grantor"), for and in consideration of the sum of Ten Dollars ($10.00), has GRANTED, SOLD, and CONVEYED unto HOUSTON BUYERS LLC ("Grantee"), the real property in Harris County, Texas, known as Lot 10, Block 2, of the Industrial Park subdivision.
+
+Grantor does hereby bind itself to warrant and forever defend the title to the Property against every person lawfully claiming the same, by, through, or under Grantor, but not otherwise.
+
+Executed this 15th day of March, 2028.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Special Warranty Deed",
+  "effective_date": "2028-03-15",
+  "parties": [
+    { "name": "TEXAS LAND CORP.", "role": "Grantor" },
+    { "name": "HOUSTON BUYERS LLC", "role": "Grantee" }
+  ],
+  "deed_details": {
+    "deed_type": "Special Warranty Deed",
+    "property_legal_description": "Lot 10, Block 2, of the Industrial Park subdivision.",
+    "apn": null,
+    "warranty_clause": "Warrant and forever defend the title against every person lawfully claiming the same, by, through, or under Grantor, but not otherwise."
+  },
+  "legal_recording_details": {
+    "county": "Harris",
+    "state": "Texas"
+  },
+  "discovered_entities": []
+}

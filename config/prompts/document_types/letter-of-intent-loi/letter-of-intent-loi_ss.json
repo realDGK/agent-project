@@ -1,0 +1,64 @@
+{
+  "title": "Letter of Intent (LOI) Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Letter of Intent'."
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date",
+      "description": "The date the LOI was issued or signed."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Purchaser", "Seller", "Buyer", "Owner"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "deal_terms": {
+      "type": "object",
+      "properties": {
+        "property_description": {
+          "type": "string",
+          "description": "A brief description of the property being transacted."
+        },
+        "purchase_price": { "type": "number" },
+        "deposit_amount": { "type": "number" },
+        "due_diligence_period": {
+          "type": "string",
+          "description": "The length of the due diligence or inspection period (e.g., '30 days', '60 days from execution')."
+        },
+        "closing_period": {
+          "type": "string",
+          "description": "The timeframe for closing after due diligence (e.g., '15 days after waiver of contingencies')."
+        },
+        "is_binding": {
+          "type": "boolean",
+          "description": "Indicates whether the LOI is stated to be binding or non-binding."
+        }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "deal_terms"]
+}

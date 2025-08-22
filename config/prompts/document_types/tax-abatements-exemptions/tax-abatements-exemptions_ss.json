@@ -1,0 +1,46 @@
+{
+  "title": "Tax Abatement/Exemption Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Resolution Granting Property Tax Abatement'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Property Owner", "Approving Agency"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "tax_agreement_details": {
+      "type": "object",
+      "properties": {
+        "property_address": { "type": "string" },
+        "abatement_percentage": { "type": "number" },
+        "abatement_duration": { "type": "string" },
+        "reason_for_abatement": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "tax_agreement_details"]
+}

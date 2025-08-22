@@ -1,0 +1,14 @@
+{
+  "compliance_report_details": {
+    "type": "object",
+    "description": "Details specific to a compliance report.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "reporting_period": { "type": "string" },
+      "local_hire_requirement_pct": { "type": "number" },
+      "local_hire_achieved_pct": { "type": "number" },
+      "apprentice_utilization_requirement_pct": { "type": "number" },
+      "apprentice_utilization_achieved_pct": { "type": "number" }
+    }
+  }
+}

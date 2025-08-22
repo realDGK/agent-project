@@ -1,0 +1,20 @@
+**INPUT DOCUMENT TEXT:**
+CONFIDENTIAL SETTLEMENT AGREEMENT AND RELEASE
+This Agreement, dated August 15, 2027, is between Apex Construction ("Claimant") and Downtown Lofts HOA ("Respondent").
+
+In consideration of a payment of one hundred thousand dollars ($100,000) from Respondent to Claimant, Claimant agrees to release all claims, known and unknown, arising from the construction project at 456 Main St. The parties agree to keep the terms of this settlement strictly confidential.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Confidential Settlement Agreement and Release",
+  "effective_date": "2027-08-15",
+  "parties": [
+    { "name": "Apex Construction", "role": "Claimant" },
+    { "name": "Downtown Lofts HOA", "role": "Respondent" }
+  ],
+  "settlement_details": {
+    "settlement_amount": 100000,
+    "release_of_claims_summary": "Claimant releases all claims, known and unknown, arising from the construction project at 456 Main St.",
+    "confidentiality_clause": true
+  }
+}

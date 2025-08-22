@@ -1,0 +1,32 @@
+**INPUT DOCUMENT TEXT:**
+ARTICLES OF INCORPORATION
+OF
+GREEN VALLEY RANCH HOMEOWNERS ASSOCIATION
+
+I. The name of the corporation is Green Valley Ranch Homeowners Association.
+II. This corporation is a nonprofit mutual benefit corporation organized under the Nonprofit Mutual Benefit Corporation Law. The purpose of this corporation is to engage in any lawful act or activity for which a corporation may be organized under such law.
+
+Executed by the incorporator on May 1, 2033.
+(Signature)
+John Developer
+
+Filed with the California Secretary of State on May 5, 2033.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Articles of Incorporation of Green Valley Ranch Homeowners Association",
+  "effective_date": "2033-05-01",
+  "parties": [
+    { "name": "John Developer", "role": "Incorporator" }
+  ],
+  "corporate_details": {
+    "corporation_name": "Green Valley Ranch Homeowners Association",
+    "corporate_purpose": "To engage in any lawful act or activity for which a corporation may be organized under the Nonprofit Mutual Benefit Corporation Law.",
+    "corporation_type": "Nonprofit Mutual Benefit Corporation"
+  },
+  "legal_recording_details": {
+    "filing_date": "2033-05-05",
+    "state": "California"
+  },
+  "discovered_entities": []
+}

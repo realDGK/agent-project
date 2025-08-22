@@ -1,0 +1,26 @@
+{
+  "easement_details": {
+    "type": "object",
+    "description": "Details specific to an easement agreement.",
+    "properties": {
+      "easement_type": { "type": "string" },
+      "purpose": { "type": "string" },
+      "servient_tenement_description": { "type": "string" },
+      "dominant_tenement_description": { "type": "string" },
+      "is_appurtenant_or_in_gross": { "type": "string" },
+      "property_description": { "type": "string" },
+      "easements_granted": { "type": "array", "items": { "type": "string" } },
+      "maintenance_obligations": { "type": "string" },
+      "cost_sharing_provisions": { "type": "string" },
+      "operating_covenants": { "type": "string" },
+      "use_restrictions": { "type": "string" },
+      "conservation_values": { "type": "string" },
+      "prohibited_uses": { "type": "array", "items": { "type": "string" } },
+      "is_perpetual": { "type": "boolean" },
+      "easement_description": { "type": "string" },
+      "easement_area_description": { "type": "string" },
+      "rights_granted": { "type": "string" },
+      "restrictions_imposed": { "type": "string" }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "signage_details": {
+    "type": "object",
+    "description": "Details specific to signage rights and agreements.",
+    "properties": {
+      "building_signage_rights": { "type": "string" },
+      "monument_signage_rights": { "type": "string" },
+      "approval_requirements": { "type": "string" }
+    }
+  }
+}

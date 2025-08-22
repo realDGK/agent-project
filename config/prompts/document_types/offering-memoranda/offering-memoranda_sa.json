@@ -1,0 +1,12 @@
+{
+  "offering_memorandum_details": {
+    "type": "object",
+    "description": "Details specific to a real estate offering memorandum.",
+    "properties": {
+      "property_name": { "type": "string" },
+      "property_address": { "type": "string" },
+      "offering_price": { "type": "number" },
+      "investment_highlights": { "type": "array", "items": { "type": "string" } }
+    }
+  }
+}

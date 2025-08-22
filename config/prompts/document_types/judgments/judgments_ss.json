@@ -1,0 +1,60 @@
+{
+  "title": "Judgment Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string"
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "Plaintiff",
+              "Defendant",
+              "Judgment Creditor",
+              "Judgment Debtor"
+            ]
+          }
+        },
+        "required": [
+          "name",
+          "role"
+        ]
+      }
+    },
+    "litigation_details": {
+      "type": "object",
+      "properties": {
+        "court_name": {
+          "type": "string"
+        },
+        "case_number": {
+          "type": "string"
+        },
+        "judgment_summary": {
+          "type": "string"
+        },
+        "judgment_amount": {
+          "type": "number"
+        }
+      }
+    }
+  },
+  "required": [
+    "contract_name",
+    "effective_date",
+    "parties",
+    "litigation_details"
+  ]
+}

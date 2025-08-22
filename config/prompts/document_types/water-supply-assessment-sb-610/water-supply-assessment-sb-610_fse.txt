@@ -1,0 +1,28 @@
+**INPUT DOCUMENT TEXT:**
+WATER SUPPLY ASSESSMENT
+FOR THE CANYON RANCH PROJECT
+
+Prepared by: River City Water District
+Prepared for: Placer County
+Date: July 1, 2031
+
+This assessment evaluates the water supply availability for the proposed 500-unit Canyon Ranch project. The project's estimated water demand is 250 acre-feet per year (AFY).
+
+Based on our Urban Water Management Plan, the District's available supplies are sufficient to meet the project's demand over a 20-year projection, including in single-dry and multiple-dry year scenarios.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Water Supply Assessment",
+  "effective_date": "2031-07-01",
+  "parties": [
+    { "name": "River City Water District", "role": "Water Supplier" },
+    { "name": "Placer County", "role": "Lead Agency" }
+  ],
+  "technical_study_details": {
+    "study_type": "Water Supply Assessment",
+    "project_name": "Canyon Ranch Project",
+    "project_water_demand": "250 acre-feet per year (AFY)",
+    "sufficiency_finding": "The District's available supplies are sufficient to meet the project's demand over a 20-year projection."
+  },
+  "discovered_entities": []
+}

@@ -1,0 +1,34 @@
+**INPUT DOCUMENT TEXT:**
+SUPERIOR COURT OF CALIFORNIA, COUNTY OF ALAMEDA
+Case Name: Urban Development vs. City of Oakland
+Case No. RG12345678
+
+STIPULATION FOR DISMISSAL
+
+IT IS HEREBY STIPULATED by and between the parties, Plaintiff Urban Development and Defendant City of Oakland, that the above-entitled action be dismissed with prejudice, with each party to bear its own costs and attorneys' fees.
+
+Dated: June 1, 2027
+Signed: Counsel for Plaintiff, Counsel for Defendant
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Stipulation for Dismissal",
+  "effective_date": "2027-06-01",
+  "parties": [
+    {
+      "name": "Urban Development",
+      "role": "Plaintiff"
+    },
+    {
+      "name": "City of Oakland",
+      "role": "Defendant"
+    }
+  ],
+  "litigation_details": {
+    "court_name": "Superior Court of California, County of Alameda",
+    "case_number": "RG12345678"
+  },
+  "stipulation_details": {
+    "stipulation_summary": "The action is to be dismissed with prejudice, with each party bearing its own costs and fees."
+  }
+}

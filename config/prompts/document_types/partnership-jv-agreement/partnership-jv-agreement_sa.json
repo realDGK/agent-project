@@ -1,0 +1,36 @@
+{
+  "partnership_details": {
+    "type": "object",
+    "description": "Details specific to the formation and operation of a Partnership or Joint Venture.",
+    "properties": {
+      "partnership_purpose": {
+        "type": "string",
+        "description": "The stated business purpose of the partnership or joint venture."
+      },
+      "management_structure": {
+        "type": "string",
+        "description": "A summary of how the partnership is managed (e.g., 'By the General Partner', 'By a Management Committee')."
+      },
+      "capital_contributions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "partner_name": { "type": "string" },
+            "contribution_amount": { "type": "number" },
+            "contribution_description": { "type": "string" },
+            "partnership_interest_pct": { "type": "number" }
+          }
+        }
+      },
+      "profit_loss_distribution": {
+        "type": "string",
+        "description": "A summary of how profits and losses are allocated among the partners."
+      },
+      "partnership_term": {
+        "type": "string",
+        "description": "The duration of the partnership (e.g., 'Perpetual', '5 years', 'Until project completion')."
+      }
+    }
+  }
+}

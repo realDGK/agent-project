@@ -1,0 +1,10 @@
+{
+  "stop_payment_notice_details": {
+    "type": "object",
+    "description": "Details specific to a stop payment notice.",
+    "properties": {
+      "project_address": { "type": "string" },
+      "amount_of_claim": { "type": "number" }
+    }
+  }
+}

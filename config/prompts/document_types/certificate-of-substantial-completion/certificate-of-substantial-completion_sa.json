@@ -1,0 +1,12 @@
+{
+  "completion_certificate_details": {
+    "type": "object",
+    "description": "Details specific to a certificate of completion.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "date_of_substantial_completion": { "type": "string", "format": "date" },
+      "punch_list_reference": { "type": "string" },
+      "warranty_start_date": { "type": "string", "format": "date" }
+    }
+  }
+}

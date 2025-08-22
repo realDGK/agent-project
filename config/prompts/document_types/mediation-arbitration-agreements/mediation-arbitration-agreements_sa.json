@@ -1,0 +1,26 @@
+{
+  "dispute_resolution_details": {
+    "type": "object",
+    "description": "Details specific to alternative dispute resolution (ADR) agreements.",
+    "properties": {
+      "adr_type": {
+        "type": "string",
+        "enum": [
+          "Mediation",
+          "Arbitration",
+          "Mediation-Arbitration"
+        ]
+      },
+      "dispute_subject_matter": {
+        "type": "string"
+      },
+      "is_binding": {
+        "type": "boolean"
+      },
+      "governing_rules": {
+        "type": "string",
+        "description": "e.g., 'JAMS', 'AAA Commercial Rules'"
+      }
+    }
+  }
+}

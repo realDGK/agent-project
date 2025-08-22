@@ -1,0 +1,67 @@
+{
+  "title": "Buy-Sell Agreement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the agreement, e.g., 'Buy-Sell Agreement for [Company Name]'."
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date",
+      "description": "The date the agreement was executed or became effective."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Shareholder", "Member", "Partner", "Company"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "buy_sell_details": {
+      "type": "object",
+      "properties": {
+        "triggering_events": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "A list of events that activate the buy-sell agreement (e.g., 'Death', 'Disability', 'Retirement', 'Involuntary Termination')."
+        },
+        "purchase_obligation": {
+          "type": "string",
+          "description": "Specifies if the buyout is mandatory or optional (e.g., 'Mandatory purchase by the Company', 'Option for remaining shareholders to purchase')."
+        },
+        "valuation_method": {
+          "type": "string",
+          "description": "How the business interest is valued for the buyout (e.g., 'Certificate of Agreed Value', 'Formula based on revenue', 'Third-party appraisal')."
+        },
+        "funding_mechanism": {
+          "type": "string",
+          "description": "How the buyout will be funded (e.g., 'Life insurance policies', 'Company cash flow', 'Promissory note over 5 years')."
+        },
+        "closing_timeline": {
+          "type": "string",
+          "description": "The timeframe for completing the buyout after a triggering event (e.g., 'Within 90 days of the triggering event')."
+        }
+      }
+    },
+    "discovered_entities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "entity_name": { "type": "string" },
+          "entity_value": { "type": "string" },
+          "context_summary": { "type": "string" }
+        }
+      }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties"]
+}

@@ -1,0 +1,1547 @@
+Document Type 215: CFD (Mello-Roos) Boundary Map
+215_specialist_schema.json
+
+JSON
+
+{
+  "title": "CFD Boundary Map Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Boundary Map of Community Facilities District No. 10'."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Public Agency", "Engineer"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "cfd_details": {
+      "type": "object",
+      "properties": {
+        "cfd_name": { "type": "string" },
+        "cfd_number": { "type": "string" },
+        "map_summary": { "type": "string" }
+      }
+    },
+    "legal_recording_details": {
+      "type": "object",
+      "properties": {
+        "instrument_number": { "type": "string" },
+        "recording_date": { "type": "string", "format": "date" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "cfd_details"]
+}
+215_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+BOUNDARY MAP OF COMMUNITY FACILITIES DISTRICT NO. 2032-1 (PUBLIC SERVICES)
+CITY OF OAKWOOD, CALIFORNIA
+
+This map, recorded on April 1, 2032, as Instrument No. 2032-111222, shows the boundaries of CFD No. 2032-1, which includes the 300-lot Oakwood Hills subdivision.
+
+Prepared by: Apex Civil Engineering
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Boundary Map of Community Facilities District No. 2032-1 (Public Services)",
+  "parties": [
+    { "name": "City of Oakwood", "role": "Public Agency" },
+    { "name": "Apex Civil Engineering", "role": "Engineer" }
+  ],
+  "cfd_details": {
+    "cfd_name": "Public Services",
+    "cfd_number": "2032-1",
+    "map_summary": "Shows the boundaries of the CFD, which includes the 300-lot Oakwood Hills subdivision."
+  },
+  "legal_recording_details": {
+    "instrument_number": "2032-111222",
+    "recording_date": "2032-04-01"
+  },
+  "discovered_entities": []
+}
+215_schema_additions.json
+
+JSON
+
+{
+  "cfd_details": {
+    "type": "object",
+    "description": "Details specific to a Community Facilities District (Mello-Roos) or Assessment District.",
+    "properties": {
+      "cfd_name": { "type": "string" },
+      "cfd_number": { "type": "string" },
+      "map_summary": { "type": "string" }
+    }
+  }
+}
+Document Type 216: Rate & Method (RMA)
+216_specialist_schema.json
+
+JSON
+
+{
+  "title": "Rate and Method of Apportionment (RMA) Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Rate and Method of Apportionment of Special Tax'."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Author", "Special Tax Consultant"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "cfd_details": {
+      "type": "object",
+      "properties": {
+        "cfd_name": { "type": "string" },
+        "cfd_number": { "type": "string" },
+        "maximum_special_tax": { "type": "string" },
+        "method_of_apportionment": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "cfd_details"]
+}
+216_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+RATE AND METHOD OF APPORTIONMENT FOR
+COMMUNITY FACILITIES DISTRICT NO. 2032-1
+
+The Maximum Special Tax for a single-family property shall be $2,500 per year, escalating at 2% annually.
+
+The Special Tax shall be levied on all Developed Property in proportion to the building square footage of each unit.
+
+Prepared by: Public Finance Advisors LLC
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Rate and Method of Apportionment",
+  "parties": [
+    { "name": "Public Finance Advisors LLC", "role": "Special Tax Consultant" }
+  ],
+  "cfd_details": {
+    "cfd_name": null,
+    "cfd_number": "2032-1",
+    "maximum_special_tax": "$2,500 per year for a single-family property, escalating at 2% annually.",
+    "method_of_apportionment": "Levied on all Developed Property in proportion to the building square footage of each unit."
+  },
+  "discovered_entities": []
+}
+216_schema_additions.json
+
+JSON
+
+{
+  "cfd_details": {
+    "type": "object",
+    "description": "Details specific to a Community Facilities District (Mello-Roos) or Assessment District.",
+    "properties": {
+      "cfd_name": { "type": "string" },
+      "cfd_number": { "type": "string" },
+      "map_summary": { "type": "string" },
+      "maximum_special_tax": { "type": "string" },
+      "method_of_apportionment": { "type": "string" }
+    }
+  }
+}
+Document Type 217: CFD Resolutions (Intention, Formation, Levy)
+217_specialist_schema.json
+
+JSON
+
+{
+  "title": "CFD Resolution Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Resolution of Formation'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Approving Body", "City Council"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "resolution_details": {
+      "type": "object",
+      "properties": {
+        "resolution_number": { "type": "string" },
+        "resolution_type": { "type": "string", "enum": ["Intention", "Formation", "Levy"] },
+        "cfd_number": { "type": "string" },
+        "action_taken": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "resolution_details"]
+}
+217_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+RESOLUTION NO. 2032-15
+A RESOLUTION OF THE CITY COUNCIL OF THE CITY OF OAKWOOD DECLARING ITS INTENTION TO ESTABLISH COMMUNITY FACILITIES DISTRICT NO. 2032-1
+
+BE IT RESOLVED, the City Council of the City of Oakwood hereby declares its intention to form CFD No. 2032-1 and sets a public hearing for May 1, 2032.
+
+ADOPTED this 10th day of April, 2032.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Resolution of Intention",
+  "effective_date": "2032-04-10",
+  "parties": [
+    { "name": "City Council of the City of Oakwood", "role": "Approving Body" }
+  ],
+  "resolution_details": {
+    "resolution_number": "2032-15",
+    "resolution_type": "Intention",
+    "cfd_number": "2032-1",
+    "action_taken": "Declares intention to form CFD No. 2032-1 and sets a public hearing for May 1, 2032."
+  },
+  "discovered_entities": []
+}
+217_schema_additions.json
+
+JSON
+
+{
+  "resolution_details": {
+    "type": "object",
+    "description": "Details specific to a formal resolution by a governing body.",
+    "properties": {
+      "resolution_number": { "type": "string" },
+      "action_taken": { "type": "string" },
+      "project_or_subject": { "type": "string" },
+      "vote_summary": { "type": "string" },
+      "resolution_type": { "type": "string", "enum": ["Intention", "Formation", "Levy"] },
+      "cfd_number": { "type": "string" }
+    }
+  }
+}
+Document Type 218: CFD Election Results
+218_specialist_schema.json
+
+JSON
+
+{
+  "title": "CFD Election Results Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Certificate of Election Results'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Certifying Official", "City Clerk"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "cfd_details": {
+      "type": "object",
+      "properties": {
+        "cfd_number": { "type": "string" },
+        "election_date": { "type": "string", "format": "date" },
+        "votes_yes": { "type": "integer" },
+        "votes_no": { "type": "integer" },
+        "outcome": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "cfd_details"]
+}
+218_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+CANVASS OF VOTES AND CERTIFICATE OF ELECTION RESULTS
+COMMUNITY FACILITIES DISTRICT NO. 2032-1
+
+I, the City Clerk of the City of Oakwood, do hereby certify that the election for CFD No. 2032-1 was held on June 15, 2032, with the following results:
+
+YES VOTES: 1 (representing all landowners)
+NO VOTES: 0
+
+The proposition to authorize the special tax and bond issuance has passed.
+
+Dated: June 16, 2032
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Canvass of Votes and Certificate of Election Results",
+  "effective_date": "2032-06-16",
+  "parties": [
+    { "name": "City Clerk of the City of Oakwood", "role": "Certifying Official" }
+  ],
+  "cfd_details": {
+    "cfd_number": "2032-1",
+    "election_date": "2032-06-15",
+    "votes_yes": 1,
+    "votes_no": 0,
+    "outcome": "The proposition to authorize the special tax and bond issuance has passed."
+  },
+  "discovered_entities": []
+}
+218_schema_additions.json
+
+JSON
+
+{
+  "cfd_details": {
+    "type": "object",
+    "description": "Details specific to a Community Facilities District (Mello-Roos) or Assessment District.",
+    "properties": {
+      "cfd_name": { "type": "string" },
+      "cfd_number": { "type": "string" },
+      "map_summary": { "type": "string" },
+      "maximum_special_tax": { "type": "string" },
+      "method_of_apportionment": { "type": "string" },
+      "election_date": { "type": "string", "format": "date" },
+      "votes_yes": { "type": "integer" },
+      "votes_no": { "type": "integer" },
+      "outcome": { "type": "string" }
+    }
+  }
+}
+Document Type 219: CFD Fiscal Agent Agreement
+219_specialist_schema.json
+
+JSON
+
+{
+  "title": "CFD Fiscal Agent Agreement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Fiscal Agent Agreement'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Public Agency", "City", "Fiscal Agent"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "cfd_details": {
+      "type": "object",
+      "properties": {
+        "cfd_number": { "type": "string" },
+        "agent_responsibilities": { "type": "string" },
+        "agent_compensation": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "cfd_details"]
+}
+219_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+FISCAL AGENT AGREEMENT
+by and between the
+CITY OF OAKWOOD
+and
+U.S. BANK NATIONAL ASSOCIATION, as Fiscal Agent
+
+Dated as of July 1, 2032
+Relating to CFD No. 2032-1
+
+The Fiscal Agent is hereby appointed to administer the Bonds, maintain the bond fund, and prepare annual special tax levy reports. The City agrees to pay the Fiscal Agent an annual fee of $5,000 for its services.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Fiscal Agent Agreement",
+  "effective_date": "2032-07-01",
+  "parties": [
+    { "name": "CITY OF OAKWOOD", "role": "City" },
+    { "name": "U.S. BANK NATIONAL ASSOCIATION", "role": "Fiscal Agent" }
+  ],
+  "cfd_details": {
+    "cfd_number": "2032-1",
+    "agent_responsibilities": "Administer the Bonds, maintain the bond fund, and prepare annual special tax levy reports.",
+    "agent_compensation": "Annual fee of $5,000."
+  },
+  "discovered_entities": []
+}
+219_schema_additions.json
+
+JSON
+
+{
+  "cfd_details": {
+    "type": "object",
+    "description": "Details specific to a Community Facilities District (Mello-Roos) or Assessment District.",
+    "properties": {
+      "cfd_name": { "type": "string" },
+      "cfd_number": { "type": "string" },
+      "map_summary": { "type": "string" },
+      "maximum_special_tax": { "type": "string" },
+      "method_of_apportionment": { "type": "string" },
+      "election_date": { "type": "string", "format": "date" },
+      "votes_yes": { "type": "integer" },
+      "votes_no": { "type": "integer" },
+      "outcome": { "type": "string" },
+      "agent_responsibilities": { "type": "string" },
+      "agent_compensation": { "type": "string" }
+    }
+  }
+}
+Document Type 220: CFD Bond Indenture
+220_specialist_schema.json
+
+JSON
+
+{
+  "title": "CFD Bond Indenture Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Bond Indenture'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Issuer", "Trustee"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "bond_details": {
+      "type": "object",
+      "properties": {
+        "bond_series_name": { "type": "string" },
+        "principal_amount": { "type": "number" },
+        "maturity_date": { "type": "string", "format": "date" },
+        "interest_rate_summary": { "type": "string" },
+        "security_for_bonds": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "bond_details"]
+}
+220_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+INDENTURE OF TRUST
+by and between the
+OAKWOOD PUBLIC FINANCING AUTHORITY, as Issuer
+and
+U.S. BANK NATIONAL ASSOCIATION, as Trustee
+
+Dated as of July 1, 2032
+$15,000,000 Special Tax Bonds, Series 2032 (CFD No. 2032-1)
+
+This Indenture sets forth the terms of the Bonds, which mature on September 1, 2062, and bear interest at rates from 3.0% to 5.0%. The Bonds are secured by a pledge of the Net Special Taxes levied within CFD No. 2032-1.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Indenture of Trust",
+  "effective_date": "2032-07-01",
+  "parties": [
+    { "name": "OAKWOOD PUBLIC FINANCING AUTHORITY", "role": "Issuer" },
+    { "name": "U.S. BANK NATIONAL ASSOCIATION", "role": "Trustee" }
+  ],
+  "bond_details": {
+    "bond_series_name": "Special Tax Bonds, Series 2032 (CFD No. 2032-1)",
+    "principal_amount": 15000000,
+    "maturity_date": "2062-09-01",
+    "interest_rate_summary": "Rates from 3.0% to 5.0%.",
+    "security_for_bonds": "A pledge of the Net Special Taxes levied within CFD No. 2032-1."
+  },
+  "discovered_entities": []
+}
+220_schema_additions.json
+
+JSON
+
+{
+  "bond_details": {
+    "type": "object",
+    "description": "Details specific to a surety bond or bond financing.",
+    "properties": {
+      "bond_number": { "type": "string" },
+      "bond_type": { "type": "string" },
+      "penal_sum": { "type": "number" },
+      "project_description": { "type": "string" },
+      "warranty_period": { "type": "string" },
+      "project_name": { "type": "string" },
+      "reason_for_exoneration": { "type": "string" },
+      "bond_series_name": { "type": "string" },
+      "principal_amount": { "type": "number" },
+      "maturity_date": { "type": "string", "format": "date" },
+      "interest_rate_summary": { "type": "string" },
+      "security_for_bonds": { "type": "string" }
+    }
+  }
+}
+Document Type 221: CFD Official Statement
+221_specialist_schema.json
+
+JSON
+
+{
+  "title": "CFD Official Statement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Official Statement'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Issuer", "Underwriter"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "bond_details": {
+      "type": "object",
+      "properties": {
+        "bond_series_name": { "type": "string" },
+        "principal_amount": { "type": "number" },
+        "purpose_of_bonds": { "type": "string" },
+        "risk_factors_summary": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "bond_details"]
+}
+221_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+OFFICIAL STATEMENT
+$15,000,000
+OAKWOOD PUBLIC FINANCING AUTHORITY
+Special Tax Bonds, Series 2032 (CFD No. 2032-1)
+
+Dated: July 15, 2032
+Underwriter: Municipal Capital Markets Group
+
+This Official Statement provides information about the Bonds. The proceeds of the Bonds will be used to finance the construction of public infrastructure, including roads and parks, to serve the Oakwood Hills project.
+
+Investment in the Bonds involves significant risks, including the risk of non-payment of special taxes by property owners.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Official Statement",
+  "effective_date": "2032-07-15",
+  "parties": [
+    { "name": "OAKWOOD PUBLIC FINANCING AUTHORITY", "role": "Issuer" },
+    { "name": "Municipal Capital Markets Group", "role": "Underwriter" }
+  ],
+  "bond_details": {
+    "bond_series_name": "Special Tax Bonds, Series 2032 (CFD No. 2032-1)",
+    "principal_amount": 15000000,
+    "purpose_of_bonds": "To finance the construction of public infrastructure, including roads and parks, to serve the Oakwood Hills project.",
+    "risk_factors_summary": "Investment involves significant risks, including the risk of non-payment of special taxes by property owners."
+  },
+  "discovered_entities": []
+}
+221_schema_additions.json
+
+JSON
+
+{
+  "bond_details": {
+    "type": "object",
+    "description": "Details specific to a surety bond or bond financing.",
+    "properties": {
+      "bond_number": { "type": "string" },
+      "bond_type": { "type": "string" },
+      "penal_sum": { "type": "number" },
+      "project_description": { "type": "string" },
+      "warranty_period": { "type": "string" },
+      "project_name": { "type": "string" },
+      "reason_for_exoneration": { "type": "string" },
+      "bond_series_name": { "type": "string" },
+      "principal_amount": { "type": "number" },
+      "maturity_date": { "type": "string", "format": "date" },
+      "interest_rate_summary": { "type": "string" },
+      "security_for_bonds": { "type": "string" },
+      "purpose_of_bonds": { "type": "string" },
+      "risk_factors_summary": { "type": "string" }
+    }
+  }
+}
+Document Type 222: CFD Continuing Disclosure
+222_specialist_schema.json
+
+JSON
+
+{
+  "title": "CFD Continuing Disclosure Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Annual Continuing Disclosure Report'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Issuer", "Dissemination Agent"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "cfd_details": {
+      "type": "object",
+      "properties": {
+        "cfd_number": { "type": "string" },
+        "fiscal_year": { "type": "string" },
+        "key_disclosures": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "cfd_details"]
+}
+222_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+ANNUAL CONTINUING DISCLOSURE REPORT
+CITY OF OAKWOOD CFD NO. 2032-1
+
+Fiscal Year Ending: June 30, 2033
+Report Date: January 15, 2034
+
+This report is filed with EMMA.
+- Principal amount of Bonds outstanding: $14,500,000
+- Status of Reserve Fund: Fully funded.
+- Delinquency rate for prior tax year: 1.5%
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Annual Continuing Disclosure Report",
+  "effective_date": "2034-01-15",
+  "parties": [
+    { "name": "City of Oakwood", "role": "Issuer" }
+  ],
+  "cfd_details": {
+    "cfd_number": "2032-1",
+    "fiscal_year": "2033-06-30",
+    "key_disclosures": [
+      "Principal amount of Bonds outstanding: $14,500,000",
+      "Status of Reserve Fund: Fully funded.",
+      "Delinquency rate for prior tax year: 1.5%"
+    ]
+  },
+  "discovered_entities": []
+}
+222_schema_additions.json
+
+JSON
+
+{
+  "cfd_details": {
+    "type": "object",
+    "description": "Details specific to a Community Facilities District (Mello-Roos) or Assessment District.",
+    "properties": {
+      "cfd_name": { "type": "string" },
+      "cfd_number": { "type": "string" },
+      "map_summary": { "type": "string" },
+      "maximum_special_tax": { "type": "string" },
+      "method_of_apportionment": { "type": "string" },
+      "election_date": { "type": "string", "format": "date" },
+      "votes_yes": { "type": "integer" },
+      "votes_no": { "type": "integer" },
+      "outcome": { "type": "string" },
+      "agent_responsibilities": { "type": "string" },
+      "agent_compensation": { "type": "string" },
+      "fiscal_year": { "type": "string" },
+      "key_disclosures": { "type": "array", "items": { "type": "string" } }
+    }
+  }
+}
+Document Type 223: CFD Special Tax Reports
+223_specialist_schema.json
+
+JSON
+
+{
+  "title": "CFD Special Tax Report Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Administration Report'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Author", "Special Tax Consultant"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "cfd_details": {
+      "type": "object",
+      "properties": {
+        "cfd_number": { "type": "string" },
+        "fiscal_year": { "type": "string" },
+        "total_special_tax_levy": { "type": "number" },
+        "delinquency_summary": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "cfd_details"]
+}
+223_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+ADMINISTRATION REPORT
+COMMUNITY FACILITIES DISTRICT NO. 2032-1
+FISCAL YEAR 2033-2034
+
+Prepared by: Public Finance Advisors LLC
+Date: July 1, 2033
+
+This report calculates the annual special tax levy for FY 2033-34.
+The total special tax to be levied is $750,000. This amount is sufficient to cover debt service and administrative expenses.
+The overall value-to-lien ratio for the District is 10.5 to 1.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Administration Report",
+  "effective_date": "2033-07-01",
+  "parties": [
+    { "name": "Public Finance Advisors LLC", "role": "Special Tax Consultant" }
+  ],
+  "cfd_details": {
+    "cfd_number": "2032-1",
+    "fiscal_year": "2033-2034",
+    "total_special_tax_levy": 750000,
+    "delinquency_summary": null
+  },
+  "discovered_entities": [
+    {
+      "entity_name": "Value-to-Lien Ratio",
+      "entity_value": "10.5 to 1",
+      "context_summary": "The ratio of the assessed value of the property to the amount of bond debt."
+    }
+  ]
+}
+223_schema_additions.json
+
+JSON
+
+{
+  "cfd_details": {
+    "type": "object",
+    "description": "Details specific to a Community Facilities District (Mello-Roos) or Assessment District.",
+    "properties": {
+      "cfd_name": { "type": "string" },
+      "cfd_number": { "type": "string" },
+      "map_summary": { "type": "string" },
+      "maximum_special_tax": { "type": "string" },
+      "method_of_apportionment": { "type": "string" },
+      "election_date": { "type": "string", "format": "date" },
+      "votes_yes": { "type": "integer" },
+      "votes_no": { "type": "integer" },
+      "outcome": { "type": "string" },
+      "agent_responsibilities": { "type": "string" },
+      "agent_compensation": { "type": "string" },
+      "fiscal_year": { "type": "string" },
+      "key_disclosures": { "type": "array", "items": { "type": "string" } },
+      "total_special_tax_levy": { "type": "number" },
+      "delinquency_summary": { "type": "string" }
+    }
+  }
+}
+Document Type 224: Assessment District Engineer’s Report
+224_specialist_schema.json
+
+JSON
+
+{
+  "title": "Assessment District Engineer's Report Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Engineer's Report'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Engineer", "Public Agency"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "assessment_district_details": {
+      "type": "object",
+      "properties": {
+        "district_name": { "type": "string" },
+        "improvements_to_be_financed": { "type": "string" },
+        "total_estimated_cost": { "type": "number" },
+        "method_of_assessment": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "assessment_district_details"]
+}
+224_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+ENGINEER'S REPORT
+ASSESSMENT DISTRICT NO. 2032-A (DOWNTOWN STREETSCAPE)
+CITY OF OAKWOOD
+
+Prepared by: Apex Civil Engineering
+Date: March 1, 2032
+
+This report describes the public improvements to be financed by the District, which include new sidewalks, streetlights, and landscaping in the downtown area.
+The total estimated cost of the improvements is $3,500,000.
+The assessment is spread to each parcel based upon the linear footage of property fronting the improvements.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Engineer's Report",
+  "effective_date": "2032-03-01",
+  "parties": [
+    { "name": "Apex Civil Engineering", "role": "Engineer" },
+    { "name": "City of Oakwood", "role": "Public Agency" }
+  ],
+  "assessment_district_details": {
+    "district_name": "Assessment District No. 2032-A (Downtown Streetscape)",
+    "improvements_to_be_financed": "New sidewalks, streetlights, and landscaping in the downtown area.",
+    "total_estimated_cost": 3500000,
+    "method_of_assessment": "Spread to each parcel based upon the linear footage of property fronting the improvements."
+  },
+  "discovered_entities": []
+}
+224_schema_additions.json
+
+JSON
+
+{
+  "assessment_district_details": {
+    "type": "object",
+    "description": "Details specific to an Assessment District.",
+    "properties": {
+      "district_name": { "type": "string" },
+      "improvements_to_be_financed": { "type": "string" },
+      "total_estimated_cost": { "type": "number" },
+      "method_of_assessment": { "type": "string" }
+    }
+  }
+}
+Document Type 225: Assessment District Diagram
+225_specialist_schema.json
+
+JSON
+
+{
+  "title": "Assessment District Diagram Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Assessment Diagram'."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Engineer", "Public Agency"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "assessment_district_details": {
+      "type": "object",
+      "properties": {
+        "district_name": { "type": "string" },
+        "diagram_summary": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "assessment_district_details"]
+}
+225_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+ASSESSMENT DIAGRAM
+ASSESSMENT DISTRICT NO. 2032-A (DOWNTOWN STREETSCAPE)
+
+This diagram shows the exterior boundaries of the assessment district and the lines and dimensions of each parcel of land within the district. Each parcel is identified by an assessment number.
+
+Prepared by: Apex Civil Engineering
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Assessment Diagram",
+  "parties": [
+    { "name": "Apex Civil Engineering", "role": "Engineer" }
+  ],
+  "assessment_district_details": {
+    "district_name": "Assessment District No. 2032-A (Downtown Streetscape)",
+    "diagram_summary": "Shows the exterior boundaries of the district and the lines and dimensions of each parcel within it, identified by an assessment number."
+  },
+  "discovered_entities": []
+}
+225_schema_additions.json
+
+JSON
+
+{
+  "assessment_district_details": {
+    "type": "object",
+    "description": "Details specific to an Assessment District.",
+    "properties": {
+      "district_name": { "type": "string" },
+      "improvements_to_be_financed": { "type": "string" },
+      "total_estimated_cost": { "type": "number" },
+      "method_of_assessment": { "type": "string" },
+      "diagram_summary": { "type": "string" }
+    }
+  }
+}
+Document Type 226: Assessment District Bond Docs
+226_specialist_schema.json
+
+JSON
+
+{
+  "title": "Assessment District Bond Document Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Official Statement'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Issuer", "Underwriter"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "bond_details": {
+      "type": "object",
+      "properties": {
+        "bond_series_name": { "type": "string" },
+        "principal_amount": { "type": "number" },
+        "purpose_of_bonds": { "type": "string" },
+        "security_for_bonds": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "bond_details"]
+}
+226_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+OFFICIAL STATEMENT
+$3,500,000
+CITY OF OAKWOOD
+Limited Obligation Improvement Bonds (AD 2032-A)
+
+Dated: August 1, 2032
+
+The Bonds are issued to provide financing for the acquisition and construction of public streetscape improvements. The Bonds are secured by the unpaid assessments levied against the parcels of land within Assessment District No. 2032-A.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Official Statement",
+  "effective_date": "2032-08-01",
+  "parties": [
+    { "name": "City of Oakwood", "role": "Issuer" }
+  ],
+  "bond_details": {
+    "bond_series_name": "Limited Obligation Improvement Bonds (AD 2032-A)",
+    "principal_amount": 3500000,
+    "purpose_of_bonds": "To provide financing for the acquisition and construction of public streetscape improvements.",
+    "security_for_bonds": "Secured by the unpaid assessments levied against the parcels of land within Assessment District No. 2032-A."
+  },
+  "discovered_entities": []
+}
+226_schema_additions.json
+
+JSON
+
+{
+  "bond_details": {
+    "type": "object",
+    "description": "Details specific to a surety bond or bond financing.",
+    "properties": {
+      "bond_number": { "type": "string" },
+      "bond_type": { "type": "string" },
+      "penal_sum": { "type": "number" },
+      "project_description": { "type": "string" },
+      "warranty_period": { "type": "string" },
+      "project_name": { "type": "string" },
+      "reason_for_exoneration": { "type": "string" },
+      "bond_series_name": { "type": "string" },
+      "principal_amount": { "type": "number" },
+      "maturity_date": { "type": "string", "format": "date" },
+      "interest_rate_summary": { "type": "string" },
+      "security_for_bonds": { "type": "string" },
+      "purpose_of_bonds": { "type": "string" },
+      "risk_factors_summary": { "type": "string" }
+    }
+  }
+}
+Document Type 227: Subdivision/Improvement Bonds
+227_specialist_schema.json
+
+JSON
+
+{
+  "title": "Subdivision/Improvement Bond Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Performance Bond'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Principal", "Surety", "Obligee"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "bond_details": {
+      "type": "object",
+      "properties": {
+        "bond_number": { "type": "string" },
+        "bond_type": { "type": "string", "enum": ["Performance", "Payment", "Faithful Performance", "Monumentation"] },
+        "penal_sum": { "type": "number" },
+        "project_description": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "bond_details"]
+}
+227_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+SUBDIVISION PERFORMANCE BOND
+
+Bond No: S-98765
+Date: July 1, 2030
+
+PRINCIPAL (Developer): Riverbend Homes LLC
+SURETY: Global Surety Company
+OBLIGEE (Beneficiary): City of Riverbend
+
+BOND AMOUNT: Two Million Five Hundred Thousand Dollars ($2,500,000.00)
+
+This bond is to guarantee the faithful performance of the work required by the Subdivision Improvement Agreement for Tract No. 8888.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Subdivision Performance Bond",
+  "effective_date": "2030-07-01",
+  "parties": [
+    { "name": "Riverbend Homes LLC", "role": "Principal" },
+    { "name": "Global Surety Company", "role": "Surety" },
+    { "name": "City of Riverbend", "role": "Obligee" }
+  ],
+  "bond_details": {
+    "bond_number": "S-98765",
+    "bond_type": "Performance",
+    "penal_sum": 2500000,
+    "project_description": "Work required by the Subdivision Improvement Agreement for Tract No. 8888."
+  },
+  "discovered_entities": []
+}
+227_schema_additions.json
+
+JSON
+
+{
+  "bond_details": {
+    "type": "object",
+    "description": "Details specific to a surety bond or bond financing.",
+    "properties": {
+      "bond_number": { "type": "string" },
+      "bond_type": { "type": "string" },
+      "penal_sum": { "type": "number" },
+      "project_description": { "type": "string" },
+      "warranty_period": { "type": "string" },
+      "project_name": { "type": "string" },
+      "reason_for_exoneration": { "type": "string" },
+      "bond_series_name": { "type": "string" },
+      "principal_amount": { "type": "number" },
+      "maturity_date": { "type": "string", "format": "date" },
+      "interest_rate_summary": { "type": "string" },
+      "security_for_bonds": { "type": "string" },
+      "purpose_of_bonds": { "type": "string" },
+      "risk_factors_summary": { "type": "string" }
+    }
+  }
+}
+Document Type 228: PILOT (Payment in Lieu of Taxes) Agreement
+228_specialist_schema.json
+
+JSON
+
+{
+  "title": "PILOT Agreement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Payment in Lieu of Taxes Agreement'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Company", "Public Agency", "City"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "tax_agreement_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "property_address": { "type": "string" },
+        "payment_schedule": { "type": "string" },
+        "term_of_agreement": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "tax_agreement_details"]
+}
+228_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+PAYMENT IN LIEU OF TAX AGREEMENT
+
+This Agreement is made June 1, 2032, between the City of Industry ("City") and Solar Farm LLC ("Company").
+
+For the solar generation facility located at 1 Power Plant Road, the Company agrees to make an annual payment to the City in lieu of property taxes.
+
+The annual payment shall be $100,000 for the first ten (10) years of operation, escalating by 3% annually thereafter. The term of this agreement is 30 years.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Payment in Lieu of Tax Agreement",
+  "effective_date": "2032-06-01",
+  "parties": [
+    { "name": "City of Industry", "role": "City" },
+    { "name": "Solar Farm LLC", "role": "Company" }
+  ],
+  "tax_agreement_details": {
+    "project_name": "Solar generation facility",
+    "property_address": "1 Power Plant Road",
+    "payment_schedule": "$100,000 annually for the first 10 years, escalating by 3% annually thereafter.",
+    "term_of_agreement": "30 years"
+  },
+  "discovered_entities": []
+}
+228_schema_additions.json
+
+JSON
+
+{
+  "tax_agreement_details": {
+    "type": "object",
+    "description": "Details specific to a tax-related agreement like a PILOT or abatement.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "property_address": { "type": "string" },
+      "payment_schedule": { "type": "string" },
+      "term_of_agreement": { "type": "string" }
+    }
+  }
+}
+Document Type 229: Tax Abatements/Exemptions
+229_specialist_schema.json
+
+JSON
+
+{
+  "title": "Tax Abatement/Exemption Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Resolution Granting Property Tax Abatement'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Property Owner", "Approving Agency"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "tax_agreement_details": {
+      "type": "object",
+      "properties": {
+        "property_address": { "type": "string" },
+        "abatement_percentage": { "type": "number" },
+        "abatement_duration": { "type": "string" },
+        "reason_for_abatement": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "tax_agreement_details"]
+}
+229_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+RESOLUTION NO. 2032-45
+A RESOLUTION OF THE CITY OF RENAISSANCE APPROVING A PROPERTY TAX ABATEMENT FOR HISTORIC PRESERVATION
+
+WHEREAS, Historic Hotels LLC has applied for a tax abatement for the renovation of the Grand Hotel at 100 Main Street;
+
+NOW, THEREFORE, the City Council approves a 50% abatement of city property taxes for a period of ten (10) years, conditioned upon the completion of the historic renovation.
+
+ADOPTED: July 15, 2032
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Resolution Approving a Property Tax Abatement for Historic Preservation",
+  "effective_date": "2032-07-15",
+  "parties": [
+    { "name": "Historic Hotels LLC", "role": "Property Owner" },
+    { "name": "City of Renaissance", "role": "Approving Agency" }
+  ],
+  "tax_agreement_details": {
+    "property_address": "Grand Hotel at 100 Main Street",
+    "abatement_percentage": 50,
+    "abatement_duration": "Ten (10) years",
+    "reason_for_abatement": "Conditioned upon the completion of the historic renovation."
+  },
+  "discovered_entities": []
+}
+229_schema_additions.json
+
+JSON
+
+{
+  "tax_agreement_details": {
+    "type": "object",
+    "description": "Details specific to a tax-related agreement like a PILOT or abatement.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "property_address": { "type": "string" },
+      "payment_schedule": { "type": "string" },
+      "term_of_agreement": { "type": "string" },
+      "abatement_percentage": { "type": "number" },
+      "abatement_duration": { "type": "string" },
+      "reason_for_abatement": { "type": "string" }
+    }
+  }
+}

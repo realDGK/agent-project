@@ -1,0 +1,47 @@
+{
+  "title": "Notice of Exemption (NOE) Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Notice of Exemption'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Public Agency", "Project Applicant"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "environmental_details": {
+      "type": "object",
+      "properties": {
+        "document_type": { "type": "string", "default": "NOE" },
+        "project_name": { "type": "string" },
+        "project_approval_date": { "type": "string", "format": "date" },
+        "exemption_type": { "type": "string", "description": "The type of CEQA exemption, e.g., 'Categorical', 'Statutory'." },
+        "exemption_reason": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "environmental_details"]
+}

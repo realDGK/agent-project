@@ -1,0 +1,19 @@
+{
+  "officer_appointment_details": {
+    "type": "object",
+    "description": "Details specific to the appointment of individuals to officer positions within an entity.",
+    "properties": {
+      "appointed_officers": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "title": { "type": "string" }
+          }
+        },
+        "description": "A list of individuals and the officer titles they were appointed to."
+      }
+    }
+  }
+}

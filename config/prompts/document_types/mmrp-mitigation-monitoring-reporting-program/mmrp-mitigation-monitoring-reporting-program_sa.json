@@ -1,0 +1,38 @@
+{
+  "environmental_details": {
+    "type": "object",
+    "description": "Details specific to environmental review documents (CEQA/NEPA).",
+    "properties": {
+      "document_type": { "type": "string" },
+      "project_name": { "type": "string" },
+      "project_description": { "type": "string" },
+      "scoping_meeting_date": { "type": "string", "format": "date" },
+      "comment_period_end_date": { "type": "string", "format": "date" },
+      "environmental_determination": { "type": "string" },
+      "mitigation_measures_summary": { "type": "string" },
+      "finding": { "type": "string" },
+      "public_review_period": { "type": "string" },
+      "significant_unavoidable_impacts": { "type": "array", "items": { "type": "string" } },
+      "alternatives_analyzed": { "type": "array", "items": { "type": "string" } },
+      "original_eir_reference": { "type": "string" },
+      "reason_for_addendum": { "type": "string" },
+      "project_approval_date": { "type": "string", "format": "date" },
+      "ceqa_finding": { "type": "string" },
+      "exemption_type": { "type": "string" },
+      "exemption_reason": { "type": "string" },
+      "overriding_considerations": { "type": "string" },
+      "mitigation_measures": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "measure_id": { "type": "string" },
+            "measure_description": { "type": "string" },
+            "monitoring_responsibility": { "type": "string" },
+            "timing": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}

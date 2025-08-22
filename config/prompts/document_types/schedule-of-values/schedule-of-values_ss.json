@@ -1,0 +1,55 @@
+{
+  "title": "Schedule of Values Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Schedule of Values'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Contractor", "Owner"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "schedule_of_values_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "total_contract_value": { "type": "number" },
+        "line_items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "item_number": { "type": "string" },
+              "description": { "type": "string" },
+              "scheduled_value": { "type": "number" }
+            }
+          }
+        }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "schedule_of_values_details"]
+}

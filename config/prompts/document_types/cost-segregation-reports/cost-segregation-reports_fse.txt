@@ -1,0 +1,29 @@
+**INPUT DOCUMENT TEXT:**
+COST SEGREGATION ANALYSIS
+123 MAIN STREET OFFICE BUILDING
+
+Prepared for: Downtown Tower LLC
+Date: January 15, 2035
+
+EXECUTIVE SUMMARY:
+From a total depreciable basis of $80,000,000, our study reclassified the following:
+- 5-Year Property (e.g., carpet, fixtures): $8,000,000 (10%)
+- 15-Year Property (e.g., landscaping, parking lot): $12,000,000 (15%)
+The remaining $60,000,000 is 39-year real property.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Cost Segregation Analysis",
+  "effective_date": "2035-01-15",
+  "parties": [
+    { "name": "Downtown Tower LLC", "role": "Client" }
+  ],
+  "cost_segregation_details": {
+    "property_address": "123 Main Street Office Building",
+    "total_depreciable_basis": 80000000,
+    "reclassified_to_5_year_property": 8000000,
+    "reclassified_to_7_year_property": null,
+    "reclassified_to_15_year_property": 12000000
+  },
+  "discovered_entities": []
+}

@@ -1,0 +1,46 @@
+{
+  "title": "Encroachment Permit Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Encroachment Permit'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Permittee", "Issuing Agency"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "permit_details": {
+      "type": "object",
+      "properties": {
+        "permit_number": { "type": "string" },
+        "location_of_work": { "type": "string" },
+        "authorized_work_summary": { "type": "string" },
+        "expiration_date": { "type": "string", "format": "date" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "permit_details"]
+}

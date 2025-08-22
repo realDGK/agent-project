@@ -1,0 +1,13 @@
+{
+  "wire_details": {
+    "type": "object",
+    "description": "Details specific to wire transfer instructions.",
+    "properties": {
+      "beneficiary_bank": { "type": "string" },
+      "routing_number_aba": { "type": "string" },
+      "account_number": { "type": "string" },
+      "swift_code": { "type": "string" },
+      "reference_info": { "type": "string" }
+    }
+  }
+}

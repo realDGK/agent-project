@@ -1,0 +1,33 @@
+**INPUT DOCUMENT TEXT:**
+2033 ANNUAL COMMON AREA MAINTENANCE (CAM) RECONCILIATION
+Property: Commerce Center
+To: Logistics Solutions Inc. (Tenant)
+
+For the period ending December 31, 2033:
+Total Actual CAM Expenses: $500,000
+Total Estimated CAM Payments Received from Tenant: $120,000
+Tenant's Pro-Rata Share: 25%
+
+Calculation:
+Tenant's Share of Actuals (25% of $500k): $125,000
+Less Tenant's Payments: ($120,000)
+Amount Due from Tenant: $5,000
+
+**JSON OUTPUT:**
+{
+  "contract_name": "2033 Annual Common Area Maintenance (CAM) Reconciliation",
+  "effective_date": null,
+  "parties": [
+    { "name": "Logistics Solutions Inc.", "role": "Tenant" }
+  ],
+  "cam_details": {
+    "property_name": "Commerce Center",
+    "period": "ending December 31, 2033",
+    "document_type": "Reconciliation",
+    "total_actual_expenses": 500000,
+    "total_estimated_payments": 120000,
+    "tenant_pro_rata_share_pct": 25,
+    "tenant_charge_or_credit": 5000
+  },
+  "discovered_entities": []
+}

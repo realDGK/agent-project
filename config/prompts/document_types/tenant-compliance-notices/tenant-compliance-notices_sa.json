@@ -1,0 +1,13 @@
+{
+  "compliance_notice_details": {
+    "type": "object",
+    "description": "Details specific to a tenant compliance notice.",
+    "properties": {
+      "property_address": { "type": "string" },
+      "unit_number": { "type": "string" },
+      "notice_type": { "type": "string" },
+      "nature_of_violation": { "type": "string" },
+      "cure_period": { "type": "string" }
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "title": "Notice of Determination (NOD) Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Notice of Determination'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Lead Agency", "Project Applicant"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "environmental_details": {
+      "type": "object",
+      "properties": {
+        "document_type": { "type": "string", "default": "NOD" },
+        "project_name": { "type": "string" },
+        "project_approval_date": { "type": "string", "format": "date" },
+        "ceqa_finding": { "type": "string", "description": "The CEQA document that was approved, e.g., 'An Environmental Impact Report was prepared', 'A Mitigated Negative Declaration was adopted'." }
+      }
+    },
+    "legal_recording_details": {
+      "type": "object",
+      "properties": {
+        "filing_date": { "type": "string", "format": "date" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "environmental_details"]
+}

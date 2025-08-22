@@ -1,0 +1,22 @@
+**INPUT DOCUMENT TEXT:**
+INTEREST RESERVE AGREEMENT
+
+This Agreement is dated August 1, 2031, between Downtown Tower LLC ("Borrower") and Mega Bank, N.A. ("Lender").
+
+In connection with the Construction Loan Agreement, Lender shall set aside a portion of the Loan proceeds in the amount of $3,000,000 (the "Interest Reserve") to be used by Lender to pay monthly interest payments as they become due under the Note.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Interest Reserve Agreement",
+  "effective_date": "2031-08-01",
+  "parties": [
+    { "name": "Downtown Tower LLC", "role": "Borrower" },
+    { "name": "Mega Bank, N.A.", "role": "Lender" }
+  ],
+  "loan_details": {
+    "loan_reference": "Construction Loan Agreement",
+    "reserve_amount": 3000000,
+    "purpose_of_reserve": "To be used by Lender to pay monthly interest payments as they become due under the Note."
+  },
+  "discovered_entities": []
+}

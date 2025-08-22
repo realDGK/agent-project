@@ -1,0 +1,18 @@
+{
+  "survey_details": {
+    "type": "object",
+    "description": "Details specific to a land survey.",
+    "properties": {
+      "property_address": { "type": "string" },
+      "property_legal_description": { "type": "string" },
+      "apn": { "type": "string" },
+      "flood_zone_information": { "type": "string" },
+      "zoning_classification": { "type": "string" },
+      "table_a_items": {
+        "type": "array",
+        "items": { "type": "string" },
+        "description": "A list of the optional ALTA Table A items included in the survey."
+      }
+    }
+  }
+}

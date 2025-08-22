@@ -1,0 +1,15 @@
+{
+  "tax_appeal_details": {
+    "type": "object",
+    "description": "Details specific to a property tax appeal.",
+    "properties": {
+      "apn": { "type": "string" },
+      "tax_year": { "type": "string" },
+      "assessor_s_value": { "type": "number" },
+      "applicant_s_opinion_of_value": { "type": "number" },
+      "reason_for_appeal": { "type": "string" },
+      "original_assessed_value": { "type": "number" },
+      "prop_8_reduced_value": { "type": "number" }
+    }
+  }
+}

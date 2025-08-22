@@ -1,0 +1,32 @@
+**INPUT DOCUMENT TEXT:**
+WIRE TRANSFER INSTRUCTIONS
+
+Date: September 6, 2027
+To: WESTERN LAND PARTNERS, LP
+From: Premier Title & Escrow
+
+Please wire funds for Escrow No. PT-54321 to the following account:
+
+Beneficiary Name: Premier Title & Escrow
+Bank Name: Mega Bank, N.A.
+Routing (ABA): 123456789
+Account #: 9876543210
+Reference: PT-54321 - Valley View Road
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Wire Transfer Instructions",
+  "effective_date": "2027-09-06",
+  "parties": [
+    { "name": "Premier Title & Escrow", "role": "Beneficiary" },
+    { "name": "WESTERN LAND PARTNERS, LP", "role": "Sending Party" }
+  ],
+  "wire_details": {
+    "beneficiary_bank": "Mega Bank, N.A.",
+    "routing_number_aba": "123456789",
+    "account_number": "9876543210",
+    "swift_code": null,
+    "reference_info": "PT-54321 - Valley View Road"
+  },
+  "discovered_entities": []
+}

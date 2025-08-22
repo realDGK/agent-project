@@ -1,0 +1,26 @@
+**INPUT DOCUMENT TEXT:**
+SPECIAL INSPECTION FINAL REPORT
+
+Project: Downtown Tower
+Permit No: B-2031-0101
+Date: July 1, 2034
+
+I, Jane Doe, as the Special Inspector for high-strength concrete, hereby certify that to the best of my knowledge, the work I have inspected was performed in accordance with the approved plans and specifications.
+
+Inspector: Jane Doe, Certified Inspector #555
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Special Inspection Final Report",
+  "effective_date": "2034-07-01",
+  "parties": [
+    { "name": "Jane Doe", "role": "Special Inspector" }
+  ],
+  "inspection_report_details": {
+    "project_name": "Downtown Tower",
+    "permit_number": "B-2031-0101",
+    "inspection_type": "High-strength concrete",
+    "compliance_statement": "The work inspected was performed in accordance with the approved plans and specifications."
+  },
+  "discovered_entities": []
+}

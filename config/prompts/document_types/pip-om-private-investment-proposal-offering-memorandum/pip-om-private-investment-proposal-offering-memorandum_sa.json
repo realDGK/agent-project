@@ -1,0 +1,19 @@
+{
+  "offering_details": {
+    "type": "object",
+    "description": "Details specific to a private placement or investment offering.",
+    "properties": {
+      "offering_summary": {
+        "type": "string",
+        "description": "A brief summary of the investment opportunity."
+      },
+      "total_offering_amount": { "type": "number" },
+      "price_per_unit_or_share": { "type": "number" },
+      "minimum_investment": { "type": "number" },
+      "risk_factors_summary": {
+        "type": "string",
+        "description": "A high-level summary of the key risk factors mentioned."
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+**INPUT DOCUMENT TEXT:**
+CONFIDENTIALITY AGREEMENT
+
+This Agreement, dated August 1, 2027, is between Big Box Retailer ("Discloser") and Landowner LLC ("Recipient").
+
+Discloser is providing Recipient with certain confidential information (the "Evaluation Material") solely for the purpose of evaluating a potential lease transaction at the property located at 123 Commercial Blvd.
+
+Recipient agrees to keep the Evaluation Material confidential for a period of two (2) years from the date of this agreement.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Confidentiality Agreement",
+  "effective_date": "2027-08-01",
+  "parties": [
+    {
+      "name": "Big Box Retailer",
+      "role": "Disclosing Party"
+    },
+    {
+      "name": "Landowner LLC",
+      "role": "Receiving Party"
+    }
+  ],
+  "nda_details": {
+    "nda_type": "One-Way",
+    "purpose_of_disclosure": "Evaluating a potential lease transaction at the property located at 123 Commercial Blvd.",
+    "term_of_confidentiality": "Two (2) years from the date of this agreement."
+  },
+  "discovered_entities": []
+}

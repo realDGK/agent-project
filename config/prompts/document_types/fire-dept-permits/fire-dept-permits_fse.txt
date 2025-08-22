@@ -1,0 +1,27 @@
+**INPUT DOCUMENT TEXT:**
+OAKWOOD FIRE PROTECTION DISTRICT
+PERMIT
+
+Permit #: FP2032-050
+Date: March 1, 2032
+Address: 123 Main Street, Oakwood, CA
+Permittee: Downtown Tower LLC
+
+This permit is for the installation of the automatic fire sprinkler system in accordance with the approved plans.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Fire Department Permit",
+  "effective_date": "2032-03-01",
+  "parties": [
+    { "name": "Downtown Tower LLC", "role": "Permittee" },
+    { "name": "Oakwood Fire Protection District", "role": "Issuing Agency" }
+  ],
+  "permit_details": {
+    "permit_number": "FP2032-050",
+    "property_address": "123 Main Street, Oakwood, CA",
+    "permit_type": "Fire Sprinkler",
+    "scope_of_work": "Installation of the automatic fire sprinkler system in accordance with the approved plans."
+  },
+  "discovered_entities": []
+}

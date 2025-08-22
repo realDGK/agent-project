@@ -1,0 +1,27 @@
+**INPUT DOCUMENT TEXT:**
+SITE ACCESS AND TESTING AGREEMENT
+
+This Agreement is made June 20, 2028, between RURAL LAND HOLDINGS LLC ("Owner") and GEO-ENGINEERS INC. ("Consultant").
+
+1. Grant of Access. Owner grants Consultant a temporary license to enter the property at APN 555-123-45 for the purpose of conducting geotechnical soil borings.
+2. Term. Access is granted for a period of ten (10) business days, commencing June 25, 2028.
+3. Insurance. Consultant shall maintain a Commercial General Liability policy with limits of not less than $2,000,000.
+4. Indemnity. Consultant agrees to indemnify and hold Owner harmless from any claims arising from its activities on the property.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Site Access and Testing Agreement",
+  "effective_date": "2028-06-20",
+  "parties": [
+    { "name": "RURAL LAND HOLDINGS LLC", "role": "Property Owner" },
+    { "name": "GEO-ENGINEERS INC.", "role": "Entering Party" }
+  ],
+  "access_details": {
+    "property_description": "APN 555-123-45",
+    "purpose_of_access": "Conducting geotechnical soil borings.",
+    "access_period": "Ten (10) business days, commencing June 25, 2028.",
+    "insurance_requirements": "Commercial General Liability policy with limits of not less than $2,000,000.",
+    "indemnification_clause": "Consultant agrees to indemnify and hold Owner harmless from any claims arising from its activities on the property."
+  },
+  "discovered_entities": []
+}

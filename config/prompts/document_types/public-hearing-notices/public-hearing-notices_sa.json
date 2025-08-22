@@ -1,0 +1,13 @@
+{
+  "hearing_details": {
+    "type": "object",
+    "description": "Details specific to a public hearing notice.",
+    "properties": {
+      "hearing_date": { "type": "string", "format": "date" },
+      "hearing_time": { "type": "string" },
+      "hearing_location": { "type": "string" },
+      "hearing_body": { "type": "string" },
+      "project_description": { "type": "string" }
+    }
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "title": "Safety Plan (IIPP) Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Injury and Illness Prevention Program'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Company", "Author"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "safety_plan_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "safety_officer": { "type": "string" },
+        "key_procedures": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "safety_plan_details"]
+}

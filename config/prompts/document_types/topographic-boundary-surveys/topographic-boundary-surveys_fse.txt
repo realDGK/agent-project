@@ -1,0 +1,24 @@
+**INPUT DOCUMENT TEXT:**
+TOPOGRAPHIC & BOUNDARY SURVEY
+A survey of Lot 5 of the Evergreen Tract, in the City of Walnut Creek, County of Contra Costa, State of California.
+APN: 123-456-005
+Job No: 27-042
+Date: December 1, 2027
+Prepared for: Westpark Homes
+Prepared by: Apex Land Surveying, Inc. PLS 9876
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Topographic & Boundary Survey",
+  "effective_date": "2027-12-01",
+  "parties": [
+    { "name": "Westpark Homes", "role": "Client" },
+    { "name": "Apex Land Surveying, Inc.", "role": "Surveyor" }
+  ],
+  "survey_details": {
+    "property_address": null,
+    "property_legal_description": "Lot 5 of the Evergreen Tract, in the City of Walnut Creek, County of Contra Costa, State of California.",
+    "apn": "123-456-005",
+    "survey_type": "Topographic & Boundary"
+  }
+}

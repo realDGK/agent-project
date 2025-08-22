@@ -1,0 +1,30 @@
+**INPUT DOCUMENT TEXT:**
+MONTHLY LOCAL HIRE REPORT
+
+Project: Bayfront Stadium
+Contractor: Stadium Builders Inc.
+Reporting Period: May 2030
+
+Local Hire Requirement: 30% of all project work hours.
+Local Hire Achieved this Period: 35%
+
+Apprentice Utilization Requirement: 15% of hours by trade.
+Apprentice Utilization Achieved this Period: 18%
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Monthly Local Hire Report",
+  "effective_date": null,
+  "parties": [
+    { "name": "Stadium Builders Inc.", "role": "Contractor" }
+  ],
+  "compliance_report_details": {
+    "project_name": "Bayfront Stadium",
+    "reporting_period": "May 2030",
+    "local_hire_requirement_pct": 30,
+    "local_hire_achieved_pct": 35,
+    "apprentice_utilization_requirement_pct": 15,
+    "apprentice_utilization_achieved_pct": 18
+  },
+  "discovered_entities": []
+}

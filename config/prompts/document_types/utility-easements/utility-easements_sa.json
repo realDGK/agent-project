@@ -1,0 +1,23 @@
+{
+  "easement_details": {
+    "type": "object",
+    "description": "Details specific to an easement agreement.",
+    "properties": {
+      "easement_type": {
+        "type": "string",
+        "description": "The type of utility or purpose the easement is for (e.g., 'Electric', 'Water', 'Access')."
+      },
+      "purpose": {
+        "type": "string",
+        "description": "The specific purpose of the easement."
+      },
+      "easement_area_description": {
+        "type": "string",
+        "description": "A description of the specific portion of the property affected by the easement."
+      },
+      "is_perpetual": {
+        "type": "boolean"
+      }
+    }
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "title": "Railroad License Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string"
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "Licensor",
+              "Licensee",
+              "Railroad"
+            ]
+          }
+        },
+        "required": [
+          "name",
+          "role"
+        ]
+      }
+    },
+    "license_details": {
+      "type": "object",
+      "properties": {
+        "license_purpose": {
+          "type": "string"
+        },
+        "location_description": {
+          "type": "string"
+        },
+        "license_fee": {
+          "type": "string"
+        },
+        "insurance_requirements": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "required": [
+    "contract_name",
+    "effective_date",
+    "parties",
+    "license_details"
+  ]
+}

@@ -1,0 +1,28 @@
+**INPUT DOCUMENT TEXT:**
+GREEN VALLEY RANCH
+ARCHITECTURAL DESIGN GUIDELINES
+Revised: July 1, 2033
+
+All exterior modifications must be submitted to the Architectural Review Committee for approval.
+- Approved exterior paint colors are limited to the pre-approved color palette.
+- Fences shall not exceed 6 feet in height.
+- All landscaping must be drought-tolerant.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Architectural Design Guidelines",
+  "effective_date": "2033-07-01",
+  "parties": [
+    { "name": "Green Valley Ranch", "role": "Homeowners Association" }
+  ],
+  "architectural_guideline_details": {
+    "property_name": "Green Valley Ranch",
+    "key_guidelines": [
+      "Approved exterior paint colors are limited to the pre-approved color palette.",
+      "Fences shall not exceed 6 feet in height.",
+      "All landscaping must be drought-tolerant."
+    ],
+    "review_process_summary": "All exterior modifications must be submitted to the Architectural Review Committee for approval."
+  },
+  "discovered_entities": []
+}

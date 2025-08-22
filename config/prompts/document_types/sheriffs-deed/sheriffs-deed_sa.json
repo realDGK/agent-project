@@ -1,0 +1,19 @@
+{
+  "deed_details": {
+    "type": "object",
+    "description": "Details specific to a deed transferring title to real property.",
+    "properties": {
+      "deed_type": { "type": "string" },
+      "property_legal_description": { "type": "string" },
+      "apn": { "type": "string" },
+      "transfer_tax_amount": { "type": "number" },
+      "warranty_clause": { "type": "string" },
+      "foreclosure_sale_date": { "type": "string", "format": "date" },
+      "original_deed_of_trust_recording_info": { "type": "string" },
+      "tax_sale_date": { "type": "string", "format": "date" },
+      "delinquent_tax_years": { "type": "string" },
+      "sheriffs_sale_date": { "type": "string", "format": "date" },
+      "court_case_number": { "type": "string" }
+    }
+  }
+}

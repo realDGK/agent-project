@@ -1,0 +1,47 @@
+{
+  "title": "Cost Segregation Report Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Cost Segregation Study'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Author", "Consultant", "Client"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "cost_segregation_details": {
+      "type": "object",
+      "properties": {
+        "property_address": { "type": "string" },
+        "total_depreciable_basis": { "type": "number" },
+        "reclassified_to_5_year_property": { "type": "number" },
+        "reclassified_to_7_year_property": { "type": "number" },
+        "reclassified_to_15_year_property": { "type": "number" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "cost_segregation_details"]
+}

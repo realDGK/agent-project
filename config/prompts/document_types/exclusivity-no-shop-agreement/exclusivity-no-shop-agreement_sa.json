@@ -1,0 +1,16 @@
+{
+  "exclusivity_details": {
+    "type": "object",
+    "description": "Details specific to an exclusivity or no-shop provision.",
+    "properties": {
+      "exclusivity_period": {
+        "type": "string",
+        "description": "The duration of the exclusivity or no-shop period (e.g., '30 days from the Effective Date')."
+      },
+      "scope_of_exclusivity": {
+        "type": "string",
+        "description": "A summary of what the seller is prohibited from doing (e.g., 'soliciting, negotiating, or accepting alternative proposals')."
+      }
+    }
+  }
+}

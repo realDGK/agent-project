@@ -1,0 +1,39 @@
+**INPUT DOCUMENT TEXT:**
+STAFF REPORT
+
+TO: Planning Commission
+FROM: Community Development Department
+MEETING DATE: July 15, 2030
+SUBJECT: Conditional Use Permit P30-005 (New Gas Station)
+APPLICANT: Corner Store Inc.
+
+PROJECT DESCRIPTION:
+The applicant proposes a new gas station with a convenience store at the corner of Main and Oak.
+
+KEY ISSUES:
+The primary issues are traffic circulation at the intersection and architectural compatibility with the downtown historic district.
+
+RECOMMENDATION:
+Staff recommends APPROVAL, with the attached conditions.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Staff Report",
+  "effective_date": "2030-07-15",
+  "parties": [
+    { "name": "Community Development Department", "role": "Authoring Agency" },
+    { "name": "Planning Commission", "role": "Reviewing Body" },
+    { "name": "Corner Store Inc.", "role": "Applicant" }
+  ],
+  "staff_report_details": {
+    "project_name": "New Gas Station",
+    "application_number": "P30-005",
+    "staff_recommendation": "Approval, with attached conditions.",
+    "project_summary": "A new gas station with a convenience store at the corner of Main and Oak.",
+    "key_issues": [
+      "Traffic circulation at the intersection.",
+      "Architectural compatibility with the downtown historic district."
+    ]
+  },
+  "discovered_entities": []
+}

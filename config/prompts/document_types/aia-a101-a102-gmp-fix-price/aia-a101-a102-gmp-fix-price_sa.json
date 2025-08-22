@@ -1,0 +1,15 @@
+{
+  "construction_contract_details": {
+    "type": "object",
+    "description": "Details specific to a construction contract.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "contract_type": { "type": "string", "enum": ["Stipulated Sum", "Cost Plus Fee with GMP"] },
+      "contract_sum": { "type": "number" },
+      "guaranteed_maximum_price_gmp": { "type": "number" },
+      "date_of_commencement": { "type": "string", "format": "date" },
+      "substantial_completion_date": { "type": "string" },
+      "liquidated_damages": { "type": "string" }
+    }
+  }
+}

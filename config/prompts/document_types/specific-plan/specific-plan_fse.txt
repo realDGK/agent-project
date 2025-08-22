@@ -1,0 +1,33 @@
+**INPUT DOCUMENT TEXT:**
+CITY OF RIVERBEND
+THE RIVERFRONT SPECIFIC PLAN
+Adopted by City Council on November 5, 2029
+
+CHAPTER 1: INTRODUCTION
+This Specific Plan provides a comprehensive planning and regulatory framework for the 150-acre Riverfront district.
+
+CHAPTER 2: LAND USE
+The plan establishes three land use districts: Waterfront Commercial, Mixed-Use Residential, and Open Space.
+
+CHAPTER 3: DEVELOPMENT STANDARDS
+Maximum building height in the Waterfront Commercial district shall be 65 feet.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "The Riverfront Specific Plan",
+  "effective_date": "2029-11-05",
+  "parties": [
+    { "name": "City of Riverbend", "role": "Approving Agency" }
+  ],
+  "entitlement_details": {
+    "plan_area_description": "The 150-acre Riverfront district.",
+    "plan_summary": "Provides a comprehensive planning and regulatory framework.",
+    "allowed_land_uses": [
+      "Waterfront Commercial",
+      "Mixed-Use Residential",
+      "Open Space"
+    ],
+    "development_standards_summary": "Maximum building height in the Waterfront Commercial district shall be 65 feet."
+  },
+  "discovered_entities": []
+}

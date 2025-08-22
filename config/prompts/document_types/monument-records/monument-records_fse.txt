@@ -1,0 +1,24 @@
+**INPUT DOCUMENT TEXT:**
+CORNER RECORD - County of Sacramento
+Document No. 2028-001234
+
+A 2-inch brass cap in a monument well was found at the centerline intersection of Main Street and Oak Avenue, as shown on that certain map "Tract No. 500". The cap was found undisturbed and in good condition.
+
+Statement of Surveyor:
+This corner record was prepared by me on February 2, 2028.
+James Peterson, PLS 8765
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Corner Record",
+  "effective_date": "2028-02-02",
+  "parties": [
+    { "name": "James Peterson", "role": "Surveyor" },
+    { "name": "County of Sacramento", "role": "Public Agency" }
+  ],
+  "survey_details": {
+    "monument_description": "2-inch brass cap in a monument well.",
+    "monument_location": "Centerline intersection of Main Street and Oak Avenue, as shown on map 'Tract No. 500'.",
+    "surveyor_license_number": "PLS 8765"
+  }
+}

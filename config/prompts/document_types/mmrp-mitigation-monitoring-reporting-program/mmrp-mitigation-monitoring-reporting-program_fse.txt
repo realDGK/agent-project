@@ -1,0 +1,41 @@
+**INPUT DOCUMENT TEXT:**
+MITIGATION MONITORING AND REPORTING PROGRAM
+Elm Street Apartments Project
+
+Adopted: July 10, 2030 by the City of Springfield
+
+Mitigation Measure BIO-1: A qualified biologist shall conduct a pre-construction survey for nesting birds.
+- Monitoring Agency: City Planning Department
+- Timing: Within 14 days prior to any ground disturbance.
+
+Mitigation Measure NOI-1: Construction activities shall be limited to the hours of 7 AM to 6 PM.
+- Monitoring Agency: City Code Enforcement
+- Timing: Throughout construction.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Mitigation Monitoring and Reporting Program",
+  "effective_date": "2030-07-10",
+  "parties": [
+    { "name": "City of Springfield", "role": "Lead Agency" }
+  ],
+  "environmental_details": {
+    "document_type": "MMRP",
+    "project_name": "Elm Street Apartments Project",
+    "mitigation_measures": [
+      {
+        "measure_id": "BIO-1",
+        "measure_description": "A qualified biologist shall conduct a pre-construction survey for nesting birds.",
+        "monitoring_responsibility": "City Planning Department",
+        "timing": "Within 14 days prior to any ground disturbance."
+      },
+      {
+        "measure_id": "NOI-1",
+        "measure_description": "Construction activities shall be limited to the hours of 7 AM to 6 PM.",
+        "monitoring_responsibility": "City Code Enforcement",
+        "timing": "Throughout construction."
+      }
+    ]
+  },
+  "discovered_entities": []
+}

@@ -1,0 +1,11 @@
+{
+  "dust_control_plan_details": {
+    "type": "object",
+    "description": "Details specific to a dust control plan.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "project_acreage": { "type": "number" },
+      "best_management_practices_bmps": { "type": "array", "items": { "type": "string" } }
+    }
+  }
+}

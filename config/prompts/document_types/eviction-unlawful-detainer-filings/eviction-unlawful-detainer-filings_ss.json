@@ -1,0 +1,62 @@
+{
+  "title": "Unlawful Detainer Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "e.g., 'Complaint for Unlawful Detainer'"
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date",
+      "description": "The date the filing was submitted to the court."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "Plaintiff",
+              "Defendant",
+              "Landlord",
+              "Tenant"
+            ]
+          }
+        },
+        "required": [
+          "name",
+          "role"
+        ]
+      }
+    },
+    "litigation_details": {
+      "type": "object",
+      "properties": {
+        "court_name": {
+          "type": "string"
+        },
+        "case_number": {
+          "type": "string"
+        },
+        "property_address": {
+          "type": "string"
+        },
+        "reason_for_eviction": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "required": [
+    "contract_name",
+    "effective_date",
+    "parties",
+    "litigation_details"
+  ]
+}

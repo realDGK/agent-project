@@ -1,0 +1,29 @@
+**INPUT DOCUMENT TEXT:**
+OFFICIAL STATEMENT
+$15,000,000
+OAKWOOD PUBLIC FINANCING AUTHORITY
+Special Tax Bonds, Series 2032 (CFD No. 2032-1)
+
+Dated: July 15, 2032
+Underwriter: Municipal Capital Markets Group
+
+This Official Statement provides information about the Bonds. The proceeds of the Bonds will be used to finance the construction of public infrastructure, including roads and parks, to serve the Oakwood Hills project.
+
+Investment in the Bonds involves significant risks, including the risk of non-payment of special taxes by property owners.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Official Statement",
+  "effective_date": "2032-07-15",
+  "parties": [
+    { "name": "OAKWOOD PUBLIC FINANCING AUTHORITY", "role": "Issuer" },
+    { "name": "Municipal Capital Markets Group", "role": "Underwriter" }
+  ],
+  "bond_details": {
+    "bond_series_name": "Special Tax Bonds, Series 2032 (CFD No. 2032-1)",
+    "principal_amount": 15000000,
+    "purpose_of_bonds": "To finance the construction of public infrastructure, including roads and parks, to serve the Oakwood Hills project.",
+    "risk_factors_summary": "Investment involves significant risks, including the risk of non-payment of special taxes by property owners."
+  },
+  "discovered_entities": []
+}

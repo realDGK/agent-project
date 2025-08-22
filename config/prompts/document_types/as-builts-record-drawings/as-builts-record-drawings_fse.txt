@@ -1,0 +1,27 @@
+**INPUT DOCUMENT TEXT:**
+RECORD DRAWINGS - COVER SHEET
+PROJECT: DOWNTOWN TOWER
+
+CONTRACTOR'S CERTIFICATION:
+BuildRight Corp. certifies that these drawings have been revised to show the actual "as-built" conditions of the completed work.
+Date: October 1, 2034
+
+ARCHITECT'S CERTIFICATION:
+Global Architects Inc. has reviewed the contractor's markups and finds them to be a fair representation.
+Date: October 15, 2034
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Record Drawings",
+  "effective_date": "2034-10-15",
+  "parties": [
+    { "name": "BuildRight Corp.", "role": "Contractor" },
+    { "name": "Global Architects Inc.", "role": "Architect" }
+  ],
+  "plan_details": {
+    "project_name": "Downtown Tower",
+    "plan_type": "As-Builts/Record Drawings",
+    "certification_statement": "BuildRight Corp. certifies that these drawings have been revised to show the actual 'as-built' conditions of the completed work."
+  },
+  "discovered_entities": []
+}

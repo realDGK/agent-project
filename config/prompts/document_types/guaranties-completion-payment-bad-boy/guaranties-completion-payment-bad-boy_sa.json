@@ -1,0 +1,11 @@
+{
+  "guaranty_details": {
+    "type": "object",
+    "description": "Details specific to a guaranty agreement.",
+    "properties": {
+      "guaranty_type": { "type": "string" },
+      "guaranteed_obligation": { "type": "string" },
+      "maximum_liability": { "type": "string" }
+    }
+  }
+}

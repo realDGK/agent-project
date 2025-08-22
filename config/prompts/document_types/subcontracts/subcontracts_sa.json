@@ -1,0 +1,12 @@
+{
+  "subcontract_details": {
+    "type": "object",
+    "description": "Details specific to a subcontract agreement.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "scope_of_work": { "type": "string" },
+      "subcontract_price": { "type": "number" },
+      "payment_terms": { "type": "string" }
+    }
+  }
+}

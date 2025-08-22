@@ -1,0 +1,11 @@
+{
+  "payroll_details": {
+    "type": "object",
+    "description": "Details specific to a certified payroll report.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "week_ending_date": { "type": "string", "format": "date" },
+      "is_statement_of_compliance_signed": { "type": "boolean" }
+    }
+  }
+}

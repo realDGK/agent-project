@@ -1,0 +1,30 @@
+**INPUT DOCUMENT TEXT:**
+RESIDENTIAL LEASE AGREEMENT
+
+1. PARTIES: Landlord, "The Aspens Apartments", and Tenant, "John Smith".
+2. PREMISES: Apartment #205 at 100 Aspen Way.
+3. TERM: 12 months, beginning June 1, 2033.
+4. RENT: $2,200 per month.
+5. SECURITY DEPOSIT: $1,500.
+6. PETS: One dog under 25 lbs is permitted with an additional $500 pet deposit.
+7. UTILITIES: Tenant is responsible for electricity and gas. Landlord pays for water and trash.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Residential Lease Agreement",
+  "effective_date": null,
+  "parties": [
+    { "name": "The Aspens Apartments", "role": "Landlord" },
+    { "name": "John Smith", "role": "Tenant" }
+  ],
+  "lease_details": {
+    "property_name": "The Aspens Apartments",
+    "unit_number": "205",
+    "lease_term_months": 12,
+    "monthly_rent": 2200,
+    "security_deposit": 1500,
+    "pet_policy": "One dog under 25 lbs permitted with an additional $500 pet deposit.",
+    "utility_responsibilities": "Tenant is responsible for electricity and gas. Landlord pays for water and trash."
+  },
+  "discovered_entities": []
+}

@@ -1,0 +1,23 @@
+**INPUT DOCUMENT TEXT:**
+Union Pacific Railroad Company
+LICENSE FOR PRIVATE CROSSING
+
+This License is granted on September 1, 2027, by Union Pacific Railroad Company ("Licensor") to Greenfield Farms, LLC ("Licensee").
+
+Licensor grants Licensee a non-exclusive license to use and maintain a private roadway crossing over Licensor's tracks at Milepost 74.2, near Fresno, CA. Licensee shall pay an annual fee of $5,000 and maintain a general liability insurance policy of no less than $2,000,000.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "License for Private Crossing",
+  "effective_date": "2027-09-01",
+  "parties": [
+    { "name": "Union Pacific Railroad Company", "role": "Licensor" },
+    { "name": "Greenfield Farms, LLC", "role": "Licensee" }
+  ],
+  "license_details": {
+    "license_purpose": "To use and maintain a private roadway crossing.",
+    "location_description": "Milepost 74.2, near Fresno, CA",
+    "license_fee": "Annual fee of $5,000",
+    "insurance_requirements": "General liability insurance policy of no less than $2,000,000"
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "title": "Service Interconnect Agreement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string"
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "Customer",
+              "Utility"
+            ]
+          }
+        },
+        "required": [
+          "name",
+          "role"
+        ]
+      }
+    },
+    "interconnect_agreement_details": {
+      "type": "object",
+      "properties": {
+        "service_address": {
+          "type": "string"
+        },
+        "generation_facility_type": {
+          "type": "string",
+          "description": "e.g., 'Solar PV', 'Battery Storage'"
+        },
+        "system_capacity_kw": {
+          "type": "number"
+        },
+        "point_of_interconnection": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "required": [
+    "contract_name",
+    "effective_date",
+    "parties",
+    "interconnect_agreement_details"
+  ]
+}

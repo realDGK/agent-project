@@ -1,0 +1,27 @@
+**INPUT DOCUMENT TEXT:**
+NOTICE OF ENTRY OF JUDGMENT
+
+To: Defendant, Property Owner LLC
+Case Name: General Contractor Inc. vs. Property Owner LLC
+Case Number: RG12345678
+
+YOU ARE HEREBY NOTIFIED that judgment was entered in the above-entitled action on August 15, 2029, in favor of Plaintiff and against Defendant. A money judgment was awarded to Plaintiff in the amount of $250,000.00.
+
+Dated: August 16, 2029
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Notice of Entry of Judgment",
+  "effective_date": "2029-08-16",
+  "parties": [
+    { "name": "General Contractor Inc.", "role": "Plaintiff" },
+    { "name": "Property Owner LLC", "role": "Defendant" }
+  ],
+  "litigation_details": {
+    "court_name": null,
+    "case_number": "RG12345678",
+    "judgment_date": "2029-08-15",
+    "judgment_summary": "A money judgment was awarded to Plaintiff in the amount of $250,000.00."
+  },
+  "discovered_entities": []
+}

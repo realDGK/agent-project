@@ -1,0 +1,44 @@
+{
+  "title": "1031 Identification Notice Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Identification Notice of Replacement Property'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Exchangor", "Qualified Intermediary"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "exchange_details": {
+      "type": "object",
+      "properties": {
+        "relinquished_property": { "type": "string" },
+        "identified_replacement_properties": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "exchange_details"]
+}

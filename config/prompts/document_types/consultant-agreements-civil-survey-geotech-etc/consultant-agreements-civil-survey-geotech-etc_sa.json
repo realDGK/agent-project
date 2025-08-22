@@ -1,0 +1,14 @@
+{
+  "consulting_details": {
+    "type": "object",
+    "description": "Details specific to a professional consulting engagement.",
+    "properties": {
+      "scope_of_services_summary": { "type": "string" },
+      "compensation_summary": { "type": "string" },
+      "term_of_agreement": { "type": "string" },
+      "confidentiality_clause_summary": { "type": "string" },
+      "project_name": { "type": "string" },
+      "standard_of_care": { "type": "string" }
+    }
+  }
+}

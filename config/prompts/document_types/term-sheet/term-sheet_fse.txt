@@ -1,0 +1,42 @@
+**INPUT DOCUMENT TEXT:**
+Loan Term Sheet - Project Titan
+
+Date: June 10, 2027
+Borrower: Titan Development Partners, LLC
+Lender: First National Bank
+
+This non-binding term sheet summarizes the proposed terms for a construction loan.
+
+Loan Amount: $15,000,000
+Interest Rate: SOFR + 3.50%
+Term: 24 months
+Origination Fee: 1.00%
+Recourse: Full recourse to sponsor entity.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Loan Term Sheet - Project Titan",
+  "effective_date": "2027-06-10",
+  "parties": [
+    {
+      "name": "Titan Development Partners, LLC",
+      "role": "Borrower"
+    },
+    {
+      "name": "First National Bank",
+      "role": "Lender"
+    }
+  ],
+  "deal_terms": {
+    "transaction_summary": "Proposed terms for a construction loan.",
+    "key_financial_terms": [
+      { "term": "Loan Amount", "value": "$15,000,000" },
+      { "term": "Interest Rate", "value": "SOFR + 3.50%" },
+      { "term": "Term", "value": "24 months" },
+      { "term": "Origination Fee", "value": "1.00%" },
+      { "term": "Recourse", "value": "Full recourse to sponsor entity." }
+    ],
+    "is_binding": false
+  },
+  "discovered_entities": []
+}

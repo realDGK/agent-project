@@ -1,0 +1,26 @@
+**INPUT DOCUMENT TEXT:**
+BOUNDARY MAP OF COMMUNITY FACILITIES DISTRICT NO. 2032-1 (PUBLIC SERVICES)
+CITY OF OAKWOOD, CALIFORNIA
+
+This map, recorded on April 1, 2032, as Instrument No. 2032-111222, shows the boundaries of CFD No. 2032-1, which includes the 300-lot Oakwood Hills subdivision.
+
+Prepared by: Apex Civil Engineering
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Boundary Map of Community Facilities District No. 2032-1 (Public Services)",
+  "parties": [
+    { "name": "City of Oakwood", "role": "Public Agency" },
+    { "name": "Apex Civil Engineering", "role": "Engineer" }
+  ],
+  "cfd_details": {
+    "cfd_name": "Public Services",
+    "cfd_number": "2032-1",
+    "map_summary": "Shows the boundaries of the CFD, which includes the 300-lot Oakwood Hills subdivision."
+  },
+  "legal_recording_details": {
+    "instrument_number": "2032-111222",
+    "recording_date": "2032-04-01"
+  },
+  "discovered_entities": []
+}

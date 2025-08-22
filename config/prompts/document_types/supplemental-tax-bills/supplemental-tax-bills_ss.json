@@ -1,0 +1,47 @@
+{
+  "title": "Supplemental Tax Bill Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Supplemental Property Tax Bill'."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Taxing Agency", "Assessed Owner"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "tax_details": {
+      "type": "object",
+      "properties": {
+        "apn": { "type": "string" },
+        "reason_for_supplemental_bill": { "type": "string" },
+        "prior_assessed_value": { "type": "number" },
+        "new_assessed_value": { "type": "number" },
+        "supplemental_tax_due": { "type": "number" },
+        "due_date": { "type": "string", "format": "date" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "tax_details"]
+}

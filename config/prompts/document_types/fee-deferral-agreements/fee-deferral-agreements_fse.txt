@@ -1,0 +1,25 @@
+**INPUT DOCUMENT TEXT:**
+AGREEMENT TO DEFER PAYMENT OF DEVELOPMENT IMPACT FEES
+
+This Agreement is made July 25, 2030, between the City of Riverbend and Riverbend Homes LLC.
+
+The City agrees to defer the collection of the Traffic Impact Fee ($1,500,000) for the Riverbend project. The deferred fees shall become due and payable upon the issuance of the first Certificate of Occupancy for the project.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Agreement to Defer Payment of Development Impact Fees",
+  "effective_date": "2030-07-25",
+  "parties": [
+    { "name": "City of Riverbend", "role": "City" },
+    { "name": "Riverbend Homes LLC", "role": "Developer" }
+  ],
+  "fee_details": {
+    "project_name": "Riverbend project",
+    "fees_deferred": [
+      "Traffic Impact Fee"
+    ],
+    "deferred_amount": 1500000,
+    "payment_due_date": "Upon the issuance of the first Certificate of Occupancy for the project."
+  },
+  "discovered_entities": []
+}

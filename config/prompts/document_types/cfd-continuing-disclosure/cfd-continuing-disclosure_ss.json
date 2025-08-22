@@ -1,0 +1,45 @@
+{
+  "title": "CFD Continuing Disclosure Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Annual Continuing Disclosure Report'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Issuer", "Dissemination Agent"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "cfd_details": {
+      "type": "object",
+      "properties": {
+        "cfd_number": { "type": "string" },
+        "fiscal_year": { "type": "string" },
+        "key_disclosures": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "cfd_details"]
+}

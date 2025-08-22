@@ -1,0 +1,14 @@
+{
+  "derivative_details": {
+    "type": "object",
+    "description": "Details specific to a financial derivative or hedging agreement.",
+    "properties": {
+      "trade_date": { "type": "string", "format": "date" },
+      "notional_amount": { "type": "number" },
+      "product_type": { "type": "string" },
+      "fixed_rate": { "type": "string" },
+      "floating_rate_index": { "type": "string" },
+      "termination_date": { "type": "string", "format": "date" }
+    }
+  }
+}

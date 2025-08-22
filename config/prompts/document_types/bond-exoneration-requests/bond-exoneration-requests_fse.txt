@@ -1,0 +1,28 @@
+**INPUT DOCUMENT TEXT:**
+REQUEST FOR EXONERATION OF SUBDIVISION BOND
+
+Date: November 1, 2034
+To: City of Riverbend, Public Works Department
+From: Riverbend Homes LLC
+
+Re: Tract No. 8888 - "Riverbend"
+Performance Bond No. 12345
+
+This letter is to request the full exoneration and release of the referenced Performance Bond. All public improvements required by the Subdivision Improvement Agreement have been completed and were accepted by the City Council on October 15, 2034.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Request for Exoneration of Subdivision Bond",
+  "effective_date": "2034-11-01",
+  "parties": [
+    { "name": "Riverbend Homes LLC", "role": "Developer" },
+    { "name": "City of Riverbend, Public Works Department", "role": "Public Agency" }
+  ],
+  "bond_details": {
+    "bond_number": "12345",
+    "bond_type": "Performance Bond",
+    "project_name": "Tract No. 8888 - \"Riverbend\"",
+    "reason_for_exoneration": "All public improvements have been completed and were accepted by the City Council on October 15, 2034."
+  },
+  "discovered_entities": []
+}

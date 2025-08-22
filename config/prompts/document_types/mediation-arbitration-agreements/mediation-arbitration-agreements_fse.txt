@@ -1,0 +1,22 @@
+**INPUT DOCUMENT TEXT:**
+AGREEMENT TO SUBMIT TO BINDING ARBITRATION
+
+This Agreement is made April 20, 2028, between Riverstone Builders and the Parkside HOA.
+
+The parties agree to submit their dispute concerning construction defects to final and binding arbitration. The arbitration shall be administered by JAMS pursuant to its Comprehensive Arbitration Rules and Procedures.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Agreement to Submit to Binding Arbitration",
+  "effective_date": "2028-04-20",
+  "parties": [
+    { "name": "Riverstone Builders" },
+    { "name": "Parkside HOA" }
+  ],
+  "dispute_resolution_details": {
+    "adr_type": "Arbitration",
+    "dispute_subject_matter": "Construction defects",
+    "is_binding": true,
+    "governing_rules": "JAMS Comprehensive Arbitration Rules and Procedures"
+  }
+}

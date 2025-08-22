@@ -1,0 +1,48 @@
+{
+  "title": "Draw Request Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Construction Loan Draw Request #5'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Borrower", "Lender", "General Contractor"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "draw_request_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "draw_number": { "integer": "string" },
+        "draw_period": { "type": "string" },
+        "total_amount_requested": { "type": "number" },
+        "total_amount_approved": { "type": "number" },
+        "total_project_completion_pct": { "type": "number" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "draw_request_details"]
+}

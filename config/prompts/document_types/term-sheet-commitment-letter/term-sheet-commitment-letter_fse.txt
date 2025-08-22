@@ -1,0 +1,33 @@
+**INPUT DOCUMENT TEXT:**
+LOAN COMMITMENT LETTER
+
+Date: July 1, 2031
+Borrower: Downtown Tower LLC
+Lender: Mega Bank, N.A.
+
+Lender is pleased to offer a commitment for a construction loan for the Downtown Tower project.
+Loan Amount: $50,000,000
+Interest Rate: SOFR + 2.75%
+Term: 36 months, interest only.
+Commitment Fee: 0.50% of Loan Amount ($250,000), due upon acceptance.
+
+This commitment is valid and must be accepted by the Borrower on or before August 1, 2031.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Loan Commitment Letter",
+  "effective_date": "2031-07-01",
+  "parties": [
+    { "name": "Downtown Tower LLC", "role": "Borrower" },
+    { "name": "Mega Bank, N.A.", "role": "Lender" }
+  ],
+  "loan_details": {
+    "loan_amount": 50000000,
+    "interest_rate": "SOFR + 2.75%",
+    "loan_term": "36 months, interest only.",
+    "amortization_period": null,
+    "commitment_fee": 250000,
+    "commitment_expiration_date": "2031-08-01"
+  },
+  "discovered_entities": []
+}

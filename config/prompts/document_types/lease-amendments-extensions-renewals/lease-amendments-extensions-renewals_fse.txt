@@ -1,0 +1,27 @@
+**INPUT DOCUMENT TEXT:**
+FIRST AMENDMENT TO LEASE
+
+This First Amendment is made May 1, 2035, between Commerce Center LLC ("Landlord") and Logistics Solutions Inc. ("Tenant").
+
+This amends the Standard Triple Net (NNN) Commercial Lease dated March 1, 2033.
+
+1. Extension of Term. The Lease Term is hereby extended for a period of five (5) years, and shall now expire on March 31, 2043.
+2. Base Rent. Commencing April 1, 2038, the new monthly Base Rent shall be $1.50 per square foot.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "First Amendment to Lease",
+  "effective_date": "2035-05-01",
+  "parties": [
+    { "name": "Commerce Center LLC", "role": "Landlord" },
+    { "name": "Logistics Solutions Inc.", "role": "Tenant" }
+  ],
+  "lease_amendment_details": {
+    "amendment_type": "Extension",
+    "original_lease_date": "2033-03-01",
+    "summary_of_changes": "Extends the lease term and adjusts the base rent.",
+    "new_expiration_date": "2043-03-31",
+    "new_rent_terms": "Commencing April 1, 2038, the new monthly Base Rent shall be $1.50 per square foot."
+  },
+  "discovered_entities": []
+}

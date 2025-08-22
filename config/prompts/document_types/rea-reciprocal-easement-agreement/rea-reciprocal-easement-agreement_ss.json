@@ -1,0 +1,53 @@
+{
+  "title": "Reciprocal Easement Agreement (REA) Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Declaration of Reciprocal Easements'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Declarant", "Property Owner"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "easement_details": {
+      "type": "object",
+      "properties": {
+        "property_description": { "type": "string" },
+        "easements_granted": { "type": "array", "items": { "type": "string" } },
+        "maintenance_obligations": { "type": "string" },
+        "cost_sharing_provisions": { "type": "string" }
+      }
+    },
+    "legal_recording_details": {
+      "type": "object",
+      "properties": {
+        "instrument_number": { "type": "string" },
+        "recording_date": { "type": "string", "format": "date" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "easement_details"]
+}

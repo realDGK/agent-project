@@ -1,0 +1,26 @@
+**INPUT DOCUMENT TEXT:**
+GREEN VALLEY RANCH HOA
+RULES AND REGULATIONS
+Effective: July 1, 2033
+
+- Pool Hours: 8:00 AM to 10:00 PM.
+- Parking: No overnight street parking is permitted.
+- Trash Cans: Must be stored out of public view, except on collection day.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Rules and Regulations",
+  "effective_date": "2033-07-01",
+  "parties": [
+    { "name": "Green Valley Ranch HOA", "role": "Homeowners Association" }
+  ],
+  "rules_and_regulations_details": {
+    "property_name": "Green Valley Ranch",
+    "key_rules": [
+      "Pool Hours: 8:00 AM to 10:00 PM.",
+      "No overnight street parking is permitted.",
+      "Trash Cans: Must be stored out of public view, except on collection day."
+    ]
+  },
+  "discovered_entities": []
+}

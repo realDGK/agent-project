@@ -1,0 +1,26 @@
+{
+  "deal_terms": {
+    "type": "object",
+    "description": "Details specific to the core terms of a real estate or business transaction.",
+    "properties": {
+      "property_description": {
+        "type": "string",
+        "description": "A brief description of the property being transacted."
+      },
+      "purchase_price": { "type": "number" },
+      "deposit_amount": { "type": "number" },
+      "due_diligence_period": {
+        "type": "string",
+        "description": "The length of the due diligence or inspection period (e.g., '30 days', '60 days from execution')."
+      },
+      "closing_period": {
+        "type": "string",
+        "description": "The timeframe for closing after due diligence (e.g., '15 days after waiver of contingencies')."
+      },
+      "is_binding": {
+        "type": "boolean",
+        "description": "Indicates whether a preliminary document (like an LOI) is stated to be binding or non-binding."
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "nda_details": {
+    "type": "object",
+    "description": "Details specific to the terms of a Non-Disclosure or Confidentiality Agreement.",
+    "properties": {
+      "nda_type": { "type": "string" },
+      "purpose_of_disclosure": { "type": "string" },
+      "term_of_confidentiality": { "type": "string" },
+      "definition_of_confidential_info": { "type": "string" },
+      "property_name": { "type": "string" }
+    }
+  }
+}

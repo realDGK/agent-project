@@ -1,0 +1,34 @@
+**INPUT DOCUMENT TEXT:**
+DECLARATION OF RECIPROCAL EASEMENTS FOR PINE RIDGE SHOPPING CENTER
+
+This Declaration is made December 1, 2028, by Shopping Center Developer LLC, owner of the property known as "The Shoppes at Pine Ridge".
+
+This REA hereby establishes for the benefit of all parcels within the shopping center non-exclusive, reciprocal easements for vehicular and pedestrian access, parking, and utility lines across all common areas.
+
+The Owner's Association shall be responsible for the maintenance and repair of all common areas. Costs for such maintenance shall be allocated among the parcel owners on a pro-rata basis based on the gross leasable area of their respective buildings.
+
+Recorded December 2, 2028, as Instrument No. 2028-445566.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Declaration of Reciprocal Easements for Pine Ridge Shopping Center",
+  "effective_date": "2028-12-01",
+  "parties": [
+    { "name": "Shopping Center Developer LLC", "role": "Declarant" }
+  ],
+  "easement_details": {
+    "property_description": "The Shoppes at Pine Ridge",
+    "easements_granted": [
+      "Vehicular and pedestrian access",
+      "Parking",
+      "Utility lines"
+    ],
+    "maintenance_obligations": "The Owner's Association shall be responsible for the maintenance and repair of all common areas.",
+    "cost_sharing_provisions": "Allocated among parcel owners on a pro-rata basis based on the gross leasable area of their respective buildings."
+  },
+  "legal_recording_details": {
+    "instrument_number": "2028-445566",
+    "recording_date": "2028-12-02"
+  },
+  "discovered_entities": []
+}

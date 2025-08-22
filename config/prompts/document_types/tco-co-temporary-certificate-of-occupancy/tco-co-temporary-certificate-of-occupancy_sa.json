@@ -1,0 +1,13 @@
+{
+  "occupancy_certificate_details": {
+    "type": "object",
+    "description": "Details specific to a certificate of occupancy.",
+    "properties": {
+      "certificate_type": { "type": "string", "enum": ["Temporary", "Final"] },
+      "permit_number": { "type": "string" },
+      "property_address": { "type": "string" },
+      "description_of_occupancy": { "type": "string" },
+      "expiration_date": { "type": "string", "format": "date" }
+    }
+  }
+}

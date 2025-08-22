@@ -1,0 +1,46 @@
+{
+  "title": "Agency Comment/Response Letter Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Comment Letter on Draft EIR'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Commenting Agency", "Receiving Agency", "Author", "Recipient"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "correspondence_details": {
+      "type": "object",
+      "properties": {
+        "document_type": { "type": "string", "enum": ["Comment Letter", "Response to Comments"] },
+        "project_name": { "type": "string" },
+        "subject_document": { "type": "string" },
+        "summary_of_comments": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "correspondence_details"]
+}

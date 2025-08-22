@@ -1,0 +1,29 @@
+**INPUT DOCUMENT TEXT:**
+A RESOLUTION OF THE CITY COUNCIL OF OAKVILLE ADOPTING A STATEMENT OF OVERRIDING CONSIDERATIONS FOR THE OAKVILLE QUARRY REDEVELOPMENT PROJECT
+
+WHEREAS, the Final EIR identified significant and unavoidable impacts to Traffic and Air Quality; and
+
+WHEREAS, the City Council finds that specific economic and social benefits of the project, including the creation of 500 new jobs and the provision of 200 units of affordable housing, outweigh the significant unavoidable environmental impacts.
+
+NOW, THEREFORE, the City Council adopts this Statement of Overriding Considerations.
+
+ADOPTED: February 14, 2031
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Statement of Overriding Considerations for the Oakville Quarry Redevelopment Project",
+  "effective_date": "2031-02-14",
+  "parties": [
+    { "name": "City Council of Oakville", "role": "Approving Body" }
+  ],
+  "environmental_details": {
+    "document_type": "SOC",
+    "project_name": "Oakville Quarry Redevelopment Project",
+    "significant_unavoidable_impacts": [
+      "Traffic",
+      "Air Quality"
+    ],
+    "overriding_considerations": "The creation of 500 new jobs and the provision of 200 units of affordable housing."
+  },
+  "discovered_entities": []
+}

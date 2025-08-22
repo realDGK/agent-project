@@ -1,0 +1,17 @@
+{
+  "settlement_details": {
+    "type": "object",
+    "description": "Details specific to a settlement agreement resolving a dispute.",
+    "properties": {
+      "settlement_amount": {
+        "type": "number"
+      },
+      "release_of_claims_summary": {
+        "type": "string"
+      },
+      "confidentiality_clause": {
+        "type": "boolean"
+      }
+    }
+  }
+}

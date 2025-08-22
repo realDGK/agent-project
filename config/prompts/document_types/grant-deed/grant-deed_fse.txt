@@ -1,0 +1,34 @@
+**INPUT DOCUMENT TEXT:**
+RECORDING REQUESTED BY: Chicago Title Company
+WHEN RECORDED MAIL TO: WESTERN LAND PARTNERS, LP
+
+GRANT DEED
+DOCUMENTARY TRANSFER TAX $11,000.00
+
+FOR VALUABLE CONSIDERATION, receipt of which is hereby acknowledged, OAK TREE INVESTORS, LLC, a California limited liability company ("Grantor") hereby GRANTS to WESTERN LAND PARTNERS, LP, a Delaware limited partnership ("Grantee"), the real property in the County of Napa, State of California, described as:
+Lot 1 of Parcel Map No. 1234, as shown on the map filed for record in Book 56 of Maps, Page 78, Napa County Records.
+APN: 123-456-78
+
+Dated: October 30, 2027
+By: (Signature), John Smith, Manager of Grantor
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Grant Deed",
+  "effective_date": "2027-10-30",
+  "parties": [
+    { "name": "OAK TREE INVESTORS, LLC", "role": "Grantor" },
+    { "name": "WESTERN LAND PARTNERS, LP", "role": "Grantee" }
+  ],
+  "deed_details": {
+    "deed_type": "Grant Deed",
+    "property_legal_description": "Lot 1 of Parcel Map No. 1234, as shown on the map filed for record in Book 56 of Maps, Page 78, Napa County Records.",
+    "apn": "123-456-78",
+    "transfer_tax_amount": 11000.00
+  },
+  "legal_recording_details": {
+    "county": "Napa",
+    "state": "California"
+  },
+  "discovered_entities": []
+}

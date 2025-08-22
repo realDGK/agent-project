@@ -1,0 +1,57 @@
+{
+  "title": "Notice of Tax Sale Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string"
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "Assessee",
+              "Taxing Authority"
+            ]
+          }
+        },
+        "required": [
+          "name",
+          "role"
+        ]
+      }
+    },
+    "tax_sale_details": {
+      "type": "object",
+      "properties": {
+        "property_address": {
+          "type": "string"
+        },
+        "apn": {
+          "type": "string"
+        },
+        "sale_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "sale_location": {
+          "type": "string"
+        },
+        "minimum_bid": {
+          "type": "number"
+        }
+      }
+    }
+  },
+  "required": [
+    "contract_name",
+    "parties",
+    "tax_sale_details"
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "title": "Abstract of Judgment Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Abstract of Judgment'."
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date",
+      "description": "The date the judgment was entered."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "Judgment Creditor",
+              "Judgment Debtor"
+            ]
+          }
+        },
+        "required": [
+          "name",
+          "role"
+        ]
+      }
+    },
+    "litigation_details": {
+      "type": "object",
+      "properties": {
+        "court_name": {
+          "type": "string"
+        },
+        "case_number": {
+          "type": "string"
+        },
+        "judgment_amount": {
+          "type": "number"
+        }
+      }
+    },
+    "legal_recording_details": {
+      "type": "object",
+      "properties": {
+        "county": {
+          "type": "string"
+        },
+        "recording_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "instrument_number": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "required": [
+    "contract_name",
+    "effective_date",
+    "parties",
+    "litigation_details"
+  ]
+}

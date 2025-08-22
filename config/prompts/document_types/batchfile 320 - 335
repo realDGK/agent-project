@@ -1,0 +1,1541 @@
+Document Type 335: Mineral/Oil/Gas rights docs
+335_specialist_schema.json
+
+JSON
+
+{
+  "title": "Mineral/Oil/Gas Rights Document Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Oil and Gas Lease'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Lessor", "Lessee", "Grantor", "Grantee"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "mineral_rights_details": {
+      "type": "object",
+      "properties": {
+        "rights_type": { "type": "string", "enum": ["Mineral", "Oil", "Gas"] },
+        "property_description": { "type": "string" },
+        "royalty_rate": { "type": "string" },
+        "lease_term": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "mineral_rights_details"]
+}
+335_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+OIL, GAS AND MINERAL LEASE
+
+This Lease is made July 1, 2033, between Texas Landowners LLC ("Lessor") and Wildcat Exploration Inc. ("Lessee").
+
+Lessor grants to Lessee the exclusive right to explore for, drill for, and produce oil, gas, and other minerals from the 640-acre property described in Exhibit A.
+
+The primary term of this lease is five (5) years.
+Lessee shall pay Lessor a royalty of one-eighth (1/8th) of the value of all oil and gas produced.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Oil, Gas and Mineral Lease",
+  "effective_date": "2033-07-01",
+  "parties": [
+    { "name": "Texas Landowners LLC", "role": "Lessor" },
+    { "name": "Wildcat Exploration Inc.", "role": "Lessee" }
+  ],
+  "mineral_rights_details": {
+    "rights_type": "Oil, Gas, and Mineral",
+    "property_description": "The 640-acre property described in Exhibit A.",
+    "royalty_rate": "One-eighth (1/8th) of the value of all oil and gas produced.",
+    "lease_term": "Primary term of five (5) years."
+  },
+  "discovered_entities": []
+}
+335_schema_additions.json
+
+JSON
+
+{
+  "mineral_rights_details": {
+    "type": "object",
+    "description": "Details specific to mineral, oil, or gas rights.",
+    "properties": {
+      "rights_type": { "type": "string", "enum": ["Mineral", "Oil", "Gas"] },
+      "property_description": { "type": "string" },
+      "royalty_rate": { "type": "string" },
+      "lease_term": { "type": "string" }
+    }
+  }
+}
+Document Type 336: Airspace Easements
+336_specialist_schema.json
+
+JSON
+
+{
+  "title": "Airspace Easement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Grant of Airspace Easement'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Grantor", "Grantee"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "easement_details": {
+      "type": "object",
+      "properties": {
+        "easement_type": { "type": "string", "default": "Airspace" },
+        "easement_area_description": { "type": "string" },
+        "purpose": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "easement_details"]
+}
+336_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+DECLARATION OF AIRSPACE EASEMENT
+
+This Declaration is made August 1, 2033, by High-Rise Condos LLC ("Grantor").
+
+Grantor hereby grants to the City of Metropolis ("Grantee") a public access easement over, across, and through the privately-owned public plaza located at the ground floor of the building, for the purpose of public pedestrian access.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Declaration of Airspace Easement",
+  "effective_date": "2033-08-01",
+  "parties": [
+    { "name": "High-Rise Condos LLC", "role": "Grantor" },
+    { "name": "City of Metropolis", "role": "Grantee" }
+  ],
+  "easement_details": {
+    "easement_type": "Airspace",
+    "easement_area_description": "The privately-owned public plaza located at the ground floor of the building.",
+    "purpose": "Public pedestrian access."
+  },
+  "discovered_entities": []
+}
+336_schema_additions.json
+
+JSON
+
+{
+  "easement_details": {
+    "type": "object",
+    "description": "Details specific to an easement agreement.",
+    "properties": {
+      "easement_type": { "type": "string" },
+      "purpose": { "type": "string" },
+      "servient_tenement_description": { "type": "string" },
+      "dominant_tenement_description": { "type": "string" },
+      "is_appurtenant_or_in_gross": { "type": "string" },
+      "property_description": { "type": "string" },
+      "easements_granted": { "type": "array", "items": { "type": "string" } },
+      "maintenance_obligations": { "type": "string" },
+      "cost_sharing_provisions": { "type": "string" },
+      "operating_covenants": { "type": "string" },
+      "use_restrictions": { "type": "string" },
+      "conservation_values": { "type": "string" },
+      "prohibited_uses": { "type": "array", "items": { "type": "string" } },
+      "is_perpetual": { "type": "boolean" },
+      "easement_description": { "type": "string" },
+      "easement_area_description": { "type": "string" }
+    }
+  }
+}
+Document Type 337: Avigation Easements
+337_specialist_schema.json
+
+JSON
+
+{
+  "title": "Avigation Easement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Avigation Easement Deed'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Grantor", "Grantee", "Airport Authority"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "easement_details": {
+      "type": "object",
+      "properties": {
+        "easement_type": { "type": "string", "default": "Avigation" },
+        "property_description": { "type": "string" },
+        "rights_granted": { "type": "string" },
+        "restrictions_imposed": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "easement_details"]
+}
+337_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+GRANT OF AVIGATION EASEMENT
+
+This easement is granted on September 1, 2033, by Airport Business Park LLC ("Grantor") to the County Airport Authority ("Grantee").
+
+Grantor grants to Grantee the right for the flight of aircraft through the airspace above the surface of the property at 100 Runway View Drive.
+
+Grantor is restricted from erecting any structure or allowing any natural growth to exceed a height of 50 feet above the ground surface.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Grant of Avigation Easement",
+  "effective_date": "2033-09-01",
+  "parties": [
+    { "name": "Airport Business Park LLC", "role": "Grantor" },
+    { "name": "County Airport Authority", "role": "Grantee" }
+  ],
+  "easement_details": {
+    "easement_type": "Avigation",
+    "property_description": "100 Runway View Drive",
+    "rights_granted": "The right for the flight of aircraft through the airspace above the surface of the property.",
+    "restrictions_imposed": "Restricted from erecting any structure or allowing any natural growth to exceed a height of 50 feet."
+  },
+  "discovered_entities": []
+}
+337_schema_additions.json
+
+JSON
+
+{
+  "easement_details": {
+    "type": "object",
+    "description": "Details specific to an easement agreement.",
+    "properties": {
+      "easement_type": { "type": "string" },
+      "purpose": { "type": "string" },
+      "servient_tenement_description": { "type": "string" },
+      "dominant_tenement_description": { "type": "string" },
+      "is_appurtenant_or_in_gross": { "type": "string" },
+      "property_description": { "type": "string" },
+      "easements_granted": { "type": "array", "items": { "type": "string" } },
+      "maintenance_obligations": { "type": "string" },
+      "cost_sharing_provisions": { "type": "string" },
+      "operating_covenants": { "type": "string" },
+      "use_restrictions": { "type": "string" },
+      "conservation_values": { "type": "string" },
+      "prohibited_uses": { "type": "array", "items": { "type": "string" } },
+      "is_perpetual": { "type": "boolean" },
+      "easement_description": { "type": "string" },
+      "easement_area_description": { "type": "string" },
+      "rights_granted": { "type": "string" },
+      "restrictions_imposed": { "type": "string" }
+    }
+  }
+}
+Document Type 338: Flood Control Easements
+338_specialist_schema.json
+
+JSON
+
+{
+  "title": "Flood Control Easement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Deed of Easement for Flood Control'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Grantor", "Grantee", "Flood Control District"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "easement_details": {
+      "type": "object",
+      "properties": {
+        "easement_type": { "type": "string", "default": "Flood Control" },
+        "property_description": { "type": "string" },
+        "purpose": { "type": "string" },
+        "restrictions_imposed": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "easement_details"]
+}
+338_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+EASEMENT FOR FLOOD CONTROL PURPOSES
+
+This easement is granted October 1, 2033, by Riverfront Properties LLC ("Grantor") to the County Flood Control District ("Grantee").
+
+Grantor grants a perpetual easement over the portion of the property described in Exhibit A for the purpose of constructing and maintaining a flood control levee.
+
+No structures of any kind shall be erected within the easement area.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Easement for Flood Control Purposes",
+  "effective_date": "2033-10-01",
+  "parties": [
+    { "name": "Riverfront Properties LLC", "role": "Grantor" },
+    { "name": "County Flood Control District", "role": "Grantee" }
+  ],
+  "easement_details": {
+    "easement_type": "Flood Control",
+    "property_description": "The portion of the property described in Exhibit A.",
+    "purpose": "Constructing and maintaining a flood control levee.",
+    "restrictions_imposed": "No structures of any kind shall be erected within the easement area."
+  },
+  "discovered_entities": []
+}
+338_schema_additions.json
+
+JSON
+
+{
+  "easement_details": {
+    "type": "object",
+    "description": "Details specific to an easement agreement.",
+    "properties": {
+      "easement_type": { "type": "string" },
+      "purpose": { "type": "string" },
+      "servient_tenement_description": { "type": "string" },
+      "dominant_tenement_description": { "type": "string" },
+      "is_appurtenant_or_in_gross": { "type": "string" },
+      "property_description": { "type": "string" },
+      "easements_granted": { "type": "array", "items": { "type": "string" } },
+      "maintenance_obligations": { "type": "string" },
+      "cost_sharing_provisions": { "type": "string" },
+      "operating_covenants": { "type": "string" },
+      "use_restrictions": { "type": "string" },
+      "conservation_values": { "type": "string" },
+      "prohibited_uses": { "type": "array", "items": { "type": "string" } },
+      "is_perpetual": { "type": "boolean" },
+      "easement_description": { "type": "string" },
+      "easement_area_description": { "type": "string" },
+      "rights_granted": { "type": "string" },
+      "restrictions_imposed": { "type": "string" }
+    }
+  }
+}
+Document Type 339: Coastal Development Permits
+339_specialist_schema.json
+
+JSON
+
+{
+  "title": "Coastal Development Permit Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Coastal Development Permit'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Permittee", "Issuing Agency", "Coastal Commission"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "permit_details": {
+      "type": "object",
+      "properties": {
+        "permit_number": { "type": "string" },
+        "project_address": { "type": "string" },
+        "project_description": { "type": "string" },
+        "key_conditions": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "permit_details"]
+}
+339_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+COASTAL DEVELOPMENT PERMIT
+
+Permit No: CDP-2033-05
+Applicant: Ocean View Homes LLC
+Date Approved: November 1, 2033
+Issuing Agency: California Coastal Commission
+
+This permit authorizes the construction of a new single-family residence at 100 Pacific Coast Highway, Malibu, CA.
+
+Special Conditions:
+1. All exterior lighting must be shielded to prevent impacts to wildlife.
+2. A public access trail to the beach shall be provided along the western property line.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Coastal Development Permit",
+  "effective_date": "2033-11-01",
+  "parties": [
+    { "name": "Ocean View Homes LLC", "role": "Permittee" },
+    { "name": "California Coastal Commission", "role": "Issuing Agency" }
+  ],
+  "permit_details": {
+    "permit_number": "CDP-2033-05",
+    "project_address": "100 Pacific Coast Highway, Malibu, CA",
+    "project_description": "Construction of a new single-family residence.",
+    "key_conditions": [
+      "All exterior lighting must be shielded to prevent impacts to wildlife.",
+      "A public access trail to the beach shall be provided along the western property line."
+    ]
+  },
+  "discovered_entities": []
+}
+339_schema_additions.json
+
+JSON
+
+{
+  "permit_details": {
+    "type": "object",
+    "description": "Details specific to a permit issued by a government agency.",
+    "properties": {
+      "permit_number": { "type": "string" },
+      "property_address": { "type": "string" },
+      "sign_description": { "type": "string" },
+      "sign_dimensions": { "type": "string" },
+      "expiration_date": { "type": "string", "format": "date" },
+      "permit_type": { "type": "string" },
+      "authorized_activity": { "type": "string" },
+      "impacts_authorized": { "type": "string" },
+      "mitigation_required": { "type": "string" },
+      "certification_number": { "type": "string" },
+      "project_name": { "type": "string" },
+      "related_404_permit": { "type": "string" },
+      "key_conditions": { "type": "array", "items": { "type": "string" } },
+      "notification_number": { "type": "string" },
+      "term_of_agreement": { "type": "string" },
+      "equipment_or_process_permitted": { "type": "string" },
+      "utility_type": { "type": "string" },
+      "connection_fee": { "type": "number" },
+      "meter_size": { "type": "string" },
+      "permit_summary": { "type": "string" },
+      "location_of_work": { "type": "string" },
+      "authorized_work_summary": { "type": "string" },
+      "scope_of_work": { "type": "string" },
+      "valuation": { "type": "number" },
+      "facility_address": { "type": "string" },
+      "discharge_limits": { "type": "string" },
+      "monitoring_requirements": { "type": "string" },
+      "project_description": { "type": "string" }
+    }
+  }
+}
+Document Type 340: FEMA LOMR/LOMA
+340_specialist_schema.json
+
+JSON
+
+{
+  "title": "FEMA LOMR/LOMA Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Letter of Map Revision (LOMR)'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Applicant", "Issuing Agency"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "flood_details": {
+      "type": "object",
+      "properties": {
+        "case_number": { "type": "string" },
+        "document_type": { "type": "string", "enum": ["LOMR", "LOMA"] },
+        "community_name": { "type": "string" },
+        "map_panel_affected": { "type": "string" },
+        "determination": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "flood_details"]
+}
+340_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+Federal Emergency Management Agency (FEMA)
+LETTER OF MAP AMENDMENT (LOMA) DETERMINATION DOCUMENT
+
+Case No.: 23-09-1234A
+Community: City of Creekside, CA
+Map Panel: 06013C0123H
+
+This letter amends the Flood Insurance Rate Map (FIRM) for the property at 555 Creekside Drive.
+
+We have determined that the structure on the property is not in the Special Flood Hazard Area (SFHA). The property is correctly located in Zone X.
+
+Effective Date of this Determination: May 1, 2031
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Letter of Map Amendment (LOMA) Determination Document",
+  "effective_date": "2031-05-01",
+  "parties": [
+    { "name": "Federal Emergency Management Agency (FEMA)", "role": "Issuing Agency" }
+  ],
+  "flood_details": {
+    "case_number": "23-09-1234A",
+    "document_type": "LOMA",
+    "community_name": "City of Creekside, CA",
+    "map_panel_affected": "06013C0123H",
+    "determination": "The structure on the property at 555 Creekside Drive is not in the SFHA and is correctly located in Zone X."
+  },
+  "discovered_entities": []
+}
+340_schema_additions.json
+
+JSON
+
+{
+  "flood_details": {
+    "type": "object",
+    "description": "Details specific to a flood hazard determination.",
+    "properties": {
+      "property_address": { "type": "string" },
+      "fema_map_number": { "type": "string" },
+      "flood_zone": { "type": "string" },
+      "is_in_special_flood_hazard_area": { "type": "boolean" },
+      "case_number": { "type": "string" },
+      "document_type": { "type": "string", "enum": ["LOMR", "LOMA"] },
+      "community_name": { "type": "string" },
+      "map_panel_affected": { "type": "string" },
+      "determination": { "type": "string" }
+    }
+  }
+}
+Document Type 341: Water Rights/Appropriative Transfers
+341_specialist_schema.json
+
+JSON
+
+{
+  "title": "Water Rights/Appropriative Transfer Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Deed of Water Right'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Grantor", "Grantee"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "water_rights_details": {
+      "type": "object",
+      "properties": {
+        "water_right_permit_or_license_number": { "type": "string" },
+        "amount_of_water_transferred": { "type": "string" },
+        "source_of_water": { "type": "string" },
+        "place_of_use": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "water_rights_details"]
+}
+341_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+DEED OF APPROPRIATIVE WATER RIGHT
+
+For valuable consideration, Old Farm LLC ("Grantor") hereby conveys to New Vineyard LLC ("Grantee") all of its rights under License 12345 issued by the State Water Resources Control Board.
+
+This transfer includes the right to divert up to 100 acre-feet per year from the Napa River for irrigation use on the property identified as APN 123-456-789.
+
+Dated: November 1, 2033
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Deed of Appropriative Water Right",
+  "effective_date": "2033-11-01",
+  "parties": [
+    { "name": "Old Farm LLC", "role": "Grantor" },
+    { "name": "New Vineyard LLC", "role": "Grantee" }
+  ],
+  "water_rights_details": {
+    "water_right_permit_or_license_number": "12345",
+    "amount_of_water_transferred": "100 acre-feet per year",
+    "source_of_water": "Napa River",
+    "place_of_use": "APN 123-456-789"
+  },
+  "discovered_entities": []
+}
+341_schema_additions.json
+
+JSON
+
+{
+  "water_rights_details": {
+    "type": "object",
+    "description": "Details specific to water rights.",
+    "properties": {
+      "water_right_permit_or_license_number": { "type": "string" },
+      "amount_of_water_transferred": { "type": "string" },
+      "source_of_water": { "type": "string" },
+      "place_of_use": { "type": "string" }
+    }
+  }
+}
+Document Type 342: Agricultural Leases/Crop Rights
+342_specialist_schema.json
+
+JSON
+
+{
+  "title": "Agricultural Lease/Crop Rights Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Agricultural Lease'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Lessor", "Lessee"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "lease_details": {
+      "type": "object",
+      "properties": {
+        "lease_type": { "type": "string", "default": "Agricultural" },
+        "property_description": { "type": "string" },
+        "lease_term": { "type": "string" },
+        "rent_terms": { "type": "string" },
+        "permitted_crops": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "lease_details"]
+}
+342_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+FARM LEASE AGREEMENT
+
+This Lease is made March 1, 2034, between Central Valley Land Co. ("Lessor") and Family Farms Inc. ("Lessee").
+
+Lessor leases to Lessee the 320-acre parcel identified as APN 555-444-333 for a term of three (3) years.
+Lessee shall pay annual rent of $500 per acre.
+The premises shall be used for the cultivation of almonds.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Farm Lease Agreement",
+  "effective_date": "2034-03-01",
+  "parties": [
+    { "name": "Central Valley Land Co.", "role": "Lessor" },
+    { "name": "Family Farms Inc.", "role": "Lessee" }
+  ],
+  "lease_details": {
+    "lease_type": "Agricultural",
+    "property_description": "320-acre parcel identified as APN 555-444-333",
+    "lease_term": "Three (3) years",
+    "rent_terms": "$500 per acre annually",
+    "permitted_crops": "Almonds"
+  },
+  "discovered_entities": []
+}
+342_schema_additions.json
+
+JSON
+
+{
+  "lease_details": {
+    "type": "object",
+    "description": "Details specific to a property lease agreement.",
+    "properties": {
+      "lease_type": { "type": "string" },
+      "premises_address": { "type": "string" },
+      "premises_sqft": { "type": "integer" },
+      "lease_term_months": { "type": "integer" },
+      "commencement_date": { "type": "string", "format": "date" },
+      "expiration_date": { "type": "string", "format": "date" },
+      "base_rent": { "type": "string" },
+      "operating_expenses_pass_through": { "type": "string" },
+      "renewal_options": { "type": "string" },
+      "property_description": { "type": "string" },
+      "lease_term_years": { "type": "integer" },
+      "rent_schedule": { "type": "string" },
+      "permitted_use": { "type": "string" },
+      "reversion_clause": { "type": "string" },
+      "property_name": { "type": "string" },
+      "unit_number": { "type": "string" },
+      "monthly_rent": { "type": "number" },
+      "security_deposit": { "type": "number" },
+      "pet_policy": { "type": "string" },
+      "utility_responsibilities": { "type": "string" },
+      "lease_term": { "type": "string" },
+      "rent_terms": { "type": "string" },
+      "permitted_crops": { "type": "string" }
+    }
+  }
+}
+Document Type 343: Williamson Act Contracts & Notices
+343_specialist_schema.json
+
+JSON
+
+{
+  "title": "Williamson Act Contract/Notice Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Land Conservation Act Contract'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Landowner", "County"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "williamson_act_details": {
+      "type": "object",
+      "properties": {
+        "contract_number": { "type": "string" },
+        "property_apn": { "type": "string" },
+        "acreage": { "type": "number" },
+        "term_of_contract": { "type": "string" },
+        "notice_of_non_renewal_date": { "type": "string", "format": "date" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "williamson_act_details"]
+}
+343_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+CALIFORNIA LAND CONSERVATION ACT CONTRACT
+Contract No. WA2020-001
+
+This contract is made by and between the County of Yolo and Ranch Properties LLC, Landowner of APN 012-345-678, consisting of 500 acres.
+
+The Landowner agrees to restrict the use of the land to agricultural and compatible uses for an initial term of 10 years, automatically renewing annually.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "California Land Conservation Act Contract",
+  "effective_date": null,
+  "parties": [
+    { "name": "County of Yolo", "role": "County" },
+    { "name": "Ranch Properties LLC", "role": "Landowner" }
+  ],
+  "williamson_act_details": {
+    "contract_number": "WA2020-001",
+    "property_apn": "012-345-678",
+    "acreage": 500,
+    "term_of_contract": "Initial term of 10 years, automatically renewing annually.",
+    "notice_of_non_renewal_date": null
+  },
+  "discovered_entities": []
+}
+343_schema_additions.json
+
+JSON
+
+{
+  "williamson_act_details": {
+    "type": "object",
+    "description": "Details specific to a Williamson Act contract.",
+    "properties": {
+      "contract_number": { "type": "string" },
+      "property_apn": { "type": "string" },
+      "acreage": { "type": "number" },
+      "term_of_contract": { "type": "string" },
+      "notice_of_non_renewal_date": { "type": "string", "format": "date" }
+    }
+  }
+}
+Document Type 344: Agency Comment/Response Letters
+344_specialist_schema.json
+
+JSON
+
+{
+  "title": "Agency Comment/Response Letter Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Comment Letter on Draft EIR'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Commenting Agency", "Receiving Agency", "Author", "Recipient"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "correspondence_details": {
+      "type": "object",
+      "properties": {
+        "document_type": { "type": "string", "enum": ["Comment Letter", "Response to Comments"] },
+        "project_name": { "type": "string" },
+        "subject_document": { "type": "string" },
+        "summary_of_comments": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "correspondence_details"]
+}
+344_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+Department of Fish and Wildlife
+Date: September 1, 2030
+To: City of Oakville, Planning Department
+
+Subject: Comments on the Draft EIR for the Oakville Quarry Redevelopment Project
+
+The Department has reviewed the Draft EIR and has concerns regarding potential impacts to the on-site seasonal wetlands. We recommend that Mitigation Measure BIO-1 be strengthened to require protocol-level surveys for fairy shrimp.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Comment Letter on Draft EIR",
+  "effective_date": "2030-09-01",
+  "parties": [
+    { "name": "Department of Fish and Wildlife", "role": "Commenting Agency" },
+    { "name": "City of Oakville, Planning Department", "role": "Receiving Agency" }
+  ],
+  "correspondence_details": {
+    "document_type": "Comment Letter",
+    "project_name": "Oakville Quarry Redevelopment Project",
+    "subject_document": "Draft EIR",
+    "summary_of_comments": "Concerns regarding impacts to seasonal wetlands. Recommends strengthening Mitigation Measure BIO-1 to require protocol-level surveys for fairy shrimp."
+  },
+  "discovered_entities": []
+}
+344_schema_additions.json
+
+JSON
+
+{
+  "correspondence_details": {
+    "type": "object",
+    "description": "Details specific to correspondence like letters or memos.",
+    "properties": {
+      "document_type": { "type": "string" },
+      "project_name": { "type": "string" },
+      "subject_document": { "type": "string" },
+      "summary_of_comments": { "type": "string" }
+    }
+  }
+}
+Document Type 345: Staff Memos
+345_specialist_schema.json
+
+JSON
+
+{
+  "title": "Staff Memo Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Memorandum'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Author", "Recipient"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "correspondence_details": {
+      "type": "object",
+      "properties": {
+        "subject": { "type": "string" },
+        "summary": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "correspondence_details"]
+}
+345_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+MEMORANDUM
+
+TO: City Manager
+FROM: Planning Director
+DATE: July 10, 2030
+SUBJECT: Update on the Oakville Quarry Project EIR
+
+The Draft EIR public review period has closed. We received 15 comment letters. Staff is now preparing the Response to Comments document and the Final EIR, which we anticipate releasing in August.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Memorandum",
+  "effective_date": "2030-07-10",
+  "parties": [
+    { "name": "Planning Director", "role": "Author" },
+    { "name": "City Manager", "role": "Recipient" }
+  ],
+  "correspondence_details": {
+    "subject": "Update on the Oakville Quarry Project EIR",
+    "summary": "The Draft EIR review period has closed with 15 comment letters received. Staff is preparing the Response to Comments and Final EIR for release in August."
+  },
+  "discovered_entities": []
+}
+345_schema_additions.json
+
+JSON
+
+{
+  "correspondence_details": {
+    "type": "object",
+    "description": "Details specific to correspondence like letters or memos.",
+    "properties": {
+      "document_type": { "type": "string" },
+      "project_name": { "type": "string" },
+      "subject_document": { "type": "string" },
+      "summary_of_comments": { "type": "string" },
+      "subject": { "type": "string" },
+      "summary": { "type": "string" }
+    }
+  }
+}
+Document Type 346: Hearing Notices
+346_specialist_schema.json
+
+JSON
+
+{
+  "title": "Hearing Notice Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Notice of Public Hearing'."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Noticing Agency", "Applicant"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "hearing_details": {
+      "type": "object",
+      "properties": {
+        "hearing_date": { "type": "string", "format": "date" },
+        "hearing_time": { "type": "string" },
+        "hearing_location": { "type": "string" },
+        "hearing_body": { "type": "string" },
+        "project_description": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "hearing_details"]
+}
+346_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+NOTICE OF PUBLIC HEARING
+
+NOTICE IS HEREBY GIVEN that the Planning Commission of the City of Vista will hold a public hearing on Tuesday, November 15, 2029, at 6:00 PM in the City Council Chambers, 123 Civic Center Drive, Vista, CA.
+
+The purpose of the hearing is to consider an application (P29-123) by Vista Storage Solutions LLC for a Conditional Use Permit to allow a self-storage facility.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Notice of Public Hearing",
+  "parties": [
+    { "name": "Planning Commission of the City of Vista", "role": "Noticing Agency" },
+    { "name": "Vista Storage Solutions LLC", "role": "Applicant" }
+  ],
+  "hearing_details": {
+    "hearing_date": "2029-11-15",
+    "hearing_time": "6:00 PM",
+    "hearing_location": "City Council Chambers, 123 Civic Center Drive, Vista, CA",
+    "hearing_body": "Planning Commission of the City of Vista",
+    "project_description": "Consider an application (P29-123) for a Conditional Use Permit to allow a self-storage facility."
+  },
+  "discovered_entities": []
+}
+346_schema_additions.json
+
+JSON
+
+{
+  "hearing_details": {
+    "type": "object",
+    "description": "Details specific to a public hearing notice.",
+    "properties": {
+      "hearing_date": { "type": "string", "format": "date" },
+      "hearing_time": { "type": "string" },
+      "hearing_location": { "type": "string" },
+      "hearing_body": { "type": "string" },
+      "project_description": { "type": "string" }
+    }
+  }
+}
+Document Type 347: Proofs of Publication/Mailing
+347_specialist_schema.json
+
+JSON
+
+{
+  "title": "Proof of Publication/Mailing Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Affidavit of Publication'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Publisher", "Declarant", "Mailing Service"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "proof_of_service_details": {
+      "type": "object",
+      "properties": {
+        "service_type": { "type": "string", "enum": ["Publication", "Mailing"] },
+        "document_served": { "type": "string" },
+        "publication_name": { "type": "string" },
+        "publication_dates": { "type": "array", "items": { "type": "string" } },
+        "mailing_date": { "type": "string", "format": "date" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "proof_of_service_details"]
+}
+347_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+AFFIDAVIT OF PUBLICATION
+THE VISTA CHRONICLE
+
+I hereby certify that the Notice of Public Hearing for CUP P29-123 was published in the Vista Chronicle, a newspaper of general circulation, on October 25, 2029.
+
+Signed: (Signature), Publisher
+Date: October 26, 2029
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Affidavit of Publication",
+  "effective_date": "2029-10-26",
+  "parties": [
+    { "name": "The Vista Chronicle", "role": "Publisher" }
+  ],
+  "proof_of_service_details": {
+    "service_type": "Publication",
+    "document_served": "Notice of Public Hearing for CUP P29-123",
+    "publication_name": "The Vista Chronicle",
+    "publication_dates": [
+      "2029-10-25"
+    ],
+    "mailing_date": null
+  },
+  "discovered_entities": []
+}
+347_schema_additions.json
+
+JSON
+
+{
+  "proof_of_service_details": {
+    "type": "object",
+    "description": "Details specific to a proof of service.",
+    "properties": {
+      "service_type": { "type": "string", "enum": ["Publication", "Mailing"] },
+      "document_served": { "type": "string" },
+      "publication_name": { "type": "string" },
+      "publication_dates": { "type": "array", "items": { "type": "string" } },
+      "mailing_date": { "type": "string", "format": "date" }
+    }
+  }
+}
+Document Type 348: Public Records (CPRA) Requests/Responses
+348_specialist_schema.json
+
+JSON
+
+{
+  "title": "Public Records Request/Response Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Public Records Act Request'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Requestor", "Public Agency"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "public_records_request_details": {
+      "type": "object",
+      "properties": {
+        "document_type": { "type": "string", "enum": ["Request", "Response"] },
+        "records_requested": { "type": "string" },
+        "response_summary": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "public_records_request_details"]
+}
+348_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+CALIFORNIA PUBLIC RECORDS ACT REQUEST
+
+Date: August 1, 2030
+To: City of Oakville, City Clerk
+From: John Citizen
+
+Pursuant to the CPRA, I hereby request copies of all staff reports and correspondence related to the Oakville Quarry Redevelopment Project.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "California Public Records Act Request",
+  "effective_date": "2030-08-01",
+  "parties": [
+    { "name": "John Citizen", "role": "Requestor" },
+    { "name": "City of Oakville, City Clerk", "role": "Public Agency" }
+  ],
+  "public_records_request_details": {
+    "document_type": "Request",
+    "records_requested": "All staff reports and correspondence related to the Oakville Quarry Redevelopment Project.",
+    "response_summary": null
+  },
+  "discovered_entities": []
+}
+348_schema_additions.json
+
+JSON
+
+{
+  "public_records_request_details": {
+    "type": "object",
+    "description": "Details specific to a public records act request or response.",
+    "properties": {
+      "document_type": { "type": "string", "enum": ["Request", "Response"] },
+      "records_requested": { "type": "string" },
+      "response_summary": { "type": "string" }
+    }
+  }
+}
+Document Type 349: Internal Memos
+349_specialist_schema.json
+
+JSON
+
+{
+  "title": "Internal Memo Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Memorandum'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Author", "Recipient"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "correspondence_details": {
+      "type": "object",
+      "properties": {
+        "subject": { "type": "string" },
+        "summary": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "correspondence_details"]
+}
+349_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+MEMORANDUM
+
+TO: Project Team
+FROM: John Developer
+DATE: October 5, 2030
+SUBJECT: Oakville Quarry Project - Schedule Update
+
+Please be advised that due to delays in the EIR process, our projected start of construction has been pushed back to Q2 2032. Please update your internal schedules accordingly.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Memorandum",
+  "effective_date": "2030-10-05",
+  "parties": [
+    { "name": "John Developer", "role": "Author" },
+    { "name": "Project Team", "role": "Recipient" }
+  ],
+  "correspondence_details": {
+    "subject": "Oakville Quarry Project - Schedule Update",
+    "summary": "Projected start of construction has been pushed back to Q2 2032 due to EIR delays."
+  },
+  "discovered_entities": []
+}
+349_schema_additions.json
+
+JSON
+
+{
+  "correspondence_details": {
+    "type": "object",
+    "description": "Details specific to correspondence like letters or memos.",
+    "properties": {
+      "document_type": { "type": "string" },
+      "project_name": { "type": "string" },
+      "subject_document": { "type": "string" },
+      "summary_of_comments": { "type": "string" },
+      "subject": { "type": "string" },
+      "summary": { "type": "string" }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+**INPUT DOCUMENT TEXT:**
+GREEN VALLEY RANCH HOMEOWNERS ASSOCIATION
+ARCHITECTURAL REVIEW COMMITTEE - NOTICE OF APPROVAL
+
+Date: February 10, 2030
+Applicant: Sarah Miller
+Property: 123 Green Valley Lane
+
+The Architectural Review Committee has approved the applicant's plans for a new patio cover and outdoor kitchen, as shown on the drawings prepared by "Patio Pros" dated January 15, 2030.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Architectural Review Committee - Notice of Approval",
+  "effective_date": "2030-02-10",
+  "parties": [
+    { "name": "Sarah Miller", "role": "Applicant" },
+    { "name": "Green Valley Ranch Homeowners Association", "role": "Approving Body" }
+  ],
+  "entitlement_details": {
+    "project_description": "A new patio cover and outdoor kitchen at 123 Green Valley Lane.",
+    "approval_statement": "The Architectural Review Committee has approved the applicant's plans.",
+    "approved_plans_reference": "Drawings prepared by 'Patio Pros' dated January 15, 2030."
+  },
+  "discovered_entities": []
+}

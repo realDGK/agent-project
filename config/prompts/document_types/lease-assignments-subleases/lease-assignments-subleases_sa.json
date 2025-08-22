@@ -1,0 +1,11 @@
+{
+  "lease_assignment_details": {
+    "type": "object",
+    "description": "Details specific to a lease assignment or sublease.",
+    "properties": {
+      "assignment_type": { "type": "string", "enum": ["Assignment", "Sublease"] },
+      "master_lease_date": { "type": "string", "format": "date" },
+      "landlord_consent_required": { "type": "boolean" }
+    }
+  }
+}

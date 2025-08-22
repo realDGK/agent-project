@@ -1,0 +1,68 @@
+{
+  "title": "Trustee's Deed Upon Sale Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string"
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "Trustee",
+              "Grantee",
+              "Purchaser"
+            ]
+          }
+        },
+        "required": [
+          "name",
+          "role"
+        ]
+      }
+    },
+    "deed_details": {
+      "type": "object",
+      "properties": {
+        "deed_type": {
+          "type": "string"
+        },
+        "property_legal_description": {
+          "type": "string"
+        },
+        "apn": {
+          "type": "string"
+        },
+        "sale_amount": {
+          "type": "number"
+        },
+        "original_trustor": {
+          "type": "string"
+        },
+        "original_beneficiary": {
+          "type": "string"
+        },
+        "deed_of_trust_recording_info": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "required": [
+    "contract_name",
+    "effective_date",
+    "parties",
+    "deed_details"
+  ]
+}

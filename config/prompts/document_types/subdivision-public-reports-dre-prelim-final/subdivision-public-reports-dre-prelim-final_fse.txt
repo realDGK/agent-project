@@ -1,0 +1,30 @@
+**INPUT DOCUMENT TEXT:**
+STATE OF CALIFORNIA
+DEPARTMENT OF REAL ESTATE
+FINAL SUBDIVISION PUBLIC REPORT
+
+File No: 012345-LA
+Subdivision: GREEN VALLEY RANCH
+Subdivider: Green Valley Developers LLC
+Issue Date: August 1, 2033
+Expires: August 1, 2038
+
+This report is for a 200-lot single-family residential subdivision. No lot or unit may be sold or leased until the prospective purchaser has been given a copy of this report.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Final Subdivision Public Report",
+  "effective_date": "2033-08-01",
+  "parties": [
+    { "name": "Green Valley Developers LLC", "role": "Subdivider" },
+    { "name": "California Department of Real Estate", "role": "Issuing Agency" }
+  ],
+  "public_report_details": {
+    "report_type": "Final",
+    "file_number": "012345-LA",
+    "subdivision_name": "Green Valley Ranch",
+    "number_of_lots_or_units": 200,
+    "expiration_date": "2038-08-01"
+  },
+  "discovered_entities": []
+}

@@ -1,0 +1,71 @@
+{
+  "title": "GIS & Model Data Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name or title of the dataset."
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date",
+      "description": "The creation or publication date of the data."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "Creator",
+              "Owner",
+              "Client"
+            ]
+          }
+        },
+        "required": [
+          "name",
+          "role"
+        ]
+      }
+    },
+    "gis_details": {
+      "type": "object",
+      "properties": {
+        "data_type": {
+          "type": "string",
+          "enum": [
+            "Aerial Photo",
+            "LiDAR",
+            "GIS Layer",
+            "3D Model",
+            "BIM"
+          ]
+        },
+        "project_name": {
+          "type": "string"
+        },
+        "geographic_coverage": {
+          "type": "string"
+        },
+        "coordinate_system": {
+          "type": "string"
+        },
+        "file_format": {
+          "type": "string",
+          "description": "e.g., 'Shapefile', '.dwg', '.rvt', '.tif'"
+        }
+      }
+    }
+  },
+  "required": [
+    "contract_name",
+    "effective_date",
+    "gis_details"
+  ]
+}

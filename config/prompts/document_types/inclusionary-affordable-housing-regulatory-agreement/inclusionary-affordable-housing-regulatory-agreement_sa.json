@@ -1,0 +1,13 @@
+{
+  "regulatory_agreement_details": {
+    "type": "object",
+    "description": "Details specific to an affordable housing or regulatory agreement.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "property_address": { "type": "string" },
+      "number_of_restricted_units": { "type": "integer" },
+      "affordability_levels": { "type": "string" },
+      "term_of_restrictions": { "type": "string" }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "oz_details": {
+    "type": "object",
+    "description": "Details specific to a Qualified Opportunity Zone investment.",
+    "properties": {
+      "fund_name": { "type": "string" },
+      "fund_ein": { "type": "string" },
+      "investment_property_address": { "type": "string" }
+    }
+  }
+}

@@ -1,0 +1,32 @@
+**INPUT DOCUMENT TEXT:**
+Initial Study / Mitigated Negative Declaration
+Project Title: Elm Street Apartments
+Lead Agency: City of Springfield
+Project Applicant: Springfield Homes LLC
+Date: May 15, 2030
+
+ENVIRONMENTAL FACTORS POTENTIALLY AFFECTED:
+The environmental factors checked below would be potentially affected by this project:
+[ ] Aesthetics [X] Biological Resources [ ] Cultural Resources
+
+DETERMINATION:
+On the basis of this initial evaluation, the Lead Agency finds that the proposed project COULD have a significant effect on the environment, however, there will not be a significant effect because revisions in the project have been made. A MITIGATED NEGATIVE DECLARATION will be prepared.
+
+Mitigation Measure BIO-1: A pre-construction survey for nesting birds shall be conducted.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Initial Study / Mitigated Negative Declaration",
+  "effective_date": "2030-05-15",
+  "parties": [
+    { "name": "City of Springfield", "role": "Lead Agency" },
+    { "name": "Springfield Homes LLC", "role": "Project Applicant" }
+  ],
+  "environmental_details": {
+    "document_type": "Initial Study",
+    "project_name": "Elm Street Apartments",
+    "environmental_determination": "Less Than Significant Impact with Mitigation (Mitigated Negative Declaration will be prepared).",
+    "mitigation_measures_summary": "Mitigation Measure BIO-1: A pre-construction survey for nesting birds shall be conducted."
+  },
+  "discovered_entities": []
+}

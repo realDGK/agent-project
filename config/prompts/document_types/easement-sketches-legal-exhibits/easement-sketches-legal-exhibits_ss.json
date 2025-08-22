@@ -1,0 +1,50 @@
+{
+  "title": "Easement Exhibit Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "e.g., 'Exhibit A', 'Legal Description of Easement'"
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "Surveyor",
+              "Engineer"
+            ]
+          }
+        }
+      }
+    },
+    "map_details": {
+      "type": "object",
+      "properties": {
+        "property_legal_description": {
+          "type": "string"
+        },
+        "apn": {
+          "type": "string"
+        },
+        "purpose_of_exhibit": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "required": [
+    "contract_name",
+    "map_details"
+  ]
+}

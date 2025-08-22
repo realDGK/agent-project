@@ -1,0 +1,48 @@
+{
+  "title": "Biological Opinion/Incidental Take Permit Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Biological Opinion'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Action Agency", "Consulting Agency", "Applicant"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "biological_opinion_details": {
+      "type": "object",
+      "properties": {
+        "consultation_number": { "type": "string" },
+        "project_name": { "type": "string" },
+        "species_affected": { "type": "array", "items": { "type": "string" } },
+        "jeopardy_finding": { "type": "boolean" },
+        "incidental_take_statement": { "type": "string" },
+        "conservation_measures": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "biological_opinion_details"]
+}

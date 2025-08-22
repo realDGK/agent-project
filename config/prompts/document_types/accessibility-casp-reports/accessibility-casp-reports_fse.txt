@@ -1,0 +1,27 @@
+**INPUT DOCUMENT TEXT:**
+CERTIFIED ACCESS SPECIALIST (CASp) INSPECTION REPORT
+
+Property: 1500 Oak Street, Walnut Creek, CA
+Client: Oak Street Properties LLC
+Inspection Date: June 5, 2033
+Inspector: Access Compliance Group, CASp #123
+
+DETERMINATION:
+This property was inspected by a Certified Access Specialist and was determined to meet all applicable construction-related accessibility standards.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "CASp Inspection Report",
+  "effective_date": "2033-06-05",
+  "parties": [
+    { "name": "Access Compliance Group", "role": "CASp Inspector" },
+    { "name": "Oak Street Properties LLC", "role": "Client" }
+  ],
+  "casp_report_details": {
+    "property_address": "1500 Oak Street, Walnut Creek, CA",
+    "inspection_date": "2033-06-05",
+    "determination": "Inspected by a CASp and determined to meet all applicable construction-related accessibility standards.",
+    "summary_of_findings": null
+  },
+  "discovered_entities": []
+}

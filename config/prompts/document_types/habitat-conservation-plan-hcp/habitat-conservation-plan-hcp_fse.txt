@@ -1,0 +1,21 @@
+**INPUT DOCUMENT TEXT:**
+EAST CONTRA COSTA COUNTY
+HABITAT CONSERVATION PLAN / NATURAL COMMUNITY CONSERVATION PLAN
+
+This HCP/NCCP provides a framework to protect natural resources while streamlining environmental permitting for impacts to 28 covered species, including the San Joaquin kit fox, within the 175,000-acre plan area. Mitigation is provided through a combination of land acquisition and habitat restoration.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "East Contra Costa County Habitat Conservation Plan / Natural Community Conservation Plan",
+  "effective_date": null,
+  "parties": [],
+  "hcp_details": {
+    "plan_area": "175,000 acres",
+    "covered_species": [
+      "San Joaquin kit fox",
+      "27 others"
+    ],
+    "mitigation_strategy": "A combination of land acquisition and habitat restoration."
+  },
+  "discovered_entities": []
+}

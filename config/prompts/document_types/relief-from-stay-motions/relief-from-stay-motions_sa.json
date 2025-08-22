@@ -1,0 +1,16 @@
+{
+  "bankruptcy_details": {
+    "type": "object",
+    "description": "Details specific to a bankruptcy filing.",
+    "properties": {
+      "court_name": { "type": "string" },
+      "case_number": { "type": "string" },
+      "chapter": { "type": "string" },
+      "total_assets": { "type": "number" },
+      "total_liabilities": { "type": "number" },
+      "proof_of_claim_amount": { "type": "number" },
+      "property_address": { "type": "string" },
+      "reason_for_relief": { "type": "string" }
+    }
+  }
+}

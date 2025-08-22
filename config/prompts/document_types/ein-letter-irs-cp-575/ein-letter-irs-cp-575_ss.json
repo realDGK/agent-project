@@ -1,0 +1,54 @@
+{
+  "title": "EIN Confirmation Letter (CP-575) Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'EIN Confirmation Letter' or 'IRS Notice CP-575'."
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date",
+      "description": "The date the notice was issued by the IRS."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Entity", "Issuing Authority"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "tax_details": {
+      "type": "object",
+      "properties": {
+        "ein": {
+          "type": "string",
+          "description": "The 9-digit Employer Identification Number assigned to the entity."
+        },
+        "form_reference": {
+          "type": "string",
+          "description": "The IRS form number referenced in the letter (e.g., 'CP-575')."
+        }
+      }
+    },
+    "discovered_entities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "entity_name": { "type": "string" },
+          "entity_value": { "type": "string" },
+          "context_summary": { "type": "string" }
+        }
+      }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "tax_details"]
+}

@@ -1,0 +1,13 @@
+{
+  "assignment_details": {
+    "type": "object",
+    "description": "Details specific to the assignment and assumption of a contract or property.",
+    "properties": {
+      "original_agreement_name": { "type": "string" },
+      "original_agreement_date": { "type": "string", "format": "date" },
+      "assumption_of_obligations": { "type": "string" },
+      "consideration": { "type": "string" },
+      "assigned_property_description": { "type": "string" }
+    }
+  }
+}

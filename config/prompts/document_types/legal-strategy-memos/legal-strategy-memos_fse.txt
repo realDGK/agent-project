@@ -1,0 +1,26 @@
+**INPUT DOCUMENT TEXT:**
+CONFIDENTIAL ATTORNEY-CLIENT PRIVILEGED MEMORANDUM
+
+TO: File
+FROM: Lead Counsel
+DATE: June 15, 2032
+RE: City Electric Inc. vs. BuildRight Corp. - Litigation Strategy
+
+ISSUE: Plaintiff has filed a mechanic's lien and stop notice for $450,000.
+
+RECOMMENDATION: Our initial strategy will be to file a motion to release the lien based on a defect in their preliminary notice. Concurrently, we will open settlement discussions, offering to bond around the lien in exchange for a withdrawal of the stop notice to keep loan funds flowing.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Confidential Attorney-Client Privileged Memorandum",
+  "effective_date": "2032-06-15",
+  "parties": [
+    { "name": "Lead Counsel", "role": "Author" }
+  ],
+  "legal_strategy_memo_details": {
+    "subject_matter": "City Electric Inc. vs. BuildRight Corp. - Litigation Strategy",
+    "issue_summary": "Plaintiff has filed a mechanic's lien and stop notice for $450,000.",
+    "recommended_strategy": "File a motion to release the lien due to a defective preliminary notice and open settlement discussions to bond around the lien in exchange for withdrawing the stop notice."
+  },
+  "discovered_entities": []
+}

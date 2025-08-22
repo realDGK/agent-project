@@ -1,0 +1,48 @@
+{
+  "title": "Bankruptcy Filing Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Voluntary Petition for Bankruptcy'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Debtor", "Creditor", "Trustee"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "bankruptcy_details": {
+      "type": "object",
+      "properties": {
+        "court_name": { "type": "string" },
+        "case_number": { "type": "string" },
+        "chapter": { "type": "string", "enum": ["7", "11", "13"] },
+        "total_assets": { "type": "number" },
+        "total_liabilities": { "type": "number" },
+        "proof_of_claim_amount": { "type": "number" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "bankruptcy_details"]
+}

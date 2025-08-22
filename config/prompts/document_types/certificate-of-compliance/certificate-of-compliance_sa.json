@@ -1,0 +1,11 @@
+{
+  "compliance_certificate_details": {
+    "type": "object",
+    "description": "Details specific to a certificate of compliance.",
+    "properties": {
+      "property_description": { "type": "string" },
+      "apn": { "type": "string" },
+      "certification_statement": { "type": "string" }
+    }
+  }
+}

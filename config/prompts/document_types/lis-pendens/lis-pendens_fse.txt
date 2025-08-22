@@ -1,0 +1,30 @@
+**INPUT DOCUMENT TEXT:**
+NOTICE OF PENDENCY OF ACTION (LIS PENDENS)
+
+NOTICE IS HEREBY GIVEN that an action has been commenced in the Superior Court of California, County of Alameda, Case No. RG12345678, by Plaintiff, General Contractor Inc., against Defendant, Property Owner LLC.
+
+The action affects title to the real property located at 987 Construction Way, Oakland, CA. The object of the action is to foreclose a mechanic's lien.
+
+Dated: July 1, 2029
+Recorded: July 2, 2029, as Inst. No. 2029-777888
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Notice of Pendency of Action (Lis Pendens)",
+  "effective_date": "2029-07-01",
+  "parties": [
+    { "name": "General Contractor Inc.", "role": "Plaintiff" },
+    { "name": "Property Owner LLC", "role": "Defendant" }
+  ],
+  "litigation_details": {
+    "court_name": "Superior Court of California, County of Alameda",
+    "case_number": "RG12345678",
+    "property_affected": "987 Construction Way, Oakland, CA",
+    "nature_of_action": "To foreclose a mechanic's lien."
+  },
+  "legal_recording_details": {
+    "instrument_number": "2029-777888",
+    "recording_date": "2029-07-02"
+  },
+  "discovered_entities": []
+}

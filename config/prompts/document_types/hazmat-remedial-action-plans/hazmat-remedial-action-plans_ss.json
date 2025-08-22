@@ -1,0 +1,46 @@
+{
+  "title": "Remedial Action Plan Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Remedial Action Plan'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Author", "Consultant", "Client", "Regulatory Agency"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "remediation_plan_details": {
+      "type": "object",
+      "properties": {
+        "site_address": { "type": "string" },
+        "contaminants_of_concern": { "type": "array", "items": { "type": "string" } },
+        "remedial_approach": { "type": "string" },
+        "cleanup_goals": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "remediation_plan_details"]
+}

@@ -1,0 +1,25 @@
+**INPUT DOCUMENT TEXT:**
+OFFICIAL STATEMENT
+$3,500,000
+CITY OF OAKWOOD
+Limited Obligation Improvement Bonds (AD 2032-A)
+
+Dated: August 1, 2032
+
+The Bonds are issued to provide financing for the acquisition and construction of public streetscape improvements. The Bonds are secured by the unpaid assessments levied against the parcels of land within Assessment District No. 2032-A.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Official Statement",
+  "effective_date": "2032-08-01",
+  "parties": [
+    { "name": "City of Oakwood", "role": "Issuer" }
+  ],
+  "bond_details": {
+    "bond_series_name": "Limited Obligation Improvement Bonds (AD 2032-A)",
+    "principal_amount": 3500000,
+    "purpose_of_bonds": "To provide financing for the acquisition and construction of public streetscape improvements.",
+    "security_for_bonds": "Secured by the unpaid assessments levied against the parcels of land within Assessment District No. 2032-A."
+  },
+  "discovered_entities": []
+}

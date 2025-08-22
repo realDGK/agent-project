@@ -1,0 +1,28 @@
+**INPUT DOCUMENT TEXT:**
+NET ENERGY METERING (NEM) AGREEMENT
+
+This Agreement is made on January 15, 2028, between San Diego Gas & Electric ("Utility") and The Lofts at Market Street LLC ("Customer-Generator").
+
+Service Account: 555-1234
+Facility Location: 789 Market St, San Diego, CA
+Generator Technology: Solar Photovoltaic
+System Capacity: 75 kW
+
+Any net surplus generation at the end of a 12-month period will be compensated at the net surplus compensation (NSC) rate as determined by the CPUC.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Net Energy Metering (NEM) Agreement",
+  "effective_date": "2028-01-15",
+  "parties": [
+    { "name": "San Diego Gas & Electric", "role": "Utility" },
+    { "name": "The Lofts at Market Street LLC", "role": "Customer-Generator" }
+  ],
+  "net_metering_details": {
+    "service_account_number": "555-1234",
+    "generating_facility_address": "789 Market St, San Diego, CA",
+    "generator_type": "Solar Photovoltaic",
+    "system_capacity_kw": 75,
+    "net_surplus_compensation_rate": "Net surplus compensation (NSC) rate as determined by the CPUC."
+  }
+}

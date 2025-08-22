@@ -1,0 +1,27 @@
+**INPUT DOCUMENT TEXT:**
+RIVERBEND TRACT NO. 8888
+GRADING AND DRAINAGE IMPROVEMENT PLANS
+
+PREPARED FOR: Riverbend Homes LLC
+PREPARED BY: Apex Civil Engineering
+APPROVED BY: City of Riverbend
+APPROVAL DATE: August 1, 2030
+
+This set consists of 25 sheets.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Grading and Drainage Improvement Plans",
+  "effective_date": "2030-08-01",
+  "parties": [
+    { "name": "Apex Civil Engineering", "role": "Engineer" },
+    { "name": "Riverbend Homes LLC", "role": "Developer" },
+    { "name": "City of Riverbend", "role": "Approving Agency" }
+  ],
+  "plan_details": {
+    "project_name": "Riverbend Tract No. 8888",
+    "plan_type": "Civil Plan Set",
+    "plan_sheet_count": 25
+  },
+  "discovered_entities": []
+}

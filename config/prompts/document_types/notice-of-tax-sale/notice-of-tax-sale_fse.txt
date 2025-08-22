@@ -1,0 +1,21 @@
+**INPUT DOCUMENT TEXT:**
+NOTICE OF PUBLIC AUCTION FOR TAX-DEFAULTED PROPERTY
+Sale No. 2028-01. County of Marin Tax Collector.
+
+Notice is hereby given that on February 15, 2028, the Tax Collector will sell the property assessed to Jane Owner, APN 444-555-666, at public auction. The minimum bid for the property, located at 789 Pine Street, Sausalito, CA, is $52,100.00. The sale will be conducted online at www.marintax.com.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Notice of Public Auction for Tax-Defaulted Property",
+  "parties": [
+    { "name": "Jane Owner", "role": "Assessee" },
+    { "name": "County of Marin Tax Collector", "role": "Taxing Authority" }
+  ],
+  "tax_sale_details": {
+    "property_address": "789 Pine Street, Sausalito, CA",
+    "apn": "444-555-666",
+    "sale_date": "2028-02-15",
+    "sale_location": "Online at www.marintax.com",
+    "minimum_bid": 52100
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "title": "Survey/Title Delivery Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, often an email or transmittal letter."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Sender", "Recipient"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "transmittal_details": {
+      "type": "object",
+      "properties": {
+        "documents_delivered": { "type": "array", "items": { "type": "string" } },
+        "project_name": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "transmittal_details"]
+}

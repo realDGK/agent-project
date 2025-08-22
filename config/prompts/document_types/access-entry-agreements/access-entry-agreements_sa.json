@@ -1,0 +1,13 @@
+{
+  "access_details": {
+    "type": "object",
+    "description": "Details specific to an agreement granting temporary access to a property.",
+    "properties": {
+      "property_description": { "type": "string" },
+      "purpose_of_access": { "type": "string" },
+      "access_period": { "type": "string" },
+      "insurance_requirements": { "type": "string" },
+      "indemnification_clause": { "type": "string" }
+    }
+  }
+}

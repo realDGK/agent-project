@@ -1,0 +1,39 @@
+**INPUT DOCUMENT TEXT:**
+Letter of Intent to Purchase Real Estate
+
+Date: May 1, 2027
+Seller: John & Jane Smith
+Purchaser: Pinecone Development Group LLC
+
+This letter outlines the basic terms for the purchase of the property at 789 Country Road, Anytown, USA.
+
+1. Purchase Price: The total purchase price shall be One Million Two Hundred Thousand Dollars ($1,200,000).
+2. Deposit: Upon execution of a formal PSA, Purchaser will deposit $25,000 into escrow.
+3. Due Diligence: Purchaser shall have forty-five (45) days from mutual execution of the PSA to conduct its due diligence.
+4. Closing: Closing shall occur within 30 days following the expiration of the Due Diligence period.
+5. Non-Binding: This Letter of Intent is not a binding contract, except for the confidentiality provisions.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Letter of Intent to Purchase Real Estate",
+  "effective_date": "2027-05-01",
+  "parties": [
+    {
+      "name": "John & Jane Smith",
+      "role": "Seller"
+    },
+    {
+      "name": "Pinecone Development Group LLC",
+      "role": "Purchaser"
+    }
+  ],
+  "deal_terms": {
+    "property_description": "789 Country Road, Anytown, USA",
+    "purchase_price": 1200000,
+    "deposit_amount": 25000,
+    "due_diligence_period": "Forty-five (45) days from mutual execution of the PSA.",
+    "closing_period": "Within 30 days following the expiration of the Due Diligence period.",
+    "is_binding": false
+  },
+  "discovered_entities": []
+}

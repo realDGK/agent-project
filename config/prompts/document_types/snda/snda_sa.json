@@ -1,0 +1,13 @@
+{
+  "snda_details": {
+    "type": "object",
+    "description": "Details specific to a Subordination, Non-Disturbance, and Attornment Agreement.",
+    "properties": {
+      "lease_date": { "type": "string", "format": "date" },
+      "deed_of_trust_date": { "type": "string", "format": "date" },
+      "subordination_clause": { "type": "string" },
+      "non_disturbance_clause": { "type": "string" },
+      "attornment_clause": { "type": "string" }
+    }
+  }
+}

@@ -1,0 +1,32 @@
+**INPUT DOCUMENT TEXT:**
+CONFIDENTIAL OFFERING MEMORANDUM
+Dated: March 1, 2028
+Issuer: Aspen Peak Real Estate Fund III, LP
+
+This memorandum relates to the private placement of limited partnership interests.
+
+THE OFFERING:
+The issuer is seeking to raise a total of $25,000,000. Interests are offered at a price of $50,000 per unit, with a minimum subscription of two (2) units ($100,000).
+
+RISK FACTORS:
+This investment involves a high degree of risk, including real estate market fluctuations and development risks.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Confidential Offering Memorandum",
+  "effective_date": "2028-03-01",
+  "parties": [
+    {
+      "name": "Aspen Peak Real Estate Fund III, LP",
+      "role": "Issuer"
+    }
+  ],
+  "offering_details": {
+    "offering_summary": "Private placement of limited partnership interests.",
+    "total_offering_amount": 25000000,
+    "price_per_unit_or_share": 50000,
+    "minimum_investment": 100000,
+    "risk_factors_summary": "Involves a high degree of risk, including real estate market fluctuations and development risks."
+  },
+  "discovered_entities": []
+}

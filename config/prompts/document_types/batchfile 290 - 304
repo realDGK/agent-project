@@ -1,0 +1,1653 @@
+Of course. The batch processing is working very well. Let's proceed with the next set of fifteen.
+
+Here are documents #305 through #319 from the checklist, all in the requested format.
+
+Document Type 305: Bankruptcy Petitions, Schedules, Proofs of Claim
+305_specialist_schema.json
+
+JSON
+
+{
+  "title": "Bankruptcy Filing Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Voluntary Petition for Bankruptcy'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Debtor", "Creditor", "Trustee"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "bankruptcy_details": {
+      "type": "object",
+      "properties": {
+        "court_name": { "type": "string" },
+        "case_number": { "type": "string" },
+        "chapter": { "type": "string", "enum": ["7", "11", "13"] },
+        "total_assets": { "type": "number" },
+        "total_liabilities": { "type": "number" },
+        "proof_of_claim_amount": { "type": "number" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "bankruptcy_details"]
+}
+305_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+UNITED STATES BANKRUPTCY COURT
+NORTHERN DISTRICT OF CALIFORNIA
+VOLUNTARY PETITION FOR NON-INDIVIDUALS FILING FOR BANKRUPTCY
+
+Case No. 32-12345
+Debtor: Old Retailer Inc.
+Date Filed: November 1, 2032
+
+[X] Chapter 11
+Estimated Assets: $1,000,001 - $10 million
+Estimated Liabilities: $10,000,001 - $50 million
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Voluntary Petition for Non-Individuals Filing for Bankruptcy",
+  "effective_date": "2032-11-01",
+  "parties": [
+    { "name": "Old Retailer Inc.", "role": "Debtor" }
+  ],
+  "bankruptcy_details": {
+    "court_name": "United States Bankruptcy Court, Northern District of California",
+    "case_number": "32-12345",
+    "chapter": "11",
+    "total_assets": null,
+    "total_liabilities": null,
+    "proof_of_claim_amount": null
+  },
+  "discovered_entities": []
+}
+305_schema_additions.json
+
+JSON
+
+{
+  "bankruptcy_details": {
+    "type": "object",
+    "description": "Details specific to a bankruptcy filing.",
+    "properties": {
+      "court_name": { "type": "string" },
+      "case_number": { "type": "string" },
+      "chapter": { "type": "string", "enum": ["7", "11", "13"] },
+      "total_assets": { "type": "number" },
+      "total_liabilities": { "type": "number" },
+      "proof_of_claim_amount": { "type": "number" }
+    }
+  }
+}
+Document Type 306: Relief from Stay motions
+306_specialist_schema.json
+
+JSON
+
+{
+  "title": "Relief from Stay Motion Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Motion for Relief from the Automatic Stay'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Moving Party", "Creditor", "Debtor"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "bankruptcy_details": {
+      "type": "object",
+      "properties": {
+        "case_number": { "type": "string" },
+        "property_address": { "type": "string" },
+        "reason_for_relief": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "bankruptcy_details"]
+}
+306_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+NOTICE OF MOTION AND MOTION FOR RELIEF FROM THE AUTOMATIC STAY
+Case No. 32-12345
+In re: Old Retailer Inc.
+
+Moving Party, Landlord LLC, a secured creditor, hereby moves the Court for an order granting relief from the automatic stay with respect to the real property at 100 Main Street.
+
+The Debtor has no equity in the property and the property is not necessary for an effective reorganization.
+
+Date Filed: December 1, 2032
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Motion for Relief from the Automatic Stay",
+  "effective_date": "2032-12-01",
+  "parties": [
+    { "name": "Landlord LLC", "role": "Moving Party" },
+    { "name": "Old Retailer Inc.", "role": "Debtor" }
+  ],
+  "bankruptcy_details": {
+    "case_number": "32-12345",
+    "property_address": "100 Main Street",
+    "reason_for_relief": "The Debtor has no equity in the property and the property is not necessary for an effective reorganization."
+  },
+  "discovered_entities": []
+}
+306_schema_additions.json
+
+JSON
+
+{
+  "bankruptcy_details": {
+    "type": "object",
+    "description": "Details specific to a bankruptcy filing.",
+    "properties": {
+      "court_name": { "type": "string" },
+      "case_number": { "type": "string" },
+      "chapter": { "type": "string" },
+      "total_assets": { "type": "number" },
+      "total_liabilities": { "type": "number" },
+      "proof_of_claim_amount": { "type": "number" },
+      "property_address": { "type": "string" },
+      "reason_for_relief": { "type": "string" }
+    }
+  }
+}
+Document Type 307: Secured/Unsecured Tax Bills
+307_specialist_schema.json
+
+JSON
+
+{
+  "title": "Property Tax Bill Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Property Tax Bill'."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Taxing Agency", "Assessed Owner"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "tax_details": {
+      "type": "object",
+      "properties": {
+        "apn": { "type": "string" },
+        "tax_year": { "type": "string" },
+        "assessed_value": { "type": "number" },
+        "total_tax_due": { "type": "number" },
+        "first_installment_due_date": { "type": "string", "format": "date" },
+        "second_installment_due_date": { "type": "string", "format": "date" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "tax_details"]
+}
+307_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+COUNTY OF ALAMEDA - ANNUAL SECURED PROPERTY TAX BILL
+TAX YEAR: 2032-2033
+APN: 123-456-789
+ASSESSED TO: Property Owner LLC
+
+ASSESSED VALUES:
+Land: $1,000,000
+Improvements: $4,000,000
+Total: $5,000,000
+
+TOTAL TAXES DUE: $55,000.00
+1st Installment Due: 11/01/2032
+2nd Installment Due: 02/01/2033
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Annual Secured Property Tax Bill",
+  "parties": [
+    { "name": "County of Alameda", "role": "Taxing Agency" },
+    { "name": "Property Owner LLC", "role": "Assessed Owner" }
+  ],
+  "tax_details": {
+    "apn": "123-456-789",
+    "tax_year": "2032-2033",
+    "assessed_value": 5000000,
+    "total_tax_due": 55000,
+    "first_installment_due_date": "2032-11-01",
+    "second_installment_due_date": "2033-02-01"
+  },
+  "discovered_entities": []
+}
+307_schema_additions.json
+
+JSON
+
+{
+  "tax_details": {
+    "type": "object",
+    "description": "Details specific to tax-related documents and information.",
+    "properties": {
+      "ein": { "type": "string" },
+      "form_reference": { "type": "string" },
+      "taxpayer_id_number": { "type": "string" },
+      "certification_statement": { "type": "string" },
+      "transferor_tin": { "type": "string" },
+      "gross_proceeds": { "type": "number" },
+      "property_description": { "type": "string" },
+      "property_apn": { "type": "string" },
+      "full_value_of_property": { "type": "number" },
+      "taxable_value": { "type": "number" },
+      "transfer_tax_amount": { "type": "number" },
+      "apn": { "type": "string" },
+      "tax_year": { "type": "string" },
+      "assessed_value": { "type": "number" },
+      "total_tax_due": { "type": "number" },
+      "first_installment_due_date": { "type": "string", "format": "date" },
+      "second_installment_due_date": { "type": "string", "format": "date" }
+    }
+  }
+}
+Document Type 308: Supplemental Tax Bills
+308_specialist_schema.json
+
+JSON
+
+{
+  "title": "Supplemental Tax Bill Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Supplemental Property Tax Bill'."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Taxing Agency", "Assessed Owner"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "tax_details": {
+      "type": "object",
+      "properties": {
+        "apn": { "type": "string" },
+        "reason_for_supplemental_bill": { "type": "string" },
+        "prior_assessed_value": { "type": "number" },
+        "new_assessed_value": { "type": "number" },
+        "supplemental_tax_due": { "type": "number" },
+        "due_date": { "type": "string", "format": "date" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "tax_details"]
+}
+308_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+NOTICE OF SUPPLEMENTAL PROPERTY TAX BILL
+COUNTY OF ALAMEDA
+
+APN: 123-456-789
+Reason for Bill: Change in Ownership on 10/30/2027.
+
+Prior Assessed Value: $5,000,000
+New Assessed Value (Sales Price): $10,000,000
+Supplemental Assessment: $5,000,000
+Supplemental Tax Due: $27,500.00
+Due Date: 01/15/2028
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Supplemental Property Tax Bill",
+  "parties": [
+    { "name": "County of Alameda", "role": "Taxing Agency" }
+  ],
+  "tax_details": {
+    "apn": "123-456-789",
+    "reason_for_supplemental_bill": "Change in Ownership on 10/30/2027.",
+    "prior_assessed_value": 5000000,
+    "new_assessed_value": 10000000,
+    "supplemental_tax_due": 27500,
+    "due_date": "2028-01-15"
+  },
+  "discovered_entities": []
+}
+308_schema_additions.json
+
+JSON
+
+{
+  "tax_details": {
+    "type": "object",
+    "description": "Details specific to tax-related documents and information.",
+    "properties": {
+      "ein": { "type": "string" },
+      "form_reference": { "type": "string" },
+      "taxpayer_id_number": { "type": "string" },
+      "certification_statement": { "type": "string" },
+      "transferor_tin": { "type": "string" },
+      "gross_proceeds": { "type": "number" },
+      "property_description": { "type": "string" },
+      "property_apn": { "type": "string" },
+      "full_value_of_property": { "type": "number" },
+      "taxable_value": { "type": "number" },
+      "transfer_tax_amount": { "type": "number" },
+      "apn": { "type": "string" },
+      "tax_year": { "type": "string" },
+      "assessed_value": { "type": "number" },
+      "total_tax_due": { "type": "number" },
+      "first_installment_due_date": { "type": "string", "format": "date" },
+      "second_installment_due_date": { "type": "string", "format": "date" },
+      "reason_for_supplemental_bill": { "type": "string" },
+      "prior_assessed_value": { "type": "number" },
+      "new_assessed_value": { "type": "number" },
+      "supplemental_tax_due": { "type": "number" },
+      "due_date": { "type": "string", "format": "date" }
+    }
+  }
+}
+Document Type 309: Property Tax Appeals
+309_specialist_schema.json
+
+JSON
+
+{
+  "title": "Property Tax Appeal Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Application for Changed Assessment'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Applicant", "Assessor"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "tax_appeal_details": {
+      "type": "object",
+      "properties": {
+        "apn": { "type": "string" },
+        "tax_year": { "type": "string" },
+        "assessor_s_value": { "type": "number" },
+        "applicant_s_opinion_of_value": { "type": "number" },
+        "reason_for_appeal": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "tax_appeal_details"]
+}
+309_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+APPLICATION FOR CHANGED ASSESSMENT
+County of Alameda Assessment Appeals Board
+
+1. APN: 123-456-789
+2. Applicant: Property Owner LLC
+3. Assessor's Value: $10,000,000
+4. Applicant's Opinion of Value: $8,500,000
+5. Reason: Decline in market value.
+
+Date Filed: September 1, 2033
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Application for Changed Assessment",
+  "effective_date": "2033-09-01",
+  "parties": [
+    { "name": "Property Owner LLC", "role": "Applicant" },
+    { "name": "County of Alameda Assessment Appeals Board", "role": "Assessor" }
+  ],
+  "tax_appeal_details": {
+    "apn": "123-456-789",
+    "tax_year": null,
+    "assessor_s_value": 10000000,
+    "applicant_s_opinion_of_value": 8500000,
+    "reason_for_appeal": "Decline in market value."
+  },
+  "discovered_entities": []
+}
+309_schema_additions.json
+
+JSON
+
+{
+  "tax_appeal_details": {
+    "type": "object",
+    "description": "Details specific to a property tax appeal.",
+    "properties": {
+      "apn": { "type": "string" },
+      "tax_year": { "type": "string" },
+      "assessor_s_value": { "type": "number" },
+      "applicant_s_opinion_of_value": { "type": "number" },
+      "reason_for_appeal": { "type": "string" }
+    }
+  }
+}
+Document Type 310: Prop 8 Decline-in-Value Files
+310_specialist_schema.json
+
+JSON
+
+{
+  "title": "Prop 8 Decline-in-Value Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Notice of Changed Assessment'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Assessor", "Property Owner"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "tax_appeal_details": {
+      "type": "object",
+      "properties": {
+        "apn": { "type": "string" },
+        "tax_year": { "type": "string" },
+        "original_assessed_value": { "type": "number" },
+        "prop_8_reduced_value": { "type": "number" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "tax_appeal_details"]
+}
+310_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+NOTICE OF TEMPORARY REDUCTION IN ASSESSED VALUE
+(Proposition 8)
+County of Alameda Assessor's Office
+
+Date: July 1, 2033
+APN: 123-456-789
+Owner: Property Owner LLC
+
+For the 2033-2034 tax year, your property's assessed value has been temporarily reduced due to a decline in market value.
+Original Prop 13 Value: $10,000,000
+Temporary Prop 8 Value: $8,500,000
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Notice of Temporary Reduction in Assessed Value (Proposition 8)",
+  "effective_date": "2033-07-01",
+  "parties": [
+    { "name": "County of Alameda Assessor's Office", "role": "Assessor" },
+    { "name": "Property Owner LLC", "role": "Property Owner" }
+  ],
+  "tax_appeal_details": {
+    "apn": "123-456-789",
+    "tax_year": "2033-2034",
+    "original_assessed_value": 10000000,
+    "prop_8_reduced_value": 8500000
+  },
+  "discovered_entities": []
+}
+310_schema_additions.json
+
+JSON
+
+{
+  "tax_appeal_details": {
+    "type": "object",
+    "description": "Details specific to a property tax appeal.",
+    "properties": {
+      "apn": { "type": "string" },
+      "tax_year": { "type": "string" },
+      "assessor_s_value": { "type": "number" },
+      "applicant_s_opinion_of_value": { "type": "number" },
+      "reason_for_appeal": { "type": "string" },
+      "original_assessed_value": { "type": "number" },
+      "prop_8_reduced_value": { "type": "number" }
+    }
+  }
+}
+Document Type 311: 1099s/W-9s
+311_specialist_schema.json
+
+JSON
+
+{
+  "title": "1099/W-9 Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Form W-9', 'Form 1099-MISC'."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Payor", "Recipient", "Requestor"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "tax_details": {
+      "type": "object",
+      "properties": {
+        "form_reference": { "type": "string" },
+        "taxpayer_id_number": { "type": "string" },
+        "total_payment_amount": { "type": "number" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "tax_details"]
+}
+311_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+Form W-9 (Rev. October 2018)
+Request for Taxpayer Identification Number and Certification
+
+1. Name: Apex Civil Engineering
+2. Business Name: Apex Civil Engineering Inc.
+4. Tax Classification: S Corporation
+5. Address: 500 Tech Circle, San Jose, CA
+Part I. Taxpayer Identification Number (TIN): 98-7654321
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Form W-9",
+  "parties": [
+    { "name": "Apex Civil Engineering Inc.", "role": "Recipient" }
+  ],
+  "tax_details": {
+    "form_reference": "W-9",
+    "taxpayer_id_number": "98-7654321",
+    "total_payment_amount": null
+  },
+  "discovered_entities": []
+}
+311_schema_additions.json
+
+JSON
+
+{
+  "tax_details": {
+    "type": "object",
+    "description": "Details specific to tax-related documents and information.",
+    "properties": {
+      "ein": { "type": "string" },
+      "form_reference": { "type": "string" },
+      "taxpayer_id_number": { "type": "string" },
+      "certification_statement": { "type": "string" },
+      "transferor_tin": { "type": "string" },
+      "gross_proceeds": { "type": "number" },
+      "property_description": { "type": "string" },
+      "property_apn": { "type": "string" },
+      "full_value_of_property": { "type": "number" },
+      "taxable_value": { "type": "number" },
+      "transfer_tax_amount": { "type": "number" },
+      "apn": { "type": "string" },
+      "tax_year": { "type": "string" },
+      "assessed_value": { "type": "number" },
+      "total_tax_due": { "type": "number" },
+      "first_installment_due_date": { "type": "string", "format": "date" },
+      "second_installment_due_date": { "type": "string", "format": "date" },
+      "reason_for_supplemental_bill": { "type": "string" },
+      "prior_assessed_value": { "type": "number" },
+      "new_assessed_value": { "type": "number" },
+      "supplemental_tax_due": { "type": "number" },
+      "due_date": { "type": "string", "format": "date" },
+      "total_payment_amount": { "type": "number" }
+    }
+  }
+}
+Document Type 312: Opportunity Zone Docs
+312_specialist_schema.json
+
+JSON
+
+{
+  "title": "Opportunity Zone Document Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Qualified Opportunity Fund Self-Certification'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Fund", "Investor"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "oz_details": {
+      "type": "object",
+      "properties": {
+        "fund_name": { "type": "string" },
+        "fund_ein": { "type": "string" },
+        "investment_property_address": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "oz_details"]
+}
+312_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+FORM 8996 - QUALIFIED OPPORTUNITY FUND
+
+Part I: Fund Information
+1a. Name of Fund: Urban Renewal QOF LLC
+1b. Employer Identification Number: 99-1234567
+
+Part II: Investment Information
+The fund's sole asset is the real property located at 500 Redevelopment Way, Anytown, CA, which is a qualified opportunity zone property.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Form 8996 - Qualified Opportunity Fund",
+  "effective_date": null,
+  "parties": [
+    { "name": "Urban Renewal QOF LLC", "role": "Fund" }
+  ],
+  "oz_details": {
+    "fund_name": "Urban Renewal QOF LLC",
+    "fund_ein": "99-1234567",
+    "investment_property_address": "500 Redevelopment Way, Anytown, CA"
+  },
+  "discovered_entities": []
+}
+312_schema_additions.json
+
+JSON
+
+{
+  "oz_details": {
+    "type": "object",
+    "description": "Details specific to a Qualified Opportunity Zone investment.",
+    "properties": {
+      "fund_name": { "type": "string" },
+      "fund_ein": { "type": "string" },
+      "investment_property_address": { "type": "string" }
+    }
+  }
+}
+Document Type 313: Cost Segregation Reports
+313_specialist_schema.json
+
+JSON
+
+{
+  "title": "Cost Segregation Report Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Cost Segregation Study'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Author", "Consultant", "Client"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "cost_segregation_details": {
+      "type": "object",
+      "properties": {
+        "property_address": { "type": "string" },
+        "total_depreciable_basis": { "type": "number" },
+        "reclassified_to_5_year_property": { "type": "number" },
+        "reclassified_to_7_year_property": { "type": "number" },
+        "reclassified_to_15_year_property": { "type": "number" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "cost_segregation_details"]
+}
+313_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+COST SEGREGATION ANALYSIS
+123 MAIN STREET OFFICE BUILDING
+
+Prepared for: Downtown Tower LLC
+Date: January 15, 2035
+
+EXECUTIVE SUMMARY:
+From a total depreciable basis of $80,000,000, our study reclassified the following:
+- 5-Year Property (e.g., carpet, fixtures): $8,000,000 (10%)
+- 15-Year Property (e.g., landscaping, parking lot): $12,000,000 (15%)
+The remaining $60,000,000 is 39-year real property.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Cost Segregation Analysis",
+  "effective_date": "2035-01-15",
+  "parties": [
+    { "name": "Downtown Tower LLC", "role": "Client" }
+  ],
+  "cost_segregation_details": {
+    "property_address": "123 Main Street Office Building",
+    "total_depreciable_basis": 80000000,
+    "reclassified_to_5_year_property": 8000000,
+    "reclassified_to_7_year_property": null,
+    "reclassified_to_15_year_property": 12000000
+  },
+  "discovered_entities": []
+}
+313_schema_additions.json
+
+JSON
+
+{
+  "cost_segregation_details": {
+    "type": "object",
+    "description": "Details specific to a cost segregation study.",
+    "properties": {
+      "property_address": { "type": "string" },
+      "total_depreciable_basis": { "type": "number" },
+      "reclassified_to_5_year_property": { "type": "number" },
+      "reclassified_to_7_year_property": { "type": "number" },
+      "reclassified_to_15_year_property": { "type": "number" }
+    }
+  }
+}
+Document Type 314: Depreciation Schedules
+314_specialist_schema.json
+
+JSON
+
+{
+  "title": "Depreciation Schedule Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Depreciation Schedule'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Accountant", "Owner"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "depreciation_schedule_details": {
+      "type": "object",
+      "properties": {
+        "property_name": { "type": "string" },
+        "year": { "type": "integer" },
+        "total_depreciation_expense": { "type": "number" },
+        "assets": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "asset_description": { "type": "string" },
+              "cost_basis": { "type": "number" },
+              "depreciation_method": { "type": "string" },
+              "useful_life_years": { "type": "integer" },
+              "current_year_depreciation": { "type": "number" }
+            }
+          }
+        }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "depreciation_schedule_details"]
+}
+314_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+FIXED ASSET DEPRECIATION SCHEDULE
+For the Year Ended December 31, 2035
+Property: 123 Main Street Office Building
+
+Asset | Cost | Method | Life | Current Depreciation
+Building | $60,000,000 | SL | 39 | $1,538,462
+Land Improvements | $12,000,000 | SL | 15 | $800,000
+Personal Property | $8,000,000 | MACRS | 5 | $1,600,000
+------------------------------------------------------
+TOTAL | | | | $3,938,462
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Fixed Asset Depreciation Schedule",
+  "effective_date": "2035-12-31",
+  "parties": [],
+  "depreciation_schedule_details": {
+    "property_name": "123 Main Street Office Building",
+    "year": 2035,
+    "total_depreciation_expense": 3938462,
+    "assets": [
+      {
+        "asset_description": "Building",
+        "cost_basis": 60000000,
+        "depreciation_method": "SL",
+        "useful_life_years": 39,
+        "current_year_depreciation": 1538462
+      },
+      {
+        "asset_description": "Land Improvements",
+        "cost_basis": 12000000,
+        "depreciation_method": "SL",
+        "useful_life_years": 15,
+        "current_year_depreciation": 800000
+      },
+      {
+        "asset_description": "Personal Property",
+        "cost_basis": 8000000,
+        "depreciation_method": "MACRS",
+        "useful_life_years": 5,
+        "current_year_depreciation": 1600000
+      }
+    ]
+  },
+  "discovered_entities": []
+}
+314_schema_additions.json
+
+JSON
+
+{
+  "depreciation_schedule_details": {
+    "type": "object",
+    "description": "Details specific to a depreciation schedule.",
+    "properties": {
+      "property_name": { "type": "string" },
+      "year": { "type": "integer" },
+      "total_depreciation_expense": { "type": "number" },
+      "assets": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "asset_description": { "type": "string" },
+            "cost_basis": { "type": "number" },
+            "depreciation_method": { "type": "string" },
+            "useful_life_years": { "type": "integer" },
+            "current_year_depreciation": { "type": "number" }
+          }
+        }
+      }
+    }
+  }
+}
+Document Type 315: 571-L Business Property Statements
+315_specialist_schema.json
+
+JSON
+
+{
+  "title": "571-L Business Property Statement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Business Property Statement'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Business Owner", "Assessor"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "tax_details": {
+      "type": "object",
+      "properties": {
+        "form_reference": { "type": "string", "default": "571-L" },
+        "business_name": { "type": "string" },
+        "business_address": { "type": "string" },
+        "total_cost_of_equipment": { "type": "number" },
+        "total_cost_of_supplies": { "type": "number" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "tax_details"]
+}
+315_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+FORM BOE-571-L - BUSINESS PROPERTY STATEMENT
+For the Year 2033
+County of Alameda Assessor
+
+Business Name: Logistics Solutions Inc.
+Location: 100 Business Park Drive
+
+PART II:
+1. Equipment: Total Cost $500,000
+2. Supplies: $25,000
+
+Date Signed: April 1, 2033
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Business Property Statement",
+  "effective_date": "2033-04-01",
+  "parties": [
+    { "name": "Logistics Solutions Inc.", "role": "Business Owner" },
+    { "name": "County of Alameda Assessor", "role": "Assessor" }
+  ],
+  "tax_details": {
+    "form_reference": "571-L",
+    "business_name": "Logistics Solutions Inc.",
+    "business_address": "100 Business Park Drive",
+    "total_cost_of_equipment": 500000,
+    "total_cost_of_supplies": 25000
+  },
+  "discovered_entities": []
+}
+315_schema_additions.json
+
+JSON
+
+{
+  "tax_details": {
+    "type": "object",
+    "description": "Details specific to tax-related documents and information.",
+    "properties": {
+      "ein": { "type": "string" },
+      "form_reference": { "type": "string" },
+      "taxpayer_id_number": { "type": "string" },
+      "certification_statement": { "type": "string" },
+      "transferor_tin": { "type": "string" },
+      "gross_proceeds": { "type": "number" },
+      "property_description": { "type": "string" },
+      "property_apn": { "type": "string" },
+      "full_value_of_property": { "type": "number" },
+      "taxable_value": { "type": "number" },
+      "transfer_tax_amount": { "type": "number" },
+      "apn": { "type": "string" },
+      "tax_year": { "type": "string" },
+      "assessed_value": { "type": "number" },
+      "total_tax_due": { "type": "number" },
+      "first_installment_due_date": { "type": "string", "format": "date" },
+      "second_installment_due_date": { "type": "string", "format": "date" },
+      "reason_for_supplemental_bill": { "type": "string" },
+      "prior_assessed_value": { "type": "number" },
+      "new_assessed_value": { "type": "number" },
+      "supplemental_tax_due": { "type": "number" },
+      "due_date": { "type": "string", "format": "date" },
+      "total_payment_amount": { "type": "number" },
+      "business_name": { "type": "string" },
+      "business_address": { "type": "string" },
+      "total_cost_of_equipment": { "type": "number" },
+      "total_cost_of_supplies": { "type": "number" }
+    }
+  }
+}
+Document Type 316: Sales/Use tax returns (ops/retail)
+316_specialist_schema.json
+
+JSON
+
+{
+  "title": "Sales/Use Tax Return Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Sales and Use Tax Return'."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Filer", "Taxing Agency"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "tax_details": {
+      "type": "object",
+      "properties": {
+        "account_number": { "type": "string" },
+        "reporting_period": { "type": "string" },
+        "total_sales": { "type": "number" },
+        "taxable_sales": { "type": "number" },
+        "tax_due": { "type": "number" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "tax_details"]
+}
+316_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+CALIFORNIA DEPARTMENT OF TAX AND FEE ADMINISTRATION
+SALES AND USE TAX RETURN
+
+Account No: 101-123456
+Business: The Coffee Spot LLC
+Period: Q1 2033 (Jan-Mar)
+
+1. Total Sales: $150,000
+2. Taxable Sales: $145,000
+3. Sales Tax Due (at 8.75%): $12,687.50
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Sales and Use Tax Return",
+  "parties": [
+    { "name": "The Coffee Spot LLC", "role": "Filer" },
+    { "name": "California Department of Tax and Fee Administration", "role": "Taxing Agency" }
+  ],
+  "tax_details": {
+    "account_number": "101-123456",
+    "reporting_period": "Q1 2033 (Jan-Mar)",
+    "total_sales": 150000,
+    "taxable_sales": 145000,
+    "tax_due": 12687.50
+  },
+  "discovered_entities": []
+}
+316_schema_additions.json
+
+JSON
+
+{
+  "tax_details": {
+    "type": "object",
+    "description": "Details specific to tax-related documents and information.",
+    "properties": {
+      "ein": { "type": "string" },
+      "form_reference": { "type": "string" },
+      "taxpayer_id_number": { "type": "string" },
+      "certification_statement": { "type": "string" },
+      "transferor_tin": { "type": "string" },
+      "gross_proceeds": { "type": "number" },
+      "property_description": { "type": "string" },
+      "property_apn": { "type": "string" },
+      "full_value_of_property": { "type": "number" },
+      "taxable_value": { "type": "number" },
+      "transfer_tax_amount": { "type": "number" },
+      "apn": { "type": "string" },
+      "tax_year": { "type": "string" },
+      "assessed_value": { "type": "number" },
+      "total_tax_due": { "type": "number" },
+      "first_installment_due_date": { "type": "string", "format": "date" },
+      "second_installment_due_date": { "type": "string", "format": "date" },
+      "reason_for_supplemental_bill": { "type": "string" },
+      "prior_assessed_value": { "type": "number" },
+      "new_assessed_value": { "type": "number" },
+      "supplemental_tax_due": { "type": "number" },
+      "due_date": { "type": "string", "format": "date" },
+      "total_payment_amount": { "type": "number" },
+      "business_name": { "type": "string" },
+      "business_address": { "type": "string" },
+      "total_cost_of_equipment": { "type": "number" },
+      "total_cost_of_supplies": { "type": "number" },
+      "account_number": { "type": "string" },
+      "reporting_period": { "type": "string" },
+      "total_sales": { "type": "number" },
+      "taxable_sales": { "type": "number" },
+      "tax_due": { "type": "number" }
+    }
+  }
+}
+Document Type 317: Civil Plan Sets
+317_specialist_schema.json
+
+JSON
+
+{
+  "title": "Civil Plan Set Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The title of the plan set, e.g., 'Grading and Drainage Plans'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Engineer", "Developer", "Approving Agency"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "plan_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "plan_type": { "type": "string", "default": "Civil Plan Set" },
+        "plan_sheet_count": { "type": "integer" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "plan_details"]
+}
+317_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+RIVERBEND TRACT NO. 8888
+GRADING AND DRAINAGE IMPROVEMENT PLANS
+
+PREPARED FOR: Riverbend Homes LLC
+PREPARED BY: Apex Civil Engineering
+APPROVED BY: City of Riverbend
+APPROVAL DATE: August 1, 2030
+
+This set consists of 25 sheets.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Grading and Drainage Improvement Plans",
+  "effective_date": "2030-08-01",
+  "parties": [
+    { "name": "Apex Civil Engineering", "role": "Engineer" },
+    { "name": "Riverbend Homes LLC", "role": "Developer" },
+    { "name": "City of Riverbend", "role": "Approving Agency" }
+  ],
+  "plan_details": {
+    "project_name": "Riverbend Tract No. 8888",
+    "plan_type": "Civil Plan Set",
+    "plan_sheet_count": 25
+  },
+  "discovered_entities": []
+}
+317_schema_additions.json
+
+JSON
+
+{
+  "plan_details": {
+    "type": "object",
+    "description": "Details specific to engineering or architectural plan sets.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "plan_type": { "type": "string" },
+      "engineer_of_record": { "type": "string" },
+      "approval_date": { "type": "string", "format": "date" },
+      "plan_sheet_count": { "type": "integer" },
+      "utilities_shown": { "type": "array", "items": { "type": "string" } },
+      "certification_statement": { "type": "string" }
+    }
+  }
+}
+Document Type 318: Vertical Plan Sets
+318_specialist_schema.json
+
+JSON
+
+{
+  "title": "Vertical Plan Set Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The title of the plan set, e.g., 'Architectural Plans'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Architect", "Structural Engineer", "MEP Engineer", "Owner"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "plan_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "plan_type": { "type": "string", "default": "Vertical Plan Set" },
+        "building_description": { "type": "string" },
+        "plan_sheet_count": { "type": "integer" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "plan_details"]
+}
+318_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+CONSTRUCTION DOCUMENTS
+FOR
+DOWNTOWN TOWER
+
+ARCHITECT: Global Architects Inc.
+STRUCTURAL ENGINEER: Structural Solutions LLC
+OWNER: Downtown Tower LLC
+DATE: June 1, 2031
+
+This set of 150 drawings includes architectural, structural, and MEP plans for the 20-story mixed-use tower.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Construction Documents",
+  "effective_date": "2031-06-01",
+  "parties": [
+    { "name": "Global Architects Inc.", "role": "Architect" },
+    { "name": "Structural Solutions LLC", "role": "Structural Engineer" },
+    { "name": "Downtown Tower LLC", "role": "Owner" }
+  ],
+  "plan_details": {
+    "project_name": "Downtown Tower",
+    "plan_type": "Vertical Plan Set",
+    "building_description": "20-story mixed-use tower",
+    "plan_sheet_count": 150
+  },
+  "discovered_entities": []
+}
+318_schema_additions.json
+
+JSON
+
+{
+  "plan_details": {
+    "type": "object",
+    "description": "Details specific to engineering or architectural plan sets.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "plan_type": { "type": "string" },
+      "engineer_of_record": { "type": "string" },
+      "approval_date": { "type": "string", "format": "date" },
+      "plan_sheet_count": { "type": "integer" },
+      "utilities_shown": { "type": "array", "items": { "type": "string" } },
+      "certification_statement": { "type": "string" },
+      "building_description": { "type": "string" }
+    }
+  }
+}
+Document Type 319: Landscape/Irrigation Plans
+319_specialist_schema.json
+
+JSON
+
+{
+  "title": "Landscape/Irrigation Plan Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The title of the plan set, e.g., 'Landscape and Irrigation Plans'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Landscape Architect", "Developer", "Approving Agency"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "plan_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "plan_type": { "type": "string", "default": "Landscape/Irrigation Plan" },
+        "plan_summary": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "plan_details"]
+}
+319_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+LANDSCAPE ARCHITECTURAL PLANS
+FOR DOWNTOWN TOWER PLAZA
+
+Prepared by: Urban Spaces Design
+Date: June 15, 2031
+
+This plan set details the hardscape, planting, and irrigation for the public plaza area of the Downtown Tower project. All plant materials are drought-tolerant native species.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Landscape Architectural Plans",
+  "effective_date": "2031-06-15",
+  "parties": [
+    { "name": "Urban Spaces Design", "role": "Landscape Architect" }
+  ],
+  "plan_details": {
+    "project_name": "Downtown Tower Plaza",
+    "plan_type": "Landscape/Irrigation Plan",
+    "plan_summary": "Details the hardscape, planting, and irrigation for the public plaza. All plant materials are drought-tolerant native species."
+  },
+  "discovered_entities": []
+}
+319_schema_additions.json
+
+JSON
+
+{
+  "plan_details": {
+    "type": "object",
+    "description": "Details specific to engineering or architectural plan sets.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "plan_type": { "type": "string" },
+      "engineer_of_record": { "type": "string" },
+      "approval_date": { "type": "string", "format": "date" },
+      "plan_sheet_count": { "type": "integer" },
+      "utilities_shown": { "type": "array", "items": { "type": "string" } },
+      "certification_statement": { "type": "string" },
+      "building_description": { "type": "string" },
+      "plan_summary": { "type": "string" }
+    }
+  }
+}

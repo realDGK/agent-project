@@ -1,0 +1,12 @@
+{
+  "remediation_plan_details": {
+    "type": "object",
+    "description": "Details specific to a hazardous materials remediation plan.",
+    "properties": {
+      "site_address": { "type": "string" },
+      "contaminants_of_concern": { "type": "array", "items": { "type": "string" } },
+      "remedial_approach": { "type": "string" },
+      "cleanup_goals": { "type": "string" }
+    }
+  }
+}

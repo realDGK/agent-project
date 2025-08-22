@@ -1,0 +1,40 @@
+**INPUT DOCUMENT TEXT:**
+GENERAL ESCROW INSTRUCTIONS
+
+To: Premier Title & Escrow ("Escrow Holder")
+From: OAK TREE INVESTORS, LLC ("Seller") and WESTERN LAND PARTNERS, LP ("Buyer")
+Date: September 5, 2027
+Escrow No: PT-54321
+
+Relating to the sale of 100 Valley View Road, Napa, CA for $10,000,000.
+
+You are authorized to close escrow on or before October 30, 2027, provided the following conditions are met:
+1. You hold a fully executed Grant Deed from Seller.
+2. You hold Buyer's funds in the amount of the purchase price.
+3. You have received a demand from First Bank to pay off the existing loan.
+
+Upon closing, you will disburse funds to pay off the existing loan and remit the balance to Seller.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "General Escrow Instructions",
+  "effective_date": "2027-09-05",
+  "parties": [
+    { "name": "Premier Title & Escrow", "role": "Escrow Holder" },
+    { "name": "OAK TREE INVESTORS, LLC", "role": "Seller" },
+    { "name": "WESTERN LAND PARTNERS, LP", "role": "Buyer" }
+  ],
+  "escrow_details": {
+    "escrow_number": "PT-54321",
+    "property_description": "100 Valley View Road, Napa, CA",
+    "purchase_price": 10000000,
+    "closing_date": "2027-10-30",
+    "conditions_to_close": [
+      "Hold a fully executed Grant Deed from Seller.",
+      "Hold Buyer's funds for the purchase price.",
+      "Receive a payoff demand from First Bank."
+    ],
+    "disbursement_summary": "Disburse funds to pay off the existing loan and remit the balance to Seller."
+  },
+  "discovered_entities": []
+}

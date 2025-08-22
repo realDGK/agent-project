@@ -1,0 +1,67 @@
+{
+  "title": "ROFR/ROFO Agreement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Right of First Refusal Agreement'."
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date",
+      "description": "The date the agreement was fully executed."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Grantor", "Holder", "Owner", "Beneficiary"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "preemptive_rights_details": {
+      "type": "object",
+      "properties": {
+        "right_type": {
+          "type": "string",
+          "enum": ["ROFR", "ROFO"],
+          "description": "Right of First Refusal (ROFR) or Right of First Offer (ROFO)."
+        },
+        "property_description": {
+          "type": "string",
+          "description": "A description of the property subject to the right."
+        },
+        "triggering_event": {
+          "type": "string",
+          "description": "The event that triggers the right (e.g., 'Owner's intent to sell', 'Receipt of a third-party offer')."
+        },
+        "procedure_summary": {
+          "type": "string",
+          "description": "A summary of the notification and exercise process."
+        },
+        "exercise_period": {
+          "type": "string",
+          "description": "The time the holder has to exercise their right."
+        }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "preemptive_rights_details"]
+}

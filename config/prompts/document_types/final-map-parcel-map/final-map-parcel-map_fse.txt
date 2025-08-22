@@ -1,0 +1,30 @@
+**INPUT DOCUMENT TEXT:**
+FINAL MAP OF TRACT NO. 9876
+CITY OF IRVINE, ORANGE COUNTY, CALIFORNIA
+
+This map was filed in the office of the County Recorder of Orange County, California, on June 1, 2029, in Book 123 of Maps, at Pages 45-47, as Instrument No. 2029-0012345.
+
+This map consists of 10 residential lots.
+
+Owner: Irvine Community Development Company
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Final Map of Tract No. 9876",
+  "parties": [
+    { "name": "Irvine Community Development Company", "role": "Owner" },
+    { "name": "Orange County Recorder", "role": "County Recorder" }
+  ],
+  "map_details": {
+    "map_type": "Final Map",
+    "map_number": "9876",
+    "number_of_lots_created": 10
+  },
+  "legal_recording_details": {
+    "instrument_number": "2029-0012345",
+    "recording_date": "2029-06-01",
+    "book_and_page": "Book 123 of Maps, at Pages 45-47",
+    "county": "Orange"
+  },
+  "discovered_entities": []
+}

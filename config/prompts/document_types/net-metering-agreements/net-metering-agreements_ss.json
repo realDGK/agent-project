@@ -1,0 +1,61 @@
+{
+  "title": "Net Metering Agreement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string"
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "Customer-Generator",
+              "Utility"
+            ]
+          }
+        },
+        "required": [
+          "name",
+          "role"
+        ]
+      }
+    },
+    "net_metering_details": {
+      "type": "object",
+      "properties": {
+        "service_account_number": {
+          "type": "string"
+        },
+        "generating_facility_address": {
+          "type": "string"
+        },
+        "generator_type": {
+          "type": "string"
+        },
+        "system_capacity_kw": {
+          "type": "number"
+        },
+        "net_surplus_compensation_rate": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "required": [
+    "contract_name",
+    "effective_date",
+    "parties",
+    "net_metering_details"
+  ]
+}

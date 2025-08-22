@@ -1,0 +1,23 @@
+**INPUT DOCUMENT TEXT:**
+NOTICE OF PUBLIC HEARING
+
+NOTICE IS HEREBY GIVEN that the Planning Commission of the City of Vista will hold a public hearing on Tuesday, November 15, 2029, at 6:00 PM in the City Council Chambers, 123 Civic Center Drive, Vista, CA.
+
+The purpose of the hearing is to consider an application (P29-123) by Vista Storage Solutions LLC for a Conditional Use Permit to allow a self-storage facility.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Notice of Public Hearing",
+  "parties": [
+    { "name": "Planning Commission of the City of Vista", "role": "Noticing Agency" },
+    { "name": "Vista Storage Solutions LLC", "role": "Applicant" }
+  ],
+  "hearing_details": {
+    "hearing_date": "2029-11-15",
+    "hearing_time": "6:00 PM",
+    "hearing_location": "City Council Chambers, 123 Civic Center Drive, Vista, CA",
+    "hearing_body": "Planning Commission of the City of Vista",
+    "project_description": "Consider an application (P29-123) for a Conditional Use Permit to allow a self-storage facility."
+  },
+  "discovered_entities": []
+}

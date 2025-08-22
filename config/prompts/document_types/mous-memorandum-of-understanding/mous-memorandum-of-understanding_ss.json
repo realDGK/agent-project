@@ -1,0 +1,45 @@
+{
+  "title": "Memorandum of Understanding (MOU) Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Memorandum of Understanding'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Party"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "mou_details": {
+      "type": "object",
+      "properties": {
+        "purpose_of_mou": { "type": "string" },
+        "key_understandings": { "type": "array", "items": { "type": "string" } },
+        "is_binding": { "type": "boolean" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "mou_details"]
+}

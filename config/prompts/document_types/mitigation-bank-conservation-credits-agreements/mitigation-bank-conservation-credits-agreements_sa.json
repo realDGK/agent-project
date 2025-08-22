@@ -1,0 +1,14 @@
+{
+  "mitigation_credit_details": {
+    "type": "object",
+    "description": "Details specific to the purchase or sale of mitigation or conservation credits.",
+    "properties": {
+      "bank_name": { "type": "string" },
+      "credit_type": { "type": "string" },
+      "number_of_credits": { "type": "number" },
+      "price_per_credit": { "type": "number" },
+      "total_purchase_price": { "type": "number" },
+      "project_to_be_mitigated": { "type": "string" }
+    }
+  }
+}

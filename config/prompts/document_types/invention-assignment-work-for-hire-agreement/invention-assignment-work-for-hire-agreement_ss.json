@@ -1,0 +1,54 @@
+{
+  "title": "Invention Assignment / Work-for-Hire Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Confidential Information and Invention Assignment Agreement'."
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date",
+      "description": "The date the agreement was signed or became effective."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Company", "Employee", "Contractor"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "ip_assignment_details": {
+      "type": "object",
+      "properties": {
+        "assignment_scope": {
+          "type": "string",
+          "description": "A summary of the types of intellectual property being assigned to the company."
+        },
+        "prior_inventions_clause": {
+          "type": "string",
+          "description": "A summary of the clause addressing inventions created by the individual prior to their engagement with the company."
+        }
+      }
+    },
+    "discovered_entities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "entity_name": { "type": "string" },
+          "entity_value": { "type": "string" },
+          "context_summary": { "type": "string" }
+        }
+      }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "ip_assignment_details"]
+}

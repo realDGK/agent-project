@@ -1,0 +1,37 @@
+{
+  "permit_details": {
+    "type": "object",
+    "description": "Details specific to a permit issued by a government agency.",
+    "properties": {
+      "permit_number": { "type": "string" },
+      "property_address": { "type": "string" },
+      "sign_description": { "type": "string" },
+      "sign_dimensions": { "type": "string" },
+      "expiration_date": { "type": "string", "format": "date" },
+      "permit_type": { "type": "string" },
+      "authorized_activity": { "type": "string" },
+      "impacts_authorized": { "type": "string" },
+      "mitigation_required": { "type": "string" },
+      "certification_number": { "type": "string" },
+      "project_name": { "type": "string" },
+      "related_404_permit": { "type": "string" },
+      "key_conditions": { "type": "array", "items": { "type": "string" } },
+      "notification_number": { "type": "string" },
+      "term_of_agreement": { "type": "string" },
+      "equipment_or_process_permitted": { "type": "string" },
+      "utility_type": { "type": "string" },
+      "connection_fee": { "type": "number" },
+      "meter_size": { "type": "string" },
+      "permit_summary": { "type": "string" },
+      "location_of_work": { "type": "string" },
+      "authorized_work_summary": { "type": "string" },
+      "scope_of_work": { "type": "string" },
+      "valuation": { "type": "number" },
+      "facility_address": { "type": "string" },
+      "discharge_limits": { "type": "string" },
+      "monitoring_requirements": { "type": "string" },
+      "business_name": { "type": "string" },
+      "business_address": { "type": "string" }
+    }
+  }
+}

@@ -1,0 +1,1489 @@
+Document Type 201: Testing Reports (Compaction/Concrete/Steel)
+201_specialist_schema.json
+
+JSON
+
+{
+  "title": "Testing Report Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Concrete Compressive Strength Test Report'."
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date",
+      "description": "The date the report was issued."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Testing Laboratory", "Client", "Contractor"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "testing_report_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "report_number": { "type": "string" },
+        "test_type": { "type": "string" },
+        "test_date": { "type": "string", "format": "date" },
+        "test_results_summary": { "type": "string" },
+        "is_passing": { "type": "boolean" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "testing_report_details"]
+}
+201_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+MATERIALS TESTING & INSPECTION
+CONCRETE COMPRESSIVE STRENGTH REPORT
+
+Report No: 3456-001
+Date: January 15, 2032
+Client: BuildRight Corp.
+Project: Downtown Tower
+
+Test Date: 01/14/2032
+Sample Location: 12th Floor Slab Pour
+Specified Strength: 4,000 psi
+7-Day Break Result: 3,200 psi (80%)
+28-Day Break Result: 4,550 psi (114%)
+
+Results: The sample meets the specified 28-day compressive strength requirements.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Concrete Compressive Strength Report",
+  "effective_date": "2032-01-15",
+  "parties": [
+    { "name": "Materials Testing & Inspection", "role": "Testing Laboratory" },
+    { "name": "BuildRight Corp.", "role": "Client" }
+  ],
+  "testing_report_details": {
+    "project_name": "Downtown Tower",
+    "report_number": "3456-001",
+    "test_type": "Concrete Compressive Strength",
+    "test_date": "2032-01-14",
+    "test_results_summary": "7-Day: 3,200 psi (80%); 28-Day: 4,550 psi (114%)",
+    "is_passing": true
+  },
+  "discovered_entities": []
+}
+201_schema_additions.json
+
+JSON
+
+{
+  "testing_report_details": {
+    "type": "object",
+    "description": "Details specific to a materials testing report.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "report_number": { "type": "string" },
+      "test_type": { "type": "string" },
+      "test_date": { "type": "string", "format": "date" },
+      "test_results_summary": { "type": "string" },
+      "is_passing": { "type": "boolean" }
+    }
+  }
+}
+Document Type 202: Pay Applications
+202_specialist_schema.json
+
+JSON
+
+{
+  "title": "Pay Application Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Application and Certificate for Payment'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Contractor", "Owner", "Architect"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "pay_application_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "application_number": { "type": "string" },
+        "period_to": { "type": "string", "format": "date" },
+        "original_contract_sum": { "type": "number" },
+        "net_change_by_change_orders": { "type": "number" },
+        "contract_sum_to_date": { "type": "number" },
+        "total_completed_and_stored_to_date": { "type": "number" },
+        "retainage": { "type": "number" },
+        "total_earned_less_retainage": { "type": "number" },
+        "less_previous_certificates_for_payment": { "type": "number" },
+        "current_payment_due": { "type": "number" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "pay_application_details"]
+}
+202_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+AIA Document G702® – 1992
+Application and Certificate for Payment
+
+APPLICATION NO: 005
+PERIOD TO: March 31, 2032
+PROJECT: Downtown Tower
+TO OWNER: Downtown Tower LLC
+FROM CONTRACTOR: BuildRight Corp.
+
+1. ORIGINAL CONTRACT SUM: $100,000,000.00
+2. Net change by Change Orders: $575,000.00
+3. CONTRACT SUM TO DATE: $100,575,000.00
+4. TOTAL COMPLETED & STORED TO DATE: $25,143,750.00
+5. RETAINAGE (10%): $2,514,375.00
+6. TOTAL EARNED LESS RETAINAGE: $22,629,375.00
+7. LESS PREVIOUS CERTIFICATES FOR PAYMENT: $20,179,375.00
+8. CURRENT PAYMENT DUE: $2,450,000.00
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Application and Certificate for Payment",
+  "effective_date": null,
+  "parties": [
+    { "name": "BuildRight Corp.", "role": "Contractor" },
+    { "name": "Downtown Tower LLC", "role": "Owner" }
+  ],
+  "pay_application_details": {
+    "project_name": "Downtown Tower",
+    "application_number": "005",
+    "period_to": "2032-03-31",
+    "original_contract_sum": 100000000,
+    "net_change_by_change_orders": 575000,
+    "contract_sum_to_date": 100575000,
+    "total_completed_and_stored_to_date": 25143750,
+    "retainage": 2514375,
+    "total_earned_less_retainage": 22629375,
+    "less_previous_certificates_for_payment": 20179375,
+    "current_payment_due": 2450000
+  },
+  "discovered_entities": []
+}
+202_schema_additions.json
+
+JSON
+
+{
+  "pay_application_details": {
+    "type": "object",
+    "description": "Details specific to a construction payment application.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "application_number": { "type": "string" },
+      "period_to": { "type": "string", "format": "date" },
+      "original_contract_sum": { "type": "number" },
+      "net_change_by_change_orders": { "type": "number" },
+      "contract_sum_to_date": { "type": "number" },
+      "total_completed_and_stored_to_date": { "type": "number" },
+      "retainage": { "type": "number" },
+      "total_earned_less_retainage": { "type": "number" },
+      "less_previous_certificates_for_payment": { "type": "number" },
+      "current_payment_due": { "type": "number" }
+    }
+  }
+}
+Document Type 203: Conditional/Unconditional Lien Waivers
+203_specialist_schema.json
+
+JSON
+
+{
+  "title": "Lien Waiver Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Conditional Waiver and Release on Progress Payment'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Claimant", "Customer", "Owner"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "lien_waiver_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "waiver_type": { "type": "string", "enum": ["Conditional Progress", "Unconditional Progress", "Conditional Final", "Unconditional Final"] },
+        "through_date": { "type": "string", "format": "date" },
+        "payment_amount": { "type": "number" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "lien_waiver_details"]
+}
+203_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+CONDITIONAL WAIVER AND RELEASE ON PROGRESS PAYMENT
+
+Claimant: City Electric Inc.
+Customer: BuildRight Corp.
+Job Location: Downtown Tower
+
+Upon receipt by the undersigned of a check in the amount of $350,000.00, the undersigned hereby waives and releases its lien and payment bond rights for labor, services, equipment, or material furnished to the jobsite through February 28, 2032.
+
+Date: March 5, 2032
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Conditional Waiver and Release on Progress Payment",
+  "effective_date": "2032-03-05",
+  "parties": [
+    { "name": "City Electric Inc.", "role": "Claimant" },
+    { "name": "BuildRight Corp.", "role": "Customer" }
+  ],
+  "lien_waiver_details": {
+    "project_name": "Downtown Tower",
+    "waiver_type": "Conditional Progress",
+    "through_date": "2032-02-28",
+    "payment_amount": 350000
+  },
+  "discovered_entities": []
+}
+203_schema_additions.json
+
+JSON
+
+{
+  "lien_waiver_details": {
+    "type": "object",
+    "description": "Details specific to a mechanic's lien waiver and release.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "waiver_type": { "type": "string", "enum": ["Conditional Progress", "Unconditional Progress", "Conditional Final", "Unconditional Final"] },
+      "through_date": { "type": "string", "format": "date" },
+      "payment_amount": { "type": "number" }
+    }
+  }
+}
+Document Type 204: Preliminary Notices
+204_specialist_schema.json
+
+JSON
+
+{
+  "title": "Preliminary Notice Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Preliminary Notice' or '20-Day Preliminary Notice'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Claimant", "Direct Contractor", "Owner", "Construction Lender"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "preliminary_notice_details": {
+      "type": "object",
+      "properties": {
+        "project_address": { "type": "string" },
+        "work_or_materials_provided": { "type": "string" },
+        "estimated_total_price": { "type": "number" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "preliminary_notice_details"]
+}
+204_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+CALIFORNIA 20-DAY PRELIMINARY NOTICE
+
+NOTICE IS HEREBY GIVEN TO:
+- OWNER: Downtown Tower LLC
+- DIRECT CONTRACTOR: BuildRight Corp.
+- CONSTRUCTION LENDER: Mega Bank, N.A.
+
+BY CLAIMANT: City Electric Inc., 123 Industrial Way
+JOB SITE: 123 Main Street, Downtown Tower
+
+Claimant has furnished or will furnish electrical materials and labor with an estimated total price of $5,000,000.
+
+Date: October 5, 2031
+
+**JSON OUTPUT:**
+{
+  "contract_name": "California 20-Day Preliminary Notice",
+  "effective_date": "2031-10-05",
+  "parties": [
+    { "name": "City Electric Inc.", "role": "Claimant" },
+    { "name": "BuildRight Corp.", "role": "Direct Contractor" },
+    { "name": "Downtown Tower LLC", "role": "Owner" },
+    { "name": "Mega Bank, N.A.", "role": "Construction Lender" }
+  ],
+  "preliminary_notice_details": {
+    "project_address": "123 Main Street, Downtown Tower",
+    "work_or_materials_provided": "Electrical materials and labor",
+    "estimated_total_price": 5000000
+  },
+  "discovered_entities": []
+}
+204_schema_additions.json
+
+JSON
+
+{
+  "preliminary_notice_details": {
+    "type": "object",
+    "description": "Details specific to a preliminary notice for mechanic's lien rights.",
+    "properties": {
+      "project_address": { "type": "string" },
+      "work_or_materials_provided": { "type": "string" },
+      "estimated_total_price": { "type": "number" }
+    }
+  }
+}
+Document Type 205: Stop Payment Notices
+205_specialist_schema.json
+
+JSON
+
+{
+  "title": "Stop Payment Notice Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Stop Payment Notice'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Claimant", "Direct Contractor", "Owner", "Construction Lender"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "stop_payment_notice_details": {
+      "type": "object",
+      "properties": {
+        "project_address": { "type": "string" },
+        "amount_of_claim": { "type": "number" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "stop_payment_notice_details"]
+}
+205_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+STOP PAYMENT NOTICE
+
+To: Mega Bank, N.A. (Construction Lender)
+To: Downtown Tower LLC (Owner)
+
+Claimant: City Electric Inc.
+Amount of Claim: $450,000.00
+
+You are hereby notified to withhold sufficient funds to satisfy the claimant's demand for unpaid electrical work on the Downtown Tower project.
+
+Date: May 1, 2032
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Stop Payment Notice",
+  "effective_date": "2032-05-01",
+  "parties": [
+    { "name": "City Electric Inc.", "role": "Claimant" },
+    { "name": "Downtown Tower LLC", "role": "Owner" },
+    { "name": "Mega Bank, N.A.", "role": "Construction Lender" }
+  ],
+  "stop_payment_notice_details": {
+    "project_address": "Downtown Tower project",
+    "amount_of_claim": 450000
+  },
+  "discovered_entities": []
+}
+205_schema_additions.json
+
+JSON
+
+{
+  "stop_payment_notice_details": {
+    "type": "object",
+    "description": "Details specific to a stop payment notice.",
+    "properties": {
+      "project_address": { "type": "string" },
+      "amount_of_claim": { "type": "number" }
+    }
+  }
+}
+Document Type 206: Mechanics Liens
+206_specialist_schema.json
+
+JSON
+
+{
+  "title": "Mechanics Lien Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Mechanic's Lien'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Claimant", "Owner"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "mechanics_lien_details": {
+      "type": "object",
+      "properties": {
+        "property_address": { "type": "string" },
+        "amount_of_lien": { "type": "number" }
+      }
+    },
+    "legal_recording_details": {
+      "type": "object",
+      "properties": {
+        "instrument_number": { "type": "string" },
+        "recording_date": { "type": "string", "format": "date" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "mechanics_lien_details"]
+}
+206_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+MECHANIC'S LIEN
+
+Claimant: City Electric Inc.
+vs.
+Owner: Downtown Tower LLC
+
+NOTICE IS HEREBY GIVEN that City Electric Inc. claims a lien on the property at 123 Main Street for the sum of $450,000.00 for electrical work performed.
+
+Recorded: June 1, 2032, as Instrument No. 2032-555666
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Mechanic's Lien",
+  "effective_date": null,
+  "parties": [
+    { "name": "City Electric Inc.", "role": "Claimant" },
+    { "name": "Downtown Tower LLC", "role": "Owner" }
+  ],
+  "mechanics_lien_details": {
+    "property_address": "123 Main Street",
+    "amount_of_lien": 450000
+  },
+  "legal_recording_details": {
+    "instrument_number": "2032-555666",
+    "recording_date": "2032-06-01"
+  },
+  "discovered_entities": []
+}
+206_schema_additions.json
+
+JSON
+
+{
+  "mechanics_lien_details": {
+    "type": "object",
+    "description": "Details specific to a mechanic's lien.",
+    "properties": {
+      "property_address": { "type": "string" },
+      "amount_of_lien": { "type": "number" }
+    }
+  }
+}
+Document Type 207: Payment & Performance Bonds
+207_specialist_schema.json
+
+JSON
+
+{
+  "title": "Payment & Performance Bond Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Performance Bond'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Principal", "Surety", "Obligee"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "bond_details": {
+      "type": "object",
+      "properties": {
+        "bond_number": { "type": "string" },
+        "bond_type": { "type": "string", "enum": ["Payment", "Performance"] },
+        "penal_sum": { "type": "number" },
+        "project_description": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "bond_details"]
+}
+207_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+PERFORMANCE BOND
+
+Bond No: 9876543
+Date: September 1, 2031
+
+PRINCIPAL: BuildRight Corp.
+SURETY: Global Surety Company
+OBLIGEE: Downtown Tower LLC
+
+PENAL SUM: One Hundred Million Dollars ($100,000,000.00)
+
+The condition of this obligation is that the Principal shall faithfully perform the work described in the Construction Contract for the Downtown Tower project.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Performance Bond",
+  "effective_date": "2031-09-01",
+  "parties": [
+    { "name": "BuildRight Corp.", "role": "Principal" },
+    { "name": "Global Surety Company", "role": "Surety" },
+    { "name": "Downtown Tower LLC", "role": "Obligee" }
+  ],
+  "bond_details": {
+    "bond_number": "9876543",
+    "bond_type": "Performance",
+    "penal_sum": 100000000,
+    "project_description": "Downtown Tower project"
+  },
+  "discovered_entities": []
+}
+207_schema_additions.json
+
+JSON
+
+{
+  "bond_details": {
+    "type": "object",
+    "description": "Details specific to a surety bond.",
+    "properties": {
+      "bond_number": { "type": "string" },
+      "bond_type": { "type": "string" },
+      "penal_sum": { "type": "number" },
+      "project_description": { "type": "string" }
+    }
+  }
+}
+Document Type 208: Warranty Bonds
+208_specialist_schema.json
+
+JSON
+
+{
+  "title": "Warranty Bond Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Warranty Bond'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Principal", "Surety", "Obligee"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "bond_details": {
+      "type": "object",
+      "properties": {
+        "bond_number": { "type": "string" },
+        "bond_type": { "type": "string", "default": "Warranty" },
+        "penal_sum": { "type": "number" },
+        "project_description": { "type": "string" },
+        "warranty_period": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "bond_details"]
+}
+208_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+MAINTENANCE AND WARRANTY BOND
+
+Bond No: MW-555444
+Date: September 1, 2034
+
+PRINCIPAL: BuildRight Corp.
+SURETY: Global Surety Company
+OBLIGEE: Downtown Tower LLC
+
+This bond is in the amount of $10,000,000 (10% of contract price) to guarantee against defects in materials and workmanship for a period of two (2) years following Substantial Completion of the Downtown Tower project.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Maintenance and Warranty Bond",
+  "effective_date": "2034-09-01",
+  "parties": [
+    { "name": "BuildRight Corp.", "role": "Principal" },
+    { "name": "Global Surety Company", "role": "Surety" },
+    { "name": "Downtown Tower LLC", "role": "Obligee" }
+  ],
+  "bond_details": {
+    "bond_number": "MW-555444",
+    "bond_type": "Warranty",
+    "penal_sum": 10000000,
+    "project_description": "Downtown Tower project",
+    "warranty_period": "Two (2) years following Substantial Completion."
+  },
+  "discovered_entities": []
+}
+208_schema_additions.json
+
+JSON
+
+{
+  "bond_details": {
+    "type": "object",
+    "description": "Details specific to a surety bond.",
+    "properties": {
+      "bond_number": { "type": "string" },
+      "bond_type": { "type": "string" },
+      "penal_sum": { "type": "number" },
+      "project_description": { "type": "string" },
+      "warranty_period": { "type": "string" }
+    }
+  }
+}
+Document Type 209: As-Builts/Record Drawings
+209_specialist_schema.json
+
+JSON
+
+{
+  "title": "As-Built/Record Drawing Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The title of the plan set, e.g., 'Record Drawings'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Contractor", "Architect", "Engineer"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "plan_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "plan_type": { "type": "string", "default": "As-Builts/Record Drawings" },
+        "certification_statement": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "plan_details"]
+}
+209_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+RECORD DRAWINGS - COVER SHEET
+PROJECT: DOWNTOWN TOWER
+
+CONTRACTOR'S CERTIFICATION:
+BuildRight Corp. certifies that these drawings have been revised to show the actual "as-built" conditions of the completed work.
+Date: October 1, 2034
+
+ARCHITECT'S CERTIFICATION:
+Global Architects Inc. has reviewed the contractor's markups and finds them to be a fair representation.
+Date: October 15, 2034
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Record Drawings",
+  "effective_date": "2034-10-15",
+  "parties": [
+    { "name": "BuildRight Corp.", "role": "Contractor" },
+    { "name": "Global Architects Inc.", "role": "Architect" }
+  ],
+  "plan_details": {
+    "project_name": "Downtown Tower",
+    "plan_type": "As-Builts/Record Drawings",
+    "certification_statement": "BuildRight Corp. certifies that these drawings have been revised to show the actual 'as-built' conditions of the completed work."
+  },
+  "discovered_entities": []
+}
+209_schema_additions.json
+
+JSON
+
+{
+  "plan_details": {
+    "type": "object",
+    "description": "Details specific to engineering or architectural plan sets.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "plan_type": { "type": "string" },
+      "engineer_of_record": { "type": "string" },
+      "approval_date": { "type": "string", "format": "date" },
+      "plan_sheet_count": { "type": "integer" },
+      "utilities_shown": { "type": "array", "items": { "type": "string" } },
+      "certification_statement": { "type": "string" }
+    }
+  }
+}
+Document Type 210: O&M Manuals & Warranties
+210_specialist_schema.json
+
+JSON
+
+{
+  "title": "O&M Manual/Warranty Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Operations and Maintenance Manual'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Manufacturer", "Contractor", "Owner"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "warranty_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "equipment_or_system": { "type": "string" },
+        "warranty_period": { "type": "string" },
+        "warranty_start_date": { "type": "string", "format": "date" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "warranty_details"]
+}
+210_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+HVAC SYSTEM WARRANTY
+
+Manufacturer: Climate Control Inc.
+Equipment: Rooftop Packaged Unit Model AC-5000
+Project: Downtown Tower
+
+Climate Control Inc. warrants the compressor for a period of five (5) years and all other parts for a period of one (1) year from the date of Substantial Completion (September 1, 2034).
+
+**JSON OUTPUT:**
+{
+  "contract_name": "HVAC System Warranty",
+  "effective_date": "2034-09-01",
+  "parties": [
+    { "name": "Climate Control Inc.", "role": "Manufacturer" }
+  ],
+  "warranty_details": {
+    "project_name": "Downtown Tower",
+    "equipment_or_system": "Rooftop Packaged Unit Model AC-5000",
+    "warranty_period": "Compressor: 5 years; All other parts: 1 year.",
+    "warranty_start_date": "2034-09-01"
+  },
+  "discovered_entities": []
+}
+210_schema_additions.json
+
+JSON
+
+{
+  "warranty_details": {
+    "type": "object",
+    "description": "Details specific to a product or system warranty.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "equipment_or_system": { "type": "string" },
+      "warranty_period": { "type": "string" },
+      "warranty_start_date": { "type": "string", "format": "date" }
+    }
+  }
+}
+Document Type 211: Punch Lists
+211_specialist_schema.json
+
+JSON
+
+{
+  "title": "Punch List Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Punch List'."
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date",
+      "description": "The date of the inspection that generated the list."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Architect", "Owner", "Contractor"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "punch_list_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "total_items": { "type": "integer" },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "location": { "type": "string" },
+              "description": { "type": "string" },
+              "status": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "punch_list_details"]
+}
+211_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+PROJECT PUNCH LIST
+Project: Downtown Tower - 15th Floor Tenant Suite
+Inspection Date: August 20, 2034
+Architect: Global Architects Inc.
+
+LOCATION | ITEM DESCRIPTION
+Room 1501 | Adjust entry door closer.
+Room 1502 | Touch up paint on north wall.
+Corridor | Replace stained ceiling tile.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Project Punch List",
+  "effective_date": "2034-08-20",
+  "parties": [
+    { "name": "Global Architects Inc.", "role": "Architect" }
+  ],
+  "punch_list_details": {
+    "project_name": "Downtown Tower - 15th Floor Tenant Suite",
+    "total_items": 3,
+    "items": [
+      {
+        "location": "Room 1501",
+        "description": "Adjust entry door closer.",
+        "status": null
+      },
+      {
+        "location": "Room 1502",
+        "description": "Touch up paint on north wall.",
+        "status": null
+      },
+      {
+        "location": "Corridor",
+        "description": "Replace stained ceiling tile.",
+        "status": null
+      }
+    ]
+  },
+  "discovered_entities": []
+}
+211_schema_additions.json
+
+JSON
+
+{
+  "punch_list_details": {
+    "type": "object",
+    "description": "Details specific to a construction punch list.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "total_items": { "type": "integer" },
+      "items": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "location": { "type": "string" },
+            "description": { "type": "string" },
+            "status": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}
+Document Type 212: Certificate of Substantial Completion
+212_specialist_schema.json
+
+JSON
+
+{
+  "title": "Certificate of Substantial Completion Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'AIA Document G704 - Certificate of Substantial Completion'."
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date",
+      "description": "The Date of Substantial Completion."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Owner", "Contractor", "Architect"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "completion_certificate_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "date_of_substantial_completion": { "type": "string", "format": "date" },
+        "punch_list_reference": { "type": "string" },
+        "warranty_start_date": { "type": "string", "format": "date" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "completion_certificate_details"]
+}
+212_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+AIA Document G704™ – 2017
+Certificate of Substantial Completion
+
+PROJECT: Downtown Tower
+OWNER: Downtown Tower LLC
+CONTRACTOR: BuildRight Corp.
+ARCHITECT: Global Architects Inc.
+
+The Work performed under the Contract has been reviewed and found, to the Architect's best knowledge, to be substantially complete.
+The Date of Substantial Completion of the Project is hereby established as September 1, 2034.
+
+A list of items to be completed or corrected is attached hereto. The failure to include an item on such list does not alter the responsibility of the Contractor to complete all Work. Warranties required by the Contract Documents shall commence on the Date of Substantial Completion.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Certificate of Substantial Completion",
+  "effective_date": "2034-09-01",
+  "parties": [
+    { "name": "Downtown Tower LLC", "role": "Owner" },
+    { "name": "BuildRight Corp.", "role": "Contractor" },
+    { "name": "Global Architects Inc.", "role": "Architect" }
+  ],
+  "completion_certificate_details": {
+    "project_name": "Downtown Tower",
+    "date_of_substantial_completion": "2034-09-01",
+    "punch_list_reference": "A list of items to be completed or corrected is attached hereto.",
+    "warranty_start_date": "2034-09-01"
+  },
+  "discovered_entities": []
+}
+212_schema_additions.json
+
+JSON
+
+{
+  "completion_certificate_details": {
+    "type": "object",
+    "description": "Details specific to a certificate of completion.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "date_of_substantial_completion": { "type": "string", "format": "date" },
+      "punch_list_reference": { "type": "string" },
+      "warranty_start_date": { "type": "string", "format": "date" }
+    }
+  }
+}
+Document Type 213: TCO/CO (Temporary/Certificate of Occupancy)
+213_specialist_schema.json
+
+JSON
+
+{
+  "title": "Certificate of Occupancy Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Certificate of Occupancy'."
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date",
+      "description": "The date the certificate was issued."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Owner", "Issuing Agency", "Building Official"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "occupancy_certificate_details": {
+      "type": "object",
+      "properties": {
+        "certificate_type": { "type": "string", "enum": ["Temporary", "Final"] },
+        "permit_number": { "type": "string" },
+        "property_address": { "type": "string" },
+        "description_of_occupancy": { "type": "string" },
+        "expiration_date": { "type": "string", "format": "date" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "occupancy_certificate_details"]
+}
+213_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+CITY OF ANYTOWN
+BUILDING DEPARTMENT
+CERTIFICATE OF OCCUPANCY
+
+Permit No: B-2031-0101
+Address: 123 Main Street
+Owner: Downtown Tower LLC
+
+This certifies that the structure at the above address has been inspected and found to be in compliance with the applicable codes for the following occupancy:
+Group B (Business) and Group R-1 (Residential)
+
+Issued on: October 15, 2034
+By: (Signature), Building Official
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Certificate of Occupancy",
+  "effective_date": "2034-10-15",
+  "parties": [
+    { "name": "Downtown Tower LLC", "role": "Owner" },
+    { "name": "City of Anytown Building Department", "role": "Issuing Agency" }
+  ],
+  "occupancy_certificate_details": {
+    "certificate_type": "Final",
+    "permit_number": "B-2031-0101",
+    "property_address": "123 Main Street",
+    "description_of_occupancy": "Group B (Business) and Group R-1 (Residential)",
+    "expiration_date": null
+  },
+  "discovered_entities": []
+}
+213_schema_additions.json
+
+JSON
+
+{
+  "occupancy_certificate_details": {
+    "type": "object",
+    "description": "Details specific to a certificate of occupancy.",
+    "properties": {
+      "certificate_type": { "type": "string", "enum": ["Temporary", "Final"] },
+      "permit_number": { "type": "string" },
+      "property_address": { "type": "string" },
+      "description_of_occupancy": { "type": "string" },
+      "expiration_date": { "type": "string", "format": "date" }
+    }
+  }
+}
+Document Type 214: Bond Exoneration Requests
+214_specialist_schema.json
+
+JSON
+
+{
+  "title": "Bond Exoneration Request Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Request for Bond Exoneration'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Developer", "Public Agency", "City"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "bond_details": {
+      "type": "object",
+      "properties": {
+        "bond_number": { "type": "string" },
+        "bond_type": { "type": "string" },
+        "project_name": { "type": "string" },
+        "reason_for_exoneration": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "bond_details"]
+}
+214_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+REQUEST FOR EXONERATION OF SUBDIVISION BOND
+
+Date: November 1, 2034
+To: City of Riverbend, Public Works Department
+From: Riverbend Homes LLC
+
+Re: Tract No. 8888 - "Riverbend"
+Performance Bond No. 12345
+
+This letter is to request the full exoneration and release of the referenced Performance Bond. All public improvements required by the Subdivision Improvement Agreement have been completed and were accepted by the City Council on October 15, 2034.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Request for Exoneration of Subdivision Bond",
+  "effective_date": "2034-11-01",
+  "parties": [
+    { "name": "Riverbend Homes LLC", "role": "Developer" },
+    { "name": "City of Riverbend, Public Works Department", "role": "Public Agency" }
+  ],
+  "bond_details": {
+    "bond_number": "12345",
+    "bond_type": "Performance Bond",
+    "project_name": "Tract No. 8888 - \"Riverbend\"",
+    "reason_for_exoneration": "All public improvements have been completed and were accepted by the City Council on October 15, 2034."
+  },
+  "discovered_entities": []
+}
+214_schema_additions.json
+
+JSON
+
+{
+  "bond_details": {
+    "type": "object",
+    "description": "Details specific to a surety bond.",
+    "properties": {
+      "bond_number": { "type": "string" },
+      "bond_type": { "type": "string" },
+      "penal_sum": { "type": "number" },
+      "project_description": { "type": "string" },
+      "warranty_period": { "type": "string" },
+      "project_name": { "type": "string" },
+      "reason_for_exoneration": { "type": "string" }
+    }
+  }
+}

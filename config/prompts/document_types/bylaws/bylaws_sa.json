@@ -1,0 +1,33 @@
+{
+  "governance_details": {
+    "type": "object",
+    "description": "Details specific to the internal governance rules of an entity, typically found in Bylaws or Operating Agreements.",
+    "properties": {
+      "director_quorum_requirement": {
+        "type": "string",
+        "description": "The quorum required for board meetings (e.g., 'A majority of directors', '51%')."
+      },
+      "shareholder_quorum_requirement": {
+        "type": "string",
+        "description": "The quorum required for shareholder meetings."
+      },
+      "director_count": {
+        "type": "string",
+        "description": "The number of directors or the allowed range (e.g., '3', 'Not less than 3 nor more than 7')."
+      },
+      "officer_titles": {
+        "type": "array",
+        "items": { "type": "string" },
+        "description": "A list of the officer positions defined (e.g., President, Secretary, Treasurer)."
+      },
+      "fiscal_year_end": {
+        "type": "string",
+        "description": "The end date of the corporation's fiscal year (e.g., 'December 31st')."
+      },
+      "indemnification_clause_summary": {
+        "type": "string",
+        "description": "A brief summary of the indemnification provisions for directors and officers."
+      }
+    }
+  }
+}

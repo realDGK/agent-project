@@ -1,0 +1,26 @@
+**INPUT DOCUMENT TEXT:**
+ACTION OF THE DESIGN REVIEW BOARD
+CITY OF HILLDALE
+Case No. DR-2030-02
+Date: January 20, 2030
+
+Applicant: Hilldale Retail LLC
+Project: A new 15,000 sq. ft. retail building at 789 Town Center Drive.
+
+The Design Review Board hereby approves the site plan and architectural elevations dated December 15, 2029, finding them consistent with the City's Design Guidelines.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Design Review Approval DR-2030-02",
+  "effective_date": "2030-01-20",
+  "parties": [
+    { "name": "Hilldale Retail LLC", "role": "Applicant" },
+    { "name": "City of Hilldale Design Review Board", "role": "Approving Agency" }
+  ],
+  "entitlement_details": {
+    "application_number": "DR-2030-02",
+    "project_description": "A new 15,000 sq. ft. retail building at 789 Town Center Drive.",
+    "approval_statement": "Approves the site plan and architectural elevations dated December 15, 2029, finding them consistent with the City's Design Guidelines."
+  },
+  "discovered_entities": []
+}

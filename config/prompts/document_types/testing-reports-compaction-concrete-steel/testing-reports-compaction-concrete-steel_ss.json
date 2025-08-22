@@ -1,0 +1,52 @@
+{
+  "title": "Testing Report Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Concrete Compressive Strength Test Report'."
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date",
+      "description": "The date the report was issued."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Testing Laboratory", "Client", "Contractor"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "testing_report_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "report_number": { "type": "string" },
+        "test_type": { "type": "string" },
+        "test_date": { "type": "string", "format": "date" },
+        "test_results_summary": { "type": "string" },
+        "is_passing": { "type": "boolean" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "testing_report_details"]
+}

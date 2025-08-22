@@ -1,0 +1,26 @@
+**INPUT DOCUMENT TEXT:**
+MEMORANDUM OF UNDERSTANDING
+
+This MOU is entered into on March 1, 2034, between the City of Riverbend and the Riverbend Unified School District.
+
+The purpose of this MOU is to establish a framework for cooperation on the joint use of the new community park facilities to be constructed at Riverbend High School.
+
+The parties agree to work together to develop a formal joint use agreement. This MOU is not a legally binding contract.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Memorandum of Understanding",
+  "effective_date": "2034-03-01",
+  "parties": [
+    { "name": "City of Riverbend", "role": "Party" },
+    { "name": "Riverbend Unified School District", "role": "Party" }
+  ],
+  "mou_details": {
+    "purpose_of_mou": "To establish a framework for cooperation on the joint use of new community park facilities.",
+    "key_understandings": [
+      "The parties agree to work together to develop a formal joint use agreement."
+    ],
+    "is_binding": false
+  },
+  "discovered_entities": []
+}

@@ -1,0 +1,35 @@
+**INPUT DOCUMENT TEXT:**
+PHASE I ENVIRONMENTAL SITE ASSESSMENT
+123 INDUSTRIAL WAY, OAKLAND, CA
+
+Prepared for: Industrial Buyers LLC
+Prepared by: Clearwater Environmental
+Date: March 10, 2031
+
+CONCLUSIONS AND RECOMMENDATIONS:
+We have performed a Phase I ESA in conformance with ASTM E1527-13. This assessment has revealed the following recognized environmental conditions (RECs):
+1. The historical use of the property as a machine shop.
+2. The presence of an adjacent property listed as a leaking underground storage tank site.
+
+We recommend a Phase II Environmental Site Assessment to collect soil and groundwater samples to test for the presence of hazardous substances.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Phase I Environmental Site Assessment",
+  "effective_date": "2031-03-10",
+  "parties": [
+    { "name": "Clearwater Environmental", "role": "Consultant" },
+    { "name": "Industrial Buyers LLC", "role": "Client" }
+  ],
+  "technical_study_details": {
+    "study_type": "Phase I ESA",
+    "project_name": "123 Industrial Way, Oakland, CA",
+    "recognized_environmental_conditions_recs": [
+      "The historical use of the property as a machine shop.",
+      "The presence of an adjacent property listed as a leaking underground storage tank site."
+    ],
+    "conclusions": null,
+    "recommendations": "Recommend a Phase II Environmental Site Assessment to collect soil and groundwater samples."
+  },
+  "discovered_entities": []
+}

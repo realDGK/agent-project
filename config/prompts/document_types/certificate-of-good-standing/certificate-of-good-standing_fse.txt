@@ -1,0 +1,39 @@
+INPUT DOCUMENT TEXT:
+STATE OF DELAWARE
+SECRETARY OF STATE
+CERTIFICATE OF GOOD STANDING
+I, Jeffrey W. Bullock, Secretary of State of the State of Delaware, do hereby certify that "Coastal Development Partners, LLC" is duly formed under the laws of the State of Delaware and is in good standing and has a legal existence so far as the records of this office show.
+ENTITY FILE NUMBER: 9876543
+FORMATION DATE: 02/20/2022
+AUTHENTICATION ID: 12345ABC
+IN TESTIMONY WHEREOF, I have hereunto set my hand and official seal at Dover, this 10th day of October, A.D. 2026.
+(Signature)
+Jeffrey W. Bullock, Secretary of State
+JSON OUTPUT:
+{
+"contract_name": "Certificate of Good Standing for Coastal Development Partners, LLC",
+"parties": [
+{
+"name": "Coastal Development Partners, LLC",
+"role": "Entity"
+},
+{
+"name": "Delaware Secretary of State",
+"role": "Issuing Authority"
+}
+],
+"certificate_details": {
+"entity_file_number": "9876543",
+"entity_type": "LLC",
+"jurisdiction": "Delaware",
+"issue_date": "2026-10-10",
+"status_verified": "Good Standing and has a legal existence"
+},
+"discovered_entities": [
+{
+"entity_name": "Authentication ID",
+"entity_value": "12345ABC",
+"context_summary": "An ID used to verify the authenticity of the certificate."
+}
+]
+}

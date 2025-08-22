@@ -1,0 +1,27 @@
+**INPUT DOCUMENT TEXT:**
+FISCAL AGENT AGREEMENT
+by and between the
+CITY OF OAKWOOD
+and
+U.S. BANK NATIONAL ASSOCIATION, as Fiscal Agent
+
+Dated as of July 1, 2032
+Relating to CFD No. 2032-1
+
+The Fiscal Agent is hereby appointed to administer the Bonds, maintain the bond fund, and prepare annual special tax levy reports. The City agrees to pay the Fiscal Agent an annual fee of $5,000 for its services.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Fiscal Agent Agreement",
+  "effective_date": "2032-07-01",
+  "parties": [
+    { "name": "CITY OF OAKWOOD", "role": "City" },
+    { "name": "U.S. BANK NATIONAL ASSOCIATION", "role": "Fiscal Agent" }
+  ],
+  "cfd_details": {
+    "cfd_number": "2032-1",
+    "agent_responsibilities": "Administer the Bonds, maintain the bond fund, and prepare annual special tax levy reports.",
+    "agent_compensation": "Annual fee of $5,000."
+  },
+  "discovered_entities": []
+}

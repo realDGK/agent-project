@@ -1,0 +1,48 @@
+{
+  "title": "Loan Commitment Letter Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Loan Commitment Letter'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Borrower", "Lender"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "loan_details": {
+      "type": "object",
+      "properties": {
+        "loan_amount": { "type": "number" },
+        "interest_rate": { "type": "string" },
+        "loan_term": { "type": "string" },
+        "amortization_period": { "type": "string" },
+        "commitment_fee": { "type": "number" },
+        "commitment_expiration_date": { "type": "string", "format": "date" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "loan_details"]
+}

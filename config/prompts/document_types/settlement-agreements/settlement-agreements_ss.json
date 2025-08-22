@@ -1,0 +1,57 @@
+{
+  "title": "Settlement Agreement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string"
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "Plaintiff",
+              "Defendant",
+              "Claimant",
+              "Respondent"
+            ]
+          }
+        },
+        "required": [
+          "name",
+          "role"
+        ]
+      }
+    },
+    "settlement_details": {
+      "type": "object",
+      "properties": {
+        "settlement_amount": {
+          "type": "number"
+        },
+        "release_of_claims_summary": {
+          "type": "string"
+        },
+        "confidentiality_clause": {
+          "type": "boolean"
+        }
+      }
+    }
+  },
+  "required": [
+    "contract_name",
+    "effective_date",
+    "parties",
+    "settlement_details"
+  ]
+}

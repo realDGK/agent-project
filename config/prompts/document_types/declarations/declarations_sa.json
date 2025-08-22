@@ -1,0 +1,18 @@
+{
+  "litigation_details": {
+    "type": "object",
+    "description": "Details specific to litigation, court filings, and legal disputes.",
+    "properties": {
+      "court_name": {
+        "type": "string"
+      },
+      "case_number": {
+        "type": "string"
+      },
+      "supporting": {
+        "type": "string",
+        "description": "The motion or purpose the declaration supports."
+      }
+    }
+  }
+}

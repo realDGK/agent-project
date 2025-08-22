@@ -1,0 +1,39 @@
+**INPUT DOCUMENT TEXT:**
+ASSIGNMENT AND ASSUMPTION OF PURCHASE AGREEMENT
+
+This Assignment is made as of December 1, 2027, by and between WESTERN LAND PARTNERS, LP ("Assignor") and WLP-NAPA-ENTITY, LLC ("Assignee").
+
+RECITALS
+A. Assignor and OAK TREE INVESTORS, LLC ("Seller") entered into that certain Real Estate Purchase and Sale Agreement dated September 1, 2027 (the "Original Agreement").
+B. Assignor desires to assign all of its rights and obligations under the Original Agreement to Assignee.
+
+AGREEMENT
+1. Assignment. Assignor hereby assigns to Assignee all of its right, title, and interest in the Original Agreement.
+2. Assumption. Assignee hereby assumes and agrees to perform all of Assignor's obligations under the Original Agreement.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Assignment and Assumption of Purchase Agreement",
+  "effective_date": "2027-12-01",
+  "parties": [
+    {
+      "name": "WESTERN LAND PARTNERS, LP",
+      "role": "Assignor"
+    },
+    {
+      "name": "WLP-NAPA-ENTITY, LLC",
+      "role": "Assignee"
+    },
+    {
+      "name": "OAK TREE INVESTORS, LLC",
+      "role": "Seller"
+    }
+  ],
+  "assignment_details": {
+    "original_agreement_name": "Real Estate Purchase and Sale Agreement",
+    "original_agreement_date": "2027-09-01",
+    "assumption_of_obligations": "Assignee assumes and agrees to perform all of Assignor's obligations under the Original Agreement.",
+    "consideration": null
+  },
+  "discovered_entities": []
+}

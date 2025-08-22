@@ -1,0 +1,19 @@
+{
+  "tax_details": {
+    "type": "object",
+    "description": "Details specific to tax-related documents and information.",
+    "properties": {
+      "ein": { "type": "string" },
+      "form_reference": { "type": "string" },
+      "taxpayer_id_number": { "type": "string" },
+      "certification_statement": { "type": "string" },
+      "transferor_tin": { "type": "string" },
+      "gross_proceeds": { "type": "number" },
+      "property_description": { "type": "string" },
+      "property_apn": { "type": "string" },
+      "full_value_of_property": { "type": "number" },
+      "taxable_value": { "type": "number" },
+      "transfer_tax_amount": { "type": "number" }
+    }
+  }
+}

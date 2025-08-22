@@ -1,0 +1,31 @@
+{
+  "lease_details": {
+    "type": "object",
+    "description": "Details specific to a property lease agreement.",
+    "properties": {
+      "lease_type": { "type": "string" },
+      "premises_address": { "type": "string" },
+      "premises_sqft": { "type": "integer" },
+      "lease_term_months": { "type": "integer" },
+      "commencement_date": { "type": "string", "format": "date" },
+      "expiration_date": { "type": "string", "format": "date" },
+      "base_rent": { "type": "string" },
+      "operating_expenses_pass_through": { "type": "string" },
+      "renewal_options": { "type": "string" },
+      "property_description": { "type": "string" },
+      "lease_term_years": { "type": "integer" },
+      "rent_schedule": { "type": "string" },
+      "permitted_use": { "type": "string" },
+      "reversion_clause": { "type": "string" },
+      "property_name": { "type": "string" },
+      "unit_number": { "type": "string" },
+      "monthly_rent": { "type": "number" },
+      "security_deposit": { "type": "number" },
+      "pet_policy": { "type": "string" },
+      "utility_responsibilities": { "type": "string" },
+      "lease_term": { "type": "string" },
+      "rent_terms": { "type": "string" },
+      "permitted_crops": { "type": "string" }
+    }
+  }
+}

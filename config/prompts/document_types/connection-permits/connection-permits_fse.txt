@@ -1,0 +1,29 @@
+**INPUT DOCUMENT TEXT:**
+RIVER CITY WATER DISTRICT
+WATER SERVICE CONNECTION PERMIT
+
+Permit No: W-2031-555
+Date Issued: October 1, 2031
+Applicant: Riverbend Homes LLC
+Service Address: 101 Riverbend Way (Lot 1)
+
+This permit authorizes the installation of one (1) 3/4-inch water meter to serve a single-family residence.
+Connection Fee Paid: $15,000.00
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Water Service Connection Permit",
+  "effective_date": "2031-10-01",
+  "parties": [
+    { "name": "Riverbend Homes LLC", "role": "Permittee" },
+    { "name": "River City Water District", "role": "Issuing Agency" }
+  ],
+  "permit_details": {
+    "permit_number": "W-2031-555",
+    "property_address": "101 Riverbend Way (Lot 1)",
+    "utility_type": "Water",
+    "connection_fee": 15000,
+    "meter_size": "3/4-inch"
+  },
+  "discovered_entities": []
+}

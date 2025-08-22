@@ -1,0 +1,45 @@
+{
+  "title": "Assignment of Rents & Leases Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Assignment of Leases and Rents'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Assignor", "Assignee", "Lender", "Borrower"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "assignment_details": {
+      "type": "object",
+      "properties": {
+        "property_address": { "type": "string" },
+        "assignment_type": { "type": "string", "description": "e.g., 'Absolute', 'Collateral'." },
+        "secured_debt_reference": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "assignment_details"]
+}

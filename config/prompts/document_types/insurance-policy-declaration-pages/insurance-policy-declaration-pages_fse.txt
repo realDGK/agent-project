@@ -1,0 +1,50 @@
+**INPUT DOCUMENT TEXT:**
+COMMERCIAL GENERAL LIABILITY COVERAGE PART DECLARATIONS
+
+POLICY NUMBER: CPP-12345-27
+COMPANY: Global Indemnity Group
+
+PRODUCER: Risk Management Associates
+NAMED INSURED: Highpoint Development LLC, 789 Venture Dr, Austin, TX
+
+POLICY PERIOD: From 01/01/2027 to 01/01/2028
+TOTAL PREMIUM: $15,250
+
+FORMS AND ENDORSEMENTS:
+CG 00 01 04 13 - CGL Coverage Form
+CG 20 10 04 13 - Additional Insured - Owners, Lessees or Contractors
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Commercial General Liability Coverage Part Declarations",
+  "parties": [
+    {
+      "name": "Highpoint Development LLC",
+      "role": "Named Insured"
+    },
+    {
+      "name": "Global Indemnity Group",
+      "role": "Insurer"
+    },
+    {
+      "name": "Risk Management Associates",
+      "role": "Producer"
+    }
+  ],
+  "insurance_details": {
+    "policies": [
+      {
+        "policy_type": "Commercial General Liability",
+        "policy_number": "CPP-12345-27",
+        "effective_date": "2027-01-01",
+        "expiration_date": "2028-01-01",
+        "premium_amount": 15250,
+        "named_insureds": [
+          "Highpoint Development LLC"
+        ],
+        "endorsements_summary": "CG 00 01 04 13 - CGL Coverage Form, CG 20 10 04 13 - Additional Insured - Owners, Lessees or Contractors"
+      }
+    ]
+  },
+  "discovered_entities": []
+}

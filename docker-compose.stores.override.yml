@@ -1,0 +1,57 @@
+services:
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: contracts
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: changeme
+    volumes:
+      - ./scripts/postgres-init:/docker-entrypoint-initdb.d:ro
+      - ./volumes/postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  neo4j:
+    image: neo4j:5
+    environment:
+      NEO4J_AUTH: neo4j/changeme
+      NEO4J_dbms_security_procedures_unrestricted: "apoc.*,gds.*"
+      NEO4J_apoc_export_file_enabled: "true"
+      NEO4J_apoc_import_file_enabled: "true"
+      NEO4J_ACCEPT_LICENSE_AGREEMENT: "yes"
+    ports:
+      - "7474:7474"   # HTTP UI
+      - "7687:7687"   # Bolt
+    volumes:
+      - ./volumes/neo4j_data:/data
+      - ./volumes/neo4j_plugins:/plugins
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:7474 || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+
+  qdrant:
+    image: qdrant/qdrant:latest
+    ports:
+      - "6333:6333"
+    volumes:
+      - ./volumes/qdrant_storage:/qdrant/storage
+      - ./volumes/qdrant_snapshots:/qdrant/snapshots
+    # Qdrant exposes /readyz but wget/curl may not exist; we'll check by port later.
+
+  redis:
+    image: redis:7-alpine
+    command: ["redis-server", "--appendonly", "yes"]
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./volumes/redis_data:/data
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli ping | grep PONG"]
+      interval: 5s
+      timeout: 3s
+      retries: 15

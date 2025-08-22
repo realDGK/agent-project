@@ -1,0 +1,54 @@
+{
+  "title": "Subdivision Improvement Agreement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Subdivision Improvement Agreement'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Subdivider", "Developer", "Public Agency", "City"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "improvement_agreement_details": {
+      "type": "object",
+      "properties": {
+        "subdivision_name": { "type": "string" },
+        "map_reference": { "type": "string" },
+        "required_improvements": { "type": "array", "items": { "type": "string" } },
+        "completion_deadline": { "type": "string" },
+        "security_posted": {
+          "type": "object",
+          "properties": {
+            "type": { "type": "string" },
+            "amount": { "type": "number" },
+            "bond_number": { "type": "string" }
+          }
+        }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "improvement_agreement_details"]
+}

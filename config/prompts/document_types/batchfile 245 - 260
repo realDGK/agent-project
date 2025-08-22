@@ -1,0 +1,1618 @@
+Document Type 245: Parking/Shared Facilities Agreements
+245_specialist_schema.json
+
+JSON
+
+{
+  "title": "Parking/Shared Facilities Agreement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Parking License Agreement'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Licensor", "Licensee", "Landlord", "Tenant"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "shared_facility_details": {
+      "type": "object",
+      "properties": {
+        "facility_type": { "type": "string", "enum": ["Parking", "Other Shared Facility"] },
+        "number_of_spaces_or_rights": { "type": "string" },
+        "fee_or_rent": { "type": "string" },
+        "rules_of_use": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "shared_facility_details"]
+}
+245_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+PARKING LICENSE AGREEMENT
+
+This Agreement is made July 1, 2033, between Commerce Center LLC ("Licensor") and Logistics Solutions Inc. ("Licensee").
+
+Licensor hereby grants Licensee the right to use twenty (20) unreserved parking spaces in the common area parking garage.
+The monthly fee for these spaces shall be $150 per space.
+All vehicles must display a valid parking permit.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Parking License Agreement",
+  "effective_date": "2033-07-01",
+  "parties": [
+    { "name": "Commerce Center LLC", "role": "Licensor" },
+    { "name": "Logistics Solutions Inc.", "role": "Licensee" }
+  ],
+  "shared_facility_details": {
+    "facility_type": "Parking",
+    "number_of_spaces_or_rights": "Twenty (20) unreserved parking spaces.",
+    "fee_or_rent": "$150 per space per month.",
+    "rules_of_use": "All vehicles must display a valid parking permit."
+  },
+  "discovered_entities": []
+}
+245_schema_additions.json
+
+JSON
+
+{
+  "shared_facility_details": {
+    "type": "object",
+    "description": "Details specific to a parking or shared facilities agreement.",
+    "properties": {
+      "facility_type": { "type": "string", "enum": ["Parking", "Other Shared Facility"] },
+      "number_of_spaces_or_rights": { "type": "string" },
+      "fee_or_rent": { "type": "string" },
+      "rules_of_use": { "type": "string" }
+    }
+  }
+}
+Document Type 246: Rent Rolls
+246_specialist_schema.json
+
+JSON
+
+{
+  "title": "Rent Roll Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Rent Roll'."
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date",
+      "description": "The date the rent roll is effective as of."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Property Owner", "Property Manager"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "rent_roll_details": {
+      "type": "object",
+      "properties": {
+        "property_name": { "type": "string" },
+        "total_units": { "type": "integer" },
+        "occupied_units": { "type": "integer" },
+        "occupancy_rate_pct": { "type": "number" },
+        "total_monthly_rent": { "type": "number" },
+        "tenants": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "tenant_name": { "type": "string" },
+              "unit_number": { "type": "string" },
+              "sqft": { "type": "integer" },
+              "monthly_rent": { "type": "number" },
+              "lease_start": { "type": "string", "format": "date" },
+              "lease_end": { "type": "string", "format": "date" }
+            }
+          }
+        }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "rent_roll_details"]
+}
+246_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+RENT ROLL - THE ASPENS APARTMENTS
+As of June 1, 2033
+
+Unit | Tenant | SqFt | Rent | Lease Start | Lease End
+101 | Jane Doe | 800 | $2,100 | 01/01/2033 | 12/31/2033
+102 | Vacant | 800 | | |
+103 | Tom Harris | 1,000 | $2,500 | 03/01/2033 | 02/28/2034
+
+Totals: 100 Units, 95 Occupied (95%), Total Monthly Rent: $215,000
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Rent Roll",
+  "effective_date": "2033-06-01",
+  "parties": [
+    { "name": "The Aspens Apartments", "role": "Property Owner" }
+  ],
+  "rent_roll_details": {
+    "property_name": "The Aspens Apartments",
+    "total_units": 100,
+    "occupied_units": 95,
+    "occupancy_rate_pct": 95,
+    "total_monthly_rent": 215000,
+    "tenants": [
+      {
+        "tenant_name": "Jane Doe",
+        "unit_number": "101",
+        "sqft": 800,
+        "monthly_rent": 2100,
+        "lease_start": "2033-01-01",
+        "lease_end": "2033-12-31"
+      },
+      {
+        "tenant_name": "Tom Harris",
+        "unit_number": "103",
+        "sqft": 1000,
+        "monthly_rent": 2500,
+        "lease_start": "2033-03-01",
+        "lease_end": "2034-02-28"
+      }
+    ]
+  },
+  "discovered_entities": []
+}
+246_schema_additions.json
+
+JSON
+
+{
+  "rent_roll_details": {
+    "type": "object",
+    "description": "Details specific to a property rent roll.",
+    "properties": {
+      "property_name": { "type": "string" },
+      "total_units": { "type": "integer" },
+      "occupied_units": { "type": "integer" },
+      "occupancy_rate_pct": { "type": "number" },
+      "total_monthly_rent": { "type": "number" },
+      "tenants": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "tenant_name": { "type": "string" },
+            "unit_number": { "type": "string" },
+            "sqft": { "type": "integer" },
+            "monthly_rent": { "type": "number" },
+            "lease_start": { "type": "string", "format": "date" },
+            "lease_end": { "type": "string", "format": "date" }
+          }
+        }
+      }
+    }
+  }
+}
+Document Type 247: CAM Budgets & Reconciliations
+247_specialist_schema.json
+
+JSON
+
+{
+  "title": "CAM Budget/Reconciliation Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., '2033 CAM Reconciliation'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Landlord", "Property Manager", "Tenant"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "cam_details": {
+      "type": "object",
+      "properties": {
+        "property_name": { "type": "string" },
+        "period": { "type": "string" },
+        "document_type": { "type": "string", "enum": ["Budget", "Reconciliation"] },
+        "total_actual_expenses": { "type": "number" },
+        "total_estimated_payments": { "type": "number" },
+        "tenant_pro_rata_share_pct": { "type": "number" },
+        "tenant_charge_or_credit": { "type": "number" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "cam_details"]
+}
+247_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+2033 ANNUAL COMMON AREA MAINTENANCE (CAM) RECONCILIATION
+Property: Commerce Center
+To: Logistics Solutions Inc. (Tenant)
+
+For the period ending December 31, 2033:
+Total Actual CAM Expenses: $500,000
+Total Estimated CAM Payments Received from Tenant: $120,000
+Tenant's Pro-Rata Share: 25%
+
+Calculation:
+Tenant's Share of Actuals (25% of $500k): $125,000
+Less Tenant's Payments: ($120,000)
+Amount Due from Tenant: $5,000
+
+**JSON OUTPUT:**
+{
+  "contract_name": "2033 Annual Common Area Maintenance (CAM) Reconciliation",
+  "effective_date": null,
+  "parties": [
+    { "name": "Logistics Solutions Inc.", "role": "Tenant" }
+  ],
+  "cam_details": {
+    "property_name": "Commerce Center",
+    "period": "ending December 31, 2033",
+    "document_type": "Reconciliation",
+    "total_actual_expenses": 500000,
+    "total_estimated_payments": 120000,
+    "tenant_pro_rata_share_pct": 25,
+    "tenant_charge_or_credit": 5000
+  },
+  "discovered_entities": []
+}
+247_schema_additions.json
+
+JSON
+
+{
+  "cam_details": {
+    "type": "object",
+    "description": "Details specific to a Common Area Maintenance (CAM) budget or reconciliation.",
+    "properties": {
+      "property_name": { "type": "string" },
+      "period": { "type": "string" },
+      "document_type": { "type": "string", "enum": ["Budget", "Reconciliation"] },
+      "total_actual_expenses": { "type": "number" },
+      "total_estimated_payments": { "type": "number" },
+      "tenant_pro_rata_share_pct": { "type": "number" },
+      "tenant_charge_or_credit": { "type": "number" }
+    }
+  }
+}
+Document Type 248: Move-in/Move-out Docs
+248_specialist_schema.json
+
+JSON
+
+{
+  "title": "Move-in/Move-out Document Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Move-In Inspection Checklist'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Landlord", "Tenant", "Property Manager"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "move_in_out_details": {
+      "type": "object",
+      "properties": {
+        "document_type": { "type": "string", "enum": ["Move-In", "Move-Out"] },
+        "property_address": { "type": "string" },
+        "unit_number": { "type": "string" },
+        "condition_notes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "area": { "type": "string" },
+              "condition": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "move_in_out_details"]
+}
+248_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+MOVE-IN CONDITION REPORT
+Date: June 1, 2033
+Property: The Aspens Apartments, Unit #205
+Tenant: John Smith
+
+This report documents the condition of the premises at the time of move-in.
+- Living Room: Carpet has small stain near window.
+- Kitchen: Faucet drips slowly.
+- Bedroom: All OK.
+
+Tenant Signature: (Signature)
+Landlord Signature: (Signature)
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Move-In Condition Report",
+  "effective_date": "2033-06-01",
+  "parties": [
+    { "name": "The Aspens Apartments", "role": "Landlord" },
+    { "name": "John Smith", "role": "Tenant" }
+  ],
+  "move_in_out_details": {
+    "document_type": "Move-In",
+    "property_address": "The Aspens Apartments",
+    "unit_number": "205",
+    "condition_notes": [
+      { "area": "Living Room", "condition": "Carpet has small stain near window." },
+      { "area": "Kitchen", "condition": "Faucet drips slowly." },
+      { "area": "Bedroom", "condition": "All OK." }
+    ]
+  },
+  "discovered_entities": []
+}
+248_schema_additions.json
+
+JSON
+
+{
+  "move_in_out_details": {
+    "type": "object",
+    "description": "Details specific to a move-in or move-out inspection report.",
+    "properties": {
+      "document_type": { "type": "string", "enum": ["Move-In", "Move-Out"] },
+      "property_address": { "type": "string" },
+      "unit_number": { "type": "string" },
+      "condition_notes": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "area": { "type": "string" },
+            "condition": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}
+Document Type 249: Tenant Compliance Notices
+249_specialist_schema.json
+
+JSON
+
+{
+  "title": "Tenant Compliance Notice Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Notice to Cure or Quit'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Landlord", "Tenant"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "compliance_notice_details": {
+      "type": "object",
+      "properties": {
+        "property_address": { "type": "string" },
+        "unit_number": { "type": "string" },
+        "notice_type": { "type": "string" },
+        "nature_of_violation": { "type": "string" },
+        "cure_period": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "compliance_notice_details"]
+}
+249_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+THREE-DAY NOTICE TO PERFORM COVENANT OR QUIT
+
+TO: John Smith, Tenant
+FROM: The Aspens Apartments, Landlord
+DATE: July 10, 2033
+
+You are in violation of your Lease Agreement for the premises at 100 Aspen Way, #205, due to an unauthorized pet on the premises.
+
+Within THREE (3) DAYS, you must cure this breach by removing the pet, or deliver up possession of the premises.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Three-Day Notice to Perform Covenant or Quit",
+  "effective_date": "2033-07-10",
+  "parties": [
+    { "name": "The Aspens Apartments", "role": "Landlord" },
+    { "name": "John Smith", "role": "Tenant" }
+  ],
+  "compliance_notice_details": {
+    "property_address": "100 Aspen Way",
+    "unit_number": "205",
+    "notice_type": "Notice to Perform Covenant or Quit",
+    "nature_of_violation": "Unauthorized pet on the premises.",
+    "cure_period": "Three (3) days"
+  },
+  "discovered_entities": []
+}
+249_schema_additions.json
+
+JSON
+
+{
+  "compliance_notice_details": {
+    "type": "object",
+    "description": "Details specific to a tenant compliance notice.",
+    "properties": {
+      "property_address": { "type": "string" },
+      "unit_number": { "type": "string" },
+      "notice_type": { "type": "string" },
+      "nature_of_violation": { "type": "string" },
+      "cure_period": { "type": "string" }
+    }
+  }
+}
+Document Type 250: Listing/Commission Agreements
+250_specialist_schema.json
+
+JSON
+
+{
+  "title": "Listing/Commission Agreement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Exclusive Authorization and Right to Sell'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Seller", "Owner", "Broker"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "listing_agreement_details": {
+      "type": "object",
+      "properties": {
+        "property_address": { "type": "string" },
+        "listing_price": { "type": "number" },
+        "listing_period": { "type": "string" },
+        "commission_rate_pct": { "type": "number" },
+        "cooperating_broker_split": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "listing_agreement_details"]
+}
+250_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+EXCLUSIVE AUTHORIZATION AND RIGHT TO SELL
+
+1. Owner: OAK TREE INVESTORS, LLC
+2. Broker: Global Commercial Real Estate
+3. Property: 100 Valley View Road, Napa, CA
+4. Listing Period: Commencing January 1, 2027 and expiring 180 days thereafter.
+5. Listing Price: $12,000,000
+6. Commission: Owner agrees to pay Broker a commission of five percent (5%) of the selling price. Broker agrees to offer 2.5% to a cooperating broker.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Exclusive Authorization and Right to Sell",
+  "effective_date": "2027-01-01",
+  "parties": [
+    { "name": "OAK TREE INVESTORS, LLC", "role": "Owner" },
+    { "name": "Global Commercial Real Estate", "role": "Broker" }
+  ],
+  "listing_agreement_details": {
+    "property_address": "100 Valley View Road, Napa, CA",
+    "listing_price": 12000000,
+    "listing_period": "180 days from January 1, 2027",
+    "commission_rate_pct": 5,
+    "cooperating_broker_split": "2.5%"
+  },
+  "discovered_entities": []
+}
+250_schema_additions.json
+
+JSON
+
+{
+  "listing_agreement_details": {
+    "type": "object",
+    "description": "Details specific to a real estate listing or commission agreement.",
+    "properties": {
+      "property_address": { "type": "string" },
+      "listing_price": { "type": "number" },
+      "listing_period": { "type": "string" },
+      "commission_rate_pct": { "type": "number" },
+      "cooperating_broker_split": { "type": "string" }
+    }
+  }
+}
+Document Type 251: Co-Broker Agreements
+251_specialist_schema.json
+
+JSON
+
+{
+  "title": "Co-Broker Agreement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Co-Brokerage Agreement'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Listing Broker", "Cooperating Broker"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "co_broker_agreement_details": {
+      "type": "object",
+      "properties": {
+        "property_address": { "type": "string" },
+        "client_name": { "type": "string" },
+        "commission_split": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "co_broker_agreement_details"]
+}
+251_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+COOPERATING BROKER COMMISSION AGREEMENT
+
+Date: March 1, 2027
+Listing Broker: Global Commercial Real Estate
+Cooperating Broker: Local Realty Inc.
+Property: 100 Valley View Road, Napa, CA
+Prospective Buyer: WESTERN LAND PARTNERS, LP
+
+Listing Broker agrees to pay Cooperating Broker a commission equal to two and one-half percent (2.5%) of the final sales price if the Prospective Buyer successfully closes escrow on the Property.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Cooperating Broker Commission Agreement",
+  "effective_date": "2027-03-01",
+  "parties": [
+    { "name": "Global Commercial Real Estate", "role": "Listing Broker" },
+    { "name": "Local Realty Inc.", "role": "Cooperating Broker" }
+  ],
+  "co_broker_agreement_details": {
+    "property_address": "100 Valley View Road, Napa, CA",
+    "client_name": "WESTERN LAND PARTNERS, LP",
+    "commission_split": "2.5% of the final sales price."
+  },
+  "discovered_entities": []
+}
+251_schema_additions.json
+
+JSON
+
+{
+  "co_broker_agreement_details": {
+    "type": "object",
+    "description": "Details specific to a co-brokerage agreement.",
+    "properties": {
+      "property_address": { "type": "string" },
+      "client_name": { "type": "string" },
+      "commission_split": { "type": "string" }
+    }
+  }
+}
+Document Type 252: BOVs (Broker Opinion of Value)
+252_specialist_schema.json
+
+JSON
+
+{
+  "title": "Broker Opinion of Value (BOV) Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Broker Opinion of Value'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Broker", "Client", "Owner"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "bov_details": {
+      "type": "object",
+      "properties": {
+        "property_address": { "type": "string" },
+        "opinion_of_value": { "type": "number" },
+        "value_range": { "type": "string" },
+        "analysis_summary": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "bov_details"]
+}
+252_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+BROKER OPINION OF VALUE
+
+Property: 100 Valley View Road, Napa, CA
+Prepared for: OAK TREE INVESTORS, LLC
+Prepared by: Global Commercial Real Estate
+Date: December 15, 2026
+
+Based on our analysis of comparable sales and market conditions, it is our opinion that the likely selling price for the subject property is in the range of $11,500,000 to $12,500,000. Our specific opinion of value is $12,000,000.
+
+This is an opinion of value and not an appraisal.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Broker Opinion of Value",
+  "effective_date": "2026-12-15",
+  "parties": [
+    { "name": "Global Commercial Real Estate", "role": "Broker" },
+    { "name": "OAK TREE INVESTORS, LLC", "role": "Client" }
+  ],
+  "bov_details": {
+    "property_address": "100 Valley View Road, Napa, CA",
+    "opinion_of_value": 12000000,
+    "value_range": "$11,500,000 to $12,500,000",
+    "analysis_summary": "Based on analysis of comparable sales and market conditions."
+  },
+  "discovered_entities": []
+}
+252_schema_additions.json
+
+JSON
+
+{
+  "bov_details": {
+    "type": "object",
+    "description": "Details specific to a Broker Opinion of Value (BOV).",
+    "properties": {
+      "property_address": { "type": "string" },
+      "opinion_of_value": { "type": "number" },
+      "value_range": { "type": "string" },
+      "analysis_summary": { "type": "string" }
+    }
+  }
+}
+Document Type 253: Offering Memoranda
+253_specialist_schema.json
+
+JSON
+
+{
+  "title": "Offering Memorandum Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Confidential Offering Memorandum'."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Listing Broker", "Seller"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "offering_memorandum_details": {
+      "type": "object",
+      "properties": {
+        "property_name": { "type": "string" },
+        "property_address": { "type": "string" },
+        "offering_price": { "type": "number" },
+        "investment_highlights": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "offering_memorandum_details"]
+}
+253_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+CONFIDENTIAL OFFERING MEMORANDUM
+THE VINEYARD ESTATES
+100 Valley View Road, Napa, CA
+
+Presented by: Global Commercial Real Estate
+
+Offering Price: $12,000,000
+
+Investment Highlights:
+- Fully entitled for 50 luxury homes
+- Prime Napa Valley location
+- Significant value-add potential
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Confidential Offering Memorandum",
+  "parties": [
+    { "name": "Global Commercial Real Estate", "role": "Listing Broker" }
+  ],
+  "offering_memorandum_details": {
+    "property_name": "The Vineyard Estates",
+    "property_address": "100 Valley View Road, Napa, CA",
+    "offering_price": 12000000,
+    "investment_highlights": [
+      "Fully entitled for 50 luxury homes",
+      "Prime Napa Valley location",
+      "Significant value-add potential"
+    ]
+  },
+  "discovered_entities": []
+}
+253_schema_additions.json
+
+JSON
+
+{
+  "offering_memorandum_details": {
+    "type": "object",
+    "description": "Details specific to a real estate offering memorandum.",
+    "properties": {
+      "property_name": { "type": "string" },
+      "property_address": { "type": "string" },
+      "offering_price": { "type": "number" },
+      "investment_highlights": { "type": "array", "items": { "type": "string" } }
+    }
+  }
+}
+Document Type 254: Marketing Brochures/Flyers
+254_specialist_schema.json
+
+JSON
+
+{
+  "title": "Marketing Brochure/Flyer Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Property Flyer'."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Listing Broker"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "marketing_material_details": {
+      "type": "object",
+      "properties": {
+        "property_name": { "type": "string" },
+        "property_address": { "type": "string" },
+        "property_type": { "type": "string" },
+        "key_features": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "marketing_material_details"]
+}
+254_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+FOR LEASE: OAK STREET PROFESSIONAL CENTER
+1500 Oak Street, Walnut Creek, CA
+
+- Class A Office Space
+- Suites from 1,500 to 10,000 SF
+- On-site parking and management
+- Walkable to BART
+
+For more information, contact:
+Jane Smith, Local Realty Inc.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Property Flyer",
+  "parties": [
+    { "name": "Jane Smith, Local Realty Inc.", "role": "Listing Broker" }
+  ],
+  "marketing_material_details": {
+    "property_name": "Oak Street Professional Center",
+    "property_address": "1500 Oak Street, Walnut Creek, CA",
+    "property_type": "Class A Office Space",
+    "key_features": [
+      "Suites from 1,500 to 10,000 SF",
+      "On-site parking and management",
+      "Walkable to BART"
+    ]
+  },
+  "discovered_entities": []
+}
+254_schema_additions.json
+
+JSON
+
+{
+  "marketing_material_details": {
+    "type": "object",
+    "description": "Details specific to marketing materials like brochures or flyers.",
+    "properties": {
+      "property_name": { "type": "string" },
+      "property_address": { "type": "string" },
+      "property_type": { "type": "string" },
+      "key_features": { "type": "array", "items": { "type": "string" } }
+    }
+  }
+}
+Document Type 255: Aerials/Maps
+255_specialist_schema.json
+
+JSON
+
+{
+  "title": "Aerial/Map Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Site Aerial'."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Creator", "Broker"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "map_details": {
+      "type": "object",
+      "properties": {
+        "map_type": { "type": "string", "enum": ["Aerial", "Parcel Map", "Location Map"] },
+        "property_address": { "type": "string" },
+        "labels_or_callouts": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "map_details"]
+}
+255_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+[An aerial image with text overlays]
+
+Subject Property: 100 Valley View Road, Napa, CA
+Labels:
+- Site Boundary (5.25 Acres)
+- Adjacent to Highway 29
+- Future Retail Center (Neighboring Parcel)
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Site Aerial",
+  "parties": [],
+  "map_details": {
+    "map_type": "Aerial",
+    "property_address": "100 Valley View Road, Napa, CA",
+    "labels_or_callouts": [
+      "Site Boundary (5.25 Acres)",
+      "Adjacent to Highway 29",
+      "Future Retail Center (Neighboring Parcel)"
+    ]
+  },
+  "discovered_entities": []
+}
+255_schema_additions.json
+
+JSON
+
+{
+  "map_details": {
+    "type": "object",
+    "description": "Details specific to maps, plats, and legal descriptions.",
+    "properties": {
+      "property_legal_description": { "type": "string" },
+      "apn": { "type": "string" },
+      "county": { "type": "string" },
+      "state": { "type": "string" },
+      "map_type": { "type": "string" },
+      "map_number": { "type": "string" },
+      "number_of_lots_created": { "type": "integer" },
+      "property_address": { "type": "string" },
+      "approval_date": { "type": "string", "format": "date" },
+      "expiration_date": { "type": "string", "format": "date" },
+      "vesting_rights_summary": { "type": "string" },
+      "application_number": { "type": "string" },
+      "affected_parcels_apn": { "type": "array", "items": { "type": "string" } },
+      "adjustment_summary": { "type": "string" },
+      "corrected_document": { "type": "string" },
+      "corrected_document_recording_info": { "type": "string" },
+      "correction_summary": { "type": "string" },
+      "labels_or_callouts": { "type": "array", "items": { "type": "string" } }
+    }
+  }
+}
+Document Type 256: Stacking Plans
+256_specialist_schema.json
+
+JSON
+
+{
+  "title": "Stacking Plan Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Stacking Plan'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Property Manager", "Broker"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "stacking_plan_details": {
+      "type": "object",
+      "properties": {
+        "property_name": { "type": "string" },
+        "floors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "floor_number": { "type": "string" },
+              "tenant": { "type": "string" },
+              "sqft": { "type": "integer" },
+              "lease_expiration": { "type": "string", "format": "date" }
+            }
+          }
+        }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "stacking_plan_details"]
+}
+256_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+STACKING PLAN - 123 MAIN STREET
+As of 07/01/2033
+
+Floor 3: AVAILABLE (15,000 SF)
+Floor 2: Global Tech Inc. (15,000 SF) - Exp. 12/31/2035
+Floor 1: National Bank (10,000 SF) - Exp. 06/30/2038
+Floor 1: The Coffee Spot (5,000 SF) - Exp. 06/30/2034
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Stacking Plan",
+  "effective_date": "2033-07-01",
+  "parties": [],
+  "stacking_plan_details": {
+    "property_name": "123 Main Street",
+    "floors": [
+      {
+        "floor_number": "3",
+        "tenant": "AVAILABLE",
+        "sqft": 15000,
+        "lease_expiration": null
+      },
+      {
+        "floor_number": "2",
+        "tenant": "Global Tech Inc.",
+        "sqft": 15000,
+        "lease_expiration": "2035-12-31"
+      },
+      {
+        "floor_number": "1",
+        "tenant": "National Bank",
+        "sqft": 10000,
+        "lease_expiration": "2038-06-30"
+      },
+      {
+        "floor_number": "1",
+        "tenant": "The Coffee Spot",
+        "sqft": 5000,
+        "lease_expiration": "2034-06-30"
+      }
+    ]
+  },
+  "discovered_entities": []
+}
+256_schema_additions.json
+
+JSON
+
+{
+  "stacking_plan_details": {
+    "type": "object",
+    "description": "Details specific to a building stacking plan.",
+    "properties": {
+      "property_name": { "type": "string" },
+      "floors": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "floor_number": { "type": "string" },
+            "tenant": { "type": "string" },
+            "sqft": { "type": "integer" },
+            "lease_expiration": { "type": "string", "format": "date" }
+          }
+        }
+      }
+    }
+  }
+}
+Document Type 257: Demographic/Trade Area Reports
+257_specialist_schema.json
+
+JSON
+
+{
+  "title": "Demographic/Trade Area Report Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Trade Area Demographic Profile'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Author", "Data Provider"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "demographic_report_details": {
+      "type": "object",
+      "properties": {
+        "property_address": { "type": "string" },
+        "trade_area_radius": { "type": "string" },
+        "key_demographics": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "metric": { "type": "string" },
+              "value": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "demographic_report_details"]
+}
+257_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+TRADE AREA DEMOGRAPHICS
+100 MAIN STREET, ANYTOWN, USA
+
+Prepared by: Site Analytics Inc.
+Date: July 1, 2033
+
+DEMOGRAPHICS (5-MILE RADIUS):
+- 2023 Population: 150,000
+- 2023 Average Household Income: $125,000
+- Daytime Population: 85,000
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Trade Area Demographics",
+  "effective_date": "2033-07-01",
+  "parties": [
+    { "name": "Site Analytics Inc.", "role": "Data Provider" }
+  ],
+  "demographic_report_details": {
+    "property_address": "100 Main Street, Anytown, USA",
+    "trade_area_radius": "5-Mile Radius",
+    "key_demographics": [
+      { "metric": "2023 Population", "value": "150,000" },
+      { "metric": "2023 Average Household Income", "value": "$125,000" },
+      { "metric": "Daytime Population", "value": "85,000" }
+    ]
+  },
+  "discovered_entities": []
+}
+257_schema_additions.json
+
+JSON
+
+{
+  "demographic_report_details": {
+    "type": "object",
+    "description": "Details specific to a demographic or trade area report.",
+    "properties": {
+      "property_address": { "type": "string" },
+      "trade_area_radius": { "type": "string" },
+      "key_demographics": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "metric": { "type": "string" },
+            "value": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}
+Document Type 258: Website/Press Releases
+258_specialist_schema.json
+
+JSON
+
+{
+  "title": "Website/Press Release Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The title of the press release or web page."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Company", "Author"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "public_release_details": {
+      "type": "object",
+      "properties": {
+        "release_type": { "type": "string", "enum": ["Website", "Press Release"] },
+        "headline": { "type": "string" },
+        "summary": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "public_release_details"]
+}
+258_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+FOR IMMEDIATE RELEASE
+August 1, 2027
+
+Global Commercial Real Estate Announces Sale of Napa Valley Development Site
+
+NAPA, CA – Global Commercial Real Estate today announced it has arranged the $10 million sale of The Vineyard Estates, a 5.25-acre entitled development site, to Western Land Partners, LP.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Press Release",
+  "effective_date": "2027-08-01",
+  "parties": [
+    { "name": "Global Commercial Real Estate", "role": "Author" }
+  ],
+  "public_release_details": {
+    "release_type": "Press Release",
+    "headline": "Global Commercial Real Estate Announces Sale of Napa Valley Development Site",
+    "summary": "Arranged the $10 million sale of The Vineyard Estates, a 5.25-acre entitled development site, to Western Land Partners, LP."
+  },
+  "discovered_entities": []
+}
+258_schema_additions.json
+
+JSON
+
+{
+  "public_release_details": {
+    "type": "object",
+    "description": "Details specific to a press release or website content.",
+    "properties": {
+      "release_type": { "type": "string", "enum": ["Website", "Press Release"] },
+      "headline": { "type": "string" },
+      "summary": { "type": "string" }
+    }
+  }
+}
+Document Type 259: NDAs/CA for Tours & Data Rooms
+259_specialist_schema.json
+
+JSON
+
+{
+  "title": "NDA/CA for Tours & Data Rooms Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Confidentiality Agreement'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Disclosing Party", "Receiving Party", "Broker"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "nda_details": {
+      "type": "object",
+      "properties": {
+        "property_name": { "type": "string" },
+        "purpose_of_disclosure": { "type": "string" },
+        "term_of_confidentiality": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "nda_details"]
+}
+259_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+CONFIDENTIALITY AGREEMENT
+
+This Agreement is made February 15, 2027, by and between OAK TREE INVESTORS, LLC ("Owner") and PROSPECTIVE BUYER LLC ("Recipient").
+
+Owner is prepared to make available to Recipient certain information concerning the property known as The Vineyard Estates for the purpose of evaluating a possible acquisition. Recipient agrees to hold all such information in strict confidence for a period of two years.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Confidentiality Agreement",
+  "effective_date": "2027-02-15",
+  "parties": [
+    { "name": "OAK TREE INVESTORS, LLC", "role": "Disclosing Party" },
+    { "name": "PROSPECTIVE BUYER LLC", "role": "Receiving Party" }
+  ],
+  "nda_details": {
+    "property_name": "The Vineyard Estates",
+    "purpose_of_disclosure": "Evaluating a possible acquisition.",
+    "term_of_confidentiality": "Two years."
+  },
+  "discovered_entities": []
+}
+259_schema_additions.json
+
+JSON
+
+{
+  "nda_details": {
+    "type": "object",
+    "description": "Details specific to the terms of a Non-Disclosure or Confidentiality Agreement.",
+    "properties": {
+      "nda_type": { "type": "string" },
+      "purpose_of_disclosure": { "type": "string" },
+      "term_of_confidentiality": { "type": "string" },
+      "definition_of_confidential_info": { "type": "string" },
+      "property_name": { "type": "string" }
+    }
+  }
+}

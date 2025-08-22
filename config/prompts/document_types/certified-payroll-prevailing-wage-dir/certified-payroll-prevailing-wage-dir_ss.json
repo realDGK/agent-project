@@ -1,0 +1,45 @@
+{
+  "title": "Certified Payroll/Prevailing Wage Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Certified Payroll Report'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type" },
+          "role": {
+            "type": "string",
+            "enum": ["Contractor", "Subcontractor", "Public Agency"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "payroll_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "week_ending_date": { "type": "string", "format": "date" },
+        "is_statement_of_compliance_signed": { "type": "boolean" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "payroll_details"]
+}

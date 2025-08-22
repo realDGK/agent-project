@@ -1,0 +1,56 @@
+{
+  "title": "ALTA/NSPS Survey Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'ALTA/NSPS Land Title Survey'."
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date",
+      "description": "The date of the field work or certification."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Surveyor", "Client", "Title Company"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "survey_details": {
+      "type": "object",
+      "properties": {
+        "property_address": { "type": "string" },
+        "property_legal_description": { "type": "string" },
+        "apn": { "type": "string" },
+        "flood_zone_information": { "type": "string" },
+        "zoning_classification": { "type": "string" },
+        "table_a_items": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "A list of the optional ALTA Table A items included in the survey."
+        }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "survey_details"]
+}

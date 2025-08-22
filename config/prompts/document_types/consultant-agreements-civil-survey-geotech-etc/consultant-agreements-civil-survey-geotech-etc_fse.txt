@@ -1,0 +1,27 @@
+**INPUT DOCUMENT TEXT:**
+AGREEMENT FOR PROFESSIONAL ENGINEERING SERVICES
+
+This Agreement is made April 1, 2031, between Downtown Tower LLC ("Client") and Apex Civil Engineering ("Consultant").
+
+Project: Downtown Tower
+
+Scope of Services: Consultant shall provide civil engineering design services, including grading, drainage, and utility plans.
+
+Compensation: Services shall be billed on a time and materials basis not to exceed a fee of $150,000.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Agreement for Professional Engineering Services",
+  "effective_date": "2031-04-01",
+  "parties": [
+    { "name": "Downtown Tower LLC", "role": "Client" },
+    { "name": "Apex Civil Engineering", "role": "Consultant" }
+  ],
+  "consulting_details": {
+    "project_name": "Downtown Tower",
+    "scope_of_services_summary": "Provide civil engineering design services, including grading, drainage, and utility plans.",
+    "compensation_summary": "Time and materials basis not to exceed a fee of $150,000.",
+    "standard_of_care": null
+  },
+  "discovered_entities": []
+}

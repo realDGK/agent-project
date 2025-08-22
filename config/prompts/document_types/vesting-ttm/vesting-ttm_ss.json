@@ -1,0 +1,45 @@
+{
+  "title": "Vesting Tentative Tract Map (Vesting TTM) Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Vesting Tentative Tract Map No. 555'."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Applicant", "Owner", "Approving Agency"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "map_details": {
+      "type": "object",
+      "properties": {
+        "map_type": { "type": "string", "default": "Vesting Tentative Tract Map" },
+        "map_number": { "type": "string" },
+        "number_of_lots_created": { "type": "integer" },
+        "vesting_rights_summary": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "map_details"]
+}

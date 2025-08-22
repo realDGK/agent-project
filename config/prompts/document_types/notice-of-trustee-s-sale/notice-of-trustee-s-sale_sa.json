@@ -1,0 +1,27 @@
+{
+  "foreclosure_details": {
+    "type": "object",
+    "description": "Details specific to a foreclosure proceeding.",
+    "properties": {
+      "property_address": {
+        "type": "string"
+      },
+      "apn": {
+        "type": "string"
+      },
+      "sale_date": {
+        "type": "string",
+        "format": "date"
+      },
+      "sale_time": {
+        "type": "string"
+      },
+      "sale_location": {
+        "type": "string"
+      },
+      "unpaid_balance": {
+        "type": "number"
+      }
+    }
+  }
+}

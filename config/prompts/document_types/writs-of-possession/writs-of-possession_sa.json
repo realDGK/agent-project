@@ -1,0 +1,21 @@
+{
+  "litigation_details": {
+    "type": "object",
+    "description": "Details specific to litigation, court filings, and legal disputes.",
+    "properties": {
+      "court_name": {
+        "type": "string"
+      },
+      "case_number": {
+        "type": "string"
+      },
+      "property_address": {
+        "type": "string"
+      },
+      "judgment_date": {
+        "type": "string",
+        "format": "date"
+      }
+    }
+  }
+}

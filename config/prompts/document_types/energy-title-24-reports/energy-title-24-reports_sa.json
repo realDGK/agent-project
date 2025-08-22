@@ -1,0 +1,12 @@
+{
+  "energy_report_details": {
+    "type": "object",
+    "description": "Details specific to an energy compliance report.",
+    "properties": {
+      "project_address": { "type": "string" },
+      "compliance_method": { "type": "string" },
+      "compliance_margin_pct": { "type": "number" },
+      "compliance_statement": { "type": "string" }
+    }
+  }
+}

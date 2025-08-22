@@ -1,0 +1,20 @@
+**INPUT DOCUMENT TEXT:**
+ASSIGNMENT AND ASSUMPTION OF INTANGIBLE PROPERTY
+
+This Assignment is made as of October 30, 2027, by OAK TREE INVESTORS, LLC ("Assignor") in favor of WESTERN LAND PARTNERS, LP ("Assignee").
+
+Assignor hereby assigns to Assignee all of its right, title, and interest in and to all permits, licenses, plans, specifications, warranties, and governmental approvals related to the property at 100 Valley View Road.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Assignment and Assumption of Intangible Property",
+  "effective_date": "2027-10-30",
+  "parties": [
+    { "name": "OAK TREE INVESTORS, LLC", "role": "Assignor" },
+    { "name": "WESTERN LAND PARTNERS, LP", "role": "Assignee" }
+  ],
+  "assignment_details": {
+    "assigned_property_description": "All permits, licenses, plans, specifications, warranties, and governmental approvals related to the property at 100 Valley View Road."
+  },
+  "discovered_entities": []
+}

@@ -1,0 +1,22 @@
+**INPUT DOCUMENT TEXT:**
+SUBORDINATION AGREEMENT
+
+This Agreement is made May 1, 2029, by and between Second Bank ("Junior Lender") and First Bank ("Senior Lender"). The Borrower is Property Owner LLC.
+
+Junior Lender, holder of a Deed of Trust recorded as Inst. No. 2028-111111, agrees that its lien shall be subordinate to the lien of the Deed of Trust in favor of Senior Lender, recorded as Inst. No. 2029-222222.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Subordination Agreement",
+  "effective_date": "2029-05-01",
+  "parties": [
+    { "name": "Second Bank", "role": "Junior Lienholder" },
+    { "name": "First Bank", "role": "Senior Lienholder" },
+    { "name": "Property Owner LLC", "role": "Borrower" }
+  ],
+  "subordination_details": {
+    "subordinated_instrument": "Deed of Trust recorded as Inst. No. 2028-111111",
+    "senior_instrument": "Deed of Trust recorded as Inst. No. 2029-222222"
+  },
+  "discovered_entities": []
+}

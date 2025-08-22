@@ -1,0 +1,72 @@
+{
+  "title": "LLC Operating Agreement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the LLC the agreement governs, e.g., 'Operating Agreement of [LLC Name]'."
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date",
+      "description": "The date the agreement was executed or became effective."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Member", "Manager", "Initial Member"]
+          },
+          "title": { "type": "string" }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "llc_operating_details": {
+      "type": "object",
+      "properties": {
+        "management_type": {
+          "type": "string",
+          "enum": ["Member-Managed", "Manager-Managed"],
+          "description": "Specifies whether the LLC is managed by its members or by appointed managers."
+        },
+        "capital_contributions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "member_name": { "type": "string" },
+              "contribution_amount": { "type": "number" },
+              "contribution_description": { "type": "string" },
+              "membership_percentage": { "type": "number" }
+            }
+          }
+        },
+        "profit_loss_distribution": {
+          "type": "string",
+          "description": "A summary of how profits and losses are allocated among members (e.g., 'In proportion to Membership Interest', '50/50')."
+        },
+        "tax_matters_member": {
+          "type": "string",
+          "description": "The name of the member designated as the 'Partnership Representative' for tax purposes."
+        }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date"]
+}

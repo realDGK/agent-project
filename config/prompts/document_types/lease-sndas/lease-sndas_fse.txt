@@ -1,0 +1,32 @@
+**INPUT DOCUMENT TEXT:**
+SUBORDINATION, NON-DISTURBANCE, AND ATTORNMENT AGREEMENT
+
+This SNDA is made as of May 10, 2028, by and among BIG BANK, N.A. ("Lender"), MAIN STREET PROPERTIES LLC ("Landlord"), and THE COFFEE SPOT LLC ("Tenant").
+
+RECITALS:
+A. Landlord and Tenant entered into a Lease dated June 1, 2025.
+B. Lender has made a loan to Landlord evidenced by a Deed of Trust recorded concurrently herewith.
+
+AGREEMENT:
+1. Subordination. The Lease is and shall be subordinate to the lien of the Deed of Trust.
+2. Non-Disturbance. So long as Tenant is not in default, Lender agrees not to disturb Tenant's possession in the event of a foreclosure.
+3. Attornment. Tenant agrees to attorn to and recognize Lender as the new landlord in the event of a foreclosure.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Subordination, Non-Disturbance, and Attornment Agreement",
+  "effective_date": "2028-05-10",
+  "parties": [
+    { "name": "BIG BANK, N.A.", "role": "Lender" },
+    { "name": "MAIN STREET PROPERTIES LLC", "role": "Landlord" },
+    { "name": "THE COFFEE SPOT LLC", "role": "Tenant" }
+  ],
+  "snda_details": {
+    "lease_date": "2025-06-01",
+    "deed_of_trust_date": null,
+    "subordination_clause": "The Lease is and shall be subordinate to the lien of the Deed of Trust.",
+    "non_disturbance_clause": "So long as Tenant is not in default, Lender agrees not to disturb Tenant's possession in the event of a foreclosure.",
+    "attornment_clause": "Tenant agrees to attorn to and recognize Lender as the new landlord in the event of a foreclosure."
+  },
+  "discovered_entities": []
+}

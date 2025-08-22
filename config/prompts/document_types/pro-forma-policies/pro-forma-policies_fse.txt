@@ -1,0 +1,33 @@
+**INPUT DOCUMENT TEXT:**
+PRO FORMA ALTA OWNER'S POLICY OF TITLE INSURANCE
+Prepared for: WESTERN LAND PARTNERS, LP
+Date: September 20, 2027
+Title Order: CT-98765
+
+This is a pro forma policy and is not a commitment or policy of title insurance.
+
+Proposed Amount of Insurance: $10,000,000.00
+Proposed Insured: WESTERN LAND PARTNERS, LP
+
+The final policy will include the following endorsements:
+- ALTA 100 (Comprehensive)
+- ALTA 116 (Address)
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Pro Forma ALTA Owner's Policy of Title Insurance",
+  "effective_date": "2027-09-20",
+  "parties": [
+    { "name": "WESTERN LAND PARTNERS, LP", "role": "Proposed Insured" }
+  ],
+  "title_details": {
+    "report_number": "CT-98765",
+    "policy_type": "ALTA Owner's Policy",
+    "proposed_insured_amount": 10000000,
+    "proposed_endorsements": [
+      "ALTA 100 (Comprehensive)",
+      "ALTA 116 (Address)"
+    ]
+  },
+  "discovered_entities": []
+}

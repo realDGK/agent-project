@@ -1,0 +1,10 @@
+{
+  "indemnity_details": {
+    "type": "object",
+    "description": "Details specific to an indemnity agreement.",
+    "properties": {
+      "property_address": { "type": "string" },
+      "indemnified_matters": { "type": "string" }
+    }
+  }
+}

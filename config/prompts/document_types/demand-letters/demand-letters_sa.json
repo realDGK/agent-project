@@ -1,0 +1,11 @@
+{
+  "demand_letter_details": {
+    "type": "object",
+    "description": "Details specific to a demand letter.",
+    "properties": {
+      "amount_demanded": { "type": "number" },
+      "reason_for_demand": { "type": "string" },
+      "deadline_to_respond": { "type": "string" }
+    }
+  }
+}

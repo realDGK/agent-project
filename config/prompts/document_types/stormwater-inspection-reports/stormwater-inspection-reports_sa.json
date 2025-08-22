@@ -1,0 +1,14 @@
+{
+  "stormwater_details": {
+    "type": "object",
+    "description": "Details specific to stormwater compliance documents.",
+    "properties": {
+      "document_type": { "type": "string", "enum": ["NOI", "NOT", "SWPPP"] },
+      "project_name": { "type": "string" },
+      "wdid_number": { "type": "string" },
+      "total_disturbed_area_acres": { "type": "number" },
+      "inspection_findings": { "type": "string" },
+      "corrective_actions_required": { "type": "string" }
+    }
+  }
+}

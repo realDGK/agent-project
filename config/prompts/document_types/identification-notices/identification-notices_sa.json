@@ -1,0 +1,13 @@
+{
+  "exchange_details": {
+    "type": "object",
+    "description": "Details specific to a 1031 tax-deferred exchange.",
+    "properties": {
+      "relinquished_property": { "type": "string" },
+      "relinquished_property_sale_date": { "type": "string", "format": "date" },
+      "identification_period_deadline": { "type": "string", "format": "date" },
+      "exchange_period_deadline": { "type": "string", "format": "date" },
+      "identified_replacement_properties": { "type": "array", "items": { "type": "string" } }
+    }
+  }
+}

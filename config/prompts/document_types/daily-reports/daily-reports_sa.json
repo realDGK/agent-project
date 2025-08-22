@@ -1,0 +1,14 @@
+{
+  "daily_report_details": {
+    "type": "object",
+    "description": "Details specific to a daily construction report.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "weather": { "type": "string" },
+      "work_performed": { "type": "string" },
+      "subcontractors_on_site": { "type": "array", "items": { "type": "string" } },
+      "equipment_on_site": { "type": "array", "items": { "type": "string" } },
+      "issues_or_delays": { "type": "string" }
+    }
+  }
+}

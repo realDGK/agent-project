@@ -1,0 +1,23 @@
+{
+  "meeting_minutes_details": {
+    "type": "object",
+    "description": "Details specific to meeting minutes.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "meeting_title": { "type": "string" },
+      "attendees": { "type": "array", "items": { "type": "string" } },
+      "key_discussion_points": { "type": "array", "items": { "type": "string" } },
+      "action_items": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "item": { "type": "string" },
+            "responsible_party": { "type": "string" },
+            "due_date": { "type": "string", "format": "date" }
+          }
+        }
+      }
+    }
+  }
+}

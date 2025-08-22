@@ -1,0 +1,10 @@
+{
+  "transmittal_details": {
+    "type": "object",
+    "description": "Details specific to a transmittal letter or email.",
+    "properties": {
+      "documents_delivered": { "type": "array", "items": { "type": "string" } },
+      "project_name": { "type": "string" }
+    }
+  }
+}

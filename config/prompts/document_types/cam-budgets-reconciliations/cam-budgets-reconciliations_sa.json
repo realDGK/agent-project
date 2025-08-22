@@ -1,0 +1,15 @@
+{
+  "cam_details": {
+    "type": "object",
+    "description": "Details specific to a Common Area Maintenance (CAM) budget or reconciliation.",
+    "properties": {
+      "property_name": { "type": "string" },
+      "period": { "type": "string" },
+      "document_type": { "type": "string", "enum": ["Budget", "Reconciliation"] },
+      "total_actual_expenses": { "type": "number" },
+      "total_estimated_payments": { "type": "number" },
+      "tenant_pro_rata_share_pct": { "type": "number" },
+      "tenant_charge_or_credit": { "type": "number" }
+    }
+  }
+}

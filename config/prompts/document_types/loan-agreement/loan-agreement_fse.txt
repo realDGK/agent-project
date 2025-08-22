@@ -1,0 +1,31 @@
+**INPUT DOCUMENT TEXT:**
+CONSTRUCTION LOAN AGREEMENT
+
+This Agreement is dated August 1, 2031, between Downtown Tower LLC ("Borrower") and Mega Bank, N.A. ("Lender").
+
+1. Loan. Lender agrees to lend Borrower up to Fifty Million Dollars ($50,000,000).
+2. Interest Rate. The loan shall bear interest at a floating rate of SOFR + 2.75%.
+3. Maturity. The loan shall mature and be payable in full on August 1, 2034.
+4. Security. The loan is secured by a Deed of Trust on the property at 123 Main Street.
+5. Covenants. Borrower shall maintain a Loan-to-Cost ratio not to exceed 75%.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Construction Loan Agreement",
+  "effective_date": "2031-08-01",
+  "parties": [
+    { "name": "Downtown Tower LLC", "role": "Borrower" },
+    { "name": "Mega Bank, N.A.", "role": "Lender" }
+  ],
+  "loan_details": {
+    "loan_amount": 50000000,
+    "interest_rate": "SOFR + 2.75%",
+    "maturity_date": "2034-08-01",
+    "repayment_terms": null,
+    "collateral": "A Deed of Trust on the property at 123 Main Street.",
+    "key_covenants": [
+      "Maintain a Loan-to-Cost ratio not to exceed 75%."
+    ]
+  },
+  "discovered_entities": []
+}

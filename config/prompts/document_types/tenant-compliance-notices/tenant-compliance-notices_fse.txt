@@ -1,0 +1,28 @@
+**INPUT DOCUMENT TEXT:**
+THREE-DAY NOTICE TO PERFORM COVENANT OR QUIT
+
+TO: John Smith, Tenant
+FROM: The Aspens Apartments, Landlord
+DATE: July 10, 2033
+
+You are in violation of your Lease Agreement for the premises at 100 Aspen Way, #205, due to an unauthorized pet on the premises.
+
+Within THREE (3) DAYS, you must cure this breach by removing the pet, or deliver up possession of the premises.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Three-Day Notice to Perform Covenant or Quit",
+  "effective_date": "2033-07-10",
+  "parties": [
+    { "name": "The Aspens Apartments", "role": "Landlord" },
+    { "name": "John Smith", "role": "Tenant" }
+  ],
+  "compliance_notice_details": {
+    "property_address": "100 Aspen Way",
+    "unit_number": "205",
+    "notice_type": "Notice to Perform Covenant or Quit",
+    "nature_of_violation": "Unauthorized pet on the premises.",
+    "cure_period": "Three (3) days"
+  },
+  "discovered_entities": []
+}

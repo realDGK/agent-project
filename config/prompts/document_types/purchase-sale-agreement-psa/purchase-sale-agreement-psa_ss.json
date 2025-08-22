@@ -1,0 +1,57 @@
+{
+  "title": "Purchase and Sale Agreement (PSA) Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Real Estate Purchase and Sale Agreement'."
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date",
+      "description": "The date the agreement was fully executed."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Seller", "Buyer", "Escrow Agent", "Title Company"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "deal_terms": {
+      "type": "object",
+      "properties": {
+        "property_description": {
+          "type": "string",
+          "description": "A description of the property being sold, including address or APN."
+        },
+        "purchase_price": { "type": "number" },
+        "deposit_amount": { "type": "number" },
+        "deposit_increase_details": { "type": "string" },
+        "due_diligence_period": { "type": "string" },
+        "contingencies": { "type": "array", "items": { "type": "string" } },
+        "closing_date": { "type": "string", "format": "date" },
+        "prorations_summary": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "deal_terms"]
+}

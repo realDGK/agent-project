@@ -1,0 +1,12 @@
+{
+  "shared_facility_details": {
+    "type": "object",
+    "description": "Details specific to a parking or shared facilities agreement.",
+    "properties": {
+      "facility_type": { "type": "string", "enum": ["Parking", "Other Shared Facility"] },
+      "number_of_spaces_or_rights": { "type": "string" },
+      "fee_or_rent": { "type": "string" },
+      "rules_of_use": { "type": "string" }
+    }
+  }
+}

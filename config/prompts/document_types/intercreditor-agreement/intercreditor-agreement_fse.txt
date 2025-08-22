@@ -1,0 +1,32 @@
+**INPUT DOCUMENT TEXT:**
+INTERCREDITOR AGREEMENT
+
+This Agreement is dated September 1, 2031, among MEGA BANK, N.A. ("Senior Lender"), HIGH YIELD LENDERS LLC ("Mezzanine Lender"), and DOWNTOWN TOWER LLC ("Borrower").
+
+RECITALS:
+A. Senior Lender has made a loan of $50,000,000 ("Senior Loan").
+B. Mezzanine Lender has made a loan of $10,000,000 ("Mezzanine Loan").
+
+AGREEMENT:
+1. Lien Subordination. The Mezzanine Loan is subordinate to the Senior Loan in all respects.
+2. Payment Blockage. No payments shall be made on the Mezzanine Loan if a default exists on the Senior Loan.
+3. Standstill. Mezzanine Lender agrees not to exercise any remedies for a period of 90 days following a default on the Mezzanine Loan.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Intercreditor Agreement",
+  "effective_date": "2031-09-01",
+  "parties": [
+    { "name": "MEGA BANK, N.A.", "role": "Senior Lender" },
+    { "name": "HIGH YIELD LENDERS LLC", "role": "Mezzanine Lender" },
+    { "name": "DOWNTOWN TOWER LLC", "role": "Borrower" }
+  ],
+  "intercreditor_details": {
+    "senior_debt_amount": 50000000,
+    "junior_debt_amount": 10000000,
+    "payment_subordination": "No payments shall be made on the Mezzanine Loan if a default exists on the Senior Loan.",
+    "lien_subordination": "The Mezzanine Loan is subordinate to the Senior Loan in all respects.",
+    "standstill_provisions": "Mezzanine Lender agrees not to exercise any remedies for a period of 90 days following a default on the Mezzanine Loan."
+  },
+  "discovered_entities": []
+}

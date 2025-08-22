@@ -1,0 +1,27 @@
+**INPUT DOCUMENT TEXT:**
+CITY OF OAK CREEK
+ACCESSORY DWELLING UNIT PERMIT
+
+APPLICANT: Robert Chen
+ADDRESS: 789 Elm Street, Oak Creek, CA
+
+DESCRIPTION:
+Permit for the construction of a new, 800 square foot detached Accessory Dwelling Unit (ADU).
+A deed restriction prohibiting the separate sale of the ADU and requiring owner-occupancy of either the primary or accessory unit must be recorded prior to final inspection.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Accessory Dwelling Unit Permit",
+  "effective_date": null,
+  "parties": [
+    { "name": "Robert Chen", "role": "Applicant" },
+    { "name": "City of Oak Creek", "role": "Issuing Agency" }
+  ],
+  "adu_details": {
+    "property_address": "789 Elm Street, Oak Creek, CA",
+    "adu_type": "Detached",
+    "adu_square_footage": 800,
+    "deed_restriction_required": true
+  },
+  "discovered_entities": []
+}

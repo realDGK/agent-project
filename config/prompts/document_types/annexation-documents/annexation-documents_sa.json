@@ -1,0 +1,11 @@
+{
+  "annexation_details": {
+    "type": "object",
+    "description": "Details specific to an annexation.",
+    "properties": {
+      "annexation_name_or_number": { "type": "string" },
+      "property_annexed": { "type": "string" },
+      "pre_annexation_zoning": { "type": "string" }
+    }
+  }
+}

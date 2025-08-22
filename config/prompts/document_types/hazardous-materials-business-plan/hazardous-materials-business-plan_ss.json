@@ -1,0 +1,45 @@
+{
+  "title": "Hazardous Materials Business Plan Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Hazardous Materials Business Plan'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Business Owner", "Regulatory Agency"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "hazmat_plan_details": {
+      "type": "object",
+      "properties": {
+        "facility_address": { "type": "string" },
+        "hazardous_materials_inventory": { "type": "array", "items": { "type": "string" } },
+        "emergency_contact": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "hazmat_plan_details"]
+}

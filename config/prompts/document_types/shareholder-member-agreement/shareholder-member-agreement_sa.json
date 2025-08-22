@@ -1,0 +1,33 @@
+{
+  "shareholder_agreement_details": {
+    "type": "object",
+    "description": "Details specific to the rights, restrictions, and obligations among shareholders or members of an entity.",
+    "properties": {
+      "transfer_restrictions": {
+        "type": "string",
+        "description": "A summary of the restrictions on selling or transferring shares."
+      },
+      "right_of_first_refusal_rofr": {
+        "type": "string",
+        "description": "Summary of the ROFR clause, if present (e.g., 'Company has 30 days to match any bona fide offer')."
+      },
+      "drag_along_rights": {
+        "type": "string",
+        "description": "Summary of the drag-along provision, specifying the trigger threshold (e.g., 'Majority shareholders can force minority to sell')."
+      },
+      "tag_along_rights": {
+        "type": "string",
+        "description": "Summary of the tag-along provision, allowing minority shareholders to join a sale."
+      },
+      "buy_sell_triggers": {
+        "type": "array",
+        "items": { "type": "string" },
+        "description": "A list of events that trigger the buy-sell provisions (e.g., 'Death', 'Disability', 'Termination of Employment', 'Divorce')."
+      },
+      "valuation_method": {
+        "type": "string",
+        "description": "How the share price is determined for a buyout (e.g., 'Annual appraisal', 'Book value', 'Formula based on earnings')."
+      }
+    }
+  }
+}

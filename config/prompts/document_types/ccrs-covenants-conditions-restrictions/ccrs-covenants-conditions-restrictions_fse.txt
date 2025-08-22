@@ -1,0 +1,32 @@
+**INPUT DOCUMENT TEXT:**
+DECLARATION OF COVENANTS, CONDITIONS, AND RESTRICTIONS
+FOR
+GREEN VALLEY RANCH
+
+This Declaration is made on May 1, 2033, by Green Valley Developers LLC ("Declarant").
+
+This Declaration imposes upon the real property known as Green Valley Ranch a plan of covenants and creates the Green Valley Ranch Homeowners Association.
+
+ARTICLE III: USE RESTRICTIONS
+No structure of a temporary character, trailer, shack, or barn shall be used on any Lot at any time as a residence. All fences must be of wood or wrought iron construction.
+
+ARTICLE IV: ASSESSMENTS
+The Association is authorized to levy annual and special assessments against the Lots to provide for the maintenance of the Common Areas.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Declaration of Covenants, Conditions, and Restrictions for Green Valley Ranch",
+  "effective_date": "2033-05-01",
+  "parties": [
+    { "name": "Green Valley Developers LLC", "role": "Declarant" },
+    { "name": "Green Valley Ranch Homeowners Association", "role": "Homeowners Association" }
+  ],
+  "ccr_details": {
+    "property_description": "Green Valley Ranch",
+    "association_name": "Green Valley Ranch Homeowners Association",
+    "use_restrictions_summary": "No temporary structures used as residences. Fences must be wood or wrought iron.",
+    "assessment_provisions": "Association can levy annual and special assessments to maintain Common Areas."
+  },
+  "legal_recording_details": null,
+  "discovered_entities": []
+}

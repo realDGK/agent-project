@@ -1,0 +1,41 @@
+**INPUT DOCUMENT TEXT:**
+PROJECT PUNCH LIST
+Project: Downtown Tower - 15th Floor Tenant Suite
+Inspection Date: August 20, 2034
+Architect: Global Architects Inc.
+
+LOCATION | ITEM DESCRIPTION
+Room 1501 | Adjust entry door closer.
+Room 1502 | Touch up paint on north wall.
+Corridor | Replace stained ceiling tile.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Project Punch List",
+  "effective_date": "2034-08-20",
+  "parties": [
+    { "name": "Global Architects Inc.", "role": "Architect" }
+  ],
+  "punch_list_details": {
+    "project_name": "Downtown Tower - 15th Floor Tenant Suite",
+    "total_items": 3,
+    "items": [
+      {
+        "location": "Room 1501",
+        "description": "Adjust entry door closer.",
+        "status": null
+      },
+      {
+        "location": "Room 1502",
+        "description": "Touch up paint on north wall.",
+        "status": null
+      },
+      {
+        "location": "Corridor",
+        "description": "Replace stained ceiling tile.",
+        "status": null
+      }
+    ]
+  },
+  "discovered_entities": []
+}

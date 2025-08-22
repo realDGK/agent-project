@@ -1,0 +1,46 @@
+{
+  "title": "NPDES/SWPPP Document Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Notice of Intent (NOI)', 'Stormwater Pollution Prevention Plan (SWPPP)'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Discharger", "Operator", "Consultant"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "stormwater_details": {
+      "type": "object",
+      "properties": {
+        "document_type": { "type": "string", "enum": ["NOI", "NOT", "SWPPP"] },
+        "project_name": { "type": "string" },
+        "wdid_number": { "type": "string" },
+        "total_disturbed_area_acres": { "type": "number" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "stormwater_details"]
+}

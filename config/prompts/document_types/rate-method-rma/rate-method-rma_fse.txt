@@ -1,0 +1,24 @@
+**INPUT DOCUMENT TEXT:**
+RATE AND METHOD OF APPORTIONMENT FOR
+COMMUNITY FACILITIES DISTRICT NO. 2032-1
+
+The Maximum Special Tax for a single-family property shall be $2,500 per year, escalating at 2% annually.
+
+The Special Tax shall be levied on all Developed Property in proportion to the building square footage of each unit.
+
+Prepared by: Public Finance Advisors LLC
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Rate and Method of Apportionment",
+  "parties": [
+    { "name": "Public Finance Advisors LLC", "role": "Special Tax Consultant" }
+  ],
+  "cfd_details": {
+    "cfd_name": null,
+    "cfd_number": "2032-1",
+    "maximum_special_tax": "$2,500 per year for a single-family property, escalating at 2% annually.",
+    "method_of_apportionment": "Levied on all Developed Property in proportion to the building square footage of each unit."
+  },
+  "discovered_entities": []
+}

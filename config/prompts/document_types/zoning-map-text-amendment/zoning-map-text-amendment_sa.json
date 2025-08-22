@@ -1,0 +1,15 @@
+{
+  "entitlement_details": {
+    "type": "object",
+    "description": "Details specific to land use entitlements and government approvals.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "application_number": { "type": "string" },
+      "property_description": { "type": "string" },
+      "original_land_use_designation": { "type": "string" },
+      "new_land_use_designation": { "type": "string" },
+      "original_zoning": { "type": "string" },
+      "new_zoning": { "type": "string" }
+    }
+  }
+}

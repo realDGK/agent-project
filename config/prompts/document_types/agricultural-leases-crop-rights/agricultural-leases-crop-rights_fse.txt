@@ -1,0 +1,26 @@
+**INPUT DOCUMENT TEXT:**
+FARM LEASE AGREEMENT
+
+This Lease is made March 1, 2034, between Central Valley Land Co. ("Lessor") and Family Farms Inc. ("Lessee").
+
+Lessor leases to Lessee the 320-acre parcel identified as APN 555-444-333 for a term of three (3) years.
+Lessee shall pay annual rent of $500 per acre.
+The premises shall be used for the cultivation of almonds.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Farm Lease Agreement",
+  "effective_date": "2034-03-01",
+  "parties": [
+    { "name": "Central Valley Land Co.", "role": "Lessor" },
+    { "name": "Family Farms Inc.", "role": "Lessee" }
+  ],
+  "lease_details": {
+    "lease_type": "Agricultural",
+    "property_description": "320-acre parcel identified as APN 555-444-333",
+    "lease_term": "Three (3) years",
+    "rent_terms": "$500 per acre annually",
+    "permitted_crops": "Almonds"
+  },
+  "discovered_entities": []
+}

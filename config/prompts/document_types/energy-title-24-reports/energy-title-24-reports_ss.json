@@ -1,0 +1,46 @@
+{
+  "title": "Energy (Title 24) Report Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Title 24 Energy Compliance Report'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Author", "Energy Consultant"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "energy_report_details": {
+      "type": "object",
+      "properties": {
+        "project_address": { "type": "string" },
+        "compliance_method": { "type": "string" },
+        "compliance_margin_pct": { "type": "number" },
+        "compliance_statement": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "energy_report_details"]
+}

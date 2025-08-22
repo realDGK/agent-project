@@ -1,0 +1,16 @@
+{
+  "settlement_statement_details": {
+    "type": "object",
+    "description": "Details specific to a settlement statement (like an ALTA) summarizing the financials of a closing.",
+    "properties": {
+      "property_address": { "type": "string" },
+      "escrow_number": { "type": "string" },
+      "buyer_total_debits": { "type": "number" },
+      "buyer_total_credits": { "type": "number" },
+      "cash_from_buyer": { "type": "number" },
+      "seller_total_debits": { "type": "number" },
+      "seller_total_credits": { "type": "number" },
+      "cash_to_seller": { "type": "number" }
+    }
+  }
+}

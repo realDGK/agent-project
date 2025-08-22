@@ -1,0 +1,27 @@
+**INPUT DOCUMENT TEXT:**
+AFFIDAVIT OF PUBLICATION
+THE VISTA CHRONICLE
+
+I hereby certify that the Notice of Public Hearing for CUP P29-123 was published in the Vista Chronicle, a newspaper of general circulation, on October 25, 2029.
+
+Signed: (Signature), Publisher
+Date: October 26, 2029
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Affidavit of Publication",
+  "effective_date": "2029-10-26",
+  "parties": [
+    { "name": "The Vista Chronicle", "role": "Publisher" }
+  ],
+  "proof_of_service_details": {
+    "service_type": "Publication",
+    "document_served": "Notice of Public Hearing for CUP P29-123",
+    "publication_name": "The Vista Chronicle",
+    "publication_dates": [
+      "2029-10-25"
+    ],
+    "mailing_date": null
+  },
+  "discovered_entities": []
+}

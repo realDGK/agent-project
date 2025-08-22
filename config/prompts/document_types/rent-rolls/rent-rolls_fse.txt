@@ -1,0 +1,45 @@
+**INPUT DOCUMENT TEXT:**
+RENT ROLL - THE ASPENS APARTMENTS
+As of June 1, 2033
+
+Unit | Tenant | SqFt | Rent | Lease Start | Lease End
+101 | Jane Doe | 800 | $2,100 | 01/01/2033 | 12/31/2033
+102 | Vacant | 800 | | |
+103 | Tom Harris | 1,000 | $2,500 | 03/01/2033 | 02/28/2034
+
+Totals: 100 Units, 95 Occupied (95%), Total Monthly Rent: $215,000
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Rent Roll",
+  "effective_date": "2033-06-01",
+  "parties": [
+    { "name": "The Aspens Apartments", "role": "Property Owner" }
+  ],
+  "rent_roll_details": {
+    "property_name": "The Aspens Apartments",
+    "total_units": 100,
+    "occupied_units": 95,
+    "occupancy_rate_pct": 95,
+    "total_monthly_rent": 215000,
+    "tenants": [
+      {
+        "tenant_name": "Jane Doe",
+        "unit_number": "101",
+        "sqft": 800,
+        "monthly_rent": 2100,
+        "lease_start": "2033-01-01",
+        "lease_end": "2033-12-31"
+      },
+      {
+        "tenant_name": "Tom Harris",
+        "unit_number": "103",
+        "sqft": 1000,
+        "monthly_rent": 2500,
+        "lease_start": "2033-03-01",
+        "lease_end": "2034-02-28"
+      }
+    ]
+  },
+  "discovered_entities": []
+}

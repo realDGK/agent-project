@@ -1,0 +1,27 @@
+**INPUT DOCUMENT TEXT:**
+SELLER'S CERTIFICATE
+
+The undersigned, OAK TREE INVESTORS, LLC ("Seller"), hereby certifies to WESTERN LAND PARTNERS, LP ("Buyer") as of October 30, 2027, that:
+1. All representations and warranties made by Seller in the Purchase Agreement are true and correct.
+2. Seller has complied with all of its covenants under the Agreement.
+3. There is no pending litigation affecting the Property.
+4. The undersigned has the full authority to execute this certificate.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Seller's Certificate",
+  "effective_date": "2027-10-30",
+  "parties": [
+    { "name": "OAK TREE INVESTORS, LLC", "role": "Certifying Party" },
+    { "name": "WESTERN LAND PARTNERS, LP", "role": "Beneficiary" }
+  ],
+  "certificate_details": {
+    "certifications_made": [
+      "All representations and warranties are true and correct.",
+      "Seller has complied with all covenants.",
+      "There is no pending litigation affecting the Property.",
+      "The undersigned has full authority to execute."
+    ]
+  },
+  "discovered_entities": []
+}

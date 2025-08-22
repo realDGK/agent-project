@@ -1,0 +1,30 @@
+{
+  "employment_details": {
+    "type": "object",
+    "description": "Details specific to the terms of an employment relationship.",
+    "properties": {
+      "job_title": {
+        "type": "string"
+      },
+      "start_date": {
+        "type": "string",
+        "format": "date"
+      },
+      "base_salary": {
+        "type": "number"
+      },
+      "salary_period": {
+        "type": "string",
+        "enum": ["Annual", "Monthly", "Hourly"]
+      },
+      "bonus_structure": {
+        "type": "string",
+        "description": "A summary of any performance bonus, signing bonus, or other incentive compensation."
+      },
+      "termination_clause_summary": {
+        "type": "string",
+        "description": "A brief summary of the conditions for termination, including notice period or 'at-will' status."
+      }
+    }
+  }
+}

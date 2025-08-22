@@ -1,506 +1,5065 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Real Estate Development Document Schema",
-  "type": "array",
-  "items": {
-    "type": "object",
-    "properties": {
-      "document_id": {
-        "type": "string",
-        "format": "uuid",
-        "description": "Primary ID of this document record."
-      },
-      "provenance": {
-        "type": "object",
-        "description": "Origin and chain-of-custody for the document content.",
-        "properties": {
-          "source_uri": { "type": "string" },
-          "source_system": { "type": "string" },
-          "ingestion_time": { "type": "string", "format": "date-time" },
-          "ingested_by": { "type": "string" },
-          "sha256_hash": { "type": "string" },
-          "file_size_bytes": { "type": "integer" },
-          "mime_type": { "type": "string" },
-          "page_count": { "type": "integer" },
-          "text_extraction_method": { "type": "string" },
-          "ocr_confidence": { "type": "number" },
-          "parser_version": { "type": "string" }
+  "type": "object",
+  "properties": {
+    "document_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Primary ID of this document record."
+    },
+    "provenance": {
+      "type": "object",
+      "description": "Origin and chain-of-custody for the document content.",
+      "properties": {
+        "source_uri": {
+          "type": "string"
         },
-        "required": ["source_uri", "ingestion_time", "sha256_hash"]
-      },
-      "document_version": { "type": "integer" },
-      "supersedes_document_id": { "type": "string", "format": "uuid" },
-      "superseded_by_document_id": { "type": "string", "format": "uuid" },
-      "document_state": {
-        "type": "string",
-        "enum": ["active", "amended", "void", "draft"]
-      },
-      "security": {
-        "type": "object",
-        "properties": {
-          "confidentiality": { "type": "string", "enum": ["public", "internal", "privileged"] },
-          "legal_hold": { "type": "boolean" },
-          "privacy_flags": { "type": "array", "items": { "type": "string" } },
-          "acl": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "subject": { "type": "string" },
-                "permission": { "type": "string", "enum": ["read", "write", "admin"] }
-              },
-              "required": ["subject", "permission"]
-            }
-          }
+        "source_system": {
+          "type": "string"
+        },
+        "ingestion_time": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "ingested_by": {
+          "type": "string"
+        },
+        "sha256_hash": {
+          "type": "string"
+        },
+        "file_size_bytes": {
+          "type": "integer"
+        },
+        "mime_type": {
+          "type": "string"
+        },
+        "page_count": {
+          "type": "integer"
+        },
+        "text_extraction_method": {
+          "type": "string"
+        },
+        "ocr_confidence": {
+          "type": "number"
+        },
+        "parser_version": {
+          "type": "string"
         }
       },
-      "project_ids": {
-        "type": "array",
-        "items": { "type": "string", "format": "uuid" }
-      },
-      "contract_type": {
-        "type": "string",
-        "enum": [
-          "Lease Agreement",
-          "NDA",
-          "Contractor Agreement",
-          "Purchase Agreement",
-          "Development Agreement",
-          "Letter of Intent",
-          "Amendment",
-          "Escrow Instructions",
-          "Resolution",
-          "Budget",
-          "Settlement Statement",
-          "Trustee's Deed Upon Sale",
-          "Disbursement of Proceeds",
-          "Substitution of Trustee and Deed of Reconveyance",
-          "Email",
-          "Conditional Use Permit",
-          "Site Plan Review",
-          "Deed of Trust",
-          "Grant Deed",
-          "Quitclaim",
-          "Easement",
-          "CC&Rs",
-          "SNDA",
-          "Estoppel",
-          "Guaranty",
-          "Indemnity",
-          "Option Agreement",
-          "Assignment & Assumption",
-          "Notice of Default",
-          "Notice of Sale",
-          "Lis Pendens",
-          "Preliminary Title Report",
-          "Title Policy",
-          "ALTA Survey",
-          "Performance/Payment Bond",
-          "Change Order",
-          "Pay App",
-          "Mechanics Lien",
-          "Lien Release",
-          "Will-Serve Letter",
-          "Building Permit",
-          "Grading Permit",
-          "Encroachment Permit",
-          "Certificate of Occupancy",
-          "CEQA"
-        ]
-      },
-      "ceqa_document_type": {
-        "type": "string",
-        "enum": ["EIR", "MND", "NOD", "NOE", "Initial Study", "Addendum", "Other"]
-      },
-      "contract_name": { "type": "string" },
-      "execution_date": { "type": "string", "format": "date" },
-      "effective_date": { "type": "string", "format": "date" },
-      "expiration_date": { "type": "string", "format": "date" },
-      "closing_date": { "type": "string", "format": "date" },
-      "parties": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "party_id": { "type": "string", "format": "uuid" },
-            "name": { "type": "string" },
-            "role": { "type": "string" },
-            "address": { "type": "string" },
-            "phone": { "type": "string" },
-            "email": { "type": "string" },
-            "title": { "type": "string" }
-          },
-          "required": ["name", "role"]
-        }
-      },
-      "related_documents": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "related_document_id": { "type": "string", "format": "uuid" },
-            "relation_type": {
-              "type": "string",
-              "enum": ["amends", "replaces", "exhibit", "attachment", "references", "recorded_against", "implements", "evidence_of"]
-            },
-            "description": { "type": "string" }
-          },
-          "required": ["related_document_id", "relation_type"]
-        }
-      },
-      "parcels": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "parcel_id": { "type": "string", "format": "uuid" },
-            "apn": { "type": "string" },
-            "county_fips": { "type": "string" },
-            "geocode": {
-              "type": "object",
-              "properties": {
-                "lat": { "type": "number" },
-                "lon": { "type": "number" }
-              }
-            },
-            "state": { "type": "string" },
-            "legal_description": { "type": "string" },
-            "acres": { "type": "number" },
-            "lot_number": { "type": "string" }
-          },
-          "required": ["apn"]
-        }
-      },
-      "files": {
-        "type": "array",
-        "description": "Binary/file pointers for the canonical document and any normalized attachments (non-email specific).",
-        "items": {
-          "type": "object",
-          "properties": {
-            "filename": { "type": "string" },
-            "mime_type": { "type": "string" },
-            "size_bytes": { "type": "integer" },
-            "sha256": { "type": "string" },
-            "storage_uri": { "type": "string" }
-          },
-          "required": ["filename", "sha256", "storage_uri"]
-        }
-      },
-      "financial_terms": {
-        "type": "object",
-        "properties": {
-          "currency": { "type": "string", "default": "USD" },
-          "rent_amount": { "type": "number" },
-          "purchase_price": { "type": "number" },
-          "security_deposit": { "type": "number" },
-          "payment_terms": { "type": "string" },
-          "loan_details": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "loan_amount": { "type": "number" },
-                "loan_type": { "type": "string" },
-                "lender": { "type": "string" }
-              }
-            }
-          },
-          "interest_reserve": { "type": "number" },
-          "itemized_costs": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "item": { "type": "string" },
-                "amount": { "type": "number" },
-                "unit": { "type": "string" },
-                "unit_price": { "type": "number" },
-                "cost_code": { "type": "string" },
-                "committed_vendor": { "type": "string" },
-                "retention_pct": { "type": "number" }
-              }
-            }
-          },
-          "draw_requests": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "draw_no": { "type": "string" },
-                "period_start": { "type": "string", "format": "date" },
-                "period_end": { "type": "string", "format": "date" },
-                "amount_requested": { "type": "number" },
-                "amount_approved": { "type": "number" },
-                "lien_releases": { "type": "array", "items": { "type": "string" } }
-              }
-            }
-          },
-          "total_contract_value": { "type": "number" }
-        }
-      },
-      "key_clauses": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "clause_name": { "type": "string" },
-            "clause_text": { "type": "string" }
-          },
-          "required": ["clause_name", "clause_text"]
-        }
-      },
-      "obligations": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "obligation_id": { "type": "string", "format": "uuid" },
-            "party_name": { "type": "string" },
-            "obligation_type": { "type": "string" },
-            "trigger_event": { "type": "string" },
-            "due_date": { "type": "string", "format": "date" },
-            "status": { "type": "string", "enum": ["open", "in_progress", "satisfied", "waived", "past_due"] },
-            "evidence_document_id": { "type": "string", "format": "uuid" },
-            "penalty": { "type": "string" }
-          },
-          "required": ["obligation_id", "party_name", "obligation_type", "status"]
-        }
-      },
-      "water_and_sewer_details": {
-        "type": "object",
-        "properties": {
-          "sewer_capacity_gpd": { "type": "number" },
-          "reimbursement_amount": { "type": "number" },
-          "pond_release_payment": { "type": "number" },
-          "water_well_capacity": { "type": "string" },
-          "allocation_source": { "type": "string" },
-          "transferable": { "type": "boolean" },
-          "meter_id": { "type": "string" },
-          "capacity_bank_ledger": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "entry_id": { "type": "string", "format": "uuid" },
-                "action": { "type": "string", "enum": ["debit", "credit"] },
-                "amount": { "type": "number" },
-                "unit": { "type": "string", "enum": ["GPD", "AFY"] },
-                "as_of_date": { "type": "string", "format": "date" },
-                "reason": { "type": "string" },
-                "source_document_id": { "type": "string", "format": "uuid" }
-              },
-              "required": ["entry_id", "action", "amount", "unit", "as_of_date"]
-            }
-          }
-        }
-      },
-      "fees_ledger": {
-        "type": "array",
-        "description": "Assessments, payments, and credits tied to this document/project/parcel.",
-        "items": {
-          "type": "object",
-          "properties": {
-            "entry_id": { "type": "string", "format": "uuid" },
-            "scope": { "type": "string", "enum": ["project", "parcel", "document"] },
-            "apn": { "type": "string" },
-            "fee_type": { "type": "string" },
-            "assessed_amount": { "type": "number" },
-            "paid_amount": { "type": "number" },
-            "credit_applied": { "type": "number" },
-            "balance": { "type": "number" },
-            "currency": { "type": "string", "default": "USD" },
-            "as_of_date": { "type": "string", "format": "date" },
-            "evidence_document_id": { "type": "string", "format": "uuid" }
-          },
-          "required": ["entry_id", "fee_type", "as_of_date"]
-        }
-      },
-      "email_metadata": {
-        "type": "object",
-        "properties": {
-          "message_id": { "type": "string" },
-          "thread_id": { "type": "string" },
-          "in_reply_to": { "type": "string" },
-          "references": { "type": "array", "items": { "type": "string" } },
-          "from": { "type": "string" },
-          "to": { "type": "array", "items": { "type": "string" } },
-          "cc": { "type": "array", "items": { "type": "string" } },
-          "bcc": { "type": "array", "items": { "type": "string" } },
-          "received_date": { "type": "string", "format": "date-time" },
-          "mailbox": { "type": "string" },
-          "pst_file_path": { "type": "string" },
-          "pst_entry_id": { "type": "string" },
-          "delivery_headers_sha256": { "type": "string" },
-          "attachments": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "filename": { "type": "string" },
-                "mime_type": { "type": "string" },
-                "size_bytes": { "type": "integer" },
-                "sha256": { "type": "string" },
-                "storage_uri": { "type": "string" }
-              },
-              "required": ["filename", "sha256", "storage_uri"]
-            }
+      "required": [
+        "source_uri",
+        "ingestion_time",
+        "sha256_hash"
+      ]
+    },
+    "document_version": {
+      "type": "integer"
+    },
+    "supersedes_document_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "superseded_by_document_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "document_state": {
+      "type": "string",
+      "enum": [
+        "active",
+        "amended",
+        "void",
+        "draft"
+      ]
+    },
+    "security": {
+      "type": "object",
+      "properties": {
+        "confidentiality": {
+          "type": "string",
+          "enum": [
+            "public",
+            "internal",
+            "privileged"
+          ]
+        },
+        "legal_hold": {
+          "type": "boolean"
+        },
+        "privacy_flags": {
+          "type": "array",
+          "items": {
+            "type": "string"
           }
         },
-        "required": ["message_id", "received_date"]
-      },
-      "legal_recording_details": {
-        "type": "object",
-        "properties": {
-          "instrument_type": { "type": "string" },
-          "instrument_number": { "type": "string" },
-          "book": { "type": "string" },
-          "page": { "type": "string" },
-          "recording_date": { "type": "string", "format": "date" },
-          "execution_date": { "type": "string", "format": "date" },
-          "county": { "type": "string" },
-          "county_fips": { "type": "string" },
-          "grantor": { "type": "array", "items": { "type": "string" } },
-          "grantee": { "type": "array", "items": { "type": "string" } },
-          "notary": {
+        "acl": {
+          "type": "array",
+          "items": {
             "type": "object",
             "properties": {
-              "name": { "type": "string" },
-              "commission_no": { "type": "string" },
-              "expires": { "type": "string", "format": "date" }
-            }
-          },
-          "cross_reference_instruments": { "type": "array", "items": { "type": "string" } }
-        }
-      },
-      "permits_and_approvals": {
-        "type": "object",
-        "properties": {
-          "permit_numbers": { "type": "array", "items": { "type": "string" } },
-          "issuing_agency": { "type": "string" },
-          "resolution_numbers": { "type": "array", "items": { "type": "string" } },
-          "conditions_of_approval": { "type": "array", "items": { "type": "string" } },
-          "status": { "type": "string" },
-          "issue_date": { "type": "string", "format": "date" },
-          "expiry_date": { "type": "string", "format": "date" },
-          "bond_number": { "type": "string" },
-          "bond_amount": { "type": "number" },
-          "inspection_history": { "type": "array", "items": { "type": "string" } }
-        }
-      },
-      "service_details": {
-        "type": "object",
-        "properties": {
-          "service_provider": { "type": "string" },
-          "scope_of_work": { "type": "string" },
-          "service_term": { "type": "string" },
-          "rate": { "type": "string" }
-        }
-      },
-      "lease_terms": {
-        "type": "object",
-        "properties": {
-          "lease_term_years": { "type": "number" },
-          "base_rent_schedule": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "start": { "type": "string", "format": "date" },
-                "end": { "type": "string", "format": "date" },
-                "amount": { "type": "number" },
-                "currency": { "type": "string", "default": "USD" }
+              "subject": {
+                "type": "string"
               },
-              "required": ["start", "end", "amount"]
-            }
-          },
-          "base_year": { "type": "integer" },
-          "cpi_cap_pct": { "type": "number" },
-          "ti_allowance": { "type": "number" },
-          "option_windows": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "notice_open": { "type": "string", "format": "date" },
-                "notice_close": { "type": "string", "format": "date" },
-                "term_years": { "type": "number" }
+              "permission": {
+                "type": "string",
+                "enum": [
+                  "read",
+                  "write",
+                  "admin"
+                ]
               }
-            }
-          },
-          "permitted_uses": { "type": "array", "items": { "type": "string" } },
-          "maintenance_responsibilities": { "type": "string" }
-        }
-      },
-      "development_details": {
-        "type": "object",
-        "properties": {
-          "development_plan": { "type": "string" },
-          "approved_uses": { "type": "array", "items": { "type": "string" } },
-          "infrastructure_obligations": { "type": "string" },
-          "entitlements": { "type": "string" },
-          "density": { "type": "string" }
-        }
-      },
-      "vector_embedding": {
-        "type": "array",
-        "items": { "type": "number" }
-      },
-      "embedding_metadata": {
-        "type": "object",
-        "properties": {
-          "embedding_model": { "type": "string" },
-          "embedding_dim": { "type": "integer" },
-          "created_at": { "type": "string", "format": "date-time" }
-        }
-      },
-      "embedding_chunks": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "chunk_id": { "type": "string", "format": "uuid" },
-            "chunk_index": { "type": "integer" },
-            "text_offset_start": { "type": "integer" },
-            "text_offset_end": { "type": "integer" },
-            "embedding": { "type": "array", "items": { "type": "number" } },
-            "embedding_model": { "type": "string" },
-            "embedding_dim": { "type": "integer" },
-            "created_at": { "type": "string", "format": "date-time" }
-          },
-          "required": ["chunk_id", "chunk_index", "embedding"]
+            },
+            "required": [
+              "subject",
+              "permission"
+            ]
+          }
         }
       }
     },
-    "required": ["document_id", "provenance", "contract_type", "effective_date"],
-    "allOf": [
-      {
-        "if": { "properties": { "contract_type": { "const": "Lease Agreement" } } },
-        "then": { "required": ["lease_terms"] }
-      },
-      {
-        "if": { "properties": { "contract_type": { "const": "Development Agreement" } } },
-        "then": { "required": ["development_details"] }
-      },
-      {
-        "if": { "required": ["email_metadata"] },
-        "then": {
-          "properties": {
-            "email_metadata": {
-              "required": ["message_id", "received_date"]
+    "project_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "uuid"
+      }
+    },
+    "contract_type": {
+      "type": "string",
+      "enum": [
+        "Articles of incorporation",
+        "Bylaws",
+        "Operating Agreement",
+        "Partnership JV Agreement",
+        "Shareholder Member Agreement",
+        "Buy-Sell Agreement",
+        "Statement of Information",
+        "Certificate of Good Standing",
+        "Certificate of Foreign Qualification",
+        "Registered Agent Filings",
+        "EIN Letter (IRS CP-575)",
+        "DBA-FBN Filings",
+        "Resolutions & Minutes",
+        "Officer Appointments",
+        "Employment Agreement",
+        "Independent Contractor Agreement",
+        "Consulting Agreement",
+        "NDA (Non-Disclosure Agreement)",
+        "Invention Assignment Work-for-Hire Agreement",
+        "Certificate of Insurance (COI)",
+        "Insurance Policy Declaration Pages",
+        "Letter of Intent (LOI)",
+        "Term Sheet",
+        "Exclusivity No-Shop Agreement",
+        "Confidentiality Agreement",
+        "Purchase Sale Agreement (PSA)",
+        "Option Agreement",
+        "ROFR ROFO Agreement",
+        "Assignment Assumption of PSA",
+        "Due Diligence Request List",
+        "Seller Disclosures",
+        "PIP OM (Private Investment Proposal Offering Memorandum)",
+        "Estoppel Certificate",
+        "SNDA",
+        "Access Entry Agreements",
+        "Escrow Instructions",
+        "Wiring Instructions",
+        "Release of Funds",
+        "Closing Certificates",
+        "Payoff Demand",
+        "Beneficiary Statements",
+        "Settlement ALTA Statement",
+        "Grant Deed",
+        "Quitclaim Deed",
+        "Special Warranty Deed",
+        "Trustees Deed Upon Sale",
+        "Tax Deed",
+        "Sheriffs Deed",
+        "Bill of Sale",
+        "Assignment of Intangibles",
+        "FIRPTA Affidavit",
+        "1099-S",
+        "Transfer Tax Affidavits",
+        "1031 Exchange Agreement",
+        "Identification Notices",
+        "QI Agreement",
+        "Preliminary Title Report Commitment",
+        "Pro Forma Policies",
+        "ALTA Owner Lender Policies",
+        "Endorsements",
+        "Title Exception Documents",
+        "ALTA NSPS Survey",
+        "Tentative Final Parcel Maps",
+        "Legal Descriptions Plats",
+        "Vesting Tentative Map",
+        "Certificate of Compliance",
+        "Lot Line Boundary Line Adjustments",
+        "Certificate of Correction",
+        "Recorded Easements",
+        "REA (Reciprocal Easement Agreement)",
+        "OEA JOEA (Operating Joint Operating Easement Agreement)",
+        "Encroachment Agreements",
+        "Offers of Dedication (IOD)",
+        "Irrevocable Offers",
+        "Subordination Agreements",
+        "Vacation Abandonment",
+        "Lis Pendens",
+        "Notice of Entry of Judgment",
+        "General Plan Amendment",
+        "Zoning Map Text Amendment",
+        "Specific Plan",
+        "Planned Development (PUD)",
+        "Development Agreement (DA)",
+        "Tentative Tract Map (TTM)",
+        "Tentative Parcel Map (TPM)",
+        "Vesting TTM",
+        "Final Map Parcel Map",
+        "CUP (Conditional Use Permit)",
+        "Variance",
+        "Site Plan Design Review",
+        "Architectural Review Approvals",
+        "Sign Permit",
+        "Density Bonus Agreement",
+        "Inclusionary Affordable Housing Regulatory Agreement",
+        "ADU Program Docs",
+        "Conditions of Approval (COAs)",
+        "Staff Reports",
+        "Planning Commission City Council Resolutions",
+        "Public Hearing Notices",
+        "Community Benefits Agreements",
+        "Subdivision Improvement Agreement",
+        "Improvement Plans (Road Water Sewer Storm)",
+        "Off-site Improvement Agreements",
+        "Right-of-Way Dedications",
+        "NOP (Notice of Preparation)",
+        "IS (Initial Study)",
+        "MND ND (Mitigated Negative Declaration)",
+        "Draft Final EIR",
+        "EIR Addendum",
+        "NOD (Notice of Determination)",
+        "NOE (Notice of Exemption)",
+        "SOC (Statement of Overriding Considerations)",
+        "MMRP (Mitigation Monitoring Reporting Program)",
+        "CE (Categorical Exclusion)",
+        "EA FONSI (Environmental Assessment Finding of No Significant Impact)",
+        "EIS ROD (Environmental Impact Statement Record of Decision)",
+        "Biological Resources Report",
+        "Jurisdictional Delineation (Wetlands)",
+        "Cultural Tribal (AB-52) Report",
+        "Paleontological Report",
+        "Traffic Transportation Study",
+        "Noise Study",
+        "Air Quality GHG Report",
+        "HRA (Health Risk Assessment)",
+        "Geotechnical Soils Report",
+        "Hydro Floodplain Analysis",
+        "Phase I II ESAs",
+        "HazMat Remedial Action Plans",
+        "Dust Control Plans",
+        "USACE 404 Permit",
+        "RWQCB 401 Permit",
+        "CDFW 1602 Permit",
+        "USFWS NMFS Biological Opinion Incidental Take Permit",
+        "Air District Permits",
+        "NPDES NOI NOT SWPPP",
+        "Stormwater Inspection Reports",
+        "Habitat Conservation Plan (HCP)",
+        "Conservation Easements",
+        "Mitigation Bank Conservation Credits Agreements",
+        "MMRP Monitoring Reports",
+        "Will-Serve Verification Letters",
+        "Water Supply Assessment (SB 610)",
+        "SB 221 Verification",
+        "Capacity Allocation Agreements Transfers",
+        "Connection Permits",
+        "Backflow Well Permits",
+        "Utility Service Line Extension Agreements",
+        "Joint Trench Agreements",
+        "Composite Utility Plans",
+        "Street Lighting Agreements",
+        "Encroachment Permits (City County Caltrans)",
+        "Signalization Intersection improvement agreements",
+        "Development Impact Fee (DIF TUMF) Calculations",
+        "Traffic Park School Fee Agreements",
+        "Fee Deferral Agreements",
+        "Reimbursement Credit Agreements",
+        "Assignment Assumption of Off-site Public Facility Credits",
+        "Confirmation of Bond Impact Fee Payoffs",
+        "Term Sheet Commitment Letter",
+        "Appraisal(s)",
+        "Environmental Reliance Letters",
+        "Survey Title Deliveries",
+        "Flood Certificate",
+        "Loan Agreement",
+        "Promissory Note",
+        "Deed of Trust Mortgage",
+        "Assignment of Rents Leases",
+        "UCC-1 UCC-3 Filings",
+        "Collateral Assignments (Contracts Plans Permits)",
+        "Guaranties (Completion Payment Bad-Boy)",
+        "Environmental Indemnity",
+        "Intercreditor Agreement",
+        "SNDA (Lender Form)",
+        "Construction Loan Agreement",
+        "Budget Cost to Complete",
+        "Draw Requests Requisitions",
+        "Interest Reserve Agreement",
+        "Title Bring-downs",
+        "Inspector Reports",
+        "Mezz Loan Preferred Equity Agreements",
+        "Subscription Agreements",
+        "PPM (Private Placement Memorandum)",
+        "Capital Calls Investor Consents",
+        "Hedging Rate-Lock ISDA Agreements",
+        "AIA A101 A102 (GMP Fix-Price)",
+        "AIA A201 (General Conditions)",
+        "AIA B101 (Design)",
+        "CM GC Agreements",
+        "Subcontracts",
+        "Consultant Agreements (Civil Survey Geotech etc.)",
+        "Baseline Updated Schedules",
+        "Schedule of Values",
+        "RFIs (Request for Information)",
+        "Submittals Shop Drawings",
+        "Meeting Minutes",
+        "Daily Reports",
+        "Change Orders Directives",
+        "Safety Plans (IIPP)",
+        "SWPPP Inspection Logs",
+        "Special Inspection Certificates",
+        "Testing Reports (Compaction Concrete Steel)",
+        "Pay Applications",
+        "Conditional Unconditional Lien Waivers",
+        "Preliminary Notices",
+        "Stop Payment Notices",
+        "Mechanics Liens",
+        "Payment Performance Bonds",
+        "Warranty Bonds",
+        "As-Builts Record Drawings",
+        "O M Manuals Warranties",
+        "Punch Lists",
+        "Certificate of Substantial Completion",
+        "TCO CO (Temporary Certificate of Occupancy)",
+        "Bond Exoneration Requests",
+        "CFD (Mello-Roos) Boundary Map",
+        "Rate Method (RMA)",
+        "CFD Resolutions (Intention Formation Levy)",
+        "CFD Election Results",
+        "CFD Fiscal Agent Agreement",
+        "CFD Bond Indenture",
+        "CFD Official Statement",
+        "CFD Continuing Disclosure",
+        "CFD Special Tax Reports",
+        "Assessment District Engineer’s Report",
+        "Assessment District Diagram",
+        "Assessment District Bond Docs",
+        "Subdivision Improvement Bonds",
+        "PILOT (Payment in Lieu of Taxes) Agreement",
+        "Tax Abatements Exemptions",
+        "EIFD TIF formation docs",
+        "AB 1600 impact fee reports",
+        "NNN Gross Modified Leases",
+        "Ground Leases",
+        "MF Lease Forms",
+        "Lease Amendments Extensions Renewals",
+        "Lease Assignments Subleases",
+        "Lease Guaranties",
+        "Lease Estoppels",
+        "Lease SNDAs",
+        "Rules Regulations",
+        "REAs Operating Agreements",
+        "Exclusive Use Co-Tenancy Agreements",
+        "TI Work Letters",
+        "Signage Agreements",
+        "Parking Shared Facilities Agreements",
+        "Rent Rolls",
+        "CAM Budgets Reconciliations",
+        "Move-in Move-out Docs",
+        "Tenant Compliance Notices",
+        "Listing Commission Agreements",
+        "Co-Broker Agreements",
+        "BOVs Broker Opinion of Value",
+        "Offering Memoranda",
+        "Marketing Brochures Flyers",
+        "Aerials Maps",
+        "Stacking Plans",
+        "Demographic Trade Area Reports",
+        "Website Press Releases",
+        "NDAs CA for Tours Data Rooms",
+        "CC Rs (Covenants Conditions Restrictions)",
+        "HOA Articles of Incorporation",
+        "HOA Bylaws",
+        "HOA Budgets Reserve Studies",
+        "Architectural Guidelines",
+        "HOA Rules Regulations",
+        "Condominium Plan",
+        "Subdivision Public Reports DRE Prelim Final",
+        "Annexation Documents",
+        "HOA Meeting Minutes Resolutions",
+        "Building Grading Demolition Permits",
+        "Fire Dept Permits",
+        "Elevator Boiler Certificates",
+        "Accessibility CASp Reports",
+        "Energy Title 24 Reports",
+        "CALGreen Docs",
+        "NPDES NOI NOT",
+        "SWPPP Training Records",
+        "Wastewater Discharge Permits",
+        "Certified Payroll Prevailing Wage DIR",
+        "Local Hire Apprenticeship docs",
+        "Business Licenses",
+        "Sellers Permit Retail",
+        "Hazardous Materials Business Plan",
+        "Demand Letters",
+        "Notices of Default Loan",
+        "Cure Default Notices Contracts",
+        "Complaints Petitions",
+        "Answers Cross-Complaints",
+        "Motions Demurrers",
+        "Declarations",
+        "Discovery (RFPs ROGs RFAs)",
+        "Mediation Arbitration Agreements",
+        "Settlement Agreements",
+        "Stipulations",
+        "Judgments",
+        "Abstracts of Judgment",
+        "Writs of Possession",
+        "Eviction Unlawful Detainer Filings",
+        "Notice of Trustee s Sale",
+        "Trustee s Deed",
+        "Notice of Tax Sale",
+        "Tax Deed",
+        "Bankruptcy Petitions Schedules Proofs of Claim",
+        "Relief from Stay motions",
+        "Secured Unsecured Tax Bills",
+        "Supplemental Tax Bills",
+        "Property Tax Appeals",
+        "Prop 8 Decline-in-Value Files",
+        "1099s W-9s",
+        "Opportunity Zone Docs",
+        "Cost Segregation Reports",
+        "Depreciation Schedules",
+        "571-L Business Property Statements",
+        "Sales Use tax returns ops retail",
+        "Civil Plan Sets",
+        "Vertical Plan Sets",
+        "Landscape Irrigation Plans",
+        "Tree Protection Removal Plans",
+        "Topographic Boundary Surveys",
+        "Easement Sketches Legal Exhibits",
+        "Monument Records",
+        "Geotech Reports Update Letters",
+        "Pavement Design",
+        "GIS Imagery 3D Models",
+        "Service Interconnect Agreements",
+        "Utility Easements",
+        "Meter Set Requests",
+        "Net Metering Agreements",
+        "Utility Relocation Agreements",
+        "Railroad Crossing Corridor Licenses",
+        "Encroachment Maintenance Agreements",
+        "Mineral Oil Gas rights docs",
+        "Airspace Easements",
+        "Avigation Easements",
+        "Flood Control Easements",
+        "Coastal Development Permits",
+        "FEMA LOMR LOMA",
+        "Water Rights Appropriative Transfers",
+        "Agricultural Leases Crop Rights",
+        "Williamson Act Contracts Notices",
+        "Agency Comment Response Letters",
+        "Staff Memos",
+        "Hearing Notices",
+        "Proofs of Publication Mailing",
+        "Public Records CPRA Requests Responses",
+        "Internal Memos",
+        "Meeting Agendas Minutes",
+        "Decision Logs",
+        "MOUs Memorandum of Understanding",
+        "Counsel Opinion Letters",
+        "Legal Strategy Memos"
+      ]
+    },
+    "ceqa_document_type": {
+      "type": "string",
+      "enum": [
+        "EIR",
+        "MND",
+        "NOD",
+        "NOE",
+        "Initial Study",
+        "Addendum",
+        "Other"
+      ]
+    },
+    "contract_name": {
+      "type": "string"
+    },
+    "execution_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "expiration_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "closing_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "party_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "role"
+        ]
+      }
+    },
+    "related_documents": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "related_document_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "relation_type": {
+            "type": "string",
+            "enum": [
+              "amends",
+              "replaces",
+              "exhibit",
+              "attachment",
+              "references",
+              "recorded_against",
+              "implements",
+              "evidence_of"
+            ]
+          },
+          "description": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "related_document_id",
+          "relation_type"
+        ]
+      }
+    },
+    "parcels": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "parcel_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "apn": {
+            "type": "string"
+          },
+          "county_fips": {
+            "type": "string"
+          },
+          "geocode": {
+            "type": "object",
+            "properties": {
+              "lat": {
+                "type": "number"
+              },
+              "lon": {
+                "type": "number"
+              }
             }
+          },
+          "state": {
+            "type": "string"
+          },
+          "legal_description": {
+            "type": "string"
+          },
+          "acres": {
+            "type": "number"
+          },
+          "lot_number": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "apn"
+        ]
+      }
+    },
+    "files": {
+      "type": "array",
+      "description": "Binary/file pointers for the canonical document and any normalized attachments (non-email specific).",
+      "items": {
+        "type": "object",
+        "properties": {
+          "filename": {
+            "type": "string"
+          },
+          "mime_type": {
+            "type": "string"
+          },
+          "size_bytes": {
+            "type": "integer"
+          },
+          "sha256": {
+            "type": "string"
+          },
+          "storage_uri": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "filename",
+          "sha256",
+          "storage_uri"
+        ]
+      }
+    },
+    "financial_terms": {
+      "type": "object",
+      "properties": {
+        "currency": {
+          "type": "string",
+          "default": "USD"
+        },
+        "rent_amount": {
+          "type": "number"
+        },
+        "purchase_price": {
+          "type": "number"
+        },
+        "security_deposit": {
+          "type": "number"
+        },
+        "payment_terms": {
+          "type": "string"
+        },
+        "interest_reserve": {
+          "type": "number"
+        },
+        "itemized_costs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "item": {
+                "type": "string"
+              },
+              "amount": {
+                "type": "number"
+              },
+              "unit": {
+                "type": "string"
+              },
+              "unit_price": {
+                "type": "number"
+              },
+              "cost_code": {
+                "type": "string"
+              },
+              "committed_vendor": {
+                "type": "string"
+              },
+              "retention_pct": {
+                "type": "number"
+              }
+            }
+          }
+        },
+        "draw_requests": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "draw_no": {
+                "type": "string"
+              },
+              "period_start": {
+                "type": "string",
+                "format": "date"
+              },
+              "period_end": {
+                "type": "string",
+                "format": "date"
+              },
+              "amount_requested": {
+                "type": "number"
+              },
+              "amount_approved": {
+                "type": "number"
+              },
+              "lien_releases": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "total_contract_value": {
+          "type": "number"
+        }
+      }
+    },
+    "key_clauses": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "clause_name": {
+            "type": "string"
+          },
+          "clause_text": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "clause_name",
+          "clause_text"
+        ]
+      }
+    },
+    "obligations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "obligation_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "party_name": {
+            "type": "string"
+          },
+          "obligation_type": {
+            "type": "string"
+          },
+          "trigger_event": {
+            "type": "string"
+          },
+          "due_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "open",
+              "in_progress",
+              "satisfied",
+              "waived",
+              "past_due"
+            ]
+          },
+          "evidence_document_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "penalty": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "obligation_id",
+          "party_name",
+          "obligation_type",
+          "status"
+        ]
+      }
+    },
+    "email_metadata": {
+      "type": "object",
+      "properties": {
+        "message_id": {
+          "type": "string"
+        },
+        "thread_id": {
+          "type": "string"
+        },
+        "in_reply_to": {
+          "type": "string"
+        },
+        "references": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "from": {
+          "type": "string"
+        },
+        "to": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "cc": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "bcc": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "received_date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "mailbox": {
+          "type": "string"
+        },
+        "pst_file_path": {
+          "type": "string"
+        },
+        "pst_entry_id": {
+          "type": "string"
+        },
+        "delivery_headers_sha256": {
+          "type": "string"
+        },
+        "attachments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "filename": {
+                "type": "string"
+              },
+              "mime_type": {
+                "type": "string"
+              },
+              "size_bytes": {
+                "type": "integer"
+              },
+              "sha256": {
+                "type": "string"
+              },
+              "storage_uri": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "filename",
+              "sha256",
+              "storage_uri"
+            ]
           }
         }
       },
-      {
-        "if": { "required": ["legal_recording_details"] },
-        "then": {
+      "required": [
+        "message_id",
+        "received_date"
+      ]
+    },
+    "legal_recording_details": {
+      "type": "object",
+      "properties": {
+        "instrument_type": {
+          "type": "string"
+        },
+        "instrument_number": {
+          "type": "string"
+        },
+        "book": {
+          "type": "string"
+        },
+        "page": {
+          "type": "string"
+        },
+        "recording_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "execution_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "county": {
+          "type": "string"
+        },
+        "county_fips": {
+          "type": "string"
+        },
+        "grantor": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "grantee": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "notary": {
+          "type": "object",
           "properties": {
-            "legal_recording_details": {
-              "required": ["recording_date", "county"]
+            "name": {
+              "type": "string"
+            },
+            "commission_no": {
+              "type": "string"
+            },
+            "expires": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        },
+        "cross_reference_instruments": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "permits_and_approvals": {
+      "type": "object",
+      "properties": {
+        "permit_numbers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "issuing_agency": {
+          "type": "string"
+        },
+        "resolution_numbers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "conditions_of_approval": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "status": {
+          "type": "string"
+        },
+        "issue_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "expiry_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "bond_number": {
+          "type": "string"
+        },
+        "bond_amount": {
+          "type": "number"
+        },
+        "inspection_history": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "vector_embedding": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      }
+    },
+    "embedding_metadata": {
+      "type": "object",
+      "properties": {
+        "embedding_model": {
+          "type": "string"
+        },
+        "embedding_dim": {
+          "type": "integer"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "embedding_chunks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "chunk_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "chunk_index": {
+            "type": "integer"
+          },
+          "text_offset_start": {
+            "type": "integer"
+          },
+          "text_offset_end": {
+            "type": "integer"
+          },
+          "embedding": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            }
+          },
+          "embedding_model": {
+            "type": "string"
+          },
+          "embedding_dim": {
+            "type": "integer"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "chunk_id",
+          "chunk_index",
+          "embedding"
+        ]
+      }
+    },
+    "corporate_details": {
+      "type": "object",
+      "description": "Details specific to corporate formation and governance documents.",
+      "properties": {
+        "corporate_purpose": {
+          "type": "string"
+        },
+        "shares_authorized": {
+          "type": "object",
+          "properties": {
+            "class": {
+              "type": "string"
+            },
+            "count": {
+              "type": "integer"
+            },
+            "par_value": {
+              "type": "number"
             }
           }
         }
       }
-    ]
-  }
+    },
+    "governance_details": {
+      "type": "object",
+      "description": "Details specific to the internal governance rules of an entity, typically found in Bylaws or Operating Agreements.",
+      "properties": {
+        "director_quorum_requirement": {
+          "type": "string",
+          "description": "The quorum required for board meetings (e.g., 'A majority of directors', '51%')."
+        },
+        "shareholder_quorum_requirement": {
+          "type": "string",
+          "description": "The quorum required for shareholder meetings."
+        },
+        "director_count": {
+          "type": "string",
+          "description": "The number of directors or the allowed range (e.g., '3', 'Not less than 3 nor more than 7')."
+        },
+        "officer_titles": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "A list of the officer positions defined (e.g., President, Secretary, Treasurer)."
+        },
+        "fiscal_year_end": {
+          "type": "string",
+          "description": "The end date of the corporation's fiscal year (e.g., 'December 31st')."
+        },
+        "indemnification_clause_summary": {
+          "type": "string",
+          "description": "A brief summary of the indemnification provisions for directors and officers."
+        }
+      }
+    },
+    "llc_operating_details": {
+      "type": "object",
+      "description": "Details specific to the governance and financial arrangements of a Limited Liability Company (LLC).",
+      "properties": {
+        "management_type": {
+          "type": "string",
+          "enum": [
+            "Member-Managed",
+            "Manager-Managed"
+          ],
+          "description": "Specifies whether the LLC is managed by its members or by appointed managers."
+        },
+        "capital_contributions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "member_name": {
+                "type": "string"
+              },
+              "contribution_amount": {
+                "type": "number"
+              },
+              "contribution_description": {
+                "type": "string"
+              },
+              "membership_percentage": {
+                "type": "number"
+              }
+            }
+          }
+        },
+        "profit_loss_distribution": {
+          "type": "string",
+          "description": "A summary of how profits and losses are allocated among members (e.g., 'In proportion to Membership Interest', '50/50')."
+        },
+        "tax_matters_member": {
+          "type": "string",
+          "description": "The name of the member designated as the 'Partnership Representative' for tax purposes."
+        }
+      }
+    },
+    "partnership_details": {
+      "type": "object",
+      "description": "Details specific to the formation and operation of a Partnership or Joint Venture.",
+      "properties": {
+        "partnership_purpose": {
+          "type": "string",
+          "description": "The stated business purpose of the partnership or joint venture."
+        },
+        "management_structure": {
+          "type": "string",
+          "description": "A summary of how the partnership is managed (e.g., 'By the General Partner', 'By a Management Committee')."
+        },
+        "capital_contributions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "partner_name": {
+                "type": "string"
+              },
+              "contribution_amount": {
+                "type": "number"
+              },
+              "contribution_description": {
+                "type": "string"
+              },
+              "partnership_interest_pct": {
+                "type": "number"
+              }
+            }
+          }
+        },
+        "profit_loss_distribution": {
+          "type": "string",
+          "description": "A summary of how profits and losses are allocated among the partners."
+        },
+        "partnership_term": {
+          "type": "string",
+          "description": "The duration of the partnership (e.g., 'Perpetual', '5 years', 'Until project completion')."
+        }
+      }
+    },
+    "shareholder_agreement_details": {
+      "type": "object",
+      "description": "Details specific to the rights, restrictions, and obligations among shareholders or members of an entity.",
+      "properties": {
+        "transfer_restrictions": {
+          "type": "string",
+          "description": "A summary of the restrictions on selling or transferring shares."
+        },
+        "right_of_first_refusal_rofr": {
+          "type": "string",
+          "description": "Summary of the ROFR clause, if present (e.g., 'Company has 30 days to match any bona fide offer')."
+        },
+        "drag_along_rights": {
+          "type": "string",
+          "description": "Summary of the drag-along provision, specifying the trigger threshold (e.g., 'Majority shareholders can force minority to sell')."
+        },
+        "tag_along_rights": {
+          "type": "string",
+          "description": "Summary of the tag-along provision, allowing minority shareholders to join a sale."
+        },
+        "buy_sell_triggers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "A list of events that trigger the buy-sell provisions (e.g., 'Death', 'Disability', 'Termination of Employment', 'Divorce')."
+        },
+        "valuation_method": {
+          "type": "string",
+          "description": "How the share price is determined for a buyout (e.g., 'Annual appraisal', 'Book value', 'Formula based on earnings')."
+        }
+      }
+    },
+    "buy_sell_details": {
+      "type": "object",
+      "description": "Details specific to the terms of a buy-sell agreement governing the transfer of ownership interests upon certain trigger events.",
+      "properties": {
+        "triggering_events": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "A list of events that activate the buy-sell agreement (e.g., 'Death', 'Disability', 'Retirement', 'Involuntary Termination')."
+        },
+        "purchase_obligation": {
+          "type": "string",
+          "description": "Specifies if the buyout is mandatory or optional (e.g., 'Mandatory purchase by the Company', 'Option for remaining shareholders to purchase')."
+        },
+        "valuation_method": {
+          "type": "string",
+          "description": "How the business interest is valued for the buyout (e.g., 'Certificate of Agreed Value', 'Formula based on revenue', 'Third-party appraisal')."
+        },
+        "funding_mechanism": {
+          "type": "string",
+          "description": "How the buyout will be funded (e.g., 'Life insurance policies', 'Company cash flow', 'Promissory note over 5 years')."
+        }
+      }
+    },
+    "statement_of_information_details": {
+      "type": "object",
+      "description": "Details specific to a state-mandated compliance filing like a Statement of Information or Annual Report.",
+      "properties": {
+        "entity_file_number": {
+          "type": "string",
+          "description": "The official file number assigned by the Secretary of State."
+        },
+        "entity_type": {
+          "type": "string",
+          "description": "The legal structure of the entity (e.g., 'Limited Liability Company', 'Corporation')."
+        },
+        "jurisdiction": {
+          "type": "string",
+          "description": "The state or country of formation."
+        },
+        "principal_office_address": {
+          "type": "string"
+        },
+        "mailing_address": {
+          "type": "string"
+        }
+      }
+    },
+    "certificate_details": {
+      "type": "object",
+      "description": "Details specific to an official certificate issued by a state authority, such as a Certificate of Good Standing.",
+      "properties": {
+        "entity_file_number": {
+          "type": "string",
+          "description": "The official file number assigned by the issuing authority."
+        },
+        "entity_type": {
+          "type": "string",
+          "description": "The legal structure of the entity (e.g., 'Limited Liability Company', 'Corporation')."
+        },
+        "jurisdiction": {
+          "type": "string",
+          "description": "The state or country of formation."
+        },
+        "issue_date": {
+          "type": "string",
+          "format": "date",
+          "description": "The date the certificate was issued."
+        },
+        "status_verified": {
+          "type": "string",
+          "description": "The status being certified (e.g., 'Good Standing', 'Active', 'Exists')."
+        }
+      }
+    },
+    "foreign_qualification_details": {
+      "type": "object",
+      "description": "Details specific to an entity's registration to do business in a state other than its state of formation.",
+      "properties": {
+        "entity_file_number": {
+          "type": "string",
+          "description": "The file number assigned by the qualifying state."
+        },
+        "home_jurisdiction": {
+          "type": "string",
+          "description": "The original state or country of formation (the 'domestic' state)."
+        },
+        "qualified_jurisdiction": {
+          "type": "string",
+          "description": "The state granting the authority to transact business (the 'foreign' state)."
+        },
+        "qualification_date": {
+          "type": "string",
+          "format": "date",
+          "description": "The date the entity was granted authority to transact business in the foreign state."
+        }
+      }
+    },
+    "registered_agent_filing_details": {
+      "type": "object",
+      "description": "Details specific to a state filing regarding an entity's registered agent for service of process.",
+      "properties": {
+        "entity_file_number": {
+          "type": "string",
+          "description": "The official file number assigned by the Secretary of State."
+        },
+        "filing_type": {
+          "type": "string",
+          "description": "The nature of the filing (e.g., 'Change of Agent', 'Resignation of Agent', 'Appointment of Agent')."
+        }
+      }
+    },
+    "tax_details": {
+      "type": "object",
+      "description": "Details specific to tax-related documents and information.",
+      "properties": {
+        "ein": {
+          "type": "string",
+          "description": "The 9-digit Employer Identification Number assigned to the entity."
+        },
+        "form_reference": {
+          "type": "string",
+          "description": "The official form number referenced in the document (e.g., 'CP-575', '1099-S')."
+        }
+      }
+    },
+    "business_name_filing_details": {
+      "type": "object",
+      "description": "Details specific to a DBA or Fictitious Business Name filing.",
+      "properties": {
+        "fictitious_business_name": {
+          "type": "string",
+          "description": "The 'doing business as' name being registered."
+        },
+        "principal_place_of_business": {
+          "type": "string"
+        }
+      }
+    },
+    "corporate_action_details": {
+      "type": "object",
+      "description": "Details specific to a corporate action, such as a board resolution or meeting minutes.",
+      "properties": {
+        "action_type": {
+          "type": "string",
+          "enum": [
+            "Board Meeting Minutes",
+            "Shareholder Meeting Minutes",
+            "Unanimous Written Consent",
+            "Resolution"
+          ],
+          "description": "The type of corporate action being recorded."
+        },
+        "resolutions_passed": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "A list summarizing the key decisions or resolutions approved."
+        },
+        "attendees": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "A list of individuals present at the meeting."
+        },
+        "voting_summary": {
+          "type": "string",
+          "description": "A summary of the vote outcome (e.g., 'Unanimously approved', 'Passed by a majority vote')."
+        }
+      }
+    },
+    "officer_appointment_details": {
+      "type": "object",
+      "description": "Details specific to the appointment of individuals to officer positions within an entity.",
+      "properties": {
+        "appointed_officers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              }
+            }
+          },
+          "description": "A list of individuals and the officer titles they were appointed to."
+        }
+      }
+    },
+    "employment_details": {
+      "type": "object",
+      "description": "Details specific to the terms of an employment relationship.",
+      "properties": {
+        "job_title": {
+          "type": "string"
+        },
+        "start_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "base_salary": {
+          "type": "number"
+        },
+        "salary_period": {
+          "type": "string",
+          "enum": [
+            "Annual",
+            "Monthly",
+            "Hourly"
+          ]
+        },
+        "bonus_structure": {
+          "type": "string",
+          "description": "A summary of any performance bonus, signing bonus, or other incentive compensation."
+        },
+        "termination_clause_summary": {
+          "type": "string",
+          "description": "A brief summary of the conditions for termination, including notice period or 'at-will' status."
+        }
+      }
+    },
+    "contractor_details": {
+      "type": "object",
+      "description": "Details specific to the terms of an independent contractor relationship.",
+      "properties": {
+        "scope_of_work_summary": {
+          "type": "string",
+          "description": "A brief summary of the services the contractor will provide."
+        },
+        "compensation_summary": {
+          "type": "string",
+          "description": "A summary of the payment terms (e.g., '$5,000 fixed fee', '$100 per hour', 'Paid upon completion')."
+        },
+        "term_of_agreement": {
+          "type": "string",
+          "description": "The duration of the agreement (e.g., '6 months', 'Until project completion', 'Effective from X to Y')."
+        },
+        "termination_clause_summary": {
+          "type": "string",
+          "description": "A brief summary of the conditions for termination, including any required notice period."
+        }
+      }
+    },
+    "consulting_details": {
+      "type": "object",
+      "description": "Details specific to the terms of a professional consulting engagement.",
+      "properties": {
+        "scope_of_services_summary": {
+          "type": "string",
+          "description": "A brief summary of the advisory services the consultant will provide."
+        },
+        "compensation_summary": {
+          "type": "string",
+          "description": "A summary of the payment terms (e.g., '$5,000 monthly retainer', '$250 per hour', 'Project-based fee')."
+        },
+        "term_of_agreement": {
+          "type": "string",
+          "description": "The duration of the consulting engagement."
+        },
+        "confidentiality_clause_summary": {
+          "type": "string",
+          "description": "A brief summary of the confidentiality obligations."
+        }
+      }
+    },
+    "nda_details": {
+      "type": "object",
+      "description": "Details specific to the terms of a Non-Disclosure or Confidentiality Agreement.",
+      "properties": {
+        "nda_type": {
+          "type": "string",
+          "enum": [
+            "Mutual",
+            "One-Way"
+          ],
+          "description": "Specifies whether the NDA is mutual or one-way."
+        },
+        "purpose_of_disclosure": {
+          "type": "string",
+          "description": "A summary of the reason for sharing confidential information."
+        },
+        "term_of_confidentiality": {
+          "type": "string",
+          "description": "The duration the receiving party must keep the information confidential (e.g., '5 years', 'Perpetual')."
+        },
+        "definition_of_confidential_info": {
+          "type": "string",
+          "description": "A brief summary of what constitutes confidential information under the agreement."
+        }
+      }
+    },
+    "ip_assignment_details": {
+      "type": "object",
+      "description": "Details specific to the assignment of intellectual property rights.",
+      "properties": {
+        "assignment_scope": {
+          "type": "string",
+          "description": "A summary of the types of intellectual property being assigned to the company."
+        },
+        "prior_inventions_clause": {
+          "type": "string",
+          "description": "A summary of the clause addressing inventions created by the individual prior to their engagement with the company."
+        }
+      }
+    },
+    "insurance_details": {
+      "type": "object",
+      "description": "Details specific to insurance policies and certificates of insurance.",
+      "properties": {
+        "policies": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "coverage_type": {
+                "type": "string",
+                "description": "e.g., General Liability, Automobile Liability, Umbrella, Workers Compensation"
+              },
+              "insurer_name": {
+                "type": "string"
+              },
+              "policy_number": {
+                "type": "string"
+              },
+              "effective_date": {
+                "type": "string",
+                "format": "date"
+              },
+              "expiration_date": {
+                "type": "string",
+                "format": "date"
+              },
+              "limits": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "limit_description": {
+                      "type": "string"
+                    },
+                    "amount": {
+                      "type": "number"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "loi_details": {
+      "type": "object",
+      "description": "Details specific to the preliminary terms outlined in a Letter of Intent.",
+      "properties": {
+        "price_per_lot": {
+          "type": "number"
+        },
+        "due_diligence_period": {
+          "type": "string",
+          "description": "The length of the due diligence period (e.g., '120 days')."
+        },
+        "closing_period": {
+          "type": "string",
+          "description": "The timeframe for closing after conditions are met (e.g., '30 calendar days')."
+        },
+        "financing_contingency": {
+          "type": "boolean"
+        }
+      }
+    },
+    "correction_details": {
+      "type": "object",
+      "description": "Details specific to a Certificate of Correction for a previously recorded document.",
+      "properties": {
+        "correction_summary": {
+          "type": "string",
+          "description": "Details of what is being corrected in the original document."
+        },
+        "original_document_recording_date": {
+          "type": "string",
+          "format": "date",
+          "description": "The recording date of the original document that is being corrected."
+        },
+        "original_document_instrument_number": {
+          "type": "string",
+          "description": "The instrument or document number of the original document that is being corrected."
+        }
+      }
+    },
+    "improvement_agreement_details": {
+      "type": "object",
+      "description": "Details specific to a Subdivision Improvement Agreement.",
+      "properties": {
+        "subdivision_name": {
+          "type": "string"
+        },
+        "map_reference": {
+          "type": "string"
+        },
+        "required_improvements": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "completion_deadline": {
+          "type": "string"
+        },
+        "security_posted": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string"
+            },
+            "amount": {
+              "type": "number"
+            },
+            "bond_number": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "plan_details": {
+      "type": "object",
+      "description": "Details specific to engineering or architectural plan sets.",
+      "properties": {
+        "project_name": {
+          "type": "string"
+        },
+        "plan_type": {
+          "type": "string",
+          "description": "e.g., 'Road', 'Water', 'Sewer', 'Architectural'."
+        },
+        "engineer_of_record": {
+          "type": "string"
+        },
+        "approval_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "plan_sheet_count": {
+          "type": "integer"
+        }
+      }
+    },
+    "dedication_details": {
+      "type": "object",
+      "description": "Details specific to an offer to dedicate property for public use.",
+      "properties": {
+        "property_dedicated": {
+          "type": "string"
+        },
+        "purpose_of_dedication": {
+          "type": "string"
+        },
+        "is_irrevocable": {
+          "type": "boolean"
+        }
+      }
+    },
+    "environmental_details": {
+      "type": "object",
+      "description": "Details specific to environmental review documents (CEQA/NEPA).",
+      "properties": {
+        "document_type": {
+          "type": "string"
+        },
+        "project_name": {
+          "type": "string"
+        },
+        "project_description": {
+          "type": "string"
+        },
+        "scoping_meeting_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "comment_period_end_date": {
+          "type": "string",
+          "format": "date"
+        }
+      }
+    },
+    "technical_study_details": {
+      "type": "object",
+      "description": "Details specific to a technical study or report.",
+      "properties": {
+        "study_type": {
+          "type": "string"
+        },
+        "project_name": {
+          "type": "string"
+        },
+        "site_description": {
+          "type": "string"
+        },
+        "key_findings": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "recommendations": {
+          "type": "string"
+        }
+      }
+    },
+    "remediation_plan_details": {
+      "type": "object",
+      "description": "Details specific to a hazardous materials remediation plan.",
+      "properties": {
+        "site_address": {
+          "type": "string"
+        },
+        "contaminants_of_concern": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "remedial_approach": {
+          "type": "string"
+        },
+        "cleanup_goals": {
+          "type": "string"
+        }
+      }
+    },
+    "dust_control_plan_details": {
+      "type": "object",
+      "description": "Details specific to a dust control plan.",
+      "properties": {
+        "project_name": {
+          "type": "string"
+        },
+        "project_acreage": {
+          "type": "number"
+        },
+        "best_management_practices_bmps": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "permit_details": {
+      "type": "object",
+      "description": "Details specific to a permit issued by a government agency.",
+      "properties": {
+        "permit_number": {
+          "type": "string"
+        },
+        "property_address": {
+          "type": "string"
+        },
+        "sign_description": {
+          "type": "string"
+        },
+        "sign_dimensions": {
+          "type": "string"
+        },
+        "expiration_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "permit_type": {
+          "type": "string"
+        },
+        "authorized_activity": {
+          "type": "string"
+        },
+        "impacts_authorized": {
+          "type": "string"
+        },
+        "mitigation_required": {
+          "type": "string"
+        }
+      }
+    },
+    "biological_opinion_details": {
+      "type": "object",
+      "description": "Details specific to a USFWS/NMFS Biological Opinion or Incidental Take Permit.",
+      "properties": {
+        "consultation_number": {
+          "type": "string"
+        },
+        "project_name": {
+          "type": "string"
+        },
+        "species_affected": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "jeopardy_finding": {
+          "type": "boolean"
+        },
+        "incidental_take_statement": {
+          "type": "string"
+        },
+        "conservation_measures": {
+          "type": "string"
+        }
+      }
+    },
+    "stormwater_details": {
+      "type": "object",
+      "description": "Details specific to stormwater compliance documents.",
+      "properties": {
+        "document_type": {
+          "type": "string",
+          "enum": [
+            "NOI",
+            "NOT",
+            "SWPPP"
+          ]
+        },
+        "project_name": {
+          "type": "string"
+        },
+        "wdid_number": {
+          "type": "string"
+        },
+        "total_disturbed_area_acres": {
+          "type": "number"
+        }
+      }
+    },
+    "hcp_details": {
+      "type": "object",
+      "description": "Details specific to a Habitat Conservation Plan (HCP).",
+      "properties": {
+        "plan_area": {
+          "type": "string"
+        },
+        "covered_species": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "mitigation_strategy": {
+          "type": "string"
+        }
+      }
+    },
+    "easement_details": {
+      "type": "object",
+      "description": "Details specific to an easement agreement.",
+      "properties": {
+        "easement_type": {
+          "type": "string"
+        },
+        "purpose": {
+          "type": "string"
+        },
+        "servient_tenement_description": {
+          "type": "string"
+        },
+        "dominant_tenement_description": {
+          "type": "string"
+        },
+        "is_appurtenant_or_in_gross": {
+          "type": "string"
+        },
+        "property_description": {
+          "type": "string"
+        },
+        "easements_granted": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "maintenance_obligations": {
+          "type": "string"
+        },
+        "cost_sharing_provisions": {
+          "type": "string"
+        },
+        "operating_covenants": {
+          "type": "string"
+        },
+        "use_restrictions": {
+          "type": "string"
+        },
+        "conservation_values": {
+          "type": "string"
+        },
+        "prohibited_uses": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "is_perpetual": {
+          "type": "boolean"
+        }
+      }
+    },
+    "mitigation_credit_details": {
+      "type": "object",
+      "description": "Details specific to the purchase or sale of mitigation or conservation credits.",
+      "properties": {
+        "bank_name": {
+          "type": "string"
+        },
+        "credit_type": {
+          "type": "string"
+        },
+        "number_of_credits": {
+          "type": "number"
+        },
+        "price_per_credit": {
+          "type": "number"
+        },
+        "total_purchase_price": {
+          "type": "number"
+        },
+        "project_to_be_mitigated": {
+          "type": "string"
+        }
+      }
+    },
+    "monitoring_report_details": {
+      "type": "object",
+      "description": "Details specific to a mitigation monitoring report.",
+      "properties": {
+        "project_name": {
+          "type": "string"
+        },
+        "reporting_period": {
+          "type": "string"
+        },
+        "mitigation_measures_status": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "measure_id": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "utility_service_details": {
+      "type": "object",
+      "description": "Details specific to utility service letters and agreements.",
+      "properties": {
+        "utility_type": {
+          "type": "string"
+        },
+        "project_name": {
+          "type": "string"
+        },
+        "service_commitment": {
+          "type": "string"
+        },
+        "conditions_of_service": {
+          "type": "string"
+        }
+      }
+    },
+    "fee_details": {
+      "type": "object",
+      "description": "Details specific to development fees, credits, and reimbursements.",
+      "properties": {
+        "project_name": {
+          "type": "string"
+        },
+        "total_fee_amount": {
+          "type": "number"
+        },
+        "fee_breakdown": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "fee_name": {
+                "type": "string"
+              },
+              "amount": {
+                "type": "number"
+              }
+            }
+          }
+        }
+      }
+    },
+    "loan_details": {
+      "type": "object",
+      "description": "Details specific to a loan or financing agreement.",
+      "properties": {
+        "loan_amount": {
+          "type": "number"
+        },
+        "interest_rate": {
+          "type": "string"
+        },
+        "loan_term": {
+          "type": "string"
+        },
+        "amortization_period": {
+          "type": "string"
+        },
+        "commitment_fee": {
+          "type": "number"
+        },
+        "commitment_expiration_date": {
+          "type": "string",
+          "format": "date"
+        }
+      }
+    },
+    "appraisal_details": {
+      "type": "object",
+      "description": "Details specific to a property appraisal.",
+      "properties": {
+        "property_address": {
+          "type": "string"
+        },
+        "appraised_value": {
+          "type": "number"
+        },
+        "value_type": {
+          "type": "string",
+          "description": "e.g., 'As Is', 'As Complete', 'As Stabilized'."
+        },
+        "appraisal_approaches_used": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "reliance_letter_details": {
+      "type": "object",
+      "description": "Details specific to a reliance letter for a technical report.",
+      "properties": {
+        "original_report_title": {
+          "type": "string"
+        },
+        "original_report_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "original_client": {
+          "type": "string"
+        }
+      }
+    },
+    "transmittal_details": {
+      "type": "object",
+      "description": "Details specific to a transmittal letter or email.",
+      "properties": {
+        "documents_delivered": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "project_name": {
+          "type": "string"
+        }
+      }
+    },
+    "flood_details": {
+      "type": "object",
+      "description": "Details specific to a flood hazard determination.",
+      "properties": {
+        "property_address": {
+          "type": "string"
+        },
+        "fema_map_number": {
+          "type": "string"
+        },
+        "flood_zone": {
+          "type": "string"
+        },
+        "is_in_special_flood_hazard_area": {
+          "type": "boolean"
+        }
+      }
+    },
+    "assignment_details": {
+      "type": "object",
+      "description": "Details specific to the assignment and assumption of a contract or property.",
+      "properties": {
+        "original_agreement_name": {
+          "type": "string"
+        },
+        "original_agreement_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "assumption_of_obligations": {
+          "type": "string"
+        },
+        "consideration": {
+          "type": "string"
+        },
+        "assigned_property_description": {
+          "type": "string"
+        },
+        "property_address": {
+          "type": "string"
+        },
+        "assignment_type": {
+          "type": "string"
+        },
+        "secured_debt_reference": {
+          "type": "string"
+        }
+      }
+    },
+    "ucc_filing_details": {
+      "type": "object",
+      "description": "Details specific to a UCC financing statement.",
+      "properties": {
+        "filing_type": {
+          "type": "string",
+          "enum": [
+            "UCC-1",
+            "UCC-3"
+          ]
+        },
+        "filing_number": {
+          "type": "string"
+        },
+        "collateral_description": {
+          "type": "string"
+        }
+      }
+    },
+    "guaranty_details": {
+      "type": "object",
+      "description": "Details specific to a guaranty agreement.",
+      "properties": {
+        "guaranty_type": {
+          "type": "string"
+        },
+        "guaranteed_obligation": {
+          "type": "string"
+        },
+        "maximum_liability": {
+          "type": "string"
+        }
+      }
+    },
+    "indemnity_details": {
+      "type": "object",
+      "description": "Details specific to an indemnity agreement.",
+      "properties": {
+        "property_address": {
+          "type": "string"
+        },
+        "indemnified_matters": {
+          "type": "string"
+        }
+      }
+    },
+    "intercreditor_details": {
+      "type": "object",
+      "description": "Details specific to an intercreditor agreement between lenders.",
+      "properties": {
+        "senior_debt_amount": {
+          "type": "number"
+        },
+        "junior_debt_amount": {
+          "type": "number"
+        },
+        "payment_subordination": {
+          "type": "string"
+        },
+        "lien_subordination": {
+          "type": "string"
+        },
+        "standstill_provisions": {
+          "type": "string"
+        }
+      }
+    },
+    "subordination_details": {
+      "type": "object",
+      "description": "Details specific to a subordination agreement.",
+      "properties": {
+        "subordinated_instrument": {
+          "type": "string"
+        },
+        "senior_instrument": {
+          "type": "string"
+        }
+      }
+    },
+    "snda_details": {
+      "type": "object",
+      "description": "Details specific to a Subordination, Non-Disturbance, and Attornment Agreement.",
+      "properties": {
+        "lease_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "deed_of_trust_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "subordination_clause": {
+          "type": "string"
+        },
+        "non_disturbance_clause": {
+          "type": "string"
+        },
+        "attornment_clause": {
+          "type": "string"
+        }
+      }
+    },
+    "budget_details": {
+      "type": "object",
+      "description": "Details specific to a project budget or cost analysis.",
+      "properties": {
+        "project_name": {
+          "type": "string"
+        },
+        "total_budget_amount": {
+          "type": "number"
+        },
+        "cost_to_complete": {
+          "type": "number"
+        },
+        "funds_expended_to_date": {
+          "type": "number"
+        },
+        "line_items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "category": {
+                "type": "string"
+              },
+              "amount": {
+                "type": "number"
+              }
+            }
+          }
+        }
+      }
+    },
+    "draw_request_details": {
+      "type": "object",
+      "description": "Details specific to a construction loan draw request.",
+      "properties": {
+        "project_name": {
+          "type": "string"
+        },
+        "draw_number": {
+          "integer": "string"
+        },
+        "draw_period": {
+          "type": "string"
+        },
+        "total_amount_requested": {
+          "type": "number"
+        },
+        "total_amount_approved": {
+          "type": "number"
+        },
+        "total_project_completion_pct": {
+          "type": "number"
+        }
+      }
+    },
+    "title_details": {
+      "type": "object",
+      "description": "Details specific to title insurance reports, commitments, and policies.",
+      "properties": {
+        "report_number": {
+          "type": "string"
+        },
+        "property_legal_description": {
+          "type": "string"
+        },
+        "estate_or_interest": {
+          "type": "string"
+        },
+        "exceptions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "policy_type": {
+          "type": "string"
+        },
+        "proposed_insured_amount": {
+          "type": "number"
+        },
+        "proposed_endorsements": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "policy_number": {
+          "type": "string"
+        },
+        "amount_of_insurance": {
+          "type": "number"
+        },
+        "policy_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "schedule_a_vesting": {
+          "type": "string"
+        },
+        "schedule_b_exceptions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "endorsement_number": {
+          "type": "string"
+        },
+        "endorsement_title": {
+          "type": "string"
+        },
+        "endorsement_summary": {
+          "type": "string"
+        },
+        "document_summary": {
+          "type": "string"
+        },
+        "original_policy_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "bring_down_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "new_exceptions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "inspection_report_details": {
+      "type": "object",
+      "description": "Details specific to a construction or property inspection report.",
+      "properties": {
+        "project_name": {
+          "type": "string"
+        },
+        "inspection_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "percent_complete": {
+          "type": "number"
+        },
+        "work_completed_summary": {
+          "type": "string"
+        },
+        "issues_or_deficiencies": {
+          "type": "string"
+        },
+        "recommended_draw_amount": {
+          "type": "number"
+        }
+      }
+    },
+    "offering_details": {
+      "type": "object",
+      "description": "Details specific to a private placement or investment offering.",
+      "properties": {
+        "offering_summary": {
+          "type": "string"
+        },
+        "total_offering_amount": {
+          "type": "number"
+        },
+        "price_per_unit_or_share": {
+          "type": "number"
+        },
+        "minimum_investment": {
+          "type": "number"
+        },
+        "risk_factors_summary": {
+          "type": "string"
+        },
+        "number_of_shares_or_units": {
+          "type": "number"
+        },
+        "total_subscription_amount": {
+          "type": "number"
+        }
+      }
+    },
+    "capital_call_details": {
+      "type": "object",
+      "description": "Details specific to a capital call or investor consent.",
+      "properties": {
+        "fund_name": {
+          "type": "string"
+        },
+        "call_amount": {
+          "type": "number"
+        },
+        "due_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "purpose_of_call": {
+          "type": "string"
+        }
+      }
+    },
+    "derivative_details": {
+      "type": "object",
+      "description": "Details specific to a financial derivative or hedging agreement.",
+      "properties": {
+        "trade_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "notional_amount": {
+          "type": "number"
+        },
+        "product_type": {
+          "type": "string"
+        },
+        "fixed_rate": {
+          "type": "string"
+        },
+        "floating_rate_index": {
+          "type": "string"
+        },
+        "termination_date": {
+          "type": "string",
+          "format": "date"
+        }
+      }
+    },
+    "construction_contract_details": {
+      "type": "object",
+      "description": "Details specific to a construction contract.",
+      "properties": {
+        "project_name": {
+          "type": "string"
+        },
+        "contract_type": {
+          "type": "string",
+          "enum": [
+            "Stipulated Sum",
+            "Cost Plus Fee with GMP"
+          ]
+        },
+        "contract_sum": {
+          "type": "number"
+        },
+        "guaranteed_maximum_price_gmp": {
+          "type": "number"
+        },
+        "date_of_commencement": {
+          "type": "string",
+          "format": "date"
+        },
+        "substantial_completion_date": {
+          "type": "string"
+        },
+        "liquidated_damages": {
+          "type": "string"
+        }
+      }
+    },
+    "design_contract_details": {
+      "type": "object",
+      "description": "Details specific to a design or architectural services agreement.",
+      "properties": {
+        "project_name": {
+          "type": "string"
+        },
+        "basic_services_scope": {
+          "type": "string"
+        },
+        "supplemental_services_scope": {
+          "type": "string"
+        },
+        "architects_compensation": {
+          "type": "string"
+        }
+      }
+    },
+    "subcontract_details": {
+      "type": "object",
+      "description": "Details specific to a subcontract agreement.",
+      "properties": {
+        "project_name": {
+          "type": "string"
+        },
+        "scope_of_work": {
+          "type": "string"
+        },
+        "subcontract_price": {
+          "type": "number"
+        },
+        "payment_terms": {
+          "type": "string"
+        }
+      }
+    },
+    "schedule_details": {
+      "type": "object",
+      "description": "Details specific to a project schedule.",
+      "properties": {
+        "project_name": {
+          "type": "string"
+        },
+        "schedule_type": {
+          "type": "string",
+          "enum": [
+            "Baseline",
+            "Updated"
+          ]
+        },
+        "project_start_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "projected_completion_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "total_duration_days": {
+          "type": "integer"
+        },
+        "key_milestones": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "milestone": {
+                "type": "string"
+              },
+              "date": {
+                "type": "string",
+                "format": "date"
+              }
+            }
+          }
+        }
+      }
+    },
+    "schedule_of_values_details": {
+      "type": "object",
+      "description": "Details specific to a schedule of values for a construction contract.",
+      "properties": {
+        "project_name": {
+          "type": "string"
+        },
+        "total_contract_value": {
+          "type": "number"
+        },
+        "line_items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "item_number": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "scheduled_value": {
+                "type": "number"
+              }
+            }
+          }
+        }
+      }
+    },
+    "rfi_details": {
+      "type": "object",
+      "description": "Details specific to a Request for Information (RFI).",
+      "properties": {
+        "project_name": {
+          "type": "string"
+        },
+        "rfi_number": {
+          "type": "string"
+        },
+        "date_sent": {
+          "type": "string",
+          "format": "date"
+        },
+        "question": {
+          "type": "string"
+        },
+        "response_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "response": {
+          "type": "string"
+        },
+        "cost_impact": {
+          "type": "string"
+        },
+        "schedule_impact": {
+          "type": "string"
+        }
+      }
+    },
+    "submittal_details": {
+      "type": "object",
+      "description": "Details specific to a construction submittal or shop drawing.",
+      "properties": {
+        "project_name": {
+          "type": "string"
+        },
+        "submittal_number": {
+          "type": "string"
+        },
+        "spec_section": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "review_status": {
+          "type": "string",
+          "enum": [
+            "Approved",
+            "Approved as Noted",
+            "Revise and Resubmit",
+            "Rejected"
+          ]
+        }
+      }
+    },
+    "meeting_minutes_details": {
+      "type": "object",
+      "description": "Details specific to meeting minutes.",
+      "properties": {
+        "project_name": {
+          "type": "string"
+        },
+        "meeting_title": {
+          "type": "string"
+        },
+        "attendees": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "key_discussion_points": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "action_items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "item": {
+                "type": "string"
+              },
+              "responsible_party": {
+                "type": "string"
+              },
+              "due_date": {
+                "type": "string",
+                "format": "date"
+              }
+            }
+          }
+        }
+      }
+    },
+    "daily_report_details": {
+      "type": "object",
+      "description": "Details specific to a daily construction report.",
+      "properties": {
+        "project_name": {
+          "type": "string"
+        },
+        "weather": {
+          "type": "string"
+        },
+        "work_performed": {
+          "type": "string"
+        },
+        "subcontractors_on_site": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "equipment_on_site": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "issues_or_delays": {
+          "type": "string"
+        }
+      }
+    },
+    "change_order_details": {
+      "type": "object",
+      "description": "Details specific to a construction change order.",
+      "properties": {
+        "project_name": {
+          "type": "string"
+        },
+        "change_order_number": {
+          "type": "string"
+        },
+        "description_of_change": {
+          "type": "string"
+        },
+        "cost_impact": {
+          "type": "number"
+        },
+        "schedule_impact_days": {
+          "type": "integer"
+        }
+      }
+    },
+    "safety_plan_details": {
+      "type": "object",
+      "description": "Details specific to a safety plan.",
+      "properties": {
+        "project_name": {
+          "type": "string"
+        },
+        "safety_officer": {
+          "type": "string"
+        },
+        "key_procedures": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "testing_report_details": {
+      "type": "object",
+      "description": "Details specific to a materials testing report.",
+      "properties": {
+        "project_name": {
+          "type": "string"
+        },
+        "report_number": {
+          "type": "string"
+        },
+        "test_type": {
+          "type": "string"
+        },
+        "test_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "test_results_summary": {
+          "type": "string"
+        },
+        "is_passing": {
+          "type": "boolean"
+        }
+      }
+    },
+    "pay_application_details": {
+      "type": "object",
+      "description": "Details specific to a construction payment application.",
+      "properties": {
+        "project_name": {
+          "type": "string"
+        },
+        "application_number": {
+          "type": "string"
+        },
+        "period_to": {
+          "type": "string",
+          "format": "date"
+        },
+        "original_contract_sum": {
+          "type": "number"
+        },
+        "net_change_by_change_orders": {
+          "type": "number"
+        },
+        "contract_sum_to_date": {
+          "type": "number"
+        },
+        "total_completed_and_stored_to_date": {
+          "type": "number"
+        },
+        "retainage": {
+          "type": "number"
+        },
+        "total_earned_less_retainage": {
+          "type": "number"
+        },
+        "less_previous_certificates_for_payment": {
+          "type": "number"
+        },
+        "current_payment_due": {
+          "type": "number"
+        }
+      }
+    },
+    "lien_waiver_details": {
+      "type": "object",
+      "description": "Details specific to a mechanic's lien waiver and release.",
+      "properties": {
+        "project_name": {
+          "type": "string"
+        },
+        "waiver_type": {
+          "type": "string",
+          "enum": [
+            "Conditional Progress",
+            "Unconditional Progress",
+            "Conditional Final",
+            "Unconditional Final"
+          ]
+        },
+        "through_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "payment_amount": {
+          "type": "number"
+        }
+      }
+    },
+    "preliminary_notice_details": {
+      "type": "object",
+      "description": "Details specific to a preliminary notice for mechanic's lien rights.",
+      "properties": {
+        "project_address": {
+          "type": "string"
+        },
+        "work_or_materials_provided": {
+          "type": "string"
+        },
+        "estimated_total_price": {
+          "type": "number"
+        }
+      }
+    },
+    "stop_payment_notice_details": {
+      "type": "object",
+      "description": "Details specific to a stop payment notice.",
+      "properties": {
+        "project_address": {
+          "type": "string"
+        },
+        "amount_of_claim": {
+          "type": "number"
+        }
+      }
+    },
+    "mechanics_lien_details": {
+      "type": "object",
+      "description": "Details specific to a mechanic's lien.",
+      "properties": {
+        "property_address": {
+          "type": "string"
+        },
+        "amount_of_lien": {
+          "type": "number"
+        }
+      }
+    },
+    "bond_details": {
+      "type": "object",
+      "description": "Details specific to a surety bond.",
+      "properties": {
+        "bond_number": {
+          "type": "string"
+        },
+        "bond_type": {
+          "type": "string"
+        },
+        "penal_sum": {
+          "type": "number"
+        },
+        "project_description": {
+          "type": "string"
+        }
+      }
+    },
+    "warranty_details": {
+      "type": "object",
+      "description": "Details specific to a product or system warranty.",
+      "properties": {
+        "project_name": {
+          "type": "string"
+        },
+        "equipment_or_system": {
+          "type": "string"
+        },
+        "warranty_period": {
+          "type": "string"
+        },
+        "warranty_start_date": {
+          "type": "string",
+          "format": "date"
+        }
+      }
+    },
+    "punch_list_details": {
+      "type": "object",
+      "description": "Details specific to a construction punch list.",
+      "properties": {
+        "project_name": {
+          "type": "string"
+        },
+        "total_items": {
+          "type": "integer"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "location": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "completion_certificate_details": {
+      "type": "object",
+      "description": "Details specific to a certificate of completion.",
+      "properties": {
+        "project_name": {
+          "type": "string"
+        },
+        "date_of_substantial_completion": {
+          "type": "string",
+          "format": "date"
+        },
+        "punch_list_reference": {
+          "type": "string"
+        },
+        "warranty_start_date": {
+          "type": "string",
+          "format": "date"
+        }
+      }
+    },
+    "occupancy_certificate_details": {
+      "type": "object",
+      "description": "Details specific to a certificate of occupancy.",
+      "properties": {
+        "certificate_type": {
+          "type": "string",
+          "enum": [
+            "Temporary",
+            "Final"
+          ]
+        },
+        "permit_number": {
+          "type": "string"
+        },
+        "property_address": {
+          "type": "string"
+        },
+        "description_of_occupancy": {
+          "type": "string"
+        },
+        "expiration_date": {
+          "type": "string",
+          "format": "date"
+        }
+      }
+    },
+    "cfd_details": {
+      "type": "object",
+      "description": "Details specific to a Community Facilities District (Mello-Roos) or Assessment District.",
+      "properties": {
+        "cfd_name": {
+          "type": "string"
+        },
+        "cfd_number": {
+          "type": "string"
+        },
+        "map_summary": {
+          "type": "string"
+        }
+      }
+    },
+    "resolution_details": {
+      "type": "object",
+      "description": "Details specific to a formal resolution by a governing body.",
+      "properties": {
+        "resolution_number": {
+          "type": "string"
+        },
+        "action_taken": {
+          "type": "string"
+        },
+        "project_or_subject": {
+          "type": "string"
+        },
+        "vote_summary": {
+          "type": "string"
+        },
+        "resolution_type": {
+          "type": "string",
+          "enum": [
+            "Intention",
+            "Formation",
+            "Levy"
+          ]
+        },
+        "cfd_number": {
+          "type": "string"
+        }
+      }
+    },
+    "assessment_district_details": {
+      "type": "object",
+      "description": "Details specific to an Assessment District.",
+      "properties": {
+        "district_name": {
+          "type": "string"
+        },
+        "improvements_to_be_financed": {
+          "type": "string"
+        },
+        "total_estimated_cost": {
+          "type": "number"
+        },
+        "method_of_assessment": {
+          "type": "string"
+        }
+      }
+    },
+    "tax_agreement_details": {
+      "type": "object",
+      "description": "Details specific to a tax-related agreement like a PILOT or abatement.",
+      "properties": {
+        "project_name": {
+          "type": "string"
+        },
+        "property_address": {
+          "type": "string"
+        },
+        "payment_schedule": {
+          "type": "string"
+        },
+        "term_of_agreement": {
+          "type": "string"
+        }
+      }
+    },
+    "deal_terms": {
+      "type": "object",
+      "description": "Details specific to the core terms of a real estate or business transaction.",
+      "properties": {
+        "property_description": {
+          "type": "string",
+          "description": "A brief description of the property being transacted."
+        },
+        "purchase_price": {
+          "type": "number"
+        },
+        "deposit_amount": {
+          "type": "number"
+        },
+        "due_diligence_period": {
+          "type": "string",
+          "description": "The length of the due diligence or inspection period (e.g., '30 days', '60 days from execution')."
+        },
+        "closing_period": {
+          "type": "string",
+          "description": "The timeframe for closing after due diligence (e.g., '15 days after waiver of contingencies')."
+        },
+        "is_binding": {
+          "type": "boolean",
+          "description": "Indicates whether a preliminary document (like an LOI) is stated to be binding or non-binding."
+        }
+      }
+    },
+    "financing_district_details": {
+      "type": "object",
+      "description": "Details specific to an EIFD or TIF district.",
+      "properties": {
+        "district_type": {
+          "type": "string",
+          "enum": [
+            "EIFD",
+            "TIF"
+          ]
+        },
+        "district_name": {
+          "type": "string"
+        },
+        "plan_area_description": {
+          "type": "string"
+        },
+        "tax_increment_pledge": {
+          "type": "string"
+        }
+      }
+    },
+    "lease_details": {
+      "type": "object",
+      "description": "Details specific to a property lease agreement.",
+      "properties": {
+        "lease_type": {
+          "type": "string",
+          "enum": [
+            "NNN",
+            "Gross",
+            "Modified Gross",
+            "Ground"
+          ]
+        },
+        "premises_address": {
+          "type": "string"
+        },
+        "premises_sqft": {
+          "type": "integer"
+        },
+        "lease_term_months": {
+          "type": "integer"
+        },
+        "commencement_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "expiration_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "base_rent": {
+          "type": "string"
+        },
+        "operating_expenses_pass_through": {
+          "type": "string"
+        },
+        "renewal_options": {
+          "type": "string"
+        }
+      }
+    },
+    "lease_amendment_details": {
+      "type": "object",
+      "description": "Details specific to a lease amendment, extension, or renewal.",
+      "properties": {
+        "amendment_type": {
+          "type": "string",
+          "enum": [
+            "Amendment",
+            "Extension",
+            "Renewal"
+          ]
+        },
+        "original_lease_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "summary_of_changes": {
+          "type": "string"
+        },
+        "new_expiration_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "new_rent_terms": {
+          "type": "string"
+        }
+      }
+    },
+    "lease_assignment_details": {
+      "type": "object",
+      "description": "Details specific to a lease assignment or sublease.",
+      "properties": {
+        "assignment_type": {
+          "type": "string",
+          "enum": [
+            "Assignment",
+            "Sublease"
+          ]
+        },
+        "master_lease_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "landlord_consent_required": {
+          "type": "boolean"
+        }
+      }
+    },
+    "estoppel_details": {
+      "type": "object",
+      "description": "Details specific to a tenant's certification of lease terms.",
+      "properties": {
+        "lease_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "lease_premises": {
+          "type": "string"
+        },
+        "rent_commencement_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "lease_expiration_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "current_monthly_rent": {
+          "type": "number"
+        },
+        "security_deposit_amount": {
+          "type": "number"
+        },
+        "known_defaults": {
+          "type": "string"
+        },
+        "outstanding_allowances": {
+          "type": "string"
+        }
+      }
+    },
+    "rules_and_regulations_details": {
+      "type": "object",
+      "description": "Details specific to building or project rules and regulations.",
+      "properties": {
+        "property_name": {
+          "type": "string"
+        },
+        "key_rules": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "lease_clause_details": {
+      "type": "object",
+      "description": "Details specific to key lease clauses like exclusives or co-tenancy.",
+      "properties": {
+        "clause_type": {
+          "type": "string",
+          "enum": [
+            "Exclusive Use",
+            "Co-Tenancy"
+          ]
+        },
+        "exclusive_use_granted": {
+          "type": "string"
+        },
+        "co_tenancy_requirement": {
+          "type": "string"
+        },
+        "remedy_for_breach": {
+          "type": "string"
+        }
+      }
+    },
+    "ti_work_letter_details": {
+      "type": "object",
+      "description": "Details specific to a tenant improvement work letter.",
+      "properties": {
+        "landlord_work_summary": {
+          "type": "string"
+        },
+        "tenant_work_summary": {
+          "type": "string"
+        },
+        "tenant_improvement_allowance": {
+          "type": "number"
+        },
+        "delivery_condition": {
+          "type": "string"
+        }
+      }
+    },
+    "signage_details": {
+      "type": "object",
+      "description": "Details specific to signage rights and agreements.",
+      "properties": {
+        "building_signage_rights": {
+          "type": "string"
+        },
+        "monument_signage_rights": {
+          "type": "string"
+        },
+        "approval_requirements": {
+          "type": "string"
+        }
+      }
+    },
+    "shared_facility_details": {
+      "type": "object",
+      "description": "Details specific to a parking or shared facilities agreement.",
+      "properties": {
+        "facility_type": {
+          "type": "string",
+          "enum": [
+            "Parking",
+            "Other Shared Facility"
+          ]
+        },
+        "number_of_spaces_or_rights": {
+          "type": "string"
+        },
+        "fee_or_rent": {
+          "type": "string"
+        },
+        "rules_of_use": {
+          "type": "string"
+        }
+      }
+    },
+    "rent_roll_details": {
+      "type": "object",
+      "description": "Details specific to a property rent roll.",
+      "properties": {
+        "property_name": {
+          "type": "string"
+        },
+        "total_units": {
+          "type": "integer"
+        },
+        "occupied_units": {
+          "type": "integer"
+        },
+        "occupancy_rate_pct": {
+          "type": "number"
+        },
+        "total_monthly_rent": {
+          "type": "number"
+        },
+        "tenants": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "tenant_name": {
+                "type": "string"
+              },
+              "unit_number": {
+                "type": "string"
+              },
+              "sqft": {
+                "type": "integer"
+              },
+              "monthly_rent": {
+                "type": "number"
+              },
+              "lease_start": {
+                "type": "string",
+                "format": "date"
+              },
+              "lease_end": {
+                "type": "string",
+                "format": "date"
+              }
+            }
+          }
+        }
+      }
+    },
+    "cam_details": {
+      "type": "object",
+      "description": "Details specific to a Common Area Maintenance (CAM) budget or reconciliation.",
+      "properties": {
+        "property_name": {
+          "type": "string"
+        },
+        "period": {
+          "type": "string"
+        },
+        "document_type": {
+          "type": "string",
+          "enum": [
+            "Budget",
+            "Reconciliation"
+          ]
+        },
+        "total_actual_expenses": {
+          "type": "number"
+        },
+        "total_estimated_payments": {
+          "type": "number"
+        },
+        "tenant_pro_rata_share_pct": {
+          "type": "number"
+        },
+        "tenant_charge_or_credit": {
+          "type": "number"
+        }
+      }
+    },
+    "move_in_out_details": {
+      "type": "object",
+      "description": "Details specific to a move-in or move-out inspection report.",
+      "properties": {
+        "document_type": {
+          "type": "string",
+          "enum": [
+            "Move-In",
+            "Move-Out"
+          ]
+        },
+        "property_address": {
+          "type": "string"
+        },
+        "unit_number": {
+          "type": "string"
+        },
+        "condition_notes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "area": {
+                "type": "string"
+              },
+              "condition": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "compliance_notice_details": {
+      "type": "object",
+      "description": "Details specific to a tenant compliance notice.",
+      "properties": {
+        "property_address": {
+          "type": "string"
+        },
+        "unit_number": {
+          "type": "string"
+        },
+        "notice_type": {
+          "type": "string"
+        },
+        "nature_of_violation": {
+          "type": "string"
+        },
+        "cure_period": {
+          "type": "string"
+        }
+      }
+    },
+    "exclusivity_details": {
+      "type": "object",
+      "description": "Details specific to an exclusivity or no-shop provision.",
+      "properties": {
+        "exclusivity_period": {
+          "type": "string",
+          "description": "The duration of the exclusivity or no-shop period (e.g., '30 days from the Effective Date')."
+        },
+        "scope_of_exclusivity": {
+          "type": "string",
+          "description": "A summary of what the seller is prohibited from doing (e.g., 'soliciting, negotiating, or accepting alternative proposals')."
+        }
+      }
+    },
+    "listing_agreement_details": {
+      "type": "object",
+      "description": "Details specific to a real estate listing or commission agreement.",
+      "properties": {
+        "property_address": {
+          "type": "string"
+        },
+        "listing_price": {
+          "type": "number"
+        },
+        "listing_period": {
+          "type": "string"
+        },
+        "commission_rate_pct": {
+          "type": "number"
+        },
+        "cooperating_broker_split": {
+          "type": "string"
+        }
+      }
+    },
+    "co_broker_agreement_details": {
+      "type": "object",
+      "description": "Details specific to a co-brokerage agreement.",
+      "properties": {
+        "property_address": {
+          "type": "string"
+        },
+        "client_name": {
+          "type": "string"
+        },
+        "commission_split": {
+          "type": "string"
+        }
+      }
+    },
+    "bov_details": {
+      "type": "object",
+      "description": "Details specific to a Broker Opinion of Value (BOV).",
+      "properties": {
+        "property_address": {
+          "type": "string"
+        },
+        "opinion_of_value": {
+          "type": "number"
+        },
+        "value_range": {
+          "type": "string"
+        },
+        "analysis_summary": {
+          "type": "string"
+        }
+      }
+    },
+    "offering_memorandum_details": {
+      "type": "object",
+      "description": "Details specific to a real estate offering memorandum.",
+      "properties": {
+        "property_name": {
+          "type": "string"
+        },
+        "property_address": {
+          "type": "string"
+        },
+        "offering_price": {
+          "type": "number"
+        },
+        "investment_highlights": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "marketing_material_details": {
+      "type": "object",
+      "description": "Details specific to marketing materials like brochures or flyers.",
+      "properties": {
+        "property_name": {
+          "type": "string"
+        },
+        "property_address": {
+          "type": "string"
+        },
+        "property_type": {
+          "type": "string"
+        },
+        "key_features": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "map_details": {
+      "type": "object",
+      "description": "Details specific to maps, plats, and legal descriptions.",
+      "properties": {
+        "property_legal_description": {
+          "type": "string"
+        },
+        "apn": {
+          "type": "string"
+        },
+        "county": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "map_type": {
+          "type": "string"
+        },
+        "map_number": {
+          "type": "string"
+        },
+        "number_of_lots_created": {
+          "type": "integer"
+        },
+        "property_address": {
+          "type": "string"
+        },
+        "approval_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "expiration_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "vesting_rights_summary": {
+          "type": "string"
+        },
+        "application_number": {
+          "type": "string"
+        },
+        "affected_parcels_apn": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "adjustment_summary": {
+          "type": "string"
+        },
+        "corrected_document": {
+          "type": "string"
+        },
+        "corrected_document_recording_info": {
+          "type": "string"
+        },
+        "correction_summary": {
+          "type": "string"
+        },
+        "labels_or_callouts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "stacking_plan_details": {
+      "type": "object",
+      "description": "Details specific to a building stacking plan.",
+      "properties": {
+        "property_name": {
+          "type": "string"
+        },
+        "floors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "floor_number": {
+                "type": "string"
+              },
+              "tenant": {
+                "type": "string"
+              },
+              "sqft": {
+                "type": "integer"
+              },
+              "lease_expiration": {
+                "type": "string",
+                "format": "date"
+              }
+            }
+          }
+        }
+      }
+    },
+    "demographic_report_details": {
+      "type": "object",
+      "description": "Details specific to a demographic or trade area report.",
+      "properties": {
+        "property_address": {
+          "type": "string"
+        },
+        "trade_area_radius": {
+          "type": "string"
+        },
+        "key_demographics": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "metric": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "public_release_details": {
+      "type": "object",
+      "description": "Details specific to a press release or website content.",
+      "properties": {
+        "release_type": {
+          "type": "string",
+          "enum": [
+            "Website",
+            "Press Release"
+          ]
+        },
+        "headline": {
+          "type": "string"
+        },
+        "summary": {
+          "type": "string"
+        }
+      }
+    },
+    "ccr_details": {
+      "type": "object",
+      "description": "Details specific to a declaration of CC&Rs.",
+      "properties": {
+        "property_description": {
+          "type": "string"
+        },
+        "association_name": {
+          "type": "string"
+        },
+        "use_restrictions_summary": {
+          "type": "string"
+        },
+        "assessment_provisions": {
+          "type": "string"
+        }
+      }
+    },
+    "hoa_financial_details": {
+      "type": "object",
+      "description": "Details specific to HOA financial documents.",
+      "properties": {
+        "document_type": {
+          "type": "string",
+          "enum": [
+            "Budget",
+            "Reserve Study"
+          ]
+        },
+        "fiscal_year": {
+          "type": "string"
+        },
+        "total_annual_budget": {
+          "type": "number"
+        },
+        "monthly_assessment_per_unit": {
+          "type": "number"
+        },
+        "reserve_fund_balance": {
+          "type": "number"
+        },
+        "percent_funded": {
+          "type": "number"
+        }
+      }
+    },
+    "architectural_guideline_details": {
+      "type": "object",
+      "description": "Details specific to architectural design guidelines.",
+      "properties": {
+        "property_name": {
+          "type": "string"
+        },
+        "key_guidelines": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "review_process_summary": {
+          "type": "string"
+        }
+      }
+    },
+    "public_report_details": {
+      "type": "object",
+      "description": "Details specific to a Subdivision Public Report.",
+      "properties": {
+        "report_type": {
+          "type": "string",
+          "enum": [
+            "Preliminary",
+            "Final"
+          ]
+        },
+        "file_number": {
+          "type": "string"
+        },
+        "subdivision_name": {
+          "type": "string"
+        },
+        "number_of_lots_or_units": {
+          "type": "integer"
+        },
+        "expiration_date": {
+          "type": "string",
+          "format": "date"
+        }
+      }
+    },
+    "annexation_details": {
+      "type": "object",
+      "description": "Details specific to an annexation.",
+      "properties": {
+        "annexation_name_or_number": {
+          "type": "string"
+        },
+        "property_annexed": {
+          "type": "string"
+        },
+        "pre_annexation_zoning": {
+          "type": "string"
+        }
+      }
+    },
+    "equipment_certificate_details": {
+      "type": "object",
+      "description": "Details specific to an equipment operating certificate.",
+      "properties": {
+        "equipment_type": {
+          "type": "string",
+          "enum": [
+            "Elevator",
+            "Boiler"
+          ]
+        },
+        "certificate_number": {
+          "type": "string"
+        },
+        "location": {
+          "type": "string"
+        },
+        "expiration_date": {
+          "type": "string",
+          "format": "date"
+        }
+      }
+    },
+    "casp_report_details": {
+      "type": "object",
+      "description": "Details specific to a Certified Access Specialist (CASp) report.",
+      "properties": {
+        "property_address": {
+          "type": "string"
+        },
+        "inspection_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "determination": {
+          "type": "string"
+        },
+        "summary_of_findings": {
+          "type": "string"
+        }
+      }
+    },
+    "energy_report_details": {
+      "type": "object",
+      "description": "Details specific to an energy compliance report.",
+      "properties": {
+        "project_address": {
+          "type": "string"
+        },
+        "compliance_method": {
+          "type": "string"
+        },
+        "compliance_margin_pct": {
+          "type": "number"
+        },
+        "compliance_statement": {
+          "type": "string"
+        }
+      }
+    },
+    "calgreen_details": {
+      "type": "object",
+      "description": "Details specific to a CALGreen compliance document.",
+      "properties": {
+        "project_address": {
+          "type": "string"
+        },
+        "permit_number": {
+          "type": "string"
+        },
+        "compliance_tier": {
+          "type": "string",
+          "description": "e.g., 'Tier 1', 'Tier 2'."
+        },
+        "key_measures_verified": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "training_record_details": {
+      "type": "object",
+      "description": "Details specific to a training record or log.",
+      "properties": {
+        "project_name": {
+          "type": "string"
+        },
+        "training_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "training_topic": {
+          "type": "string"
+        }
+      }
+    },
+    "payroll_details": {
+      "type": "object",
+      "description": "Details specific to a certified payroll report.",
+      "properties": {
+        "project_name": {
+          "type": "string"
+        },
+        "week_ending_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "is_statement_of_compliance_signed": {
+          "type": "boolean"
+        }
+      }
+    },
+    "option_details": {
+      "type": "object",
+      "description": "Details specific to an option agreement.",
+      "properties": {
+        "property_description": {
+          "type": "string",
+          "description": "A description of the property subject to the option."
+        },
+        "option_fee": {
+          "type": "number",
+          "description": "The consideration paid for the option right."
+        },
+        "option_period": {
+          "type": "string",
+          "description": "The duration during which the option can be exercised."
+        },
+        "exercise_price": {
+          "type": "number",
+          "description": "The pre-agreed price to purchase the property if the option is exercised."
+        },
+        "exercise_procedure": {
+          "type": "string",
+          "description": "A summary of how the option must be exercised (e.g., 'Written notice to Optionor')."
+        }
+      }
+    },
+    "compliance_report_details": {
+      "type": "object",
+      "description": "Details specific to a compliance report.",
+      "properties": {
+        "project_name": {
+          "type": "string"
+        },
+        "reporting_period": {
+          "type": "string"
+        },
+        "local_hire_requirement_pct": {
+          "type": "number"
+        },
+        "local_hire_achieved_pct": {
+          "type": "number"
+        },
+        "apprentice_utilization_requirement_pct": {
+          "type": "number"
+        },
+        "apprentice_utilization_achieved_pct": {
+          "type": "number"
+        }
+      }
+    },
+    "license_details": {
+      "type": "object",
+      "description": "Details specific to a business license.",
+      "properties": {
+        "license_number": {
+          "type": "string"
+        },
+        "business_name": {
+          "type": "string"
+        },
+        "business_address": {
+          "type": "string"
+        },
+        "expiration_date": {
+          "type": "string",
+          "format": "date"
+        }
+      }
+    },
+    "hazmat_plan_details": {
+      "type": "object",
+      "description": "Details specific to a Hazardous Materials Business Plan.",
+      "properties": {
+        "facility_address": {
+          "type": "string"
+        },
+        "hazardous_materials_inventory": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "emergency_contact": {
+          "type": "string"
+        }
+      }
+    },
+    "demand_letter_details": {
+      "type": "object",
+      "description": "Details specific to a demand letter.",
+      "properties": {
+        "amount_demanded": {
+          "type": "number"
+        },
+        "reason_for_demand": {
+          "type": "string"
+        },
+        "deadline_to_respond": {
+          "type": "string"
+        }
+      }
+    },
+    "default_notice_details": {
+      "type": "object",
+      "description": "Details specific to a notice of default.",
+      "properties": {
+        "loan_reference": {
+          "type": "string"
+        },
+        "nature_of_default": {
+          "type": "string"
+        },
+        "amount_to_cure": {
+          "type": "number"
+        },
+        "cure_period": {
+          "type": "string"
+        }
+      }
+    },
+    "litigation_details": {
+      "type": "object",
+      "description": "Details specific to litigation, court filings, and legal disputes.",
+      "properties": {
+        "court_name": {
+          "type": "string"
+        },
+        "case_number": {
+          "type": "string"
+        },
+        "property_affected": {
+          "type": "string"
+        },
+        "nature_of_action": {
+          "type": "string"
+        },
+        "judgment_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "judgment_summary": {
+          "type": "string"
+        },
+        "causes_of_action": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "remedy_sought": {
+          "type": "string"
+        }
+      }
+    },
+    "bankruptcy_details": {
+      "type": "object",
+      "description": "Details specific to a bankruptcy filing.",
+      "properties": {
+        "court_name": {
+          "type": "string"
+        },
+        "case_number": {
+          "type": "string"
+        },
+        "chapter": {
+          "type": "string",
+          "enum": [
+            "7",
+            "11",
+            "13"
+          ]
+        },
+        "total_assets": {
+          "type": "number"
+        },
+        "total_liabilities": {
+          "type": "number"
+        },
+        "proof_of_claim_amount": {
+          "type": "number"
+        }
+      }
+    },
+    "tax_appeal_details": {
+      "type": "object",
+      "description": "Details specific to a property tax appeal.",
+      "properties": {
+        "apn": {
+          "type": "string"
+        },
+        "tax_year": {
+          "type": "string"
+        },
+        "assessor_s_value": {
+          "type": "number"
+        },
+        "applicant_s_opinion_of_value": {
+          "type": "number"
+        },
+        "reason_for_appeal": {
+          "type": "string"
+        }
+      }
+    },
+    "due_diligence_details": {
+      "type": "object",
+      "description": "Details specific to due diligence materials and requests.",
+      "properties": {
+        "project_name": {
+          "type": "string"
+        },
+        "requested_item_categories": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "A list of the main categories of documents requested."
+        }
+      }
+    },
+    "oz_details": {
+      "type": "object",
+      "description": "Details specific to a Qualified Opportunity Zone investment.",
+      "properties": {
+        "fund_name": {
+          "type": "string"
+        },
+        "fund_ein": {
+          "type": "string"
+        },
+        "investment_property_address": {
+          "type": "string"
+        }
+      }
+    },
+    "cost_segregation_details": {
+      "type": "object",
+      "description": "Details specific to a cost segregation study.",
+      "properties": {
+        "property_address": {
+          "type": "string"
+        },
+        "total_depreciable_basis": {
+          "type": "number"
+        },
+        "reclassified_to_5_year_property": {
+          "type": "number"
+        },
+        "reclassified_to_7_year_property": {
+          "type": "number"
+        },
+        "reclassified_to_15_year_property": {
+          "type": "number"
+        }
+      }
+    },
+    "depreciation_schedule_details": {
+      "type": "object",
+      "description": "Details specific to a depreciation schedule.",
+      "properties": {
+        "property_name": {
+          "type": "string"
+        },
+        "year": {
+          "type": "integer"
+        },
+        "total_depreciation_expense": {
+          "type": "number"
+        },
+        "assets": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "asset_description": {
+                "type": "string"
+              },
+              "cost_basis": {
+                "type": "number"
+              },
+              "depreciation_method": {
+                "type": "string"
+              },
+              "useful_life_years": {
+                "type": "integer"
+              },
+              "current_year_depreciation": {
+                "type": "number"
+              }
+            }
+          }
+        }
+      }
+    },
+    "disclosure_details": {
+      "type": "object",
+      "description": "Details specific to seller disclosures about a property's condition.",
+      "properties": {
+        "property_address": {
+          "type": "string"
+        },
+        "disclosed_issues": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "category": {
+                "type": "string"
+              },
+              "issue": {
+                "type": "string"
+              },
+              "explanation": {
+                "type": "string"
+              }
+            }
+          },
+          "description": "A list of all affirmative disclosures made by the seller."
+        }
+      }
+    },
+    "mineral_rights_details": {
+      "type": "object",
+      "description": "Details specific to mineral, oil, or gas rights.",
+      "properties": {
+        "rights_type": {
+          "type": "string",
+          "enum": [
+            "Mineral",
+            "Oil",
+            "Gas"
+          ]
+        },
+        "property_description": {
+          "type": "string"
+        },
+        "royalty_rate": {
+          "type": "string"
+        },
+        "lease_term": {
+          "type": "string"
+        }
+      }
+    },
+    "water_rights_details": {
+      "type": "object",
+      "description": "Details specific to water rights.",
+      "properties": {
+        "water_right_permit_or_license_number": {
+          "type": "string"
+        },
+        "amount_of_water_transferred": {
+          "type": "string"
+        },
+        "source_of_water": {
+          "type": "string"
+        },
+        "place_of_use": {
+          "type": "string"
+        }
+      }
+    },
+    "williamson_act_details": {
+      "type": "object",
+      "description": "Details specific to a Williamson Act contract.",
+      "properties": {
+        "contract_number": {
+          "type": "string"
+        },
+        "property_apn": {
+          "type": "string"
+        },
+        "acreage": {
+          "type": "number"
+        },
+        "term_of_contract": {
+          "type": "string"
+        },
+        "notice_of_non_renewal_date": {
+          "type": "string",
+          "format": "date"
+        }
+      }
+    },
+    "correspondence_details": {
+      "type": "object",
+      "description": "Details specific to correspondence like letters or memos.",
+      "properties": {
+        "document_type": {
+          "type": "string"
+        },
+        "project_name": {
+          "type": "string"
+        },
+        "subject_document": {
+          "type": "string"
+        },
+        "summary_of_comments": {
+          "type": "string"
+        }
+      }
+    },
+    "hearing_details": {
+      "type": "object",
+      "description": "Details specific to a public hearing notice.",
+      "properties": {
+        "hearing_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "hearing_time": {
+          "type": "string"
+        },
+        "hearing_location": {
+          "type": "string"
+        },
+        "hearing_body": {
+          "type": "string"
+        },
+        "project_description": {
+          "type": "string"
+        }
+      }
+    },
+    "proof_of_service_details": {
+      "type": "object",
+      "description": "Details specific to a proof of service.",
+      "properties": {
+        "service_type": {
+          "type": "string",
+          "enum": [
+            "Publication",
+            "Mailing"
+          ]
+        },
+        "document_served": {
+          "type": "string"
+        },
+        "publication_name": {
+          "type": "string"
+        },
+        "publication_dates": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "mailing_date": {
+          "type": "string",
+          "format": "date"
+        }
+      }
+    },
+    "public_records_request_details": {
+      "type": "object",
+      "description": "Details specific to a public records act request or response.",
+      "properties": {
+        "document_type": {
+          "type": "string"
+        },
+        "records_requested": {
+          "type": "string"
+        },
+        "response_summary": {
+          "type": "string"
+        }
+      }
+    },
+    "decision_log_details": {
+      "type": "object",
+      "description": "Details specific to a project decision log.",
+      "properties": {
+        "project_name": {
+          "type": "string"
+        },
+        "decisions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "decision_id": {
+                "type": "string"
+              },
+              "date": {
+                "type": "string",
+                "format": "date"
+              },
+              "decision": {
+                "type": "string"
+              },
+              "reason": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "mou_details": {
+      "type": "object",
+      "description": "Details specific to a Memorandum of Understanding (MOU).",
+      "properties": {
+        "purpose_of_mou": {
+          "type": "string"
+        },
+        "key_understandings": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "is_binding": {
+          "type": "boolean"
+        }
+      }
+    },
+    "legal_opinion_details": {
+      "type": "object",
+      "description": "Details specific to a legal opinion letter.",
+      "properties": {
+        "subject_matter": {
+          "type": "string"
+        },
+        "opinion_summary": {
+          "type": "string"
+        },
+        "qualifications_and_assumptions": {
+          "type": "string"
+        }
+      }
+    },
+    "legal_strategy_memo_details": {
+      "type": "object",
+      "description": "Details specific to a legal strategy memorandum.",
+      "properties": {
+        "subject_matter": {
+          "type": "string"
+        },
+        "issue_summary": {
+          "type": "string"
+        },
+        "recommended_strategy": {
+          "type": "string"
+        }
+      }
+    },
+    "access_details": {
+      "type": "object",
+      "description": "Details specific to an agreement granting temporary access to a property.",
+      "properties": {
+        "property_description": {
+          "type": "string"
+        },
+        "purpose_of_access": {
+          "type": "string"
+        },
+        "access_period": {
+          "type": "string"
+        },
+        "insurance_requirements": {
+          "type": "string"
+        },
+        "indemnification_clause": {
+          "type": "string"
+        }
+      }
+    },
+    "escrow_details": {
+      "type": "object",
+      "description": "Details specific to escrow instructions for a transaction.",
+      "properties": {
+        "escrow_number": {
+          "type": "string"
+        },
+        "property_description": {
+          "type": "string"
+        },
+        "purchase_price": {
+          "type": "number"
+        },
+        "closing_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "conditions_to_close": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "disbursement_summary": {
+          "type": "string"
+        }
+      }
+    },
+    "wire_details": {
+      "type": "object",
+      "description": "Details specific to wire transfer instructions.",
+      "properties": {
+        "beneficiary_bank": {
+          "type": "string"
+        },
+        "routing_number_aba": {
+          "type": "string"
+        },
+        "account_number": {
+          "type": "string"
+        },
+        "swift_code": {
+          "type": "string"
+        },
+        "reference_info": {
+          "type": "string"
+        }
+      }
+    },
+    "release_details": {
+      "type": "object",
+      "description": "Details specific to an authorization to release funds from an account.",
+      "properties": {
+        "escrow_or_account_number": {
+          "type": "string"
+        },
+        "amount_to_release": {
+          "type": "number"
+        },
+        "reason_for_release": {
+          "type": "string"
+        }
+      }
+    },
+    "payoff_details": {
+      "type": "object",
+      "description": "Details specific to a loan payoff demand.",
+      "properties": {
+        "loan_number": {
+          "type": "string"
+        },
+        "property_address": {
+          "type": "string"
+        },
+        "payoff_amount": {
+          "type": "number"
+        },
+        "good_through_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "per_diem_interest": {
+          "type": "number"
+        }
+      }
+    },
+    "settlement_statement_details": {
+      "type": "object",
+      "description": "Details specific to a settlement statement (like an ALTA) summarizing the financials of a closing.",
+      "properties": {
+        "property_address": {
+          "type": "string"
+        },
+        "escrow_number": {
+          "type": "string"
+        },
+        "buyer_total_debits": {
+          "type": "number"
+        },
+        "buyer_total_credits": {
+          "type": "number"
+        },
+        "cash_from_buyer": {
+          "type": "number"
+        },
+        "seller_total_debits": {
+          "type": "number"
+        },
+        "seller_total_credits": {
+          "type": "number"
+        },
+        "cash_to_seller": {
+          "type": "number"
+        }
+      }
+    },
+    "deed_details": {
+      "type": "object",
+      "description": "Details specific to a deed transferring title to real property.",
+      "properties": {
+        "deed_type": {
+          "type": "string"
+        },
+        "property_legal_description": {
+          "type": "string"
+        },
+        "apn": {
+          "type": "string"
+        },
+        "transfer_tax_amount": {
+          "type": "number"
+        }
+      }
+    },
+    "bill_of_sale_details": {
+      "type": "object",
+      "description": "Details specific to a bill of sale transferring personal property.",
+      "properties": {
+        "personal_property_description": {
+          "type": "string"
+        },
+        "purchase_price": {
+          "type": "number"
+        },
+        "as_is_clause": {
+          "type": "string"
+        }
+      }
+    },
+    "exchange_details": {
+      "type": "object",
+      "description": "Details specific to a 1031 tax-deferred exchange.",
+      "properties": {
+        "relinquished_property": {
+          "type": "string"
+        },
+        "relinquished_property_sale_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "identification_period_deadline": {
+          "type": "string",
+          "format": "date"
+        },
+        "exchange_period_deadline": {
+          "type": "string",
+          "format": "date"
+        },
+        "identified_replacement_properties": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "survey_details": {
+      "type": "object",
+      "description": "Details specific to a land survey.",
+      "properties": {
+        "property_address": {
+          "type": "string"
+        },
+        "property_legal_description": {
+          "type": "string"
+        },
+        "apn": {
+          "type": "string"
+        },
+        "flood_zone_information": {
+          "type": "string"
+        },
+        "zoning_classification": {
+          "type": "string"
+        },
+        "table_a_items": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "A list of the optional ALTA Table A items included in the survey."
+        }
+      }
+    },
+    "compliance_certificate_details": {
+      "type": "object",
+      "description": "Details specific to a certificate of compliance.",
+      "properties": {
+        "property_description": {
+          "type": "string"
+        },
+        "apn": {
+          "type": "string"
+        },
+        "certification_statement": {
+          "type": "string"
+        }
+      }
+    },
+    "properties": {
+      "correction_details": {
+        "type": "string",
+        "description": "Details of what is being corrected in the original document."
+      },
+      "original_document_recording_date": {
+        "type": "string",
+        "format": "date",
+        "description": "The recording date of the original document that is being corrected."
+      },
+      "original_document_instrument_number": {
+        "type": "string",
+        "description": "The instrument or document number of the original document that is being corrected."
+      }
+    },
+    "required": [
+      "correction_details",
+      "original_document_recording_date",
+      "original_document_instrument_number"
+    ],
+    "encroachment_details": {
+      "type": "object",
+      "description": "Details specific to an encroachment agreement.",
+      "properties": {
+        "encroaching_property_owner": {
+          "type": "string"
+        },
+        "encroached_upon_property_owner": {
+          "type": "string"
+        },
+        "description_of_encroachment": {
+          "type": "string"
+        },
+        "permission_granted": {
+          "type": "string"
+        },
+        "is_revocable": {
+          "type": "boolean"
+        }
+      }
+    },
+    "offer_details": {
+      "type": "object",
+      "description": "Details specific to a formal offer.",
+      "properties": {
+        "offer_summary": {
+          "type": "string"
+        },
+        "expiration_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "consideration_paid": {
+          "type": "string"
+        }
+      }
+    },
+    "vacation_details": {
+      "type": "object",
+      "description": "Details specific to the vacation or abandonment of a public right-of-way or easement.",
+      "properties": {
+        "resolution_number": {
+          "type": "string"
+        },
+        "property_vacated": {
+          "type": "string"
+        },
+        "reason_for_vacation": {
+          "type": "string"
+        }
+      }
+    },
+    "entitlement_details": {
+      "type": "object",
+      "description": "Details specific to land use entitlements and government approvals.",
+      "properties": {
+        "project_name": {
+          "type": "string"
+        },
+        "application_number": {
+          "type": "string"
+        },
+        "property_description": {
+          "type": "string"
+        },
+        "original_land_use_designation": {
+          "type": "string"
+        },
+        "new_land_use_designation": {
+          "type": "string"
+        }
+      }
+    },
+    "development_agreement_details": {
+      "type": "object",
+      "description": "Details specific to a Development Agreement between a developer and a public agency.",
+      "properties": {
+        "project_description": {
+          "type": "string"
+        },
+        "term_of_agreement": {
+          "type": "string"
+        },
+        "vested_rights": {
+          "type": "string"
+        },
+        "developer_obligations": {
+          "type": "string"
+        },
+        "public_benefits": {
+          "type": "string"
+        }
+      }
+    },
+    "regulatory_agreement_details": {
+      "type": "object",
+      "description": "Details specific to an affordable housing or regulatory agreement.",
+      "properties": {
+        "project_name": {
+          "type": "string"
+        },
+        "property_address": {
+          "type": "string"
+        },
+        "number_of_restricted_units": {
+          "type": "integer"
+        },
+        "affordability_levels": {
+          "type": "string"
+        },
+        "term_of_restrictions": {
+          "type": "string"
+        }
+      }
+    },
+    "adu_details": {
+      "type": "object",
+      "description": "Details specific to an Accessory Dwelling Unit (ADU) program or permit.",
+      "properties": {
+        "property_address": {
+          "type": "string"
+        },
+        "adu_type": {
+          "type": "string",
+          "enum": [
+            "Detached",
+            "Attached",
+            "Conversion",
+            "JADU"
+          ]
+        },
+        "adu_square_footage": {
+          "type": "integer"
+        },
+        "deed_restriction_required": {
+          "type": "boolean"
+        }
+      }
+    },
+    "staff_report_details": {
+      "type": "object",
+      "description": "Details specific to a staff report for a public hearing.",
+      "properties": {
+        "project_name": {
+          "type": "string"
+        },
+        "application_number": {
+          "type": "string"
+        },
+        "staff_recommendation": {
+          "type": "string"
+        },
+        "project_summary": {
+          "type": "string"
+        },
+        "key_issues": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "cba_details": {
+      "type": "object",
+      "description": "Details specific to a Community Benefits Agreement (CBA).",
+      "properties": {
+        "project_name": {
+          "type": "string"
+        },
+        "developer_commitments": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "document_id",
+    "provenance",
+    "contract_type",
+    "effective_date"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "contract_type": {
+            "const": "Lease Agreement"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "lease_terms"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "contract_type": {
+            "const": "Development Agreement"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "development_details"
+        ]
+      }
+    },
+    {
+      "if": {
+        "required": [
+          "email_metadata"
+        ]
+      },
+      "then": {
+        "properties": {
+          "email_metadata": {
+            "required": [
+              "message_id",
+              "received_date"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "required": [
+          "legal_recording_details"
+        ]
+      },
+      "then": {
+        "properties": {
+          "legal_recording_details": {
+            "required": [
+              "recording_date",
+              "county"
+            ]
+          }
+        }
+      }
+    }
+  ]
 }

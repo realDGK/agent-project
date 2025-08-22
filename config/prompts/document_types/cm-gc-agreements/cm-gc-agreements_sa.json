@@ -1,0 +1,22 @@
+{
+  "construction_contract_details": {
+    "type": "object",
+    "description": "Details specific to a construction contract.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "contract_type": { "type": "string" },
+      "contract_sum": { "type": "number" },
+      "guaranteed_maximum_price_gmp": { "type": "number" },
+      "date_of_commencement": { "type": "string", "format": "date" },
+      "substantial_completion_date": { "type": "string" },
+      "liquidated_damages": { "type": "string" },
+      "owner_responsibilities": { "type": "string" },
+      "contractor_responsibilities": { "type": "string" },
+      "architect_responsibilities": { "type": "string" },
+      "claims_and_disputes_procedure": { "type": "string" },
+      "preconstruction_phase_services": { "type": "string" },
+      "construction_phase_services": { "type": "string" },
+      "compensation_structure": { "type": "string" }
+    }
+  }
+}

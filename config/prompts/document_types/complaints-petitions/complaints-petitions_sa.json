@@ -1,0 +1,16 @@
+{
+  "litigation_details": {
+    "type": "object",
+    "description": "Details specific to litigation, court filings, and legal disputes.",
+    "properties": {
+      "court_name": { "type": "string" },
+      "case_number": { "type": "string" },
+      "property_affected": { "type": "string" },
+      "nature_of_action": { "type": "string" },
+      "judgment_date": { "type": "string", "format": "date" },
+      "judgment_summary": { "type": "string" },
+      "causes_of_action": { "type": "array", "items": { "type": "string" } },
+      "remedy_sought": { "type": "string" }
+    }
+  }
+}

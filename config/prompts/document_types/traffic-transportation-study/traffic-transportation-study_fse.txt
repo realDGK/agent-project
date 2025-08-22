@@ -1,0 +1,33 @@
+**INPUT DOCUMENT TEXT:**
+TRAFFIC IMPACT ANALYSIS FOR THE OAKVILLE QUARRY PROJECT
+
+Prepared by: Mobility Engineering Group
+Date: June 15, 2031
+
+TRIP GENERATION:
+The project is forecast to generate 5,000 new daily vehicle trips.
+
+IMPACTS:
+The study concludes that the project will result in significant impacts at the intersection of Main Street and Quarry Road, causing the Level of Service (LOS) to degrade from C to E.
+
+MITIGATION:
+To mitigate this impact, the installation of a new traffic signal is required.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Traffic Impact Analysis for the Oakville Quarry Project",
+  "effective_date": "2031-06-15",
+  "parties": [
+    { "name": "Mobility Engineering Group", "role": "Consultant" }
+  ],
+  "technical_study_details": {
+    "study_type": "Traffic/Transportation Study",
+    "project_name": "Oakville Quarry Project",
+    "project_trip_generation": "5,000 new daily vehicle trips.",
+    "significant_impacts_identified": [
+      "Intersection of Main Street and Quarry Road will degrade from LOS C to E."
+    ],
+    "recommended_mitigation": "Installation of a new traffic signal."
+  },
+  "discovered_entities": []
+}

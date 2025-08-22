@@ -1,0 +1,44 @@
+{
+  "title": "Stop Payment Notice Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Stop Payment Notice'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Claimant", "Direct Contractor", "Owner", "Construction Lender"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "stop_payment_notice_details": {
+      "type": "object",
+      "properties": {
+        "project_address": { "type": "string" },
+        "amount_of_claim": { "type": "number" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "stop_payment_notice_details"]
+}

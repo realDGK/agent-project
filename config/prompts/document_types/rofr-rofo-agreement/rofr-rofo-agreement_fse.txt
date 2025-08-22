@@ -1,0 +1,32 @@
+**INPUT DOCUMENT TEXT:**
+RIGHT OF FIRST REFUSAL AGREEMENT
+
+This Agreement is made November 5, 2027, between City Parking Corp. ("Grantor") and Downtown Properties LLC ("Holder").
+
+1. Grant of Right. Grantor hereby grants to Holder a Right of First Refusal ("ROFR") on the real property located at 45 Central Ave.
+2. Trigger. If Grantor receives a bona fide offer from a third party to purchase the property, Grantor must provide written notice of the offer to Holder.
+3. Exercise. Holder shall have fifteen (15) business days after receipt of the notice to elect to purchase the property on the same terms and conditions as the third-party offer.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Right of First Refusal Agreement",
+  "effective_date": "2027-11-05",
+  "parties": [
+    {
+      "name": "City Parking Corp.",
+      "role": "Grantor"
+    },
+    {
+      "name": "Downtown Properties LLC",
+      "role": "Holder"
+    }
+  ],
+  "preemptive_rights_details": {
+    "right_type": "ROFR",
+    "property_description": "45 Central Ave",
+    "triggering_event": "Receipt of a bona fide offer from a third party to purchase the property.",
+    "procedure_summary": "Grantor must provide written notice of the offer to Holder.",
+    "exercise_period": "Fifteen (15) business days after receipt of the notice."
+  },
+  "discovered_entities": []
+}

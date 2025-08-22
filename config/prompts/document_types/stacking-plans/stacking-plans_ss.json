@@ -1,0 +1,55 @@
+{
+  "title": "Stacking Plan Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Stacking Plan'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Property Manager", "Broker"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "stacking_plan_details": {
+      "type": "object",
+      "properties": {
+        "property_name": { "type": "string" },
+        "floors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "floor_number": { "type": "string" },
+              "tenant": { "type": "string" },
+              "sqft": { "type": "integer" },
+              "lease_expiration": { "type": "string", "format": "date" }
+            }
+          }
+        }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "stacking_plan_details"]
+}

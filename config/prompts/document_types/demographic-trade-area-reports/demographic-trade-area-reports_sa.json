@@ -1,0 +1,20 @@
+{
+  "demographic_report_details": {
+    "type": "object",
+    "description": "Details specific to a demographic or trade area report.",
+    "properties": {
+      "property_address": { "type": "string" },
+      "trade_area_radius": { "type": "string" },
+      "key_demographics": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "metric": { "type": "string" },
+            "value": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}

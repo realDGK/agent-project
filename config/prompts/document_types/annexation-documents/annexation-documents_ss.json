@@ -1,0 +1,45 @@
+{
+  "title": "Annexation Document Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Resolution Approving Annexation'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Annexing Agency", "Property Owner"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "annexation_details": {
+      "type": "object",
+      "properties": {
+        "annexation_name_or_number": { "type": "string" },
+        "property_annexed": { "type": "string" },
+        "pre-annexation_zoning": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "annexation_details"]
+}

@@ -1,0 +1,11 @@
+{
+  "preliminary_notice_details": {
+    "type": "object",
+    "description": "Details specific to a preliminary notice for mechanic's lien rights.",
+    "properties": {
+      "project_address": { "type": "string" },
+      "work_or_materials_provided": { "type": "string" },
+      "estimated_total_price": { "type": "number" }
+    }
+  }
+}

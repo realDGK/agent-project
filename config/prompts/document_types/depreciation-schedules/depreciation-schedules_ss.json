@@ -1,0 +1,58 @@
+{
+  "title": "Depreciation Schedule Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Depreciation Schedule'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Accountant", "Owner"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "depreciation_schedule_details": {
+      "type": "object",
+      "properties": {
+        "property_name": { "type": "string" },
+        "year": { "type": "integer" },
+        "total_depreciation_expense": { "type": "number" },
+        "assets": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "asset_description": { "type": "string" },
+              "cost_basis": { "type": "number" },
+              "depreciation_method": { "type": "string" },
+              "useful_life_years": { "type": "integer" },
+              "current_year_depreciation": { "type": "number" }
+            }
+          }
+        }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "depreciation_schedule_details"]
+}

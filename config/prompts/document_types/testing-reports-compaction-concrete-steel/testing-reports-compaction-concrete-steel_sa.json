@@ -1,0 +1,14 @@
+{
+  "testing_report_details": {
+    "type": "object",
+    "description": "Details specific to a materials testing report.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "report_number": { "type": "string" },
+      "test_type": { "type": "string" },
+      "test_date": { "type": "string", "format": "date" },
+      "test_results_summary": { "type": "string" },
+      "is_passing": { "type": "boolean" }
+    }
+  }
+}

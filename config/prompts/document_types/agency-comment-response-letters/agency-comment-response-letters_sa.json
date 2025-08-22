@@ -1,0 +1,12 @@
+{
+  "correspondence_details": {
+    "type": "object",
+    "description": "Details specific to correspondence like letters or memos.",
+    "properties": {
+      "document_type": { "type": "string" },
+      "project_name": { "type": "string" },
+      "subject_document": { "type": "string" },
+      "summary_of_comments": { "type": "string" }
+    }
+  }
+}

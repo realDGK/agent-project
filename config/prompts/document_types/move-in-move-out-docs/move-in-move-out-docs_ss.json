@@ -1,0 +1,55 @@
+{
+  "title": "Move-in/Move-out Document Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Move-In Inspection Checklist'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Landlord", "Tenant", "Property Manager"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "move_in_out_details": {
+      "type": "object",
+      "properties": {
+        "document_type": { "type": "string", "enum": ["Move-In", "Move-Out"] },
+        "property_address": { "type": "string" },
+        "unit_number": { "type": "string" },
+        "condition_notes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "area": { "type": "string" },
+              "condition": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "move_in_out_details"]
+}

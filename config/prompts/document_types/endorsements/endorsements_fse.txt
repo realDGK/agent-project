@@ -1,0 +1,28 @@
+**INPUT DOCUMENT TEXT:**
+ENDORSEMENT
+Attached to and forming a part of Policy No. CT-98765-FINAL
+Issued by: Chicago Title Company
+
+ALTA ENDORSEMENT 22-06 (LOCATION)
+
+The Company insures against loss or damage sustained by the Insured by reason of the fact that the street address shown below is not the address of the Land:
+100 Valley View Road, Napa, CA
+
+This endorsement is issued as part of the policy.
+Date of Endorsement: October 30, 2027
+
+**JSON OUTPUT:**
+{
+  "contract_name": "ALTA Endorsement 22-06",
+  "effective_date": "2027-10-30",
+  "parties": [
+    { "name": "Chicago Title Company", "role": "Title Company" }
+  ],
+  "title_details": {
+    "policy_number": "CT-98765-FINAL",
+    "endorsement_number": "22-06",
+    "endorsement_title": "Location",
+    "endorsement_summary": "Insures that the street address '100 Valley View Road, Napa, CA' is the correct address for the insured Land."
+  },
+  "discovered_entities": []
+}

@@ -1,0 +1,31 @@
+INPUT DOCUMENT TEXT:
+EMPLOYMENT AGREEMENT
+This Employment Agreement is made on August 1, 2026, between Terra Firma Development Corp. ("Company") and Michael Vance ("Employee").
+Position. The Company agrees to employ the Employee in the position of Project Manager, commencing on August 15, 2026.
+Compensation. The Company shall pay the Employee an annual base salary of one hundred twenty thousand dollars ($120,000).
+Bonus. Employee will be eligible for an annual performance bonus of up to 15% of his Base Salary, based on criteria set by the board.
+At-Will Employment. The Employee's employment with the Company is for an unspecified term and constitutes "at-will" employment.
+JSON OUTPUT:
+{
+"contract_name": "Employment Agreement",
+"effective_date": "2026-08-01",
+"parties": [
+{
+"name": "Terra Firma Development Corp.",
+"role": "Employer"
+},
+{
+"name": "Michael Vance",
+"role": "Employee"
+}
+],
+"employment_details": {
+"job_title": "Project Manager",
+"start_date": "2026-08-15",
+"base_salary": 120000,
+"salary_period": "Annual",
+"bonus_structure": "Eligible for an annual performance bonus of up to 15% of Base Salary.",
+"termination_clause_summary": "Employment is 'at-will' for an unspecified term."
+},
+"discovered_entities": []
+}

@@ -1,0 +1,24 @@
+**INPUT DOCUMENT TEXT:**
+SUBSCRIPTION AGREEMENT
+ASPEN PEAK REAL ESTATE FUND III, LP
+
+The undersigned ("Subscriber") hereby subscribes to purchase two (2) limited partnership interests ("Units") in the above-referenced Fund, at a price of $50,000 per Unit, for a total purchase price of $100,000.
+
+Subscriber Name: High Net Worth Investor
+Date: March 15, 2028
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Subscription Agreement",
+  "effective_date": "2028-03-15",
+  "parties": [
+    { "name": "High Net Worth Investor", "role": "Subscriber" },
+    { "name": "Aspen Peak Real Estate Fund III, LP", "role": "Issuer" }
+  ],
+  "offering_details": {
+    "number_of_shares_or_units": 2,
+    "price_per_unit_or_share": 50000,
+    "total_subscription_amount": 100000
+  },
+  "discovered_entities": []
+}

@@ -1,0 +1,37 @@
+**INPUT DOCUMENT TEXT:**
+EASEMENT FOR PUBLIC UTILITIES
+
+This Grant of Easement is made on April 5, 2026, by John and Jane Smith, Trustees of the Smith Family Trust ("Grantor"), to Pacific Gas & Electric Company, a California corporation ("Grantee").
+
+Grantor hereby grants to Grantee a perpetual easement to install, construct, maintain, and operate underground electric and gas lines over, under, and across that certain real property described in Exhibit A, APN 123-456-789.
+
+The easement shall be a strip of land ten (10) feet in width, the location of which is depicted on the map attached as Exhibit B.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Easement for Public Utilities",
+  "effective_date": "2026-04-05",
+  "parties": [
+    {
+      "name": "John and Jane Smith, Trustees of the Smith Family Trust",
+      "role": "Grantor"
+    },
+    {
+      "name": "Pacific Gas & Electric Company",
+      "role": "Grantee"
+    }
+  ],
+  "parcels": [
+    {
+      "apn": "123-456-789",
+      "legal_description": "Described in Exhibit A"
+    }
+  ],
+  "easement_details": {
+    "easement_type": "Electric and Gas",
+    "purpose": "To install, construct, maintain, and operate underground electric and gas lines.",
+    "easement_area_description": "A strip of land ten (10) feet in width, as depicted on the map attached as Exhibit B.",
+    "is_perpetual": true
+  },
+  "discovered_entities": []
+}

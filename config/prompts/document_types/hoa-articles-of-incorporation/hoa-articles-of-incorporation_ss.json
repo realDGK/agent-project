@@ -1,0 +1,52 @@
+{
+  "title": "HOA Articles of Incorporation Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Articles of Incorporation of [HOA Name]'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Incorporator", "Initial Director"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "corporate_details": {
+      "type": "object",
+      "properties": {
+        "corporation_name": { "type": "string" },
+        "corporate_purpose": { "type": "string" },
+        "corporation_type": { "type": "string", "description": "e.g., 'Nonprofit Mutual Benefit Corporation'." }
+      }
+    },
+    "legal_recording_details": {
+      "type": "object",
+      "properties": {
+        "filing_date": { "type": "string", "format": "date" },
+        "state": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "corporate_details"]
+}

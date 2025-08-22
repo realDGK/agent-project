@@ -1,0 +1,13 @@
+{
+  "fee_details": {
+    "type": "object",
+    "description": "Details specific to development fees, credits, and reimbursements.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "total_fee_amount": { "type": "number" },
+      "fee_breakdown": { "type": "array" },
+      "fee_type": { "type": "string" },
+      "payment_schedule": { "type": "string" }
+    }
+  }
+}

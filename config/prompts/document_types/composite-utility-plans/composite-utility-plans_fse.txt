@@ -1,0 +1,30 @@
+**INPUT DOCUMENT TEXT:**
+RIVERBEND TRACT NO. 8888
+COMPOSITE UTILITY AND JOINT TRENCH PLAN
+
+PREPARED BY: Apex Civil Engineering
+DATE: May 20, 2030
+
+This plan shows the proposed horizontal and vertical alignment of all wet and dry utilities, including water, sewer, storm drain, gas, electric, and communications facilities.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Composite Utility and Joint Trench Plan",
+  "effective_date": "2030-05-20",
+  "parties": [
+    { "name": "Apex Civil Engineering", "role": "Engineer" }
+  ],
+  "plan_details": {
+    "project_name": "Riverbend Tract No. 8888",
+    "plan_type": "Composite Utility Plan",
+    "utilities_shown": [
+      "water",
+      "sewer",
+      "storm drain",
+      "gas",
+      "electric",
+      "communications"
+    ]
+  },
+  "discovered_entities": []
+}

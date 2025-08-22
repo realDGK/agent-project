@@ -1,0 +1,20 @@
+{
+  "entitlement_details": {
+    "type": "object",
+    "description": "Details specific to land use entitlements and government approvals.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "application_number": { "type": "string" },
+      "property_description": { "type": "string" },
+      "original_land_use_designation": { "type": "string" },
+      "new_land_use_designation": { "type": "string" },
+      "original_zoning": { "type": "string" },
+      "new_zoning": { "type": "string" },
+      "plan_area_description": { "type": "string" },
+      "plan_summary": { "type": "string" },
+      "allowed_land_uses": { "type": "array", "items": { "type": "string" } },
+      "development_standards_summary": { "type": "string" },
+      "pud_summary": { "type": "string", "description": "A summary of the approved development plan and any deviations from standard zoning." }
+    }
+  }
+}

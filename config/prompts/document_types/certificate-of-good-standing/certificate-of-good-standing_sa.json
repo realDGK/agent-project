@@ -1,0 +1,29 @@
+{
+  "certificate_details": {
+    "type": "object",
+    "description": "Details specific to an official certificate issued by a state authority, such as a Certificate of Good Standing.",
+    "properties": {
+      "entity_file_number": {
+        "type": "string",
+        "description": "The official file number assigned by the issuing authority."
+      },
+      "entity_type": {
+        "type": "string",
+        "description": "The legal structure of the entity (e.g., 'Limited Liability Company', 'Corporation')."
+      },
+      "jurisdiction": {
+        "type": "string",
+        "description": "The state or country of formation."
+      },
+      "issue_date": {
+        "type": "string",
+        "format": "date",
+        "description": "The date the certificate was issued."
+      },
+      "status_verified": {
+        "type": "string",
+        "description": "The status being certified (e.g., 'Good Standing', 'Active', 'Exists')."
+      }
+    }
+  }
+}

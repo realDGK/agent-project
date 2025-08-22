@@ -1,0 +1,54 @@
+{
+  "title": "Encroachment Agreement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Encroachment Agreement'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Grantor", "Grantee", "Property Owner"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "encroachment_details": {
+      "type": "object",
+      "properties": {
+        "encroaching_property_owner": { "type": "string" },
+        "encroached_upon_property_owner": { "type": "string" },
+        "description_of_encroachment": { "type": "string" },
+        "permission_granted": { "type": "string" },
+        "is_revocable": { "type": "boolean" }
+      }
+    },
+    "legal_recording_details": {
+      "type": "object",
+      "properties": {
+        "instrument_number": { "type": "string" },
+        "recording_date": { "type": "string", "format": "date" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "encroachment_details"]
+}

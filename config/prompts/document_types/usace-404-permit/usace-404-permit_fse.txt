@@ -1,0 +1,31 @@
+**INPUT DOCUMENT TEXT:**
+DEPARTMENT OF THE ARMY PERMIT
+
+Permittee: Pine Hills Development LLC
+Permit No.: SPK-2031-00123
+Issuing Office: U.S. Army Corps of Engineers, Sacramento District
+Date Issued: June 1, 2031
+Expiration Date: June 1, 2036
+
+You are authorized to place fill material into 0.75 acres of seasonal wetlands to construct an access road for the Pine Hills Estates project.
+
+As mitigation, the permittee shall purchase 1.5 acres of mitigation credits from the Spring Valley Mitigation Bank.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Department of the Army Permit",
+  "effective_date": "2031-06-01",
+  "parties": [
+    { "name": "Pine Hills Development LLC", "role": "Permittee" },
+    { "name": "U.S. Army Corps of Engineers, Sacramento District", "role": "Issuing Agency" }
+  ],
+  "permit_details": {
+    "permit_number": "SPK-2031-00123",
+    "permit_type": null,
+    "authorized_activity": "Place fill material to construct an access road for the Pine Hills Estates project.",
+    "impacts_authorized": "0.75 acres of seasonal wetlands.",
+    "mitigation_required": "Purchase 1.5 acres of mitigation credits from the Spring Valley Mitigation Bank.",
+    "expiration_date": "2036-06-01"
+  },
+  "discovered_entities": []
+}

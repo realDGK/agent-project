@@ -1,0 +1,50 @@
+{
+  "title": "Appraisal Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Appraisal Report'."
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date",
+      "description": "The effective date of the appraisal."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Appraiser", "Client"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "appraisal_details": {
+      "type": "object",
+      "properties": {
+        "property_address": { "type": "string" },
+        "appraised_value": { "type": "number" },
+        "value_type": { "type": "string", "description": "e.g., 'As Is', 'As Complete', 'As Stabilized'." },
+        "appraisal_approaches_used": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "appraisal_details"]
+}

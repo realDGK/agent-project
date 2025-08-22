@@ -1,0 +1,47 @@
+{
+  "title": "AIA A201 General Conditions Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'AIA Document A201 - General Conditions of the Contract for Construction'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Owner", "Contractor", "Architect"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "construction_contract_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "owner_responsibilities": { "type": "string" },
+        "contractor_responsibilities": { "type": "string" },
+        "architect_responsibilities": { "type": "string" },
+        "claims_and_disputes_procedure": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "construction_contract_details"]
+}

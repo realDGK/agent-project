@@ -1,0 +1,15 @@
+{
+  "title_details": {
+    "type": "object",
+    "description": "Details specific to title insurance reports, commitments, and policies.",
+    "properties": {
+      "report_number": { "type": "string" },
+      "property_legal_description": { "type": "string" },
+      "estate_or_interest": { "type": "string" },
+      "exceptions": { "type": "array", "items": { "type": "string" } },
+      "policy_type": { "type": "string" },
+      "proposed_insured_amount": { "type": "number" },
+      "proposed_endorsements": { "type": "array", "items": { "type": "string" } }
+    }
+  }
+}

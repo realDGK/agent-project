@@ -1,0 +1,29 @@
+**INPUT DOCUMENT TEXT:**
+CONSTRUCTION DOCUMENTS
+FOR
+DOWNTOWN TOWER
+
+ARCHITECT: Global Architects Inc.
+STRUCTURAL ENGINEER: Structural Solutions LLC
+OWNER: Downtown Tower LLC
+DATE: June 1, 2031
+
+This set of 150 drawings includes architectural, structural, and MEP plans for the 20-story mixed-use tower.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Construction Documents",
+  "effective_date": "2031-06-01",
+  "parties": [
+    { "name": "Global Architects Inc.", "role": "Architect" },
+    { "name": "Structural Solutions LLC", "role": "Structural Engineer" },
+    { "name": "Downtown Tower LLC", "role": "Owner" }
+  ],
+  "plan_details": {
+    "project_name": "Downtown Tower",
+    "plan_type": "Vertical Plan Set",
+    "building_description": "20-story mixed-use tower",
+    "plan_sheet_count": 150
+  },
+  "discovered_entities": []
+}

@@ -1,0 +1,26 @@
+**INPUT DOCUMENT TEXT:**
+CERTIFICATE OF COMPLIANCE: CF1R-PRF-01-E
+Project: 123 New Home Lane, Sacramento, CA
+Date: May 1, 2032
+
+This building is in compliance with the California Title 24 Building Energy Efficiency Standards.
+Compliance Method: Performance
+Compliance Margin: 5.5% better than standard.
+
+Prepared by: EnergyCalc Services
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Certificate of Compliance: CF1R-PRF-01-E",
+  "effective_date": "2032-05-01",
+  "parties": [
+    { "name": "EnergyCalc Services", "role": "Energy Consultant" }
+  ],
+  "energy_report_details": {
+    "project_address": "123 New Home Lane, Sacramento, CA",
+    "compliance_method": "Performance",
+    "compliance_margin_pct": 5.5,
+    "compliance_statement": "This building is in compliance with the California Title 24 Building Energy Efficiency Standards."
+  },
+  "discovered_entities": []
+}

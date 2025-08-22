@@ -1,0 +1,28 @@
+**INPUT DOCUMENT TEXT:**
+PUBLIC WORKS CERTIFIED PAYROLL REPORT
+
+Contractor: BuildRight Corp.
+Project: New City Library
+Week Ending: 03/15/2032
+
+[Table of employee names, classifications, hours, and wages]
+
+STATEMENT OF COMPLIANCE
+I, the undersigned, certify under penalty of perjury that the above is a true and correct copy of the payroll.
+(Signature)
+John Smith, President
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Certified Payroll Report",
+  "effective_date": "2032-03-15",
+  "parties": [
+    { "name": "BuildRight Corp.", "role": "Contractor" }
+  ],
+  "payroll_details": {
+    "project_name": "New City Library",
+    "week_ending_date": "2032-03-15",
+    "is_statement_of_compliance_signed": true
+  },
+  "discovered_entities": []
+}

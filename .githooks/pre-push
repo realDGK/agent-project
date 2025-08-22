@@ -1,0 +1,48 @@
+#!/bin/bash
+# Pre-push hook to validate document schemas before pushing
+
+set -e
+
+echo "Running pre-push validation..."
+echo "=============================="
+
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m' # No Color
+
+# Check if we have changes in document types or schema
+CHANGED_FILES=$(git diff --name-only HEAD origin/$(git branch --show-current) 2>/dev/null || echo "")
+
+if echo "$CHANGED_FILES" | grep -qE "(config/prompts/document_types|config/schema.json)"; then
+    echo -e "${YELLOW}Schema changes detected. Running validation...${NC}"
+    
+    # Run the batch validation
+    if python3 scripts/batch_runner.py; then
+        echo -e "${GREEN}✅ All schema validations passed!${NC}"
+    else
+        echo -e "${RED}❌ Schema validation failed!${NC}"
+        echo -e "${RED}Please fix the schema issues before pushing.${NC}"
+        echo "To bypass this check (not recommended), use: git push --no-verify"
+        exit 1
+    fi
+else
+    echo -e "${GREEN}No schema changes detected. Skipping validation.${NC}"
+fi
+
+# Optional: Run quick MCP smoke test if available and containers are running
+if [ -f "scripts/smoke_mcp.py" ] && docker ps &>/dev/null; then
+    echo ""
+    echo "Running MCP connectivity test..."
+    if python3 scripts/smoke_mcp.py 2>/dev/null; then
+        echo -e "${GREEN}✅ MCP connectivity test passed!${NC}"
+    else
+        echo -e "${YELLOW}⚠️  MCP connectivity test failed (non-blocking)${NC}"
+        echo "This won't prevent your push, but you may want to check your local setup."
+    fi
+fi
+
+echo ""
+echo -e "${GREEN}Pre-push validation complete. Proceeding with push...${NC}"
+exit 0

@@ -1,0 +1,46 @@
+{
+  "title": "CFD Resolution Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Resolution of Formation'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Approving Body", "City Council"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "resolution_details": {
+      "type": "object",
+      "properties": {
+        "resolution_number": { "type": "string" },
+        "resolution_type": { "type": "string", "enum": ["Intention", "Formation", "Levy"] },
+        "cfd_number": { "type": "string" },
+        "action_taken": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "resolution_details"]
+}

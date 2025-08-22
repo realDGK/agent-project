@@ -1,0 +1,13 @@
+{
+  "staff_report_details": {
+    "type": "object",
+    "description": "Details specific to a staff report for a public hearing.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "application_number": { "type": "string" },
+      "staff_recommendation": { "type": "string" },
+      "project_summary": { "type": "string" },
+      "key_issues": { "type": "array", "items": { "type": "string" } }
+    }
+  }
+}

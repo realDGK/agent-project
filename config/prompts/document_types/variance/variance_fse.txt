@@ -1,0 +1,27 @@
+**INPUT DOCUMENT TEXT:**
+NOTICE OF DECISION - VARIANCE V-2029-01
+
+Applicant: John Johnson
+Property: 456 Residential Lane
+
+A variance has been GRANTED to allow for a 5-foot rear yard setback where a 10-foot setback is required by the zoning code for the construction of a deck.
+
+Findings: The unique topographical constraints of the property create a practical difficulty that justifies the variance.
+
+Date of Action: December 10, 2029
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Variance V-2029-01",
+  "effective_date": "2029-12-10",
+  "parties": [
+    { "name": "John Johnson", "role": "Applicant" }
+  ],
+  "entitlement_details": {
+    "application_number": "V-2029-01",
+    "property_address": "456 Residential Lane",
+    "variance_request": "To allow for a 5-foot rear yard setback where a 10-foot setback is required.",
+    "findings_for_approval": "The unique topographical constraints of the property create a practical difficulty that justifies the variance."
+  },
+  "discovered_entities": []
+}

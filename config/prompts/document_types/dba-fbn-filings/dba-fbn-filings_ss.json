@@ -1,0 +1,58 @@
+{
+  "title": "DBA/FBN Filing Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the filing, typically 'Fictitious Business Name Statement'."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Registrant", "Authorized Agent"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "legal_recording_details": {
+      "type": "object",
+      "properties": {
+        "county": { "type": "string" },
+        "state": { "type": "string" },
+        "filing_date": { "type": "string", "format": "date" },
+        "expiration_date": { "type": "string", "format": "date" },
+        "instrument_number": { "type": "string" }
+      }
+    },
+    "business_name_filing_details": {
+      "type": "object",
+      "properties": {
+        "fictitious_business_name": {
+          "type": "string",
+          "description": "The 'doing business as' name being registered."
+        },
+        "principal_place_of_business": {
+          "type": "string"
+        }
+      }
+    },
+    "discovered_entities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "entity_name": { "type": "string" },
+          "entity_value": { "type": "string" },
+          "context_summary": { "type": "string" }
+        }
+      }
+    }
+  },
+  "required": ["contract_name", "parties", "business_name_filing_details"]
+}

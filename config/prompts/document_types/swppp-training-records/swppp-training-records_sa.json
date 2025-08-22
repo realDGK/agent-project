@@ -1,0 +1,11 @@
+{
+  "training_record_details": {
+    "type": "object",
+    "description": "Details specific to a training record or log.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "training_date": { "type": "string", "format": "date" },
+      "training_topic": { "type": "string" }
+    }
+  }
+}

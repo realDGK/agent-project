@@ -1,0 +1,26 @@
+**INPUT DOCUMENT TEXT:**
+ENDORSEMENT
+Attached to Policy No. L-12345-678
+Issued by: First American Title Insurance Company
+
+The Company hereby assures the Insured that since the Date of Policy (August 1, 2031), no liens or encumbrances have been recorded against the property, except for a Mechanic's Lien by BuildRight Corp., recorded September 15, 2031.
+
+This endorsement is effective as of October 1, 2031.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Endorsement",
+  "effective_date": "2031-10-01",
+  "parties": [
+    { "name": "First American Title Insurance Company", "role": "Title Company" }
+  ],
+  "title_details": {
+    "policy_number": "L-12345-678",
+    "original_policy_date": "2031-08-01",
+    "bring_down_date": "2031-10-01",
+    "new_exceptions": [
+      "A Mechanic's Lien by BuildRight Corp., recorded September 15, 2031."
+    ]
+  },
+  "discovered_entities": []
+}

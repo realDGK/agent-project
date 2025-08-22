@@ -1,0 +1,29 @@
+{
+  "buy_sell_details": {
+    "type": "object",
+    "description": "Details specific to the terms of a buy-sell agreement governing the transfer of ownership interests upon certain trigger events.",
+    "properties": {
+      "triggering_events": {
+        "type": "array",
+        "items": { "type": "string" },
+        "description": "A list of events that activate the buy-sell agreement (e.g., 'Death', 'Disability', 'Retirement', 'Involuntary Termination')."
+      },
+      "purchase_obligation": {
+        "type": "string",
+        "description": "Specifies if the buyout is mandatory or optional (e.g., 'Mandatory purchase by the Company', 'Option for remaining shareholders to purchase')."
+      },
+      "valuation_method": {
+        "type": "string",
+        "description": "How the business interest is valued for the buyout (e.g., 'Certificate of Agreed Value', 'Formula based on revenue', 'Third-party appraisal')."
+      },
+      "funding_mechanism": {
+        "type": "string",
+        "description": "How the buyout will be funded (e.g., 'Life insurance policies', 'Company cash flow', 'Promissory note over 5 years')."
+      },
+      "closing_timeline": {
+        "type": "string",
+        "description": "The timeframe for completing the buyout after a triggering event (e.g., 'Within 90 days of the triggering event')."
+      }
+    }
+  }
+}

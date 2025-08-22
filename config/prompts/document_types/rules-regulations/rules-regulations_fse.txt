@@ -1,0 +1,28 @@
+**INPUT DOCUMENT TEXT:**
+THE ASPENS APARTMENTS
+RULES AND REGULATIONS - EXHIBIT B TO LEASE
+
+1. Noise: No loud noises shall be made between the hours of 10:00 PM and 8:00 AM.
+2. Parking: All resident vehicles must display a valid parking permit. Guest parking is limited to 48 hours.
+3. Trash: All trash must be placed in sealed bags and deposited in the provided dumpsters.
+4. Balconies: No storage of personal items is permitted on balconies or patios.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Rules and Regulations",
+  "effective_date": null,
+  "parties": [
+    { "name": "The Aspens Apartments", "role": "Landlord" }
+  ],
+  "rules_and_regulations_details": {
+    "property_name": "The Aspens Apartments",
+    "key_rules": [
+      "No loud noises between 10:00 PM and 8:00 AM.",
+      "Resident vehicles must display a valid parking permit.",
+      "Guest parking is limited to 48 hours.",
+      "All trash must be placed in sealed bags in dumpsters.",
+      "No storage of personal items on balconies or patios."
+    ]
+  },
+  "discovered_entities": []
+}

@@ -1,0 +1,26 @@
+**INPUT DOCUMENT TEXT:**
+ORDINANCE NO. 30-2029
+AN ORDINANCE OF THE CITY OF MEADOWVIEW APPROVING THE OAK HOLLOW PLANNED UNIT DEVELOPMENT (PUD-2029-05)
+
+WHEREAS, Meadowview Homes LLC has requested approval of a Planned Unit Development for the 50-acre site at 1000 Oak Hollow Road to allow for a mix of residential densities and neighborhood commercial uses not otherwise permitted by the underlying R-1 zoning.
+
+NOW, THEREFORE, the City Council of Meadowview approves the Oak Hollow PUD, subject to the attached conditions.
+
+ADOPTED this 5th day of December, 2029.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Ordinance Approving the Oak Hollow Planned Unit Development (PUD-2029-05)",
+  "effective_date": "2029-12-05",
+  "parties": [
+    { "name": "Meadowview Homes LLC", "role": "Applicant" },
+    { "name": "City of Meadowview", "role": "Approving Agency" }
+  ],
+  "entitlement_details": {
+    "application_number": "PUD-2029-05",
+    "project_name": "Oak Hollow",
+    "property_description": "50-acre site at 1000 Oak Hollow Road",
+    "pud_summary": "Allows for a mix of residential densities and neighborhood commercial uses not otherwise permitted by the underlying R-1 zoning."
+  },
+  "discovered_entities": []
+}

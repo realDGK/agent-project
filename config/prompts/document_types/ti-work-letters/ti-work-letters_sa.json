@@ -1,0 +1,12 @@
+{
+  "ti_work_letter_details": {
+    "type": "object",
+    "description": "Details specific to a tenant improvement work letter.",
+    "properties": {
+      "landlord_work_summary": { "type": "string" },
+      "tenant_work_summary": { "type": "string" },
+      "tenant_improvement_allowance": { "type": "number" },
+      "delivery_condition": { "type": "string" }
+    }
+  }
+}

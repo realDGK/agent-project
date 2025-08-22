@@ -1,0 +1,22 @@
+**INPUT DOCUMENT TEXT:**
+NOTICE OF TRUSTEE'S SALE
+TS No. 12345-CA APN: 111-222-333
+
+YOU ARE IN DEFAULT UNDER A DEED OF TRUST DATED 1/15/2020.
+NOTICE IS HEREBY GIVEN that a public auction will be held on 1/10/2028, at 10:00 AM at the main entrance to the County Courthouse, 123 Main Street, Anytown, CA. The property to be sold is commonly known as 456 Oak Lane, Anytown, CA. The unpaid balance of the obligation secured by the property is $550,000.00. The original Trustor was John Borrower.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Notice of Trustee's Sale",
+  "parties": [
+    { "name": "John Borrower", "role": "Trustor" }
+  ],
+  "foreclosure_details": {
+    "property_address": "456 Oak Lane, Anytown, CA",
+    "apn": "111-222-333",
+    "sale_date": "2028-01-10",
+    "sale_time": "10:00 AM",
+    "sale_location": "The main entrance to the County Courthouse, 123 Main Street, Anytown, CA",
+    "unpaid_balance": 550000
+  }
+}

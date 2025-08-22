@@ -1,0 +1,38 @@
+**INPUT DOCUMENT TEXT:**
+ALTA OWNER'S POLICY OF TITLE INSURANCE
+Issued by: Chicago Title Company
+Policy No: CT-98765-FINAL
+
+Amount of Insurance: $10,000,000.00
+Date of Policy: October 30, 2027
+
+SCHEDULE A
+1. Name of Insured: WESTERN LAND PARTNERS, LP
+2. The estate or interest in the land is vested in: WESTERN LAND PARTNERS, LP
+
+SCHEDULE B
+This policy does not insure against loss or damage arising from:
+1. An easement for public utilities recorded as Instrument No. 1999-54321.
+2. Covenants, Conditions, and Restrictions recorded as Instrument No. 1999-54322.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "ALTA Owner's Policy of Title Insurance",
+  "effective_date": "2027-10-30",
+  "parties": [
+    { "name": "Chicago Title Company", "role": "Title Company" },
+    { "name": "WESTERN LAND PARTNERS, LP", "role": "Insured" }
+  ],
+  "title_details": {
+    "policy_number": "CT-98765-FINAL",
+    "policy_type": "ALTA Owner's Policy",
+    "amount_of_insurance": 10000000,
+    "policy_date": "2027-10-30",
+    "schedule_a_vesting": "WESTERN LAND PARTNERS, LP",
+    "schedule_b_exceptions": [
+      "An easement for public utilities recorded as Instrument No. 1999-54321.",
+      "Covenants, Conditions, and Restrictions recorded as Instrument No. 1999-54322."
+    ]
+  },
+  "discovered_entities": []
+}

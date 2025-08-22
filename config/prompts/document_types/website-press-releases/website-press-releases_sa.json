@@ -1,0 +1,11 @@
+{
+  "public_release_details": {
+    "type": "object",
+    "description": "Details specific to a press release or website content.",
+    "properties": {
+      "release_type": { "type": "string", "enum": ["Website", "Press Release"] },
+      "headline": { "type": "string" },
+      "summary": { "type": "string" }
+    }
+  }
+}

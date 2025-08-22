@@ -1,0 +1,24 @@
+**INPUT DOCUMENT TEXT:**
+MEMORANDUM
+
+TO: City Manager
+FROM: Planning Director
+DATE: July 10, 2030
+SUBJECT: Update on the Oakville Quarry Project EIR
+
+Please be advised that due to delays in the EIR process, our projected start of construction has been pushed back to Q2 2032. Please update your internal schedules accordingly.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Memorandum",
+  "effective_date": "2030-07-10",
+  "parties": [
+    { "name": "Planning Director", "role": "Author" },
+    { "name": "City Manager", "role": "Recipient" }
+  ],
+  "correspondence_details": {
+    "subject": "Oakville Quarry Project - Schedule Update",
+    "summary": "The Draft EIR review period has closed with 15 comment letters received. Staff is preparing the Response to Comments and Final EIR for release in August."
+  },
+  "discovered_entities": []
+}

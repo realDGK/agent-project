@@ -1,0 +1,27 @@
+{
+  "rent_roll_details": {
+    "type": "object",
+    "description": "Details specific to a property rent roll.",
+    "properties": {
+      "property_name": { "type": "string" },
+      "total_units": { "type": "integer" },
+      "occupied_units": { "type": "integer" },
+      "occupancy_rate_pct": { "type": "number" },
+      "total_monthly_rent": { "type": "number" },
+      "tenants": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "tenant_name": { "type": "string" },
+            "unit_number": { "type": "string" },
+            "sqft": { "type": "integer" },
+            "monthly_rent": { "type": "number" },
+            "lease_start": { "type": "string", "format": "date" },
+            "lease_end": { "type": "string", "format": "date" }
+          }
+        }
+      }
+    }
+  }
+}

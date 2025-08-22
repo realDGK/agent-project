@@ -1,0 +1,48 @@
+{
+  "title": "Inspector Report Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Construction Progress Inspection Report'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Inspector", "Client", "Lender"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "inspection_report_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "inspection_date": { "type": "string", "format": "date" },
+        "percent_complete": { "type": "number" },
+        "work_completed_summary": { "type": "string" },
+        "issues_or_deficiencies": { "type": "string" },
+        "recommended_draw_amount": { "type": "number" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "inspection_report_details"]
+}

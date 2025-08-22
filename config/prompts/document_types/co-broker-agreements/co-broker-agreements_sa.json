@@ -1,0 +1,11 @@
+{
+  "co_broker_agreement_details": {
+    "type": "object",
+    "description": "Details specific to a co-brokerage agreement.",
+    "properties": {
+      "property_address": { "type": "string" },
+      "client_name": { "type": "string" },
+      "commission_split": { "type": "string" }
+    }
+  }
+}

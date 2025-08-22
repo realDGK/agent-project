@@ -1,0 +1,30 @@
+**INPUT DOCUMENT TEXT:**
+NOTICE OF EXEMPTION
+
+To: County Clerk, County of Marin
+From: City of Marin
+Project Title: Interior Tenant Improvement Permit B-3456
+Project Applicant: The Corner Bakery
+Project Approval Date: July 10, 2030
+
+The project is exempt from CEQA.
+Exempt Status: Categorical Exemption, Class 1, Existing Facilities (Section 15301).
+Reasons why project is exempt: The project consists of interior alterations to an existing commercial space with no expansion of the building footprint.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Notice of Exemption",
+  "effective_date": null,
+  "parties": [
+    { "name": "City of Marin", "role": "Public Agency" },
+    { "name": "The Corner Bakery", "role": "Project Applicant" }
+  ],
+  "environmental_details": {
+    "document_type": "NOE",
+    "project_name": "Interior Tenant Improvement Permit B-3456",
+    "project_approval_date": "2030-07-10",
+    "exemption_type": "Categorical Exemption",
+    "exemption_reason": "Class 1, Existing Facilities (Section 15301): The project consists of interior alterations to an existing commercial space with no expansion of the building footprint."
+  },
+  "discovered_entities": []
+}

@@ -1,0 +1,27 @@
+**INPUT DOCUMENT TEXT:**
+ENCROACHMENT AGREEMENT
+
+This Agreement is made February 1, 2029, between Robert Smith, owner of 123 Maple Street ("Grantor"), and Sarah Johnson, owner of 125 Maple Street ("Grantee").
+
+WHEREAS, a portion of a fence and landscaping belonging to Grantee currently encroaches approximately two (2) feet onto Grantor's property.
+
+NOW, THEREFORE, Grantor grants Grantee a license to maintain the existing encroachment. This license is personal to Grantee and may be revoked upon thirty (30) days' notice.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Encroachment Agreement",
+  "effective_date": "2029-02-01",
+  "parties": [
+    { "name": "Robert Smith", "role": "Grantor" },
+    { "name": "Sarah Johnson", "role": "Grantee" }
+  ],
+  "encroachment_details": {
+    "encroaching_property_owner": "Sarah Johnson",
+    "encroached_upon_property_owner": "Robert Smith",
+    "description_of_encroachment": "A portion of a fence and landscaping encroaches approximately two (2) feet.",
+    "permission_granted": "Grants a license to maintain the existing encroachment.",
+    "is_revocable": true
+  },
+  "legal_recording_details": null,
+  "discovered_entities": []
+}

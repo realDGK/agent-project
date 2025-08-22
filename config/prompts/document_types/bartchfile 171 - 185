@@ -1,0 +1,1626 @@
+Document Type 171: Intercreditor Agreement
+171_specialist_schema.json
+
+JSON
+
+{
+  "title": "Intercreditor Agreement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Intercreditor and Subordination Agreement'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Senior Lender", "Mezzanine Lender", "Junior Lender", "Borrower"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "intercreditor_details": {
+      "type": "object",
+      "properties": {
+        "senior_debt_amount": { "type": "number" },
+        "junior_debt_amount": { "type": "number" },
+        "payment_subordination": { "type": "string" },
+        "lien_subordination": { "type": "string" },
+        "standstill_provisions": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "intercreditor_details"]
+}
+171_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+INTERCREDITOR AGREEMENT
+
+This Agreement is dated September 1, 2031, among MEGA BANK, N.A. ("Senior Lender"), HIGH YIELD LENDERS LLC ("Mezzanine Lender"), and DOWNTOWN TOWER LLC ("Borrower").
+
+RECITALS:
+A. Senior Lender has made a loan of $50,000,000 ("Senior Loan").
+B. Mezzanine Lender has made a loan of $10,000,000 ("Mezzanine Loan").
+
+AGREEMENT:
+1. Lien Subordination. The Mezzanine Loan is subordinate to the Senior Loan in all respects.
+2. Payment Blockage. No payments shall be made on the Mezzanine Loan if a default exists on the Senior Loan.
+3. Standstill. Mezzanine Lender agrees not to exercise any remedies for a period of 90 days following a default on the Mezzanine Loan.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Intercreditor Agreement",
+  "effective_date": "2031-09-01",
+  "parties": [
+    { "name": "MEGA BANK, N.A.", "role": "Senior Lender" },
+    { "name": "HIGH YIELD LENDERS LLC", "role": "Mezzanine Lender" },
+    { "name": "DOWNTOWN TOWER LLC", "role": "Borrower" }
+  ],
+  "intercreditor_details": {
+    "senior_debt_amount": 50000000,
+    "junior_debt_amount": 10000000,
+    "payment_subordination": "No payments shall be made on the Mezzanine Loan if a default exists on the Senior Loan.",
+    "lien_subordination": "The Mezzanine Loan is subordinate to the Senior Loan in all respects.",
+    "standstill_provisions": "Mezzanine Lender agrees not to exercise any remedies for a period of 90 days following a default on the Mezzanine Loan."
+  },
+  "discovered_entities": []
+}
+171_schema_additions.json
+
+JSON
+
+{
+  "intercreditor_details": {
+    "type": "object",
+    "description": "Details specific to an intercreditor agreement between lenders.",
+    "properties": {
+      "senior_debt_amount": { "type": "number" },
+      "junior_debt_amount": { "type": "number" },
+      "payment_subordination": { "type": "string" },
+      "lien_subordination": { "type": "string" },
+      "standstill_provisions": { "type": "string" }
+    }
+  }
+}
+Document Type 172: Subordination Agreement
+172_specialist_schema.json
+
+JSON
+
+{
+  "title": "Subordination Agreement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Subordination Agreement'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Subordinating Party", "Senior Party", "Borrower"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "subordination_details": {
+      "type": "object",
+      "properties": {
+        "subordinated_instrument": { "type": "string" },
+        "senior_instrument": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "subordination_details"]
+}
+172_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+SUBORDINATION AGREEMENT
+
+This Agreement is made May 1, 2029, by and between Second Bank ("Subordinating Party") and First Bank ("Senior Party"). The Borrower is Property Owner LLC.
+
+Subordinating Party, holder of a Deed of Trust recorded as Inst. No. 2028-111111 ("Subordinated Lien"), agrees that its lien shall be subordinate to the lien of the Deed of Trust in favor of Senior Party, recorded as Inst. No. 2029-222222 ("Senior Lien").
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Subordination Agreement",
+  "effective_date": "2029-05-01",
+  "parties": [
+    { "name": "Second Bank", "role": "Subordinating Party" },
+    { "name": "First Bank", "role": "Senior Party" },
+    { "name": "Property Owner LLC", "role": "Borrower" }
+  ],
+  "subordination_details": {
+    "subordinated_instrument": "Deed of Trust recorded as Inst. No. 2028-111111",
+    "senior_instrument": "Deed of Trust recorded as Inst. No. 2029-222222"
+  },
+  "discovered_entities": []
+}
+172_schema_additions.json
+
+JSON
+
+{
+  "subordination_details": {
+    "type": "object",
+    "description": "Details specific to a subordination agreement.",
+    "properties": {
+      "subordinated_instrument": { "type": "string" },
+      "senior_instrument": { "type": "string" }
+    }
+  }
+}
+Document Type 173: SNDA (Lender Form)
+173_specialist_schema.json
+
+JSON
+
+{
+  "title": "SNDA (Lender Form) Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Subordination, Non-Disturbance, and Attornment Agreement'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Tenant", "Landlord", "Lender"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "snda_details": {
+      "type": "object",
+      "properties": {
+        "lease_date": { "type": "string", "format": "date" },
+        "deed_of_trust_date": { "type": "string", "format": "date" },
+        "subordination_clause": { "type": "string" },
+        "non_disturbance_clause": { "type": "string" },
+        "attornment_clause": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "snda_details"]
+}
+173_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+SUBORDINATION, NON-DISTURBANCE, AND ATTORNMENT AGREEMENT
+
+This SNDA is made as of May 10, 2028, by and among BIG BANK, N.A. ("Lender"), MAIN STREET PROPERTIES LLC ("Landlord"), and THE COFFEE SPOT LLC ("Tenant").
+
+RECITALS:
+A. Landlord and Tenant entered into a Lease dated June 1, 2025.
+B. Lender has made a loan to Landlord evidenced by a Deed of Trust recorded concurrently herewith.
+
+AGREEMENT:
+1. Subordination. The Lease is and shall be subordinate to the lien of the Deed of Trust.
+2. Non-Disturbance. So long as Tenant is not in default, Lender agrees not to disturb Tenant's possession in the event of a foreclosure.
+3. Attornment. Tenant agrees to attorn to and recognize Lender as the new landlord in the event of a foreclosure.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Subordination, Non-Disturbance, and Attornment Agreement",
+  "effective_date": "2028-05-10",
+  "parties": [
+    { "name": "BIG BANK, N.A.", "role": "Lender" },
+    { "name": "MAIN STREET PROPERTIES LLC", "role": "Landlord" },
+    { "name": "THE COFFEE SPOT LLC", "role": "Tenant" }
+  ],
+  "snda_details": {
+    "lease_date": "2025-06-01",
+    "deed_of_trust_date": null,
+    "subordination_clause": "The Lease is and shall be subordinate to the lien of the Deed of Trust.",
+    "non_disturbance_clause": "So long as Tenant is not in default, Lender agrees not to disturb Tenant's possession in the event of a foreclosure.",
+    "attornment_clause": "Tenant agrees to attorn to and recognize Lender as the new landlord in the event of a foreclosure."
+  },
+  "discovered_entities": []
+}
+173_schema_additions.json
+
+JSON
+
+{
+  "snda_details": {
+    "type": "object",
+    "description": "Details specific to a Subordination, Non-Disturbance, and Attornment Agreement.",
+    "properties": {
+      "lease_date": { "type": "string", "format": "date" },
+      "deed_of_trust_date": { "type": "string", "format": "date" },
+      "subordination_clause": { "type": "string" },
+      "non_disturbance_clause": { "type": "string" },
+      "attornment_clause": { "type": "string" }
+    }
+  }
+}
+Document Type 174: Construction Loan Agreement
+174_specialist_schema.json
+
+JSON
+
+{
+  "title": "Construction Loan Agreement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Construction Loan Agreement'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Borrower", "Lender", "Guarantor"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "loan_details": {
+      "type": "object",
+      "properties": {
+        "loan_amount": { "type": "number" },
+        "interest_rate": { "type": "string" },
+        "maturity_date": { "type": "string", "format": "date" },
+        "collateral": { "type": "string" },
+        "loan_budget": { "type": "number" },
+        "draw_conditions": { "type": "string" },
+        "completion_deadline": { "type": "string", "format": "date" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "loan_details"]
+}
+174_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+CONSTRUCTION LOAN AGREEMENT
+
+This Agreement is dated August 1, 2031, between Downtown Tower LLC ("Borrower") and Mega Bank, N.A. ("Lender").
+
+1. Loan. Lender agrees to lend Borrower up to Fifty Million Dollars ($50,000,000) to finance the construction of the Project.
+2. Budget. The loan shall be disbursed in accordance with the Project Budget attached as Exhibit B, totaling $65,000,000.
+3. Draws. Loan proceeds shall be disbursed monthly based on draw requests submitted by Borrower.
+4. Completion. Borrower shall cause the Project to be substantially completed on or before August 1, 2034.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Construction Loan Agreement",
+  "effective_date": "2031-08-01",
+  "parties": [
+    { "name": "Downtown Tower LLC", "role": "Borrower" },
+    { "name": "Mega Bank, N.A.", "role": "Lender" }
+  ],
+  "loan_details": {
+    "loan_amount": 50000000,
+    "interest_rate": null,
+    "maturity_date": null,
+    "collateral": null,
+    "loan_budget": 65000000,
+    "draw_conditions": "Disbursed monthly based on draw requests submitted by Borrower.",
+    "completion_deadline": "2034-08-01"
+  },
+  "discovered_entities": []
+}
+174_schema_additions.json
+
+JSON
+
+{
+  "loan_details": {
+    "type": "object",
+    "description": "Details specific to a loan or financing agreement.",
+    "properties": {
+      "loan_amount": { "type": "number" },
+      "interest_rate": { "type": "string" },
+      "loan_term": { "type": "string" },
+      "amortization_period": { "type": "string" },
+      "commitment_fee": { "type": "number" },
+      "commitment_expiration_date": { "type": "string", "format": "date" },
+      "maturity_date": { "type": "string", "format": "date" },
+      "repayment_terms": { "type": "string" },
+      "collateral": { "type": "string" },
+      "key_covenants": { "type": "array", "items": { "type": "string" } },
+      "principal_amount": { "type": "number" },
+      "payment_terms": { "type": "string" },
+      "is_secured": { "type": "boolean" },
+      "secured_debt_amount": { "type": "number" },
+      "promissory_note_date": { "type": "string", "format": "date" },
+      "loan_budget": { "type": "number" },
+      "draw_conditions": { "type": "string" },
+      "completion_deadline": { "type": "string", "format": "date" }
+    }
+  }
+}
+Document Type 175: Budget/Cost to Complete
+175_specialist_schema.json
+
+JSON
+
+{
+  "title": "Budget/Cost to Complete Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Project Budget'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Developer", "Contractor", "Lender"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "budget_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "total_budget_amount": { "type": "number" },
+        "cost_to_complete": { "type": "number" },
+        "funds_expended_to_date": { "type": "number" },
+        "line_items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "category": { "type": "string" },
+              "amount": { "type": "number" }
+            }
+          }
+        }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "budget_details"]
+}
+175_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+PROJECT BUDGET - DOWNTOWN TOWER
+As of: August 1, 2031
+
+Hard Costs:
+  - Structure: $25,000,000
+  - Finishes: $15,000,000
+Soft Costs:
+  - A&E: $5,000,000
+  - Permits & Fees: $3,000,000
+Contingency: $2,000,000
+-------------------------
+TOTAL BUDGET: $50,000,000
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Project Budget - Downtown Tower",
+  "effective_date": "2031-08-01",
+  "parties": [],
+  "budget_details": {
+    "project_name": "Downtown Tower",
+    "total_budget_amount": 50000000,
+    "cost_to_complete": null,
+    "funds_expended_to_date": null,
+    "line_items": [
+      { "category": "Structure", "amount": 25000000 },
+      { "category": "Finishes", "amount": 15000000 },
+      { "category": "A&E", "amount": 5000000 },
+      { "category": "Permits & Fees", "amount": 3000000 },
+      { "category": "Contingency", "amount": 2000000 }
+    ]
+  },
+  "discovered_entities": []
+}
+175_schema_additions.json
+
+JSON
+
+{
+  "budget_details": {
+    "type": "object",
+    "description": "Details specific to a project budget or cost analysis.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "total_budget_amount": { "type": "number" },
+      "cost_to_complete": { "type": "number" },
+      "funds_expended_to_date": { "type": "number" },
+      "line_items": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "category": { "type": "string" },
+            "amount": { "type": "number" }
+          }
+        }
+      }
+    }
+  }
+}
+Document Type 176: Draw Requests/Requisitions
+176_specialist_schema.json
+
+JSON
+
+{
+  "title": "Draw Request Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Construction Loan Draw Request #5'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Borrower", "Lender", "General Contractor"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "draw_request_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "draw_number": { "integer": "string" },
+        "draw_period": { "type": "string" },
+        "total_amount_requested": { "type": "number" },
+        "total_amount_approved": { "type": "number" },
+        "total_project_completion_pct": { "type": "number" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "draw_request_details"]
+}
+176_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+CONSTRUCTION LOAN DRAW REQUEST
+
+Project: Downtown Tower
+Draw No: 5
+For Period Ending: March 31, 2032
+Date: April 5, 2032
+
+Borrower: Downtown Tower LLC
+Lender: Mega Bank, N.A.
+
+Total Amount Requested: $2,500,000.00
+Amount Approved by Inspector: $2,450,000.00
+Total Project % Complete: 25%
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Construction Loan Draw Request",
+  "effective_date": "2032-04-05",
+  "parties": [
+    { "name": "Downtown Tower LLC", "role": "Borrower" },
+    { "name": "Mega Bank, N.A.", "role": "Lender" }
+  ],
+  "draw_request_details": {
+    "project_name": "Downtown Tower",
+    "draw_number": "5",
+    "draw_period": "Ending March 31, 2032",
+    "total_amount_requested": 2500000,
+    "total_amount_approved": 2450000,
+    "total_project_completion_pct": 25
+  },
+  "discovered_entities": []
+}
+176_schema_additions.json
+
+JSON
+
+{
+  "draw_request_details": {
+    "type": "object",
+    "description": "Details specific to a construction loan draw request.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "draw_number": { "integer": "string" },
+      "draw_period": { "type": "string" },
+      "total_amount_requested": { "type": "number" },
+      "total_amount_approved": { "type": "number" },
+      "total_project_completion_pct": { "type": "number" }
+    }
+  }
+}
+Document Type 177: Interest Reserve Agreement
+177_specialist_schema.json
+
+JSON
+
+{
+  "title": "Interest Reserve Agreement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Interest Reserve Agreement'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Borrower", "Lender"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "loan_details": {
+      "type": "object",
+      "properties": {
+        "loan_reference": { "type": "string" },
+        "reserve_amount": { "type": "number" },
+        "purpose_of_reserve": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "loan_details"]
+}
+177_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+INTEREST RESERVE AGREEMENT
+
+This Agreement is dated August 1, 2031, between Downtown Tower LLC ("Borrower") and Mega Bank, N.A. ("Lender").
+
+In connection with the Construction Loan Agreement, Lender shall set aside a portion of the Loan proceeds in the amount of $3,000,000 (the "Interest Reserve") to be used by Lender to pay monthly interest payments as they become due under the Note.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Interest Reserve Agreement",
+  "effective_date": "2031-08-01",
+  "parties": [
+    { "name": "Downtown Tower LLC", "role": "Borrower" },
+    { "name": "Mega Bank, N.A.", "role": "Lender" }
+  ],
+  "loan_details": {
+    "loan_reference": "Construction Loan Agreement",
+    "reserve_amount": 3000000,
+    "purpose_of_reserve": "To be used by Lender to pay monthly interest payments as they become due under the Note."
+  },
+  "discovered_entities": []
+}
+177_schema_additions.json
+
+JSON
+
+{
+  "loan_details": {
+    "type": "object",
+    "description": "Details specific to a loan or financing agreement.",
+    "properties": {
+      "loan_amount": { "type": "number" },
+      "interest_rate": { "type": "string" },
+      "loan_term": { "type": "string" },
+      "amortization_period": { "type": "string" },
+      "commitment_fee": { "type": "number" },
+      "commitment_expiration_date": { "type": "string", "format": "date" },
+      "maturity_date": { "type": "string", "format": "date" },
+      "repayment_terms": { "type": "string" },
+      "collateral": { "type": "string" },
+      "key_covenants": { "type": "array", "items": { "type": "string" } },
+      "principal_amount": { "type": "number" },
+      "payment_terms": { "type": "string" },
+      "is_secured": { "type": "boolean" },
+      "secured_debt_amount": { "type": "number" },
+      "promissory_note_date": { "type": "string", "format": "date" },
+      "loan_budget": { "type": "number" },
+      "draw_conditions": { "type": "string" },
+      "completion_deadline": { "type": "string", "format": "date" },
+      "loan_reference": { "type": "string" },
+      "reserve_amount": { "type": "number" },
+      "purpose_of_reserve": { "type": "string" }
+    }
+  }
+}
+Document Type 178: Title Bring-downs
+178_specialist_schema.json
+
+JSON
+
+{
+  "title": "Title Bring-down Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Endorsement 110.5', 'Date-Down Endorsement'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Title Company", "Insured"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "title_details": {
+      "type": "object",
+      "properties": {
+        "policy_number": { "type": "string" },
+        "original_policy_date": { "type": "string", "format": "date" },
+        "bring_down_date": { "type": "string", "format": "date" },
+        "new_exceptions": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "title_details"]
+}
+178_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+ENDORSEMENT
+Attached to Policy No. L-12345-678
+Issued by: First American Title Insurance Company
+
+The Company hereby assures the Insured that since the Date of Policy (August 1, 2031), no liens or encumbrances have been recorded against the property, except for a Mechanic's Lien by BuildRight Corp., recorded September 15, 2031.
+
+This endorsement is effective as of October 1, 2031.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Endorsement",
+  "effective_date": "2031-10-01",
+  "parties": [
+    { "name": "First American Title Insurance Company", "role": "Title Company" }
+  ],
+  "title_details": {
+    "policy_number": "L-12345-678",
+    "original_policy_date": "2031-08-01",
+    "bring_down_date": "2031-10-01",
+    "new_exceptions": [
+      "A Mechanic's Lien by BuildRight Corp., recorded September 15, 2031."
+    ]
+  },
+  "discovered_entities": []
+}
+178_schema_additions.json
+
+JSON
+
+{
+  "title_details": {
+    "type": "object",
+    "description": "Details specific to title insurance reports, commitments, and policies.",
+    "properties": {
+      "report_number": { "type": "string" },
+      "property_legal_description": { "type": "string" },
+      "estate_or_interest": { "type": "string" },
+      "exceptions": { "type": "array", "items": { "type": "string" } },
+      "policy_type": { "type": "string" },
+      "proposed_insured_amount": { "type": "number" },
+      "proposed_endorsements": { "type": "array", "items": { "type": "string" } },
+      "policy_number": { "type": "string" },
+      "amount_of_insurance": { "type": "number" },
+      "policy_date": { "type": "string", "format": "date" },
+      "schedule_a_vesting": { "type": "string" },
+      "schedule_b_exceptions": { "type": "array", "items": { "type": "string" } },
+      "endorsement_number": { "type": "string" },
+      "endorsement_title": { "type": "string" },
+      "endorsement_summary": { "type": "string" },
+      "document_summary": { "type": "string" },
+      "original_policy_date": { "type": "string", "format": "date" },
+      "bring_down_date": { "type": "string", "format": "date" },
+      "new_exceptions": { "type": "array", "items": { "type": "string" } }
+    }
+  }
+}
+Document Type 179: Inspector Reports
+179_specialist_schema.json
+
+JSON
+
+{
+  "title": "Inspector Report Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Construction Progress Inspection Report'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Inspector", "Client", "Lender"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "inspection_report_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "inspection_date": { "type": "string", "format": "date" },
+        "percent_complete": { "type": "number" },
+        "work_completed_summary": { "type": "string" },
+        "issues_or_deficiencies": { "type": "string" },
+        "recommended_draw_amount": { "type": "number" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "inspection_report_details"]
+}
+179_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+CONSTRUCTION PROGRESS REPORT & DRAW RECOMMENDATION
+Project: Downtown Tower
+Inspection Date: April 4, 2032
+For: Mega Bank, N.A.
+By: Construction Inspectors Inc.
+
+The project is approximately 25% complete. The structural steel erection is complete up to the 10th floor. Concrete pours are ongoing. No significant deficiencies were noted.
+
+Based on our review of the work completed and the contractor's pay application, we recommend funding of $2,450,000 for Draw Request #5.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Construction Progress Report & Draw Recommendation",
+  "effective_date": "2032-04-04",
+  "parties": [
+    { "name": "Construction Inspectors Inc.", "role": "Inspector" },
+    { "name": "Mega Bank, N.A.", "role": "Lender" }
+  ],
+  "inspection_report_details": {
+    "project_name": "Downtown Tower",
+    "inspection_date": "2032-04-04",
+    "percent_complete": 25,
+    "work_completed_summary": "Structural steel erection is complete up to the 10th floor. Concrete pours are ongoing.",
+    "issues_or_deficiencies": "No significant deficiencies were noted.",
+    "recommended_draw_amount": 2450000
+  },
+  "discovered_entities": []
+}
+179_schema_additions.json
+
+JSON
+
+{
+  "inspection_report_details": {
+    "type": "object",
+    "description": "Details specific to a construction or property inspection report.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "inspection_date": { "type": "string", "format": "date" },
+      "percent_complete": { "type": "number" },
+      "work_completed_summary": { "type": "string" },
+      "issues_or_deficiencies": { "type": "string" },
+      "recommended_draw_amount": { "type": "number" }
+    }
+  }
+}
+Document Type 180: Mezz Loan/Preferred Equity Agreements
+180_specialist_schema.json
+
+JSON
+
+{
+  "title": "Mezzanine Loan/Preferred Equity Agreement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Mezzanine Loan Agreement'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Borrower", "Lender", "Investor", "Company"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "loan_details": {
+      "type": "object",
+      "properties": {
+        "investment_amount": { "type": "number" },
+        "interest_or_preferred_return_rate": { "type": "string" },
+        "maturity_date": { "type": "string", "format": "date" },
+        "collateral": { "type": "string" },
+        "equity_pledge": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "loan_details"]
+}
+180_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+MEZZANINE LOAN AGREEMENT
+
+This Agreement is dated September 1, 2031, between DOWNTOWN TOWER MEZZ LLC ("Borrower") and HIGH YIELD LENDERS LLC ("Lender").
+
+1. Loan. Lender agrees to lend Borrower Ten Million Dollars ($10,000,000).
+2. Interest. The loan shall bear interest at a fixed rate of 12.0% per annum.
+3. Security. The loan is secured by a pledge of 100% of the equity interests in Downtown Tower LLC.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Mezzanine Loan Agreement",
+  "effective_date": "2031-09-01",
+  "parties": [
+    { "name": "DOWNTOWN TOWER MEZZ LLC", "role": "Borrower" },
+    { "name": "HIGH YIELD LENDERS LLC", "role": "Lender" }
+  ],
+  "loan_details": {
+    "investment_amount": 10000000,
+    "interest_or_preferred_return_rate": "12.0% per annum",
+    "maturity_date": null,
+    "collateral": "Pledge of 100% of the equity interests in Downtown Tower LLC.",
+    "equity_pledge": "100% of the equity interests in Downtown Tower LLC."
+  },
+  "discovered_entities": []
+}
+180_schema_additions.json
+
+JSON
+
+{
+  "loan_details": {
+    "type": "object",
+    "description": "Details specific to a loan or financing agreement.",
+    "properties": {
+      "loan_amount": { "type": "number" },
+      "interest_rate": { "type": "string" },
+      "loan_term": { "type": "string" },
+      "amortization_period": { "type": "string" },
+      "commitment_fee": { "type": "number" },
+      "commitment_expiration_date": { "type": "string", "format": "date" },
+      "maturity_date": { "type": "string", "format": "date" },
+      "repayment_terms": { "type": "string" },
+      "collateral": { "type": "string" },
+      "key_covenants": { "type": "array", "items": { "type": "string" } },
+      "principal_amount": { "type": "number" },
+      "payment_terms": { "type": "string" },
+      "is_secured": { "type": "boolean" },
+      "secured_debt_amount": { "type": "number" },
+      "promissory_note_date": { "type": "string", "format": "date" },
+      "loan_budget": { "type": "number" },
+      "draw_conditions": { "type": "string" },
+      "completion_deadline": { "type": "string", "format": "date" },
+      "loan_reference": { "type": "string" },
+      "reserve_amount": { "type": "number" },
+      "purpose_of_reserve": { "type": "string" },
+      "investment_amount": { "type": "number" },
+      "interest_or_preferred_return_rate": { "type": "string" },
+      "equity_pledge": { "type": "string" }
+    }
+  }
+}
+Document Type 181: Subscription Agreements
+181_specialist_schema.json
+
+JSON
+
+{
+  "title": "Subscription Agreement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Subscription Agreement'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Subscriber", "Investor", "Company", "Issuer"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "offering_details": {
+      "type": "object",
+      "properties": {
+        "number_of_shares_or_units": { "type": "number" },
+        "price_per_unit_or_share": { "type": "number" },
+        "total_subscription_amount": { "type": "number" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "offering_details"]
+}
+181_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+SUBSCRIPTION AGREEMENT
+ASPEN PEAK REAL ESTATE FUND III, LP
+
+The undersigned ("Subscriber") hereby subscribes to purchase two (2) limited partnership interests ("Units") in the above-referenced Fund, at a price of $50,000 per Unit, for a total purchase price of $100,000.
+
+Subscriber Name: High Net Worth Investor
+Date: March 15, 2028
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Subscription Agreement",
+  "effective_date": "2028-03-15",
+  "parties": [
+    { "name": "High Net Worth Investor", "role": "Subscriber" },
+    { "name": "Aspen Peak Real Estate Fund III, LP", "role": "Issuer" }
+  ],
+  "offering_details": {
+    "number_of_shares_or_units": 2,
+    "price_per_unit_or_share": 50000,
+    "total_subscription_amount": 100000
+  },
+  "discovered_entities": []
+}
+181_schema_additions.json
+
+JSON
+
+{
+  "offering_details": {
+    "type": "object",
+    "description": "Details specific to a private placement or investment offering.",
+    "properties": {
+      "offering_summary": { "type": "string" },
+      "total_offering_amount": { "type": "number" },
+      "price_per_unit_or_share": { "type": "number" },
+      "minimum_investment": { "type": "number" },
+      "risk_factors_summary": { "type": "string" },
+      "number_of_shares_or_units": { "type": "number" },
+      "total_subscription_amount": { "type": "number" }
+    }
+  }
+}
+Document Type 182: PPM (Private Placement Memorandum)
+182_specialist_schema.json
+
+JSON
+
+{
+  "title": "Private Placement Memorandum (PPM) Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Confidential Private Placement Memorandum'."
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date",
+      "description": "The date the memorandum was issued."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Issuer", "Sponsor", "Company"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "offering_details": {
+      "type": "object",
+      "properties": {
+        "offering_summary": {
+          "type": "string",
+          "description": "A brief summary of the investment opportunity."
+        },
+        "total_offering_amount": { "type": "number" },
+        "price_per_unit_or_share": { "type": "number" },
+        "minimum_investment": { "type": "number" },
+        "risk_factors_summary": {
+          "type": "string",
+          "description": "A high-level summary of the key risk factors mentioned."
+        }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "offering_details"]
+}
+182_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+CONFIDENTIAL PRIVATE PLACEMENT MEMORANDUM
+Dated: March 1, 2028
+Issuer: Aspen Peak Real Estate Fund III, LP
+
+This memorandum relates to the private placement of limited partnership interests in a Regulation D offering.
+
+THE OFFERING:
+The issuer is seeking to raise a total of $25,000,000. Interests are offered at a price of $50,000 per unit, with a minimum subscription of two (2) units ($100,000) for accredited investors only.
+
+RISK FACTORS:
+This investment involves a high degree of risk, including real estate market fluctuations, development risks, and lack of liquidity.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Confidential Private Placement Memorandum",
+  "effective_date": "2028-03-01",
+  "parties": [
+    { "name": "Aspen Peak Real Estate Fund III, LP", "role": "Issuer" }
+  ],
+  "offering_details": {
+    "offering_summary": "Private placement of limited partnership interests in a Regulation D offering for accredited investors only.",
+    "total_offering_amount": 25000000,
+    "price_per_unit_or_share": 50000,
+    "minimum_investment": 100000,
+    "risk_factors_summary": "Involves a high degree of risk, including real estate market fluctuations, development risks, and lack of liquidity."
+  },
+  "discovered_entities": []
+}
+182_schema_additions.json
+
+JSON
+
+{
+  "offering_details": {
+    "type": "object",
+    "description": "Details specific to a private placement or investment offering.",
+    "properties": {
+      "offering_summary": { "type": "string" },
+      "total_offering_amount": { "type": "number" },
+      "price_per_unit_or_share": { "type": "number" },
+      "minimum_investment": { "type": "number" },
+      "risk_factors_summary": { "type": "string" },
+      "number_of_shares_or_units": { "type": "number" },
+      "total_subscription_amount": { "type": "number" }
+    }
+  }
+}
+Document Type 183: Capital Calls/Investor Consents
+183_specialist_schema.json
+
+JSON
+
+{
+  "title": "Capital Call/Investor Consent Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Notice of Capital Call'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["General Partner", "Limited Partner", "Investor"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "capital_call_details": {
+      "type": "object",
+      "properties": {
+        "fund_name": { "type": "string" },
+        "call_amount": { "type": "number" },
+        "due_date": { "type": "string", "format": "date" },
+        "purpose_of_call": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "capital_call_details"]
+}
+183_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+NOTICE OF CAPITAL CALL
+
+To: The Limited Partners of Aspen Peak Real Estate Fund III, LP
+From: Aspen Peak GP LLC (the "General Partner")
+Date: June 1, 2028
+
+This notice is to call 20% of your total capital commitment. Your pro-rata portion of this call is due and payable on or before June 15, 2028.
+
+The purpose of this capital call is to fund the acquisition of the "Mountain View" property.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Notice of Capital Call",
+  "effective_date": "2028-06-01",
+  "parties": [
+    { "name": "Aspen Peak GP LLC", "role": "General Partner" }
+  ],
+  "capital_call_details": {
+    "fund_name": "Aspen Peak Real Estate Fund III, LP",
+    "call_amount": null,
+    "due_date": "2028-06-15",
+    "purpose_of_call": "To fund the acquisition of the 'Mountain View' property."
+  },
+  "discovered_entities": [
+    {
+      "entity_name": "Call Percentage",
+      "entity_value": "20%",
+      "context_summary": "The percentage of the total capital commitment being called."
+    }
+  ]
+}
+183_schema_additions.json
+
+JSON
+
+{
+  "capital_call_details": {
+    "type": "object",
+    "description": "Details specific to a capital call or investor consent.",
+    "properties": {
+      "fund_name": { "type": "string" },
+      "call_amount": { "type": "number" },
+      "due_date": { "type": "string", "format": "date" },
+      "purpose_of_call": { "type": "string" }
+    }
+  }
+}
+Document Type 184: Hedging/Rate-Lock/ISDA Agreements
+184_specialist_schema.json
+
+JSON
+
+{
+  "title": "Hedging/Rate-Lock/ISDA Agreement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'ISDA Master Agreement'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Party A", "Party B"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "derivative_details": {
+      "type": "object",
+      "properties": {
+        "trade_date": { "type": "string", "format": "date" },
+        "notional_amount": { "type": "number" },
+        "product_type": { "type": "string", "description": "e.g., 'Interest Rate Swap', 'Interest Rate Cap'." },
+        "fixed_rate": { "type": "string" },
+        "floating_rate_index": { "type": "string" },
+        "termination_date": { "type": "string", "format": "date" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "derivative_details"]
+}
+184_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+INTEREST RATE SWAP CONFIRMATION
+
+To: Downtown Tower LLC
+From: Mega Bank, N.A.
+Trade Date: August 1, 2031
+Effective Date: August 1, 2031
+Termination Date: August 1, 2034
+
+This confirms the terms of an Interest Rate Swap transaction.
+Notional Amount: $50,000,000
+Downtown Tower LLC pays: Fixed Rate of 4.50%
+Mega Bank, N.A. pays: Floating Rate of 1-Month SOFR
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Interest Rate Swap Confirmation",
+  "effective_date": "2031-08-01",
+  "parties": [
+    { "name": "Downtown Tower LLC", "role": "Party A" },
+    { "name": "Mega Bank, N.A.", "role": "Party B" }
+  ],
+  "derivative_details": {
+    "trade_date": "2031-08-01",
+    "notional_amount": 50000000,
+    "product_type": "Interest Rate Swap",
+    "fixed_rate": "4.50%",
+    "floating_rate_index": "1-Month SOFR",
+    "termination_date": "2034-08-01"
+  },
+  "discovered_entities": []
+}
+184_schema_additions.json
+
+JSON
+
+{
+  "derivative_details": {
+    "type": "object",
+    "description": "Details specific to a financial derivative or hedging agreement.",
+    "properties": {
+      "trade_date": { "type": "string", "format": "date" },
+      "notional_amount": { "type": "number" },
+      "product_type": { "type": "string" },
+      "fixed_rate": { "type": "string" },
+      "floating_rate_index": { "type": "string" },
+      "termination_date": { "type": "string", "format": "date" }
+    }
+  }
+}
+Document Type 185: AIA A101/A102 (GMP/Fix-Price)
+185_specialist_schema.json
+
+JSON
+
+{
+  "title": "AIA A101/A102 Construction Agreement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'AIA Document A101 - Standard Form of Agreement Between Owner and Contractor'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Owner", "Contractor", "Architect"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "construction_contract_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "contract_type": { "type": "string", "enum": ["Stipulated Sum", "Cost Plus Fee with GMP"] },
+        "contract_sum": { "type": "number" },
+        "guaranteed_maximum_price_gmp": { "type": "number" },
+        "date_of_commencement": { "type": "string", "format": "date" },
+        "substantial_completion_date": { "type": "string" },
+        "liquidated_damages": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "construction_contract_details"]
+}
+185_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+AIA Document A102 – 2017
+Standard Form of Agreement Between Owner and Contractor where the basis of payment is the Cost of the Work Plus a Fee with a Guaranteed Maximum Price
+
+AGREEMENT made as of the 1st day of September, 2031
+BETWEEN the Owner: Downtown Tower LLC
+AND the Contractor: BuildRight Corp.
+FOR the Project: Downtown Tower, 123 Main Street
+THE ARCHITECT: Global Architects Inc.
+
+ARTICLE 5: CONTRACT SUM
+The Contract Sum is the Cost of the Work plus the Contractor's Fee. The Guaranteed Maximum Price (GMP) is One Hundred Million Dollars ($100,000,000).
+
+ARTICLE 3: DATE OF COMMENCEMENT AND SUBSTANTIAL COMPLETION
+The date of commencement shall be September 15, 2031. Substantial Completion shall be achieved within 36 months from the date of commencement.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "AIA Document A102 – 2017",
+  "effective_date": "2031-09-01",
+  "parties": [
+    { "name": "Downtown Tower LLC", "role": "Owner" },
+    { "name": "BuildRight Corp.", "role": "Contractor" },
+    { "name": "Global Architects Inc.", "role": "Architect" }
+  ],
+  "construction_contract_details": {
+    "project_name": "Downtown Tower, 123 Main Street",
+    "contract_type": "Cost Plus Fee with GMP",
+    "contract_sum": null,
+    "guaranteed_maximum_price_gmp": 100000000,
+    "date_of_commencement": "2031-09-15",
+    "substantial_completion_date": "36 months from the date of commencement.",
+    "liquidated_damages": null
+  },
+  "discovered_entities": []
+}
+185_schema_additions.json
+
+JSON
+
+{
+  "construction_contract_details": {
+    "type": "object",
+    "description": "Details specific to a construction contract.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "contract_type": { "type": "string", "enum": ["Stipulated Sum", "Cost Plus Fee with GMP"] },
+      "contract_sum": { "type": "number" },
+      "guaranteed_maximum_price_gmp": { "type": "number" },
+      "date_of_commencement": { "type": "string", "format": "date" },
+      "substantial_completion_date": { "type": "string" },
+      "liquidated_damages": { "type": "string" }
+    }
+  }
+}

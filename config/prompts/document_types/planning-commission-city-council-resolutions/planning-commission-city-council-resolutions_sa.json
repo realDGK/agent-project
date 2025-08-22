@@ -1,0 +1,12 @@
+{
+  "resolution_details": {
+    "type": "object",
+    "description": "Details specific to a formal resolution by a governing body.",
+    "properties": {
+      "resolution_number": { "type": "string" },
+      "action_taken": { "type": "string" },
+      "project_or_subject": { "type": "string" },
+      "vote_summary": { "type": "string" }
+    }
+  }
+}

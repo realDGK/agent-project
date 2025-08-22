@@ -1,0 +1,30 @@
+{
+  "tax_details": {
+    "type": "object",
+    "description": "Details specific to tax-related documents and information.",
+    "properties": {
+      "ein": { "type": "string" },
+      "form_reference": { "type": "string" },
+      "taxpayer_id_number": { "type": "string" },
+      "certification_statement": { "type": "string" },
+      "transferor_tin": { "type": "string" },
+      "gross_proceeds": { "type": "number" },
+      "property_description": { "type": "string" },
+      "property_apn": { "type": "string" },
+      "full_value_of_property": { "type": "number" },
+      "taxable_value": { "type": "number" },
+      "transfer_tax_amount": { "type": "number" },
+      "apn": { "type": "string" },
+      "tax_year": { "type": "string" },
+      "assessed_value": { "type": "number" },
+      "total_tax_due": { "type": "number" },
+      "first_installment_due_date": { "type": "string", "format": "date" },
+      "second_installment_due_date": { "type": "string", "format": "date" },
+      "reason_for_supplemental_bill": { "type": "string" },
+      "prior_assessed_value": { "type": "number" },
+      "new_assessed_value": { "type": "number" },
+      "supplemental_tax_due": { "type": "number" },
+      "due_date": { "type": "string", "format": "date" }
+    }
+  }
+}

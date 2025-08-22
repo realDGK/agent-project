@@ -1,0 +1,15 @@
+{
+  "business_name_filing_details": {
+    "type": "object",
+    "description": "Details specific to a DBA or Fictitious Business Name filing.",
+    "properties": {
+      "fictitious_business_name": {
+        "type": "string",
+        "description": "The 'doing business as' name being registered."
+      },
+      "principal_place_of_business": {
+        "type": "string"
+      }
+    }
+  }
+}

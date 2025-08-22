@@ -1,0 +1,31 @@
+INPUT DOCUMENT TEXT:
+Internal Revenue Service
+Cincinnati, OH 45999
+Date: October 28, 2025
+Notice: CP-575
+GREENFIELD DEVELOPMENT LLC
+100 BUSINESS PARKWAY
+IRVINE, CA 92618
+EMPLOYER IDENTIFICATION NUMBER: 98-7654321
+We're pleased to provide you with your new Employer Identification Number (EIN) as shown above. Please use this number on all tax forms and correspondence with the IRS.
+Keep this notice in your permanent records.
+JSON OUTPUT:
+{
+"contract_name": "EIN Confirmation Letter (CP-575)",
+"effective_date": "2025-10-28",
+"parties": [
+{
+"name": "GREENFIELD DEVELOPMENT LLC",
+"role": "Entity"
+},
+{
+"name": "Internal Revenue Service",
+"role": "Issuing Authority"
+}
+],
+"tax_details": {
+"ein": "98-7654321",
+"form_reference": "CP-575"
+},
+"discovered_entities": []
+}

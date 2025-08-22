@@ -1,0 +1,31 @@
+**INPUT DOCUMENT TEXT:**
+REMEDIAL ACTION WORKPLAN
+123 INDUSTRIAL WAY SITE, OAKLAND, CA
+
+Prepared for: Industrial Buyers LLC
+Prepared by: Clearwater Environmental
+Date: May 5, 2031
+Approved by: Alameda County Department of Environmental Health
+
+This plan addresses soil contamination by petroleum hydrocarbons and chlorinated solvents. The proposed remedial action is soil vapor extraction (SVE) combined with in-situ chemical oxidation. The cleanup goal is to reduce contaminant concentrations to below residential screening levels.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Remedial Action Workplan",
+  "effective_date": "2031-05-05",
+  "parties": [
+    { "name": "Clearwater Environmental", "role": "Consultant" },
+    { "name": "Industrial Buyers LLC", "role": "Client" },
+    { "name": "Alameda County Department of Environmental Health", "role": "Regulatory Agency" }
+  ],
+  "remediation_plan_details": {
+    "site_address": "123 Industrial Way Site, Oakland, CA",
+    "contaminants_of_concern": [
+      "petroleum hydrocarbons",
+      "chlorinated solvents"
+    ],
+    "remedial_approach": "Soil vapor extraction (SVE) combined with in-situ chemical oxidation.",
+    "cleanup_goals": "Reduce contaminant concentrations to below residential screening levels."
+  },
+  "discovered_entities": []
+}

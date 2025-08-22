@@ -1,0 +1,29 @@
+**INPUT DOCUMENT TEXT:**
+CONSTRUCTION PROGRESS REPORT & DRAW RECOMMENDATION
+Project: Downtown Tower
+Inspection Date: April 4, 2032
+For: Mega Bank, N.A.
+By: Construction Inspectors Inc.
+
+The project is approximately 25% complete. The structural steel erection is complete up to the 10th floor. Concrete pours are ongoing. No significant deficiencies were noted.
+
+Based on our review of the work completed and the contractor's pay application, we recommend funding of $2,450,000 for Draw Request #5.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Construction Progress Report & Draw Recommendation",
+  "effective_date": "2032-04-04",
+  "parties": [
+    { "name": "Construction Inspectors Inc.", "role": "Inspector" },
+    { "name": "Mega Bank, N.A.", "role": "Lender" }
+  ],
+  "inspection_report_details": {
+    "project_name": "Downtown Tower",
+    "inspection_date": "2032-04-04",
+    "percent_complete": 25,
+    "work_completed_summary": "Structural steel erection is complete up to the 10th floor. Concrete pours are ongoing.",
+    "issues_or_deficiencies": "No significant deficiencies were noted.",
+    "recommended_draw_amount": 2450000
+  },
+  "discovered_entities": []
+}

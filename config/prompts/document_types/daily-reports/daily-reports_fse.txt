@@ -1,0 +1,38 @@
+**INPUT DOCUMENT TEXT:**
+DAILY REPORT
+Project: Downtown Tower
+Date: December 5, 2031
+Superintendent: Bill Jones
+
+Weather: Sunny, 65°F
+Work Performed Today:
+- Poured concrete slab on 11th floor.
+- Continued MEP rough-in on 8th floor.
+
+Subcontractors On Site: City Electric, Metro Plumbing
+Equipment: 2 tower cranes, 1 concrete pump truck.
+Delays: None.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Daily Report",
+  "effective_date": "2031-12-05",
+  "parties": [
+    { "name": "Bill Jones", "role": "Superintendent" }
+  ],
+  "daily_report_details": {
+    "project_name": "Downtown Tower",
+    "weather": "Sunny, 65°F",
+    "work_performed": "Poured concrete slab on 11th floor. Continued MEP rough-in on 8th floor.",
+    "subcontractors_on_site": [
+      "City Electric",
+      "Metro Plumbing"
+    ],
+    "equipment_on_site": [
+      "2 tower cranes",
+      "1 concrete pump truck"
+    ],
+    "issues_or_delays": "None."
+  },
+  "discovered_entities": []
+}

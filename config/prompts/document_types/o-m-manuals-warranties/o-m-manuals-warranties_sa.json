@@ -1,0 +1,12 @@
+{
+  "warranty_details": {
+    "type": "object",
+    "description": "Details specific to a product or system warranty.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "equipment_or_system": { "type": "string" },
+      "warranty_period": { "type": "string" },
+      "warranty_start_date": { "type": "string", "format": "date" }
+    }
+  }
+}

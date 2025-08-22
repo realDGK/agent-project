@@ -1,0 +1,34 @@
+**INPUT DOCUMENT TEXT:**
+RECORDING REQUESTED BY: ABC Law Group
+WHEN RECORDED MAIL TO: ABC Law Group
+
+ABSTRACT OF JUDGMENT
+Case Number: 2027CV12345
+Court: Superior Court of California, County of San Mateo
+
+Judgment Creditor: Apex Supplies, Inc.
+Judgment Debtor: Bayview Builders, LLC
+
+Total Amount of Judgment as Entered: $75,450.25
+Judgment Entered on: September 10, 2028
+Recorded in the Official Records of San Mateo County on Sep 15, 2028, Doc # 2028-98765.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Abstract of Judgment",
+  "effective_date": "2028-09-10",
+  "parties": [
+    { "name": "Apex Supplies, Inc.", "role": "Judgment Creditor" },
+    { "name": "Bayview Builders, LLC", "role": "Judgment Debtor" }
+  ],
+  "litigation_details": {
+    "court_name": "Superior Court of California, County of San Mateo",
+    "case_number": "2027CV12345",
+    "judgment_amount": 75450.25
+  },
+  "legal_recording_details": {
+    "county": "San Mateo",
+    "recording_date": "2028-09-15",
+    "instrument_number": "2028-98765"
+  }
+}

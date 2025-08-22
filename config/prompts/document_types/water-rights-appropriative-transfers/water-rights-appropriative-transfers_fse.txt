@@ -1,0 +1,25 @@
+**INPUT DOCUMENT TEXT:**
+DEED OF APPROPRIATIVE WATER RIGHT
+
+For valuable consideration, Old Farm LLC ("Grantor") hereby conveys to New Vineyard LLC ("Grantee") all of its rights under License 12345 issued by the State Water Resources Control Board.
+
+This transfer includes the right to divert up to 100 acre-feet per year from the Napa River for irrigation use on the property identified as APN 123-456-789.
+
+Dated: November 1, 2033
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Deed of Appropriative Water Right",
+  "effective_date": "2033-11-01",
+  "parties": [
+    { "name": "Old Farm LLC", "role": "Grantor" },
+    { "name": "New Vineyard LLC", "role": "Grantee" }
+  ],
+  "water_rights_details": {
+    "water_right_permit_or_license_number": "12345",
+    "amount_of_water_transferred": "100 acre-feet per year",
+    "source_of_water": "Napa River",
+    "place_of_use": "APN 123-456-789"
+  },
+  "discovered_entities": []
+}

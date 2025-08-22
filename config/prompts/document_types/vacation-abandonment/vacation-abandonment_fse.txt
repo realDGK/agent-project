@@ -1,0 +1,25 @@
+**INPUT DOCUMENT TEXT:**
+RESOLUTION NO. 2029-55
+A RESOLUTION OF THE CITY COUNCIL OF THE CITY OF OAKVILLE VACATING A PUBLIC UTILITY EASEMENT
+
+WHEREAS, Oakville Developers LLC has requested the vacation of a 10-foot public utility easement located on Lot 5 of Tract 1234, as it is no longer needed for public purposes.
+
+NOW, THEREFORE, the City Council of the City of Oakville resolves that said easement is hereby vacated.
+
+ADOPTED this 15th day of June, 2029.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Resolution to Vacate a Public Utility Easement",
+  "effective_date": "2029-06-15",
+  "parties": [
+    { "name": "City of Oakville", "role": "Approving Agency" },
+    { "name": "Oakville Developers LLC", "role": "Petitioner" }
+  ],
+  "vacation_details": {
+    "resolution_number": "2029-55",
+    "property_vacated": "A 10-foot public utility easement located on Lot 5 of Tract 1234.",
+    "reason_for_vacation": "It is no longer needed for public purposes."
+  },
+  "discovered_entities": []
+}

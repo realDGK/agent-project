@@ -1,0 +1,11 @@
+{
+  "release_details": {
+    "type": "object",
+    "description": "Details specific to an authorization to release funds from an account.",
+    "properties": {
+      "escrow_or_account_number": { "type": "string" },
+      "amount_to_release": { "type": "number" },
+      "reason_for_release": { "type": "string" }
+    }
+  }
+}

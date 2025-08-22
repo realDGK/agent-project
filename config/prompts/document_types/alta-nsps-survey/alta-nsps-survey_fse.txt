@@ -1,0 +1,35 @@
+**INPUT DOCUMENT TEXT:**
+ALTA/NSPS LAND TITLE SURVEY
+For: Big Bank, N.A. and Buyer Corp.
+Property: 100 Valley View Road, Napa, CA
+Legal Description: Lot 1 of Parcel Map No. 1234
+APN: 123-456-78
+
+SURVEYOR'S CERTIFICATION:
+I hereby certify to Buyer Corp., Chicago Title Company, and Big Bank, N.A. that this map represents a survey made by me on March 15, 2028.
+Zoning: Commercial (C-2) per City of Napa letter.
+Flood Zone: Zone X per FEMA Map #06055C0123H.
+Optional Table A Items included: 1, 2, 3, 5, 8, 11.
+
+Surveyed by: Precision Land Surveyors, Inc.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "ALTA/NSPS Land Title Survey",
+  "effective_date": "2028-03-15",
+  "parties": [
+    { "name": "Precision Land Surveyors, Inc.", "role": "Surveyor" },
+    { "name": "Big Bank, N.A.", "role": "Client" },
+    { "name": "Buyer Corp.", "role": "Client" },
+    { "name": "Chicago Title Company", "role": "Title Company" }
+  ],
+  "survey_details": {
+    "property_address": "100 Valley View Road, Napa, CA",
+    "property_legal_description": "Lot 1 of Parcel Map No. 1234",
+    "apn": "123-456-78",
+    "flood_zone_information": "Zone X per FEMA Map #06055C0123H.",
+    "zoning_classification": "Commercial (C-2)",
+    "table_a_items": ["1", "2", "3", "5", "8", "11"]
+  },
+  "discovered_entities": []
+}

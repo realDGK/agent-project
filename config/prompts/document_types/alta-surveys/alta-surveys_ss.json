@@ -1,0 +1,67 @@
+{
+  "title": "ALTA/NSPS Land Title Survey Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string"
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date",
+      "description": "The date of the surveyor's certification."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "Client",
+              "Surveyor",
+              "Title Company"
+            ]
+          }
+        },
+        "required": [
+          "name",
+          "role"
+        ]
+      }
+    },
+    "survey_details": {
+      "type": "object",
+      "properties": {
+        "property_address": {
+          "type": "string"
+        },
+        "property_legal_description": {
+          "type": "string"
+        },
+        "apn": {
+          "type": "string"
+        },
+        "survey_type": {
+          "type": "string"
+        },
+        "table_a_items": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "A list of the optional ALTA Table A items included in the survey."
+        }
+      }
+    }
+  },
+  "required": [
+    "contract_name",
+    "effective_date",
+    "parties",
+    "survey_details"
+  ]
+}

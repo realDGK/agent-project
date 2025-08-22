@@ -1,0 +1,24 @@
+**INPUT DOCUMENT TEXT:**
+CALIFORNIA PUBLIC RECORDS ACT REQUEST
+
+Date: August 1, 2030
+To: City of Oakville, City Clerk
+From: John Citizen
+
+Pursuant to the CPRA, I hereby request copies of all staff reports and correspondence related to the Oakville Quarry Redevelopment Project.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "California Public Records Act Request",
+  "effective_date": "2030-08-01",
+  "parties": [
+    { "name": "John Citizen", "role": "Requestor" },
+    { "name": "City of Oakville, City Clerk", "role": "Public Agency" }
+  ],
+  "public_records_request_details": {
+    "document_type": "Request",
+    "records_requested": "All staff reports and correspondence related to the Oakville Quarry Redevelopment Project.",
+    "response_summary": null
+  },
+  "discovered_entities": []
+}

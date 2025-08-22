@@ -1,0 +1,16 @@
+{
+  "estoppel_details": {
+    "type": "object",
+    "description": "Details specific to a tenant's certification of lease terms.",
+    "properties": {
+      "lease_date": { "type": "string", "format": "date" },
+      "lease_premises": { "type": "string" },
+      "rent_commencement_date": { "type": "string", "format": "date" },
+      "lease_expiration_date": { "type": "string", "format": "date" },
+      "current_monthly_rent": { "type": "number" },
+      "security_deposit_amount": { "type": "number" },
+      "known_defaults": { "type": "string" },
+      "outstanding_allowances": { "type": "string" }
+    }
+  }
+}

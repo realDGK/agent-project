@@ -1,0 +1,32 @@
+**INPUT DOCUMENT TEXT:**
+CONFIDENTIAL OFFERING MEMORANDUM
+THE VINEYARD ESTATES
+100 Valley View Road, Napa, CA
+
+Presented by: Global Commercial Real Estate
+
+Offering Price: $12,000,000
+
+Investment Highlights:
+- Fully entitled for 50 luxury homes
+- Prime Napa Valley location
+- Significant value-add potential
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Confidential Offering Memorandum",
+  "parties": [
+    { "name": "Global Commercial Real Estate", "role": "Listing Broker" }
+  ],
+  "offering_memorandum_details": {
+    "property_name": "The Vineyard Estates",
+    "property_address": "100 Valley View Road, Napa, CA",
+    "offering_price": 12000000,
+    "investment_highlights": [
+      "Fully entitled for 50 luxury homes",
+      "Prime Napa Valley location",
+      "Significant value-add potential"
+    ]
+  },
+  "discovered_entities": []
+}

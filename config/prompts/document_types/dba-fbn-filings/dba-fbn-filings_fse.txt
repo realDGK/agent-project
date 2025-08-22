@@ -1,0 +1,41 @@
+INPUT DOCUMENT TEXT:
+FICTITIOUS BUSINESS NAME STATEMENT
+THE FOLLOWING PERSON(S) IS (ARE) DOING BUSINESS AS:
+SUNSET VISTA APARTMENTS
+100 MAIN STREET, SAN DIEGO, CA 92101
+Registered Owner(s):
+PACIFIC COAST HOLDINGS, LLC
+456 CORPORATE BLVD, SUITE 200, SAN DIEGO, CA 92101
+This business is conducted by: A Limited Liability Company
+The registrant commenced to transact business under the fictitious business name listed above on 06/01/2025.
+Signature: (Signature)
+Title: John Davis, Manager
+Filed with the County Clerk of San Diego County on June 15, 2025.
+File No. 2025-123456
+Expires: June 15, 2030
+JSON OUTPUT:
+{
+"contract_name": "Fictitious Business Name Statement",
+"parties": [
+{
+"name": "PACIFIC COAST HOLDINGS, LLC",
+"role": "Registrant"
+},
+{
+"name": "John Davis",
+"role": "Authorized Agent"
+}
+],
+"legal_recording_details": {
+"county": "San Diego",
+"state": "CA",
+"filing_date": "2025-06-15",
+"expiration_date": "2030-06-15",
+"instrument_number": "2025-123456"
+},
+"business_name_filing_details": {
+"fictitious_business_name": "SUNSET VISTA APARTMENTS",
+"principal_place_of_business": "100 MAIN STREET, SAN DIEGO, CA 92101"
+},
+"discovered_entities": []
+}

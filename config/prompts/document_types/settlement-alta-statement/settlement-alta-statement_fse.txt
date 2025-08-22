@@ -1,0 +1,51 @@
+**INPUT DOCUMENT TEXT:**
+ALTA SETTLEMENT STATEMENT
+Settlement Date: 10/30/2027
+Escrow No: PT-54321
+Property: 100 Valley View Road, Napa, CA
+Buyer: WESTERN LAND PARTNERS, LP
+Seller: OAK TREE INVESTORS, LLC
+
+SUMMARY OF BUYER'S TRANSACTION
+DEBITS:
+Purchase Price: $10,000,000.00
+Loan Costs: $50,000.00
+Total Debits: $10,050,000.00
+
+CREDITS:
+Deposit: $250,000.00
+New Loan: $8,000,000.00
+Total Credits: $8,250,000.00
+CASH FROM BUYER: $1,800,000.00
+
+SUMMARY OF SELLER'S TRANSACTION
+DEBITS:
+Loan Payoff: $4,550,123.50
+Closing Costs: $80,000.00
+Total Debits: $4,630,123.50
+
+CREDITS:
+Purchase Price: $10,000,000.00
+Total Credits: $10,000,000.00
+CASH TO SELLER: $5,369,876.50
+
+**JSON OUTPUT:**
+{
+  "contract_name": "ALTA Settlement Statement",
+  "effective_date": "2027-10-30",
+  "parties": [
+    { "name": "WESTERN LAND PARTNERS, LP", "role": "Buyer" },
+    { "name": "OAK TREE INVESTORS, LLC", "role": "Seller" }
+  ],
+  "settlement_statement_details": {
+    "property_address": "100 Valley View Road, Napa, CA",
+    "escrow_number": "PT-54321",
+    "buyer_total_debits": 10050000.00,
+    "buyer_total_credits": 8250000.00,
+    "cash_from_buyer": 1800000.00,
+    "seller_total_debits": 4630123.50,
+    "seller_total_credits": 10000000.00,
+    "cash_to_seller": 5369876.50
+  },
+  "discovered_entities": []
+}

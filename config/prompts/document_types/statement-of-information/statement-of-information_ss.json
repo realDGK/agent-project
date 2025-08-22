@@ -1,0 +1,67 @@
+{
+  "title": "Statement of Information Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Statement of Information for [Company Name]'."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Entity", "Agent for Service of Process", "CEO", "Secretary", "CFO", "Director", "Manager", "Member"]
+          },
+          "address": { "type": "string" }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "legal_recording_details": {
+      "type": "object",
+      "properties": {
+        "state": { "type": "string" },
+        "filing_date": { "type": "string", "format": "date" }
+      }
+    },
+    "statement_of_information_details": {
+      "type": "object",
+      "properties": {
+        "entity_file_number": {
+          "type": "string",
+          "description": "The official file number assigned by the Secretary of State."
+        },
+        "entity_type": {
+          "type": "string",
+          "description": "The legal structure of the entity (e.g., 'Limited Liability Company', 'Corporation')."
+        },
+        "jurisdiction": {
+          "type": "string",
+          "description": "The state or country of formation."
+        },
+        "principal_office_address": {
+          "type": "string"
+        },
+        "mailing_address": {
+          "type": "string"
+        }
+      }
+    },
+    "discovered_entities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "entity_name": { "type": "string" },
+          "entity_value": { "type": "string" },
+          "context_summary": { "type": "string" }
+        }
+      }
+    }
+  },
+  "required": ["contract_name", "parties"]
+}

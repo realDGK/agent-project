@@ -1,0 +1,11 @@
+{
+  "hazmat_plan_details": {
+    "type": "object",
+    "description": "Details specific to a Hazardous Materials Business Plan.",
+    "properties": {
+      "facility_address": { "type": "string" },
+      "hazardous_materials_inventory": { "type": "array", "items": { "type": "string" } },
+      "emergency_contact": { "type": "string" }
+    }
+  }
+}

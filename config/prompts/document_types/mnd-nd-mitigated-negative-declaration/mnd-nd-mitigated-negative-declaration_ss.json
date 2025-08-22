@@ -1,0 +1,46 @@
+{
+  "title": "Mitigated/Negative Declaration Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Mitigated Negative Declaration'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Lead Agency", "Project Applicant"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "environmental_details": {
+      "type": "object",
+      "properties": {
+        "document_type": { "type": "string", "enum": ["Negative Declaration", "Mitigated Negative Declaration"] },
+        "project_name": { "type": "string" },
+        "finding": { "type": "string" },
+        "public_review_period": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "environmental_details"]
+}

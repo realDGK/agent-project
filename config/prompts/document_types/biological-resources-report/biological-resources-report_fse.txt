@@ -1,0 +1,35 @@
+**INPUT DOCUMENT TEXT:**
+BIOLOGICAL RESOURCES ASSESSMENT
+FOR THE PINE HILLS ESTATES PROJECT
+
+Prepared for: Pine Hills Development LLC
+Prepared by: EcoSphere Consulting
+Date: February 10, 2031
+
+SUMMARY OF FINDINGS:
+The 50-acre project site contains suitable habitat for the California red-legged frog. No individuals were observed during protocol-level surveys. Several protected oak trees are located on the site.
+
+RECOMMENDATIONS:
+To avoid impacts, a 50-foot buffer should be established around the seasonal drainage. An arborist report is recommended to address potential impacts to oak trees.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Biological Resources Assessment",
+  "effective_date": "2031-02-10",
+  "parties": [
+    { "name": "EcoSphere Consulting", "role": "Consultant" },
+    { "name": "Pine Hills Development LLC", "role": "Client" }
+  ],
+  "technical_study_details": {
+    "study_type": "Biological Resources Report",
+    "project_name": "Pine Hills Estates Project",
+    "site_description": "50-acre project site",
+    "key_findings": [
+      "Contains suitable habitat for the California red-legged frog.",
+      "No individuals were observed during protocol-level surveys.",
+      "Several protected oak trees are located on the site."
+    ],
+    "recommendations": "Establish a 50-foot buffer around the seasonal drainage. An arborist report is recommended to address potential impacts to oak trees."
+  },
+  "discovered_entities": []
+}

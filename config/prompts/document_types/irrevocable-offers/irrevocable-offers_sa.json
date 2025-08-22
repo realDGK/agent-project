@@ -1,0 +1,11 @@
+{
+  "offer_details": {
+    "type": "object",
+    "description": "Details specific to a formal offer.",
+    "properties": {
+      "offer_summary": { "type": "string" },
+      "expiration_date": { "type": "string", "format": "date" },
+      "consideration_paid": { "type": "string" }
+    }
+  }
+}

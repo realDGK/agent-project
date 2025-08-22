@@ -1,0 +1,25 @@
+**INPUT DOCUMENT TEXT:**
+U.S. Department of Transportation
+Federal Highway Administration (FHWA)
+CATEGORICAL EXCLUSION DETERMINATION
+
+Project: Repaving of State Route 80 from milepost 10 to 12.
+Date: March 5, 2031
+
+The FHWA has determined that this project is a Categorical Exclusion under 23 CFR 771.117(c)(22) for pavement resurfacing projects. The action does not involve significant environmental impacts.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Categorical Exclusion Determination",
+  "effective_date": "2031-03-05",
+  "parties": [
+    { "name": "Federal Highway Administration (FHWA)", "role": "Federal Agency" }
+  ],
+  "environmental_details": {
+    "document_type": "Categorical Exclusion",
+    "project_name": "Repaving of State Route 80 from milepost 10 to 12.",
+    "ce_category": "23 CFR 771.117(c)(22)",
+    "determination_summary": "The action does not involve significant environmental impacts."
+  },
+  "discovered_entities": []
+}

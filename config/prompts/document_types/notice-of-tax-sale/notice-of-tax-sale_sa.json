@@ -1,0 +1,24 @@
+{
+  "tax_sale_details": {
+    "type": "object",
+    "description": "Details specific to a sale of property for delinquent taxes.",
+    "properties": {
+      "property_address": {
+        "type": "string"
+      },
+      "apn": {
+        "type": "string"
+      },
+      "sale_date": {
+        "type": "string",
+        "format": "date"
+      },
+      "sale_location": {
+        "type": "string"
+      },
+      "minimum_bid": {
+        "type": "number"
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+**INPUT DOCUMENT TEXT:**
+RESOLUTION NO. 2032-15
+A RESOLUTION OF THE CITY COUNCIL OF THE CITY OF OAKWOOD DECLARING ITS INTENTION TO ESTABLISH COMMUNITY FACILITIES DISTRICT NO. 2032-1
+
+BE IT RESOLVED, the City Council of the City of Oakwood hereby declares its intention to form CFD No. 2032-1 and sets a public hearing for May 1, 2032.
+
+ADOPTED this 10th day of April, 2032.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Resolution of Intention",
+  "effective_date": "2032-04-10",
+  "parties": [
+    { "name": "City Council of the City of Oakwood", "role": "Approving Body" }
+  ],
+  "resolution_details": {
+    "resolution_number": "2032-15",
+    "resolution_type": "Intention",
+    "cfd_number": "2032-1",
+    "action_taken": "Declares intention to form CFD No. 2032-1 and sets a public hearing for May 1, 2032."
+  },
+  "discovered_entities": []
+}

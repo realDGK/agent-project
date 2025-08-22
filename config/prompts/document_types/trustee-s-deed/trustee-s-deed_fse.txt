@@ -1,0 +1,25 @@
+**INPUT DOCUMENT TEXT:**
+TRUSTEE'S DEED UPON SALE
+
+This Trustee's Deed is made on October 20, 2027, by Quality Trustee Services, a California corporation, as Trustee, to Evergreen Investments, LLC, a Delaware limited liability company, the Purchaser.
+
+This conveyance is made pursuant to a sale conducted under the Deed of Trust executed by Original Trustor, John Doe, recorded on June 1, 2020, as Instrument No. 2020-123456, Official Records of Alameda County, California. The property, APN 987-654-321, is described in Exhibit A. The amount of the successful bid was $850,000.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Trustee's Deed Upon Sale",
+  "effective_date": "2027-10-20",
+  "parties": [
+    { "name": "Quality Trustee Services", "role": "Trustee" },
+    { "name": "Evergreen Investments, LLC", "role": "Purchaser" }
+  ],
+  "deed_details": {
+    "deed_type": "Trustee's Deed Upon Sale",
+    "property_legal_description": "Described in Exhibit A",
+    "apn": "987-654-321",
+    "sale_amount": 850000,
+    "original_trustor": "John Doe",
+    "original_beneficiary": null,
+    "deed_of_trust_recording_info": "Instrument No. 2020-123456, Official Records of Alameda County, California"
+  }
+}

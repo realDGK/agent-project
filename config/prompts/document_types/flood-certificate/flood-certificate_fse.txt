@@ -1,0 +1,31 @@
+**INPUT DOCUMENT TEXT:**
+STANDARD FLOOD HAZARD DETERMINATION
+
+Lender: Mega Bank, N.A.
+Borrower: Downtown Tower LLC
+Property: 123 Main Street, Anytown, USA
+
+Determination:
+[X] The building on the property is NOT located in a Special Flood Hazard Area (SFHA).
+The FEMA map panel covering this property is 06013C0123H, dated 01/01/2020. The flood zone is Zone X.
+
+Determined by: Flood Cert Inc.
+Date: July 15, 2031
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Standard Flood Hazard Determination",
+  "effective_date": "2031-07-15",
+  "parties": [
+    { "name": "Mega Bank, N.A.", "role": "Lender" },
+    { "name": "Downtown Tower LLC", "role": "Borrower" },
+    { "name": "Flood Cert Inc.", "role": "Determination Company" }
+  ],
+  "flood_details": {
+    "property_address": "123 Main Street, Anytown, USA",
+    "fema_map_number": "06013C0123H",
+    "flood_zone": "Zone X",
+    "is_in_special_flood_hazard_area": false
+  },
+  "discovered_entities": []
+}

@@ -1,0 +1,13 @@
+{
+  "proof_of_service_details": {
+    "type": "object",
+    "description": "Details specific to a proof of service.",
+    "properties": {
+      "service_type": { "type": "string", "enum": ["Publication", "Mailing"] },
+      "document_served": { "type": "string" },
+      "publication_name": { "type": "string" },
+      "publication_dates": { "type": "array", "items": { "type": "string" } },
+      "mailing_date": { "type": "string", "format": "date" }
+    }
+  }
+}

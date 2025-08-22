@@ -1,0 +1,12 @@
+{
+  "tax_agreement_details": {
+    "type": "object",
+    "description": "Details specific to a tax-related agreement like a PILOT or abatement.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "property_address": { "type": "string" },
+      "payment_schedule": { "type": "string" },
+      "term_of_agreement": { "type": "string" }
+    }
+  }
+}

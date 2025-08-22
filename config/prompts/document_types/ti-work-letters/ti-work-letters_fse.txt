@@ -1,0 +1,25 @@
+**INPUT DOCUMENT TEXT:**
+EXHIBIT C - WORK LETTER
+
+This Work Letter is part of the Lease between Commerce Center LLC ("Landlord") and Logistics Solutions Inc. ("Tenant").
+
+1. Landlord's Work: Landlord shall deliver the Premises in "as-is" condition.
+2. Tenant's Work: Tenant shall, at its sole cost, construct its interior improvements.
+3. TI Allowance: Landlord shall provide Tenant with a Tenant Improvement Allowance of $25.00 per square foot, for a total of $625,000.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Work Letter",
+  "effective_date": null,
+  "parties": [
+    { "name": "Commerce Center LLC", "role": "Landlord" },
+    { "name": "Logistics Solutions Inc.", "role": "Tenant" }
+  ],
+  "ti_work_letter_details": {
+    "landlord_work_summary": "Deliver the Premises in 'as-is' condition.",
+    "tenant_work_summary": "At its sole cost, construct its interior improvements.",
+    "tenant_improvement_allowance": 625000,
+    "delivery_condition": "as-is"
+  },
+  "discovered_entities": []
+}

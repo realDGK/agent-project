@@ -1,0 +1,26 @@
+**INPUT DOCUMENT TEXT:**
+Form 1099-S - Proceeds From Real Estate Transactions
+FILER'S NAME: Premier Title & Escrow
+TRANSFEROR'S NAME: OAK TREE INVESTORS, LLC
+TRANSFEROR'S TIN: 12-3456789
+
+Box 1. Date of closing: 10-30-2027
+Box 2. Gross proceeds: $10,000,000.00
+Box 3. Address or legal description: 100 Valley View Road, Napa, CA
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Form 1099-S, Proceeds From Real Estate Transactions",
+  "effective_date": "2027-10-30",
+  "parties": [
+    { "name": "Premier Title & Escrow", "role": "Filer" },
+    { "name": "OAK TREE INVESTORS, LLC", "role": "Transferor" }
+  ],
+  "tax_details": {
+    "form_reference": "1099-S",
+    "transferor_tin": "12-3456789",
+    "gross_proceeds": 10000000.00,
+    "property_description": "100 Valley View Road, Napa, CA"
+  },
+  "discovered_entities": []
+}

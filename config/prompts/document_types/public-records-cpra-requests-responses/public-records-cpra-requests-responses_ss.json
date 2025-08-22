@@ -1,0 +1,45 @@
+{
+  "title": "Public Records Request/Response Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Public Records Act Request'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Requestor", "Public Agency"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "public_records_request_details": {
+      "type": "object",
+      "properties": {
+        "document_type": { "type": "string", "enum": ["Request", "Response"] },
+        "records_requested": { "type": "string" },
+        "response_summary": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "public_records_request_details"]
+}

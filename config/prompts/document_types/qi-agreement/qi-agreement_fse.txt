@@ -1,0 +1,20 @@
+**INPUT DOCUMENT TEXT:**
+QUALIFIED INTERMEDIARY AGREEMENT
+
+This Agreement is dated April 1, 2028, by Property Seller LLC ("Exchangor") and Exchange Accommodators Inc. ("QI").
+
+FEES: Exchangor agrees to pay QI a fee of One Thousand Two Hundred Dollars ($1,200.00) for its services in facilitating this exchange.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Qualified Intermediary Agreement",
+  "effective_date": "2028-04-01",
+  "parties": [
+    { "name": "Property Seller LLC", "role": "Exchangor" },
+    { "name": "Exchange Accommodators Inc.", "role": "Qualified Intermediary" }
+  ],
+  "exchange_details": {
+    "qi_fee": "$1,200.00"
+  },
+  "discovered_entities": []
+}

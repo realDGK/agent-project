@@ -1,0 +1,46 @@
+{
+  "title": "Statement of Overriding Considerations (SOC) Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Statement of Overriding Considerations'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Lead Agency", "Approving Body"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "environmental_details": {
+      "type": "object",
+      "properties": {
+        "document_type": { "type": "string", "default": "SOC" },
+        "project_name": { "type": "string" },
+        "significant_unavoidable_impacts": { "type": "array", "items": { "type": "string" } },
+        "overriding_considerations": { "type": "string", "description": "A summary of the specific economic, legal, social, technological, or other benefits that outweigh the unavoidable adverse environmental effects." }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "environmental_details"]
+}

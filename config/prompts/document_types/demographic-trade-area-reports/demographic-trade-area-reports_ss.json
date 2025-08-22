@@ -1,0 +1,54 @@
+{
+  "title": "Demographic/Trade Area Report Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Trade Area Demographic Profile'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Author", "Data Provider"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "demographic_report_details": {
+      "type": "object",
+      "properties": {
+        "property_address": { "type": "string" },
+        "trade_area_radius": { "type": "string" },
+        "key_demographics": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "metric": { "type": "string" },
+              "value": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "demographic_report_details"]
+}

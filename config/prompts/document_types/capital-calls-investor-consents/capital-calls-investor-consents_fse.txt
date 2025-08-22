@@ -1,0 +1,32 @@
+**INPUT DOCUMENT TEXT:**
+NOTICE OF CAPITAL CALL
+
+To: The Limited Partners of Aspen Peak Real Estate Fund III, LP
+From: Aspen Peak GP LLC (the "General Partner")
+Date: June 1, 2028
+
+This notice is to call 20% of your total capital commitment. Your pro-rata portion of this call is due and payable on or before June 15, 2028.
+
+The purpose of this capital call is to fund the acquisition of the "Mountain View" property.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Notice of Capital Call",
+  "effective_date": "2028-06-01",
+  "parties": [
+    { "name": "Aspen Peak GP LLC", "role": "General Partner" }
+  ],
+  "capital_call_details": {
+    "fund_name": "Aspen Peak Real Estate Fund III, LP",
+    "call_amount": null,
+    "due_date": "2028-06-15",
+    "purpose_of_call": "To fund the acquisition of the 'Mountain View' property."
+  },
+  "discovered_entities": [
+    {
+      "entity_name": "Call Percentage",
+      "entity_value": "20%",
+      "context_summary": "The percentage of the total capital commitment being called."
+    }
+  ]
+}

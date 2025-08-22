@@ -1,0 +1,45 @@
+{
+  "title": "Cure/Default Notice (Contract) Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Notice of Breach of Contract'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Notifying Party", "Breaching Party"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "default_notice_details": {
+      "type": "object",
+      "properties": {
+        "contract_reference": { "type": "string" },
+        "nature_of_default": { "type": "string" },
+        "cure_period": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "default_notice_details"]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Commercial Lease Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Standard Industrial/Commercial Lease'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Landlord", "Tenant"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "lease_details": {
+      "type": "object",
+      "properties": {
+        "lease_type": { "type": "string", "enum": ["NNN", "Gross", "Modified Gross"] },
+        "premises_address": { "type": "string" },
+        "premises_sqft": { "type": "integer" },
+        "lease_term_months": { "type": "integer" },
+        "commencement_date": { "type": "string", "format": "date" },
+        "expiration_date": { "type": "string", "format": "date" },
+        "base_rent": { "type": "string" },
+        "operating_expenses_pass_through": { "type": "string" },
+        "renewal_options": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "lease_details"]
+}

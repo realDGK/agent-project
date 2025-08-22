@@ -1,0 +1,30 @@
+**INPUT DOCUMENT TEXT:**
+MAINTENANCE AND WARRANTY BOND
+
+Bond No: MW-555444
+Date: September 1, 2034
+
+PRINCIPAL: BuildRight Corp.
+SURETY: Global Surety Company
+OBLIGEE: Downtown Tower LLC
+
+This bond is in the amount of $10,000,000 (10% of contract price) to guarantee against defects in materials and workmanship for a period of two (2) years following Substantial Completion of the Downtown Tower project.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Maintenance and Warranty Bond",
+  "effective_date": "2034-09-01",
+  "parties": [
+    { "name": "BuildRight Corp.", "role": "Principal" },
+    { "name": "Global Surety Company", "role": "Surety" },
+    { "name": "Downtown Tower LLC", "role": "Obligee" }
+  ],
+  "bond_details": {
+    "bond_number": "MW-555444",
+    "bond_type": "Warranty",
+    "penal_sum": 10000000,
+    "project_description": "Downtown Tower project",
+    "warranty_period": "Two (2) years following Substantial Completion."
+  },
+  "discovered_entities": []
+}

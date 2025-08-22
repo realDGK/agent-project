@@ -1,0 +1,28 @@
+**INPUT DOCUMENT TEXT:**
+AUTHORIZATION TO RELEASE DEPOSIT
+
+Date: October 15, 2027
+To: Premier Title & Escrow ("Escrow Holder")
+Re: Escrow No. PT-54321
+
+This letter authorizes and instructs you to release the initial deposit of One Hundred Thousand Dollars ($100,000) to the Seller, OAK TREE INVESTORS, LLC. This release is pursuant to Section 3 of the Purchase Agreement, as Buyer has waived all contingencies.
+
+Sincerely,
+WESTERN LAND PARTNERS, LP ("Buyer")
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Authorization to Release Deposit",
+  "effective_date": "2027-10-15",
+  "parties": [
+    { "name": "WESTERN LAND PARTNERS, LP", "role": "Authorizing Party" },
+    { "name": "OAK TREE INVESTORS, LLC", "role": "Receiving Party" },
+    { "name": "Premier Title & Escrow", "role": "Holding Party" }
+  ],
+  "release_details": {
+    "escrow_or_account_number": "PT-54321",
+    "amount_to_release": 100000,
+    "reason_for_release": "Pursuant to Section 3 of the Purchase Agreement, as Buyer has waived all contingencies."
+  },
+  "discovered_entities": []
+}

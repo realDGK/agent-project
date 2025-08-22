@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  mcp-bridge:
+    container_name: mcp-bridge
+    build:
+      context: .
+      dockerfile: Dockerfile.mcp
+    environment:
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PORT=5432
+      - POSTGRES_DB=agent_db
+      - POSTGRES_USER=agent_user
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - NEO4J_HOST=neo4j
+      - NEO4J_PORT=7687
+      - NEO4J_USER=neo4j
+      - NEO4J_PASSWORD=${NEO4J_PASSWORD}
+      - QDRANT_HOST=qdrant
+      - QDRANT_PORT=6333
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - REDIS_PASSWORD=${REDIS_PASSWORD:-}
+      - MCP_SERVER_PORT=8080
+    ports:
+      - "8080:8080"
+    networks:
+      - agent-network
+    depends_on:
+      - postgres
+      - neo4j
+      - qdrant
+      - redis
+    volumes:
+      - ./config:/app/config:ro
+      - ./scripts:/app/scripts:ro
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  agent-orchestrator:
+    env_file:
+      - .env.mcp
+    volumes:
+      - ./config/working_mcp_config.json:/app/config/working_mcp_config.json:ro
+      - ./config/prompts:/app/config/prompts:ro
+
+networks:
+  agent-network:
+    external: true

@@ -1,0 +1,23 @@
+{
+  "net_metering_details": {
+    "type": "object",
+    "description": "Details specific to a net energy metering (NEM) agreement for customer-owned power generation.",
+    "properties": {
+      "service_account_number": {
+        "type": "string"
+      },
+      "generating_facility_address": {
+        "type": "string"
+      },
+      "generator_type": {
+        "type": "string"
+      },
+      "system_capacity_kw": {
+        "type": "number"
+      },
+      "net_surplus_compensation_rate": {
+        "type": "string"
+      }
+    }
+  }
+}

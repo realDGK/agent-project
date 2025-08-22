@@ -1,0 +1,36 @@
+**INPUT DOCUMENT TEXT:**
+HAZARDOUS MATERIALS BUSINESS PLAN
+
+1. FACILITY INFORMATION
+Business Name: Auto Repair Shop Inc.
+Site Address: 456 Garage Way, Anytown, CA
+
+2. INVENTORY
+- Used Motor Oil: 250 gallons
+- Antifreeze: 100 gallons
+- Solvents: 50 gallons
+
+3. EMERGENCY CONTACT
+Name: John Smith, Owner
+Phone: 555-123-4567
+
+Date Submitted: January 15, 2033
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Hazardous Materials Business Plan",
+  "effective_date": "2033-01-15",
+  "parties": [
+    { "name": "Auto Repair Shop Inc.", "role": "Business Owner" }
+  ],
+  "hazmat_plan_details": {
+    "facility_address": "456 Garage Way, Anytown, CA",
+    "hazardous_materials_inventory": [
+      "Used Motor Oil: 250 gallons",
+      "Antifreeze: 100 gallons",
+      "Solvents: 50 gallons"
+    ],
+    "emergency_contact": "John Smith, Owner, 555-123-4567"
+  },
+  "discovered_entities": []
+}

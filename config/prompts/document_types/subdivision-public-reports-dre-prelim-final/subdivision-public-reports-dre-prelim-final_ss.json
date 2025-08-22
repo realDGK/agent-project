@@ -1,0 +1,47 @@
+{
+  "title": "Subdivision Public Report Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Final Subdivision Public Report'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Subdivider", "Issuing Agency"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "public_report_details": {
+      "type": "object",
+      "properties": {
+        "report_type": { "type": "string", "enum": ["Preliminary", "Final"] },
+        "file_number": { "type": "string" },
+        "subdivision_name": { "type": "string" },
+        "number_of_lots_or_units": { "type": "integer" },
+        "expiration_date": { "type": "string", "format": "date" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "public_report_details"]
+}

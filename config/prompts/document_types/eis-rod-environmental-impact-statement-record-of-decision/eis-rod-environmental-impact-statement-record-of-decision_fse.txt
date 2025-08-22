@@ -1,0 +1,26 @@
+**INPUT DOCUMENT TEXT:**
+RECORD OF DECISION (ROD)
+Interstate 5 Widening Project
+
+Lead Agency: U.S. Department of Transportation, FHWA
+Date of Decision: August 20, 2031
+
+DECISION:
+The Federal Highway Administration (FHWA) has decided to implement the Preferred Alternative as described in the Final Environmental Impact Statement (FEIS) for the Interstate 5 Widening Project, published in May 2031. This alternative involves widening the highway to six lanes and includes noise walls and habitat restoration.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Record of Decision (ROD)",
+  "effective_date": "2031-08-20",
+  "parties": [
+    { "name": "U.S. Department of Transportation, FHWA", "role": "Lead Agency" }
+  ],
+  "environmental_details": {
+    "document_type": "Record of Decision",
+    "project_name": "Interstate 5 Widening Project",
+    "eis_reference": "Final Environmental Impact Statement (FEIS), published in May 2031",
+    "selected_alternative": "The Preferred Alternative.",
+    "decision_summary": "Implement the Preferred Alternative, which involves widening the highway to six lanes and includes noise walls and habitat restoration."
+  },
+  "discovered_entities": []
+}

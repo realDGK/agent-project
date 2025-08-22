@@ -1,0 +1,49 @@
+{
+  "title": "Multifamily Lease Form Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Residential Lease Agreement'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Landlord", "Tenant"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "lease_details": {
+      "type": "object",
+      "properties": {
+        "property_name": { "type": "string" },
+        "unit_number": { "type": "string" },
+        "lease_term_months": { "type": "integer" },
+        "monthly_rent": { "type": "number" },
+        "security_deposit": { "type": "number" },
+        "pet_policy": { "type": "string" },
+        "utility_responsibilities": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "lease_details"]
+}

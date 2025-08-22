@@ -1,0 +1,26 @@
+**INPUT DOCUMENT TEXT:**
+EXCHANGE AGREEMENT AND ESCROW INSTRUCTIONS
+
+This Agreement is dated April 1, 2028, between Property Seller LLC ("Exchangor") and Exchange Accommodators Inc. ("Qualified Intermediary" or "QI").
+
+Exchangor desires to effect a tax-deferred exchange under IRC Section 1031.
+The Relinquished Property is the commercial building at 789 Business Loop, sold on April 1, 2028.
+
+The Identification Period shall expire at midnight on the 45th day after the transfer of the Relinquished Property. The Exchange Period shall expire at midnight on the 180th day after the transfer.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Exchange Agreement and Escrow Instructions",
+  "effective_date": "2028-04-01",
+  "parties": [
+    { "name": "Property Seller LLC", "role": "Exchangor" },
+    { "name": "Exchange Accommodators Inc.", "role": "Qualified Intermediary" }
+  ],
+  "exchange_details": {
+    "relinquished_property": "789 Business Loop",
+    "relinquished_property_sale_date": "2028-04-01",
+    "identification_period_deadline": null,
+    "exchange_period_deadline": null
+  },
+  "discovered_entities": []
+}

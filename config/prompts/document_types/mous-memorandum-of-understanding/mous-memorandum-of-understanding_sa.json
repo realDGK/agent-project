@@ -1,0 +1,11 @@
+{
+  "mou_details": {
+    "type": "object",
+    "description": "Details specific to a Memorandum of Understanding (MOU).",
+    "properties": {
+      "purpose_of_mou": { "type": "string" },
+      "key_understandings": { "type": "array", "items": { "type": "string" } },
+      "is_binding": { "type": "boolean" }
+    }
+  }
+}

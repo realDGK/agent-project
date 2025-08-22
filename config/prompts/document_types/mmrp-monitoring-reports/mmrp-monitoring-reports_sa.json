@@ -1,0 +1,20 @@
+{
+  "monitoring_report_details": {
+    "type": "object",
+    "description": "Details specific to a mitigation monitoring report.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "reporting_period": { "type": "string" },
+      "mitigation_measures_status": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "measure_id": { "type": "string" },
+            "status": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}

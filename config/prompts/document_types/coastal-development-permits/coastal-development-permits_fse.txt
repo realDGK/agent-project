@@ -1,0 +1,33 @@
+**INPUT DOCUMENT TEXT:**
+COASTAL DEVELOPMENT PERMIT
+
+Permit No: CDP-2033-05
+Applicant: Ocean View Homes LLC
+Date Approved: November 1, 2033
+Issuing Agency: California Coastal Commission
+
+This permit authorizes the construction of a new single-family residence at 100 Pacific Coast Highway, Malibu, CA.
+
+Special Conditions:
+1. All exterior lighting must be shielded to prevent impacts to wildlife.
+2. A public access trail to the beach shall be provided along the western property line.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Coastal Development Permit",
+  "effective_date": "2033-11-01",
+  "parties": [
+    { "name": "Ocean View Homes LLC", "role": "Permittee" },
+    { "name": "California Coastal Commission", "role": "Issuing Agency" }
+  ],
+  "permit_details": {
+    "permit_number": "CDP-2033-05",
+    "project_address": "100 Pacific Coast Highway, Malibu, CA",
+    "project_description": "Construction of a new single-family residence.",
+    "key_conditions": [
+      "All exterior lighting must be shielded to prevent impacts to wildlife.",
+      "A public access trail to the beach shall be provided along the western property line."
+    ]
+  },
+  "discovered_entities": []
+}

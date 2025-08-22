@@ -1,0 +1,32 @@
+**INPUT DOCUMENT TEXT:**
+COUNTY OF ALAMEDA - ANNUAL SECURED PROPERTY TAX BILL
+TAX YEAR: 2032-2033
+APN: 123-456-789
+ASSESSED TO: Property Owner LLC
+
+ASSESSED VALUES:
+Land: $1,000,000
+Improvements: $4,000,000
+Total: $5,000,000
+
+TOTAL TAXES DUE: $55,000.00
+1st Installment Due: 11/01/2032
+2nd Installment Due: 02/01/2033
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Annual Secured Property Tax Bill",
+  "parties": [
+    { "name": "County of Alameda", "role": "Taxing Agency" },
+    { "name": "Property Owner LLC", "role": "Assessed Owner" }
+  ],
+  "tax_details": {
+    "apn": "123-456-789",
+    "tax_year": "2032-2033",
+    "assessed_value": 5000000,
+    "total_tax_due": 55000,
+    "first_installment_due_date": "2032-11-01",
+    "second_installment_due_date": "2033-02-01"
+  },
+  "discovered_entities": []
+}

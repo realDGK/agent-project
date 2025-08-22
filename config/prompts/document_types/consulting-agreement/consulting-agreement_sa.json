@@ -1,0 +1,24 @@
+{
+  "consulting_details": {
+    "type": "object",
+    "description": "Details specific to the terms of a professional consulting engagement.",
+    "properties": {
+      "scope_of_services_summary": {
+        "type": "string",
+        "description": "A brief summary of the advisory services the consultant will provide."
+      },
+      "compensation_summary": {
+        "type": "string",
+        "description": "A summary of the payment terms (e.g., '$5,000 monthly retainer', '$250 per hour', 'Project-based fee')."
+      },
+      "term_of_agreement": {
+        "type": "string",
+        "description": "The duration of the consulting engagement."
+      },
+      "confidentiality_clause_summary": {
+        "type": "string",
+        "description": "A brief summary of the confidentiality obligations."
+      }
+    }
+  }
+}

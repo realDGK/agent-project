@@ -1,0 +1,56 @@
+{
+  "title": "Budget/Cost to Complete Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Project Budget'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Developer", "Contractor", "Lender"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "budget_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "total_budget_amount": { "type": "number" },
+        "cost_to_complete": { "type": "number" },
+        "funds_expended_to_date": { "type": "number" },
+        "line_items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "category": { "type": "string" },
+              "amount": { "type": "number" }
+            }
+          }
+        }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "budget_details"]
+}

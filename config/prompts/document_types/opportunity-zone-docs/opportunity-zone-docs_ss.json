@@ -1,0 +1,45 @@
+{
+  "title": "Opportunity Zone Document Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Qualified Opportunity Fund Self-Certification'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Fund", "Investor"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "oz_details": {
+      "type": "object",
+      "properties": {
+        "fund_name": { "type": "string" },
+        "fund_ein": { "type": "string" },
+        "investment_property_address": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "oz_details"]
+}

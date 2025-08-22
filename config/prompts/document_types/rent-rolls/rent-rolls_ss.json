@@ -1,0 +1,65 @@
+{
+  "title": "Rent Roll Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Rent Roll'."
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date",
+      "description": "The date the rent roll is effective as of."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Property Owner", "Property Manager"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "rent_roll_details": {
+      "type": "object",
+      "properties": {
+        "property_name": { "type": "string" },
+        "total_units": { "type": "integer" },
+        "occupied_units": { "type": "integer" },
+        "occupancy_rate_pct": { "type": "number" },
+        "total_monthly_rent": { "type": "number" },
+        "tenants": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "tenant_name": { "type": "string" },
+              "unit_number": { "type": "string" },
+              "sqft": { "type": "integer" },
+              "monthly_rent": { "type": "number" },
+              "lease_start": { "type": "string", "format": "date" },
+              "lease_end": { "type": "string", "format": "date" }
+            }
+          }
+        }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "rent_roll_details"]
+}

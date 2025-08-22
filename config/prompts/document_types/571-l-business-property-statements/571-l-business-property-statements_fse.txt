@@ -1,0 +1,31 @@
+**INPUT DOCUMENT TEXT:**
+FORM BOE-571-L - BUSINESS PROPERTY STATEMENT
+For the Year 2033
+County of Alameda Assessor
+
+Business Name: Logistics Solutions Inc.
+Location: 100 Business Park Drive
+
+PART II:
+1. Equipment: Total Cost $500,000
+2. Supplies: $25,000
+
+Date Signed: April 1, 2033
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Business Property Statement",
+  "effective_date": "2033-04-01",
+  "parties": [
+    { "name": "Logistics Solutions Inc.", "role": "Business Owner" },
+    { "name": "County of Alameda Assessor", "role": "Assessor" }
+  ],
+  "tax_details": {
+    "form_reference": "571-L",
+    "business_name": "Logistics Solutions Inc.",
+    "business_address": "100 Business Park Drive",
+    "total_cost_of_equipment": 500000,
+    "total_cost_of_supplies": 25000
+  },
+  "discovered_entities": []
+}

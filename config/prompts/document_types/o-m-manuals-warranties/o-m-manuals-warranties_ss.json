@@ -1,0 +1,46 @@
+{
+  "title": "O&M Manual/Warranty Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Operations and Maintenance Manual'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Manufacturer", "Contractor", "Owner"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "warranty_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "equipment_or_system": { "type": "string" },
+        "warranty_period": { "type": "string" },
+        "warranty_start_date": { "type": "string", "format": "date" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "warranty_details"]
+}

@@ -1,0 +1,13 @@
+{
+  "development_agreement_details": {
+    "type": "object",
+    "description": "Details specific to a Development Agreement between a developer and a public agency.",
+    "properties": {
+      "project_description": { "type": "string" },
+      "term_of_agreement": { "type": "string" },
+      "vested_rights": { "type": "string" },
+      "developer_obligations": { "type": "string" },
+      "public_benefits": { "type": "string" }
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "gis_details": {
+    "type": "object",
+    "description": "Details specific to GIS data, imagery, or 3D models.",
+    "properties": {
+      "data_type": {
+        "type": "string",
+        "enum": [
+          "Aerial Photo",
+          "LiDAR",
+          "GIS Layer",
+          "3D Model",
+          "BIM"
+        ]
+      },
+      "project_name": {
+        "type": "string"
+      },
+      "geographic_coverage": {
+        "type": "string"
+      },
+      "coordinate_system": {
+        "type": "string"
+      },
+      "file_format": {
+        "type": "string",
+        "description": "e.g., 'Shapefile', '.dwg', '.rvt', '.tif'"
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "plan_details": {
+    "type": "object",
+    "description": "Details specific to engineering, architectural, or site plans.",
+    "properties": {
+      "project_name": {
+        "type": "string"
+      },
+      "plan_type": {
+        "type": "string"
+      },
+      "engineer_of_record": {
+        "type": "string"
+      },
+      "approval_date": {
+        "type": "string",
+        "format": "date"
+      },
+      "plan_sheet_count": {
+        "type": "integer"
+      },
+      "trees_to_be_removed_summary": {
+        "type": "string"
+      },
+      "trees_to_be_protected_summary": {
+        "type": "string"
+      }
+    }
+  }
+}

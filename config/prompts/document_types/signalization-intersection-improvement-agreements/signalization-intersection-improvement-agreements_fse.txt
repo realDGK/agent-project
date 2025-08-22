@@ -1,0 +1,22 @@
+**INPUT DOCUMENT TEXT:**
+AGREEMENT FOR DESIGN AND CONSTRUCTION OF TRAFFIC SIGNAL
+
+This Agreement is made September 1, 2030, between the City of Riverbend ("City") and Riverbend Homes LLC ("Developer").
+
+Developer agrees to design and construct a traffic signal at the intersection of Main Street and Riverbend Parkway. Upon completion and acceptance by the City Engineer, the City shall own and maintain the signal. The Developer shall bear 100% of the design and construction costs.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Agreement for Design and Construction of Traffic Signal",
+  "effective_date": "2030-09-01",
+  "parties": [
+    { "name": "City of Riverbend", "role": "City" },
+    { "name": "Riverbend Homes LLC", "role": "Developer" }
+  ],
+  "improvement_agreement_details": {
+    "improvement_location": "Intersection of Main Street and Riverbend Parkway.",
+    "improvement_description": "Design and construct a traffic signal.",
+    "cost_responsibility": "The Developer shall bear 100% of the design and construction costs."
+  },
+  "discovered_entities": []
+}

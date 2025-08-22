@@ -1,0 +1,59 @@
+INPUT DOCUMENT TEXT:
+CERTIFICATE OF THE SECRETARY
+OF
+RIVERSTONE DEVELOPMENT CORP.
+I, the undersigned, hereby certify that I am the duly elected and acting Secretary of Riverstone Development Corp., a Delaware corporation (the "Corporation"), and that as of the date hereof, the following persons have been duly elected and are qualified officers of the Corporation, holding the offices set forth opposite their respective names:
+Robert Smith: President
+Laura Jones: Chief Financial Officer
+David Lee: Vice President
+IN WITNESS WHEREOF, I have hereunto set my hand this 2nd day of February, 2027.
+(Signature)
+Michael Brown, Secretary
+JSON OUTPUT:
+{
+"contract_name": "Certificate of the Secretary",
+"effective_date": "2027-02-02",
+"parties": [
+{
+"name": "Riverstone Development Corp.",
+"role": "Entity",
+"title": null
+},
+{
+"name": "Robert Smith",
+"role": "Appointee",
+"title": "President"
+},
+{
+"name": "Laura Jones",
+"role": "Appointee",
+"title": "Chief Financial Officer"
+},
+{
+"name": "David Lee",
+"role": "Appointee",
+"title": "Vice President"
+},
+{
+"name": "Michael Brown",
+"role": "Appointing Officer",
+"title": "Secretary"
+}
+],
+"officer_appointment_details": {
+"appointed_officers": [
+{
+"name": "Robert Smith",
+"title": "President"
+},
+{
+"name": "Laura Jones",
+"title": "Chief Financial Officer"
+},
+{
+"name": "David Lee",
+"title": "Vice President"
+}
+],
+"discovered_entities": []
+}

@@ -1,0 +1,24 @@
+**INPUT DOCUMENT TEXT:**
+IRREVOCABLE OFFER
+
+For consideration of $1,000, receipt of which is acknowledged, Seller Corp ("Offeror") hereby offers to sell the property at 555 Industrial Park Rd to Buyer LLC ("Offeree") for a price of $5,000,000.
+
+This offer shall be irrevocable and remain open for acceptance until 5:00 PM on April 15, 2029.
+
+Dated: April 1, 2029
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Irrevocable Offer",
+  "effective_date": "2029-04-01",
+  "parties": [
+    { "name": "Seller Corp", "role": "Offeror" },
+    { "name": "Buyer LLC", "role": "Offeree" }
+  ],
+  "offer_details": {
+    "offer_summary": "Offer to sell the property at 555 Industrial Park Rd for $5,000,000.",
+    "expiration_date": "2029-04-15",
+    "consideration_paid": "$1,000"
+  },
+  "discovered_entities": []
+}

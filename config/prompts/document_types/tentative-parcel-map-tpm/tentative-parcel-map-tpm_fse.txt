@@ -1,0 +1,25 @@
+**INPUT DOCUMENT TEXT:**
+COUNTY OF PLACER
+NOTICE OF APPROVAL FOR TENTATIVE PARCEL MAP TPM-2029-15
+
+APPLICANT/OWNER: Smith Family Trust
+APPROVAL DATE: February 5, 2029
+
+This Tentative Parcel Map subdivides one 10-acre parcel (APN 012-345-067) into four (4) residential parcels.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Tentative Parcel Map TPM-2029-15",
+  "parties": [
+    { "name": "Smith Family Trust", "role": "Applicant" },
+    { "name": "County of Placer", "role": "Approving Agency" }
+  ],
+  "map_details": {
+    "map_type": "Tentative Parcel Map",
+    "map_number": "TPM-2029-15",
+    "number_of_lots_created": 4,
+    "apn": "012-345-067",
+    "approval_date": "2029-02-05"
+  },
+  "discovered_entities": []
+}

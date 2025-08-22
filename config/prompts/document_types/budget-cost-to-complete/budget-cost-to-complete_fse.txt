@@ -1,0 +1,34 @@
+**INPUT DOCUMENT TEXT:**
+PROJECT BUDGET - DOWNTOWN TOWER
+As of: August 1, 2031
+
+Hard Costs:
+  - Structure: $25,000,000
+  - Finishes: $15,000,000
+Soft Costs:
+  - A&E: $5,000,000
+  - Permits & Fees: $3,000,000
+Contingency: $2,000,000
+-------------------------
+TOTAL BUDGET: $50,000,000
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Project Budget - Downtown Tower",
+  "effective_date": "2031-08-01",
+  "parties": [],
+  "budget_details": {
+    "project_name": "Downtown Tower",
+    "total_budget_amount": 50000000,
+    "cost_to_complete": null,
+    "funds_expended_to_date": null,
+    "line_items": [
+      { "category": "Structure", "amount": 25000000 },
+      { "category": "Finishes", "amount": 15000000 },
+      { "category": "A&E", "amount": 5000000 },
+      { "category": "Permits & Fees", "amount": 3000000 },
+      { "category": "Contingency", "amount": 2000000 }
+    ]
+  },
+  "discovered_entities": []
+}

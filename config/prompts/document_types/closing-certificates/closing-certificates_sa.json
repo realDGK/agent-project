@@ -1,0 +1,14 @@
+{
+  "certificate_details": {
+    "type": "object",
+    "description": "Details specific to certifications made by a party in a transaction.",
+    "properties": {
+      "entity_file_number": { "type": "string" },
+      "entity_type": { "type": "string" },
+      "jurisdiction": { "type": "string" },
+      "issue_date": { "type": "string", "format": "date" },
+      "status_verified": { "type": "string" },
+      "certifications_made": { "type": "array", "items": { "type": "string" } }
+    }
+  }
+}

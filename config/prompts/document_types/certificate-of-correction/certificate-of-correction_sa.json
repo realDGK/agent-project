@@ -1,0 +1,22 @@
+{
+  "properties": {
+    "correction_details": {
+      "type": "string",
+      "description": "Details of what is being corrected in the original document."
+    },
+    "original_document_recording_date": {
+      "type": "string",
+      "format": "date",
+      "description": "The recording date of the original document that is being corrected."
+    },
+    "original_document_instrument_number": {
+      "type": "string",
+      "description": "The instrument or document number of the original document that is being corrected."
+    }
+  },
+  "required": [
+    "correction_details",
+    "original_document_recording_date",
+    "original_document_instrument_number"
+  ]
+}

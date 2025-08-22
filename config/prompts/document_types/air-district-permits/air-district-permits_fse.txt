@@ -1,0 +1,32 @@
+**INPUT DOCUMENT TEXT:**
+BAY AREA AIR QUALITY MANAGEMENT DISTRICT
+AUTHORITY TO CONSTRUCT
+
+Owner/Operator: Data Center Solutions Inc.
+Application No: 54321
+Date Issued: October 5, 2031
+
+Equipment Location: 100 Tech Way, San Jose, CA
+Equipment Description: One (1) 2,500 kW diesel-fired emergency generator.
+
+Conditions:
+1. The generator shall not operate more than 50 hours per year for testing and maintenance.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Authority to Construct",
+  "effective_date": "2031-10-05",
+  "parties": [
+    { "name": "Data Center Solutions Inc.", "role": "Permittee" },
+    { "name": "Bay Area Air Quality Management District", "role": "Issuing Agency" }
+  ],
+  "permit_details": {
+    "permit_number": "54321",
+    "permit_type": "Authority to Construct",
+    "equipment_or_process_permitted": "One (1) 2,500 kW diesel-fired emergency generator.",
+    "key_conditions": [
+      "The generator shall not operate more than 50 hours per year for testing and maintenance."
+    ]
+  },
+  "discovered_entities": []
+}

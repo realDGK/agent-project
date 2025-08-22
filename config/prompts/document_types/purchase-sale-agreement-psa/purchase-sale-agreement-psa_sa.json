@@ -1,0 +1,29 @@
+{
+  "deal_terms": {
+    "type": "object",
+    "description": "Details specific to the core terms of a real estate or business transaction.",
+    "properties": {
+      "property_description": { "type": "string" },
+      "purchase_price": { "type": "number" },
+      "deposit_amount": { "type": "number" },
+      "due_diligence_period": { "type": "string" },
+      "closing_period": { "type": "string" },
+      "is_binding": { "type": "boolean" },
+      "transaction_summary": { "type": "string" },
+      "key_financial_terms": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "term": { "type": "string" },
+            "value": { "type": "string" }
+          }
+        }
+      },
+      "deposit_increase_details": { "type": "string" },
+      "contingencies": { "type": "array", "items": { "type": "string" } },
+      "closing_date": { "type": "string", "format": "date" },
+      "prorations_summary": { "type": "string" }
+    }
+  }
+}

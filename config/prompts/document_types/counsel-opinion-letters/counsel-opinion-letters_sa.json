@@ -1,0 +1,11 @@
+{
+  "legal_opinion_details": {
+    "type": "object",
+    "description": "Details specific to a legal opinion letter.",
+    "properties": {
+      "subject_matter": { "type": "string" },
+      "opinion_summary": { "type": "string" },
+      "qualifications_and_assumptions": { "type": "string" }
+    }
+  }
+}

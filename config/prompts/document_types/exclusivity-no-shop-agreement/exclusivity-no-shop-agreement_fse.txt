@@ -1,0 +1,35 @@
+**INPUT DOCUMENT TEXT:**
+NO-SHOP AGREEMENT
+
+This Agreement is made on July 15, 2027, between Greenfield Properties LLC ("Seller") and Horizon Acquisitions Corp. ("Buyer").
+
+1. No-Shop Period. For a period of forty-five (45) days commencing on the date hereof (the "Exclusivity Period"), Seller agrees that it will not solicit, initiate, or engage in discussions or negotiations with any third party relating to the sale of the Property.
+
+2. Property. The property located at 456 Industrial Way.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "No-Shop Agreement",
+  "effective_date": "2027-07-15",
+  "parties": [
+    {
+      "name": "Greenfield Properties LLC",
+      "role": "Seller"
+    },
+    {
+      "name": "Horizon Acquisitions Corp.",
+      "role": "Prospective Buyer"
+    }
+  ],
+  "exclusivity_details": {
+    "exclusivity_period": "Forty-five (45) days commencing on the date hereof.",
+    "scope_of_exclusivity": "Seller will not solicit, initiate, or engage in discussions or negotiations with any third party relating to the sale of the Property."
+  },
+  "discovered_entities": [
+    {
+      "entity_name": "Property",
+      "entity_value": "456 Industrial Way",
+      "context_summary": "The property subject to the no-shop agreement."
+    }
+  ]
+}

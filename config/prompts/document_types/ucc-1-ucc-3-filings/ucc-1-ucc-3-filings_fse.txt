@@ -1,0 +1,25 @@
+**INPUT DOCUMENT TEXT:**
+UCC FINANCING STATEMENT (FORM UCC-1)
+FILING OFFICE: Delaware Secretary of State
+
+DEBTOR: Downtown Tower LLC, 100 Corporate Drive, Wilmington, DE
+SECURED PARTY: Mega Bank, N.A., 200 Finance Plaza, New York, NY
+
+This financing statement covers the following collateral:
+All assets of the Debtor, including but not limited to accounts, equipment, inventory, and fixtures related to the property at 123 Main Street.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "UCC Financing Statement",
+  "effective_date": null,
+  "parties": [
+    { "name": "Downtown Tower LLC", "role": "Debtor" },
+    { "name": "Mega Bank, N.A.", "role": "Secured Party" }
+  ],
+  "ucc_filing_details": {
+    "filing_type": "UCC-1",
+    "filing_number": null,
+    "collateral_description": "All assets of the Debtor, including but not limited to accounts, equipment, inventory, and fixtures related to the property at 123 Main Street."
+  },
+  "discovered_entities": []
+}

@@ -1,0 +1,30 @@
+**INPUT DOCUMENT TEXT:**
+DEED OF CONSERVATION EASEMENT
+
+This Deed is made October 1, 2031, by Green Valley Ranch LLC ("Grantor") to the North Coast Land Trust ("Grantee").
+
+Grantor conveys to Grantee a perpetual conservation easement over the 500-acre property described in Exhibit A to protect its scenic and wildlife habitat values.
+
+Prohibited uses include any subdivision of the property, commercial timber harvesting, and construction of any new structures outside of the designated building envelope.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Deed of Conservation Easement",
+  "effective_date": "2031-10-01",
+  "parties": [
+    { "name": "Green Valley Ranch LLC", "role": "Grantor" },
+    { "name": "North Coast Land Trust", "role": "Grantee" }
+  ],
+  "easement_details": {
+    "property_description": "The 500-acre property described in Exhibit A.",
+    "conservation_values": "Scenic and wildlife habitat values.",
+    "prohibited_uses": [
+      "Any subdivision of the property",
+      "Commercial timber harvesting",
+      "Construction of any new structures outside of the designated building envelope"
+    ],
+    "is_perpetual": true
+  },
+  "legal_recording_details": null,
+  "discovered_entities": []
+}

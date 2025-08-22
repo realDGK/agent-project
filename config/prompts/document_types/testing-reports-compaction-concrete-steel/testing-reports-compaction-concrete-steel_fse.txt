@@ -1,0 +1,35 @@
+**INPUT DOCUMENT TEXT:**
+MATERIALS TESTING & INSPECTION
+CONCRETE COMPRESSIVE STRENGTH REPORT
+
+Report No: 3456-001
+Date: January 15, 2032
+Client: BuildRight Corp.
+Project: Downtown Tower
+
+Test Date: 01/14/2032
+Sample Location: 12th Floor Slab Pour
+Specified Strength: 4,000 psi
+7-Day Break Result: 3,200 psi (80%)
+28-Day Break Result: 4,550 psi (114%)
+
+Results: The sample meets the specified 28-day compressive strength requirements.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Concrete Compressive Strength Report",
+  "effective_date": "2032-01-15",
+  "parties": [
+    { "name": "Materials Testing & Inspection", "role": "Testing Laboratory" },
+    { "name": "BuildRight Corp.", "role": "Client" }
+  ],
+  "testing_report_details": {
+    "project_name": "Downtown Tower",
+    "report_number": "3456-001",
+    "test_type": "Concrete Compressive Strength",
+    "test_date": "2032-01-14",
+    "test_results_summary": "7-Day: 3,200 psi (80%); 28-Day: 4,550 psi (114%)",
+    "is_passing": true
+  },
+  "discovered_entities": []
+}

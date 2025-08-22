@@ -1,0 +1,46 @@
+{
+  "title": "Hearing Notice Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Notice of Public Hearing'."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Noticing Agency", "Applicant"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "hearing_details": {
+      "type": "object",
+      "properties": {
+        "hearing_date": { "type": "string", "format": "date" },
+        "hearing_time": { "type": "string" },
+        "hearing_location": { "type": "string" },
+        "hearing_body": { "type": "string" },
+        "project_description": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "hearing_details"]
+}

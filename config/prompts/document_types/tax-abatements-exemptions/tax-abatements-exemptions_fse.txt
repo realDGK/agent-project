@@ -1,0 +1,26 @@
+**INPUT DOCUMENT TEXT:**
+RESOLUTION NO. 2032-45
+A RESOLUTION OF THE CITY OF RENAISSANCE APPROVING A PROPERTY TAX ABATEMENT FOR HISTORIC PRESERVATION
+
+WHEREAS, Historic Hotels LLC has applied for a tax abatement for the renovation of the Grand Hotel at 100 Main Street;
+
+NOW, THEREFORE, the City Council approves a 50% abatement of city property taxes for a period of ten (10) years, conditioned upon the completion of the historic renovation.
+
+ADOPTED: July 15, 2032
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Resolution Approving a Property Tax Abatement for Historic Preservation",
+  "effective_date": "2032-07-15",
+  "parties": [
+    { "name": "Historic Hotels LLC", "role": "Property Owner" },
+    { "name": "City of Renaissance", "role": "Approving Agency" }
+  ],
+  "tax_agreement_details": {
+    "property_address": "Grand Hotel at 100 Main Street",
+    "abatement_percentage": 50,
+    "abatement_duration": "Ten (10) years",
+    "reason_for_abatement": "Conditioned upon the completion of the historic renovation."
+  },
+  "discovered_entities": []
+}

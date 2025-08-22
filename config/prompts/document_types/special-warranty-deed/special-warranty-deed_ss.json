@@ -1,0 +1,53 @@
+{
+  "title": "Warranty Deed Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Special Warranty Deed'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Grantor", "Grantee"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "deed_details": {
+      "type": "object",
+      "properties": {
+        "deed_type": { "type": "string", "default": "Warranty Deed" },
+        "property_legal_description": { "type": "string" },
+        "apn": { "type": "string" },
+        "warranty_clause": { "type": "string" }
+      }
+    },
+    "legal_recording_details": {
+      "type": "object",
+      "properties": {
+        "county": { "type": "string" },
+        "state": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "deed_details"]
+}

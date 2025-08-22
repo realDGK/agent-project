@@ -1,0 +1,31 @@
+**INPUT DOCUMENT TEXT:**
+PERFORMANCE BOND
+
+Bond No: 9876543
+Date: September 1, 2031
+
+PRINCIPAL: BuildRight Corp.
+SURETY: Global Surety Company
+OBLIGEE: Downtown Tower LLC
+
+PENAL SUM: One Hundred Million Dollars ($100,000,000.00)
+
+The condition of this obligation is that the Principal shall faithfully perform the work described in the Construction Contract for the Downtown Tower project.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Performance Bond",
+  "effective_date": "2031-09-01",
+  "parties": [
+    { "name": "BuildRight Corp.", "role": "Principal" },
+    { "name": "Global Surety Company", "role": "Surety" },
+    { "name": "Downtown Tower LLC", "role": "Obligee" }
+  ],
+  "bond_details": {
+    "bond_number": "9876543",
+    "bond_type": "Performance",
+    "penal_sum": 100000000,
+    "project_description": "Downtown Tower project"
+  },
+  "discovered_entities": []
+}

@@ -1,0 +1,46 @@
+{
+  "title": "Title Bring-down Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Endorsement 110.5', 'Date-Down Endorsement'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Title Company", "Insured"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "title_details": {
+      "type": "object",
+      "properties": {
+        "policy_number": { "type": "string" },
+        "original_policy_date": { "type": "string", "format": "date" },
+        "bring_down_date": { "type": "string", "format": "date" },
+        "new_exceptions": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "title_details"]
+}

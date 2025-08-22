@@ -1,0 +1,24 @@
+**INPUT DOCUMENT TEXT:**
+APPLICATION FOR WATER METER INSTALLATION
+City of Pleasanton
+
+Date: March 10, 2028
+Applicant: Bright Homes LLC
+Service Address: 123 New Development Circle, Lot 5, Pleasanton, CA
+
+We hereby request the installation of one (1) 3/4-inch domestic water meter to serve the single-family residence at the above address.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Application for Water Meter Installation",
+  "effective_date": "2028-03-10",
+  "parties": [
+    { "name": "Bright Homes LLC", "role": "Applicant" },
+    { "name": "City of Pleasanton", "role": "Utility" }
+  ],
+  "utility_service_details": {
+    "service_address": "123 New Development Circle, Lot 5, Pleasanton, CA",
+    "meter_type_requested": "3/4-inch domestic water meter",
+    "service_type": "Water"
+  }
+}

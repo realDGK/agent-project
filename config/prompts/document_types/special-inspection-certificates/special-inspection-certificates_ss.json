@@ -1,0 +1,46 @@
+{
+  "title": "Special Inspection Certificate Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Certificate of Compliance for Special Inspection'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Special Inspector", "Engineer of Record", "Building Official"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "inspection_report_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "permit_number": { "type": "string" },
+        "inspection_type": { "type": "string" },
+        "compliance_statement": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "inspection_report_details"]
+}

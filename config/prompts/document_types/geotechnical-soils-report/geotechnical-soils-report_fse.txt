@@ -1,0 +1,33 @@
+**INPUT DOCUMENT TEXT:**
+GEOTECHNICAL INVESTIGATION
+PROPOSED COMMERCIAL BUILDING, 123 MAIN ST
+
+Prepared for: Main Street Development LLC
+Prepared by: GeoTek Solutions
+Date: January 25, 2031
+
+FINDINGS:
+The site is underlain by expansive clay soils. The potential for liquefaction is low.
+
+RECOMMENDATIONS:
+Foundations should consist of a post-tensioned slab-on-grade. All fill material should be compacted to 95% relative compaction.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Geotechnical Investigation",
+  "effective_date": "2031-01-25",
+  "parties": [
+    { "name": "GeoTek Solutions", "role": "Consultant" },
+    { "name": "Main Street Development LLC", "role": "Client" }
+  ],
+  "technical_study_details": {
+    "study_type": "Geotechnical/Soils Report",
+    "project_name": "Proposed Commercial Building, 123 Main St",
+    "key_findings": [
+      "The site is underlain by expansive clay soils.",
+      "The potential for liquefaction is low."
+    ],
+    "recommendations": "Foundations should consist of a post-tensioned slab-on-grade. All fill material should be compacted to 95% relative compaction."
+  },
+  "discovered_entities": []
+}

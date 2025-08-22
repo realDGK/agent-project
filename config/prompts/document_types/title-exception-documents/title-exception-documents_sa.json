@@ -1,0 +1,24 @@
+{
+  "title_details": {
+    "type": "object",
+    "description": "Details specific to title insurance reports, commitments, and policies.",
+    "properties": {
+      "report_number": { "type": "string" },
+      "property_legal_description": { "type": "string" },
+      "estate_or_interest": { "type": "string" },
+      "exceptions": { "type": "array", "items": { "type": "string" } },
+      "policy_type": { "type": "string" },
+      "proposed_insured_amount": { "type": "number" },
+      "proposed_endorsements": { "type": "array", "items": { "type": "string" } },
+      "policy_number": { "type": "string" },
+      "amount_of_insurance": { "type": "number" },
+      "policy_date": { "type": "string", "format": "date" },
+      "schedule_a_vesting": { "type": "string" },
+      "schedule_b_exceptions": { "type": "array", "items": { "type": "string" } },
+      "endorsement_number": { "type": "string" },
+      "endorsement_title": { "type": "string" },
+      "endorsement_summary": { "type": "string" },
+      "document_summary": { "type": "string" }
+    }
+  }
+}

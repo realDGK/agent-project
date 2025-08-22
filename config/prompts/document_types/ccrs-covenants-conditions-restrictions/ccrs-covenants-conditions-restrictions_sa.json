@@ -1,0 +1,12 @@
+{
+  "ccr_details": {
+    "type": "object",
+    "description": "Details specific to a declaration of CC&Rs.",
+    "properties": {
+      "property_description": { "type": "string" },
+      "association_name": { "type": "string" },
+      "use_restrictions_summary": { "type": "string" },
+      "assessment_provisions": { "type": "string" }
+    }
+  }
+}

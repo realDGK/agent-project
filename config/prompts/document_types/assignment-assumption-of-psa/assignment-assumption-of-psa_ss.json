@@ -1,0 +1,63 @@
+{
+  "title": "Assignment and Assumption of PSA Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Assignment and Assumption of Purchase and Sale Agreement'."
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date",
+      "description": "The date the assignment was executed."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Assignor", "Assignee", "Seller"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "assignment_details": {
+      "type": "object",
+      "properties": {
+        "original_agreement_name": {
+          "type": "string",
+          "description": "The name or description of the underlying contract being assigned."
+        },
+        "original_agreement_date": {
+          "type": "string",
+          "format": "date",
+          "description": "The date of the underlying contract."
+        },
+        "assumption_of_obligations": {
+          "type": "string",
+          "description": "A summary of the clause where the Assignee agrees to assume the Assignor's duties."
+        },
+        "consideration": {
+          "type": "string",
+          "description": "Any payment or consideration made for the assignment."
+        }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "assignment_details"]
+}

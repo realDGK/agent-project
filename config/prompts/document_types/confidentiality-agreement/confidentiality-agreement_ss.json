@@ -1,0 +1,59 @@
+{
+  "title": "Confidentiality Agreement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Confidentiality Agreement'."
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date",
+      "description": "The date the agreement was signed or became effective."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Disclosing Party", "Receiving Party"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "nda_details": {
+      "type": "object",
+      "properties": {
+        "nda_type": {
+          "type": "string",
+          "enum": ["Mutual", "One-Way"],
+          "description": "Specifies whether the agreement is mutual or one-way."
+        },
+        "purpose_of_disclosure": {
+          "type": "string",
+          "description": "A summary of the reason for sharing confidential information."
+        },
+        "term_of_confidentiality": {
+          "type": "string",
+          "description": "The duration the receiving party must keep the information confidential."
+        }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "nda_details"]
+}

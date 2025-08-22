@@ -1,0 +1,47 @@
+{
+  "title": "General Plan Amendment Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Resolution Approving General Plan Amendment'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Applicant", "Approving Agency"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "entitlement_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "application_number": { "type": "string" },
+        "property_description": { "type": "string" },
+        "original_land_use_designation": { "type": "string" },
+        "new_land_use_designation": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "entitlement_details"]
+}

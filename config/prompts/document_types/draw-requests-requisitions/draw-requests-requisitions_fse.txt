@@ -1,0 +1,33 @@
+**INPUT DOCUMENT TEXT:**
+CONSTRUCTION LOAN DRAW REQUEST
+
+Project: Downtown Tower
+Draw No: 5
+For Period Ending: March 31, 2032
+Date: April 5, 2032
+
+Borrower: Downtown Tower LLC
+Lender: Mega Bank, N.A.
+
+Total Amount Requested: $2,500,000.00
+Amount Approved by Inspector: $2,450,000.00
+Total Project % Complete: 25%
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Construction Loan Draw Request",
+  "effective_date": "2032-04-05",
+  "parties": [
+    { "name": "Downtown Tower LLC", "role": "Borrower" },
+    { "name": "Mega Bank, N.A.", "role": "Lender" }
+  ],
+  "draw_request_details": {
+    "project_name": "Downtown Tower",
+    "draw_number": "5",
+    "draw_period": "Ending March 31, 2032",
+    "total_amount_requested": 2500000,
+    "total_amount_approved": 2450000,
+    "total_project_completion_pct": 25
+  },
+  "discovered_entities": []
+}

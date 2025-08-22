@@ -1,0 +1,45 @@
+{
+  "title": "HOA Meeting Minutes/Resolution Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Minutes of the Annual Meeting'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Homeowners Association", "Board of Directors"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "meeting_minutes_details": {
+      "type": "object",
+      "properties": {
+        "meeting_type": { "type": "string" },
+        "key_decisions_made": { "type": "array", "items": { "type": "string" } },
+        "vote_summary": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "meeting_minutes_details"]
+}

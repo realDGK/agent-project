@@ -1,0 +1,560 @@
+Document Type: Utility Relocation Agreement
+Here are the three files for the utility-relocation-agreements folder.
+
+1. Specialist Schema
+File: utility-relocation-agreements.SS.json
+
+JSON
+
+{
+  "title": "Utility Relocation Agreement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Agreement for Relocation of Utility Facilities'."
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date",
+      "description": "The date the agreement was executed."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Owner", "Utility", "Agency"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "utility_relocation_details": {
+      "type": "object",
+      "properties": {
+        "project_requiring_relocation": {
+          "type": "string",
+          "description": "The name or description of the project necessitating the utility move."
+        },
+        "facilities_to_be_relocated": {
+          "type": "string",
+          "description": "A summary of the utility infrastructure being moved (e.g., 'underground electrical conduit', 'water mains')."
+        },
+        "cost_responsibility": {
+          "type": "string",
+          "description": "A summary of who is responsible for the costs of the relocation."
+        }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "utility_relocation_details"]
+}
+2. Few-Shot Example
+File: utility-relocation-agreements.FSE.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+AGREEMENT FOR RELOCATION OF UTILITY FACILITIES
+
+This Agreement is entered into this 12th day of May, 2026, by and between the City of Evergreen ("Agency") and Mountain Power & Light ("Utility").
+
+RECITALS
+WHEREAS, the Agency is undertaking the widening of Oak Street (the "Project"); and
+WHEREAS, the Project requires the relocation of certain of Utility's existing overhead power lines and poles located within the Project area.
+
+AGREEMENT
+1. Relocation of Facilities. Utility agrees to relocate its 12kV distribution lines as shown on Exhibit A.
+2. Costs of Relocation. The Agency shall bear the full cost of the relocation, estimated to be $250,000.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Agreement for Relocation of Utility Facilities",
+  "effective_date": "2026-05-12",
+  "parties": [
+    {
+      "name": "City of Evergreen",
+      "role": "Agency"
+    },
+    {
+      "name": "Mountain Power & Light",
+      "role": "Utility"
+    }
+  ],
+  "utility_relocation_details": {
+    "project_requiring_relocation": "Widening of Oak Street",
+    "facilities_to_be_relocated": "Existing overhead 12kV distribution power lines and poles.",
+    "cost_responsibility": "The Agency shall bear the full cost, estimated at $250,000."
+  },
+  "discovered_entities": []
+}
+3. Schema Additions
+File: utility-relocation-agreements.SA.json
+
+JSON
+
+{
+  "utility_relocation_details": {
+    "type": "object",
+    "description": "Details specific to an agreement for the relocation of utility infrastructure.",
+    "properties": {
+      "project_requiring_relocation": {
+        "type": "string",
+        "description": "The name or description of the project necessitating the utility move."
+      },
+      "facilities_to_be_relocated": {
+        "type": "string",
+        "description": "A summary of the utility infrastructure being moved (e.g., 'underground electrical conduit', 'water mains')."
+      },
+      "cost_responsibility": {
+        "type": "string",
+        "description": "A summary of who is responsible for the costs of the relocation."
+      }
+    }
+  }
+}
+
+Document Type: Stipulations
+Folder: /document_types/stipulations/
+
+1. Specialist Schema
+File: stipulations.SS.json
+
+JSON
+
+{
+  "title": "Stipulation Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Stipulation for Entry of Judgment'."
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Plaintiff", "Defendant", "Petitioner", "Respondent"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "litigation_details": {
+      "type": "object",
+      "properties": {
+        "court_name": { "type": "string" },
+        "case_number": { "type": "string" }
+      }
+    },
+    "stipulation_details": {
+      "type": "object",
+      "properties": {
+        "stipulation_summary": {
+          "type": "string",
+          "description": "A summary of what the parties are agreeing to."
+        }
+      }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "stipulation_details"]
+}
+2. Few-Shot Example
+File: stipulations.FSE.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+SUPERIOR COURT OF CALIFORNIA, COUNTY OF ALAMEDA
+Case Name: Urban Development vs. City of Oakland
+Case No. RG12345678
+
+STIPULATION FOR DISMISSAL
+
+IT IS HEREBY STIPULATED by and between the parties, Plaintiff Urban Development and Defendant City of Oakland, that the above-entitled action be dismissed with prejudice, with each party to bear its own costs and attorneys' fees.
+
+Dated: June 1, 2027
+Signed: Counsel for Plaintiff, Counsel for Defendant
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Stipulation for Dismissal",
+  "effective_date": "2027-06-01",
+  "parties": [
+    {
+      "name": "Urban Development",
+      "role": "Plaintiff"
+    },
+    {
+      "name": "City of Oakland",
+      "role": "Defendant"
+    }
+  ],
+  "litigation_details": {
+    "court_name": "Superior Court of California, County of Alameda",
+    "case_number": "RG12345678"
+  },
+  "stipulation_details": {
+    "stipulation_summary": "The action is to be dismissed with prejudice, with each party bearing its own costs and fees."
+  }
+}
+3. Schema Additions
+File: stipulations.SA.json
+
+JSON
+
+{
+  "stipulation_details": {
+    "type": "object",
+    "description": "Details specific to a stipulation between parties in a legal proceeding.",
+    "properties": {
+      "stipulation_summary": {
+        "type": "string",
+        "description": "A summary of what the parties are agreeing to."
+      }
+    }
+  }
+}
+Document Type: Service Interconnect Agreements
+Folder: /document_types/service-interconnect-agreements/
+
+1. Specialist Schema
+File: service-interconnect-agreements.SS.json
+
+JSON
+
+{
+  "title": "Service Interconnect Agreement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": { "type": "string" },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": { "type": "string", "enum": ["Customer", "Utility"] }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "interconnect_agreement_details": {
+      "type": "object",
+      "properties": {
+        "service_address": { "type": "string" },
+        "generation_facility_type": { "type": "string", "description": "e.g., 'Solar PV', 'Battery Storage'" },
+        "system_capacity_kw": { "type": "number" },
+        "point_of_interconnection": { "type": "string" }
+      }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "interconnect_agreement_details"]
+}
+2. Few-Shot Example
+File: service-interconnect-agreements.FSE.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+GENERATOR INTERCONNECTION AGREEMENT
+This Agreement is entered into on July 1, 2027, between Pacific Power ("Utility") and Sunstream Solar LLC ("Customer").
+
+Customer wishes to interconnect its 500 kW solar photovoltaic generating facility located at 123 Solar Way, Fresno, CA to the Utility's distribution system. The point of common coupling will be at the customer's main service panel.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Generator Interconnection Agreement",
+  "effective_date": "2027-07-01",
+  "parties": [
+    { "name": "Pacific Power", "role": "Utility" },
+    { "name": "Sunstream Solar LLC", "role": "Customer" }
+  ],
+  "interconnect_agreement_details": {
+    "service_address": "123 Solar Way, Fresno, CA",
+    "generation_facility_type": "solar photovoltaic",
+    "system_capacity_kw": 500,
+    "point_of_interconnection": "Customer's main service panel"
+  }
+}
+3. Schema Additions
+File: service-interconnect-agreements.SA.json
+
+JSON
+
+{
+  "interconnect_agreement_details": {
+    "type": "object",
+    "description": "Details specific to an agreement to interconnect a generation facility with a utility grid.",
+    "properties": {
+      "service_address": { "type": "string" },
+      "generation_facility_type": { "type": "string", "description": "e.g., 'Solar PV', 'Battery Storage'" },
+      "system_capacity_kw": { "type": "number" },
+      "point_of_interconnection": { "type": "string" }
+    }
+  }
+}
+Document Type: Settlement Agreements
+Folder: /document_types/settlement-agreements/
+
+1. Specialist Schema
+File: settlement-agreements.SS.json
+
+JSON
+
+{
+  "title": "Settlement Agreement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": { "type": "string" },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": { "type": "string", "enum": ["Plaintiff", "Defendant", "Claimant", "Respondent"] }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "settlement_details": {
+      "type": "object",
+      "properties": {
+        "settlement_amount": { "type": "number" },
+        "release_of_claims_summary": { "type": "string" },
+        "confidentiality_clause": { "type": "boolean" }
+      }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "settlement_details"]
+}
+2. Few-Shot Example
+File: settlement-agreements.FSE.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+CONFIDENTIAL SETTLEMENT AGREEMENT AND RELEASE
+This Agreement, dated August 15, 2027, is between Apex Construction ("Claimant") and Downtown Lofts HOA ("Respondent").
+
+In consideration of a payment of one hundred thousand dollars ($100,000) from Respondent to Claimant, Claimant agrees to release all claims, known and unknown, arising from the construction project at 456 Main St. The parties agree to keep the terms of this settlement strictly confidential.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Confidential Settlement Agreement and Release",
+  "effective_date": "2027-08-15",
+  "parties": [
+    { "name": "Apex Construction", "role": "Claimant" },
+    { "name": "Downtown Lofts HOA", "role": "Respondent" }
+  ],
+  "settlement_details": {
+    "settlement_amount": 100000,
+    "release_of_claims_summary": "Claimant releases all claims, known and unknown, arising from the construction project at 456 Main St.",
+    "confidentiality_clause": true
+  }
+}
+3. Schema Additions
+File: settlement-agreements.SA.json
+
+JSON
+
+{
+  "settlement_details": {
+    "type": "object",
+    "description": "Details specific to a settlement agreement resolving a dispute.",
+    "properties": {
+      "settlement_amount": { "type": "number" },
+      "release_of_claims_summary": { "type": "string" },
+      "confidentiality_clause": { "type": "boolean" }
+    }
+  }
+}
+Document Type: Railroad Crossing Corridor Licenses
+Folder: /document_types/railroad-crossing-corridor-licenses/
+
+1. Specialist Schema
+File: railroad-crossing-corridor-licenses.SS.json
+
+JSON
+
+{
+  "title": "Railroad License Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": { "type": "string" },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": { "type": "string", "enum": ["Licensor", "Licensee", "Railroad"] }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "license_details": {
+      "type": "object",
+      "properties": {
+        "license_purpose": { "type": "string" },
+        "location_description": { "type": "string" },
+        "license_fee": { "type": "string" },
+        "insurance_requirements": { "type": "string" }
+      }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "license_details"]
+}
+2. Few-Shot Example
+File: railroad-crossing-corridor-licenses.FSE.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+Union Pacific Railroad Company
+LICENSE FOR PRIVATE CROSSING
+
+This License is granted on September 1, 2027, by Union Pacific Railroad Company ("Licensor") to Greenfield Farms, LLC ("Licensee").
+
+Licensor grants Licensee a non-exclusive license to use and maintain a private roadway crossing over Licensor's tracks at Milepost 74.2, near Fresno, CA. Licensee shall pay an annual fee of $5,000 and maintain a general liability insurance policy of no less than $2,000,000.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "License for Private Crossing",
+  "effective_date": "2027-09-01",
+  "parties": [
+    { "name": "Union Pacific Railroad Company", "role": "Licensor" },
+    { "name": "Greenfield Farms, LLC", "role": "Licensee" }
+  ],
+  "license_details": {
+    "license_purpose": "To use and maintain a private roadway crossing.",
+    "location_description": "Milepost 74.2, near Fresno, CA",
+    "license_fee": "Annual fee of $5,000",
+    "insurance_requirements": "General liability insurance policy of no less than $2,000,000"
+  }
+}
+3. Schema Additions
+File: railroad-crossing-corridor-licenses.SA.json
+
+JSON
+
+{
+  "license_details": {
+    "type": "object",
+    "description": "Details specific to a license agreement, often for use of land or infrastructure.",
+    "properties": {
+      "license_purpose": { "type": "string" },
+      "location_description": { "type": "string" },
+      "license_fee": { "type": "string" },
+      "insurance_requirements": { "type": "string" }
+    }
+  }
+}
+Document Type: Pavement Design
+Folder: /document_types/pavement-design/
+
+1. Specialist Schema
+File: pavement-design.SS.json
+
+JSON
+
+{
+  "title": "Pavement Design Report Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": { "type": "string" },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": { "type": "string", "enum": ["Client", "Engineer", "Author"] }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "technical_report_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "report_type": { "type": "string" },
+        "recommendations_summary": { "type": "string" }
+      }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "technical_report_details"]
+}
+2. Few-Shot Example
+File: pavement-design.FSE.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+Pavement Design Recommendations
+Project: Northgate Business Park, Phase 2
+Date: October 10, 2027
+Prepared for: Sterling Development Group
+Prepared by: GeoTek Engineers, Inc.
+
+Based on our geotechnical investigation and traffic analysis, we recommend the following pavement section for arterial roads: 4 inches of asphalt concrete over 8 inches of aggregate base.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Pavement Design Recommendations",
+  "effective_date": "2027-10-10",
+  "parties": [
+    { "name": "Sterling Development Group", "role": "Client" },
+    { "name": "GeoTek Engineers, Inc.", "role": "Engineer" }
+  ],
+  "technical_report_details": {
+    "project_name": "Northgate Business Park, Phase 2",
+    "report_type": "Pavement Design",
+    "recommendations_summary": "Arterial roads: 4 inches of asphalt concrete over 8 inches of aggregate base."
+  }
+}
+3. Schema Additions
+File: pavement-design.SA.json
+
+JSON
+
+{
+  "technical_report_details": {
+    "type": "object",
+    "description": "Details specific to a technical or engineering report.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "report_type": { "type": "string" },
+      "recommendations_summary": { "type": "string" }
+    }
+  }
+}
+

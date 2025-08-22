@@ -1,0 +1,33 @@
+{
+  "insurance_details": {
+    "type": "object",
+    "description": "Details specific to insurance policies and coverage.",
+    "properties": {
+      "policies": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "policy_type": { "type": "string" },
+            "policy_number": { "type": "string" },
+            "effective_date": { "type": "string", "format": "date" },
+            "expiration_date": { "type": "string", "format": "date" },
+            "limits": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "coverage": { "type": "string" },
+                  "amount": { "type": "number" }
+                }
+              }
+            },
+            "premium_amount": { "type": "number" },
+            "named_insureds": { "type": "array", "items": { "type": "string" } },
+            "endorsements_summary": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}

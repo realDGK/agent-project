@@ -1,0 +1,46 @@
+{
+  "title": "Capital Call/Investor Consent Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Notice of Capital Call'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["General Partner", "Limited Partner", "Investor"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "capital_call_details": {
+      "type": "object",
+      "properties": {
+        "fund_name": { "type": "string" },
+        "call_amount": { "type": "number" },
+        "due_date": { "type": "string", "format": "date" },
+        "purpose_of_call": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "capital_call_details"]
+}

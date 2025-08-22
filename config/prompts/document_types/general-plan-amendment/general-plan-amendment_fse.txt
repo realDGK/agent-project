@@ -1,0 +1,27 @@
+**INPUT DOCUMENT TEXT:**
+RESOLUTION NO. 29-123
+A RESOLUTION OF THE CITY COUNCIL OF THE CITY OF SUNNYSIDE APPROVING GENERAL PLAN AMENDMENT GPA-001
+
+WHEREAS, Sunnyside Developers LLC has filed an application (GPA-001) to amend the General Plan land use designation for the 20-acre property at 123 Farm Road (APN 111-222-333) from "Low-Density Residential" to "Medium-Density Residential".
+
+NOW, THEREFORE, the City Council hereby approves GPA-001.
+
+ADOPTED this 10th day of September, 2029.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Resolution Approving General Plan Amendment GPA-001",
+  "effective_date": "2029-09-10",
+  "parties": [
+    { "name": "Sunnyside Developers LLC", "role": "Applicant" },
+    { "name": "City of Sunnyside", "role": "Approving Agency" }
+  ],
+  "entitlement_details": {
+    "project_name": null,
+    "application_number": "GPA-001",
+    "property_description": "20-acre property at 123 Farm Road (APN 111-222-333)",
+    "original_land_use_designation": "Low-Density Residential",
+    "new_land_use_designation": "Medium-Density Residential"
+  },
+  "discovered_entities": []
+}

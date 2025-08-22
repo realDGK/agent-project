@@ -1,0 +1,20 @@
+{
+  "license_details": {
+    "type": "object",
+    "description": "Details specific to a license agreement, often for use of land or infrastructure.",
+    "properties": {
+      "license_purpose": {
+        "type": "string"
+      },
+      "location_description": {
+        "type": "string"
+      },
+      "license_fee": {
+        "type": "string"
+      },
+      "insurance_requirements": {
+        "type": "string"
+      }
+    }
+  }
+}

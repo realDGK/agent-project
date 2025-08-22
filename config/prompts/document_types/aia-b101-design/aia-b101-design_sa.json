@@ -1,0 +1,12 @@
+{
+  "design_contract_details": {
+    "type": "object",
+    "description": "Details specific to a design or architectural services agreement.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "basic_services_scope": { "type": "string" },
+      "supplemental_services_scope": { "type": "string" },
+      "architects_compensation": { "type": "string" }
+    }
+  }
+}

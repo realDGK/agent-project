@@ -1,0 +1,61 @@
+{
+  "title": "Construction Schedule Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Baseline Project Schedule'."
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date",
+      "description": "The date or data date of the schedule."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Contractor", "Owner"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "schedule_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "schedule_type": { "type": "string", "enum": ["Baseline", "Updated"] },
+        "project_start_date": { "type": "string", "format": "date" },
+        "projected_completion_date": { "type": "string", "format": "date" },
+        "total_duration_days": { "type": "integer" },
+        "key_milestones": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "milestone": { "type": "string" },
+              "date": { "type": "string", "format": "date" }
+            }
+          }
+        }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "schedule_details"]
+}

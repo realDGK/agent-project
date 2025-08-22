@@ -1,0 +1,1563 @@
+Document Type 275: CALGreen Docs
+275_specialist_schema.json
+
+JSON
+
+{
+  "title": "CALGreen Document Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'CALGreen Checklist'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Applicant", "Building Department"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "calgreen_details": {
+      "type": "object",
+      "properties": {
+        "project_address": { "type": "string" },
+        "permit_number": { "type": "string" },
+        "compliance_tier": { "type": "string", "description": "e.g., 'Tier 1', 'Tier 2'." },
+        "key_measures_verified": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "calgreen_details"]
+}
+275_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+CALIFORNIA GREEN BUILDING STANDARDS CODE (CALGreen)
+RESIDENTIAL MANDATORY MEASURES CHECKLIST
+
+Project Address: 123 New Home Lane
+Permit No: B-2032-0101
+
+This form certifies that the project design complies with the mandatory measures of the CALGreen code, including:
+- 50% construction waste diversion.
+- Use of low-VOC paints and finishes.
+- Installation of high-efficiency irrigation systems.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "CALGreen Residential Mandatory Measures Checklist",
+  "effective_date": null,
+  "parties": [],
+  "calgreen_details": {
+    "project_address": "123 New Home Lane",
+    "permit_number": "B-2032-0101",
+    "compliance_tier": null,
+    "key_measures_verified": [
+      "50% construction waste diversion.",
+      "Use of low-VOC paints and finishes.",
+      "Installation of high-efficiency irrigation systems."
+    ]
+  },
+  "discovered_entities": []
+}
+275_schema_additions.json
+
+JSON
+
+{
+  "calgreen_details": {
+    "type": "object",
+    "description": "Details specific to a CALGreen compliance document.",
+    "properties": {
+      "project_address": { "type": "string" },
+      "permit_number": { "type": "string" },
+      "compliance_tier": { "type": "string", "description": "e.g., 'Tier 1', 'Tier 2'." },
+      "key_measures_verified": { "type": "array", "items": { "type": "string" } }
+    }
+  }
+}
+Document Type 276: NPDES NOI/NOT
+276_specialist_schema.json
+
+JSON
+
+{
+  "title": "NPDES NOI/NOT Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Notice of Intent (NOI)' or 'Notice of Termination (NOT)'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Discharger", "Operator"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "stormwater_details": {
+      "type": "object",
+      "properties": {
+        "document_type": { "type": "string", "enum": ["NOI", "NOT"] },
+        "project_name": { "type": "string" },
+        "wdid_number": { "type": "string" },
+        "total_disturbed_area_acres": { "type": "number" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "stormwater_details"]
+}
+276_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+NOTICE OF INTENT (NOI) TO COMPLY WITH THE
+CONSTRUCTION GENERAL PERMIT
+
+Project Name: Riverbend Tract No. 8888
+Operator: Riverbend Homes LLC
+WDID#: 5A34C123456
+
+This project will disturb a total of 75 acres. A Stormwater Pollution Prevention Plan (SWPPP) has been prepared and will be implemented on-site.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Notice of Intent (NOI)",
+  "effective_date": null,
+  "parties": [
+    { "name": "Riverbend Homes LLC", "role": "Operator" }
+  ],
+  "stormwater_details": {
+    "document_type": "NOI",
+    "project_name": "Riverbend Tract No. 8888",
+    "wdid_number": "5A34C123456",
+    "total_disturbed_area_acres": 75
+  },
+  "discovered_entities": []
+}
+276_schema_additions.json
+
+JSON
+
+{
+  "stormwater_details": {
+    "type": "object",
+    "description": "Details specific to stormwater compliance documents.",
+    "properties": {
+      "document_type": { "type": "string", "enum": ["NOI", "NOT", "SWPPP", "Inspection Log"] },
+      "project_name": { "type": "string" },
+      "wdid_number": { "type": "string" },
+      "total_disturbed_area_acres": { "type": "number" },
+      "inspection_findings": { "type": "string" },
+      "corrective_actions_required": { "type": "string" },
+      "risk_level": { "type": "string" }
+    }
+  }
+}
+Document Type 277: SWPPP Training Records
+277_specialist_schema.json
+
+JSON
+
+{
+  "title": "SWPPP Training Record Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'SWPPP Training Log'."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Trainer", "Attendee"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "training_record_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "training_date": { "type": "string", "format": "date" },
+        "training_topic": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "training_record_details"]
+}
+277_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+STORMWATER POLLUTION PREVENTION TRAINING RECORD
+
+Project: Riverbend Tract No. 8888
+Date: July 15, 2030
+Trainer: John Smith, QSP
+
+Topic: BMP Installation and Maintenance
+
+Attendees:
+- Mike Davis (Signature)
+- Laura Chen (Signature)
+- Bill Jones (Signature)
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Stormwater Pollution Prevention Training Record",
+  "parties": [
+    { "name": "John Smith, QSP", "role": "Trainer" },
+    { "name": "Mike Davis", "role": "Attendee" },
+    { "name": "Laura Chen", "role": "Attendee" },
+    { "name": "Bill Jones", "role": "Attendee" }
+  ],
+  "training_record_details": {
+    "project_name": "Riverbend Tract No. 8888",
+    "training_date": "2030-07-15",
+    "training_topic": "BMP Installation and Maintenance"
+  },
+  "discovered_entities": []
+}
+277_schema_additions.json
+
+JSON
+
+{
+  "training_record_details": {
+    "type": "object",
+    "description": "Details specific to a training record or log.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "training_date": { "type": "string", "format": "date" },
+      "training_topic": { "type": "string" }
+    }
+  }
+}
+Document Type 278: Wastewater Discharge Permits
+278_specialist_schema.json
+
+JSON
+
+{
+  "title": "Wastewater Discharge Permit Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Wastewater Discharge Permit'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Permittee", "Issuing Agency"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "permit_details": {
+      "type": "object",
+      "properties": {
+        "permit_number": { "type": "string" },
+        "facility_address": { "type": "string" },
+        "discharge_limits": { "type": "string" },
+        "monitoring_requirements": { "type": "string" },
+        "expiration_date": { "type": "string", "format": "date" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "permit_details"]
+}
+278_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+INDUSTRIAL WASTEWATER DISCHARGE PERMIT
+
+Permit No: WW-2031-123
+Issued to: Industrial Coatings Inc. ("Permittee")
+Facility: 123 Industrial Way, Oakland, CA
+Issued by: East Bay Municipal Utility District
+Effective Date: July 1, 2031
+Expiration Date: June 30, 2036
+
+The Permittee is authorized to discharge industrial wastewater subject to the effluent limitations and monitoring requirements specified herein.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Industrial Wastewater Discharge Permit",
+  "effective_date": "2031-07-01",
+  "parties": [
+    { "name": "Industrial Coatings Inc.", "role": "Permittee" },
+    { "name": "East Bay Municipal Utility District", "role": "Issuing Agency" }
+  ],
+  "permit_details": {
+    "permit_number": "WW-2031-123",
+    "facility_address": "123 Industrial Way, Oakland, CA",
+    "discharge_limits": null,
+    "monitoring_requirements": null,
+    "expiration_date": "2036-06-30"
+  },
+  "discovered_entities": []
+}
+278_schema_additions.json
+
+JSON
+
+{
+  "permit_details": {
+    "type": "object",
+    "description": "Details specific to a permit issued by a government agency.",
+    "properties": {
+      "permit_number": { "type": "string" },
+      "property_address": { "type": "string" },
+      "sign_description": { "type": "string" },
+      "sign_dimensions": { "type": "string" },
+      "expiration_date": { "type": "string", "format": "date" },
+      "permit_type": { "type": "string" },
+      "authorized_activity": { "type": "string" },
+      "impacts_authorized": { "type": "string" },
+      "mitigation_required": { "type": "string" },
+      "certification_number": { "type": "string" },
+      "project_name": { "type": "string" },
+      "related_404_permit": { "type": "string" },
+      "key_conditions": { "type": "array", "items": { "type": "string" } },
+      "notification_number": { "type": "string" },
+      "term_of_agreement": { "type": "string" },
+      "equipment_or_process_permitted": { "type": "string" },
+      "utility_type": { "type": "string" },
+      "connection_fee": { "type": "number" },
+      "meter_size": { "type": "string" },
+      "permit_summary": { "type": "string" },
+      "location_of_work": { "type": "string" },
+      "authorized_work_summary": { "type": "string" },
+      "scope_of_work": { "type": "string" },
+      "valuation": { "type": "number" },
+      "facility_address": { "type": "string" },
+      "discharge_limits": { "type": "string" },
+      "monitoring_requirements": { "type": "string" }
+    }
+  }
+}
+Document Type 279: Certified Payroll/Prevailing Wage (DIR)
+279_specialist_schema.json
+
+JSON
+
+{
+  "title": "Certified Payroll/Prevailing Wage Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Certified Payroll Report'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Contractor", "Subcontractor", "Public Agency"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "payroll_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "week_ending_date": { "type": "string", "format": "date" },
+        "is_statement_of_compliance_signed": { "type": "boolean" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "payroll_details"]
+}
+279_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+PUBLIC WORKS CERTIFIED PAYROLL REPORT
+
+Contractor: BuildRight Corp.
+Project: New City Library
+Week Ending: 03/15/2032
+
+[Table of employee names, classifications, hours, and wages]
+
+STATEMENT OF COMPLIANCE
+I, the undersigned, certify under penalty of perjury that the above is a true and correct copy of the payroll.
+(Signature)
+John Smith, President
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Certified Payroll Report",
+  "effective_date": "2032-03-15",
+  "parties": [
+    { "name": "BuildRight Corp.", "role": "Contractor" }
+  ],
+  "payroll_details": {
+    "project_name": "New City Library",
+    "week_ending_date": "2032-03-15",
+    "is_statement_of_compliance_signed": true
+  },
+  "discovered_entities": []
+}
+279_schema_additions.json
+
+JSON
+
+{
+  "payroll_details": {
+    "type": "object",
+    "description": "Details specific to a certified payroll report.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "week_ending_date": { "type": "string", "format": "date" },
+      "is_statement_of_compliance_signed": { "type": "boolean" }
+    }
+  }
+}
+Document Type 280: Local Hire/Apprenticeship docs
+280_specialist_schema.json
+
+JSON
+
+{
+  "title": "Local Hire/Apprenticeship Document Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Local Hire Compliance Report'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Contractor", "Public Agency"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "compliance_report_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "reporting_period": { "type": "string" },
+        "local_hire_requirement_pct": { "type": "number" },
+        "local_hire_achieved_pct": { "type": "number" },
+        "apprentice_utilization_requirement_pct": { "type": "number" },
+        "apprentice_utilization_achieved_pct": { "type": "number" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "compliance_report_details"]
+}
+280_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+MONTHLY LOCAL HIRE REPORT
+
+Project: Bayfront Stadium
+Contractor: Stadium Builders Inc.
+Reporting Period: May 2030
+
+Local Hire Requirement: 30% of all project work hours.
+Local Hire Achieved this Period: 35%
+
+Apprentice Utilization Requirement: 15% of hours by trade.
+Apprentice Utilization Achieved this Period: 18%
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Monthly Local Hire Report",
+  "effective_date": null,
+  "parties": [
+    { "name": "Stadium Builders Inc.", "role": "Contractor" }
+  ],
+  "compliance_report_details": {
+    "project_name": "Bayfront Stadium",
+    "reporting_period": "May 2030",
+    "local_hire_requirement_pct": 30,
+    "local_hire_achieved_pct": 35,
+    "apprentice_utilization_requirement_pct": 15,
+    "apprentice_utilization_achieved_pct": 18
+  },
+  "discovered_entities": []
+}
+280_schema_additions.json
+
+JSON
+
+{
+  "compliance_report_details": {
+    "type": "object",
+    "description": "Details specific to a compliance report.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "reporting_period": { "type": "string" },
+      "local_hire_requirement_pct": { "type": "number" },
+      "local_hire_achieved_pct": { "type": "number" },
+      "apprentice_utilization_requirement_pct": { "type": "number" },
+      "apprentice_utilization_achieved_pct": { "type": "number" }
+    }
+  }
+}
+Document Type 281: Business Licenses
+281_specialist_schema.json
+
+JSON
+
+{
+  "title": "Business License Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Business License Certificate'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Licensee", "Issuing Agency"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "license_details": {
+      "type": "object",
+      "properties": {
+        "license_number": { "type": "string" },
+        "business_name": { "type": "string" },
+        "business_address": { "type": "string" },
+        "expiration_date": { "type": "string", "format": "date" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "license_details"]
+}
+281_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+CITY OF OAKWOOD
+BUSINESS LICENSE
+
+LICENSEE: BuildRight Corp.
+ADDRESS: 100 Construction Way, Oakwood, CA
+LICENSE NO: 12345
+ISSUE DATE: 01/01/2031
+EXPIRATION DATE: 12/31/2031
+
+This license must be displayed in a conspicuous place at the business location.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Business License",
+  "effective_date": "2031-01-01",
+  "parties": [
+    { "name": "BuildRight Corp.", "role": "Licensee" },
+    { "name": "City of Oakwood", "role": "Issuing Agency" }
+  ],
+  "license_details": {
+    "license_number": "12345",
+    "business_name": "BuildRight Corp.",
+    "business_address": "100 Construction Way, Oakwood, CA",
+    "expiration_date": "2031-12-31"
+  },
+  "discovered_entities": []
+}
+281_schema_additions.json
+
+JSON
+
+{
+  "license_details": {
+    "type": "object",
+    "description": "Details specific to a business license.",
+    "properties": {
+      "license_number": { "type": "string" },
+      "business_name": { "type": "string" },
+      "business_address": { "type": "string" },
+      "expiration_date": { "type": "string", "format": "date" }
+    }
+  }
+}
+Document Type 282: Seller’s Permit (Retail)
+282_specialist_schema.json
+
+JSON
+
+{
+  "title": "Seller's Permit Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Seller's Permit'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Permittee", "Issuing Agency"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "permit_details": {
+      "type": "object",
+      "properties": {
+        "permit_number": { "type": "string" },
+        "business_name": { "type": "string" },
+        "business_address": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "permit_details"]
+}
+282_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+STATE OF CALIFORNIA
+CALIFORNIA DEPARTMENT OF TAX AND FEE ADMINISTRATION
+SELLER'S PERMIT
+
+ACCOUNT NUMBER: 101-123456
+BUSINESS NAME: The Coffee Spot LLC
+LOCATION: 123 Main Street, Anytown, CA
+
+This permit is to engage in the business of selling tangible personal property.
+ISSUE DATE: May 15, 2025
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Seller's Permit",
+  "effective_date": "2025-05-15",
+  "parties": [
+    { "name": "The Coffee Spot LLC", "role": "Permittee" },
+    { "name": "California Department of Tax and Fee Administration", "role": "Issuing Agency" }
+  ],
+  "permit_details": {
+    "permit_number": "101-123456",
+    "business_name": "The Coffee Spot LLC",
+    "business_address": "123 Main Street, Anytown, CA"
+  },
+  "discovered_entities": []
+}
+282_schema_additions.json
+
+JSON
+
+{
+  "permit_details": {
+    "type": "object",
+    "description": "Details specific to a permit issued by a government agency.",
+    "properties": {
+      "permit_number": { "type": "string" },
+      "property_address": { "type": "string" },
+      "sign_description": { "type": "string" },
+      "sign_dimensions": { "type": "string" },
+      "expiration_date": { "type": "string", "format": "date" },
+      "permit_type": { "type": "string" },
+      "authorized_activity": { "type": "string" },
+      "impacts_authorized": { "type": "string" },
+      "mitigation_required": { "type": "string" },
+      "certification_number": { "type": "string" },
+      "project_name": { "type": "string" },
+      "related_404_permit": { "type": "string" },
+      "key_conditions": { "type": "array", "items": { "type": "string" } },
+      "notification_number": { "type": "string" },
+      "term_of_agreement": { "type": "string" },
+      "equipment_or_process_permitted": { "type": "string" },
+      "utility_type": { "type": "string" },
+      "connection_fee": { "type": "number" },
+      "meter_size": { "type": "string" },
+      "permit_summary": { "type": "string" },
+      "location_of_work": { "type": "string" },
+      "authorized_work_summary": { "type": "string" },
+      "scope_of_work": { "type": "string" },
+      "valuation": { "type": "number" },
+      "facility_address": { "type": "string" },
+      "discharge_limits": { "type": "string" },
+      "monitoring_requirements": { "type": "string" },
+      "business_name": { "type": "string" },
+      "business_address": { "type": "string" }
+    }
+  }
+}
+Document Type 283: Hazardous Materials Business Plan
+283_specialist_schema.json
+
+JSON
+
+{
+  "title": "Hazardous Materials Business Plan Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Hazardous Materials Business Plan'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Business Owner", "Regulatory Agency"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "hazmat_plan_details": {
+      "type": "object",
+      "properties": {
+        "facility_address": { "type": "string" },
+        "hazardous_materials_inventory": { "type": "array", "items": { "type": "string" } },
+        "emergency_contact": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "hazmat_plan_details"]
+}
+283_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+HAZARDOUS MATERIALS BUSINESS PLAN
+
+1. FACILITY INFORMATION
+Business Name: Auto Repair Shop Inc.
+Site Address: 456 Garage Way, Anytown, CA
+
+2. INVENTORY
+- Used Motor Oil: 250 gallons
+- Antifreeze: 100 gallons
+- Solvents: 50 gallons
+
+3. EMERGENCY CONTACT
+Name: John Smith, Owner
+Phone: 555-123-4567
+
+Date Submitted: January 15, 2033
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Hazardous Materials Business Plan",
+  "effective_date": "2033-01-15",
+  "parties": [
+    { "name": "Auto Repair Shop Inc.", "role": "Business Owner" }
+  ],
+  "hazmat_plan_details": {
+    "facility_address": "456 Garage Way, Anytown, CA",
+    "hazardous_materials_inventory": [
+      "Used Motor Oil: 250 gallons",
+      "Antifreeze: 100 gallons",
+      "Solvents: 50 gallons"
+    ],
+    "emergency_contact": "John Smith, Owner, 555-123-4567"
+  },
+  "discovered_entities": []
+}
+283_schema_additions.json
+
+JSON
+
+{
+  "hazmat_plan_details": {
+    "type": "object",
+    "description": "Details specific to a Hazardous Materials Business Plan.",
+    "properties": {
+      "facility_address": { "type": "string" },
+      "hazardous_materials_inventory": { "type": "array", "items": { "type": "string" } },
+      "emergency_contact": { "type": "string" }
+    }
+  }
+}
+Document Type 284: Demand Letters
+284_specialist_schema.json
+
+JSON
+
+{
+  "title": "Demand Letter Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Demand Letter' or 'Notice of Claim'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Claimant", "Recipient"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "demand_letter_details": {
+      "type": "object",
+      "properties": {
+        "amount_demanded": { "type": "number" },
+        "reason_for_demand": { "type": "string" },
+        "deadline_to_respond": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "demand_letter_details"]
+}
+284_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+LAW OFFICES OF SMITH & JONES
+Date: June 10, 2032
+To: BuildRight Corp.
+From: Counsel for City Electric Inc.
+
+Re: Demand for Payment - Downtown Tower Project
+
+This letter constitutes a formal demand for the immediate payment of $450,000.00 for unpaid invoices related to electrical work on the Downtown Tower project.
+
+If payment is not received within ten (10) business days, we will proceed with further legal action.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Demand for Payment",
+  "effective_date": "2032-06-10",
+  "parties": [
+    { "name": "City Electric Inc.", "role": "Claimant" },
+    { "name": "BuildRight Corp.", "role": "Recipient" }
+  ],
+  "demand_letter_details": {
+    "amount_demanded": 450000,
+    "reason_for_demand": "Unpaid invoices related to electrical work on the Downtown Tower project.",
+    "deadline_to_respond": "Ten (10) business days."
+  },
+  "discovered_entities": []
+}
+284_schema_additions.json
+
+JSON
+
+{
+  "demand_letter_details": {
+    "type": "object",
+    "description": "Details specific to a demand letter.",
+    "properties": {
+      "amount_demanded": { "type": "number" },
+      "reason_for_demand": { "type": "string" },
+      "deadline_to_respond": { "type": "string" }
+    }
+  }
+}
+Document Type 285: Notices of Default (Loan)
+285_specialist_schema.json
+
+JSON
+
+{
+  "title": "Notice of Default (Loan) Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Notice of Default'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Lender", "Borrower"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "default_notice_details": {
+      "type": "object",
+      "properties": {
+        "loan_reference": { "type": "string" },
+        "nature_of_default": { "type": "string" },
+        "amount_to_cure": { "type": "number" },
+        "cure_period": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "default_notice_details"]
+}
+285_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+NOTICE OF DEFAULT AND ELECTION TO SELL
+
+To: Downtown Tower LLC
+From: Mega Bank, N.A.
+Date: October 1, 2034
+
+You are in default under the Deed of Trust dated August 1, 2031, due to failure to make the monthly interest payment due September 1, 2034.
+
+The amount currently due to cure the default is $250,000.00. You have 90 days from the recording of this notice to cure the default.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Notice of Default and Election to Sell",
+  "effective_date": "2034-10-01",
+  "parties": [
+    { "name": "Mega Bank, N.A.", "role": "Lender" },
+    { "name": "Downtown Tower LLC", "role": "Borrower" }
+  ],
+  "default_notice_details": {
+    "loan_reference": "Deed of Trust dated August 1, 2031",
+    "nature_of_default": "Failure to make the monthly interest payment due September 1, 2034.",
+    "amount_to_cure": 250000,
+    "cure_period": "90 days from the recording of this notice."
+  },
+  "discovered_entities": []
+}
+285_schema_additions.json
+
+JSON
+
+{
+  "default_notice_details": {
+    "type": "object",
+    "description": "Details specific to a notice of default.",
+    "properties": {
+      "loan_reference": { "type": "string" },
+      "nature_of_default": { "type": "string" },
+      "amount_to_cure": { "type": "number" },
+      "cure_period": { "type": "string" }
+    }
+  }
+}
+Document Type 286: Cure/Default Notices (Contracts)
+286_specialist_schema.json
+
+JSON
+
+{
+  "title": "Cure/Default Notice (Contract) Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Notice of Breach of Contract'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Notifying Party", "Breaching Party"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "default_notice_details": {
+      "type": "object",
+      "properties": {
+        "contract_reference": { "type": "string" },
+        "nature_of_default": { "type": "string" },
+        "cure_period": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "default_notice_details"]
+}
+286_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+NOTICE OF BREACH AND OPPORTUNITY TO CURE
+
+Date: December 10, 2031
+To: BuildRight Corp.
+From: Downtown Tower LLC
+
+Re: Construction Agreement dated September 1, 2031
+
+You are hereby notified that you are in breach of the Agreement for failure to meet Milestone #3 (Topping Out) by the required date.
+
+Pursuant to Section 14.1 of the Agreement, you have fifteen (15) days from receipt of this notice to cure the default.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Notice of Breach and Opportunity to Cure",
+  "effective_date": "2031-12-10",
+  "parties": [
+    { "name": "Downtown Tower LLC", "role": "Notifying Party" },
+    { "name": "BuildRight Corp.", "role": "Breaching Party" }
+  ],
+  "default_notice_details": {
+    "contract_reference": "Construction Agreement dated September 1, 2031",
+    "nature_of_default": "Failure to meet Milestone #3 (Topping Out) by the required date.",
+    "cure_period": "Fifteen (15) days from receipt of this notice."
+  },
+  "discovered_entities": []
+}
+286_schema_additions.json
+
+JSON
+
+{
+  "default_notice_details": {
+    "type": "object",
+    "description": "Details specific to a notice of default.",
+    "properties": {
+      "loan_reference": { "type": "string" },
+      "nature_of_default": { "type": "string" },
+      "amount_to_cure": { "type": "number" },
+      "cure_period": { "type": "string" },
+      "contract_reference": { "type": "string" }
+    }
+  }
+}
+Document Type 287: Complaints/Petitions
+287_specialist_schema.json
+
+JSON
+
+{
+  "title": "Complaint/Petition Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Complaint' or 'Petition'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Plaintiff", "Petitioner", "Defendant", "Respondent"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "litigation_details": {
+      "type": "object",
+      "properties": {
+        "court_name": { "type": "string" },
+        "case_number": { "type": "string" },
+        "causes_of_action": { "type": "array", "items": { "type": "string" } },
+        "remedy_sought": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "litigation_details"]
+}
+287_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+SUPERIOR COURT OF CALIFORNIA, COUNTY OF ALAMEDA
+Case No. RG12345678
+COMPLAINT FOR:
+1. Breach of Contract
+2. Foreclosure of Mechanic's Lien
+
+GENERAL CONTRACTOR INC., Plaintiff
+vs.
+PROPERTY OWNER LLC, Defendant
+
+Plaintiff alleges that Defendant has failed to pay for services rendered. Plaintiff seeks damages in the amount of $250,000 and foreclosure of its mechanic's lien.
+
+Date Filed: July 1, 2029
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Complaint",
+  "effective_date": "2029-07-01",
+  "parties": [
+    { "name": "GENERAL CONTRACTOR INC.", "role": "Plaintiff" },
+    { "name": "PROPERTY OWNER LLC", "role": "Defendant" }
+  ],
+  "litigation_details": {
+    "court_name": "Superior Court of California, County of Alameda",
+    "case_number": "RG12345678",
+    "causes_of_action": [
+      "Breach of Contract",
+      "Foreclosure of Mechanic's Lien"
+    ],
+    "remedy_sought": "Damages in the amount of $250,000 and foreclosure of its mechanic's lien."
+  },
+  "discovered_entities": []
+}
+287_schema_additions.json
+
+JSON
+
+{
+  "litigation_details": {
+    "type": "object",
+    "description": "Details specific to litigation, court filings, and legal disputes.",
+    "properties": {
+      "court_name": { "type": "string" },
+      "case_number": { "type": "string" },
+      "property_affected": { "type": "string" },
+      "nature_of_action": { "type": "string" },
+      "judgment_date": { "type": "string", "format": "date" },
+      "judgment_summary": { "type": "string" },
+      "causes_of_action": { "type": "array", "items": { "type": "string" } },
+      "remedy_sought": { "type": "string" }
+    }
+  }
+}
+Document Type 288: Answers/Cross-Complaints
+288_specialist_schema.json
+
+JSON
+
+{
+  "title": "Answer/Cross-Complaint Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Answer to Complaint'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Plaintiff", "Defendant", "Cross-Complainant", "Cross-Defendant"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "litigation_details": {
+      "type": "object",
+      "properties": {
+        "case_number": { "type": "string" },
+        "affirmative_defenses": { "type": "array", "items": { "type": "string" } },
+        "cross_complaint_summary": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "litigation_details"]
+}
+288_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+ANSWER TO COMPLAINT; CROSS-COMPLAINT
+Case No. RG12345678
+
+Defendant PROPERTY OWNER LLC answers the complaint and alleges the following affirmative defenses:
+1. Failure to state a claim.
+2. Unclean hands.
+
+CROSS-COMPLAINT
+Cross-Complainant PROPERTY OWNER LLC alleges that Cross-Defendant GENERAL CONTRACTOR INC. performed defective work and seeks damages in excess of $500,000.
+
+Date Filed: August 1, 2029
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Answer to Complaint; Cross-Complaint",
+  "effective_date": "2029-08-01",
+  "parties": [
+    { "name": "PROPERTY OWNER LLC", "role": "Defendant" },
+    { "name": "PROPERTY OWNER LLC", "role": "Cross-Complainant" },
+    { "name": "GENERAL CONTRACTOR INC.", "role": "Cross-Defendant" }
+  ],
+  "litigation_details": {
+    "case_number": "RG12345678",
+    "affirmative_defenses": [
+      "Failure to state a claim.",
+      "Unclean hands."
+    ],
+    "cross_complaint_summary": "Alleges defective work and seeks damages in excess of $500,000."
+  },
+  "discovered_entities": []
+}
+288_schema_additions.json
+
+JSON
+
+{
+  "litigation_details": {
+    "type": "object",
+    "description": "Details specific to litigation, court filings, and legal disputes.",
+    "properties": {
+      "court_name": { "type": "string" },
+      "case_number": { "type": "string" },
+      "property_affected": { "type": "string" },
+      "nature_of_action": { "type": "string" },
+      "judgment_date": { "type": "string", "format": "date" },
+      "judgment_summary": { "type": "string" },
+      "causes_of_action": { "type": "array", "items": { "type": "string" } },
+      "remedy_sought": { "type": "string" },
+      "affirmative_defenses": { "type": "array", "items": { "type": "string" } },
+      "cross_complaint_summary": { "type": "string" }
+    }
+  }
+}
+Document Type 289: Motions/Demurrers
+289_specialist_schema.json
+
+JSON
+
+{
+  "title": "Motion/Demurrer Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Notice of Motion and Motion for Summary Judgment'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Moving Party", "Opposing Party"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "litigation_details": {
+      "type": "object",
+      "properties": {
+        "case_number": { "type": "string" },
+        "motion_type": { "type": "string" },
+        "relief_sought": { "type": "string" },
+        "hearing_date": { "type": "string", "format": "date" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "litigation_details"]
+}
+289_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+NOTICE OF DEMURRER TO COMPLAINT
+Case No. RG12345678
+Hearing Date: September 15, 2029
+
+Defendant PROPERTY OWNER LLC hereby demurs to Plaintiff's First Cause of Action for Breach of Contract on the grounds that it fails to state facts sufficient to constitute a cause of action.
+
+Date Filed: August 10, 2029
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Notice of Demurrer to Complaint",
+  "effective_date": "2029-08-10",
+  "parties": [
+    { "name": "PROPERTY OWNER LLC", "role": "Moving Party" }
+  ],
+  "litigation_details": {
+    "case_number": "RG12345678",
+    "motion_type": "Demurrer",
+    "relief_sought": "Dismissal of the First Cause of Action for Breach of Contract.",
+    "hearing_date": "2029-09-15"
+  },
+  "discovered_entities": []
+}
+289_schema_additions.json
+
+JSON
+
+{
+  "litigation_details": {
+    "type": "object",
+    "description": "Details specific to litigation, court filings, and legal disputes.",
+    "properties": {
+      "court_name": { "type": "string" },
+      "case_number": { "type": "string" },
+      "property_affected": { "type": "string" },
+      "nature_of_action": { "type": "string" },
+      "judgment_date": { "type": "string", "format": "date" },
+      "judgment_summary": { "type": "string" },
+      "causes_of_action": { "type": "array", "items": { "type": "string" } },
+      "remedy_sought": { "type": "string" },
+      "affirmative_defenses": { "type": "array", "items": { "type": "string" } },
+      "cross_complaint_summary": { "type": "string" },
+      "motion_type": { "type": "string" },
+      "relief_sought": { "type": "string" },
+      "hearing_date": { "type": "string", "format": "date" }
+    }
+  }
+}

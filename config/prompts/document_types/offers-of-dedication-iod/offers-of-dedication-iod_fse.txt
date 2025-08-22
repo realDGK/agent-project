@@ -1,0 +1,29 @@
+**INPUT DOCUMENT TEXT:**
+IRREVOCABLE OFFER TO DEDICATE REAL PROPERTY FOR PUBLIC PURPOSES
+
+VALLEY VIEW DEVELOPERS, LLC, a California LLC ("Owner"), hereby makes an irrevocable offer to dedicate to the CITY OF PLEASANT HILL ("City") the real property described in Exhibit A for public street and utility purposes.
+
+This offer shall be binding on the Owner and its successors.
+
+Dated: March 10, 2029
+Recorded: March 11, 2029, Inst. No. 2029-123456
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Irrevocable Offer to Dedicate Real Property for Public Purposes",
+  "effective_date": "2029-03-10",
+  "parties": [
+    { "name": "VALLEY VIEW DEVELOPERS, LLC", "role": "Owner" },
+    { "name": "CITY OF PLEASANT HILL", "role": "Beneficiary" }
+  ],
+  "dedication_details": {
+    "property_dedicated": "The real property described in Exhibit A.",
+    "purpose_of_dedication": "Public street and utility purposes.",
+    "is_irrevocable": true
+  },
+  "legal_recording_details": {
+    "instrument_number": "2029-123456",
+    "recording_date": "2029-03-11"
+  },
+  "discovered_entities": []
+}

@@ -1,0 +1,29 @@
+**INPUT DOCUMENT TEXT:**
+CITY OF ROSEVILLE
+TENTATIVE TRACT MAP NO. 01-2345
+APPLICANT: Roseville Homes LLC
+OWNER: Greenfield Land Investors LP
+APPROVAL DATE: July 1, 2028
+EXPIRATION DATE: July 1, 2030
+
+This map subdivides APN 456-789-012, located at the corner of Blue Oaks Blvd and Crocker Ranch Rd, into 50 single-family residential lots.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Tentative Tract Map No. 01-2345",
+  "parties": [
+    { "name": "Roseville Homes LLC", "role": "Applicant" },
+    { "name": "Greenfield Land Investors LP", "role": "Owner" },
+    { "name": "City of Roseville", "role": "Approving Agency" }
+  ],
+  "map_details": {
+    "map_type": "Tentative Tract Map",
+    "map_number": "01-2345",
+    "number_of_lots_created": 50,
+    "property_address": "Corner of Blue Oaks Blvd and Crocker Ranch Rd",
+    "apn": "456-789-012",
+    "approval_date": "2028-07-01",
+    "expiration_date": "2030-07-01"
+  },
+  "discovered_entities": []
+}

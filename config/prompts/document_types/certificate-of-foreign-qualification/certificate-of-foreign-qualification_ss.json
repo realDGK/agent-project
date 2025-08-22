@@ -1,0 +1,58 @@
+{
+  "title": "Certificate of Foreign Qualification Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Certificate of Foreign Qualification for [Company Name]'."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Entity", "Issuing Authority"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "foreign_qualification_details": {
+      "type": "object",
+      "properties": {
+        "entity_file_number": {
+          "type": "string",
+          "description": "The file number assigned by the qualifying state."
+        },
+        "home_jurisdiction": {
+          "type": "string",
+          "description": "The original state or country of formation (the 'domestic' state)."
+        },
+        "qualified_jurisdiction": {
+          "type": "string",
+          "description": "The state granting the authority to transact business (the 'foreign' state)."
+        },
+        "qualification_date": {
+          "type": "string",
+          "format": "date",
+          "description": "The date the entity was granted authority to transact business in the foreign state."
+        }
+      }
+    },
+    "discovered_entities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "entity_name": { "type": "string" },
+          "entity_value": { "type": "string" },
+          "context_summary": { "type": "string" }
+        }
+      }
+    }
+  },
+  "required": ["contract_name", "parties"]
+}

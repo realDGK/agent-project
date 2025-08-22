@@ -1,0 +1,16 @@
+{
+  "rfi_details": {
+    "type": "object",
+    "description": "Details specific to a Request for Information (RFI).",
+    "properties": {
+      "project_name": { "type": "string" },
+      "rfi_number": { "type": "string" },
+      "date_sent": { "type": "string", "format": "date" },
+      "question": { "type": "string" },
+      "response_date": { "type": "string", "format": "date" },
+      "response": { "type": "string" },
+      "cost_impact": { "type": "string" },
+      "schedule_impact": { "type": "string" }
+    }
+  }
+}

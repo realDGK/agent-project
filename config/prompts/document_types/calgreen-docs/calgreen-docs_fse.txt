@@ -1,0 +1,29 @@
+**INPUT DOCUMENT TEXT:**
+CALIFORNIA GREEN BUILDING STANDARDS CODE (CALGreen)
+RESIDENTIAL MANDATORY MEASURES CHECKLIST
+
+Project Address: 123 New Home Lane
+Permit No: B-2032-0101
+
+This form certifies that the project design complies with the mandatory measures of the CALGreen code, including:
+- 50% construction waste diversion.
+- Use of low-VOC paints and finishes.
+- Installation of high-efficiency irrigation systems.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "CALGreen Residential Mandatory Measures Checklist",
+  "effective_date": null,
+  "parties": [],
+  "calgreen_details": {
+    "project_address": "123 New Home Lane",
+    "permit_number": "B-2032-0101",
+    "compliance_tier": null,
+    "key_measures_verified": [
+      "50% construction waste diversion.",
+      "Use of low-VOC paints and finishes.",
+      "Installation of high-efficiency irrigation systems."
+    ]
+  },
+  "discovered_entities": []
+}

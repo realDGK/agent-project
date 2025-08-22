@@ -1,0 +1,25 @@
+**INPUT DOCUMENT TEXT:**
+PAYMENT IN LIEU OF TAX AGREEMENT
+
+This Agreement is made June 1, 2032, between the City of Industry ("City") and Solar Farm LLC ("Company").
+
+For the solar generation facility located at 1 Power Plant Road, the Company agrees to make an annual payment to the City in lieu of property taxes.
+
+The annual payment shall be $100,000 for the first ten (10) years of operation, escalating by 3% annually thereafter. The term of this agreement is 30 years.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Payment in Lieu of Tax Agreement",
+  "effective_date": "2032-06-01",
+  "parties": [
+    { "name": "City of Industry", "role": "City" },
+    { "name": "Solar Farm LLC", "role": "Company" }
+  ],
+  "tax_agreement_details": {
+    "project_name": "Solar generation facility",
+    "property_address": "1 Power Plant Road",
+    "payment_schedule": "$100,000 annually for the first 10 years, escalating by 3% annually thereafter.",
+    "term_of_agreement": "30 years"
+  },
+  "discovered_entities": []
+}

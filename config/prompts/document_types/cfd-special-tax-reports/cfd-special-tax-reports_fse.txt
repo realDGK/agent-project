@@ -1,0 +1,33 @@
+**INPUT DOCUMENT TEXT:**
+ADMINISTRATION REPORT
+COMMUNITY FACILITIES DISTRICT NO. 2032-1
+FISCAL YEAR 2033-2034
+
+Prepared by: Public Finance Advisors LLC
+Date: July 1, 2033
+
+This report calculates the annual special tax levy for FY 2033-34.
+The total special tax to be levied is $750,000. This amount is sufficient to cover debt service and administrative expenses.
+The overall value-to-lien ratio for the District is 10.5 to 1.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Administration Report",
+  "effective_date": "2033-07-01",
+  "parties": [
+    { "name": "Public Finance Advisors LLC", "role": "Special Tax Consultant" }
+  ],
+  "cfd_details": {
+    "cfd_number": "2032-1",
+    "fiscal_year": "2033-2034",
+    "total_special_tax_levy": 750000,
+    "delinquency_summary": null
+  },
+  "discovered_entities": [
+    {
+      "entity_name": "Value-to-Lien Ratio",
+      "entity_value": "10.5 to 1",
+      "context_summary": "The ratio of the assessed value of the property to the amount of bond debt."
+    }
+  ]
+}

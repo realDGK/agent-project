@@ -1,0 +1,46 @@
+{
+  "title": "Prop 8 Decline-in-Value Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Notice of Changed Assessment'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Assessor", "Property Owner"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "tax_appeal_details": {
+      "type": "object",
+      "properties": {
+        "apn": { "type": "string" },
+        "tax_year": { "type": "string" },
+        "original_assessed_value": { "type": "number" },
+        "prop_8_reduced_value": { "type": "number" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "tax_appeal_details"]
+}

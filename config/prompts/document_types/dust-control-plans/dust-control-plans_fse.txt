@@ -1,0 +1,31 @@
+**INPUT DOCUMENT TEXT:**
+DUST CONTROL PLAN
+FOR THE CANYON RANCH PROJECT (150 ACRES)
+
+Submitted to: Placer County Air Pollution Control District
+Submitted by: Canyon Ranch Developers LLC
+
+The following Best Management Practices (BMPs) will be implemented:
+- All active construction areas will be watered twice daily.
+- Vehicle speeds on unpaved roads will be limited to 15 mph.
+- A gravel apron will be installed at all site access points.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Dust Control Plan",
+  "effective_date": null,
+  "parties": [
+    { "name": "Canyon Ranch Developers LLC", "role": "Developer" },
+    { "name": "Placer County Air Pollution Control District", "role": "Regulatory Agency" }
+  ],
+  "dust_control_plan_details": {
+    "project_name": "Canyon Ranch Project",
+    "project_acreage": 150,
+    "best_management_practices_bmps": [
+      "All active construction areas will be watered twice daily.",
+      "Vehicle speeds on unpaved roads will be limited to 15 mph.",
+      "A gravel apron will be installed at all site access points."
+    ]
+  },
+  "discovered_entities": []
+}

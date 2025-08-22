@@ -1,0 +1,26 @@
+{
+  "map_details": {
+    "type": "object",
+    "description": "Details specific to maps, plats, and legal descriptions.",
+    "properties": {
+      "property_legal_description": { "type": "string" },
+      "apn": { "type": "string" },
+      "county": { "type": "string" },
+      "state": { "type": "string" },
+      "map_type": { "type": "string" },
+      "map_number": { "type": "string" },
+      "number_of_lots_created": { "type": "integer" },
+      "property_address": { "type": "string" },
+      "approval_date": { "type": "string", "format": "date" },
+      "expiration_date": { "type": "string", "format": "date" },
+      "vesting_rights_summary": { "type": "string" },
+      "application_number": { "type": "string" },
+      "affected_parcels_apn": { "type": "array", "items": { "type": "string" } },
+      "adjustment_summary": { "type": "string" },
+      "corrected_document": { "type": "string" },
+      "corrected_document_recording_info": { "type": "string" },
+      "correction_summary": { "type": "string" },
+      "labels_or_callouts": { "type": "array", "items": { "type": "string" } }
+    }
+  }
+}

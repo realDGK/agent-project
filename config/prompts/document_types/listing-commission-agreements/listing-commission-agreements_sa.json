@@ -1,0 +1,13 @@
+{
+  "listing_agreement_details": {
+    "type": "object",
+    "description": "Details specific to a real estate listing or commission agreement.",
+    "properties": {
+      "property_address": { "type": "string" },
+      "listing_price": { "type": "number" },
+      "listing_period": { "type": "string" },
+      "commission_rate_pct": { "type": "number" },
+      "cooperating_broker_split": { "type": "string" }
+    }
+  }
+}

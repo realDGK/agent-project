@@ -1,0 +1,53 @@
+{
+  "title": "ADR Agreement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string"
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "dispute_resolution_details": {
+      "type": "object",
+      "properties": {
+        "adr_type": {
+          "type": "string",
+          "enum": [
+            "Mediation",
+            "Arbitration",
+            "Mediation-Arbitration"
+          ]
+        },
+        "dispute_subject_matter": {
+          "type": "string"
+        },
+        "is_binding": {
+          "type": "boolean"
+        },
+        "governing_rules": {
+          "type": "string",
+          "description": "e.g., 'JAMS', 'AAA Commercial Rules'"
+        }
+      }
+    }
+  },
+  "required": [
+    "contract_name",
+    "effective_date",
+    "parties",
+    "dispute_resolution_details"
+  ]
+}

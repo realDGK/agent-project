@@ -1,0 +1,61 @@
+{
+  "title": "Meeting Minutes Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Weekly OAC Meeting Minutes'."
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date",
+      "description": "The date of the meeting."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Attendee", "Author"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "meeting_minutes_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "meeting_title": { "type": "string" },
+        "attendees": { "type": "array", "items": { "type": "string" } },
+        "key_discussion_points": { "type": "array", "items": { "type": "string" } },
+        "action_items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "item": { "type": "string" },
+              "responsible_party": { "type": "string" },
+              "due_date": { "type": "string", "format": "date" }
+            }
+          }
+        }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "meeting_minutes_details"]
+}

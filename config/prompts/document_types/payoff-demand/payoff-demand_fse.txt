@@ -1,0 +1,32 @@
+**INPUT DOCUMENT TEXT:**
+PAYOFF DEMAND STATEMENT
+
+Date: October 1, 2027
+To: Premier Title & Escrow
+From: First Bank, Loan Servicing Dept.
+Borrower: OAK TREE INVESTORS, LLC
+Loan No: 77889900
+Property: 100 Valley View Road, Napa, CA
+
+The amount required to pay the above loan in full is $4,550,123.50.
+This amount is valid through October 31, 2027.
+A per diem interest of $850.00 will be added for each day thereafter.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Payoff Demand Statement",
+  "effective_date": "2027-10-01",
+  "parties": [
+    { "name": "First Bank", "role": "Lender" },
+    { "name": "OAK TREE INVESTORS, LLC", "role": "Borrower" },
+    { "name": "Premier Title & Escrow", "role": "Escrow Holder" }
+  ],
+  "payoff_details": {
+    "loan_number": "77889900",
+    "property_address": "100 Valley View Road, Napa, CA",
+    "payoff_amount": 4550123.50,
+    "good_through_date": "2027-10-31",
+    "per_diem_interest": 850.00
+  },
+  "discovered_entities": []
+}

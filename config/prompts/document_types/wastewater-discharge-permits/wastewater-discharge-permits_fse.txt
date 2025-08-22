@@ -1,0 +1,29 @@
+**INPUT DOCUMENT TEXT:**
+INDUSTRIAL WASTEWATER DISCHARGE PERMIT
+
+Permit No: WW-2031-123
+Issued to: Industrial Coatings Inc. ("Permittee")
+Facility: 123 Industrial Way, Oakland, CA
+Issued by: East Bay Municipal Utility District
+Effective Date: July 1, 2031
+Expiration Date: June 30, 2036
+
+The Permittee is authorized to discharge industrial wastewater subject to the effluent limitations and monitoring requirements specified herein.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Industrial Wastewater Discharge Permit",
+  "effective_date": "2031-07-01",
+  "parties": [
+    { "name": "Industrial Coatings Inc.", "role": "Permittee" },
+    { "name": "East Bay Municipal Utility District", "role": "Issuing Agency" }
+  ],
+  "permit_details": {
+    "permit_number": "WW-2031-123",
+    "facility_address": "123 Industrial Way, Oakland, CA",
+    "discharge_limits": null,
+    "monitoring_requirements": null,
+    "expiration_date": "2036-06-30"
+  },
+  "discovered_entities": []
+}

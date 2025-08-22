@@ -1,0 +1,29 @@
+**INPUT DOCUMENT TEXT:**
+HEALTH RISK ASSESSMENT
+OAKVILLE QUARRY PROJECT
+
+Prepared by: Enviro Air Sciences
+Date: July 1, 2031
+
+This HRA evaluates potential health risks from exposure to Diesel Particulate Matter (DPM) during project construction.
+
+CONCLUSION:
+The maximum incremental cancer risk for the Maximally Exposed Individual Resident (MEIR) is calculated to be 8.5 in one million, which is below the BAAQMD significance threshold of 10 in one million. The impact is less than significant.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Health Risk Assessment",
+  "effective_date": "2031-07-01",
+  "parties": [
+    { "name": "Enviro Air Sciences", "role": "Consultant" }
+  ],
+  "technical_study_details": {
+    "study_type": "Health Risk Assessment",
+    "project_name": "Oakville Quarry Project",
+    "pollutants_analyzed": [
+      "Diesel Particulate Matter (DPM)"
+    ],
+    "risk_conclusion": "The maximum incremental cancer risk is 8.5 in one million, which is below the significance threshold of 10 in one million. The impact is less than significant."
+  },
+  "discovered_entities": []
+}

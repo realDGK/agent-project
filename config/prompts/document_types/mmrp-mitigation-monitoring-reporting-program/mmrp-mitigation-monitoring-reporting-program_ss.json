@@ -1,0 +1,56 @@
+{
+  "title": "Mitigation Monitoring & Reporting Program (MMRP) Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Mitigation Monitoring and Reporting Program'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Lead Agency", "Project Proponent"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "environmental_details": {
+      "type": "object",
+      "properties": {
+        "document_type": { "type": "string", "default": "MMRP" },
+        "project_name": { "type": "string" },
+        "mitigation_measures": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "measure_id": { "type": "string" },
+              "measure_description": { "type": "string" },
+              "monitoring_responsibility": { "type": "string" },
+              "timing": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "environmental_details"]
+}

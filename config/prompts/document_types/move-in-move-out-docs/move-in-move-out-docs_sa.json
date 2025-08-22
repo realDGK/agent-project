@@ -1,0 +1,21 @@
+{
+  "move_in_out_details": {
+    "type": "object",
+    "description": "Details specific to a move-in or move-out inspection report.",
+    "properties": {
+      "document_type": { "type": "string", "enum": ["Move-In", "Move-Out"] },
+      "property_address": { "type": "string" },
+      "unit_number": { "type": "string" },
+      "condition_notes": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "area": { "type": "string" },
+            "condition": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}

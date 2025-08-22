@@ -1,0 +1,47 @@
+{
+  "title": "Williamson Act Contract/Notice Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Land Conservation Act Contract'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Landowner", "County"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "williamson_act_details": {
+      "type": "object",
+      "properties": {
+        "contract_number": { "type": "string" },
+        "property_apn": { "type": "string" },
+        "acreage": { "type": "number" },
+        "term_of_contract": { "type": "string" },
+        "notice_of_non_renewal_date": { "type": "string", "format": "date" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "williamson_act_details"]
+}

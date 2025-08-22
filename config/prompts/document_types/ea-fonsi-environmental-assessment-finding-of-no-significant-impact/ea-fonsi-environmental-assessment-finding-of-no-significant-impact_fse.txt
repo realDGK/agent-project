@@ -1,0 +1,26 @@
+**INPUT DOCUMENT TEXT:**
+FINDING OF NO SIGNIFICANT IMPACT (FONSI)
+FOR THE PROPOSED AIRPORT RUNWAY EXTENSION
+
+Lead Agency: Federal Aviation Administration (FAA)
+Date: April 10, 2031
+
+The FAA has prepared an Environmental Assessment (EA), dated February 2031, for the proposed runway extension at Municipal Airport.
+
+Based on the analysis in the EA, the FAA has determined that the proposed action will not have a significant effect on the human environment. An Environmental Impact Statement will not be prepared.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Finding of No Significant Impact (FONSI)",
+  "effective_date": "2031-04-10",
+  "parties": [
+    { "name": "Federal Aviation Administration (FAA)", "role": "Lead Agency" }
+  ],
+  "environmental_details": {
+    "document_type": "FONSI",
+    "project_name": "Proposed Airport Runway Extension",
+    "ea_reference": "Environmental Assessment (EA), dated February 2031",
+    "determination_summary": "The proposed action will not have a significant effect on the human environment. An Environmental Impact Statement will not be prepared."
+  },
+  "discovered_entities": []
+}

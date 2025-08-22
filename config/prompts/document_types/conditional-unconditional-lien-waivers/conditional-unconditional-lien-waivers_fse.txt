@@ -1,0 +1,27 @@
+**INPUT DOCUMENT TEXT:**
+CONDITIONAL WAIVER AND RELEASE ON PROGRESS PAYMENT
+
+Claimant: City Electric Inc.
+Customer: BuildRight Corp.
+Job Location: Downtown Tower
+
+Upon receipt by the undersigned of a check in the amount of $350,000.00, the undersigned hereby waives and releases its lien and payment bond rights for labor, services, equipment, or material furnished to the jobsite through February 28, 2032.
+
+Date: March 5, 2032
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Conditional Waiver and Release on Progress Payment",
+  "effective_date": "2032-03-05",
+  "parties": [
+    { "name": "City Electric Inc.", "role": "Claimant" },
+    { "name": "BuildRight Corp.", "role": "Customer" }
+  ],
+  "lien_waiver_details": {
+    "project_name": "Downtown Tower",
+    "waiver_type": "Conditional Progress",
+    "through_date": "2032-02-28",
+    "payment_amount": 350000
+  },
+  "discovered_entities": []
+}

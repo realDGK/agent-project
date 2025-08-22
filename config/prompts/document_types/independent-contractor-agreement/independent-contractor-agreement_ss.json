@@ -1,0 +1,62 @@
+{
+  "title": "Independent Contractor Agreement Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Independent Contractor Agreement'."
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date",
+      "description": "The date the agreement was signed or became effective."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Client", "Contractor", "Company"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "contractor_details": {
+      "type": "object",
+      "properties": {
+        "scope_of_work_summary": {
+          "type": "string",
+          "description": "A brief summary of the services the contractor will provide."
+        },
+        "compensation_summary": {
+          "type": "string",
+          "description": "A summary of the payment terms (e.g., '$5,000 fixed fee', '$100 per hour', 'Paid upon completion')."
+        },
+        "term_of_agreement": {
+          "type": "string",
+          "description": "The duration of the agreement (e.g., '6 months', 'Until project completion', 'Effective from X to Y')."
+        },
+        "termination_clause_summary": {
+          "type": "string",
+          "description": "A brief summary of the conditions for termination, including any required notice period."
+        }
+      }
+    },
+    "discovered_entities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "entity_name": { "type": "string" },
+          "entity_value": { "type": "string" },
+          "context_summary": { "type": "string" }
+        }
+      }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "contractor_details"]
+}

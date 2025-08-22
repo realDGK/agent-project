@@ -1,0 +1,29 @@
+**INPUT DOCUMENT TEXT:**
+JOINT TRENCH ARRANGEMENT AGREEMENT
+RIVERBEND TRACT NO. 8888
+
+This agreement, dated May 15, 2030, is by and among Riverbend Homes LLC ("Developer"), Pacific Gas and Electric Company, AT&T, and Comcast.
+
+The parties agree to the joint installation of their respective facilities in a common trench throughout the Riverbend project. The Developer shall be responsible for the excavation and backfill of the trench. Each utility shall be responsible for the cost of its own conduit and cable.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Joint Trench Arrangement Agreement",
+  "effective_date": "2030-05-15",
+  "parties": [
+    { "name": "Riverbend Homes LLC", "role": "Developer" },
+    { "name": "Pacific Gas and Electric Company", "role": "Utility Company" },
+    { "name": "AT&T", "role": "Utility Company" },
+    { "name": "Comcast", "role": "Utility Company" }
+  ],
+  "utility_service_details": {
+    "project_name": "Riverbend Tract No. 8888",
+    "participating_utilities": [
+      "Pacific Gas and Electric",
+      "AT&T",
+      "Comcast"
+    ],
+    "cost_sharing_arrangement": "Developer is responsible for excavation and backfill. Each utility is responsible for its own conduit and cable."
+  },
+  "discovered_entities": []
+}

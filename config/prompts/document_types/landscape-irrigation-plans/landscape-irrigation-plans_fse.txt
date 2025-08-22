@@ -1,0 +1,23 @@
+**INPUT DOCUMENT TEXT:**
+LANDSCAPE ARCHITECTURAL PLANS
+FOR DOWNTOWN TOWER PLAZA
+
+Prepared by: Urban Spaces Design
+Date: June 15, 2031
+
+This plan set details the hardscape, planting, and irrigation for the public plaza area of the Downtown Tower project. All plant materials are drought-tolerant native species.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Landscape Architectural Plans",
+  "effective_date": "2031-06-15",
+  "parties": [
+    { "name": "Urban Spaces Design", "role": "Landscape Architect" }
+  ],
+  "plan_details": {
+    "project_name": "Downtown Tower Plaza",
+    "plan_type": "Landscape/Irrigation Plan",
+    "plan_summary": "Details the hardscape, planting, and irrigation for the public plaza. All plant materials are drought-tolerant native species."
+  },
+  "discovered_entities": []
+}

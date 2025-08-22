@@ -1,0 +1,56 @@
+{
+  "title": "Meter Set Request Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string"
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "Applicant",
+              "Utility"
+            ]
+          }
+        },
+        "required": [
+          "name",
+          "role"
+        ]
+      }
+    },
+    "utility_service_details": {
+      "type": "object",
+      "properties": {
+        "service_address": {
+          "type": "string"
+        },
+        "meter_type_requested": {
+          "type": "string"
+        },
+        "service_type": {
+          "type": "string",
+          "description": "e.g., 'Electric', 'Water', 'Gas'"
+        }
+      }
+    }
+  },
+  "required": [
+    "contract_name",
+    "effective_date",
+    "parties",
+    "utility_service_details"
+  ]
+}

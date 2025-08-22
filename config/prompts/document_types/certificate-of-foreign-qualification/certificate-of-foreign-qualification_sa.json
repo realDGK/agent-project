@@ -1,0 +1,25 @@
+{
+  "foreign_qualification_details": {
+    "type": "object",
+    "description": "Details specific to an entity's registration to do business in a state other than its state of formation.",
+    "properties": {
+      "entity_file_number": {
+        "type": "string",
+        "description": "The file number assigned by the qualifying state."
+      },
+      "home_jurisdiction": {
+        "type": "string",
+        "description": "The original state or country of formation (the 'domestic' state)."
+      },
+      "qualified_jurisdiction": {
+        "type": "string",
+        "description": "The state granting the authority to transact business (the 'foreign' state)."
+      },
+      "qualification_date": {
+        "type": "string",
+        "format": "date",
+        "description": "The date the entity was granted authority to transact business in the foreign state."
+      }
+    }
+  }
+}

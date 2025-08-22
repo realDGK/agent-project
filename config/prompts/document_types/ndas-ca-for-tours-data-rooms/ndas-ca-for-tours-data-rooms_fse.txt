@@ -1,0 +1,22 @@
+**INPUT DOCUMENT TEXT:**
+CONFIDENTIALITY AGREEMENT
+
+This Agreement is made February 15, 2027, by and between OAK TREE INVESTORS, LLC ("Owner") and PROSPECTIVE BUYER LLC ("Recipient").
+
+Owner is prepared to make available to Recipient certain information concerning the property known as The Vineyard Estates for the purpose of evaluating a possible acquisition. Recipient agrees to hold all such information in strict confidence for a period of two years.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Confidentiality Agreement",
+  "effective_date": "2027-02-15",
+  "parties": [
+    { "name": "OAK TREE INVESTORS, LLC", "role": "Disclosing Party" },
+    { "name": "PROSPECTIVE BUYER LLC", "role": "Receiving Party" }
+  ],
+  "nda_details": {
+    "property_name": "The Vineyard Estates",
+    "purpose_of_disclosure": "Evaluating a possible acquisition.",
+    "term_of_confidentiality": "Two years."
+  },
+  "discovered_entities": []
+}

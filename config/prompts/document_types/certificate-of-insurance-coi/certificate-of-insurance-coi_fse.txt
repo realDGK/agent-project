@@ -1,0 +1,71 @@
+**INPUT DOCUMENT TEXT:**
+CERTIFICATE OF LIABILITY INSURANCE
+DATE: 04/01/2027
+
+PRODUCER: All-Safe Insurance Brokers, 100 Market St, Chicago, IL
+
+INSURED: FrameRight Construction, Inc., 200 Project Way, Chicago, IL
+
+INSURERS AFFORDING COVERAGE:
+INSURER A: National Casualty Co.
+
+COVERAGES:
+This is to certify that the policies of insurance listed below have been issued to the insured named above for the policy period indicated.
+
+TYPE OF INSURANCE: General Liability
+POLICY NUMBER: GLC-987654321
+POLICY EFF: 04/01/2027
+POLICY EXP: 04/01/2028
+LIMITS:
+EACH OCCURRENCE: $1,000,000
+GENERAL AGGREGATE: $2,000,000
+
+CERTIFICATE HOLDER:
+City Development Group
+500 Tower Place
+Chicago, IL
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Certificate of Liability Insurance",
+  "effective_date": "2027-04-01",
+  "parties": [
+    {
+      "name": "FrameRight Construction, Inc.",
+      "role": "Insured"
+    },
+    {
+      "name": "National Casualty Co.",
+      "role": "Insurer"
+    },
+    {
+      "name": "All-Safe Insurance Brokers",
+      "role": "Producer"
+    },
+    {
+      "name": "City Development Group",
+      "role": "Certificate Holder"
+    }
+  ],
+  "insurance_details": {
+    "policies": [
+      {
+        "policy_type": "General Liability",
+        "policy_number": "GLC-987654321",
+        "effective_date": "2027-04-01",
+        "expiration_date": "2028-04-01",
+        "limits": [
+          {
+            "coverage": "Each Occurrence",
+            "amount": 1000000
+          },
+          {
+            "coverage": "General Aggregate",
+            "amount": 2000000
+          }
+        ]
+      }
+    ]
+  },
+  "discovered_entities": []
+}

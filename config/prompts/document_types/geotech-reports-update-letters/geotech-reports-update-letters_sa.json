@@ -1,0 +1,23 @@
+{
+  "technical_report_details": {
+    "type": "object",
+    "description": "Details specific to a technical or engineering report.",
+    "properties": {
+      "project_name": {
+        "type": "string"
+      },
+      "report_type": {
+        "type": "string"
+      },
+      "recommendations_summary": {
+        "type": "string"
+      },
+      "site_address": {
+        "type": "string"
+      },
+      "key_findings": {
+        "type": "string"
+      }
+    }
+  }
+}

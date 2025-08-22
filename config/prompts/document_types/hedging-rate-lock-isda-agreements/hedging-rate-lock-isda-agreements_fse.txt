@@ -1,0 +1,32 @@
+**INPUT DOCUMENT TEXT:**
+INTEREST RATE SWAP CONFIRMATION
+
+To: Downtown Tower LLC
+From: Mega Bank, N.A.
+Trade Date: August 1, 2031
+Effective Date: August 1, 2031
+Termination Date: August 1, 2034
+
+This confirms the terms of an Interest Rate Swap transaction.
+Notional Amount: $50,000,000
+Downtown Tower LLC pays: Fixed Rate of 4.50%
+Mega Bank, N.A. pays: Floating Rate of 1-Month SOFR
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Interest Rate Swap Confirmation",
+  "effective_date": "2031-08-01",
+  "parties": [
+    { "name": "Downtown Tower LLC", "role": "Party A" },
+    { "name": "Mega Bank, N.A.", "role": "Party B" }
+  ],
+  "derivative_details": {
+    "trade_date": "2031-08-01",
+    "notional_amount": 50000000,
+    "product_type": "Interest Rate Swap",
+    "fixed_rate": "4.50%",
+    "floating_rate_index": "1-Month SOFR",
+    "termination_date": "2034-08-01"
+  },
+  "discovered_entities": []
+}

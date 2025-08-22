@@ -1,0 +1,11 @@
+{
+  "public_records_request_details": {
+    "type": "object",
+    "description": "Details specific to a public records act request or response.",
+    "properties": {
+      "document_type": { "type": "string" },
+      "records_requested": { "type": "string" },
+      "response_summary": { "type": "string" }
+    }
+  }
+}

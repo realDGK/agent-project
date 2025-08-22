@@ -1,0 +1,12 @@
+{
+  "deed_details": {
+    "type": "object",
+    "description": "Details specific to a deed transferring title to real property.",
+    "properties": {
+      "deed_type": { "type": "string" },
+      "property_legal_description": { "type": "string" },
+      "apn": { "type": "string" },
+      "transfer_tax_amount": { "type": "number" }
+    }
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "title": "Demand Letter Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Demand Letter' or 'Notice of Claim'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Claimant", "Recipient"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "demand_letter_details": {
+      "type": "object",
+      "properties": {
+        "amount_demanded": { "type": "number" },
+        "reason_for_demand": { "type": "string" },
+        "deadline_to_respond": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "demand_letter_details"]
+}

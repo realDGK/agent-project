@@ -1,0 +1,1574 @@
+Of course. The batch processing is working well. Let's proceed with the next set of fifteen.
+
+Here are documents #260 through #274 from the checklist, all in the requested format.
+
+Document Type 260: CC&Rs (Covenants, Conditions & Restrictions)
+260_specialist_schema.json
+
+JSON
+
+{
+  "title": "CC&Rs Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Declaration of Covenants, Conditions, and Restrictions'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Declarant", "Homeowners Association"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "ccr_details": {
+      "type": "object",
+      "properties": {
+        "property_description": { "type": "string" },
+        "association_name": { "type": "string" },
+        "use_restrictions_summary": { "type": "string" },
+        "assessment_provisions": { "type": "string" }
+      }
+    },
+    "legal_recording_details": {
+      "type": "object",
+      "properties": {
+        "instrument_number": { "type": "string" },
+        "recording_date": { "type": "string", "format": "date" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "ccr_details"]
+}
+260_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+DECLARATION OF COVENANTS, CONDITIONS, AND RESTRICTIONS
+FOR
+GREEN VALLEY RANCH
+
+This Declaration is made on May 1, 2033, by Green Valley Developers LLC ("Declarant").
+
+This Declaration imposes upon the real property known as Green Valley Ranch a plan of covenants and creates the Green Valley Ranch Homeowners Association.
+
+ARTICLE III: USE RESTRICTIONS
+No structure of a temporary character, trailer, shack, or barn shall be used on any Lot at any time as a residence. All fences must be of wood or wrought iron construction.
+
+ARTICLE IV: ASSESSMENTS
+The Association is authorized to levy annual and special assessments against the Lots to provide for the maintenance of the Common Areas.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Declaration of Covenants, Conditions, and Restrictions for Green Valley Ranch",
+  "effective_date": "2033-05-01",
+  "parties": [
+    { "name": "Green Valley Developers LLC", "role": "Declarant" },
+    { "name": "Green Valley Ranch Homeowners Association", "role": "Homeowners Association" }
+  ],
+  "ccr_details": {
+    "property_description": "Green Valley Ranch",
+    "association_name": "Green Valley Ranch Homeowners Association",
+    "use_restrictions_summary": "No temporary structures used as residences. Fences must be wood or wrought iron.",
+    "assessment_provisions": "Association can levy annual and special assessments to maintain Common Areas."
+  },
+  "legal_recording_details": null,
+  "discovered_entities": []
+}
+260_schema_additions.json
+
+JSON
+
+{
+  "ccr_details": {
+    "type": "object",
+    "description": "Details specific to a declaration of CC&Rs.",
+    "properties": {
+      "property_description": { "type": "string" },
+      "association_name": { "type": "string" },
+      "use_restrictions_summary": { "type": "string" },
+      "assessment_provisions": { "type": "string" }
+    }
+  }
+}
+Document Type 261: HOA Articles of Incorporation
+261_specialist_schema.json
+
+JSON
+
+{
+  "title": "HOA Articles of Incorporation Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Articles of Incorporation of [HOA Name]'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Incorporator", "Initial Director"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "corporate_details": {
+      "type": "object",
+      "properties": {
+        "corporation_name": { "type": "string" },
+        "corporate_purpose": { "type": "string" },
+        "corporation_type": { "type": "string", "description": "e.g., 'Nonprofit Mutual Benefit Corporation'." }
+      }
+    },
+    "legal_recording_details": {
+      "type": "object",
+      "properties": {
+        "filing_date": { "type": "string", "format": "date" },
+        "state": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "corporate_details"]
+}
+261_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+ARTICLES OF INCORPORATION
+OF
+GREEN VALLEY RANCH HOMEOWNERS ASSOCIATION
+
+I. The name of the corporation is Green Valley Ranch Homeowners Association.
+II. This corporation is a nonprofit mutual benefit corporation organized under the Nonprofit Mutual Benefit Corporation Law. The purpose of this corporation is to engage in any lawful act or activity for which a corporation may be organized under such law.
+
+Executed by the incorporator on May 1, 2033.
+(Signature)
+John Developer
+
+Filed with the California Secretary of State on May 5, 2033.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Articles of Incorporation of Green Valley Ranch Homeowners Association",
+  "effective_date": "2033-05-01",
+  "parties": [
+    { "name": "John Developer", "role": "Incorporator" }
+  ],
+  "corporate_details": {
+    "corporation_name": "Green Valley Ranch Homeowners Association",
+    "corporate_purpose": "To engage in any lawful act or activity for which a corporation may be organized under the Nonprofit Mutual Benefit Corporation Law.",
+    "corporation_type": "Nonprofit Mutual Benefit Corporation"
+  },
+  "legal_recording_details": {
+    "filing_date": "2033-05-05",
+    "state": "California"
+  },
+  "discovered_entities": []
+}
+261_schema_additions.json
+
+JSON
+
+{
+  "corporate_details": {
+    "type": "object",
+    "description": "Details specific to corporate formation and governance documents.",
+    "properties": {
+      "corporate_purpose": { "type": "string" },
+      "shares_authorized": { "type": "object" },
+      "corporation_name": { "type": "string" },
+      "corporation_type": { "type": "string" }
+    }
+  }
+}
+Document Type 262: HOA Bylaws
+262_specialist_schema.json
+
+JSON
+
+{
+  "title": "HOA Bylaws Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Bylaws of [HOA Name]'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Homeowners Association"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "governance_details": {
+      "type": "object",
+      "properties": {
+        "director_quorum_requirement": { "type": "string" },
+        "member_quorum_requirement": { "type": "string" },
+        "director_count": { "type": "string" },
+        "officer_titles": { "type": "array", "items": { "type": "string" } },
+        "fiscal_year_end": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "governance_details"]
+}
+262_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+BYLAWS OF THE GREEN VALLEY RANCH HOMEOWNERS ASSOCIATION
+Adopted: June 1, 2033
+
+ARTICLE III: BOARD OF DIRECTORS
+Section 1. Number. The Association shall have five (5) directors.
+Section 5. Quorum. A majority of the directors shall constitute a quorum.
+
+ARTICLE V: MEETINGS OF MEMBERS
+Section 2. Quorum. The presence of members representing fifty-one percent (51%) of the total voting power shall constitute a quorum.
+
+ARTICLE X: FISCAL YEAR
+The fiscal year of the Association shall end on December 31.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Bylaws of the Green Valley Ranch Homeowners Association",
+  "effective_date": "2033-06-01",
+  "parties": [
+    { "name": "Green Valley Ranch Homeowners Association", "role": "Homeowners Association" }
+  ],
+  "governance_details": {
+    "director_quorum_requirement": "A majority of the directors.",
+    "member_quorum_requirement": "Fifty-one percent (51%) of the total voting power.",
+    "director_count": "Five (5)",
+    "officer_titles": null,
+    "fiscal_year_end": "December 31"
+  },
+  "discovered_entities": []
+}
+262_schema_additions.json
+
+JSON
+
+{
+  "governance_details": {
+    "type": "object",
+    "description": "Details specific to the internal governance rules of an entity.",
+    "properties": {
+      "director_quorum_requirement": { "type": "string" },
+      "shareholder_quorum_requirement": { "type": "string" },
+      "director_count": { "type": "string" },
+      "officer_titles": { "type": "array", "items": { "type": "string" } },
+      "fiscal_year_end": { "type": "string" },
+      "indemnification_clause_summary": { "type": "string" },
+      "member_quorum_requirement": { "type": "string" }
+    }
+  }
+}
+Document Type 263: HOA Budgets/Reserve Studies
+263_specialist_schema.json
+
+JSON
+
+{
+  "title": "HOA Budget/Reserve Study Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Annual Budget' or 'Reserve Study'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Homeowners Association", "Author"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "hoa_financial_details": {
+      "type": "object",
+      "properties": {
+        "document_type": { "type": "string", "enum": ["Budget", "Reserve Study"] },
+        "fiscal_year": { "type": "string" },
+        "total_annual_budget": { "type": "number" },
+        "monthly_assessment_per_unit": { "type": "number" },
+        "reserve_fund_balance": { "type": "number" },
+        "percent_funded": { "type": "number" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "hoa_financial_details"]
+}
+263_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+GREEN VALLEY RANCH HOA
+2034 ANNUAL BUDGET
+
+For the Fiscal Year Beginning January 1, 2034
+
+Total Annual Operating Budget: $500,000
+Total Annual Reserve Contribution: $150,000
+Total Annual Budget: $650,000
+
+Number of Units: 200
+Monthly Assessment Per Unit: $270.83
+
+**JSON OUTPUT:**
+{
+  "contract_name": "2034 Annual Budget",
+  "effective_date": "2034-01-01",
+  "parties": [
+    { "name": "Green Valley Ranch HOA", "role": "Homeowners Association" }
+  ],
+  "hoa_financial_details": {
+    "document_type": "Budget",
+    "fiscal_year": "2034",
+    "total_annual_budget": 650000,
+    "monthly_assessment_per_unit": 270.83,
+    "reserve_fund_balance": null,
+    "percent_funded": null
+  },
+  "discovered_entities": []
+}
+263_schema_additions.json
+
+JSON
+
+{
+  "hoa_financial_details": {
+    "type": "object",
+    "description": "Details specific to HOA financial documents.",
+    "properties": {
+      "document_type": { "type": "string", "enum": ["Budget", "Reserve Study"] },
+      "fiscal_year": { "type": "string" },
+      "total_annual_budget": { "type": "number" },
+      "monthly_assessment_per_unit": { "type": "number" },
+      "reserve_fund_balance": { "type": "number" },
+      "percent_funded": { "type": "number" }
+    }
+  }
+}
+Document Type 264: Architectural Guidelines
+264_specialist_schema.json
+
+JSON
+
+{
+  "title": "Architectural Guidelines Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Architectural Design Guidelines'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Homeowners Association", "Architectural Committee"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "architectural_guideline_details": {
+      "type": "object",
+      "properties": {
+        "property_name": { "type": "string" },
+        "key_guidelines": { "type": "array", "items": { "type": "string" } },
+        "review_process_summary": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "architectural_guideline_details"]
+}
+264_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+GREEN VALLEY RANCH
+ARCHITECTURAL DESIGN GUIDELINES
+Revised: July 1, 2033
+
+All exterior modifications must be submitted to the Architectural Review Committee for approval.
+- Approved exterior paint colors are limited to the pre-approved color palette.
+- Fences shall not exceed 6 feet in height.
+- All landscaping must be drought-tolerant.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Architectural Design Guidelines",
+  "effective_date": "2033-07-01",
+  "parties": [
+    { "name": "Green Valley Ranch", "role": "Homeowners Association" }
+  ],
+  "architectural_guideline_details": {
+    "property_name": "Green Valley Ranch",
+    "key_guidelines": [
+      "Approved exterior paint colors are limited to the pre-approved color palette.",
+      "Fences shall not exceed 6 feet in height.",
+      "All landscaping must be drought-tolerant."
+    ],
+    "review_process_summary": "All exterior modifications must be submitted to the Architectural Review Committee for approval."
+  },
+  "discovered_entities": []
+}
+264_schema_additions.json
+
+JSON
+
+{
+  "architectural_guideline_details": {
+    "type": "object",
+    "description": "Details specific to architectural design guidelines.",
+    "properties": {
+      "property_name": { "type": "string" },
+      "key_guidelines": { "type": "array", "items": { "type": "string" } },
+      "review_process_summary": { "type": "string" }
+    }
+  }
+}
+Document Type 265: HOA Rules & Regulations
+265_specialist_schema.json
+
+JSON
+
+{
+  "title": "HOA Rules & Regulations Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Rules and Regulations'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Homeowners Association"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "rules_and_regulations_details": {
+      "type": "object",
+      "properties": {
+        "property_name": { "type": "string" },
+        "key_rules": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "rules_and_regulations_details"]
+}
+265_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+GREEN VALLEY RANCH HOA
+RULES AND REGULATIONS
+Effective: July 1, 2033
+
+- Pool Hours: 8:00 AM to 10:00 PM.
+- Parking: No overnight street parking is permitted.
+- Trash Cans: Must be stored out of public view, except on collection day.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Rules and Regulations",
+  "effective_date": "2033-07-01",
+  "parties": [
+    { "name": "Green Valley Ranch HOA", "role": "Homeowners Association" }
+  ],
+  "rules_and_regulations_details": {
+    "property_name": "Green Valley Ranch",
+    "key_rules": [
+      "Pool Hours: 8:00 AM to 10:00 PM.",
+      "No overnight street parking is permitted.",
+      "Trash Cans: Must be stored out of public view, except on collection day."
+    ]
+  },
+  "discovered_entities": []
+}
+265_schema_additions.json
+
+JSON
+
+{
+  "rules_and_regulations_details": {
+    "type": "object",
+    "description": "Details specific to building or project rules and regulations.",
+    "properties": {
+      "property_name": { "type": "string" },
+      "key_rules": { "type": "array", "items": { "type": "string" } }
+    }
+  }
+}
+Document Type 266: Condominium Plan
+266_specialist_schema.json
+
+JSON
+
+{
+  "title": "Condominium Plan Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Condominium Plan'."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Declarant", "Engineer", "Surveyor"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "map_details": {
+      "type": "object",
+      "properties": {
+        "project_name": { "type": "string" },
+        "number_of_units": { "type": "integer" },
+        "common_area_description": { "type": "string" },
+        "limited_common_area_description": { "type": "string" }
+      }
+    },
+    "legal_recording_details": {
+      "type": "object",
+      "properties": {
+        "instrument_number": { "type": "string" },
+        "recording_date": { "type": "string", "format": "date" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "map_details"]
+}
+266_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+CONDOMINIUM PLAN
+FOR
+BAYVIEW TOWER CONDOMINIUMS
+
+This plan creates 50 residential condominium units.
+The plan consists of a three-dimensional depiction of the units and the common areas.
+Limited common elements include the balconies and parking spaces assigned to each unit.
+All other areas, including the lobby, hallways, and roof, are general common elements.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Condominium Plan",
+  "parties": [],
+  "map_details": {
+    "project_name": "Bayview Tower Condominiums",
+    "number_of_units": 50,
+    "common_area_description": "Lobby, hallways, and roof.",
+    "limited_common_area_description": "Balconies and parking spaces assigned to each unit."
+  },
+  "legal_recording_details": null,
+  "discovered_entities": []
+}
+266_schema_additions.json
+
+JSON
+
+{
+  "map_details": {
+    "type": "object",
+    "description": "Details specific to maps, plats, and legal descriptions.",
+    "properties": {
+      "property_legal_description": { "type": "string" },
+      "apn": { "type": "string" },
+      "county": { "type": "string" },
+      "state": { "type": "string" },
+      "map_type": { "type": "string" },
+      "map_number": { "type": "string" },
+      "number_of_lots_created": { "type": "integer" },
+      "property_address": { "type": "string" },
+      "approval_date": { "type": "string", "format": "date" },
+      "expiration_date": { "type": "string", "format": "date" },
+      "vesting_rights_summary": { "type": "string" },
+      "application_number": { "type": "string" },
+      "affected_parcels_apn": { "type": "array", "items": { "type": "string" } },
+      "adjustment_summary": { "type": "string" },
+      "corrected_document": { "type": "string" },
+      "corrected_document_recording_info": { "type": "string" },
+      "correction_summary": { "type": "string" },
+      "project_name": { "type": "string" },
+      "number_of_units": { "type": "integer" },
+      "common_area_description": { "type": "string" },
+      "limited_common_area_description": { "type": "string" }
+    }
+  }
+}
+Document Type 267: Subdivision Public Reports (DRE: Prelim/Final)
+267_specialist_schema.json
+
+JSON
+
+{
+  "title": "Subdivision Public Report Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Final Subdivision Public Report'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Subdivider", "Issuing Agency"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "public_report_details": {
+      "type": "object",
+      "properties": {
+        "report_type": { "type": "string", "enum": ["Preliminary", "Final"] },
+        "file_number": { "type": "string" },
+        "subdivision_name": { "type": "string" },
+        "number_of_lots_or_units": { "type": "integer" },
+        "expiration_date": { "type": "string", "format": "date" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "public_report_details"]
+}
+267_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+STATE OF CALIFORNIA
+DEPARTMENT OF REAL ESTATE
+FINAL SUBDIVISION PUBLIC REPORT
+
+File No: 012345-LA
+Subdivision: GREEN VALLEY RANCH
+Subdivider: Green Valley Developers LLC
+Issue Date: August 1, 2033
+Expires: August 1, 2038
+
+This report is for a 200-lot single-family residential subdivision. No lot or unit may be sold or leased until the prospective purchaser has been given a copy of this report.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Final Subdivision Public Report",
+  "effective_date": "2033-08-01",
+  "parties": [
+    { "name": "Green Valley Developers LLC", "role": "Subdivider" },
+    { "name": "California Department of Real Estate", "role": "Issuing Agency" }
+  ],
+  "public_report_details": {
+    "report_type": "Final",
+    "file_number": "012345-LA",
+    "subdivision_name": "Green Valley Ranch",
+    "number_of_lots_or_units": 200,
+    "expiration_date": "2038-08-01"
+  },
+  "discovered_entities": []
+}
+267_schema_additions.json
+
+JSON
+
+{
+  "public_report_details": {
+    "type": "object",
+    "description": "Details specific to a Subdivision Public Report.",
+    "properties": {
+      "report_type": { "type": "string", "enum": ["Preliminary", "Final"] },
+      "file_number": { "type": "string" },
+      "subdivision_name": { "type": "string" },
+      "number_of_lots_or_units": { "type": "integer" },
+      "expiration_date": { "type": "string", "format": "date" }
+    }
+  }
+}
+Document Type 268: Annexation Documents
+268_specialist_schema.json
+
+JSON
+
+{
+  "title": "Annexation Document Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Resolution Approving Annexation'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Annexing Agency", "Property Owner"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "annexation_details": {
+      "type": "object",
+      "properties": {
+        "annexation_name_or_number": { "type": "string" },
+        "property_annexed": { "type": "string" },
+        "pre-annexation_zoning": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "annexation_details"]
+}
+268_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+RESOLUTION NO. 2033-25
+A RESOLUTION OF THE CITY COUNCIL OF THE CITY OF OAKVILLE APPROVING THE "OAKVILLE RANCH" ANNEXATION (NO. A-345)
+
+WHEREAS, Oakville Ranch LLC has petitioned for the annexation of 150 acres of unincorporated territory into the City of Oakville;
+
+NOW, THEREFORE, the City Council approves the annexation. The City's pre-zoning of R-1 (Single-Family Residential) shall apply to the territory upon annexation.
+
+ADOPTED: June 10, 2033
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Resolution Approving Annexation",
+  "effective_date": "2033-06-10",
+  "parties": [
+    { "name": "City of Oakville", "role": "Annexing Agency" },
+    { "name": "Oakville Ranch LLC", "role": "Property Owner" }
+  ],
+  "annexation_details": {
+    "annexation_name_or_number": "Oakville Ranch Annexation (No. A-345)",
+    "property_annexed": "150 acres of unincorporated territory",
+    "pre-annexation_zoning": "R-1 (Single-Family Residential)"
+  },
+  "discovered_entities": []
+}
+268_schema_additions.json
+
+JSON
+
+{
+  "annexation_details": {
+    "type": "object",
+    "description": "Details specific to an annexation.",
+    "properties": {
+      "annexation_name_or_number": { "type": "string" },
+      "property_annexed": { "type": "string" },
+      "pre-annexation_zoning": { "type": "string" }
+    }
+  }
+}
+Document Type 269: HOA Meeting Minutes/Resolutions
+269_specialist_schema.json
+
+JSON
+
+{
+  "title": "HOA Meeting Minutes/Resolution Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Minutes of the Annual Meeting'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Homeowners Association", "Board of Directors"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "meeting_minutes_details": {
+      "type": "object",
+      "properties": {
+        "meeting_type": { "type": "string" },
+        "key_decisions_made": { "type": "array", "items": { "type": "string" } },
+        "vote_summary": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "meeting_minutes_details"]
+}
+269_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+MINUTES OF THE REGULAR MEETING OF THE BOARD OF DIRECTORS
+GREEN VALLEY RANCH HOMEOWNERS ASSOCIATION
+July 15, 2033
+
+A meeting of the Board of Directors was held.
+OLD BUSINESS: The contract for pool resurfacing was discussed.
+NEW BUSINESS: A motion was made to approve the 2034 Annual Budget. The motion was seconded and passed by a vote of 4 to 1.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Minutes of the Regular Meeting of the Board of Directors",
+  "effective_date": "2033-07-15",
+  "parties": [
+    { "name": "Green Valley Ranch Homeowners Association", "role": "Homeowners Association" }
+  ],
+  "meeting_minutes_details": {
+    "meeting_type": "Regular Meeting of the Board of Directors",
+    "key_decisions_made": [
+      "The 2034 Annual Budget was approved."
+    ],
+    "vote_summary": "Passed by a vote of 4 to 1."
+  },
+  "discovered_entities": []
+}
+269_schema_additions.json
+
+JSON
+
+{
+  "meeting_minutes_details": {
+    "type": "object",
+    "description": "Details specific to meeting minutes.",
+    "properties": {
+      "project_name": { "type": "string" },
+      "meeting_title": { "type": "string" },
+      "attendees": { "type": "array", "items": { "type": "string" } },
+      "key_discussion_points": { "type": "array", "items": { "type": "string" } },
+      "action_items": { "type": "array" },
+      "meeting_type": { "type": "string" },
+      "key_decisions_made": { "type": "array", "items": { "type": "string" } },
+      "vote_summary": { "type": "string" }
+    }
+  }
+}
+Document Type 270: Building/Grading/Demolition Permits
+270_specialist_schema.json
+
+JSON
+
+{
+  "title": "Building/Grading/Demolition Permit Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Building Permit'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Permittee", "Owner", "Contractor", "Issuing Agency"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "permit_details": {
+      "type": "object",
+      "properties": {
+        "permit_number": { "type": "string" },
+        "permit_type": { "type": "string", "enum": ["Building", "Grading", "Demolition"] },
+        "property_address": { "type": "string" },
+        "scope_of_work": { "type": "string" },
+        "valuation": { "type": "number" },
+        "expiration_date": { "type": "string", "format": "date" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "permit_details"]
+}
+270_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+CITY OF ANYTOWN - BUILDING PERMIT
+
+PERMIT NO: B-2031-0101
+ISSUED: 09/01/2031
+EXPIRES: 03/01/2033
+ADDRESS: 123 Main Street
+OWNER: Downtown Tower LLC
+CONTRACTOR: BuildRight Corp.
+VALUATION: $85,000,000
+
+DESCRIPTION OF WORK:
+Construction of a new 20-story mixed-use high-rise building.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Building Permit",
+  "effective_date": "2031-09-01",
+  "parties": [
+    { "name": "Downtown Tower LLC", "role": "Owner" },
+    { "name": "BuildRight Corp.", "role": "Contractor" },
+    { "name": "City of Anytown", "role": "Issuing Agency" }
+  ],
+  "permit_details": {
+    "permit_number": "B-2031-0101",
+    "permit_type": "Building",
+    "property_address": "123 Main Street",
+    "scope_of_work": "Construction of a new 20-story mixed-use high-rise building.",
+    "valuation": 85000000,
+    "expiration_date": "2033-03-01"
+  },
+  "discovered_entities": []
+}
+270_schema_additions.json
+
+JSON
+
+{
+  "permit_details": {
+    "type": "object",
+    "description": "Details specific to a permit issued by a government agency.",
+    "properties": {
+      "permit_number": { "type": "string" },
+      "property_address": { "type": "string" },
+      "sign_description": { "type": "string" },
+      "sign_dimensions": { "type": "string" },
+      "expiration_date": { "type": "string", "format": "date" },
+      "permit_type": { "type": "string" },
+      "authorized_activity": { "type": "string" },
+      "impacts_authorized": { "type": "string" },
+      "mitigation_required": { "type": "string" },
+      "certification_number": { "type": "string" },
+      "project_name": { "type": "string" },
+      "related_404_permit": { "type": "string" },
+      "key_conditions": { "type": "array", "items": { "type": "string" } },
+      "notification_number": { "type": "string" },
+      "term_of_agreement": { "type": "string" },
+      "equipment_or_process_permitted": { "type": "string" },
+      "utility_type": { "type": "string" },
+      "connection_fee": { "type": "number" },
+      "meter_size": { "type": "string" },
+      "permit_summary": { "type": "string" },
+      "location_of_work": { "type": "string" },
+      "authorized_work_summary": { "type": "string" },
+      "scope_of_work": { "type": "string" },
+      "valuation": { "type": "number" }
+    }
+  }
+}
+Document Type 271: Fire Dept Permits
+271_specialist_schema.json
+
+JSON
+
+{
+  "title": "Fire Dept Permit Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Fire Department Permit'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Permittee", "Issuing Agency"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "permit_details": {
+      "type": "object",
+      "properties": {
+        "permit_number": { "type": "string" },
+        "property_address": { "type": "string" },
+        "permit_type": { "type": "string", "description": "e.g., 'Fire Sprinkler', 'Fire Alarm'." },
+        "scope_of_work": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "permit_details"]
+}
+271_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+OAKWOOD FIRE PROTECTION DISTRICT
+PERMIT
+
+Permit #: FP2032-050
+Date: March 1, 2032
+Address: 123 Main Street, Oakwood, CA
+Permittee: Downtown Tower LLC
+
+This permit is for the installation of the automatic fire sprinkler system in accordance with the approved plans.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Fire Department Permit",
+  "effective_date": "2032-03-01",
+  "parties": [
+    { "name": "Downtown Tower LLC", "role": "Permittee" },
+    { "name": "Oakwood Fire Protection District", "role": "Issuing Agency" }
+  ],
+  "permit_details": {
+    "permit_number": "FP2032-050",
+    "property_address": "123 Main Street, Oakwood, CA",
+    "permit_type": "Fire Sprinkler",
+    "scope_of_work": "Installation of the automatic fire sprinkler system in accordance with the approved plans."
+  },
+  "discovered_entities": []
+}
+271_schema_additions.json
+
+JSON
+
+{
+  "permit_details": {
+    "type": "object",
+    "description": "Details specific to a permit issued by a government agency.",
+    "properties": {
+      "permit_number": { "type": "string" },
+      "property_address": { "type": "string" },
+      "sign_description": { "type": "string" },
+      "sign_dimensions": { "type": "string" },
+      "expiration_date": { "type": "string", "format": "date" },
+      "permit_type": { "type": "string" },
+      "authorized_activity": { "type": "string" },
+      "impacts_authorized": { "type": "string" },
+      "mitigation_required": { "type": "string" },
+      "certification_number": { "type": "string" },
+      "project_name": { "type": "string" },
+      "related_404_permit": { "type": "string" },
+      "key_conditions": { "type": "array", "items": { "type": "string" } },
+      "notification_number": { "type": "string" },
+      "term_of_agreement": { "type": "string" },
+      "equipment_or_process_permitted": { "type": "string" },
+      "utility_type": { "type": "string" },
+      "connection_fee": { "type": "number" },
+      "meter_size": { "type": "string" },
+      "permit_summary": { "type": "string" },
+      "location_of_work": { "type": "string" },
+      "authorized_work_summary": { "type": "string" },
+      "scope_of_work": { "type": "string" },
+      "valuation": { "type": "number" }
+    }
+  }
+}
+Document Type 272: Elevator/Boiler Certificates
+272_specialist_schema.json
+
+JSON
+
+{
+  "title": "Elevator/Boiler Certificate Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Permit to Operate Elevator'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Owner", "Issuing Agency"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "equipment_certificate_details": {
+      "type": "object",
+      "properties": {
+        "equipment_type": { "type": "string", "enum": ["Elevator", "Boiler"] },
+        "certificate_number": { "type": "string" },
+        "location": { "type": "string" },
+        "expiration_date": { "type": "string", "format": "date" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "equipment_certificate_details"]
+}
+272_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+STATE OF CALIFORNIA
+DEPARTMENT OF INDUSTRIAL RELATIONS - ELEVATOR UNIT
+PERMIT TO OPERATE
+
+Permit #: 123-45678
+Issued: 10/15/2034
+Expires: 10/15/2035
+Location: 123 Main Street, Anytown, CA - Elevator #1
+
+Owner: Downtown Tower LLC
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Permit to Operate Elevator",
+  "effective_date": "2034-10-15",
+  "parties": [
+    { "name": "Downtown Tower LLC", "role": "Owner" },
+    { "name": "State of California Department of Industrial Relations", "role": "Issuing Agency" }
+  ],
+  "equipment_certificate_details": {
+    "equipment_type": "Elevator",
+    "certificate_number": "123-45678",
+    "location": "123 Main Street, Anytown, CA - Elevator #1",
+    "expiration_date": "2035-10-15"
+  },
+  "discovered_entities": []
+}
+272_schema_additions.json
+
+JSON
+
+{
+  "equipment_certificate_details": {
+    "type": "object",
+    "description": "Details specific to an equipment operating certificate.",
+    "properties": {
+      "equipment_type": { "type": "string", "enum": ["Elevator", "Boiler"] },
+      "certificate_number": { "type": "string" },
+      "location": { "type": "string" },
+      "expiration_date": { "type": "string", "format": "date" }
+    }
+  }
+}
+Document Type 273: Accessibility (CASp) Reports
+273_specialist_schema.json
+
+JSON
+
+{
+  "title": "Accessibility (CASp) Report Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'CASp Inspection Report'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["CASp Inspector", "Client"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "casp_report_details": {
+      "type": "object",
+      "properties": {
+        "property_address": { "type": "string" },
+        "inspection_date": { "type": "string", "format": "date" },
+        "determination": { "type": "string", "description": "e.g., 'Inspected by a CASp', 'Meets all applicable construction-related accessibility standards'." },
+        "summary_of_findings": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "casp_report_details"]
+}
+273_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+CERTIFIED ACCESS SPECIALIST (CASp) INSPECTION REPORT
+
+Property: 1500 Oak Street, Walnut Creek, CA
+Client: Oak Street Properties LLC
+Inspection Date: June 5, 2033
+Inspector: Access Compliance Group, CASp #123
+
+DETERMINATION:
+This property was inspected by a Certified Access Specialist and was determined to meet all applicable construction-related accessibility standards.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "CASp Inspection Report",
+  "effective_date": "2033-06-05",
+  "parties": [
+    { "name": "Access Compliance Group", "role": "CASp Inspector" },
+    { "name": "Oak Street Properties LLC", "role": "Client" }
+  ],
+  "casp_report_details": {
+    "property_address": "1500 Oak Street, Walnut Creek, CA",
+    "inspection_date": "2033-06-05",
+    "determination": "Inspected by a CASp and determined to meet all applicable construction-related accessibility standards.",
+    "summary_of_findings": null
+  },
+  "discovered_entities": []
+}
+273_schema_additions.json
+
+JSON
+
+{
+  "casp_report_details": {
+    "type": "object",
+    "description": "Details specific to a Certified Access Specialist (CASp) report.",
+    "properties": {
+      "property_address": { "type": "string" },
+      "inspection_date": { "type": "string", "format": "date" },
+      "determination": { "type": "string" },
+      "summary_of_findings": { "type": "string" }
+    }
+  }
+}
+Document Type 274: Energy (Title 24) Reports
+274_specialist_schema.json
+
+JSON
+
+{
+  "title": "Energy (Title 24) Report Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Title 24 Energy Compliance Report'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Author", "Energy Consultant"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "energy_report_details": {
+      "type": "object",
+      "properties": {
+        "project_address": { "type": "string" },
+        "compliance_method": { "type": "string" },
+        "compliance_margin_pct": { "type": "number" },
+        "compliance_statement": { "type": "string" }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "energy_report_details"]
+}
+274_few_shot_examples.txt
+
+Plaintext
+
+**INPUT DOCUMENT TEXT:**
+CERTIFICATE OF COMPLIANCE: CF1R-PRF-01-E
+Project: 123 New Home Lane, Sacramento, CA
+Date: May 1, 2032
+
+This building is in compliance with the California Title 24 Building Energy Efficiency Standards.
+Compliance Method: Performance
+Compliance Margin: 5.5% better than standard.
+
+Prepared by: EnergyCalc Services
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Certificate of Compliance: CF1R-PRF-01-E",
+  "effective_date": "2032-05-01",
+  "parties": [
+    { "name": "EnergyCalc Services", "role": "Energy Consultant" }
+  ],
+  "energy_report_details": {
+    "project_address": "123 New Home Lane, Sacramento, CA",
+    "compliance_method": "Performance",
+    "compliance_margin_pct": 5.5,
+    "compliance_statement": "This building is in compliance with the California Title 24 Building Energy Efficiency Standards."
+  },
+  "discovered_entities": []
+}
+274_schema_additions.json
+
+JSON
+
+{
+  "energy_report_details": {
+    "type": "object",
+    "description": "Details specific to an energy compliance report.",
+    "properties": {
+      "project_address": { "type": "string" },
+      "compliance_method": { "type": "string" },
+      "compliance_margin_pct": { "type": "number" },
+      "compliance_statement": { "type": "string" }
+    }
+  }
+}

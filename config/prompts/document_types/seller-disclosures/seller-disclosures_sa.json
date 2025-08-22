@@ -1,0 +1,23 @@
+{
+  "disclosure_details": {
+    "type": "object",
+    "description": "Details specific to seller disclosures about a property's condition.",
+    "properties": {
+      "property_address": {
+        "type": "string"
+      },
+      "disclosed_issues": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "category": { "type": "string" },
+            "issue": { "type": "string" },
+            "explanation": { "type": "string" }
+          }
+        },
+        "description": "A list of all affirmative disclosures made by the seller."
+      }
+    }
+  }
+}

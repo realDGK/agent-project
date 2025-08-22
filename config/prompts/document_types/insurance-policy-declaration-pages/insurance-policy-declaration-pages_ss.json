@@ -1,0 +1,56 @@
+{
+  "title": "Insurance Policy Declaration Page Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, typically 'Commercial General Liability Declarations'."
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Named Insured", "Insurer", "Producer"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "insurance_details": {
+      "type": "object",
+      "properties": {
+        "policies": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "policy_type": { "type": "string" },
+              "policy_number": { "type": "string" },
+              "effective_date": { "type": "string", "format": "date" },
+              "expiration_date": { "type": "string", "format": "date" },
+              "premium_amount": { "type": "number" },
+              "named_insureds": { "type": "array", "items": { "type": "string" } },
+              "endorsements_summary": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "parties", "insurance_details"]
+}

@@ -1,0 +1,53 @@
+{
+  "title": "AB 1600 Impact Fee Report Extraction",
+  "type": "object",
+  "properties": {
+    "contract_name": {
+      "type": "string",
+      "description": "The name of the document, e.g., 'Development Impact Fee Nexus Study'."
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["Authoring Agency", "Consultant"]
+          }
+        },
+        "required": ["name", "role"]
+      }
+    },
+    "fee_details": {
+      "type": "object",
+      "properties": {
+        "report_purpose": { "type": "string" },
+        "fee_recommendations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "fee_name": { "type": "string" },
+              "recommended_fee": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "discovered_entities": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "entity_name": { "type": "string" },
+                "entity_value": { "type": "string" },
+                "context_summary": { "type": "string" }
+            }
+        }
+    }
+  },
+  "required": ["contract_name", "effective_date", "parties", "fee_details"]
+}

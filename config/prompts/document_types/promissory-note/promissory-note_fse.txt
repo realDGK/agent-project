@@ -1,0 +1,29 @@
+**INPUT DOCUMENT TEXT:**
+PROMISSORY NOTE (SECURED)
+
+Principal Amount: $50,000,000.00
+Date: August 1, 2031
+
+FOR VALUE RECEIVED, Downtown Tower LLC ("Maker") promises to pay to Mega Bank, N.A. ("Payee"), the principal sum of Fifty Million Dollars.
+
+INTEREST: Interest shall accrue at SOFR + 2.75%.
+PAYMENT: Interest-only payments shall be due monthly. The entire outstanding balance is due and payable on the Maturity Date of August 1, 2034.
+SECURITY: This Note is secured by a Deed of Trust of even date herewith.
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Promissory Note (Secured)",
+  "effective_date": "2031-08-01",
+  "parties": [
+    { "name": "Downtown Tower LLC", "role": "Maker" },
+    { "name": "Mega Bank, N.A.", "role": "Payee" }
+  ],
+  "loan_details": {
+    "principal_amount": 50000000,
+    "interest_rate": "SOFR + 2.75%",
+    "maturity_date": "2034-08-01",
+    "payment_terms": "Interest-only payments due monthly.",
+    "is_secured": true
+  },
+  "discovered_entities": []
+}

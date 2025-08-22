@@ -1,0 +1,21 @@
+{
+  "stacking_plan_details": {
+    "type": "object",
+    "description": "Details specific to a building stacking plan.",
+    "properties": {
+      "property_name": { "type": "string" },
+      "floors": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "floor_number": { "type": "string" },
+            "tenant": { "type": "string" },
+            "sqft": { "type": "integer" },
+            "lease_expiration": { "type": "string", "format": "date" }
+          }
+        }
+      }
+    }
+  }
+}

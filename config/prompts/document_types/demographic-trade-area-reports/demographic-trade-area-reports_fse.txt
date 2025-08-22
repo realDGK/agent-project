@@ -1,0 +1,30 @@
+**INPUT DOCUMENT TEXT:**
+TRADE AREA DEMOGRAPHICS
+100 MAIN STREET, ANYTOWN, USA
+
+Prepared by: Site Analytics Inc.
+Date: July 1, 2033
+
+DEMOGRAPHICS (5-MILE RADIUS):
+- 2023 Population: 150,000
+- 2023 Average Household Income: $125,000
+- Daytime Population: 85,000
+
+**JSON OUTPUT:**
+{
+  "contract_name": "Trade Area Demographics",
+  "effective_date": "2033-07-01",
+  "parties": [
+    { "name": "Site Analytics Inc.", "role": "Data Provider" }
+  ],
+  "demographic_report_details": {
+    "property_address": "100 Main Street, Anytown, USA",
+    "trade_area_radius": "5-Mile Radius",
+    "key_demographics": [
+      { "metric": "2023 Population", "value": "150,000" },
+      { "metric": "2023 Average Household Income", "value": "$125,000" },
+      { "metric": "Daytime Population", "value": "85,000" }
+    ]
+  },
+  "discovered_entities": []
+}

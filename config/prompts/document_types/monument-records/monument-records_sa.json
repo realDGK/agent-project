@@ -1,0 +1,29 @@
+{
+  "survey_details": {
+    "type": "object",
+    "description": "Details specific to a land survey.",
+    "properties": {
+      "property_address": {
+        "type": "string"
+      },
+      "property_legal_description": {
+        "type": "string"
+      },
+      "apn": {
+        "type": "string"
+      },
+      "survey_type": {
+        "type": "string"
+      },
+      "monument_description": {
+        "type": "string"
+      },
+      "monument_location": {
+        "type": "string"
+      },
+      "surveyor_license_number": {
+        "type": "string"
+      }
+    }
+  }
+}
